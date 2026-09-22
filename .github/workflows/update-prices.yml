@@ -1,0 +1,91 @@
+name: Update crypto prices
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: crypto-price-feed
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch fresh prices and build prices.json
+        shell: python
+        run: |
+          import json
+          import urllib.request
+          from datetime import datetime, timezone
+
+          BASE = "https://crypto-price-gateway.vercel.app"
+
+          SPOT = [
+              "BTC","ETH","BNB","SOL","LINK","XRP",
+              "SUI","ENA","DOT","LDO","LTC","HYPE"
+          ]
+
+          PERP = [
+              "BTC","ETH","SOL","XRP","HYPE"
+          ]
+
+          def fetch_json(path):
+              url = BASE + path
+              req = urllib.request.Request(
+                  url,
+                  headers={
+                      "Accept": "application/json",
+                      "User-Agent": "crypto-price-feed/1.0"
+                  },
+              )
+              with urllib.request.urlopen(req, timeout=20) as response:
+                  if response.status != 200:
+                      raise RuntimeError(f"{url} -> HTTP {response.status}")
+                  return json.loads(response.read().decode("utf-8"))
+
+          spot = fetch_json(
+              "/batch?symbols=" + ",".join(SPOT) + "&market=spot"
+          )
+
+          perpetual = fetch_json(
+              "/batch?symbols=" + ",".join(PERP) + "&market=perp"
+          )
+
+          payload = {
+              "generatedAt": datetime.now(timezone.utc).isoformat(),
+              "source": BASE,
+              "protocol": {
+                  "venues": ["MEXC", "OKX", "Bybit"],
+                  "price": "mid=(bid+ask)/2",
+                  "rule": "3 fresh -> mean_3; 2 fresh -> mean_2; <2 -> OKX; spread >0.7% -> OKX",
+                  "freshnessSeconds": 15,
+                  "spreadLimitPct": 0.7
+              },
+              "spot": spot,
+              "perpetual": perpetual
+          }
+
+          with open("prices.json", "w", encoding="utf-8") as f:
+              json.dump(payload, f, ensure_ascii=False, indent=2)
+              f.write("\n")
+
+          print("Updated:", payload["generatedAt"])
+
+      - name: Commit updated snapshot
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add prices.json
+          git commit -m "Update crypto prices" || exit 0
+          git push
