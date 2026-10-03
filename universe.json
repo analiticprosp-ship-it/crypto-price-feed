@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "date": "2026-10-01",
+  "policy": "Monitoring is not trade approval. Exact symbol/venue validation is mandatory. Do not replace failed quotes with other tickers. No stablecoin entry signals.",
+  "groups": {
+    "portfolio": ["BTC","ETH","BNB","SOL","LINK","XRP","SUI","ENA","DOT","LDO","LTC","HYPE"],
+    "legacy_dust": ["STX","AAVE","TRX"],
+    "radar_approved": ["CC","PYTH"],
+    "radar_research_only": ["COW","FLIP"],
+    "futures_focus": ["LINK","HYPE","LDO","SOL","SUI","AAVE","BTC","ETH","XRP"],
+    "futures_extended": ["BNB","ENA","AVAX","APT","NEAR","INJ","ONDO","PENDLE","TAO","RENDER","ARB","OP","SEI","UNI","JUP"],
+    "sector_comparables": ["AVAX","APT","NEAR","ATOM","HBAR","ALGO","XLM","XDC","BCH","DOGE","XMR","API3","RED","BAND","RPL","ETHFI","SWISE","FXS","SKY","UNI","JUP","ARB","OP","SEI","TIA","CRV"],
+    "opportunity_research": ["ONDO","PENDLE","INJ","TAO","RENDER","RUNE","JTO","GRT","MKR"],
+    "stablecoins_metrics_only": ["USDT","USDC","USDE","DAI","USDS","GHO","CRVUSD"]
+  },
+  "spot_core": ["BTC","ETH","BNB","SOL","LINK","XRP","SUI","ENA","DOT","LDO","LTC","HYPE"],
+  "perpetual_core": ["BTC","ETH","SOL","XRP","HYPE","LINK","LDO","SUI","AAVE"],
+  "aliases_require_manual_validation": {"CC":"Canton Network, not COW", "COW":"CoW Protocol, not CC", "RENDER":"Check RENDER vs legacy RNDR", "RED":"RedStone", "MKR":"Legacy Maker ticker, compare SKY separately"},
+  "priority": {
+    "P0": ["BTC","ETH","BNB","SOL","LINK","XRP","SUI","ENA","DOT","LDO","LTC","HYPE","CC","PYTH","AAVE"],
+    "P1": ["STX","TRX","COW","FLIP","AVAX","APT","NEAR","INJ","ONDO","PENDLE","TAO","RENDER","ARB","OP","SEI","UNI","JUP"],
+    "P2": ["ATOM","HBAR","ALGO","XLM","XDC","BCH","DOGE","XMR","API3","RED","BAND","RPL","ETHFI","SWISE","FXS","SKY","TIA","CRV","RUNE","JTO","GRT","MKR"]
+  }
+}
