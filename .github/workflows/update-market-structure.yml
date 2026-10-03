@@ -1,0 +1,27 @@
+name: Update market structure
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: crypto-market-structure-feed
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build independent OHLCV OI and funding feed
+        run: python scripts/update_market_structure.py
+      - name: Commit only market structure feed
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add market-structure.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Update market structure'
+          git pull --rebase origin main
+          git push origin HEAD:main
