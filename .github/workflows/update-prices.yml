@@ -1,6 +1,10 @@
 name: Update critical crypto prices
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/refresh-now.txt'
   schedule:
     - cron: '*/5 * * * *'
 permissions:
