@@ -1,0 +1,43 @@
+name: Validate price and tokenomics upgrade
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'tokenomics-*.json'
+      - 'universe.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout pull request
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check Python syntax
+        run: python -m compileall -q scripts tests
+
+      - name: Validate JSON configuration
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for name in ('universe.json', 'tokenomics-assets.json', 'tokenomics-events.json'):
+              json.loads(Path(name).read_text(encoding='utf-8'))
+              print(f'JSON OK: {name}')
+          PY
+
+      - name: Run feed contract tests
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
