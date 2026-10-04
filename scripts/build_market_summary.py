@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """Compact, read-only analytical derivative of market-structure.json.
 Falls back to public, CLOSED-only perpetual OHLCV; never grants trade authority.
@@ -75,6 +76,8 @@ def build(primary,syms=SYMS,now_ms=None,fetch=extract):
     for sym,tfs in records.items():
         for tf,x in tfs.items():
             if sym!='BTC' and x['source'] == records['BTC'][tf]['source'] and x['source'] is not None:x['rsVsBTC']=aligned_rs(x['candles'],records['BTC'][tf]['candles'],tf)
+    for tfs in records.values():
+        for x in tfs.values():
             x.pop('candles')
     return {'schemaVersion':'1.0','generatedAt':datetime.fromtimestamp(now_ms/1000,timezone.utc).isoformat(),
             'researchOnly':True,'notTradeApproval':True,'rsMethod':'same-venue within each row; synchronized exact closed periods; do not compare mixed venues',
