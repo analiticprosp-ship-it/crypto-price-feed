@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0.0",
+  "policy": "Curated dated documentary events. An event with amountTokens=null cannot enter a numerical unlock sum. Waiver != sale != circulating supply increase. Do not silently fill Tokenomist/primary-provider missing data.",
+  "events": [
+    {
+      "id": "ena-stablecoinx-transfer-waiver-2026-10-05",
+      "symbol": "ENA",
+      "eventAt": "2026-10-05T00:00:00Z",
+      "eventType": "transfer_restriction_waiver",
+      "holderGroup": "specific StablecoinX ENA holders",
+      "amountTokens": null,
+      "circulatingIncreaseConfirmed": false,
+      "saleConfirmed": false,
+      "sourceKind": "SEC_8K",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2080215/000121390026100751/ea0305686-8k_stablecoinx.htm",
+      "sourcePublishedAt": "2026-09-17",
+      "verification": "DOCUMENTARY_EVENT_NO_AMOUNT",
+      "notes": "Special sale conditions remain. Do not merge with original investor unlock.",
+      "timePrecision": "DATE_ONLY_DO_NOT_ASSUME_UTC_MIDNIGHT"
+    },
+    {
+      "id": "ena-original-investors-scheduled-2026-10-05",
+      "symbol": "ENA",
+      "eventAt": "2026-10-05T00:00:00Z",
+      "eventType": "scheduled_original_investor_unlock",
+      "holderGroup": "remaining original-investor ENA under separate prospectus",
+      "amountTokens": null,
+      "circulatingIncreaseConfirmed": false,
+      "saleConfirmed": false,
+      "sourceKind": "SEC_PROSPECTUS",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2080215/000121390026099731/ea0305435-424b3_stable.htm",
+      "sourcePublishedAt": null,
+      "verification": "DOCUMENTARY_EVENT_NO_AMOUNT",
+      "notes": "Separate holder population; amount must be independently confirmed before calculation.",
+      "timePrecision": "DATE_ONLY_DO_NOT_ASSUME_UTC_MIDNIGHT"
+    }
+  ]
+}

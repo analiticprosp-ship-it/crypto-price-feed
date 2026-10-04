@@ -1,29 +1,29 @@
-name: Update critical crypto prices
+name: Update independent research quotes
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '7,17,27,37,47,57 * * * *'
 permissions:
   contents: write
 concurrency:
-  group: crypto-price-feed-core
+  group: crypto-price-feed-research
   cancel-in-progress: false
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 4
     steps:
       - uses: actions/checkout@v4
-      - name: Publish core independently from research
-        run: python scripts/update_core_prices.py
-      - name: Commit only core prices
+      - name: Collect supplemental quotes without affecting the core
+        run: python scripts/update_research_prices.py
+      - name: Commit supplemental snapshot only
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add prices.json
+          git add research-prices.json
           git diff --cached --quiet && exit 0
-          git commit -m 'Update critical crypto quotes'
+          git commit -m 'Update non-trading research quotes'
           for i in 1 2 3; do
             git pull --rebase origin main && git push origin HEAD:main && exit 0
             sleep 3

@@ -1,29 +1,31 @@
-name: Update critical crypto prices
+name: Daily tokenomics snapshot
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '23 5 * * *'
 permissions:
   contents: write
 concurrency:
-  group: crypto-price-feed-core
+  group: crypto-tokenomics-feed
   cancel-in-progress: false
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 4
     steps:
       - uses: actions/checkout@v4
-      - name: Publish core independently from research
-        run: python scripts/update_core_prices.py
-      - name: Commit only core prices
+      - name: Build dated supply and event snapshot
+        env:
+          COINGECKO_DEMO_API_KEY: ${{ secrets.COINGECKO_DEMO_API_KEY }}
+        run: python scripts/update_tokenomics.py
+      - name: Commit new tokenomics snapshot and append-only history
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add prices.json
+          git add tokenomics.json tokenomics-history.json
           git diff --cached --quiet && exit 0
-          git commit -m 'Update critical crypto quotes'
+          git commit -m 'Update dated tokenomics snapshot'
           for i in 1 2 3; do
             git pull --rebase origin main && git push origin HEAD:main && exit 0
             sleep 3
