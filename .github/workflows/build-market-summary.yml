@@ -1,0 +1,31 @@
+name: Build compact speculation structure
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Update market structure"]
+    types: [completed]
+permissions:
+  contents: write
+concurrency:
+  group: compact-market-summary
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - run: python scripts/build_market_summary.py
+      - run: python -m unittest discover -s tests -p 'test_compact_structure.py' -v
+      - name: Publish compact files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add market-summary.json market-leaders.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Update compact speculation structure'
+          git pull --rebase origin main
+          git push origin HEAD:main
