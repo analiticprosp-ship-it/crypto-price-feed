@@ -1,6 +1,11 @@
 name: Update Detector serverless REST research
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_detector_rest_flow.py'
+      - '.github/workflows/update-detector-rest-flow.yml'
   schedule:
     - cron: '7,22,37,52 * * * *'
 permissions:
@@ -17,17 +22,27 @@ jobs:
         with:
           ref: main
       - name: Collect Binance closed taker data and Bybit open interest
+        id: collect
+        continue-on-error: true
         run: python scripts/update_detector_rest_flow.py
-      - name: Publish ONLY isolated research artifact
+      - name: Publish ONLY isolated research/diagnostic artifacts
+        if: always() && steps.collect.outcome != 'skipped'
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add detector-rest-flow.json
+          for f in detector-rest-flow.json detector-rest-diagnostics.json; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
           git diff --cached --quiet && exit 0
           git commit -m 'Update independent Detector REST research observations'
           for i in 1 2 3; do
             git pull --rebase origin main && git push origin HEAD:main && exit 0
             sleep 3
           done
+          exit 1
+      - name: Fail run if all public sources are unavailable
+        if: steps.collect.outcome == 'failure'
+        run: |
+          echo 'Sources unavailable: see committed detector-rest-diagnostics.json; no trading feed created.'
           exit 1
