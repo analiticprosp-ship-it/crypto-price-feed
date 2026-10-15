@@ -187,9 +187,17 @@ class EventStore:
                                                      "coverageRatio":round(ratio,5),
                                                      "data":None}
                         else:
-                            windows[f"{minutes}m"]={"status":"OBSERVED",
-                                                     "coverageRatio":round(ratio,5),
-                                                     "data":self.stats(market,kind,symbol,start,end)}
+                            data=self.stats(market,kind,symbol,start,end)
+                            # A healthy socket does not prove that this specific
+                            # trade topic is producing. Do not fake zero trade flow.
+                            if kind=="taker_trade" and data["count"]==0:
+                                windows[f"{minutes}m"]={"status":"NO_TRADE_EVENTS_UNVERIFIED",
+                                                         "coverageRatio":round(ratio,5),
+                                                         "data":None}
+                            else:
+                                windows[f"{minutes}m"]={"status":"OBSERVED",
+                                                         "coverageRatio":round(ratio,5),
+                                                         "data":data}
                     entries[kind]=windows
                 group[symbol]=entries
             blocks[market]=group
@@ -256,8 +264,9 @@ def run_stream(market, symbols, store, stop):
             LOG.warning("%s websocket closed code=%s %s",market,code,msg)
         app=websocket.WebSocketApp(url,on_open=on_open,on_message=on_message,
                                    on_error=on_error,on_close=on_close)
+        session_done=threading.Event()
         def heartbeat():
-            while not stop.wait(20):
+            while not stop.is_set() and not session_done.wait(20):
                 if app.sock and app.sock.connected:
                     try: app.send(json.dumps({"op":"ping"}))
                     except Exception: break
@@ -269,6 +278,7 @@ def run_stream(market, symbols, store, stop):
         except Exception as ex:
             LOG.warning("%s stream exception: %s",market,ex)
         finally:
+            session_done.set()
             store.disconnected(market,int(time.time()*1000))
         attempt+=1
         if stop.wait(min(60,2**min(attempt,6))):
