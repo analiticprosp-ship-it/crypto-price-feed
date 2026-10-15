@@ -3,7 +3,7 @@ import unittest
 from datetime import datetime, timezone
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
-from update_detector_rest_flow import taker_result, oi_result, one_symbol, build, P5
+from update_detector_rest_flow import taker_result, oi_result, one_symbol, build, P5, okx_taker_result
 
 NOW=1800000000000
 SYMBOL="SOL"
@@ -63,6 +63,31 @@ class TestServerlessDetector(unittest.TestCase):
         d=taker_result(rows,NOW)
         self.assertEqual(d["status"],"OBSERVED")
         self.assertIsNone(d["window5m"]["imbalance"])
+
+    def test_okx_contract_sell_first_buy_second(self):
+        bars=taker_rows()
+        obj={"code":"0","data":[[str(r["timestamp"]),r["sellVol"],r["buyVol"]] for r in bars]}
+        d=okx_taker_result(obj,"SOL",NOW)
+        self.assertEqual(d["status"],"OBSERVED")
+        self.assertEqual(d["window15m"]["buyBase"],6.0)
+        self.assertEqual(d["window15m"]["sellBase"],3.0)
+        self.assertEqual(d["window15m"]["deltaBase"],3.0)
+        self.assertEqual(d["instId"],"SOL-USDT-SWAP")
+        self.assertIn("SELL_FIRST",d["dataMeaning"])
+
+    def test_okx_missing_and_schema_veto(self):
+        self.assertEqual(okx_taker_result({"code":"51001","data":[]},"SOL",NOW)["status"],"NO_DATA")
+        self.assertEqual(okx_taker_result({"code":"0","data":[["bad","1","2"]]},"SOL",NOW)["status"],"NO_DATA")
+
+    def test_fallback_recovers_blocked_binance_without_faking_bybit(self):
+        obj={"code":"0","data":[[str(r["timestamp"]),r["sellVol"],r["buyVol"]] for r in taker_rows()]}
+        def forbidden(_):raise PermissionError("blocked")
+        d=one_symbol("SOL",NOW,taker_fetch=forbidden,
+                     oi_fetch=forbidden,okx_taker_fetch=lambda _:obj)
+        self.assertEqual(d["taker"]["status"],"OBSERVED")
+        self.assertEqual(d["taker"]["source"],"OKX USDT-SWAP contract taker history")
+        self.assertEqual(d["openInterest"]["status"],"NO_DATA")
+        self.assertEqual(d["taker"]["priorBinanceStatus"],"UNAVAILABLE")
 
     def test_oi_observed_and_delta_same_venue(self):
         d=oi_result(oi_fixture(),SYMBOL,NOW)

@@ -66,6 +66,43 @@ def fetch_taker(symbol, getter=get_json):
     params=urllib.parse.urlencode({"symbol":symbol+"USDT","period":"5m","limit":16})
     return getter("https://fapi.binance.com/futures/data/takerlongshortRatio?"+params)
 
+def fetch_okx_taker(symbol, getter=get_json):
+    """Public OKX USDT-SWAP contract taker-volume; unit=1 requests base coin."""
+    params=urllib.parse.urlencode({"instId":symbol+"-USDT-SWAP",
+                                   "period":"5m","unit":"1","limit":"16"})
+    return getter("https://www.okx.com/api/v5/rubik/stat/taker-volume-contract?"+params)
+
+def okx_taker_result(raw, symbol, now_ms):
+    """OKX contract taker record [ts, SELL, BUY]; never invert the two sides.
+
+    OKX rubik response columns were cross-checked against trade tape;
+    any unexpected schema stays unavailable rather than guessed.
+    """
+    if not isinstance(raw,dict) or str(raw.get("code"))!="0":
+        return {"status":"NO_DATA","reason":source_response_code(raw,"okx")}
+    data=raw.get("data")
+    if not isinstance(data,list):
+        return {"status":"NO_DATA","reason":"OKX_INVALID_ROWS"}
+    parsed=[]
+    for row in data:
+        if not isinstance(row,list) or len(row)<3:
+            continue
+        try:
+            t=int(row[0])
+        except (ValueError,TypeError):
+            continue
+        if t<=0 or t%P5!=0:
+            continue
+        parsed.append({"timestamp":t,"buyVol":row[2],"sellVol":row[1]})
+    x=taker_result(parsed,now_ms)
+    if x["status"]=="OBSERVED":
+        x["source"]="OKX USDT-SWAP contract taker history"
+        x["instId"]=symbol+"-USDT-SWAP"
+        x["baseVolumeUnits"]="BASE_COIN_REQUEST_UNIT_1"
+        x["dataMeaning"]="OKX_CONTRACT_TAKER_SELL_FIRST_BUY_SECOND_BASE_VOLUME_NOT_TICK_CVD"
+        x["notSpotFlow"]=True
+    return x
+
 def fetch_oi(symbol, getter=get_json):
     params=urllib.parse.urlencode({"category":"linear","symbol":symbol+"USDT",
                                   "intervalTime":"5min","limit":16})
@@ -141,7 +178,10 @@ def oi_result(raw, symbol, now_ms):
             "unit":"BASE_ASSET_FOR_USDT_LINEAR; CONFIRM_INSTRUMENT_SPEC",
             "notTradeDirection":True,"notExchangeAggregated":True}
 
-def one_symbol(symbol, now_ms, taker_fetch=fetch_taker, oi_fetch=fetch_oi):
+def one_symbol(symbol, now_ms, taker_fetch=fetch_taker, oi_fetch=fetch_oi,
+               okx_taker_fetch=None):
+    if okx_taker_fetch is None and taker_fetch is fetch_taker:
+        okx_taker_fetch=fetch_okx_taker
     result={"symbol":symbol,
             "taker":{"status":"NO_DATA","reason":"NOT_FETCHED"},
             "openInterest":{"status":"NO_DATA","reason":"NOT_FETCHED"}}
@@ -149,6 +189,21 @@ def one_symbol(symbol, now_ms, taker_fetch=fetch_taker, oi_fetch=fetch_oi):
         result["taker"]=taker_result(taker_fetch(symbol),now_ms)
     except Exception as ex:
         result["taker"]={"status":"NO_DATA","reason":"HTTP_OR_PARSE_ERROR","error":http_error_class(ex)}
+    if result["taker"]["status"]!="OBSERVED" and okx_taker_fetch is not None:
+        primary_error=result["taker"].get("error") or result["taker"].get("reason")
+        try:
+            fallback=okx_taker_result(okx_taker_fetch(symbol),symbol,now_ms)
+        except Exception as ex:
+            fallback={"status":"NO_DATA","reason":"HTTP_OR_PARSE_ERROR",
+                      "error":http_error_class(ex)}
+        if fallback["status"]=="OBSERVED":
+            fallback["priorBinanceStatus"]="UNAVAILABLE"
+            fallback["priorBinanceError"]=primary_error
+            result["taker"]=fallback
+        else:
+            result["taker"]["okxFallback"]={
+                "reason":fallback.get("reason"),
+                "error":fallback.get("error")}
     try:
         result["openInterest"]=oi_result(oi_fetch(symbol),symbol,now_ms)
     except Exception as ex:
@@ -202,7 +257,8 @@ def main():
                 s:{
                     "taker":{"status":d["taker"]["status"],
                              "reason":d["taker"].get("reason"),
-                             "error":d["taker"].get("error")},
+                             "error":d["taker"].get("error"),
+                             "okxFallback":d["taker"].get("okxFallback")},
                     "openInterest":{"status":d["openInterest"]["status"],
                                     "reason":d["openInterest"].get("reason"),
                                     "error":d["openInterest"].get("error")}
