@@ -31,7 +31,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add --ignore-errors detector-rest-flow.json detector-rest-diagnostics.json
+          for f in detector-rest-flow.json detector-rest-diagnostics.json; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
           git diff --cached --quiet && exit 0
           git commit -m 'Update independent Detector REST research observations'
           for i in 1 2 3; do
