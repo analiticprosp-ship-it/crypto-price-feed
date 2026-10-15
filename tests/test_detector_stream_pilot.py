@@ -92,7 +92,8 @@ class TestDetectorStreamPilot(unittest.TestCase):
         self.store.subscribe_confirmed("linear",NOW-70_000)
         snap=self.store.snapshot(["SOLUSDT"],at=NOW)
         block=snap["streams"]["linear"]["SOLUSDT"]["taker_trade"]["1m"]
-        self.assertEqual(block["status"],"OBSERVED")
+        self.assertEqual(block["status"],"NO_TRADE_EVENTS_UNVERIFIED")
+        self.assertEqual(block["coverageRatio"],1.0)
         self.assertEqual(snap["streams"]["linear"]["SOLUSDT"]["taker_trade"]["5m"]["status"],
                          "NO_DATA_GAPPED_OR_WARMUP")
     def test_liquidation_dedup_and_price_quality(self):
