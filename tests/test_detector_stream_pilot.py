@@ -79,6 +79,13 @@ class TestDetectorStreamPilot(unittest.TestCase):
         self.assertIsNone(perp["data"]["deltaNotional"])
         self.assertEqual(snap["lastCompleteMinuteEndMs"],NOW)
         self.assertTrue(snap["notTradeApproval"])
+    def test_no_trade_event_does_not_prove_zero_taker_flow(self):
+        self.store.subscribe_confirmed("spot",NOW-16*MINUTE)
+        snap=self.store.snapshot(["SOLUSDT"],at=NOW)
+        block=snap["streams"]["spot"]["SOLUSDT"]["taker_trade"]["15m"]
+        self.assertEqual(block["status"],"NO_TRADE_EVENTS_UNVERIFIED")
+        self.assertIsNone(block["data"])
+
     def test_connection_gap_blocks_missing_window(self):
         self.store.subscribe_confirmed("linear",NOW-120_000)
         self.store.disconnected("linear",NOW-90_000)
