@@ -1,0 +1,49 @@
+# Standalone: docker compose -f compose.detector-stream.yml up -d --build
+# Optional: DETECTOR_SYMBOLS=SOLUSDT,SUIUSDT; 1-4 exact USDT pairs.
+# NO PORTS / NO API KEYS / NO AUTO-PUBLISH / NO TRADING.
+services:
+  detector-stream:
+    build:
+      context: .
+      dockerfile: Dockerfile.detector-stream
+    restart: unless-stopped
+    init: true
+    read_only: true
+    user: "10001:10001"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    volumes:
+      - detector_stream_data:/data
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m
+    command:
+      - python
+      - scripts/detector_stream_pilot.py
+      - --symbols
+      - ${DETECTOR_SYMBOLS:-SOLUSDT,SUIUSDT}
+      - --db
+      - /data/pilot.sqlite
+      - --out
+      - /data/detector-microflow.json
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - scripts/check_detector_microflow.py
+        - --file
+        - /data/detector-microflow.json
+        - --mode
+        - liveness
+        - --symbols
+        - ${DETECTOR_SYMBOLS:-SOLUSDT,SUIUSDT}
+        - --max-age-sec
+        - "75"
+      interval: 30s
+      timeout: 10s
+      start_period: 90s
+      retries: 3
+
+volumes:
+  detector_stream_data:
