@@ -41,3 +41,6 @@ jobs:
 
       - name: Run feed contract tests
         run: python -m unittest discover -s tests -p 'test_*.py' -v
+
+      - name: Validate optional Detector Docker Compose
+        run: docker compose -f compose.detector-stream.yml config -q
