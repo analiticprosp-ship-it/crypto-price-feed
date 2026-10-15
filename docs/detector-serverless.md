@@ -36,3 +36,11 @@ The system price contract \`prices.json\` is unchanged; this file is strictly **
 ## Further improvements possible without a server
 
 Test Bybit/OKX public historical Spot OHLCV liquidity metrics with separate venue/definition. Consider direct Spot taker aggregate only when exchange provides a trustworthy **historical** side-separated series. Future continuous streams require explicit infrastructure and cost approval, postponed.
+
+## Confirmed provider restrictions on GitHub-hosted runner
+
+At 2026-10-15 23:43 UTC the automatic source diagnostic showed **Binance HTTP 451** and **Bybit HTTP 403** for all 15 requested pairs. These are unavailable provider responses, not empty market activity; do not retry through unapproved proxies. A legitimate independent source is OKX public market analytics.
+
+When Binance taker REST fails, the research collector now tries **OKX** `/api/v5/rubik/stat/taker-volume-contract` for exactly `<SYMBOL>-USDT-SWAP` at `period=5m`, `unit=1`. Its response rows follow `[ts, sellVol, buyVol]` (sell first). Historical 5m/15m aggregates remain one evidence family and remain explicitly marked OKX, not Binance. The collector never mixes Binance and OKX quantities inside a single 15m result. The OKX endpoint still needs successful production verification in GitHub Actions. Bybit OI may remain unavailable; stage-one OKX OI/funding is separate and must not be copied or double-counted as a new second provider.
+
+See `detector-rest-diagnostics.json` for safe HTTP status classes if no provider yields a valid record. No credentials or trade keys used.
