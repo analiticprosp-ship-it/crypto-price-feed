@@ -210,7 +210,7 @@ def main():
                 for s,d in payload["instruments"].items()},
             "action":"CHECK_REGION_AND_HTTP_STATUS; DO_NOT_PUBLISH_FAKE_DATA"
         }
-        DIAG.write_text(json.dumps(diagnostics,ensure_ascii=False,separators=(",",":"))+"\\n")
+        DIAG.write_text(json.dumps(diagnostics,ensure_ascii=False,separators=(",",":"))+"\n")
         counts={}
         for v in diagnostics["sources"].values():
             for field in ("taker","openInterest"):
