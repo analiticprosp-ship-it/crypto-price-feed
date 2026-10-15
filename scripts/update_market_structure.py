@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent research feed: OKX candles + current OI/funding, accumulated OI samples.
+"""Independent research feed: CLOSED OKX candles (1D/4H/1H/15m) and observed OI/funding history.
 No trading signals; missing mappings/feeds are N/A. Uses stdlib only.
 """
 import json, os, time, urllib.parse, urllib.request
@@ -46,7 +46,14 @@ for sym in selected:
             time.sleep(.10)
     else: d['spot']['availability']={'ok':False,'reason':'Exact '+sp+' not listed on OKX; no alias substitution'}
     if sw in swap_list and sym in set(U['perpetual_core']+U['groups']['futures_extended']):
-        for tf,bar in [('1D','1D'),('4H','4H'),('1H','1H')]:
+        oldperp=old.get('perpetual') or {}
+        retention_ms=7*86400*1000
+        cutoff=int(now.timestamp()*1000)-retention_ms
+        old_oi=[x for x in oldperp.get('openInterestHistory',[]) if isinstance(x,dict) and isinstance(x.get('t'),int) and x['t']>=cutoff]
+        old_funding=[x for x in oldperp.get('fundingHistory',[]) if isinstance(x,dict) and isinstance(x.get('observedAtMs'),int) and x['observedAtMs']>=cutoff]
+        d['perpetual']['openInterestHistory']=old_oi[-2016:]
+        d['perpetual']['fundingHistory']=old_funding[-2016:]
+        for tf,bar in [('1D','1D'),('4H','4H'),('1H','1H'),('15m','15m')]:
             try:
                 raw=api('/api/v5/market/history-candles',{'instId':sw,'bar':bar,'limit':'100'})
                 cs=[{'t':int(x[0]),'o':x[1],'h':x[2],'l':x[3],'c':x[4],
@@ -57,16 +64,18 @@ for sym in selected:
         try:
             x=api('/api/v5/public/open-interest',{'instType':'SWAP','instId':sw})[0]
             sample={'t':int(x.get('ts',0)),'oiContracts':x.get('oi'),'oiCcy':x.get('oiCcy'),'oiUsd':x.get('oiUsd')}
-            hist=(old.get('perpetual') or {}).get('openInterestHistory',[])
-            # Deduplicate and preserve 7d of samples; this is collection, NOT retroactive history.
-            hist={str(x['t']):x for x in hist if x.get('t',0)>=int(now.timestamp()*1000)-7*86400*1000}
-            if sample['t']>0:hist[str(sample['t'])]=sample
+            # OI samples are instrument/venue-specific. Preserve history even when a future API call fails.
+            hist={str(x['t']):x for x in old_oi}
+            if sample['t']>0: hist[str(sample['t'])]=sample
             d['perpetual']['openInterestCurrent']=sample
             d['perpetual']['openInterestHistory']=sorted(hist.values(),key=lambda a:a['t'])[-2016:]
         except Exception as ex:d['perpetual']['openInterestCurrent']={'ok':False,'error':str(ex)[:160]}
         try:
             x=api('/api/v5/public/funding-rate',{'instId':sw})[0]
-            d['perpetual']['funding']={'fundingRate':x.get('fundingRate'),'fundingTime':x.get('fundingTime'),'nextFundingTime':x.get('nextFundingTime')}
+            observed_ms=int(now.timestamp()*1000)
+            funding={'fundingRate':x.get('fundingRate'),'fundingTime':x.get('fundingTime'),'nextFundingTime':x.get('nextFundingTime'), 'observedAtMs':observed_ms, 'venue':'OKX'}
+            d['perpetual']['funding']=funding
+            d['perpetual']['fundingHistory']=(old_funding+[funding])[-2016:]
         except Exception as ex:d['perpetual']['funding']={'ok':False,'error':str(ex)[:160]}
     else:d['perpetual']['availability']={'ok':False,'reason':'No validated exact swap or outside perp monitoring group'}
     d['status']='PARTIAL' if any(isinstance(v,dict) and v.get('ok') for v in d['spot'].values()) or any(isinstance(v,dict) and v.get('ok') for v in d['perpetual'].values()) else 'N/A'
