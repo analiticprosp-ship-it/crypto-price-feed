@@ -1,0 +1,13 @@
+# Research-only continuous public stream collector.
+FROM python:3.11-slim
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
+WORKDIR /app
+COPY requirements-detector-stream.txt /app/
+RUN python -m pip install --no-cache-dir -r requirements-detector-stream.txt
+COPY scripts/detector_stream_pilot.py scripts/check_detector_microflow.py /app/scripts/
+RUN useradd --uid 10001 --system --no-create-home detector \
+    && mkdir /data \
+    && chown 10001:10001 /data
+USER 10001:10001
+VOLUME ["/data"]
+CMD ["python","scripts/detector_stream_pilot.py","--symbols","SOLUSDT,SUIUSDT","--db","/data/pilot.sqlite","--out","/data/detector-microflow.json"]
