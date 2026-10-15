@@ -10,12 +10,14 @@ import math
 import time
 import urllib.parse
 import urllib.request
+import urllib.error
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"detector-rest-flow.json"
+DIAG=ROOT/"detector-rest-diagnostics.json"
 P5=5*60_000
 MAX_AGE=20*60_000
 MAX_TICKERS=15
@@ -41,6 +43,25 @@ def get_json(url,timeout=10):
     with urllib.request.urlopen(req,timeout=timeout) as r:
         return json.load(r)
 
+def http_error_class(ex):
+    """Safe bounded failure class; never emit credential-bearing request URLs."""
+    if isinstance(ex,urllib.error.HTTPError):
+        return "HTTP_"+str(ex.code)
+    if isinstance(ex,urllib.error.URLError):
+        return "URL_"+type(ex.reason).__name__
+    return type(ex).__name__
+
+def source_response_code(obj, source):
+    """Public protocol error code only, without untrusted free-text body."""
+    if isinstance(obj,dict):
+        key="retCode" if source=="bybit" else "code"
+        value=obj.get(key)
+        if value is not None:
+            s=str(value)
+            if s.lstrip("-").isdigit() and len(s)<=10:
+                return source.upper()+"_API_"+s
+    return "INVALID_SOURCE_RESPONSE"
+
 def fetch_taker(symbol, getter=get_json):
     params=urllib.parse.urlencode({"symbol":symbol+"USDT","period":"5m","limit":16})
     return getter("https://fapi.binance.com/futures/data/takerlongshortRatio?"+params)
@@ -53,7 +74,7 @@ def fetch_oi(symbol, getter=get_json):
 def taker_result(raw, now_ms):
     """Binance USDT-M aggregate taker buy/sell in BASE units, not trade-by-trade CVD."""
     if not isinstance(raw,list):
-        return {"status":"NO_DATA","reason":"INVALID_SOURCE_RESPONSE"}
+        return {"status":"NO_DATA","reason":source_response_code(raw,"binance")}
     rows={}
     for rec in raw:
         if not isinstance(rec,dict):
@@ -91,7 +112,7 @@ def taker_result(raw, now_ms):
 def oi_result(raw, symbol, now_ms):
     """Observed Bybit linear OI snapshots; never sum with other venues."""
     if not isinstance(raw,dict) or raw.get("retCode")!=0:
-        return {"status":"NO_DATA","reason":"INVALID_SOURCE_RESPONSE"}
+        return {"status":"NO_DATA","reason":source_response_code(raw,"bybit")}
     payload=raw.get("result") or {}
     if payload.get("symbol")!=symbol+"USDT" or payload.get("category")!="linear":
         return {"status":"NO_DATA","reason":"SYMBOL_OR_MARKET_MISMATCH"}
@@ -127,11 +148,11 @@ def one_symbol(symbol, now_ms, taker_fetch=fetch_taker, oi_fetch=fetch_oi):
     try:
         result["taker"]=taker_result(taker_fetch(symbol),now_ms)
     except Exception as ex:
-        result["taker"]={"status":"NO_DATA","reason":"HTTP_OR_PARSE_ERROR","error":type(ex).__name__}
+        result["taker"]={"status":"NO_DATA","reason":"HTTP_OR_PARSE_ERROR","error":http_error_class(ex)}
     try:
         result["openInterest"]=oi_result(oi_fetch(symbol),symbol,now_ms)
     except Exception as ex:
-        result["openInterest"]={"status":"NO_DATA","reason":"HTTP_OR_PARSE_ERROR","error":type(ex).__name__}
+        result["openInterest"]={"status":"NO_DATA","reason":"HTTP_OR_PARSE_ERROR","error":http_error_class(ex)}
     return result
 
 def build(symbols,now_ms,taker_fetch=fetch_taker,oi_fetch=fetch_oi,max_workers=5):
@@ -169,7 +190,35 @@ def main():
     payload=build(symbols,now_ms)
     # Never overwrite last successfully collected snapshot with an entirely unavailable run.
     if payload["coverage"]["sourceObservationsValid"]==0:
-        raise RuntimeError("ALL_SOURCES_UNAVAILABLE: keep previous file and timestamp")
+        diagnostics={
+            "schemaVersion":"detector-rest-diagnostics-1.0",
+            "generatedAt":payload["generatedAt"],
+            "status":"NO_VALID_SOURCE_OBSERVATIONS",
+            "researchOnly":True,"notSystemPrice":True,
+            "notTradeApproval":True,
+            "observationCount":0,
+            "noTradeSignal":True,
+            "sources":{
+                s:{
+                    "taker":{"status":d["taker"]["status"],
+                             "reason":d["taker"].get("reason"),
+                             "error":d["taker"].get("error")},
+                    "openInterest":{"status":d["openInterest"]["status"],
+                                    "reason":d["openInterest"].get("reason"),
+                                    "error":d["openInterest"].get("error")}
+                  }
+                for s,d in payload["instruments"].items()},
+            "action":"CHECK_REGION_AND_HTTP_STATUS; DO_NOT_PUBLISH_FAKE_DATA"
+        }
+        DIAG.write_text(json.dumps(diagnostics,ensure_ascii=False,separators=(",",":"))+"\\n")
+        counts={}
+        for v in diagnostics["sources"].values():
+            for field in ("taker","openInterest"):
+                q=v[field]
+                key=field+":"+str(q.get("error") or q.get("reason"))
+                counts[key]=counts.get(key,0)+1
+        print("DETECTOR REST DIAGNOSTICS:",json.dumps(counts,sort_keys=True),flush=True)
+        raise RuntimeError("ALL_SOURCES_UNAVAILABLE: diagnostics saved; preserve previous source feed")
     OUT.write_text(json.dumps(payload,ensure_ascii=False,separators=(",",":"))+"\n")
     print("Detector serverless REST:",payload["coverage"],"as_of",payload["generatedAt"])
 
