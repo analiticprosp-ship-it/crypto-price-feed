@@ -27,6 +27,13 @@ def finite_positive(value):
     except (ValueError,TypeError):
         return None
 
+def finite_nonnegative(value):
+    try:
+        x=float(value)
+        return x if math.isfinite(x) and x>=0 else None
+    except (ValueError,TypeError):
+        return None
+
 def get_json(url,timeout=10):
     req=urllib.request.Request(url,headers={
         "User-Agent":"independent-detector-rest-research/1.0",
@@ -53,8 +60,8 @@ def taker_result(raw, now_ms):
             continue
         try: t=int(rec["timestamp"])
         except (KeyError,ValueError,TypeError): continue
-        buy=finite_positive(rec.get("buyVol"))
-        sell=finite_positive(rec.get("sellVol"))
+        buy=finite_nonnegative(rec.get("buyVol"))
+        sell=finite_nonnegative(rec.get("sellVol"))
         # True zero may be legitimate, but API availability cannot be inferred from absent rows.
         if buy is None or sell is None or t<0 or t+P5>now_ms-30000:
             continue
