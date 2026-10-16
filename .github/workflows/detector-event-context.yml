@@ -1,0 +1,31 @@
+name: Detector SHADOW BTC RS and Positioning Context
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "UTC event date"
+        required: true
+        default: "2026-10-16"
+        type: string
+permissions:
+  contents: read
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests
+      - name: Point-in-time context (SHADOW ONLY)
+        env:
+          DATE: ${{ inputs.date }}
+        run: python research/detector_event_context.py --date "$DATE"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-event-context-results
+          path: detector_context_results/
+          retention-days: 30
