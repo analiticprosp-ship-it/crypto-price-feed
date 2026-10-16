@@ -1,0 +1,49 @@
+name: Probe BTC Coin Metrics Community onchain proxies
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_btc_coinmetrics_community.py'
+      - '.github/workflows/probe-btc-coinmetrics-community.yml'
+
+permissions:
+  contents: write
+concurrency:
+  group: btc-coinmetrics-community-probe
+  cancel-in-progress: false
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Test deterministic source and no-trade guards
+        run: python -m unittest discover -s tests -p 'test_probe_btc_coinmetrics_community.py' -v
+      - name: Attempt unauthenticated Community API extraction
+        id: probe
+        continue-on-error: true
+        run: python scripts/probe_btc_coinmetrics_community.py
+      - name: Publish only verified research or safe diagnostic artifacts
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for f in research/btc-coinmetrics-community-proxy.json research/btc-coinmetrics-community-diagnostics.json; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
+          git diff --cached --quiet && exit 0
+          git commit -m 'Record public BTC community research proxy pilot and access diagnostics'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 3
+          done
+          exit 1
+      - name: Explicit failure if no source is accessible
+        if: steps.probe.outcome == 'failure'
+        run: |
+          echo 'No verified free Coin Metrics metrics; see diagnostics. No synthetic exchange-flow data was published.'
+          exit 1
