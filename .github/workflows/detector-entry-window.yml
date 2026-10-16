@@ -1,0 +1,31 @@
+name: Detector SHADOW Entry Delay and First Touch
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "UTC date of detector events"
+        required: true
+        default: "2026-10-16"
+        type: string
+permissions:
+  contents: read
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests
+      - name: Evaluate 5m first-touch with entry delays (SHADOW)
+        env:
+          DATE: ${{ inputs.date }}
+        run: python research/detector_entry_window_v01.py --date "$DATE"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-entry-window-results
+          path: detector_entry_window_results/
+          retention-days: 30
