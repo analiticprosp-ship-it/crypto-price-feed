@@ -1,0 +1,35 @@
+name: Detector Swing Long History v0.6
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Lookback days (730 = 2 years, 1095 = 3 years)"
+        required: true
+        default: "730"
+        type: choice
+        options:
+          - "730"
+          - "1095"
+permissions:
+  contents: read
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests pandas numpy
+      - name: Study closed 4H and 1D candles using 1H source data
+        env:
+          DAYS: ${{ inputs.days }}
+        run: |
+          python research/detector_swing_long_v06.py --days "$DAYS" --out detector_swing_v06_results
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-swing-v06-results
+          path: detector_swing_v06_results/
+          retention-days: 30
