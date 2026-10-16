@@ -225,6 +225,9 @@ def symbol_result(sym,summary,flow,now_ms):
     if not isinstance(features,dict) or features.get("sourceBarClosedAt")!=end:
         out["reason"]="STRUCTURE_BAR_MISMATCH"
         return out
+    if as_ms(summary.get("generatedAt"))<end or as_ms(flow.get("generatedAt"))<end:
+        out["reason"]="INPUT_PUBLISHED_BEFORE_EVENT_END"
+        return out
     if not isinstance(taker_obj,dict):
         out["reason"]="TAKER_SYMBOL_NOT_MONITORED"
         return out
