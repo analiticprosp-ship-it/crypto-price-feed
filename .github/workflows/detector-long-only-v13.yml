@@ -1,0 +1,23 @@
+name: Detector LONG-only SHADOW Research
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: LONG-only entry and descriptive hold audit
+        run: python research/detector_long_only_v13.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-long-only-v13-results
+          path: detector_long_only_v13_results/
+          retention-days: 30
