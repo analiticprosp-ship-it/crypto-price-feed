@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from detector_onchain_context import build as build_btc_onchain_context, SOURCE as ONCHAIN_SOURCE
 from detector_btc_exchange_flow_context import read_context as read_btc_exchange_flow_context
+from detector_signal_journal import annotate as annotate_signal_journal
 
 ROOT=Path(__file__).resolve().parents[1]
 P5=300000
@@ -361,6 +362,14 @@ def main():
         "Coin Metrics BTC exchange-flow data is DAILY research only, not age cohorts, not 15m signal, no candidate ranking effects")
     (ROOT/"detector-onchain-context.json").write_text(
         json.dumps(context,ensure_ascii=False,separators=(",",":"))+"\n")
+    event_file=ROOT/"detector-signal-events.json"
+    if event_file.exists():
+        # Any corrupt journal must fail; never silently reset first-seen timestamps.
+        prior=json.loads(event_file.read_text(encoding="utf-8"))
+    else:
+        prior=None
+    out,journal=annotate_signal_journal(out,prior,now_ms=now_ms)
+    event_file.write_text(json.dumps(journal,ensure_ascii=False,separators=(",",":"))+"\n")
     target=ROOT/"detector-candidates.json"
     target.write_text(json.dumps(out,ensure_ascii=False,separators=(",",":"))+"\n")
     print("Detector SHADOW:",json.dumps(out["coverage"],sort_keys=True),
