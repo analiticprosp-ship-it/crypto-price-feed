@@ -87,6 +87,23 @@ def error_class(ex):
         return "NETWORK_"+type(ex.reason).__name__
     return type(ex).__name__
 
+def safe_http_explanation(err):
+    """Include bounded public API validation hint. No auth headers are used."""
+    if not isinstance(err,urllib.error.HTTPError):
+        return None
+    try:
+        raw=err.read(1400).decode("utf-8","replace")
+        body=json.loads(raw)
+        if isinstance(body,dict):
+            candidate=body.get("message") or body.get("error") or body.get("detail") or body.get("errors")
+            if isinstance(candidate,(dict,list)):
+                candidate=json.dumps(candidate)
+            if isinstance(candidate,str):
+                return candidate[:350]
+        return raw[:350]
+    except Exception:
+        return "HTTP_BODY_UNAVAILABLE"
+
 def collect(*,now=None,getter=fetch):
     now=now or datetime.now(timezone.utc)
     start=(now-timedelta(days=80)).date().isoformat()
@@ -116,6 +133,7 @@ def collect(*,now=None,getter=fetch):
                 "statusByMetric":{},"researchOnly":True,"noTradeSignal":True}
     for metric,spec in METRICS.items():
         url=endpoint(metric,start,end)
+        explanation=None
         try:
             raw=getter(url)
             obj=json.loads(raw)
@@ -126,10 +144,12 @@ def collect(*,now=None,getter=fetch):
             rows=[];reason="INVALID_JSON";digest=None
         except Exception as exc:
             rows=[];reason=error_class(exc);digest=None
+            explanation=safe_http_explanation(exc)
         latest=rows[-1]["dateUtc"] if rows else None
         diagnostic["statusByMetric"][metric]={
             "status":"OBSERVED" if rows else "NO_DATA",
-            "reason":reason,"rowCount":len(rows),"lastDataDate":latest}
+            "reason":reason,"rowCount":len(rows),"lastDataDate":latest,
+            "validationHint":explanation}
         if rows:
             out["metrics"][metric]=dict(spec,sourceUrl=url,rawSha256=digest,
                                          sourceDataRetrievalAt=iso(now),
