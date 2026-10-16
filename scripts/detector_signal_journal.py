@@ -83,8 +83,23 @@ def annotate(report, prior, *, now_ms):
                 "detectionLagSeconds":None if bootstrap else round((now_ms-bar_end)/1000,3),
                 "journalFirstRecordedAtUtc":time_iso(now_ms),
                 "journalFirstRecordedAtMadrid":time_iso(now_ms,True),
-                "notificationEligible":not bootstrap,
+                "notificationEligible":not bootstrap and not any(
+                    y.get("symbol")==candidate["symbol"] and
+                    y.get("direction")==candidate["direction"] and
+                    isinstance(utc_timestamp(y.get("journalFirstRecordedAtUtc")),int) and
+                    0<=now_ms-utc_timestamp(y["journalFirstRecordedAtUtc"])<60*60000
+                    for y in events
+                ),
                 "initialSnapshotBaseline":bootstrap,
+                "notificationCooldownMinutes":60,
+                "suppressionReason":("INITIAL_BASELINE" if bootstrap else
+                    "REPEATED_SYMBOL_DIRECTION_WITHIN_60M" if any(
+                       y.get("symbol")==candidate["symbol"] and
+                       y.get("direction")==candidate["direction"] and
+                       isinstance(utc_timestamp(y.get("journalFirstRecordedAtUtc")),int) and
+                       0<=now_ms-utc_timestamp(y["journalFirstRecordedAtUtc"])<60*60000
+                       for y in events
+                    ) else None),
                 "sourceGeneratedAt":dict(report.get("sourceProvenance") or {}),
                 "eventTimeDefinition":"CLOSED_15M_PRICE_BAR_END; NOT_PROVEN_INTRABAR_ONSET",
                 "firstDetectedDefinition":"FIRST_CONFIRMED_GITHUB_ENGINE_EVALUATION; NOT_BAR_CLOSE_OR_PUSH_TIME",
