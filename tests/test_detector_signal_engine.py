@@ -12,9 +12,10 @@ def iso(n):
     return datetime.fromtimestamp(n/1000,timezone.utc).isoformat()
 
 def fixtures(direction="LONG"):
-    t=NOW-P15
+    end=NOW-P15
+    t=end-P15
     if direction=="LONG":
-        bar=dict(t=t,endMs=NOW,o=100.,h=103.,l=98.,c=102.,v=30.)
+        bar=dict(t=t,endMs=end,o=100.,h=103.,l=98.,c=102.,v=30.)
         prev=(1.,5.)
         curr=(5.,1.)
     else:
@@ -23,7 +24,7 @@ def fixtures(direction="LONG"):
         curr=(1.,5.)
     rows=[]
     for k in range(6):
-        stamp=NOW-P15*2+k*P5
+        stamp=end-P15*2+k*P5
         buy,sell=prev if k<3 else curr
         rows.append(dict(startMs=stamp,endMs=stamp+P5,buyBase=buy,sellBase=sell))
     price={
@@ -36,14 +37,14 @@ def fixtures(direction="LONG"):
                     "lastClosedBar":bar,
                     "detectorFeatures":{
                         "status":"OHLCV_PROXY_ONLY",
-                        "sourceBarClosedAt":NOW,"gapsInLast14":0,
+                        "sourceBarClosedAt":end,"gapsInLast14":0,
                         "localStructure":{"sweptLowReclaimed":False,"sweptHighRejected":False}
                     },
                     "rsVsBTC":{"rsPctPoints":0.7}
                 },
                 "derivatives":{
                     "venue":"OKX","status":"PARTIAL","openInterest":{
-                        "timestamp":NOW-60000,"deltaContractsPct15m":0.3,
+                        "timestamp":end-60000,"deltaContractsPct15m":0.3,
                         "deltaContractsPct1h":0.7}
                 }
             }
@@ -57,7 +58,7 @@ def fixtures(direction="LONG"):
             SYMBOL:{
                 "taker":{
                     "status":"OBSERVED","source":"OKX USDT-SWAP contract taker history",
-                    "instId":"SOL-USDT-SWAP","lastClosed5mEndMs":NOW,
+                    "instId":"SOL-USDT-SWAP","lastClosed5mEndMs":end,
                     "recentClosed5m":rows,
                     "window15m":{"imbalance":999.}, # must not be trusted for other windows
                 },
@@ -76,7 +77,7 @@ class TestDetectorFusion(unittest.TestCase):
         self.assertEqual(r["candidates"][0]["direction"],"LONG")
         self.assertEqual(r["instruments"]["SOL"]["LONG"]["status"],"EARLY_CANDIDATE_SHADOW")
         self.assertEqual(r["instruments"]["SOL"]["SHORT"]["status"],"NO_EDGE")
-        self.assertEqual(r["instruments"]["SOL"]["flow"]["matchedEndMs"],NOW)
+        self.assertEqual(r["instruments"]["SOL"]["flow"]["matchedEndMs"],NOW-P15)
         self.assertEqual(r["instruments"]["SOL"]["flow"]["current"]["imbalance"],.666667)
         self.assertEqual(r["instruments"]["SOL"]["oi"]["status"],"ALIGNED_15M_OBSERVATION")
 
@@ -132,7 +133,7 @@ class TestDetectorFusion(unittest.TestCase):
 
     def test_oi_never_fabricates_time_sync_or_direction(self):
         a,b=fixtures()
-        a["instruments"]["SOL"]["derivatives"]["openInterest"]["timestamp"]=NOW+30_000
+        a["instruments"]["SOL"]["derivatives"]["openInterest"]["timestamp"]=NOW-P15+30_000
         r=build(a,b,now_ms=NOW)
         self.assertEqual(r["instruments"]["SOL"]["oi"]["status"],"POST_PRICE_BAR_CONTEXT_ONLY")
         self.assertFalse(r["instruments"]["SOL"]["oi"]["confirm15m"])
