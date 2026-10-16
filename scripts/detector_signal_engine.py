@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from detector_onchain_context import build as build_btc_onchain_context, SOURCE as ONCHAIN_SOURCE
+from detector_btc_exchange_flow_context import read_context as read_btc_exchange_flow_context
 
 ROOT=Path(__file__).resolve().parents[1]
 P5=300000
@@ -346,6 +347,18 @@ def main():
         "notAvailableFor15mBackdating":True
     }
     out["limitations"].append("BTC onchain movement/exchange-flows are research context only, with no impact on LONG/SHORT status or rank")
+    community_file=ROOT/"research"/"btc-exchange-flows-coinmetrics.json"
+    try:
+        flow_raw=community_file.read_bytes()
+        community_data=json.loads(flow_raw)
+        community_hash=hashlib.sha256(flow_raw).hexdigest()
+    except (OSError,ValueError):
+        community_data=None
+        community_hash=None
+    out["btcExchangeFlowContext"]=read_btc_exchange_flow_context(
+        community_data,now_ms=now_ms,source_sha=community_hash)
+    out["limitations"].append(
+        "Coin Metrics BTC exchange-flow data is DAILY research only, not age cohorts, not 15m signal, no candidate ranking effects")
     (ROOT/"detector-onchain-context.json").write_text(
         json.dumps(context,ensure_ascii=False,separators=(",",":"))+"\n")
     target=ROOT/"detector-candidates.json"
