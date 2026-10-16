@@ -6,8 +6,9 @@ on:
     paths:
       - 'scripts/detector_signal_engine.py'
       - '.github/workflows/build-detector-candidates.yml'
-  schedule:
-    - cron: '12,27,42,57 * * * *'
+  workflow_run:
+    workflows: ["Build compact speculation structure"]
+    types: [completed]
 permissions:
   contents: write
 concurrency:
@@ -15,6 +16,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
