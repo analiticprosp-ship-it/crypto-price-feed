@@ -1,0 +1,21 @@
+name: Detector Historical Integrity v2.1
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python research/detector_historical_integrity_v21.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-historical-integrity-v21-results
+          path: detector_historical_integrity_v21_results/
+          retention-days: 30
