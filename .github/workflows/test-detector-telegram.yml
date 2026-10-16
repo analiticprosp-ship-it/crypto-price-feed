@@ -1,0 +1,21 @@
+name: Test Detector Telegram delivery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  telegram:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Send one explicit test notification (not a trading signal)
+        env:
+          DETECTOR_TELEGRAM_BOT_TOKEN: ${{ secrets.DETECTOR_TELEGRAM_BOT_TOKEN }}
+          DETECTOR_TELEGRAM_CHAT_ID: ${{ secrets.DETECTOR_TELEGRAM_CHAT_ID }}
+        run: python scripts/check_detector_telegram_connection.py
