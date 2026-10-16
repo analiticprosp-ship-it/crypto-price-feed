@@ -1,0 +1,49 @@
+name: Export BTC free daily exchange flows Coin Metrics
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/export_btc_coinmetrics_exchange_flows.py'
+      - '.github/workflows/export-btc-free-exchange-flows.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: btc-free-exchange-flow-export
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Validate UTC daily and non-trading contracts
+        run: python -m unittest discover -s tests -p 'test_export_btc_coinmetrics_exchange_flows.py' -v
+      - name: Fetch observed Community API exchange flows
+        id: run
+        continue-on-error: true
+        run: python scripts/export_btc_coinmetrics_exchange_flows.py
+      - name: Publish observed research or safe diagnostics only
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for f in research/btc-exchange-flows-coinmetrics.json research/btc-exchange-flows-coinmetrics.csv research/btc-exchange-flows-coinmetrics-diagnostics.json; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
+          git diff --cached --quiet && exit 0
+          git commit -m 'Record free BTC exchange inflow outflow reserve research'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 3
+          done
+          exit 1
+      - name: Fail if data missing
+        if: steps.run.outcome == 'failure'
+        run: exit 1
