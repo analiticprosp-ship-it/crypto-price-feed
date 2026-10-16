@@ -10,7 +10,8 @@ from datetime import datetime, timezone
 ROOT=Path(__file__).resolve().parents[1]
 TFS={'15m':900000,'1H':3600000,'4H':14400000,'1D':86400000}
 BARS={'15m':'15m','1H':'1H','4H':'4H','1D':'1Dutc'}
-SYMS=['BTC','ETH','SOL','HYPE','AAVE','LINK','LDO','SUI','XRP','BNB','ENA','DOT']
+SYMS=['BTC','ETH','SOL','HYPE','AAVE','LINK','LDO','SUI','XRP','BNB','ENA','DOT',
+      'AVAX','APT','NEAR','INJ']
 def get_json(url):
     req=urllib.request.Request(url,headers={'User-Agent':'crypto-portfolio-fallback/1.0','Accept':'application/json'})
     with urllib.request.urlopen(req,timeout=12) as r:return json.load(r)
