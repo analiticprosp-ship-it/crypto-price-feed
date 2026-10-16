@@ -27,12 +27,14 @@ jobs:
         run: python scripts/detector_signal_engine.py
       - name: Validate feature-engine regression tests
         run: python -m unittest discover -s tests -p 'test_detector_signal_engine.py' -v
+      - name: Validate BTC onchain data source and scope gates
+        run: python -m unittest discover -s tests -p 'test_detector_onchain_context.py' -v
       - name: Publish ONLY SHADOW candidate research
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add detector-candidates.json
+          git add detector-candidates.json detector-onchain-context.json
           git diff --cached --quiet && exit 0
           git commit -m 'Update independent SHADOW Detector research candidates'
           for i in 1 2 3; do

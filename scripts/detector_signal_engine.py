@@ -11,6 +11,7 @@ import math
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from detector_onchain_context import build as build_btc_onchain_context, SOURCE as ONCHAIN_SOURCE
 
 ROOT=Path(__file__).resolve().parents[1]
 P5=300000
@@ -320,8 +321,33 @@ def main():
             digests[name]=hashlib.sha256(content).hexdigest()
         except (OSError,ValueError) as ex:
             source[name]={"sourceMissing":type(ex).__name__}
+    now_ms=int(time.time()*1000)
     out=build(source["market-summary.json"],source["detector-rest-flow.json"],
-              now_ms=int(time.time()*1000),input_hashes=digests)
+              now_ms=now_ms,input_hashes=digests)
+    try:
+        onchain_raw=ONCHAIN_SOURCE.read_bytes()
+        onchain_data=json.loads(onchain_raw)
+        onchain_hash=hashlib.sha256(onchain_raw).hexdigest()
+    except (OSError,ValueError):
+        onchain_data=None
+        onchain_hash=None
+    context=build_btc_onchain_context(onchain_data,now_ms=now_ms,source_sha=onchain_hash)
+    out["onchainContext"]={
+        "status":context["sourceStatus"],
+        "sourceSha256":context["sourceSha256"],
+        "evidenceFamily":context["evidenceFamily"],
+        "validObservationCount":len(context["observations"]),
+        "rejectedObservationCount":len(context["rejections"]),
+        "scopes":context.get("separatedScopes",[]),
+        "metricIds":sorted(set(x["metricId"] for x in context["observations"])),
+        "noEffectOnCandidateRanking":True,
+        "notEvidenceOfActualSales":True,
+        "notIndependentVotes":True,
+        "notAvailableFor15mBackdating":True
+    }
+    out["limitations"].append("BTC onchain movement/exchange-flows are research context only, with no impact on LONG/SHORT status or rank")
+    (ROOT/"detector-onchain-context.json").write_text(
+        json.dumps(context,ensure_ascii=False,separators=(",",":"))+"\n")
     target=ROOT/"detector-candidates.json"
     target.write_text(json.dumps(out,ensure_ascii=False,separators=(",",":"))+"\n")
     print("Detector SHADOW:",json.dumps(out["coverage"],sort_keys=True),
