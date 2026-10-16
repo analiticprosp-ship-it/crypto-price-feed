@@ -285,7 +285,11 @@ def build(summary,flow,*,now_ms,input_hashes=None):
         "operationalStatus":"SHADOW_ONLY_NO_TRADE_AUTHORITY",
         "researchOnly":True,"notTradeApproval":True,"notSystemPrice":True,
         "noValidatedProbability":True,"noExecutionLevels":True,
-        "dataGate":{"ok":eligible,"reason":reason},
+        "dataGate":{
+            "ok":bool(eligible and coverage["fullyAligned"]>0),
+            "sourceFreshnessOk":eligible,
+            "reason":reason if not eligible else "OK" if coverage["fullyAligned"]>0
+                     else "NO_ALIGNED_INSTRUMENTS"},
         "sourceProvenance":{
             "marketSummaryGeneratedAt":summary.get("generatedAt") if isinstance(summary,dict) else None,
             "takerRestGeneratedAt":flow.get("generatedAt") if isinstance(flow,dict) else None,
