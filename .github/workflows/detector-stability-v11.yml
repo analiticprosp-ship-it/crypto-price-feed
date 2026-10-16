@@ -1,0 +1,33 @@
+name: Detector SHADOW Stability v1.1
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: UTC date of real detector events
+        required: true
+        default: '2026-10-16'
+        type: string
+permissions:
+  contents: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Recalculate unified event trials
+        env:
+          DATE: ${{ inputs.date }}
+        run: python research/detector_unified_v10.py --date "$DATE"
+      - name: Build per-coin and paired stability audit
+        run: python research/detector_stability_v11.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-stability-v11-results
+          path: detector_stability_v11_results/
+          retention-days: 30
