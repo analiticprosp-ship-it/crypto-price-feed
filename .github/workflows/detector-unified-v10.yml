@@ -1,0 +1,31 @@
+name: Detector Unified SHADOW Validation v1.0
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: UTC detector event date
+        required: true
+        default: '2026-10-16'
+        type: string
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Paired real-event validation
+        env:
+          DATE: ${{ inputs.date }}
+        run: python research/detector_unified_v10.py --date "$DATE"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-unified-v10-results
+          path: detector_unified_v10_results/
+          retention-days: 30
