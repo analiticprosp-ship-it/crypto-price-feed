@@ -1,0 +1,22 @@
+name: Detector SHADOW Post-Stop and Limit Entry v1.4
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python research/detector_post_stop_v14.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-post-stop-v14-results
+          path: detector_post_stop_v14_results/
+          retention-days: 30
