@@ -137,14 +137,34 @@ def main():
     events=json.loads(EVENTS.read_text(encoding="utf-8"))
     receipts=json.loads(RECEIPTS.read_text(encoding="utf-8")) if RECEIPTS.exists() else empty_receipts()
     now_ms=int(time.time()*1000)
-    def sender(text):
-        return post_telegram(token,chat,text)
-    latest,ids=perform(events,receipts,now_ms=now_ms,send=sender)
-    if ids:
+    pending=prepare_events(events,receipts,now_ms)
+    delivered=0
+    for row in pending:
+        try:
+            receipt=post_telegram(token,chat,message_text(row,int(time.time()*1000)))
+            if not isinstance(receipt,dict) or not isinstance(receipt.get("telegramMessageId"),int):
+                raise RuntimeError("MISSING_VERIFIED_TELEGRAM_RECEIPT")
+        except Exception as ex:
+            # Do not print urllib errors: they may contain the bot token URL.
+            print("DETECTOR_TELEGRAM_DELIVERY_ERROR:",type(ex).__name__,
+                  "; previously acknowledged notifications remain on disk")
+            raise SystemExit(2) from None
+        current=list(receipts["receipts"])
+        current.append({
+            "id":row["id"],"symbol":row["symbol"],"direction":row["direction"],
+            "barClosedAtUtc":row["barClosedAtUtc"],
+            "firstDetectedAtUtc":row["firstDetectedAtUtc"],
+            "notificationAttemptAtUtc":datetime.fromtimestamp(
+                time.time(),timezone.utc).isoformat(),
+            **receipt})
+        receipts={"schemaVersion":VERSION,"receipts":current,
+                  "researchOnly":True,"notTradeApproval":True}
+        # Persist each successful receipt before the next network request.
         temp=RECEIPTS.with_suffix(".json.tmp")
-        temp.write_text(json.dumps(latest,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
+        temp.write_text(json.dumps(receipts,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
         os.replace(temp,RECEIPTS)
-    print("DETECTOR_TELEGRAM:",len(ids),"confirmed messages;",
+        delivered+=1
+    print("DETECTOR_TELEGRAM:",delivered,"confirmed messages;",
           "historical ledger alerts are suppressed; NO trading authority")
 if __name__=="__main__":
     main()
