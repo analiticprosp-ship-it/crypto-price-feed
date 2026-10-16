@@ -108,17 +108,19 @@ for symbol in "BTC ETH SOL XRP HYPE LINK LDO SUI AAVE".split():
                                         outcome="ambiguous" if hit and stop else ("win" if hit else "loss")
                                         break
                                 # First-touch directional movement and maximum adverse excursion.
-                            direction_target_first=None
-                            for _,bar in future.iterrows():
-                                favorable=bar.high>=tp if direction==1 else bar.low<=tp
-                                unfavorable=bar.low<=b.close*(1-direction*target/100) if direction==1 else bar.high>=b.close*(1-direction*target/100)
-                                if favorable or unfavorable:
-                                    direction_target_first="both_same_hour" if favorable and unfavorable else ("favorable" if favorable else "unfavorable")
-                                    break
-                            adverse_pct=((b.close-future.low.min())/b.close*100 if direction==1 else (future.high.max()-b.close)/b.close*100)
-                            events.append(dict(symbol=symbol,signal_close_utc=t.isoformat(),direction="LONG" if direction==1 else "SHORT",pattern=name,quality_filter=quality_filter,range_position=range_position,ma_gap_pct=ma_gap,relative_volume=rvol,volatility_compression=compressed,regime=regime,weekly_trend=weekly_trend,daily_trend=trend,horizon_days=days,target_pct=target,risk_pct=risk,outcome=outcome,directional_first=direction_target_first or "neither",max_adverse_pct=adverse_pct))
+                                direction_target_first=None
+                                for _,bar in future.iterrows():
+                                    favorable=bar.high>=tp if direction==1 else bar.low<=tp
+                                    unfavorable=bar.low<=b.close*(1-direction*target/100) if direction==1 else bar.high>=b.close*(1-direction*target/100)
+                                    if favorable or unfavorable:
+                                        direction_target_first="both_same_hour" if favorable and unfavorable else ("favorable" if favorable else "unfavorable")
+                                        break
+                                adverse_pct=((b.close-future.low.min())/b.close*100 if direction==1 else (future.high.max()-b.close)/b.close*100)
+                                events.append(dict(symbol=symbol,signal_close_utc=t.isoformat(),direction="LONG" if direction==1 else "SHORT",pattern=name,quality_filter=quality_filter,range_position=range_position,ma_gap_pct=ma_gap,relative_volume=rvol,volatility_compression=compressed,regime=regime,weekly_trend=weekly_trend,daily_trend=trend,horizon_days=days,target_pct=target,risk_pct=risk,outcome=outcome,directional_first=direction_target_first or "neither",max_adverse_pct=adverse_pct))
 e=pd.DataFrame(events)
 if len(e):
+    assert set(e.risk_pct.unique())=={1.5,2.0}, 'RISK_GRID_INCOMPLETE'
+    assert e.groupby(['symbol','signal_close_utc','direction','pattern','quality_filter','horizon_days','target_pct']).risk_pct.nunique().eq(2).all(), 'MISSING_RISK_PAIR'
     e["signal_close_utc"]=pd.to_datetime(e.signal_close_utc,utc=True)
     cutoff=e.signal_close_utc.min()+.7*(e.signal_close_utc.max()-e.signal_close_utc.min())
     e["split"]=np.where(e.signal_close_utc<cutoff,"discovery","holdout")
