@@ -7,7 +7,7 @@ on:
       - 'scripts/detector_signal_engine.py'
       - '.github/workflows/build-detector-candidates.yml'
   workflow_run:
-    workflows: ["Build compact speculation structure"]
+    workflows: ["Build compact speculation structure", "Update Detector serverless REST research"]
     types: [completed]
 permissions:
   contents: write
