@@ -154,7 +154,9 @@ def build(primary,syms=SYMS,now_ms=None,fetch=extract):
             d=fetch(primary,sym,tf,now_ms); cs=d['candles']
             records[sym][tf]={'source':d['venue'],'lastClosedOpen':cs[-1]['t'] if cs else None,'count':len(cs),
                               'attempts':d['attempts'],'rsVsBTC':None,'candles':cs,
-                              'detectorFeatures':detector_features(cs,tf) if tf in ('15m','1H','4H') else None}
+                              'detectorFeatures':detector_features(cs,tf) if tf in ('15m','1H','4H') else None,
+                              'lastClosedBar':dict(cs[-1],endMs=cs[-1]['t']+TFS[tf])
+                                   if cs and tf=='15m' else None}
     for sym,tfs in records.items():
         for tf,x in tfs.items():
             if sym!='BTC' and x['source'] == records['BTC'][tf]['source'] and x['source'] is not None:x['rsVsBTC']=aligned_rs(x['candles'],records['BTC'][tf]['candles'],tf)

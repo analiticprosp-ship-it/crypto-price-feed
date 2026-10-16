@@ -136,7 +136,11 @@ def taker_result(raw, now_ms):
                 "imbalance":round((buy-sell)/(buy+sell),6) if buy+sell else None}
     value={"status":"OBSERVED","source":"Binance USD-M perpetual","periodMs":P5,
            "lastClosed5mEndMs":last["t"]+P5,
-           "ageMs":now_ms-(last["t"]+P5),"window5m":summarize([last]),
+           "ageMs":now_ms-(last["t"]+P5),
+           "recentClosed5m":[{"startMs":b["t"],"endMs":b["t"]+P5,
+                              "buyBase":b["buyBase"],"sellBase":b["sellBase"]}
+                             for b in bars[-16:]],
+           "window5m":summarize([last]),
            "window15m":None,"priorWindow15m":None,
            "dataMeaning":"AGGREGATED_TAKER_BUY_SELL_BASE_VOLUME_NOT_TICK_CVD",
            "notSpotFlow":True}

@@ -1,0 +1,35 @@
+name: Build Detector SHADOW candidates
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '12,27,42,57 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: detector-shadow-candidates
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Build independent SHADOW research, without trading permissions
+        run: python scripts/detector_signal_engine.py
+      - name: Validate feature-engine regression tests
+        run: python -m unittest discover -s tests -p 'test_detector_signal_engine.py' -v
+      - name: Publish ONLY SHADOW candidate research
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add detector-candidates.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Update independent SHADOW Detector research candidates'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 3
+          done
+          exit 1
