@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from detector_onchain_context import build as build_btc_onchain_context, SOURCE as ONCHAIN_SOURCE
 from detector_btc_exchange_flow_context import read_context as read_btc_exchange_flow_context
+from detector_signal_events import add_signal_events,empty_ledger
 
 ROOT=Path(__file__).resolve().parents[1]
 P5=300000
@@ -361,6 +362,31 @@ def main():
         "Coin Metrics BTC exchange-flow data is DAILY research only, not age cohorts, not 15m signal, no candidate ranking effects")
     (ROOT/"detector-onchain-context.json").write_text(
         json.dumps(context,ensure_ascii=False,separators=(",",":"))+"\n")
+    ledger_path=ROOT/"detector-signal-events.json"
+    if ledger_path.exists():
+        ledger=json.loads(ledger_path.read_text(encoding="utf-8"))
+    else:
+        ledger=empty_ledger()
+    history,new_events=add_signal_events(out,ledger)
+    known={(e["symbol"],e["direction"],e["barClosedAtUtc"]):e for e in history["events"]}
+    for candidate in out["candidates"]:
+        bar_utc=datetime.fromtimestamp(candidate["eventEndMs"]/1000,timezone.utc).isoformat(timespec="milliseconds")
+        event=known.get((candidate["symbol"],candidate["direction"],bar_utc))
+        candidate["signalBarClosedAtUtc"]=bar_utc
+        candidate["firstDetectedAtUtc"]=event["firstDetectedAtUtc"] if event else None
+        candidate["firstDetectedAtMadrid"]=event["firstDetectedAtMadrid"] if event else None
+        candidate["detectionLagSeconds"]=event["lagBarCloseToDetectionSeconds"] if event else None
+        candidate["eventId"]=event["id"] if event else None
+    out["signalClockContract"]={
+        "marketSignalTime":"CLOSED_15M_BAR_END_UTC; intrabar moment cannot be inferred",
+        "firstDetectedTime":"FIRST_GITHUB_ENGINE_EVALUATION_WHEN_CANDIDATE_OBSERVED",
+        "sourceAvailableTime":"LATER_OF_PRICE_AND_TAKER_FEED_GENERATED_AT",
+        "alertDeliveryTime":"SEPARATE; NEVER_CLAIMED_UNTIL_DELIVERED",
+        "newCandidatesThisRun":len(new_events),
+        "historyFile":"detector-signal-events.json",
+        "notificationStatus":"PENDING_EXTERNAL_CHATGPT_CHECK; NOT_PUSH_DELIVERED"
+    }
+    ledger_path.write_text(json.dumps(history,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
     target=ROOT/"detector-candidates.json"
     target.write_text(json.dumps(out,ensure_ascii=False,separators=(",",":"))+"\n")
     print("Detector SHADOW:",json.dumps(out["coverage"],sort_keys=True),
