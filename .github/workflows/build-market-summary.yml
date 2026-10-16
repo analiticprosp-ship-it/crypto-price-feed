@@ -1,6 +1,11 @@
 name: Build compact speculation structure
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_market_summary.py'
+      - '.github/workflows/build-market-summary.yml'
   workflow_run:
     workflows: ["Update market structure"]
     types: [completed]
@@ -11,7 +16,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 14
     steps:
