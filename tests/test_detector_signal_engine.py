@@ -98,6 +98,9 @@ class TestDetectorFusion(unittest.TestCase):
         r=build(a,b,now_ms=NOW)
         self.assertEqual(r["coverage"]["fullyAligned"],0)
         self.assertEqual(r["instruments"]["SOL"]["reason"],"NO_EXACT_3X5M_PRICE_WINDOW")
+        self.assertFalse(r["dataGate"]["ok"])
+        self.assertTrue(r["dataGate"]["sourceFreshnessOk"])
+        self.assertEqual(r["dataGate"]["reason"],"NO_ALIGNED_INSTRUMENTS")
         self.assertEqual(r["candidates"],[])
 
     def test_never_join_different_venues_or_instruments(self):
