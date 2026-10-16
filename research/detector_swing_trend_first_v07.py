@@ -41,17 +41,23 @@ for symbol in "BTC ETH SOL XRP HYPE LINK LDO SUI AAVE".split():
         return x[cnt==n].dropna()
     f=agg("4h",4);d=agg("1D",24);w=agg("7D",168)
     if len(f)<100 or len(d)<35 or len(w)<12:continue
-    hi=f.high.shift(1).rolling(12).max();lo=f.low.shift(1).rolling(12).min()\n    wma=w.close.rolling(8).mean()
+    hi=f.high.shift(1).rolling(12).max();lo=f.low.shift(1).rolling(12).min()
+    wma=w.close.rolling(8).mean()
     dma=d.close.rolling(20).mean();dprev=d.close.shift(5)
     for i in range(25,len(f)-1):
         b=f.iloc[i];prev=f.iloc[i-1];t=f.index[i]+pd.Timedelta(hours=4)
         avail=d[d.index+pd.Timedelta(days=1)<=t]
-        if len(avail)<21:continue\n        wa=w[w.index+pd.Timedelta(days=7)<=t]\n        if len(wa)<9:continue\n        wi=w.index.get_loc(wa.index[-1]);wc=w.close.iloc[wi]\n        weekly_trend=1 if wc>wma.iloc[wi] and wc>w.close.iloc[wi-4] else (-1 if wc<wma.iloc[wi] and wc<w.close.iloc[wi-4] else 0)
+        if len(avail)<21:continue
+        wa=w[w.index+pd.Timedelta(days=7)<=t]
+        if len(wa)<9:continue
+        wi=w.index.get_loc(wa.index[-1]);wc=w.close.iloc[wi]
+        weekly_trend=1 if wc>wma.iloc[wi] and wc>w.close.iloc[wi-4] else (-1 if wc<wma.iloc[wi] and wc<w.close.iloc[wi-4] else 0)
         ix=d.index.get_loc(avail.index[-1]);dc=d.close.iloc[ix]
         trend=1 if dc>dma.iloc[ix] and dc>dprev.iloc[ix] else (-1 if dc<dma.iloc[ix] and dc<dprev.iloc[ix] else 0)
         vol=(f.high.iloc[i-14:i]-f.low.iloc[i-14:i]).mean()/b.close*100
         regime=("up" if trend==1 else "down" if trend==-1 else "range")+("_highvol" if vol>=2.5 else "_lowvol")
-        for direction in (1,-1):\n            if trend!=direction or weekly_trend!=direction:continue
+        for direction in (1,-1):
+            if trend!=direction or weekly_trend!=direction:continue
             if direction==1:
                 pats={"false_break_reclaim":prev.low<lo.iloc[i-1] and prev.close>lo.iloc[i-1] and b.close>prev.high,
                       "breakout_hold":prev.close>hi.iloc[i-1] and b.low>=hi.iloc[i-1] and b.close>hi.iloc[i-1],
