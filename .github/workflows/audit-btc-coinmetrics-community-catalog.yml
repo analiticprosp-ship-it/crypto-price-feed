@@ -1,0 +1,45 @@
+name: Audit Coin Metrics free BTC metric catalog
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_coinmetrics_btc_catalog.py'
+      - '.github/workflows/audit-btc-coinmetrics-community-catalog.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Test public catalog extraction
+        run: python -m unittest discover -s tests -p 'test_probe_coinmetrics_btc_catalog.py' -v
+      - name: Read free BTC community catalog
+        id: check
+        continue-on-error: true
+        run: python scripts/probe_coinmetrics_btc_catalog.py
+      - name: Publish catalog snapshot or diagnostic, never numeric price or flow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for f in research/btc-coinmetrics-supported-metrics.json research/btc-coinmetrics-catalog-diagnostics.json; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
+          git diff --cached --quiet && exit 0
+          git commit -m 'Record free BTC onchain community metric catalog audit'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 3
+          done
+          exit 1
+      - name: Fail unavailable catalog
+        if: steps.check.outcome == 'failure'
+        run: exit 1
