@@ -19,7 +19,7 @@ def fixtures(direction="LONG"):
         prev=(1.,5.)
         curr=(5.,1.)
     else:
-        bar=dict(t=t,endMs=NOW,o=100.,h=102.,l=97.,c=98.,v=30.)
+        bar=dict(t=t,endMs=end,o=100.,h=102.,l=97.,c=98.,v=30.)
         prev=(5.,1.)
         curr=(1.,5.)
     rows=[]
