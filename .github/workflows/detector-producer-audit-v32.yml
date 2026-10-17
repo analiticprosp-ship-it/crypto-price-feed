@@ -1,0 +1,21 @@
+name: Detector Original Producer Audit v3.2
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python research/detector_producer_audit_v32.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-producer-audit-v32-results
+          path: detector_producer_audit_v32_results/
+          retention-days: 30
