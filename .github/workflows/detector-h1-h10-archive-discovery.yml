@@ -1,6 +1,10 @@
 name: Detector H1-H10 Archive Discovery
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-archive-discovery.yml'
 permissions:
   contents: read
 jobs:
