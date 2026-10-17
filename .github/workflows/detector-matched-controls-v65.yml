@@ -1,0 +1,28 @@
+name: Detector matched controls v6.5
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  matched-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'boto3>=1.35,<2'
+      - name: Multi-month historical matched-control replay
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_matched_controls_v65.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-v65-matched-controls
+          path: detector_v65_reports/
+          retention-days: 30
