@@ -1,0 +1,28 @@
+name: Detector BTC ETH replay readiness v5.8
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'boto3>=1.35,<2'
+      - name: Read R2 and verify exact closed 15m candles
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_replay_readiness_v58.py --month 2026-09
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-v58-btc-eth-readiness
+          path: detector_v58_reports/
+          retention-days: 30
