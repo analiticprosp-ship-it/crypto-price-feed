@@ -1,0 +1,21 @@
+name: Detector Tardis Schema Samples v2.5
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python research/detector_tardis_schema_v25.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-tardis-schema-v25-results
+          path: detector_tardis_schema_v25_results/
+          retention-days: 30
