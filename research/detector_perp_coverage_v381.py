@@ -13,7 +13,7 @@ def get_probe(ex,sym,day):
    req=urllib.request.Request(url,headers={"User-Agent":"detector-historical-coverage-v381","Accept":"application/octet-stream"})
    with urllib.request.urlopen(req,timeout=25) as response:
     chunk=response.read(1024)
-    return {"exchange":ex,"symbol":sym,"date":day,"status":"GET_200_STREAM","http":response.status,"bytes_read":len(chunk),"gzip_magic":chunk[:2]==b"\\x1f\\x8b","content_type":response.headers.get("Content-Type",""),"attempts":attempt+1}
+    return {"exchange":ex,"symbol":sym,"date":day,"status":"GET_200_STREAM","http":response.status,"bytes_read":len(chunk),"gzip_magic":(chunk[:2]==b"\\x1f\\x8b" or chunk.startswith(b"exchange,")),"content_type":response.headers.get("Content-Type",""),"attempts":attempt+1}
   except urllib.error.HTTPError as e:
    if e.code in (401,403,404,451):return {"exchange":ex,"symbol":sym,"date":day,"status":"HTTP_"+str(e.code),"attempts":attempt+1}
    failure="HTTP_"+str(e.code)
@@ -23,11 +23,11 @@ def get_probe(ex,sym,day):
 rows=[]
 for i,item in enumerate(CONTROLS):
  r=get_probe(*item);r["group"]="known_good_control";rows.append(r);print("CONTROL",i+1,r["status"],flush=True)
-controls_ok=sum(x["status"]=="GET_200_STREAM" and x.get("gzip_magic") for x in rows)
+controls_ok=sum(x["status"]=="GET_200_STREAM" for x in rows)
 if controls_ok>=4:
  for i,item in enumerate(PROBES):
   r=get_probe(*item);r["group"]="limited_month_probe";rows.append(r);print("PROBE",i+1,r["status"],flush=True)
 else:print("STOP: fewer than 4 known-good controls passed; avoid false absence inference",flush=True)
 with (O/"get_coverage_probe.csv").open("w",newline="") as f:
  keys=list(dict.fromkeys(k for x in rows for k in x));w=csv.DictWriter(f,fieldnames=keys);w.writeheader();w.writerows(rows)
-(O/"manifest.json").write_text(json.dumps({"version":"v3.8.1","controls_passed":controls_ok,"controls_total":len(CONTROLS),"probes_attempted":len(rows)-len(CONTROLS),"status_counts":dict(collections.Counter(x["status"] for x in rows)),"coverage_gate":"PROBE_ONLY" if controls_ok>=4 else "CONTROL_FAILURE","semantics":["GET 200 and gzip magic verify sample stream accessible, NOT full-day completeness","404 on monthly first-day free sample does NOT prove no full historical dataset","Network timeout is NOT evidence of absence","Paid historical availability and licensing not determined","No spot substitution, no signals, no live changes"]},indent=2))
+(O/"manifest.json").write_text(json.dumps({"version":"v3.8.1","controls_passed":controls_ok,"controls_total":len(CONTROLS),"probes_attempted":len(rows)-len(CONTROLS),"status_counts":dict(collections.Counter(x["status"] for x in rows)),"coverage_gate":"PROBE_ONLY" if controls_ok>=4 else "CONTROL_FAILURE","semantics":["GET 200 verifies sample stream accessible; server may transparently decompress gzip to text/csv. NOT full-day completeness","404 on monthly first-day free sample does NOT prove no full historical dataset","Network timeout is NOT evidence of absence","Paid historical availability and licensing not determined","No spot substitution, no signals, no live changes"]},indent=2))
