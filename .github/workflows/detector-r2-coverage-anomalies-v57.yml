@@ -1,0 +1,38 @@
+name: Detector R2 coverage and anomalies v5.7
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-anomalies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: python research/detector_historical_anomalies_v56.py --spec SUIUSDT:2023-11 --spec DOTUSDT:2023-11 --spec LTCUSDT:2022-02 --spec TRXUSDT:2022-02 --spec FILUSDT:2022-02 --spec OPUSDT:2023-11 --spec ARBUSDT:2023-09 --spec RNDRUSDT:2024-07 --spec SANDUSDT:2022-02 --spec GRTUSDT:2022-02 --spec MANAUSDT:2022-02
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-v57-anomalies
+          path: detector_v56_reports/
+  r2-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install boto3
+      - name: Build monthly coverage matrix
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_r2_coverage_v57.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-v57-coverage
+          path: detector_v57_reports/
