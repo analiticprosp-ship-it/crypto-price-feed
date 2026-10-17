@@ -1,0 +1,30 @@
+name: Detector H1-H10 Metrics Forensic Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-metrics-forensic.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  forensic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: detector-h1-h10-metrics-history
+          run-id: 39034387923
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: detector_h1_h10_metrics_history
+      - name: Forensic invalid cells and missing timestamps
+        run: python research/detector_h1_h10_metrics_forensic.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-metrics-forensic-report
+          path: detector_h1_h10_metrics_forensic/
+          retention-days: 30
