@@ -1,0 +1,26 @@
+name: Detector H1-H10 Perp Microstructure Pilot
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-perp-pilot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Probe taker flow, funding and OI-related metrics archives
+        run: python research/detector_h1_h10_perp_pilot.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-perp-microstructure-pilot
+          path: detector_h1_h10_perp_pilot/
+          retention-days: 30
