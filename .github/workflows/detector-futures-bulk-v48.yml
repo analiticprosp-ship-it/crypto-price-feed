@@ -1,0 +1,37 @@
+name: Detector Futures Bulk v4.8
+on:
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: "Batch index (0, 1, 2 ...). Run distinct indices to expand coverage."
+        required: true
+        default: "0"
+      batch_size:
+        description: "Archives per run (recommended 36, max 60)"
+        required: true
+        default: "36"
+permissions:
+  contents: read
+jobs:
+  bulk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python research/detector_futures_bulk_v48.py --batch "${{ inputs.batch }}" --batch-size "${{ inputs.batch_size }}" --workers 6
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-futures-bulk-v48-report-${{ inputs.batch }}
+          path: detector_futures_bulk_v48/report/
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-futures-bulk-v48-data-${{ inputs.batch }}
+          path: detector_futures_bulk_v48/data/
+          compression-level: 0
+          retention-days: 30
