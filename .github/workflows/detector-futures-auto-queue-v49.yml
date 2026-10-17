@@ -1,0 +1,42 @@
+name: Detector Futures Auto Queue v4.9
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: detector-futures-auto-queue-v49
+  cancel-in-progress: false
+jobs:
+  batch:
+    name: "Archive batch ${{ matrix.batch }}"
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        batch: [2, 3, 4, 5, 6]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download and validate batch
+        run: python research/detector_futures_bulk_v48.py --batch "${{ matrix.batch }}" --batch-size 36 --workers 6
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-futures-auto-v49-report-${{ matrix.batch }}
+          path: detector_futures_bulk_v48/report/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Upload source archives
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-futures-auto-v49-data-${{ matrix.batch }}
+          path: detector_futures_bulk_v48/data/
+          compression-level: 0
+          retention-days: 30
+          if-no-files-found: warn
