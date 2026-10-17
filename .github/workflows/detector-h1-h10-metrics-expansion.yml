@@ -1,0 +1,26 @@
+name: Detector H1-H10 Metrics History Expansion
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-metrics-expansion.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  metrics-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download available historical daily metrics
+        run: python research/detector_h1_h10_metrics_expansion.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-metrics-history
+          path: detector_h1_h10_metrics_history/
+          retention-days: 30
