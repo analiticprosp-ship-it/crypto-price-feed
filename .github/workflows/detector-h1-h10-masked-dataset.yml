@@ -1,0 +1,36 @@
+name: Detector H1-H10 Quality Masked Dataset
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-masked-dataset.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: detector-h1-h10-metrics-history
+          run-id: 39034387923
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: detector_h1_h10_metrics_history
+      - uses: actions/download-artifact@v4
+        with:
+          name: detector-h1-h10-monthly-history-2024-2026
+          run-id: 39025128477
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: detector_h1_h10_monthly
+      - name: Build feature-level masks and no-lookahead as-of price joins
+        run: python research/detector_h1_h10_masked_dataset.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-masked-dataset
+          path: detector_h1_h10_masked_dataset/
+          retention-days: 30
