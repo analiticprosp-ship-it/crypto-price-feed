@@ -1,0 +1,19 @@
+name: Detector historical gaps diagnostic v5.3
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Diagnose XRP and NEAR February 2022 source gaps
+        run: python research/detector_historical_gaps_v53.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-v53-source-gap-report
+          path: detector_v53_reports/
+          retention-days: 30
