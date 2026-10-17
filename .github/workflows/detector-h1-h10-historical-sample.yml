@@ -1,0 +1,26 @@
+name: Detector H1-H10 Historical Sample
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-historical-sample.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download bounded real historical 1m OHLCV samples
+        run: python research/detector_h1_h10_historical_sample.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-historical-sample
+          path: detector_h1_h10_sample/
+          retention-days: 30
