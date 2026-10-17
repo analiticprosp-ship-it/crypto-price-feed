@@ -1,0 +1,23 @@
+name: Detector H1-H10 Archive Discovery
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Probe official historical archive availability (no trading)
+        run: python research/detector_h1_h10_archive_discovery.py
+      - name: Upload inventory
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-archive-inventory
+          path: detector_h1_h10_inventory/
+          retention-days: 30
