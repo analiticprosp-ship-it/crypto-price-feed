@@ -1,0 +1,23 @@
+name: Detector H1-H10 Three-Day Real AggTrades Expansion
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-aggtrades-3day.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and aggregate three consecutive days
+        run: python research/detector_h1_h10_aggtrades_3day.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-aggtrades-3day
+          path: detector_h1_h10_aggtrades_3day/
+          retention-days: 30
