@@ -1,0 +1,19 @@
+name: Detector historical anomalies diagnostic v5.6
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Diagnose known historical anomalies
+        run: python research/detector_historical_anomalies_v56.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-v56-source-diagnostics
+          path: detector_v56_reports/
+          retention-days: 30
