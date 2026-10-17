@@ -1,0 +1,27 @@
+name: Detector H1-H10 Monthly History 2024-2026
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-monthly-history.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  monthly-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Collect and validate monthly 1h Spot and Perp history
+        run: python research/detector_h1_h10_monthly_history.py
+      - name: Publish auditable history
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-monthly-history-2024-2026
+          path: detector_h1_h10_monthly/
+          retention-days: 30
