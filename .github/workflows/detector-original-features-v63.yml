@@ -1,0 +1,28 @@
+name: Detector original features replay v6.3
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-feature-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'boto3>=1.35,<2'
+      - name: Compare original detector features to 14-bar proxy
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_original_features_v63.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-v63-original-features
+          path: detector_v63_reports/
+          retention-days: 30
