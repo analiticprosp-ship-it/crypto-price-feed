@@ -1,0 +1,30 @@
+name: Detector H1-H10 Sorted Masked Dataset
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-masked-sorted.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  sort:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: detector-h1-h10-masked-dataset
+          run-id: 39057214956
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: detector_h1_h10_masked_dataset
+      - name: Sort by UTC and recompute continuity
+        run: python research/detector_h1_h10_masked_sorted.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-masked-sorted-dataset
+          path: detector_h1_h10_masked_sorted/
+          retention-days: 30
