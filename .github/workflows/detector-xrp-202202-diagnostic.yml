@@ -1,0 +1,13 @@
+name: Detector XRP Feb 2022 diagnostic
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect exact Binance source gaps
+        run: python research/detector_xrp_202202_diagnostic.py
