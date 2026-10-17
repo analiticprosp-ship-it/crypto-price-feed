@@ -1,0 +1,45 @@
+name: Detector Futures Sequential Queue v5.0
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: detector-futures-sequential-v50
+  cancel-in-progress: false
+jobs:
+  sequential:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run batches 7 through 10 in sequence
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p v50_all_reports v50_all_data
+          for batch in 7 8 9 10; do
+            echo "::group::batch $batch"
+            python research/detector_futures_bulk_v48.py --batch "$batch" --batch-size 36 --workers 6
+            mkdir -p "v50_all_reports/batch_$batch" "v50_all_data/batch_$batch"
+            cp -a detector_futures_bulk_v48/report/. "v50_all_reports/batch_$batch/"
+            cp -a detector_futures_bulk_v48/data/. "v50_all_data/batch_$batch/" || true
+            python research/detector_futures_audit_v50.py --input detector_futures_bulk_v48 --output "v50_all_reports/batch_$batch/audit"
+            rm -rf detector_futures_bulk_v48
+            echo "::endgroup::"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-futures-v50-reports
+          path: v50_all_reports/
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-futures-v50-data
+          path: v50_all_data/
+          compression-level: 0
+          retention-days: 30
