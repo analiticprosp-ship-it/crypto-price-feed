@@ -1,0 +1,78 @@
+name: Detector R2 autonomous queue v5.4
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: detector-r2-ingest-v51
+  cancel-in-progress: false
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Verify stored ZIP bytes before new ingestion
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_r2_audit_v53.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-v54-preflight-audit
+          path: r2_audit_v53/
+          retention-days: 30
+  ingest:
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Sequentially ingest remaining batches 21 to 98
+        shell: bash
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          set -uo pipefail
+          mkdir -p v54_reports
+          failed=0
+          for batch in {21..98}; do
+            echo "::group::Batch ${batch}"
+            rm -rf r2_ingest_report
+            if python research/detector_r2_ingest_v51.py --batch "${batch}" --batch-size 36 --workers 6; then
+              echo "Batch ${batch}: complete"
+            else
+              echo "Batch ${batch}: issue recorded; continuing"
+              failed=1
+            fi
+            mkdir -p "v54_reports/batch_${batch}"
+            if [ -f r2_ingest_report/batch.json ]; then
+              cp r2_ingest_report/batch.json "v54_reports/batch_${batch}/batch.json"
+            else
+              echo '{"status":"MISSING_REPORT"}' > "v54_reports/batch_${batch}/batch.json"
+              failed=1
+            fi
+            echo "::endgroup::"
+          done
+          echo "Any batch failed: ${failed}"
+          exit "${failed}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-v54-ingest-reports
+          path: v54_reports/
+          retention-days: 30
