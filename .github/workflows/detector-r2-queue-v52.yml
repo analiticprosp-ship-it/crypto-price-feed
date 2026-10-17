@@ -1,0 +1,57 @@
+name: Detector R2 sequential queue v5.2 batches 13-20
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: detector-r2-ingest-v51
+  cancel-in-progress: false
+jobs:
+  queue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install S3 client
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Process batches 13 to 20 sequentially
+        shell: bash
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          set -uo pipefail
+          mkdir -p r2_queue_reports
+          failed=0
+          for batch in {13..20}; do
+            echo "::group::Batch ${batch}"
+            rm -rf r2_ingest_report
+            if python research/detector_r2_ingest_v51.py --batch "${batch}" --batch-size 36 --workers 4; then
+              echo "Batch ${batch}: completed"
+            else
+              echo "Batch ${batch}: at least one failed archive; continuing"
+              failed=1
+            fi
+            mkdir -p "r2_queue_reports/batch_${batch}"
+            if [ -f r2_ingest_report/batch.json ]; then
+              cp r2_ingest_report/batch.json "r2_queue_reports/batch_${batch}/batch.json"
+            else
+              echo '{"status":"MISSING_REPORT"}' > "r2_queue_reports/batch_${batch}/batch.json"
+              failed=1
+            fi
+            echo "::endgroup::"
+          done
+          echo "At least one batch had an error: ${failed}"
+          exit "${failed}"
+      - name: Upload all batch reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-r2-queue-v52-batches-13-20
+          path: r2_queue_reports/
+          retention-days: 30
