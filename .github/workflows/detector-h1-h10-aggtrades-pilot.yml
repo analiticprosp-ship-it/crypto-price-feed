@@ -1,0 +1,23 @@
+name: Detector H1-H10 Real AggTrades 5m Pilot
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-aggtrades-pilot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and aggregate spot/perp taker flow
+        run: python research/detector_h1_h10_aggtrades_pilot.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-aggtrades-5m-pilot
+          path: detector_h1_h10_aggtrades_pilot/
+          retention-days: 30
