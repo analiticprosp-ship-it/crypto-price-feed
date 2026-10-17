@@ -1,0 +1,21 @@
+name: Detector Kaggle Primary v4.5
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python research/detector_kaggle_primary_v45.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-kaggle-primary-v45-results
+          path: detector_kaggle_primary_v45_results/
+          retention-days: 30
