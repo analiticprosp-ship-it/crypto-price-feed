@@ -1,0 +1,21 @@
+name: Detector Futures Universe v4.1
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python research/detector_futures_universe_v41.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-futures-universe-v41-results
+          path: detector_futures_universe_v41_results/
+          retention-days: 30
