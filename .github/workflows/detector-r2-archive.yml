@@ -1,5 +1,9 @@
 name: Detector H1-H10 Research R2 Archive
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-r2-archive.yml'
   workflow_dispatch:
   schedule:
     - cron: '17 5 * * *'
