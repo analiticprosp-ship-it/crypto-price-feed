@@ -1,0 +1,30 @@
+name: Detector H1-H10 Tardis Vendor-Receipt OI 5m AsOf Sample
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-tardis-oi-vendor-asof-5m.yml'
+      - 'research/detector_tardis_oi_vendor_asof_5m.py'
+      - 'research/test_detector_tardis_oi_vendor_asof_5m.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Check vendor receipt timestamp anti-leakage offline
+        run: python -m unittest -v research.test_detector_tardis_oi_vendor_asof_5m
+      - name: Build 288 five-minute research observations per symbol from verified R2 snapshots
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python research/detector_tardis_oi_vendor_asof_5m.py
