@@ -64,7 +64,7 @@ def check_bybit(symbol):
 def check_okx(symbol):
     base = symbol.replace("USDT","")
     response = fetch("https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?"
-                     + urllib.parse.urlencode({"ccy":base,"period":"5m"}))
+                     + urllib.parse.urlencode({"instId":base+"-USDT-SWAP","period":"5m"}))
     result = {"source":"OKX","symbol":base,"interval":"5m",
               "http_status":response.get("http")}
     if "body" not in response:
