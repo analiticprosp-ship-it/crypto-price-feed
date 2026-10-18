@@ -125,8 +125,9 @@ def fixedwidth_data(soup):
 def parse(body,date):
  soup=BeautifulSoup(body,"html.parser")
  head=clean(soup.get_text(" ",strip=True)[:5000])
- written=dt.date.fromisoformat(date).strftime("%B %d, %Y").replace(" 0"," ")
- if written.lower() not in head.lower() or "H.4.1" not in head:
+ written_zero=dt.date.fromisoformat(date).strftime("%B %d, %Y")
+ written_plain=written_zero.replace(" 0"," ")
+ if not (written_zero.lower() in head.lower() or written_plain.lower() in head.lower()) or "H.4.1" not in head:
   raise ValueError("H41_WRONG_RELEASE_OR_DATE")
  trio,method=structured_data(soup)
  if trio is None:trio,method=fixedwidth_data(soup)
