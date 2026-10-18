@@ -34,7 +34,7 @@ def oi_csv():
     return out.getvalue().encode()
 
 def full_prices():
-    return [(START+(i+1)*FIVE_US,100+i,100+i) for i in range(288)]
+    return [(START+(i+1)*FIVE_US-(1_000_000 if i==287 else 0),100+i,100+i) for i in range(288)]
 
 class PriceOIAsOfTests(unittest.TestCase):
     def test_future_price_timestamp_excluded_at_first_decision(self):
