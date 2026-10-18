@@ -25,7 +25,8 @@ def api(path):
 runs=[]
 history_scan_exhausted=False
 for page in range(1,101):
- batch=api(f"/actions/runs?status=success&per_page=100&page={page}")["workflow_runs"]
+ # Unfiltered Actions listing avoids GitHub status-search 1000-result cutoff.
+ batch=api(f"/actions/runs?per_page=100&page={page}")["workflow_runs"]
  runs.extend(batch)
  if len(batch)<100:
   history_scan_exhausted=True
