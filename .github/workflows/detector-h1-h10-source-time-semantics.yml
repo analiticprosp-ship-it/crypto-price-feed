@@ -1,0 +1,23 @@
+name: Detector H1-H10 Source Timestamp Semantics
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-source-time-semantics.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Independently inspect source archive timestamps
+        run: python research/detector_h1_h10_source_time_semantics.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-source-time-semantics
+          path: detector_h1_h10_source_time_semantics/
+          retention-days: 30
