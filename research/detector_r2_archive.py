@@ -89,3 +89,10 @@ if all_complete:
 summary={"status":"SYNC_COMPLETE" if not failed else "SYNC_PARTIAL","published":published,"already_archived":len(skipped),"failed":failed,"latest_run_id":max(all_complete) if all_complete else None,"scanned_runs":len(runs)}
 print(json.dumps(summary,ensure_ascii=False),flush=True)
 if failed:sys.exit(2)
+
+# Compact non-sensitive status in Actions job summary; accessible through GitHub connector.
+summary_path=os.environ.get("GITHUB_STEP_SUMMARY")
+if summary_path:
+ with open(summary_path,"a",encoding="utf-8") as fp:
+  fp.write("## H1–H10 R2 archive sync\\n\\n")
+  fp.write(f"- Status: {summary['status']}\\n- Newly archived: {len(published)}\\n- Already archived: {len(skipped)}\\n- Failed: {len(failed)}\\n- Latest run ID: {summary['latest_run_id']}\\n")
