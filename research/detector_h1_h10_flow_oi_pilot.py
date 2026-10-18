@@ -3,7 +3,7 @@
 import collections,csv,datetime as dt,io,json,math,pathlib,statistics,urllib.request,urllib.error,zipfile
 root=pathlib.Path("detector_h1_h10_masked_sorted")
 out=pathlib.Path("detector_h1_h10_flow_oi_pilot");out.mkdir(exist_ok=True)
-report={"method":"Compare implied USD/base (OI value / OI quantity) with last CLOSED 1h perp price, not an exact contemporaneous benchmark. Archive metadata only for aggTrades; no claim that flow was downloaded.","oi":{},"trades":[]}
+report={"method":"Compare implied USD/base (OI value / OI quantity) with last CLOSED 1h perp price, not an exact contemporaneous benchmark. Archive metadata only for aggTrades; no claim that flow was downloaded.","source_r2_provenance":json.loads((root/"_r2_provenance.json").read_text()),"oi":{},"trades":[]}
 for sym in ("BTCUSDT","ETHUSDT","SOLUSDT"):
  vals=[];n=collections.Counter();examples=[]
  with (root/f"{sym}_research_5m.csv").open(newline="") as f:
