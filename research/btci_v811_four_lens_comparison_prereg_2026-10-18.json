@@ -1,0 +1,46 @@
+{
+  "version": "8.11",
+  "preregisteredUTC": "2026-10-18",
+  "researchOnly": true,
+  "researchQuestion": "Do H.4.1 release-lagged changes and complete ETH+6-alt breadth add useful early information beyond fixed BTC-only trend and structural context, given historically correlated observations?",
+  "parents": {
+    "btcWeekly": {
+      "key": "research/btci/v8.6/runs/39130315439-1/extended_history.json",
+      "sha256": "9af82767fa8139685e784c131c075cec553298c4718ed4a40ac41412144248ca"
+    },
+    "btcStructure": {
+      "key": "research/btci/v8.9/runs/39138844921-1/multiscale.json",
+      "sha256": "4b8822e929aff5569fa9cd105404c02b110927a970aed33db68910925c111b73"
+    },
+    "macroFed": {
+      "key": "research/btci/v8.10.1/runs/39141047403-1/macro_study.json",
+      "sha256": "230f5c2eebdba583dbadf4a44d50123fb85f93c39b318f5d4fcbb7cb7480fb81"
+    }
+  },
+  "commonPanel": "Use EXACT fully closed Sunday BTC weeks from v8.9 and v8.6 in 2020-2026 with frozen full 8-asset breadth and available release-lagged H.4.1. Require observed next13w BTC price and next13w structural label for fair, same-row four lens evaluation; exclude last 13 incomplete weeks as right-censored rather than losses.",
+  "strictMacro": "Within five newest dated Fed releases <=Sunday-3 days used for 4-release delta, reject any consecutive publication gap >10 calendar days and reject if any H.4.1 source page unavailable/parse-blocked occurs in that five-release window. Do not silently stitch weeks past a missing release. Macro direction DOWN/UP from baseline frozen H.4.1. Historical pages retrieved in 2026 may have been edited and are PIT_VINTAGE_UNVERIFIED.",
+  "fourModels": {
+    "A": "BTC-only: frozen v8.9 weeklyTrendUp on Sunday, for all observation Sundays whose structural confirmed state is NOT STRUCTURAL_EXPANSION_PRICE_PROXY",
+    "B": "A AND frozen full basket ethVsBtc>0 AND at least 4 of six alt (SOL,BNB,LINK,XRP,ADA,DOGE) outperform BTC over same past 30 days",
+    "C": "A AND Fed monetary proxy Fed assets−TGA−consolidated reverse repos changed positively across last 4 correctly dated consecutive releases",
+    "D": "A AND B AND C"
+  },
+  "target1": "Future structural expansion onset: some confirmed structural=STRUCTURAL_EXPANSION_PRICE_PROXY on one of the NEXT 13 fully closed Sundays after signal, when Sunday t is not already in expansion. This is price-derived target, no independent bull-market ground truth.",
+  "target2": "Forward 13w BTC reference fixing close-to-close >0; adverse maximum drawdown if smallest next 91 DAILY closes <=-20% vs initial Sunday, all from immutable v8.6.",
+  "metrics": "For each model across IDENTICAL full common panel: predicted positives, TP, FP, FN, TN, precision, recall, specificity, balanced accuracy if denominators available; no models trained, no fitted weights, no p-values. Report both structural target and 13w positive return, and next13w return distribution by signal and no-signal.",
+  "nonOverlapping": "Descriptive sensitivity select fixed every 13th eligible Sunday from common panel's FIRST Sunday, regardless of feature values; report same confusion and positive outcome, warn cohort small and weekly event labels correlated.",
+  "eraSplits": "2020–2023 vs 2024–2026 only, same predeclared features and thresholds, no historical holdout claims because both eras have already been inspected.",
+  "eventTransitions": "For every future structural EXPANSION confirmation within 2020–2026, report if A/B/C/D triggered in preceding 13 weeks and first trigger date from strictly as-of prior weekly observations; require full eight-asset data or mark NOT_COMPARABLE.",
+  "allEraMacro": "Use v8.10.1 own unchanged 29 structural switch descriptions over 2011–2026 as background; only full common panel gives four-way comparability.",
+  "holdout": "This is exploratory post-selection. Even if a group shows higher descriptive precision, no calibrated probability or independent validation. Prospective future observations needed.",
+  "qualityGuard": [
+    "Pinned SHA for all 3 parents",
+    "Exact 750 structural weeks and 814 BTC history weeks",
+    "No in-sample coefficient optimization",
+    "Missing alt listings explicitly excluded not set negative",
+    "No macro source after current Sunday",
+    "No recent 13-week incomplete outcome",
+    "One single R2 immutable versioned writeback with SHA reread"
+  ],
+  "operationalBoundary": "No trading signals, no positions, no changes to MASTER, Spot, Futures, NAV, P&L, reserve, capital or risk limits."
+}
