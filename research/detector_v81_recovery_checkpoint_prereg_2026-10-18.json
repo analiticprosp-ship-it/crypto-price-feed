@@ -1,0 +1,38 @@
+{
+  "version": "8.1",
+  "researchOnly": true,
+  "mode": "COMPARABLE_DAY31_RECOVERY_HISTORICAL_DIAGNOSTIC",
+  "frozenAtUTC": "2026-10-18",
+  "immutableV80": {
+    "key": "research/detector/v8.0/runs/39124773092-1/combined/phase_transitions.json",
+    "sha256": "b4fb7e7bb0640e052c9c95dc405da8f406d3b051b476f56226abb7a813e86f10"
+  },
+  "question": "What signals in a 31-day checkpoint after a confirmed recovery distinguished eventual recovery vs a bear-market rally?",
+  "checkpoint": "31 UTC calendar days AFTER the original 7-day confirmed RECOVERY_NOT_CONFIRMED transition, no missing days; chosen because current latest report is precisely day 31 since 2026-09-16",
+  "cohort": "ALL v8.0 transition entries into RECOVERY_NOT_CONFIRMED; fixed chronological history from 2020 to 2026, no cherry-picking",
+  "asOfFeatures": [
+    "confirmed phase and risk on checkpoint day",
+    "risk score at day31",
+    "30-day close return since phase confirmation (31 days exact)",
+    "BTC close versus SMA200 at checkpoint",
+    "90-day trailing BTC return",
+    "365-day close drawdown",
+    "price recovery depth and count of transitions during first month"
+  ],
+  "outcomes": [
+    "BTC future 30/90/180 days from checkpoint price: exit close-to-close return, within-window maximum adverse close drawdown, full-window availability or right censoring",
+    "a confirmed BTC_BEAR_PRICE_TREND event within next 90 days after day31",
+    "a confirmed BTC_BULL_PRICE_TREND event within next 180 days after day31; indicate right-censored",
+    "first confirmed bull or bear phase entry after checkpoint; no reinterpretation of past transition labels"
+  ],
+  "noOptimization": "Do not fit thresholds, weights, logistic models or infer calibrated probabilities on only 8 completed historical checkpoints. Report descriptive case table and counts. Full forward test on future months is needed.",
+  "etfMacroSeparation": "Farside and Fed releases are independent CURRENT CONTEXT ONLY; do not merge into historical performance labels unless historical point-in-time vintage and release availability are available.",
+  "researchGovernance": [
+    "No ETF, macro or liquidity causal claims",
+    "This is post-hoc follow-up on data already inspected, NOT an independent prospective test",
+    "No phase, score, trading permissions or NAV modifications",
+    "If any source SHA mismatch or observation outside time range, STOP and block report writeback",
+    "Persist run-scoped JSON, SHA readback, explicit status and source lineage"
+  ],
+  "output": "Per-entry event, checkpoint, 30/90/180d outcomes/censor, any future bear/bull within prespecified windows; current case marked PENDING without invented future."
+}
