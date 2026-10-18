@@ -1,0 +1,46 @@
+{
+  "version": "7.9",
+  "name": "BTC-centered market-phase / risk appetite research-only daily diagnostic",
+  "status": "FIXED_HEURISTIC_EXPLORATORY_NOT_VALIDATED",
+  "date": "2026-10-18",
+  "symbols": [
+    "BTC",
+    "ETH",
+    "SOL",
+    "BNB",
+    "LINK",
+    "XRP",
+    "ADA",
+    "DOGE"
+  ],
+  "data": "Binance USDM perpetual futures closed daily bars. 2025-10 through 2026-09 derived from existing gapless verified R2 5m, October 1-17 2026 from Binance official daily 1d archive with CRC and optional upstream checksum. No unfinished Oct 18 bars.",
+  "decisionAsOfUTC": "2026-10-17",
+  "cutoff": "Daily close 00:00 UTC following date of bar; every field available at same cutoff, no lookahead.",
+  "indicators": [
+    "BTC close vs 50- and 200-day SMA, 30-day slope of SMA200",
+    "BTC trailing 30-day and 90-day returns",
+    "BTC drawdown from 365-day rolling highest closed daily close; not all-time-high",
+    "BTC higher-high/higher-low comparison of previous versus latest 30-day windows",
+    "ETH/BTC relative 30-day return",
+    "alt breadth fraction six alt pairs outperforming BTC over last 30 closed daily days",
+    "alt USD positive-return breadth"
+  ],
+  "primaryPhaseRule": "Bull-price-trend iff BTC > SMA200, SMA200 slope 30d positive, BTC 90d return >0; when close >200 and slope + but rolling drawdown >=25% label RECOVERY_NOT_CONFIRMED; bear-price-trend iff BTC < SMA200, slope 30d negative and BTC 90d return negative; close < SMA200 and 90d positive=RECOVERY_NOT_CONFIRMED; else CONSOLIDATION_OR_TRANSITION. These are proposed rules, not calibrated probabilities.",
+  "riskRule": "4 price-only votes: BTC above SMA50 and 30d BTC return positive +1 (both negative -1, mixed zero); ETH/BTC 30d positive +1 else -1; among six alts >=4 outperform BTC +1, <=2 -1, else 0; among six alts >=4 have positive USD 30d +1, <=2 -1, else 0. score >=3 RISK_ON_PRICE_PROXY, <=-2 RISK_OFF_PRICE_PROXY, else MIXED_PRICE_PROXY. Neither ETF nor policy rates are silently incorporated.",
+  "gating": [
+    "Historical archive SHA integrity R2 metadata quality full",
+    "Complete 2025-10 through Sep 2026 source ZIPs",
+    "Oct 2026 official daily files available for every day 1..17; no gaps",
+    "Same exact 1d cutoff across eight assets, no partial current day",
+    "No missing data: status INCOMPLETE and no confident stage",
+    "No change to existing research histories or production detector"
+  ],
+  "limitations": [
+    "Current research derived from ONE futures venue and not a trading price or multi-venue NAV quote",
+    "Latest closed UTC day 17 Oct not live 18 Oct tick",
+    "Risk-on/off price proxy not macro liquidity, ETF flows, options or on-chain causality",
+    "Rules fixed here before v7.9 calculation, but developed after prior 2020-26 research; NOT OOS-tested",
+    "Need prospective and walk-forward validation plus point-in-time historical market breadth / macro to upgrade",
+    "No authority to alter futures, risk, portfolio, NAV or generate trades"
+  ]
+}
