@@ -1,0 +1,37 @@
+{
+  "version": "8.13",
+  "date": "2026-10-18",
+  "researchOnly": true,
+  "aim": "Add independent Chicago Fed NFCI and ANFCI financial condition historical as-of vintages to exactly the same 138 historically fully observed BTC weekly nonexpansion cases from BTCI v8.12.",
+  "parents": {
+    "sample": {
+      "key": "research/btci/v8.12/runs/39148350442-1/early_warning.json",
+      "sha256": "17f98e1a0eac6c0fd8b77adb806844981239fdecc11dc84744183784d3d5ab6b"
+    },
+    "sourcePilot": {
+      "key": "research/btci/v8.12a/runs/39150700703-1/source_audit.json",
+      "sha256": "5d44a3895c72b57893c4ba1370eee72be9be3241abaca647990089e27732d5c6"
+    }
+  },
+  "source": "https://api.stlouisfed.org/fred/series/observations",
+  "secret": "FRED_API_KEY from GitHub Actions; never log secret or URL containing it, never write to R2 or report",
+  "publication": "For each SUNDAY t in frozen 138-week cohort, query realtime_start=realtime_end=t for both NFCI, ANFCI. Require latest available weekly reference observation date <= t - 6 calendar days (original reference Friday, published subsequent Wednesday). Do not use any data published after Sunday; intraday release clock not documented, but Sundays after official weekday release are conservative.",
+  "dataWindow": "Request 16 calendar weeks before t through Sunday t to obtain most recent weekly index and a reference index >=27 and <=35 days earlier. Need at least five observations and last is <=t-6 days. latest data missing >18 calendar days => UNKNOWN not forward filled.",
+  "indicators": {
+    "NFCI_IMPROVE4": "NFCI last as-of-vintage observation minus value four weekly observations before is <0; lower index = easing condition",
+    "ANFCI_IMPROVE4": "ANFCI last as-of-vintage observation minus value four weekly observations before is <0",
+    "NFCI_EASY_LEVEL": "NFCI current as-of-vintage last index <0 (easier than its historical norm, not proof of expansion)",
+    "ANFCI_EASY_LEVEL": "ANFCI current last index <0",
+    "NFCI_AND_FED": "NFCI_IMPROVE4 AND v8.12 independent Fed H4.1 proxy UP",
+    "ANFCI_AND_FED": "ANFCI_IMPROVE4 AND Fed UP",
+    "NFCI_OR_ANFCI": "NFCI_IMPROVE4 OR ANFCI_IMPROVE4"
+  },
+  "comparators": "Use existing FRED H4.1 independent warning C and previous weekly BTC A on exactly same frozen rows, plus new conditions. No training and no fitted threshold.",
+  "outcomes": "Use frozen v8.12 labels: new 52w structural expansion within 13w; BTC reference return >0 in 13 weeks; daily-close drawdown <=-20% in 13 weeks. Not an externally labelled true economic bull/bear cycle.",
+  "metrics": "Identical-case confusion matrices, selected count and false positives, recall, median13w returns, 20% adverse path rate, 2020-23 vs 2024-26, fixed every13th eligible anchor; leading 13w before six structural expansions; first warning episode from continuous eligible Sundays. Report missingness separately.",
+  "quality": "Exact 138 frozen dates, input parent SHA match, each official vintage response raw SHA, observation realtime_start<=Sunday<=realtime_end, no future observation, latest release reference lag, only returned as-of vintage data accepted.",
+  "archive": "One R2 JSONL archive per series containing exact raw per-date JSON body and SHA256 + audited derived index observations; final full report JSON, manifest R2 readback, unique run prefix. Missing API requests mark UNKNOWN, never substitute current non-vintage series.",
+  "pit_caveat": "FRED as-of date returns historical release vintage for the given date but exact publication times within days not verified; weekend query cuts off only previous published records. No realtime trading.",
+  "uncertainty": "Research selection already shaped by viewed historical outcomes; no independent holdout, 138 overlapping weeks and 6 structural transitions are dependent. No model approval or calibrated prediction from this research.",
+  "operational": "Do not change Futures, Spot, NAV, P&L, reserve, capital, MASTER, risk limits, or live Detector"
+}
