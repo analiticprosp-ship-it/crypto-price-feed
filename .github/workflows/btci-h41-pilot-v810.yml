@@ -1,0 +1,32 @@
+name: BTCI H41 numeric vintage pilot v8.10
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_h41_full_history_v810.py'
+      - '.github/workflows/btci-h41-pilot-v810.yml'
+permissions:
+  contents: read
+jobs:
+  macro-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2' 'beautifulsoup4>=4.12,<5'
+      - name: Check original H41 consolidated numeric levels across historical HTML layouts
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_h41_full_history_v810.py --pilot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-h41-numeric-pilot-v810
+          path: btci_v810_reports/
+          retention-days: 30
