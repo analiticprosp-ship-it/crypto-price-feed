@@ -1,0 +1,38 @@
+{
+  "version": "8.3",
+  "mode": "PREDECLARED_EXPLORATORY_ALL_WEEKS_WEEKLY_REGIME_PANEL",
+  "researchOnly": true,
+  "frozenDate": "2026-10-18",
+  "parent": {
+    "v80": {
+      "key": "research/detector/v8.0/runs/39124773092-1/combined/phase_transitions.json",
+      "sha256": "b4fb7e7bb0640e052c9c95dc405da8f406d3b051b476f56226abb7a813e86f10"
+    },
+    "v82": {
+      "key": "research/btci/v8.2/runs/39126594551-1/comparison.json",
+      "sha256": "b6069ba19a026db16f7af8f79f20527e5a2d4c175ef1b464726ff2650be2e47c"
+    }
+  },
+  "objective": "Explore all Sunday weekly closed sessions 2020-2026 for more coverage than 8 historical recovery checkpoints. Preserve the EXACT fixed v8.2 weekly-trend and breadth conditions with no threshold tuning.",
+  "temporalContract": "Every report row for Sunday d is known at 00:00 UTC on Monday after d closed; only closed daily prices through Sunday d. 30wk SMA, 4week slope, previous 4week high/low CLOSE extrema, ETH/BTC rel30 and 6 alt broad participation exactly v8.2.",
+  "rows": "All Sundays starting 2020-01-05 until latest FULL Sunday 2026-10-11 with history for 34 Sunday weekly closes; keep missing breadth explicit as INSUFFICIENT_DATA, not ZERO.",
+  "cohorts": [
+    "BTC_WEEKLY_CONFIRMED_PLUS_BROAD_PARTICIPATION",
+    "BTC_WEEKLY_CONFIRMED_NARROW",
+    "BTC_WEEKLY_NOT_CONFIRMED",
+    "INSUFFICIENT_DATA"
+  ],
+  "outcomes": "Subsequent 4,13,26,52 weeks BTC close-to-close % change, max adverse and max favorable daily close change within horizon, or RIGHT_CENSORED; no trade P&L",
+  "pastOnlyPhase": "At each Sunday join v8.0 confirmed phase and risk label (if available) for descriptive stratification, no hindsight labeling.",
+  "nonoverlap": "One 13-week spaced series starting at the FIRST Sunday with available 34-week BTC history. Include every 13th Sunday thereafter regardless of cohort, and preserve missingness and right censoring. This is anchor-dependent, not IID.",
+  "comparisons": "Report all eligible Sundays, 13-week nonoverlap anchors, by cohort, by 2020–2023 vs 2024–2026, full numbers and simple unconditional BTC outcome. Do not show p-values or calibrated accuracy; overlapping observations highly correlated.",
+  "transitions": "Report weekly-confirmed changes false->true and true->false, timestamps and 13w outcomes, count; no backdating changes",
+  "forbidden": [
+    "No threshold optimization or hindsight cherry picking",
+    "No spot system-price inference from Binance USDM close",
+    "No retrofilled alt data where exchange future contract was not listed",
+    "No ETF macro vintages silently projected to past periods",
+    "No live trading or portfolio/Futures/NAV/risk changes"
+  ],
+  "caveat": "Still an exploratory model on inspected 2020-2026 history; even 13-week anchors not guaranteed independent and cohort imbalances matter."
+}
