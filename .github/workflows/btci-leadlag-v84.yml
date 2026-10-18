@@ -1,0 +1,36 @@
+name: BTCI BTC leadership and alt breadth v8.4
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_leadlag_v84.py'
+      - '.github/workflows/btci-leadlag-v84.yml'
+permissions:
+  contents: read
+concurrency:
+  group: btci-research-v84-leadlag
+  cancel-in-progress: false
+jobs:
+  leadlag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Verify pinned historical weekly panel and compute category episodes
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_leadlag_v84.py
+      - name: Save research result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: btci-v84-leadlag-study
+          path: btci_v84_reports/
+          retention-days: 30
