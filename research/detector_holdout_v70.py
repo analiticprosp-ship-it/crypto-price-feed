@@ -48,7 +48,7 @@ def main():
   months=set()
   for page in s3.get_paginator("list_objects_v2").paginate(Bucket=bucket,Prefix=prefix):
    for obj in page.get("Contents",[]):
-    match=re.fullmatch(re.escape(prefix)+r"(20\\d\\d-(?:0[1-9]|1[0-2]))\\.zip",obj["Key"])
+    match=re.fullmatch(re.escape(prefix)+r"(20\d\d-(?:0[1-9]|1[0-2]))\.zip",obj["Key"])
     if match:months.add(match.group(1))
   inventory[sym]=months
  # Preregistered selection: earliest six common complete-candidate months from 2024-01 onward,
