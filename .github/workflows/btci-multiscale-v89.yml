@@ -1,0 +1,36 @@
+name: BTCI structural multiscale cycle v8.9
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_multiscale_cycle_v89.py'
+      - '.github/workflows/btci-multiscale-v89.yml'
+permissions:
+  contents: read
+concurrency:
+  group: btci-v89-structural-price-research
+  cancel-in-progress: false
+jobs:
+  structural:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Verify pinned 2011–2026 history and classify long cycle context without lookahead
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_multiscale_cycle_v89.py
+      - name: Upload research audit and matched full historic labels
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: btci-v89-multiscale-weekly-cycle
+          path: btci_v89_reports/
+          retention-days: 30
