@@ -39,14 +39,14 @@ def full_prices():
 class PriceOIAsOfTests(unittest.TestCase):
     def test_future_price_timestamp_excluded_at_first_decision(self):
         first=START+FIVE_US+DELAY_US
-        rows=[(first-1,100,100),(first+1,900,900)]
+        rows=[(first-1,100,100),(first+FIVE_US-5_000_000,900,900)]
         records,stats=price_snapshots(sample(rows),DAY,SYM)
         snapshots=price_asof_by_bucket(records,DAY)
         self.assertEqual(snapshots[0]["last_price"]["value"],"100")
         self.assertEqual(snapshots[1]["last_price"]["value"],"900")
 
     def test_no_price_before_first_valid_receipt(self):
-        t=START+FIVE_US+DELAY_US+1
+        t=START+FIVE_US+DELAY_US+FIVE_US-5_000_000
         data,_=price_snapshots(sample([(t,100,100)]),DAY,SYM)
         prices=price_asof_by_bucket(data,DAY)
         self.assertEqual(prices[0]["last_price"]["value"],"")
