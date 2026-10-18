@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Offline validation of null baselines and immutable historical model replay."""
 import copy
+import json
 import unittest
 
 from research.detector_tardis_price_oi_chrono_ablation import (
@@ -61,7 +62,7 @@ class NullControls(unittest.TestCase):
     def test_replay_does_not_change_old_models_or_splits(self):
         samples=synthetic()
         old=walkforward(samples)
-        blocks=reproduce_with_controls(samples,copy.deepcopy(old))
+        blocks=reproduce_with_controls(samples,json.loads(json.dumps(old)))
         self.assertEqual(len(blocks),18)
         for block in blocks:
             self.assertNotIn(block["test_day"],block["train_days"])
