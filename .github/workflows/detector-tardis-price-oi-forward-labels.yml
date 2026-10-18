@@ -28,7 +28,7 @@ jobs:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-        run: python research/detector_tardis_price_oi_forward_labels.py
+        run: python -m research.detector_tardis_price_oi_forward_labels
       - uses: actions/upload-artifact@v4
         if: always()
         with:
