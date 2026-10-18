@@ -1,0 +1,36 @@
+name: BTCI long history trend persistence v8.8
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_phase_persistence_v88.py'
+      - '.github/workflows/btci-phase-persistence-v88.yml'
+permissions:
+  contents: read
+concurrency:
+  group: btci-v88-research-persistence
+  cancel-in-progress: false
+jobs:
+  persistence-analysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Reproduce 2011-2026 event persistence and source integrity
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_phase_persistence_v88.py
+      - name: Save study and source manifests
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: btci-v88-weekly-persistence
+          path: btci_v88_reports/
+          retention-days: 30
