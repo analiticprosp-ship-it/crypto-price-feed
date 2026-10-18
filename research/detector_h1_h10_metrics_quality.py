@@ -5,7 +5,7 @@ root=pathlib.Path("detector_h1_h10_metrics_history")
 out=pathlib.Path("detector_h1_h10_metrics_quality");out.mkdir(exist_ok=True)
 manifest=json.loads((root/"manifest.json").read_text())
 records=manifest["records"]
-report={"source_run_id":39034387923,"source_records":len(records),"symbols":{},"limitations":["Metrics timestamp granularity and field units inferred from source CSV only; no external verification","No historical spot/perp trade join or funding analysis performed"]}
+report={"source_run_id":json.loads((root/"_r2_provenance.json").read_text())["run_id"],"source_records":len(records),"symbols":{},"limitations":["Metrics timestamp granularity and field units inferred from source CSV only; no external verification","No historical spot/perp trade join or funding analysis performed"]}
 for sym in ("BTCUSDT","ETHUSDT","SOLUSDT"):
  path=root/f"{sym}_metrics_5m.csv"
  with path.open(newline="") as f:
