@@ -21,7 +21,7 @@ def prices(symbol,market):
     start=int(r["open_time_ms"]);close=start+3600000
     candles[close]=r
  return candles
-report={"policy":"Only 1h candles fully closed at or before metrics timestamp. Exact timestamp alignment; never forward-fill metrics, missing fields remain blank and mask=0.","source_metrics_run":39034387923,"source_prices_run":39025128477,"symbols":{}}
+report={"policy":"Only 1h candles fully closed at or before metrics timestamp. Exact timestamp alignment; never forward-fill metrics, missing fields remain blank and mask=0.","source_metrics_run":json.loads((SRC/"_r2_provenance.json").read_text())["run_id"],"source_prices_run":json.loads((PRICES/"_r2_provenance.json").read_text())["run_id"],"symbols":{}}
 for symbol in ("BTCUSDT","ETHUSDT","SOLUSDT"):
  spot=prices(symbol,"spot");perp=prices(symbol,"perp")
  stat=collections.Counter();seen=set();previous=None
