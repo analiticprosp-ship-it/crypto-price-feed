@@ -1,0 +1,28 @@
+{
+  "version": "8.10",
+  "researchOnly": true,
+  "frozenUTCDate": "2026-10-18",
+  "question": "Can a publication-lagged authentic historically dated H4.1 Fed balance sheet factor describe BTC price structural transitions beyond the BTC-only v8.9 baseline, without look-ahead?",
+  "parents": {
+    "v89": {
+      "key": "research/btci/v8.9/runs/39138844921-1/multiscale.json",
+      "sha256": "4b8822e929aff5569fa9cd105404c02b110927a970aed33db68910925c111b73"
+    }
+  },
+  "index": "https://www.federalreserve.gov/releases/h41/",
+  "releaseDiscovery": "All EXACT historical H.4.1 release date HTML page links from index between 2011-01-01 and 2026-10-15 inclusive, including irregular holidays. No assuming Thursdays or interpolating missing dates.",
+  "sourceIntegrity": "Fetch HTTPS FED official dated release HTML. Verify release date, H4.1 and exact table 5 consolidated statement sections, parse Wednesday LEVEL numbers from table 5 for Total assets, Treasury General Account and reverse repurchase agreements. In millions USD. Any ambiguous parsing => MISSING_SOURCE and no feature for affected week. Retain source URL, SHA256, raw HTML in run-scoped R2 for full dataset only if parsed. Distinguish current copy of dated release from incontrovertible original PIT vintage.",
+  "exactRowRules": "Only 5. Consolidated Statement of Condition of All Federal Reserve Banks (assets and continued liabilities). Do not accidentally parse week-average from Table 1 or 12-bank per-bank table 6. Row label and numeric are matched by anchored regular expression. Verify numeric positive and sensible to Fed level and TGA/RRP<=total.",
+  "prototype": "First run pilot with preregistered six dated sample releases from v8.9a: 2011-10-20,2017-10-19,2020-10-22,2022-10-20,2024-10-17,2025-10-16. Validate exact known Oct2020 table5 figures WALCL 7,177,265 TGA 1,699,497 RRP 187,435 (millions).",
+  "feature": "Research-only simplified level = Fed total assets - TGA - total reverse repurchase agreements; 4-release difference in millions. Do NOT call this true net liquidity or monetary base, because extra flows/items and government Treasury balances may affect other fields. Positive/negative sign. One feature per Sunday, using last eligible release dated <= Sunday - 3 calendar days (conservative lag; insufficient to prove historical page vintage).",
+  "publication": "Release dated Thursday generally 16:30 America/New_York; features available at following FULL Sunday close. Require release date<=Sunday - 3 calendar days to account for Thu->Sun; official holiday shifted dates Fri may be delayed to next Sunday and should not be used early.",
+  "weekAlignment": "Join only exact v8.9 full Sunday dates, never future rows. Features missing before >=5 accepted releases; no silent carry-forward after release gaps >21 days. Read no future BTC price in classification.",
+  "comparison": "Tabulate 4 and 13 week future BTC returns from frozen v8.9 weekly context, 29 structural switch events grouped by macro rising/falling based on LAST known release, and 13wk next outcomes. Also weekly-by-structural-phase macro sign counts to assess coverage. All overlapping futures and macro endogenous to policy/time; descriptive not causal or alpha.",
+  "holdout": "No independent untouched future market observations; predeclared 2024-2026 subperiod is not true holdout and signal not validated. Sign/direction unoptimized; do not fit weights or trade thresholds.",
+  "limits": [
+    "No invented number for missing release or pre-release week",
+    "NFCI ALFRED true revisions still not joined in this run",
+    "Farside ETF historic publication vintage unresolved, not included",
+    "No changes to NAV, Spot, Futures, portfolio, capital, risk, MASTER or trading"
+  ]
+}
