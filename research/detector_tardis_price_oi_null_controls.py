@@ -86,7 +86,7 @@ def reproduce_with_controls(samples,prior_blocks):
     for prior in replay:
         key=(prior["horizon_min"],prior["test_day"],prior["symbol"])
         old=known.get(key)
-        if old is None or old["train_days"]!=prior["train_days"] or old["train_n"]!=prior["train_n"]:
+        if old is None or tuple(old["train_days"])!=tuple(prior["train_days"]) or old["train_n"]!=prior["train_n"]:
             raise ValueError("PINNED_MODEL_SPLITS_CHANGED")
         for old_model,new_model in (("baseline","baseline"),("with_oi","with_oi")):
             for metric in ("n","brier","logloss","direction_accuracy","up_fraction"):
