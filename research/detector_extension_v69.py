@@ -5,11 +5,16 @@ from pathlib import Path
 from datetime import datetime,timezone
 import boto3
 ROOT=Path(__file__).resolve().parents[1]
+# Import reusable v6.8 definitions without executing its R2 writeback main().
+v65=ast.parse((ROOT/"research/detector_matched_controls_v65.py").read_text())
+v65keep=[n for n in v65.body if isinstance(n,(ast.Import,ast.ImportFrom,ast.FunctionDef,ast.Assign)) and not (isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id in ("s3","out") for t in n.targets))]
+ns={"__file__":str(ROOT/"research/detector_matched_controls_v65.py")}
+exec(compile(ast.Module(body=v65keep,type_ignores=[]),"<v65 definitions>","exec"),ns)
 src=ast.parse((ROOT/"research/detector_fixed_windows_v68.py").read_text())
-keep=[n for n in src.body if isinstance(n,(ast.Import,ast.ImportFrom,ast.Assign,ast.FunctionDef)) and not (isinstance(n,ast.FunctionDef) and n.name=="main")]
-scope={"__file__":str(ROOT/"research/detector_fixed_windows_v68.py")}
-exec(compile(ast.Module(body=keep,type_ignores=[]),"<v68>", "exec"),scope)
-read_month,analyze=scope["read_month"],scope["analyze"]
+v68funcs=[n for n in src.body if isinstance(n,ast.FunctionDef) and n.name in ("avg","rounded","percentile","analyze")]
+ns.update(H={"4h":16,"24h":96},SEED=6808)
+exec(compile(ast.Module(body=v68funcs,type_ignores=[]),"<v68 functions>","exec"),ns)
+read_month,analyze=ns["read_month"],ns["analyze"]
 BASE=("2024-09","2025-03","2025-09","2026-03","2026-09")
 EXT=("2026-02","2026-04","2026-05","2026-06","2026-07","2026-08")
 def aggregate(rows):
