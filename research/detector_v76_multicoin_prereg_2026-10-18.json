@@ -1,0 +1,37 @@
+{
+  "version": "7.6",
+  "researchOnly": true,
+  "mode": "FROZEN_POST_LISTING_MAJOR_ALT_RETROSPECTIVE_REPLAY",
+  "start": "2020-01",
+  "end": "2026-09",
+  "symbols": [
+    "SOL",
+    "BNB",
+    "LINK",
+    "XRP",
+    "ADA",
+    "DOGE"
+  ],
+  "archivedInventory": {
+    "path": "research/detector/v7.4/runs/39114922267-1/coverage.json",
+    "sha256": "204941a9114910ea37cb53049c247e338f6b46d6ac5621c3460af23b779c4d2a"
+  },
+  "assetSelection": "Fixed six assets chosen for differentiated large-cap market histories; descriptive sample, not all historical coins; survivorship bias remains",
+  "monthSelection": "Precisely months marked METADATA_FULL in the frozen v7.4 inventory; no month-level selection based on outcomes; metadata-unverified and missing are reported and excluded without silent substitution",
+  "prerequisite": "Every selected R2 archive must pass complete UTC monthly ZIP byte SHA, CRC and continuous 5m OHLCV before inclusion. If any selected source fails, its entire symbol job fails with no successful report.",
+  "method": "Unchanged v6.8 first eligible LONG per UTC-day Sweep Low flags; 4h/24h forward return comparison; event-weighted same as v7.5",
+  "summaries": [
+    "Each coin and calendar year",
+    "2020-2023 vs 2024-Sep 2026 contextual eras",
+    "Calendar quarter bootstrap pooling synchronized symbol-month clusters jointly, 12000 draws",
+    "Year leave-one-out and 24h nonoverlap UTC-day parity per asset"
+  ],
+  "nonGoals": [
+    "No causal proof from cross-coin similarities",
+    "No backfill with present-day symbol prices before futures contract existed",
+    "No automatic position changes",
+    "No trading execution estimates",
+    "No claiming independent out-of-sample signal from previously known historical data"
+  ],
+  "fullScopeNote": "BTC/ETH full contiguous 81-month core is handled by v7.5; here some alt months are unavailable or partial, with honest coverage gaps."
+}
