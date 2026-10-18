@@ -1,0 +1,26 @@
+{
+  "version": "8.9a",
+  "researchOnly": true,
+  "frozenAtUTC": "2026-10-18",
+  "question": "Can official originally dated H4.1 Federal Reserve releases be retrieved and stored as auditable historical release snapshots before point-in-time weekly BTC cycle analysis?",
+  "releaseDates": [
+    "2011-10-20",
+    "2017-10-19",
+    "2020-10-22",
+    "2022-10-20",
+    "2024-10-17",
+    "2025-10-16"
+  ],
+  "sourceTemplate": "https://www.federalreserve.gov/releases/h41/YYYYMMDD/",
+  "sourceValidation": "TLS HTTPS only federalreserve.gov; html page must contain release date (English month d, yyyy), H.4.1, Reverse repurchase agreements and U.S. Treasury, General Account, and first table. Reject missing or mismatched release dates. Historical page can be edited in place; web capture itself is not cryptographic proof of exact original publication time.",
+  "pointInTimeUse": "For weekly Sunday BTC decision, a Thursday H.4.1 dated original release is eligible no earlier than the NEXT fully completed Sunday UTC following that release; original publication clock generally Thursday 16:30 America/New_York, holiday exceptions must be checked.",
+  "output": "For each approved release archive original HTML bytes privately to Cloudflare R2 under run-scoped prefix, SHA256/readback, manifest release ISO dates, raw bytes sizes and keyword presence; mark no numeric financial factor or strategy validation until row parser and full archive checks.",
+  "future": "Extend systematic historical weekly H4.1 releases and Chicago Fed NFCI vintages; parse unambiguous Wednesday observed levels (WALCL, TGA, reverse repo), apply release timestamp <= decision timestamp, then compare incremental phase recognition to fixed BTC-only v8.9.",
+  "limits": [
+    "Sample coverage alone not full macro historical model",
+    "Original page may have been updated/revised since first release",
+    "NFCI point-in-time data not yet downloaded, only ALFRED vintage documentation verified",
+    "No live trading/accounting changes"
+  ],
+  "noChange": "Futures,Spot,NAV,P&L,capital,reserve,MASTER,limits,detector"
+}
