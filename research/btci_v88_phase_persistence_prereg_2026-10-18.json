@@ -1,0 +1,64 @@
+{
+  "version": "8.8",
+  "title": "Long-cycle BTC trend persistence and delay-cost ablation",
+  "status": "FROZEN_BEFORE_CALCULATION",
+  "dateUTC": "2026-10-18",
+  "researchOnly": true,
+  "parents": {
+    "v86": {
+      "key": "research/btci/v8.6/runs/39130315439-1/extended_history.json",
+      "sha256": "9af82767fa8139685e784c131c075cec553298c4718ed4a40ac41412144248ca"
+    },
+    "v87": {
+      "key": "research/btci/v8.7/runs/39131902527-1/episodes.json",
+      "sha256": "260d7991a6567aa370cbef92c8b7294b520c5a6a1b626872c4c55ae9e6a3d5b8"
+    },
+    "dailyArchiveManifest": {
+      "key": "research/btci/v8.7/runs/39131902527-1/archive_manifest.json",
+      "sha256": "3705a179363c9fdf50fede363fb7062481ce15c60f62dfada226e5371e674fb4"
+    }
+  },
+  "design": {
+    "population": "All 39 preexisting raw weekly trend entries 2011-2026 from v8.7; never add/remove after performance review",
+    "confirmations": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "clock": "A raw entry into weekly boolean upward trend is fixed at its historical fully closed Sunday; persistence confirmation at (N-1) future fully closed Sundays, not backdated. If trend lost before N confirmations, record NOT_CONFIRMED and no price/cycle results from would-be confirmation.",
+    "futureWindowsWeeks": [
+      4,
+      13,
+      26,
+      52
+    ],
+    "forwardOutcome": "Reference BTC fixing Sunday future close ratio minus 1, and minimum intervening daily close versus confirmation reference price, only if full future available. A Sunday must be completed before signal; no live Oct18 day.",
+    "entryOpportunityCost": "For confirmed episodes, mark percent price change from original raw first Sunday close to actual confirmation Sunday close. A larger positive fraction is opportunity foregone for early recognition but not trading P&L.",
+    "growthPersistenceProxy": "Descriptive 26-week price progress proxy positive if return26w >= +20%, 26-week path worst daily close > -20% relative to confirmation close. Contrasting 26-week failure proxy if return26w<=-20% OR path worst daily close<=-20%. All other cases MIXED; CENSORED when future26w unavailable. NOT a true macro bull or bear label.",
+    "falseSignalProxy": "For preexisting entries, later loss of weekly flag within 4 or 13 subsequent complete Sunday closings. This is technical-signal failure, not necessarily a bear cycle.",
+    "breadth": "At confirmed date report frozen PriceUSD 30d ETH/BTC and six-alt breadth only when eight-asset data actually available, then within 13w count broadening versus trend loss. If no complete full universe, UNKNOWN (not no alt strength).",
+    "comparison": "Compare cohorts at 1w,2w,4w,8w persistence on same original entry population: coverage/excluded, delay weeks, entry-to-confirm movement, 13w/26w median and worst close drawdown, censoring. Do not compare event outcomes from different clock times as if same trade policy; mark selection and delay.",
+    "eras": [
+      "2011-2012",
+      "2013-2016",
+      "2017-2019",
+      "2020-2023",
+      "2024-2026"
+    ],
+    "sensitivity": "Collapse raw-entry events by a 13-week gap and report confirmation statistics; other variants independent only in spacing, not economic cycle. Do not fit/optimize the thresholds based on results.",
+    "current": "At 2026-10-11 last Sunday, the raw trend entered 2026-09-13 (five completed weeks), so 1/2/4 weeks confirmations should be testable, 8wk not; no future outcomes from current checkpoint.",
+    "macroGuard": "Current external ETF and Fed source contextual only; release timestamp/PIT-vintage verification lacking means NO new macro score in v8.8. Forward financial conditions study is independent frozen follow-up."
+  },
+  "integrity": [
+    "Verify pinned R2 SHA for v8.6/v8.7 and archived manifest",
+    "Verify exact 814 contiguous Sundays/77 transitions/39 entering episodes",
+    "Reproduce every old entry index in parent rows",
+    "Data source never silently changed",
+    "R2 JSON, manifest SHA and readback verified"
+  ],
+  "safety": [
+    "No live quotes, no orders, no buy/sell, no P&L, Spot, Futures, NAV, capital, reserve, limits, MASTER or detector runtime writes",
+    "Retrospective exploratory study, not an out-of-sample validated probability"
+  ]
+}
