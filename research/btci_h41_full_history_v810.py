@@ -60,13 +60,16 @@ def http(url):
    time.sleep(0.8+1.5*k)
  raise last
 def releases_from_index():
- raw=http(INDEX)
- # Only direct date links; do not infer dates from Thursday calendar.
- matched=set(re.findall(r'href\s*=\s*["\x27]([^"\x27]*?h41/(\d{8})/?)["\x27]',raw.decode("utf-8","replace"),re.I))
- days=sorted(dt.date(int(ds[:4]),int(ds[4:6]),int(ds[6:8])) for _,ds in matched
-  if dt.date(2011,1,1)<=dt.date(int(ds[:4]),int(ds[4:6]),int(ds[6:8]))<=dt.date(2026,10,15))
- if len(days)!=len(set(days)) or len(days)<740:
-  raise SystemExit("V810_RELEASE_INDEX_INVALID count="+str(len(days)))
+ # The Federal Reserve index is JavaScript-rendered and contains no static links
+ # on GitHub runners. ALFRED supplies downloadable historical H.4.1 release dates.
+ url="https://alfred.stlouisfed.org/release/downloaddates?ff=txt&rid=20"
+ raw=http(url)
+ matches=set(re.findall(r"(?<!\\d)((?:19|20)\\d{2}-[01]\\d-[0-3]\\d)(?!\\d)",raw.decode("utf-8","replace")))
+ days=sorted(dt.date.fromisoformat(s) for s in matches
+  if dt.date(2011,1,1)<=dt.date.fromisoformat(s)<=dt.date(2026,10,15))
+ if len(days)<740:
+  raise SystemExit("V810_ALFRED_RELEASE_INDEX_INVALID count="+str(len(days))
+   +" rawHead="+repr(raw[:300]))
  return days,digest(raw)
 def clean(c):
  return re.sub(r"\s+"," ",c.replace("\xa0"," ").strip())
