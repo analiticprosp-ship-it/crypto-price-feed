@@ -1,0 +1,64 @@
+name: Detector historical market-phase transitions v8.0
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/detector_phase_transitions_v80.py'
+      - '.github/workflows/detector-phase-transitions-v80.yml'
+permissions:
+  contents: read
+concurrency:
+  group: detector-research-v80-phase-transitions
+  cancel-in-progress: false
+jobs:
+  historical-daily:
+    strategy:
+      fail-fast: false
+      matrix:
+        asset: [BTC, ETH, SOL, BNB, LINK, XRP, ADA, DOGE]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Verify full historical closes from frozen v7.5/v7.6 and v7.9
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_phase_transitions_v80.py --asset ${{ matrix.asset }}
+      - name: Save asset audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-v80-${{ matrix.asset }}
+          path: detector_v80_reports/
+          retention-days: 30
+  historical-transition-study:
+    needs: historical-daily
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Historical-only phase transitions and censored outcomes 7–365 days
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_phase_transitions_v80.py --combine
+      - name: Upload verified phase research result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-v80-phase-transition-full-report
+          path: detector_v80_reports/
+          retention-days: 30
