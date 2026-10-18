@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 
 ROOT=Path(__file__).resolve().parents[1]
 P="research/btci_v85_external_factor_prereg_2026-10-18.json"
+P_PATCH="research/btci_v851_etf_footer_correction_prereg_2026-10-18.json"
 V83=("research/btci/v8.3/runs/39126819412-1/panel.json",
      "9f90e6974e43f74a3af0bdf562d5e865b56c01565cb83d9b177aae2f81cc5479")
 V84=("research/btci/v8.4/runs/39127920489-1/leadlag.json",
@@ -42,6 +43,9 @@ def prereg():
  if p["version"]!="8.5" or p["parent"]!={"v83":{"key":V83[0],"sha256":V83[1]},
                                         "v84":{"key":V84[0],"sha256":V84[1]}}:
   raise SystemExit("V85_PREREG_CHANGED")
+ patch=json.loads((ROOT/P_PATCH).read_bytes())
+ if patch["version"]!="8.5.1" or patch["inputParents"]!={"v83":{"key":V83[0],"sha256":V83[1]},"v84":{"key":V84[0],"sha256":V84[1]}}:
+  raise SystemExit("V851_CORRECTION_PREREG_CHANGED")
  return sha(raw)
 def number(text):
  s=text.strip().replace(",","").replace("\u2212","-").replace("−","-")
@@ -71,16 +75,23 @@ def collect_farside():
   if len(rows)>len(collected):collected=rows
  if len(collected)<450:raise ValueError("MISSING_FULL_DAILY_TABLE")
  days=[row["day"] for row in collected]
+ correction={"status":"NONE","excludedRows":[]}
  if len(days)!=len(set(days)):
   from collections import defaultdict
   occurrences=defaultdict(list)
   for row in collected:occurrences[row["day"]].append(row["flowMillionUSD"])
   collisions={k:v for k,v in occurrences.items() if len(v)>1}
-  raise ValueError("DUPLICATE_DATES count="+str(len(collisions))+" examples="+repr(list(collisions.items())[:8]))
+  if collisions!={"2024-01-11":[56949.0,655.3]} and collisions!={"2024-01-11":[655.3,56949.0]}:
+   raise ValueError("DUPLICATE_DATES_UNRESOLVED:"+repr(list(collisions.items())[:8]))
+  excluded=[row for row in collected if row["day"]=="2024-01-11" and row["flowMillionUSD"]==56949.0]
+  if len(excluded)!=1:raise ValueError("TOTAL_FOOTER_CORRECTION_AMBIGUOUS")
+  collected=[row for row in collected if row is not excluded[0]]
+  correction={"status":"EXACT_KNOWN_FOOTER_DATE_INHERITANCE_EXCLUDED",
+    "excludedRows":excluded,"preregisteredRule":"BTCI_v8.5.1"}
  collected.sort(key=lambda x:x["day"])
  if collected[0]["day"]!="2024-01-11" or collected[-1]["day"]<"2026-10-16" or collected[-1]["day"]>"2026-10-18":
   raise ValueError("COVERAGE_OR_FUTURE_DATA_MISMATCH")
- return collected,sha(raw)
+ return collected,sha(raw),correction
 
 def describe(rows):
  ar4=[x["outcomes"]["4"]["closeReturnPct"] for x in rows if x["outcomes"]["4"]["status"]=="OBSERVED"]
@@ -109,8 +120,8 @@ def main():
   "capturedAtUTC":dt.datetime.now(dt.timezone.utc).isoformat()}
  records=[]
  try:
-  records,sourcehash=collect_farside()
-  source.update({"readStatus":"PASS_PARSED","htmlSha256":sourcehash,"dailyRows":len(records),
+  records,sourcehash,parserCorrection=collect_farside()
+  source.update({"readStatus":"PASS_PARSED_CORRECTED_FOOTER","htmlSha256":sourcehash,"footerCorrection":parserCorrection,"dailyRows":len(records),
     "firstDate":records[0]["day"],"lastDate":records[-1]["day"]})
  except Exception as exc:
   source.update({"readStatus":"SOURCE_UNAVAILABLE_NO_HISTORICAL_CLAIM",
@@ -156,9 +167,9 @@ def main():
   matrix["eras"]={key:group(row) for key,row in matrix["eras"].items()}
  else:
   matrix={"panelRows":0,"status":"BLOCKED_EXTERNAL_DATA","groupComparisons":None}
- report={"version":"8.5","status":"EXTERNAL_FACTOR_RESEARCH_ONLY",
+ report={"version":"8.5.1","status":"EXTERNAL_FACTOR_RESEARCH_ONLY",
   "researchOnly":True,"tradesEmitted":0,
-  "preregistration":{"path":P,"sha256":psha},
+  "preregistration":{"path":P,"sha256":psha,"footerCorrectionPath":P_PATCH,"footerCorrectionSha256":sha((ROOT/P_PATCH).read_bytes())},
   "frozenParents":{"v83":V83,"v84":V84},
   "sourceETF":source,
   "sourceFed":{"name":"Federal Reserve H.4.1","releaseTime":"Thursday 16:30 America/New_York generally",
@@ -178,9 +189,9 @@ def main():
  folder=Path("btci_v85_reports");folder.mkdir(exist_ok=True)
  blob=json.dumps(report,ensure_ascii=False,indent=2).encode()
  (folder/"factor_audit.json").write_bytes(blob)
- root=f"research/btci/v8.5/runs/{os.environ.get('GITHUB_RUN_ID','manual')}-{os.environ.get('GITHUB_RUN_ATTEMPT','1')}/"
+ root=f"research/btci/v8.5.1/runs/{os.environ.get('GITHUB_RUN_ID','manual')}-{os.environ.get('GITHUB_RUN_ATTEMPT','1')}/"
  dig=write(s,b,root+"factor_audit.json",blob)
- man=write(s,b,root+"manifest.json",{"version":"8.5","researchOnly":True,
+ man=write(s,b,root+"manifest.json",{"version":"8.5.1","researchOnly":True,
     "status":"PIT_UNVERIFIED_RESEARCH_FACTOR_AUDIT","reportSha256":dig,"prefix":root})
  brief={"status":"V85_FACTOR_SOURCE_AUDIT_WRITEBACK_VERIFIED", "ETFSource":source,
   "Farside":current, "panelRows":matrix["panelRows"],
