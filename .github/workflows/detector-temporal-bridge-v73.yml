@@ -1,0 +1,37 @@
+name: Detector frozen historical bridge v7.3
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/detector_temporal_bridge_v73.py'
+      - '.github/workflows/detector-temporal-bridge-v73.yml'
+permissions:
+  contents: read
+concurrency:
+  group: detector-research-v73
+  cancel-in-progress: false
+jobs:
+  temporal-bridge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install historical R2 reader
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Replay frozen untouched months and verify R2 audit writeback
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_temporal_bridge_v73.py
+      - name: Upload research audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-v73-temporal-bridge-audit
+          path: detector_v73_reports/
+          retention-days: 30
