@@ -1,0 +1,73 @@
+{
+  "version": "8.2",
+  "mode": "POST_HOC_EXPLORATORY_WEEKLY_AND_BREADTH_RECOVERY_COMPARISON",
+  "researchOnly": true,
+  "frozenUTCDate": "2026-10-18",
+  "inputs": {
+    "v80": {
+      "key": "research/detector/v8.0/runs/39124773092-1/combined/phase_transitions.json",
+      "sha256": "b4fb7e7bb0640e052c9c95dc405da8f406d3b051b476f56226abb7a813e86f10"
+    },
+    "v81": {
+      "key": "research/detector/v8.1/runs/39125649306-1/comparison.json",
+      "sha256": "5748d90333c350f8de41376084791bc64e4920e28c4f701e9447cd08badaacbf"
+    }
+  },
+  "question": "Does extra weekly BTC structure and breadth at fixed day-31 recovery checkpoints distinguish durable recovery from bear-market rally without future information?",
+  "population": "All nine historical fixed v8.1 recoveries, exactly +31 calendar days after 7-day phase confirmation",
+  "asOfRule": "Evaluate only at CLOSE of the checkpoint UTC day, so Sunday fully closes at 00:00 UTC next day; use the latest Sunday whose closed candle date <= checkpoint day. Never use current incomplete UTC day. Historical weekly closing prices computed from verified v8.0 daily BTC close sequence, no look-ahead.",
+  "weeklyDefinition": {
+    "weeklyClose": "Sunday UTC BTC daily close from v8.0 source. 30wk SMA = 30 fully completed Sunday weekly closes inclusive. 4-week SMA slope = percent of current 30wk SMA versus same 30wk SMA four Sundays earlier.",
+    "structure": "Last four weekly closes' max vs preceding four weekly closes' max AND last four weekly closes' min vs preceding four weekly closes' min; these are W1 CLOSE structure not intrawick OHLC highs/lows.",
+    "confirmedTrend": "Weekly close > 30wk SMA AND slope(30wk SMA vs 4w ago)>0 AND both 4wk high-of-closes and low-of-closes rising",
+    "otherwise": "WEEKLY_NOT_CONFIRMED or NOT_ENOUGH_HISTORY"
+  },
+  "breadthDefinition": {
+    "symbols": [
+      "BTC",
+      "ETH",
+      "SOL",
+      "BNB",
+      "LINK",
+      "XRP",
+      "ADA",
+      "DOGE"
+    ],
+    "source": "Reopen v8.0 per-asset validated daily close snapshots; each snapshot SHA256 verified against v8.0 report; no backfill before listing",
+    "perf": "30 day relative cumulative performance of asset versus BTC from identical checkpoint start/end dates, via (assetReturnFactor/btcReturnFactor)-1, not approximate difference",
+    "eth": "ETH relative 30d positive boolean",
+    "sixAlts": "Outperform BTC 30d fraction among six fixed alts; any missing 30d asset produces UNKNOWN_BREADTH, not a zero",
+    "broadParticipation": "ETH/BTC positive AND at least 4 of six alts outperform BTC in same 30d window"
+  },
+  "categories": [
+    "BTC_WEEKLY_CONFIRMED_PLUS_BROAD_PARTICIPATION",
+    "BTC_WEEKLY_CONFIRMED_NARROW",
+    "BTC_WEEKLY_NOT_CONFIRMED",
+    "INSUFFICIENT_DATA"
+  ],
+  "outcomePolicy": "Reuse EXACT frozen v8.1 future returns and bear/bull transition outcomes from day31; do not relabel them. Compare each episode, not only successful ones. Future unavailable means RIGHT_CENSORED.",
+  "tests": [
+    "Report exact per-case features, classification and future 30/90/180 outcomes/censor",
+    "Report observed 90d median, count and percent positive by category only descriptive",
+    "Report 90d confirmed-bear and 180d confirmed-bull event counts by category with censor",
+    "Compare present day31 versus historical closest category; if n<20 or category n<5, classify LOW_SAMPLE",
+    "Do not fit weights, change thresholds, compute actionable win rate or optimize in response to outcomes"
+  ],
+  "macroETF": "Independent contextual audit at current date: 5/10-session BTC spot ETF net flows sourced from Farside; latest H4.1 release (weekly Fed balance sheet); indicate they are not in model, not full financial liquidity, and not comparable across 2020-2023. Do not include live web info in the same historical JSON as fact unless time/source verified.",
+  "guards": [
+    "Exact v8.0 and v8.1 parent SHA match",
+    "8 original daily source snapshot SHA match",
+    "No missing weekly close at current date, no silently substituted futures/spot",
+    "Current BTC v8.0 17-Oct close must match last day v8.1 checkpoint price",
+    "All nine checkpoints exactly reproduce original v8.1 input; no changed sample",
+    "No changes to NAV, capital, trading, Spot, Futures, risk limits, runtime detector or BTCI governance"
+  ],
+  "limitations": [
+    "Posthoc subset and chosen thresholds cannot validate an independent predictive edge",
+    "Only 8 previous recovery episodes; results susceptible to regime autocorrelation",
+    "Weekly price CLOSE structure only, not full weekly OHLC for historical candles",
+    "Same asset selection today creates survivorship bias and missingness before listing",
+    "ETF only available after January 2024, macro vintages not archived",
+    "This is a phase context / risk filter research, not trade/position advice"
+  ]
+}
