@@ -1,0 +1,15 @@
+{
+  "version": "8.10a",
+  "created": "2026-10-18",
+  "parent": "research/btci_v810_macro_h41_full_prereg_2026-10-18.json",
+  "reason": "Official 2011-10-20 H.4.1 has Consolidated Statement of Condition of All Federal Reserve Banks as Table 8, whereas 2020 and 2025 carry it as Table 5. Modern H4.1 pages use structured HTML rows, older ones preformatted fixed-width text.",
+  "changesOnly": [
+    "Identify sections by exact textual title Consolidated Statement of Condition of All Federal Reserve Banks, permitting historical integer table number, and its continued liabilities page. Never parse corresponding rows from Table 1 average or per-Fed regional tables.",
+    "Use HTML table row exact-name label and Wednesday level column when present; otherwise parse preformatted line first numeric after optional elimination entries (N) under exact matching consolidated section.",
+    "For all samples crosscheck three sample years from original published text: 2011-10-20 total 2,855,177, TGA 68,392, RRP 80,468; 2020-10-22 total 7,177,265, TGA 1,699,497, RRP 187,435; 2025-10-16 total 6,596,454, TGA 851,952, RRP 347,901.",
+    "Exclude duplicates by unique release-date event not repeated title in same page. Fail closed if parsed level not plausible, ambiguous, or sample numerics mismatched."
+  ],
+  "unchanged": [
+    "2011-2026 bounded releases, 4-release lag, all Sunday publication delays, descriptive BTC-phase comparison, source hashes and R2 readback, no PIT-vintage overclaim, no live trading"
+  ]
+}
