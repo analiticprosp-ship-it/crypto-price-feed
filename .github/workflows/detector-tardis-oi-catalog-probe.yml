@@ -1,0 +1,28 @@
+name: Detector H1-H10 Tardis Binance OI Catalog Sample Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-tardis-oi-catalog-probe.yml'
+      - 'research/detector_tardis_oi_catalog_probe.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m py_compile research/detector_tardis_oi_catalog_probe.py
+      - name: Inspect official Binance Futures OI dataset catalog and sample GZIP headers
+        run: python research/detector_tardis_oi_catalog_probe.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-tardis-binance-oi-catalog-probe
+          path: detector_tardis_oi_probe/report.json
+          retention-days: 30
