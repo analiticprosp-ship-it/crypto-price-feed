@@ -2,7 +2,7 @@
 """Audit event-time causality and availability limits. No predictive tests."""
 import csv,datetime as dt,json,pathlib,collections
 SRC=pathlib.Path("joined");OUT=pathlib.Path("detector_h1_h10_asof_audit");OUT.mkdir(exist_ok=True)
-report={"audit":"event-time and causal-feature audit, not actual vendor publication latency validation","market_data_semantics":{"aggTrades":"row timestamp is 5m bucket START; full 5m buy/sell/delta only available at or after bucket END","oi":"source metrics create_time is unverified as publication time; a 10m event-time lag is provisional, not proven safe","hourly":"prices from masked source labelled last closed 1h, but source candle boundaries need independent audit"},"symbols":{}}
+report={"audit":"event-time and causal-feature audit, not actual vendor publication latency validation","market_data_semantics":{"aggTrades":"row timestamp is 5m bucket START; full 5m buy/sell/delta only available at or after bucket END","oi":"source metrics create_time is unverified as publication time; a 10m event-time lag is provisional, not proven safe","hourly":"prices from masked source labelled last closed 1h, but source candle boundaries need independent audit"},"source_r2_provenance":json.loads((SRC/"_r2_provenance.json").read_text()),"symbols":{}}
 for sym in ("BTCUSDT","ETHUSDT","SOLUSDT"):
  p=SRC/f"{sym}_flow_oi_asof_5m.csv";counts=collections.Counter();examples=[];previous=None;rows=0
  with p.open(newline="") as f:

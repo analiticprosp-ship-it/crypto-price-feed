@@ -3,7 +3,7 @@
 import collections,csv,datetime as dt,json,math,pathlib
 src=pathlib.Path("detector_h1_h10_metrics_history")
 dst=pathlib.Path("detector_h1_h10_metrics_forensic");dst.mkdir(exist_ok=True)
-result={"source_run_id":39034387923,"source":"Binance futures/um/daily/metrics","symbols":{},"policy":"No imputation; keep missing/invalid observations excluded from affected features; timestamps are UTC"}
+result={"source_run_id":json.loads((src/"_r2_provenance.json").read_text())["run_id"],"source":"Binance futures/um/daily/metrics","symbols":{},"policy":"No imputation; keep missing/invalid observations excluded from affected features; timestamps are UTC"}
 for symbol in ("BTCUSDT","ETHUSDT","SOLUSDT"):
  p=src/f"{symbol}_metrics_5m.csv"
  counts=collections.Counter();examples={};daily=collections.defaultdict(list);total=0

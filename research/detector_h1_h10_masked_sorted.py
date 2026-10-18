@@ -3,7 +3,7 @@
 import collections,csv,datetime as dt,hashlib,json,pathlib
 src=pathlib.Path("detector_h1_h10_masked_dataset")
 out=pathlib.Path("detector_h1_h10_masked_sorted");out.mkdir(exist_ok=True)
-report={"source_run_id":39057214956,"policy":"Stable UTC sort, no synthetic rows, no forward fill, no price recomputation; preserve all source fields except recompute continuity_5m and timestamp_unique.","symbols":{}}
+report={"source_run_id":json.loads((src/"_r2_provenance.json").read_text())["run_id"],"policy":"Stable UTC sort, no synthetic rows, no forward fill, no price recomputation; preserve all source fields except recompute continuity_5m and timestamp_unique.","symbols":{}}
 for symbol in ("BTCUSDT","ETHUSDT","SOLUSDT"):
  source=src/f"{symbol}_research_5m.csv";target=out/source.name
  with source.open(newline="") as f:

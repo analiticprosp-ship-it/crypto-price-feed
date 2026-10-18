@@ -3,7 +3,7 @@
 import csv,datetime as dt,json,pathlib,collections
 FLOW=pathlib.Path("flow");METRICS=pathlib.Path("metrics");OUT=pathlib.Path("detector_h1_h10_join_audit");OUT.mkdir(exist_ok=True)
 def stamp(s):return dt.datetime.fromisoformat(s.replace("Z","+00:00"))
-manifest={"method":"Join 5m spot/perp taker flow at bucket start t to last metrics observation timestamp <= t-10 minutes; hourly prices are already last closed hour. This is a conservative provisional lag, NOT proven publication-time availability.","warning":"metrics timestamp semantics and source publication delay not verified; do not run predictive backtests from this join","symbols":{}}
+manifest={"method":"Join 5m spot/perp taker flow at bucket start t to last metrics observation timestamp <= t-10 minutes; hourly prices are already last closed hour. This is a conservative provisional lag, NOT proven publication-time availability.","warning":"metrics timestamp semantics and source publication delay not verified; do not run predictive backtests from this join","source_r2_provenance":{"flow":json.loads((FLOW/"_r2_provenance.json").read_text()),"metrics":json.loads((METRICS/"_r2_provenance.json").read_text())},"symbols":{}}
 for sym in ("BTCUSDT","ETHUSDT","SOLUSDT"):
  def loadflow(market):
   p=FLOW/f"{market}_{sym}_2026-09-01_to_03_5m.csv"
