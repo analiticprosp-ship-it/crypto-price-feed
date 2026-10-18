@@ -1,0 +1,72 @@
+{
+  "version": "7.5",
+  "mode": "FROZEN_FULL_HISTORICAL_CYCLE_REPLAY",
+  "researchOnly": true,
+  "preregisteredAtUTCDate": "2026-10-18",
+  "window": {
+    "from": "2020-01",
+    "through": "2026-09",
+    "completeUTCMonths": 81,
+    "btcEthSymbolMonths": 162
+  },
+  "scope": [
+    "BTCUSDT",
+    "ETHUSDT"
+  ],
+  "market": "Binance USD-M perpetual futures 5-minute bars",
+  "protocol": "Reuse exactly the v6.8 first eligible EARLY_CANDIDATE_SHADOW LONG per UTC day and localStructure.sweptLowReclaimed flag. Classification at end of candidate's 15-minute closed bar. Do not tune or change definition after seeing historical results.",
+  "cohorts": {
+    "previousStudy": [
+      "2024-01",
+      "2024-02",
+      "2024-03",
+      "2024-04",
+      "2024-05",
+      "2024-06",
+      "2024-09",
+      "2025-03",
+      "2025-09",
+      "2025-10",
+      "2025-11",
+      "2025-12",
+      "2026-01",
+      "2026-02",
+      "2026-03",
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07",
+      "2026-08",
+      "2026-09"
+    ],
+    "remainingMonths": 60
+  },
+  "primary": "Original v7.0 symbol-month guarded event-weighted Sweep minus non-Sweep difference in average 4h/24h forward close-to-close % return, excluding each symbol-month with empty comparison group; all 81 months must pass source guards",
+  "prespecifiedAnalysis": [
+    "calendar-year 2020 through 2026, both horizons, both BTC/ETH",
+    "asset split BTC and ETH, with sample sizes",
+    "pre-institutional reference 2020–2023 and ETF-era 2024–Sep 2026 as contextual split, never causal attribution to ETF",
+    "calendar quarter clustered bootstrap 12000 replications jointly preserving BTC/ETH symbol-month dependence and within-quarter serial correlation",
+    "calendar year leave-one-year-out, separate year descriptive effects",
+    "first-LONG events split into UTC-day parity 0/1 for disjoint 24-hour windows per asset",
+    "retrospective past-only trailing-24h return regime UP>1% DOWN<−1% otherwise SIDEWAYS, descriptive only",
+    "compare all 42 historical symbol-months with immutable archived v7.3 before acceptance"
+  ],
+  "accept": [
+    "81 full, gapless BTC and 81 full, gapless ETH UTC month ZIPs",
+    "ZIP CRC, OHLC and 5m sequence, R2 bytes SHA-256 match metadata and quality=full",
+    "no substitution for unavailable months",
+    "identical shared-event monthly results with v7.3 for prior 42 symbol-months",
+    "R2 versioned 7.5 report and manifest readback by SHA256"
+  ],
+  "limitations": [
+    "Full retrospective cycle, not forward validation",
+    "2020-2024 prior halving cycle covered; 2024-2028 cycle only partially observed",
+    "Market context and ETFs do not prove causal change in trading edge",
+    "No returns-cost execution evaluation, maker/taker fees, impact, funding, orderbook/OI, or live Detector parity",
+    "No factor promotion, portfolio or Futures writes, orders or trading signals",
+    "Known 21 months were inspected in earlier research; 60 remaining were not part of v6.8-v7.3 studies, not guaranteed new to all possible historical research",
+    "Multiple testing and exploratory regimen diagnostics mean any discoveries need independent prospective confirmation"
+  ],
+  "altExtension": "After BTC/ETH v7.5 core cycle research, independently audit SOL/BNB/LINK/XRP/ADA/DOGE with actual listing calendars, avoid survivorship bias. Never backfill before symbol listing."
+}
