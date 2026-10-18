@@ -1,0 +1,32 @@
+{
+  "version": "8.6",
+  "timestamp": "2026-10-18",
+  "researchOnly": true,
+  "hypothesis": "BTC weekly trend transitions can be studied earlier than the 2020 futures panel using a completely separate long-lived BTC spot/reference USD daily series. Test whether BTC weekly trend stable and how duration and subsequent 4/13/26/52 week price moves differ across pre-2020 and post-2020. Do NOT infer OOS predictive success.",
+  "immutableV83": {
+    "key": "research/btci/v8.3/runs/39126819412-1/panel.json",
+    "sha256": "9f90e6974e43f74a3af0bdf562d5e865b56c01565cb83d9b177aae2f81cc5479"
+  },
+  "source": "Coin Metrics Community API BTC PriceUSD daily 1d reference/fixing price, each day label price fixed at next midnight UTC, NOT exchange trade execution and not identical to Binance futures. Free community may have historic data revisions; mark data-vintage NOT PIT VERIFIED.",
+  "requestedAssets": [
+    "btc",
+    "eth",
+    "sol",
+    "bnb",
+    "link",
+    "xrp",
+    "ada",
+    "doge"
+  ],
+  "sourceURL": "https://community-api.coinmetrics.io/v4/timeseries/asset-metrics",
+  "retrieval": "start_time=2010-01-01 end_time=2026-10-17 frequency=1d metrics=PriceUSD page_size<=10000, follow advertised next_page_url, <=8 pages per asset, 403/429 handled as UNKNOWN and no fabricated backfill; verify duplicate dates, positive finite price, only eligible close days and SHA",
+  "venueAudit": "Download Binance official historical spot 1d monthly BTCUSDT 2017-08, 2017-09, 2018-01, 2019-12, 2020-01, 2026-09; verify SHA .CHECKSUM, CRC, first-last UTC timestamps, detect missing days; do not assert complete historical backfill from six sample months.",
+  "weeklyRule": "Reproduce EXACT BTC weekly rule of v8.2/v8.3 on uninterrupted Coin Metrics daily closes: latest fully closed Sunday price > 30-Sunday SMA, 30-week SMA 4-week slope >0, last4-week high-of-CLOSE greater than previous4, last4-week low-of-CLOSE greater than previous4. No weekly wick high/low.",
+  "earlyPeriod": "Start first complete 34-week W1 observation after earliest proven contiguous BTC price sequence; no 2010 minimum assumption. Sunday UTC weekly closes only when BTC daily close is available and all intervening UTC days complete. Reject gaps instead of forward filling.",
+  "comparison": "Count all weekly confirmed/unconfirmed transitions by eras 2010-2012, 2013-2016, 2017-2019, 2020-2023, 2024-2026; subsequent BTC returns at 4/13/26/52 weeks only if full future realized; report medians, censored, and first-regime changes. Compare for 2020-2026 to original frozen Binance futures v8.3 weekly labels on matched Sundays, report discordant rows, do NOT join single price series.",
+  "breadth": "Collect other seven asset PriceUSD histories separately; report earliest actual valid source date, continuity and coverage. Apply full 6-alt plus ETH rule ONLY if all required 30d historical assets exist, then compare to futures model on overlapping weeks; otherwise UNKNOWN; do not use dynamic smaller basket as same headline variable.",
+  "survivorship": "Selected eight surviving assets not full market. Report data availability rather than imposing imaginary historic broad-alt participation.",
+  "macroPIT": "Fed H.4.1, TGA, ON RRP publication vintages via ALFRED require independent release-time audit; for v8.6 no Fed or ETF included in alpha or scores.",
+  "validation": "If BTC CoinMetrics full daily unavailable or impossible day coverage, produce coverage-only BLOCKED result and do not claim extended cycle research; status not PASS. All records are research-only and no live current price.",
+  "noTrading": "No modifications to Spot, Futures, NAV, reserve, capital, P&L, MASTER, detector runtime or trade limits."
+}
