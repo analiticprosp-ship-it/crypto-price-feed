@@ -1,0 +1,33 @@
+name: BTCI Chicago Fed NFCI vintage provenance v8.12a
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_nfci_pit_probe_v812a.py'
+      - '.github/workflows/btci-nfci-vintage-audit-v812a.yml'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2' 'beautifulsoup4>=4.12,<5'
+      - name: Verify ALFRED release calendar and real historical vintages if already authorized
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python research/btci_nfci_pit_probe_v812a.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v812a-nfci-vintage-audit
+          path: btci_v812a_reports/
+          retention-days: 30
