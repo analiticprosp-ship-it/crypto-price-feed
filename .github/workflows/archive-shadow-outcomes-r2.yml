@@ -1,0 +1,27 @@
+name: Archive SHADOW forward outcomes to Cloudflare R2
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '43 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: shadow-outcomes-r2
+  cancel-in-progress: false
+jobs:
+  outcomes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install boto3 requests
+      - name: Evaluate post-detection outcomes and archive verified result
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/archive_shadow_outcomes_r2.py
