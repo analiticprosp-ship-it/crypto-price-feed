@@ -162,9 +162,10 @@ def main():
                 derived_key=origins[0]["derived_key"]
                 derived_sha=origins[0]["derived_sha256"]
                 root=MULTI+"/"+day
-            if not (source_key==root+"/"+symbol+".csv.gz" and
-                    derived_key==root+"/derived/"+symbol+"_vendor_asof_5m.csv" if day!="2026-10-01"
-                    else source_key==root+"/"+symbol+".csv.gz" and derived_key==root+"/derived/"+symbol+"_tardis_vendor_asof_5m.csv"):
+            expected_derived_name=(symbol+"_tardis_vendor_asof_5m.csv" if day=="2026-10-01"
+                                   else symbol+"_vendor_asof_5m.csv")
+            if (source_key!=root+"/"+symbol+".csv.gz" or
+                    derived_key!=root+"/derived/"+expected_derived_name):
                 raise ValueError("MANIFEST_R2_PATH_MISMATCH")
             src=get_bytes(s3,bucket,source_key,MAX_GZ)
             bars=get_bytes(s3,bucket,derived_key,150_000)
