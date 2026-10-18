@@ -1,0 +1,64 @@
+{
+  "version": "7.3",
+  "researchOnly": true,
+  "preregisteredAt": "2026-10-18",
+  "mode": "PREDECLARED_UNUSED_HISTORICAL_TIME_BLOCK",
+  "title": "Chronological bridge block BTC/ETH first LONG Sweep Low",
+  "data": "Historical Binance USD-M Futures BTCUSDT and ETHUSDT 5m OHLCV from private R2, read only",
+  "months": [
+    "2025-10",
+    "2025-11",
+    "2025-12",
+    "2026-01"
+  ],
+  "selectionRule": "FIXED exactly these four chronologically contiguous calendar months; they bridge the prior 2025-09 baseline and 2026-02 extension; do not substitute, omit or expand months based on availability or results",
+  "unit": "symbol-month 8; shared calendar-month cluster 4; first eligible LONG per UTC calendar day as in v6.8",
+  "lockedSources": {
+    "v69": {
+      "key": "research/detector/v6.9/runs/39107302260-1/comparison.json",
+      "sha256": "52c68895360938cf70f118a5465713f01e3391ce64bfb4ef2e613ef10c22524a"
+    },
+    "v70": {
+      "key": "research/detector/v7.0/runs/39109768036-1/comparison.json",
+      "sha256": "7d4947d48e65aae303f3e927b1a9687cc140925cb2c739faa7899821a93a6eea"
+    }
+  },
+  "primaryDefinition": "Use unchanged v6.8 analyze(): eligible 15m bars with 24h trailing + forward support; first EARLY_CANDIDATE_SHADOW LONG per UTC day. Classify sweptLowReclaimed at that bar. Compare sweep vs nonSweep group mean close-to-close forward returns at 4h and 24h; event-weighted group difference in percentage points; source-month excluded per horizon only when either group empty.",
+  "comparisons": [
+    "new four-month block",
+    "baseline v6.8",
+    "extension v6.9",
+    "historical holdout v7.0",
+    "34 prior symbol-month sets plus 8 new sets"
+  ],
+  "uncertainty": "Post-hoc month-cluster bootstrap separately in new block, paired BTC/ETH by calendar month, 12000 draws; 95% percentile and simultaneous two-horizon approximations; leave-one-calendar-month-out; tiny 4-cluster count explicitly labelled",
+  "secondary": [
+    "BTC vs ETH stratification",
+    "past-only 24h regime UP >1%, DOWN <-1%, SIDEWAYS otherwise (same v6.5)",
+    "UTC date ordinal parity 0/1 as 24h nonoverlap sensitivity, parity outcome-independent, not independent tests",
+    "positive/negative symbol-month consistency"
+  ],
+  "failClosed": [
+    "Original reports SHA check",
+    "complete UTC calendar month and archived ZIP SHA metadata quality=full",
+    "no missing or substituted month",
+    "all 8 symbol-months required for successful report",
+    "readback SHA-256 verification after unique-path R2 writeback"
+  ],
+  "limitations": [
+    "Not a real forward prospective experiment (historical data already exist).",
+    "No future period later than September 2026 can be a complete month as of 18 October 2026.",
+    "Previous history studies may indirectly influence researcher decisions; this is additional retrospective validation.",
+    "No causal effect, trade profitability, fees, slippage, funding or full live Detector parity established."
+  ],
+  "prohibited": [
+    "live detector modifications",
+    "Futures",
+    "NAV",
+    "P&L",
+    "capital",
+    "reserve",
+    "trade limits",
+    "trading signals"
+  ]
+}
