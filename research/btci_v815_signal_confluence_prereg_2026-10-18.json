@@ -1,0 +1,47 @@
+{
+  "version": "8.15",
+  "frozenUTCDate": "2026-10-18",
+  "researchOnly": true,
+  "parents": {
+    "v813": {
+      "key": "research/btci/v8.13/runs/39150999581-1/nfci_anfci_historical.json",
+      "sha256": "94c5f520e5cf449a5b739c5639d4349c44c7d60819f67c56e43ce4427c218d57"
+    },
+    "v814": {
+      "key": "research/btci/v8.14/runs/39169052651-1/episode_replay.json",
+      "sha256": "6a6a0e62f4502e05d561ccd7da32ef0e433ae128b88b5969b4447fc159209269"
+    }
+  },
+  "question": "Do multiple simultaneous or sequential independent indicator-family warnings detect early BTC structural recovery with fewer false alerts than standalone indicators?",
+  "sourcePopulation": "Exactly 137 vintage-validated historical Sundays from v8.13, with original 13wk BTC results. No enlarged/alternate sample and no imputation; 9 contiguous eligibility blocks from v8.14.",
+  "fourBinary": {
+    "A": "BTC weekly up from v8.13 newModels.A",
+    "F": "H.4.1 Fed assets - TGA - reverse repos four-release delta >0 from v8.13 newModels.C",
+    "N": "NFCI as-of 4w delta<0",
+    "J": "ANFCI as-of 4w delta<0"
+  },
+  "dependencyPolicy": "NFCI and ANFCI are correlated measures in the same financial-conditions family, NOT two independent confirmations. Report raw 2/4, 3/4 and 4/4 only as arithmetic benchmarks, separately mark independent families BTC=A, Fed=F, Chicago-conditions STRICT=(N && J) or LOOSE=(N || J), counting each Chicago-conditions variant as ONE family.",
+  "combinations": {
+    "K2_RAW": "A+F+N+J>=2 (arithmetic tally, Chicago counted twice; dependency confounded)",
+    "K3_RAW": "A+F+N+J>=3 (same dependency caveat)",
+    "K4_RAW": "A && F && N && J",
+    "FAMILY2_STRICT": "A + F + (N && J) >= 2",
+    "FAMILY2_LOOSE": "A + F + (N || J) >= 2",
+    "MACRO2_STRICT": "F && N && J (two independent families: Fed + joint Chicago family, BTC not needed)",
+    "MACRO2_LOOSE": "F && (N || J) (two independent families: Fed + Chicago family, BTC not needed)",
+    "BTC_AND_FINANCE": "A && N && J (price + Chicago conditions, two independent families)",
+    "BTC_AND_FED": "A && F (price + Fed, two independent families)",
+    "ANY_TWO_MACRO_RAW": "F+N+J>=2 (raw highly correlated; caution)",
+    "EARLY_MACRO_NO_BTC": "(F && N && J) && !A",
+    "MACRO_FIRST_TWO_FAMILIES_LAST4W": "Among <=4 past *contiguous eligible* Sundays including current, evidence of both F and joint Chicago N&&J, current at least one F or joint Chicago active; do not use any future observations or carry across a missing date. This captures confirmation spread across time; lag/event penalty explicit."
+  },
+  "targets": "Pre-fixed price-derived structural expansion within subsequent 13 weeks, BTC fixing positive 13w, daily close <=-20% 13w. A structural expansion label is NOT independent bull market truth. Last eligible 2026-07-12.",
+  "primaryMetrics": "On same 137 rows, select counts TP FP FN TN, precision/recall, macro drawdowns and median 13w returns. Selectivity and loss of event coverage central, report base prevalence.",
+  "eventSensitivity": "Use exactly 9 contiguous eligibility blocks; at each FIRST Sunday score same-date signals (no retro cherry-picking). Separately allow first warning in first 4 block weeks, score outcome from actual first-warning Sunday and delay.",
+  "nonOverlap": "Within EACH model choose first alert then lock out 13 subsequent full Sundays, requiring at least 14w between selected alerts. Also 26w sensitivity, same frozen decision rule. Different cohorts cannot be compared as paired strategies.",
+  "eventLead": "Exactly six confirmed expansion transitions from v8.14 (2020-2024), using only fixed 137 eligible Sunday lead windows up to 13wk prior. Report alert coverage, earliest warning and lead. Cannot count all missed base periods as zero.",
+  "chronologicalStress": "2020-2023 vs 2024-2026 NOT a real untouched holdout; thresholds explicitly frozen before v8.15 only and all history has been explored by earlier research. No optimisation/model fitting. Future weekly registration separately.",
+  "episodeInterpretation": "Nine blocks are NOT nine independent bitcoin market cycles, and six price-derived expansion events can share underlying market regimes. Avoid p-values, calibrated success probabilities, OOS claims, backtest trade returns and causality.",
+  "testSecurity": "Parent R2 digests and rows exact, source as-of vintages valid; missing data never assumed negative. Report raw date-level signals. Unique R2 prefix + manifest sha readback. No secret disclosure.",
+  "operations": "RESEARCH_ONLY. Never alter trading rules, Detector, MASTER, NAV, Spot, Futures, P&L, reserve, capital or permissions."
+}
