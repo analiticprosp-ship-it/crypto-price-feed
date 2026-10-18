@@ -13,7 +13,7 @@ ns={"__file__":str(ROOT/"research/detector_matched_controls_v65.py")}
 exec(compile(ast.Module(body=v65keep,type_ignores=[]),"<v65 definitions>","exec"),ns)
 src=ast.parse((ROOT/"research/detector_fixed_windows_v68.py").read_text())
 v68funcs=[n for n in src.body if isinstance(n,ast.FunctionDef) and n.name in ("avg","rounded","percentile","analyze")]
-ns.update(H={"4h":16,"24h":96},SEED=6808)
+ns.update(H={"4h":16,"24h":96},SEED=6808,datetime=datetime,timezone=timezone,random=__import__("random"),statistics=statistics)
 exec(compile(ast.Module(body=v68funcs,type_ignores=[]),"<v68 functions>","exec"),ns)
 read_month,analyze=ns["read_month"],ns["analyze"]
 BASE=("2024-09","2025-03","2025-09","2026-03","2026-09")
