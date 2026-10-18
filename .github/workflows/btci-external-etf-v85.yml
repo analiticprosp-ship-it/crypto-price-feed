@@ -1,0 +1,36 @@
+name: BTCI ETF provenance and phase factor v8.5
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_etf_factor_audit_v85.py'
+      - '.github/workflows/btci-external-etf-v85.yml'
+permissions:
+  contents: read
+concurrency:
+  group: btci-research-v85-factor
+  cancel-in-progress: false
+jobs:
+  factor-research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2' 'beautifulsoup4>=4.12,<5'
+      - name: Validate Farside history and conservatively lag price comparisons
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_etf_factor_audit_v85.py
+      - name: Export factor provenance audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: btci-v85-etf-source-audit
+          path: btci_v85_reports/
+          retention-days: 30
