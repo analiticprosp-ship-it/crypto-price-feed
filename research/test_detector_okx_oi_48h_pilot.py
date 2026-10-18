@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+"""Offline forward-only timestamp and source-quality contract tests."""
+import unittest
+from research.detector_okx_oi_48h_pilot import changes,validate_oi_data
+
+class OKXOIFirstObservedTests(unittest.TestCase):
+ def row(self,t):
+  return {"timestamp_ms":t,"sha256":"a"*64,"raw":[str(t),"100"]}
+ def observed(self,labels,received):
+  return {"symbol":"BTC-USDT-SWAP","response_received_ms":received,
+          "rows":[self.row(x) for x in labels]}
+ def test_bootstrap_has_no_historical_first_seen(self):
+  self.assertEqual(changes(None,self.observed([1800000000000],1800000100000)),([],[],True))
+ def test_previous_success_absence_is_bounded(self):
+  old=self.observed([1800000000000],1800000410000)
+  new=self.observed([1800000000000,1800000300000],1800000730000)
+  points,revisions,bootstrap=changes(old,new)
+  self.assertEqual(len(points),1)
+  self.assertFalse(revisions or bootstrap)
+  self.assertEqual(points[0]["last_observed_absent_ms"],1800000410000)
+  self.assertEqual(points[0]["bound_type"],"ABSENT_ON_PREVIOUS_POLL")
+ def test_no_false_lower_bound_before_label(self):
+  old=self.observed([1800000000000],1800000150000)
+  new=self.observed([1800000300000],1800000400000)
+  points,_,_=changes(old,new)
+  self.assertIsNone(points[0]["last_observed_absent_ms"])
+  self.assertEqual(points[0]["bound_type"],"FIRST_OBSERVED_ONLY")
+ def test_revision_is_not_new_timestamp(self):
+  old=self.observed([1800000000000],1800000100000)
+  new=self.observed([1800000000000],1800000350000)
+  new["rows"][0]["sha256"]="b"*64
+  first,revisions,_=changes(old,new)
+  self.assertFalse(first)
+  self.assertEqual(len(revisions),1)
+ def test_future_timestamp_rejected(self):
+  with self.assertRaisesRegex(ValueError,"LABEL_RANGE"):
+   validate_oi_data({"code":"0","data":[["1800000400000","123"]]},"BTC-USDT-SWAP",1800000000000)
+ def test_duplicate_source_label_rejected(self):
+  with self.assertRaisesRegex(ValueError,"DUPLICATE"):
+   validate_oi_data({"code":"0","data":[["1800000000000","1"],["1800000000000","2"]]},
+                    "BTC-USDT-SWAP",1800000100000)
+ def test_nonmonotonic_response_rejected(self):
+  with self.assertRaisesRegex(ValueError,"NON_MONOTONIC"):
+   changes(self.observed([1800000000000],1800000400000),
+           self.observed([1800000300000],1800000200000))
+
+if __name__=="__main__":
+ unittest.main()
