@@ -1,0 +1,25 @@
+{
+  "version": "8.14",
+  "createdUTCDate": "2026-10-18",
+  "researchOnly": true,
+  "parent": {
+    "key": "research/btci/v8.13/runs/39150999581-1/nfci_anfci_historical.json",
+    "sha256": "94c5f520e5cf449a5b739c5639d4349c44c7d60819f67c56e43ce4427c218d57"
+  },
+  "question": "Is apparent NFCI/ANFCI early-cycle edge robust at unique opportunities/episodes, rather than 137 overlapping weekly observations?",
+  "design": {
+    "immutable137": "Use exact 137 accepted vintage Sundays and unchanged features/outcomes from BTCI v8.13. Exclude the one blocked vintage date; no interpolation, no new trading/external data.",
+    "episodeSegmentation": "Divide chronologically ordered 137 Sundays into maximal contiguous calendar-7-day blocks. Create a fresh block when date gap>7 days, irrespective of alert or outcome; expected 9 blocks. This is eligibility-block proxy, not nine truly independent economic cycles.",
+    "firstOpportunity": "At each block's very FIRST eligible Sunday, evaluate A (BTC), C (Fed), NFCI_IMPROVE4, ANFCI_IMPROVE4, and ANFCI_AND_FED frozen flags. Score 13wk BTC return, drawdown and structural-expansion outcome from SAME first Sunday. No scanning into later weeks for a success.",
+    "earlyFourWeeks": "Separately, for each block and indicator, find first alert among first FOUR consecutive calendar Sunday observations (weeks0,1,2,3). If absent within four weeks, record NO_ALERT. Outcome starts at actual alert date not backdated. Report actual delay weeks; this can be later than the first decision baseline.",
+    "modelSpecificLockout": "For each fixed model, scan complete 137 Sundays chronological: whenever model flag true and at least 14 calendar weeks since last selected alert, create one alert and suppress all same-model alerts within next 13 full weeks. This makes 13wk forward return horizons NON-OVERLAPPING within each indicator. Still a single common historical cycle, not independent independent trades. Record dates/eras/outcomes.",
+    "chronologicalReplay": "Features are already fixed; at each Sunday, issue only past-as-of flags. The following 13wk outcome is attributed to that earlier alert but not used in any threshold or next-date selection. This is NOT prospective OOS or holdout; no fitting.",
+    "eventBased": "Reconsume exactly six structural expansion events with date-specific 13wk prior windows from pinned v8.13; one event counted once per model. Compare model first alert date and lead time; event windows are restricted to nonexpansion weekly universe, not full-market alert rates.",
+    "negativeControls": "At block start and locked cohort, compare ANFCI_IMPROVE4 against ANFCI_WORSEN4 (delta>0) and ANFCI_ANY_CHANGE (delta!=0, deliberately weak), all conditions fixed. Also structural baseline A and monetary C.",
+    "eras": "2020-2023 vs 2024-2026, require printed N and small-sample warning for any fewer than 20 nonoverlapping events. No optimize thresholds.",
+    "targets": "Same parent 13wk price-derived expansion, 13wk positive BTC, 13wk <= -20% path. Counts and raw dates are more important than precision; no significance/p-values if not enough independent episodes.",
+    "missingAndSelection": "137 are previously selected non-expansion price regimes, fixed surviving alt assets; data not representative of all market regimes. Episode blocks separated by expansion often intentionally condition on future structural regime, so episode-level grouping is descriptive only.",
+    "storage": "Immutable unique-run R2 research report, output SHA256 and separate manifest verified via GET, Github workflow artifact with JSON, Russian report delivered separately.",
+    "safety": "RESEARCH_ONLY: no portfolio/accounting (Spot/Futures/NAV/P&L/capital/reserve), no Master, Detector/limits or trades modified."
+  }
+}
