@@ -1,0 +1,24 @@
+name: Detector Research R2 Archive
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 5 * * *'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  publish:
+    if: ${{ vars.DETECTOR_R2_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Publish verified research artifact to private R2
+        env:
+          GH_READ_TOKEN: ${{ github.token }}
+          R2_BUCKET: ${{ vars.DETECTOR_R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.DETECTOR_R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.DETECTOR_R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.DETECTOR_R2_SECRET_ACCESS_KEY }}
+        run: python research/detector_r2_archive.py
