@@ -1,0 +1,47 @@
+{
+  "version": "8.0",
+  "researchOnly": true,
+  "frozenUTCDate": "2026-10-18",
+  "objective": "Backtest, without look-ahead, whether fixed v7.9 BTC phases and risk appetite proxy identify meaningful phase transitions; diagnose market at UTC close 2026-10-17",
+  "sourceReports": {
+    "v75": {
+      "key": "research/detector/v7.5/runs/39115280960-1/combined/comparison.json",
+      "sha256": "07fccb39f6973c2f6f4fb297dc4d3d95cd6e3c06fca154a503c97e242f080e8f"
+    },
+    "v76": {
+      "key": "research/detector/v7.6/runs/39115615591-1/combined/comparison.json",
+      "sha256": "1d8fd630f7fc0aec6e8308128a79f66344343b0d8a5b14280b6a58507340a95c"
+    },
+    "v79": {
+      "key": "research/detector/v7.9/runs/39123839080-1/combined/regime.json",
+      "sha256": "f0ab8e67b10823d7ad30dce83187392b614f7ed6926888be588322796520cd9b"
+    }
+  },
+  "market": [
+    "BTC",
+    "ETH",
+    "SOL",
+    "BNB",
+    "LINK",
+    "XRP",
+    "ADA",
+    "DOGE"
+  ],
+  "history": "2020-01-01 to 2026-10-17 inclusive (no Oct 18 incomplete UTC day); 2020 first 229 days cannot satisfy SMA200 slope30 warmup; early rolling365 high uses available-to-date historical close only, reported shorter lookback and cannot have same full-year context",
+  "vintageSource": "Existing full Binance USD-M futures 5m month archives from frozen v75 v76, with SHA256+ZIP CRC+5m continuity; October 1-17 from v79 per-asset closed daily archives with pinned SHA; verify overlap from 2025-10 through 2026-09 against v79",
+  "phaseRule": "EXACT v7.9 rules: bull price trend if BTC close>SMA200, SMA200 current-vs-30d ago positive and 90d BTC return>0, but label RECOVERY_NOT_CONFIRMED if rolling365d close drawdown<=-25%; bear price trend if close<SMA200, SMA200 slope30 negative, return90d negative; RECOVERY_NOT_CONFIRMED if close<SMA200 but 90d return positive; otherwise CONSOLIDATION_OR_TRANSITION.",
+  "riskRule": "EXACT v7.9 four votes: BTC positive when close>SMA50 and ret30>0 (negative when both <), ETH/BTC rel30 positive +1 else -1, 6 alt vs BTC 30d outperform count >=4 +1 <=2 -1, 6 alt USD ret30 positive count >=4 +1 <=2 -1; score>=3 Risk-On, <=-2 Risk-Off, otherwise Mixed. If ANY input asset lacks both exact consecutive date closes 30d apart, risk status UNAVAILABLE, not silently assumed neutral.",
+  "transitionDefinition": "Raw phase is calculated after day t closed UTC using only data available at t. Confirmed phase transitions require at least 7 consecutive equal raw daily phase labels, and confirmation occurs only on 7th closed day. Until confirmed switch retain prior phase as confirmed state; no backdating transition to first candidate day. Same for risk status separately, but risk UNKNOWN pauses confirmation. Initial state confirmed on 7th consecutive raw day.",
+  "outcomes": "Future BTC close return horizons 7,14,30,90,180,365 days computed AFTER transition confirmation with uniform end of series censoring. Additionally within next 90d max adverse close drawdown from transition close, max favorable gain, raw-phase reversal within 30d, confirmed phase duration, sign consistency; do not interpret a return as a profitable execution.",
+  "comparator": "Simple independent baseline crossovers: BTC close vs 200-day SMA confirmed 7 closed days, with same lookback/day cutoff and 7/14/30/90/180/365 forward horizons. Descriptive counts and hit rates, no optimization.",
+  "metrics": "Daily regimes by year, raw and confirmed counts, risk/phase cross tab at confirmed transitions and current, transitions list timestamps and durations, future returns and adverse movement, N/A censored, honest observations and errors; no performance inference when n<20.",
+  "constraints": [
+    "One-time retrospective analysis over a previously inspected market period, not independent holdout nor statistical proof",
+    "Do NOT invent historical spot ETF flows, funding, order book or macro observations",
+    "Entire series from a single perpetual market; NOT a spot price or system execution price",
+    "No trailing 365d labels early in history with a full year available; tag partial windows",
+    "Historical v79 heuristic itself is unvalidated; no tuning after seeing transition counts",
+    "NO trading, portfolio, master, futures, NAV or capital writes"
+  ],
+  "finalScore": "If fewer than 20 independent transitions across history, label transition performance LOW_SAMPLE; report full records but do NOT claim success rate predictive. Use past-only historical phase, not retro label based on future price."
+}
