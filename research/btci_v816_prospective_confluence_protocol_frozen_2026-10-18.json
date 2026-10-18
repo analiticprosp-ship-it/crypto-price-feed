@@ -1,0 +1,30 @@
+{
+  "version": "8.16",
+  "dateRegisteredUTC": "2026-10-18",
+  "status": "PROSPECTIVE_PROTOCOL_FROZEN_AUTOMATION_NOT_YET_ACTIVATED",
+  "researchOnly": true,
+  "reason": "BTCI v8.15 results are retrospective and have been exposed to multiple variant testing. Freeze a short list BEFORE any new full Sunday after 2026-10-18, without parameter tuning.",
+  "firstEligibleNewSundayUTC": "2026-10-18",
+  "benchmarkFeatureDefinitions": {
+    "BTC_WEEKLY_UP": "Frozen v8.6 historical 30-week SMA, four-week SMA slope and weekly close structure; from last FULL UTC Sunday only, not real-time spot; exact logic must be implemented and acceptance compared to last frozen v8.6 before running",
+    "FED_EASING": "H.4.1 official dated release composite total assets - TGA - consolidated RRP in USD million: last available 4-release change positive; no release after Sunday or gaps",
+    "NFCI_EASING": "FRED as-of Sunday NFCI last published available observation minus 4-week previous <0; latest observation >=6 days before Sunday, no omitted weeks",
+    "ANFCI_EASING": "Same exact FRED as-of Sunday ANFCI four-week delta<0, independently archived",
+    "CHICAGO_FAMILY": "NFCI_EASING AND ANFCI_EASING; one financial family despite 2 indices"
+  },
+  "primaryEarly": "FED_EASING AND CHICAGO_FAMILY, BTC_WEEKLY_UP is NOT required; prior v8.15 MACRO2_STRICT",
+  "primaryConfirmation": "BTC_WEEKLY_UP AND FED_EASING AND CHICAGO_FAMILY; prior v8.15 K4_RAW",
+  "independentCounterfactuals": [
+    "BTC_WEEKLY_UP only",
+    "FED_EASING only",
+    "ANFCI_EASING only",
+    "all dates no-signal baseline"
+  ],
+  "decisionClock": "Each Monday after 10:00 UTC evaluate the immediately previous Sunday FULL UTC close. If any required historical source not actually available after readiness check, mark SOURCE_PENDING and do not mint complete 4-feature forecast. Publishing later never backdates decisionClock. Do not use any later Sunday data.",
+  "immutableRecord": "Store input raw source URLs/bytes SHA, asOf Sunday, retrievedAtUTC, availability conditions, signals and candidate predicted next13w expansion label BEFORE 13-week outcome. Do not overwrite or re-score saved record; a correction is a new object linked to prior record and marked delayed.",
+  "scoring": "Only after 13 complete future Sundays and available CoinMetrics daily reference data, compute next13w structural confirmed phase (price derived, not true bull), 13w return, <=-20% daily-close drawdown. Preserve right-censor until then.",
+  "detection": "Report first warning dates, delays relative to later confirmed expansion, false positives, number of independent episodes, warning counts per month, transparent missingness. Minimum 26 consecutive future Sundays before considering any promotion; one complete 13-week evaluation at 26 weeks and then ongoing.",
+  "guard": "Sources must match exact published historical vintage as-of, historical CoinMetrics composite is NOT executable exchange price. Never silently substitute Binance/USDT price or leverage source.",
+  "authority": "Research-only shadow monitor; no Trading/Spot/Futures/NAV/P&L/reserve/capital/MASTER/Detector/limits changes; no user notification or automated trade until separately authorized.",
+  "publication": "This file freezes methodology, it does not by itself constitute a scheduled running task, public forecast, fully tested data connector or Android PASS."
+}
