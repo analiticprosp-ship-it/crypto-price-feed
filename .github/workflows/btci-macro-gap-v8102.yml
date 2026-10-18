@@ -1,0 +1,32 @@
+name: BTCI audited H41 gap-guarded cycle study v8.10.2
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_macro_missing_guard_v8102.py'
+      - '.github/workflows/btci-macro-gap-v8102.yml'
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2' 'beautifulsoup4>=4.12,<5'
+      - name: Audit unobserved official H41 release dates and conservative known-as-of macro phase comparison
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_macro_missing_guard_v8102.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v8102-final-gap-audit
+          path: btci_v8102_reports/
+          retention-days: 30
