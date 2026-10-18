@@ -71,7 +71,12 @@ def collect_farside():
   if len(rows)>len(collected):collected=rows
  if len(collected)<450:raise ValueError("MISSING_FULL_DAILY_TABLE")
  days=[row["day"] for row in collected]
- if len(days)!=len(set(days)):raise ValueError("DUPLICATE_DATES")
+ if len(days)!=len(set(days)):
+  from collections import defaultdict
+  occurrences=defaultdict(list)
+  for row in collected:occurrences[row["day"]].append(row["flowMillionUSD"])
+  collisions={k:v for k,v in occurrences.items() if len(v)>1}
+  raise ValueError("DUPLICATE_DATES count="+str(len(collisions))+" examples="+repr(list(collisions.items())[:8]))
  collected.sort(key=lambda x:x["day"])
  if collected[0]["day"]!="2024-01-11" or collected[-1]["day"]<"2026-10-16" or collected[-1]["day"]>"2026-10-18":
   raise ValueError("COVERAGE_OR_FUTURE_DATA_MISMATCH")
