@@ -1,0 +1,50 @@
+{
+  "version": "8.5",
+  "mode": "PROVENANCE_FIRST_HISTORICAL_ETF_FACTOR_AUDIT_WITH_NO_PIT_CLAIM",
+  "frozenUTCDate": "2026-10-18",
+  "researchOnly": true,
+  "parent": {
+    "v83": {
+      "key": "research/btci/v8.3/runs/39126819412-1/panel.json",
+      "sha256": "9f90e6974e43f74a3af0bdf562d5e865b56c01565cb83d9b177aae2f81cc5479"
+    },
+    "v84": {
+      "key": "research/btci/v8.4/runs/39127920489-1/leadlag.json",
+      "sha256": "d834e42dd052b30fa337aad278c0a3dd5141e663efec301e49237140414b495d"
+    }
+  },
+  "sources": [
+    {
+      "name": "Farside BTC ETF Flow All Data",
+      "url": "https://farside.co.uk/bitcoin-etf-flow-all-data/",
+      "scope": "January 11 2024 onward; currently published / potentially revised daily flows in USD millions",
+      "vintageStatus": "HISTORICAL_PIT_UNVERIFIED"
+    },
+    {
+      "name": "Federal Reserve H.4.1",
+      "url": "https://www.federalreserve.gov/releases/H41/Current/",
+      "scope": "weekly release generally Thursday 16:30 ET referring to prior Wednesday",
+      "vintageStatus": "H4.1_RELEASE_SCHEDULE_VERIFIED; historical point-in-time values not downloaded"
+    },
+    {
+      "name": "ALFRED WALCL",
+      "url": "https://alfred.stlouisfed.org/series?seid=WALCL",
+      "scope": "historical data vintages might eventually permit historical PIT",
+      "vintageStatus": "NOT_DOWNLOADED"
+    }
+  ],
+  "etfExtraction": "Parse Farside public daily historical table only if accessible without circumvention. Verify >= 450 dated rows, first 2024-01-11, last at or before 2026-10-16, at least 2026-10-16 present. Reject duplicates/dates in future/header garbage. Dashes and holiday zero not converted to fabricated positive flow. Summation uses published Total column, do not recalc fund sums.",
+  "etfGroupFeature": "For completed weekly Sunday t, use ONLY the last 5 and last 20 Farside rows with labeled flow date <= t-9 calendar days (very conservative lookback shift). The source is a CURRENT backfilled table; flag ALL retrospective features as PIT_UNVERIFIED even with this delay. Last 5 positive vs negative and last20 positive vs negative, no optimized thresholds.",
+  "investigation": "2024-2026 weekly panel: compare sign of ETF past five-row sum and category N/B/F against next 4w & 13w BTC futures close return median and absolute positive counts. Keep all weekly rows with insufficient history as unavailable, compare unconditional baseline on exact subset. Calendar shift of 9 days is predeclared to avoid accidental new-day flow leakage, not proof of availability.",
+  "currentContext": "For data cutoff 2026-10-17, Farside published 5 latest dates Oct12-16 and 10 latest dates Oct05-16, show total sums. Fed WALCL Oct14 and weekly delta measured via release published Oct15, but not part of historical model.",
+  "statisticalGuard": [
+    "No p-values, no superiority/profit claims, comparison is explanatory retrospective only",
+    "Provenance quality and absence of true vintages forbid SHADOW_VALIDATED, OOS, or trading permission",
+    "If remote source unavailable fail closed and write source status with no invented ETF returns",
+    "R2 report digest verified from fetched source SHA and versioned analysis JSON",
+    "Source archived HTML source hashed but archived raw not republished unless license permits; store parsed numeric series plus metadata only"
+  ],
+  "noTrading": [
+    "No change Futures, master, live Detector, NAV, Spot, reserve, capital, P&L or limits"
+  ]
+}
