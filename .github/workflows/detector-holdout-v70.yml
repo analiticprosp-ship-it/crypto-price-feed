@@ -1,6 +1,10 @@
 name: Detector untouched-month holdout v7.0
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'research/detector_holdout_v70.py'
+      - '.github/workflows/detector-holdout-v70.yml'
 permissions:
   contents: read
 concurrency:
