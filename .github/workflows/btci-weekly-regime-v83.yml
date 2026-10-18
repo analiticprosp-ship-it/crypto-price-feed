@@ -1,0 +1,36 @@
+name: BTCI historical weekly regime panel v8.3
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_weekly_regime_panel_v83.py'
+      - '.github/workflows/btci-weekly-regime-v83.yml'
+permissions:
+  contents: read
+concurrency:
+  group: btci-research-v83-weekly-regime
+  cancel-in-progress: false
+jobs:
+  panel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Evaluate frozen weekly BTC trend and alt breadth on all Sundays
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_weekly_regime_panel_v83.py
+      - name: Upload panel and audit summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: btci-v83-weekly-regime-panel
+          path: btci_v83_reports/
+          retention-days: 30
