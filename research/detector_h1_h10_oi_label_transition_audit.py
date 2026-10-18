@@ -76,6 +76,14 @@ def main():
         try:
             days = [load_day(sym, d) for d in DAYS]
             d24, d25, d26 = days
+            for day_report in days:
+                print("OI_CSV_FILE_BOUNDARIES", sym, json.dumps({
+                    "date": day_report["date"],
+                    "rows": day_report["row_count"],
+                    "header_present": day_report["header_present"],
+                    "first_label_utc": day_report["first_label_utc"],
+                    "last_label_utc": day_report["last_label_utc"],
+                }, ensure_ascii=False), flush=True)
             t = "2026-06-25T00:00:00+00:00"
             left = d24["labels"].get(t)
             right = d25["labels"].get(t)
