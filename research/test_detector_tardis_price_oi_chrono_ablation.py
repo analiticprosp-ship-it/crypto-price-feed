@@ -49,7 +49,8 @@ class ChronoAblationSafety(unittest.TestCase):
         self.assertEqual(len(used[15]),273)
         self.assertEqual(len(used[60]),264)
         self.assertEqual(used[15][0]["minute_index"],12)
-        self.assertEqual(skips[15],15)\n        self.assertEqual(skips[60],24)
+        self.assertEqual(skips[15],15)
+        self.assertEqual(skips[60],24)
     def test_future_vendor_receipt_fails_closed(self):
         f,l=payload(forged_future=True)
         with self.assertRaisesRegex(ValueError,"FUTURE_VENDOR_RECEIPT"):
