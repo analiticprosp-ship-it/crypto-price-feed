@@ -1,0 +1,25 @@
+{
+  "version": "8.5.1",
+  "date": "2026-10-18",
+  "researchOnly": true,
+  "previous": "v8.5 blocked PIT/ETF audit run 39128299244-1",
+  "cause": "Farside HTML table text includes footer total 56,949 US$m in a row whose inherited first-cell label is 11 Jan 2024; duplicate observed 2024-01-11 daily 655.3 and impossible daily 56949.0. This is not historical flow observation.",
+  "fixedSource": "https://farside.co.uk/bitcoin-etf-flow-all-data/",
+  "deterministicCorrection": "Exclude one duplicated 2024-01-11 row with Total >= 50000 only when the other 2024-01-11 daily row exactly 655.3, the excluded row >= 50000 is the only duplicate date, and all other dated entries unique. Log excluded row/flow. Fail closed for any extra duplication or conflicting daily data.",
+  "conditions": [
+    "No change to v8.5 predeclared 9-calendar-day conservative lag, 5/20-row flow sums, windows 4/13 weeks, groups or guardrails",
+    "Historical publication versions remain PIT_UNVERIFIED",
+    "No admission of ETF source if <450 full date rows, missing Oct16 2026, conflicting non-footer rows or unexpected first date"
+  ],
+  "inputParents": {
+    "v83": {
+      "key": "research/btci/v8.3/runs/39126819412-1/panel.json",
+      "sha256": "9f90e6974e43f74a3af0bdf562d5e865b56c01565cb83d9b177aae2f81cc5479"
+    },
+    "v84": {
+      "key": "research/btci/v8.4/runs/39127920489-1/leadlag.json",
+      "sha256": "d834e42dd052b30fa337aad278c0a3dd5141e663efec301e49237140414b495d"
+    }
+  },
+  "noOperationalChange": true
+}
