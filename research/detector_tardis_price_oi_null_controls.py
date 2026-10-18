@@ -147,7 +147,7 @@ def main():
             features=read(client,bucket,meta["features_key"],meta["features_sha256"])
             labels=read(client,bucket,meta["labels_key"],meta["labels_sha256"])
             data,_=validate_and_build(features,labels,day,symbol)
-            for h in HORIZONS:samples[h].extend(data)
+            for h in HORIZONS:samples[h].extend(data[h])
     blocks=reproduce_with_controls(samples,old["holdout_blocks"])
     summary=aggregate(blocks)
     report={
