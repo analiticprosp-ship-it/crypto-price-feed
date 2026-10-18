@@ -1,0 +1,43 @@
+{
+  "version": "8.4",
+  "mode": "POSTHOC_WEEKLY_PHASE_TRANSITION_LEADLAG_AUDIT",
+  "researchOnly": true,
+  "date": "2026-10-18",
+  "immutableV83": {
+    "key": "research/btci/v8.3/runs/39126819412-1/panel.json",
+    "sha256": "9f90e6974e43f74a3af0bdf562d5e865b56c01565cb83d9b177aae2f81cc5479"
+  },
+  "onlyKnownAt": "Weekly Sunday UTC close; no future price allowed for stage classification. Future classification changes are reported as outcomes, not used for features.",
+  "fixedStates": [
+    "NARROW = BTC_WEEKLY_CONFIRMED_NARROW",
+    "BROAD = BTC_WEEKLY_CONFIRMED_PLUS_BROAD_PARTICIPATION",
+    "NOT_CONFIRMED = BTC_WEEKLY_NOT_CONFIRMED",
+    "UNKNOWN = INSUFFICIENT_DATA"
+  ],
+  "episodeDefinition": "An entry event at Sunday t iff category differs from immediately previous Sunday. Each uninterrupted same-category spell counted once, with its actual duration until next switch. First eligible Sunday is left-censored and NOT treated as an entry. Short entries still counted; any later repeated narrow entry another event (sensitivity via 13w gap).",
+  "analysis": {
+    "leadLag": "For each NARROW entry, seek next BROAD entry in 4w, 13w and 26w. Also report first exit from NARROW, its destination and week lag, and whether NOT_CONFIRMED arrived before BROAD within horizon. Unknown breadth treated as censoring for claims about BROAD absence.",
+    "baseline": "Compare observed NARROW entry pathways to corresponding BROAD and NOT_CONFIRMED entry episodes, tabulating 13w BTC price outcomes and 13w max adverse close change.",
+    "horizonOnly": "4, 13, 26 weeks for category transitions; 4,13,26 week returns from v8.3 unchanged. More distant 52 week not primary.",
+    "censor": "If window extends beyond 2026-10-11, report RIGHT_CENSORED. Partial observations do NOT count as absent transitions. For ambiguous UNKNOWN weekly, report DATA_CENSORED_BREADTH.",
+    "sensitivity": "For NARROW entries, report 13-week spaced selected events (greedy earliest event then skip any entry within 13 weeks after selected). This is date-anchor dependent, exploratory, not independent draws.",
+    "temporal": "Split 2020-2023 versus 2024-2026. Track raw counts, positive future returns and medians, no OOS accuracy claims."
+  },
+  "externalContext": {
+    "ETF": "US spot BTC ETF launched January 2024. Current/historical Farside table shows eventual revised daily net flows but exact publication time and revisions not reconstructible merely from current page; assign CURRENT_CONTEXT or PIT_UNVERIFIED; no historical predictive scoring.",
+    "liquidity": "Fed H.4.1 Thursdays 4:30pm ET, weekly observations refer to preceding Wednesday; preserving available_at is essential; a current H.4.1 level not complete net liquidity (TGA, RRP, reserves must be reconciled). Do not insert fabricated historical liquidity vintage.",
+    "requirement": "No join to historical transition returns unless source dataset has timestamped releases and revisions, source hash, missingness / PIT documented."
+  },
+  "sampleGate": "If fewer than 20 distinct NARROW episodes or fewer than 10 episodes per era, classify descriptive only/no probabilities. Do not claim recurring BTC lead without non-overlapping inter-cycle independent support.",
+  "integrity": [
+    "Pin v8.3 full report SHA",
+    "no changed 2026-10-11 last weekly row or 321 weekly rows",
+    "validate consecutive 7-day Sunday times",
+    "no silent filtering of errors/missingness",
+    "versioned R2 with SHA readback"
+  ],
+  "prohibited": [
+    "No modifications to portfolio, NAV, Spot, Futures, orders, reserve, leverage, trade limits or MASTER",
+    "No predictions or probability from retrospective event counts"
+  ]
+}
