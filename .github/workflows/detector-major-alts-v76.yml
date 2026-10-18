@@ -1,0 +1,64 @@
+name: Detector major-coin historical extension v7.6
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/detector_multicoin_v76.py'
+      - '.github/workflows/detector-major-alts-v76.yml'
+permissions:
+  contents: read
+concurrency:
+  group: detector-research-v76-major-alts
+  cancel-in-progress: false
+jobs:
+  asset-history:
+    strategy:
+      fail-fast: false
+      matrix:
+        symbol: [SOL, BNB, LINK, XRP, ADA, DOGE]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Replay archived full calendar months for listed major altcoin
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_multicoin_v76.py --symbol ${{ matrix.symbol }}
+      - name: Upload coin historical audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-v76-${{ matrix.symbol }}
+          path: detector_v76_reports/
+          retention-days: 30
+  cohort-comparison:
+    needs: asset-history
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Reconcile six coin histories, regime and quarter-cluster uncertainty
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_multicoin_v76.py --combine
+      - name: Upload combined audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-v76-major-alts-comparison
+          path: detector_v76_reports/
+          retention-days: 30
