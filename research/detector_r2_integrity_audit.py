@@ -23,7 +23,7 @@ OBJECT = re.compile(r"^research/([0-9]+)/([0-9]+)-[^/]+\.zip$")
 MAX_ARCHIVE_BYTES = 80_000_000
 MAX_TOTAL_BYTES = 2_000_000_000
 MAX_MANIFEST_BYTES = 1_000_000
-MIN_EXPECTED_MANIFESTS = 18
+MIN_EXPECTED_MANIFESTS = 25
 OUT = Path("detector_h1_h10_r2_integrity")
 OUT.mkdir(parents=True, exist_ok=True)
 
