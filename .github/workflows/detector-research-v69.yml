@@ -1,0 +1,33 @@
+name: Detector research extension v6.9
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: detector-research-v69
+  cancel-in-progress: false
+jobs:
+  extension-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install R2 client
+        run: python -m pip install boto3
+      - name: Replay original and six validated months and verify R2 writeback
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_extension_v69.py
+      - name: Upload audit copy
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-v69-research-audit
+          path: detector_v69_reports/
+          retention-days: 30
