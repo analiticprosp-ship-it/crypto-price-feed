@@ -1,0 +1,10 @@
+{
+  "version": "8.10b",
+  "date": "2026-10-18",
+  "researchOnly": true,
+  "issue": "Official H.4.1 index page delivered to GitHub Actions does not contain static archive href links; HTML link-regex discovery returns 0 although archived releases are publicly accessible.",
+  "releaseDiscovery": "Use ALFRED release 20 official downloaded release-date text https://alfred.stlouisfed.org/release/downloaddates?ff=txt&rid=20. Parse ISO dated entries 2011-01-01 through 2026-10-15. For EVERY candidate, individually fetch original Federal Reserve H41 dated archive page and verify DATE in header, H.4.1 title and consolidated Wednesday numerical data. ALFRED dates are a discovery index, not a monetary numeric data feed.",
+  "fallback": "If ALFRED index returns unavailable or blocked, fail closed; do not generate presumed Thursdays. If some ALFRED candidate has no genuine H41 publication, mark missing rather than fabricate data.",
+  "audit": "Archive ALFRED release date file raw bytes and SHA256 (once per year; versioned lineage), keep original per-Fed H41 pages and parse+integrity rules unchanged.",
+  "unchanged": "Four-week release lag, 2011–2026, 4-release change in Fed-assets-minus-TGA-minus-RRP, full publication-to-Sunday cutoff, R2 writebacks, no claims of original unmodified historical vintages, no trading changes"
+}
