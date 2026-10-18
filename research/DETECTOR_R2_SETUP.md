@@ -1,14 +1,7 @@
-# Detector research: private R2 archival
+# Detector H1–H10: existing Cloudflare R2 integration
 
-Research-only; no production trading changes.
+**Do not create a second bucket or rotate existing credentials.** The existing private bucket is `crypto-detector-history`, configured through repository secrets `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET`.
 
-## Cloudflare setup
-1. Create private R2 bucket `detector-research` (or choose another name).
-2. Create a bucket-scoped R2 API token with object read/write, not account-wide permissions.
-3. Configure repository **Secrets**: `DETECTOR_R2_ACCOUNT_ID`, `DETECTOR_R2_ACCESS_KEY_ID`, `DETECTOR_R2_SECRET_ACCESS_KEY`.
-4. Configure repository **Variables**: `DETECTOR_R2_BUCKET` (bucket name), `DETECTOR_R2_ENABLED` = `true` only after the secrets and bucket exist.
-5. Manually dispatch workflow **Detector Research R2 Archive** for the first test; daily runs follow automatically.
+The H1–H10 archive workflow `.github/workflows/detector-r2-archive.yml` reuses these exact secret names and runs daily at 05:17 UTC, or manually via workflow_dispatch. It publishes a separate research prefix `research/<run_id>/` and `research/latest.json`; this does not overwrite v6.8 `research/detector/v6.8/latest.json`.
 
-The publisher scans the latest 100 successful workflow runs, selects the newest **allowlisted** research workflow on main, downloads its unexpired artifacts (max 80 MB per artifact), validates ZIP integrity, publishes immutable run-id keys and SHA-256 metadata, then updates `research/latest.json` only after successful uploads.
-
-**Limitations**: this is an initial bootstrap, not a complete historical migration; it archives only the newest matching run per invocation. GitHub Actions artifacts expire; for durable full coverage a future workflow_run-based event queue or run-index sync is needed. R2 is private; ChatGPT cannot read it until a separate authenticated read gateway or suitable connector is configured. Never paste credentials in chat or commit them to source control. Do not expose raw research data publicly.
+**Verification required**: Check a successful run log and inspect R2 readback before claiming end-to-end archival. The current script only archives the latest allowlisted successful H1–H10 workflow run in the last 100 runs; this is a bootstrap, not complete historical retention. The workflow must be extended to queue or backfill all H1–H10 runs for durable full coverage. GitHub workflow success alone is not proof that ChatGPT can read private R2 objects. A scoped authenticated read gateway or connector is still needed. Never expose keys in chat or public source. No trading changes.
