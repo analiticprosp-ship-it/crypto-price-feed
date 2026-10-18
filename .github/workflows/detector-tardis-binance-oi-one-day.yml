@@ -1,0 +1,30 @@
+name: Detector H1-H10 Tardis Binance OI Single-Day R2 Sample
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-tardis-binance-oi-one-day.yml'
+      - 'research/detector_tardis_binance_oi_one_day.py'
+      - 'research/test_detector_tardis_binance_oi_one_day.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Test Tardis OI CSV schema and as-of local timestamp rules
+        run: python -m unittest -v research.test_detector_tardis_binance_oi_one_day
+      - name: Archive 2026-10-01 free Binance OI snapshots in existing private R2
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python research/detector_tardis_binance_oi_one_day.py
