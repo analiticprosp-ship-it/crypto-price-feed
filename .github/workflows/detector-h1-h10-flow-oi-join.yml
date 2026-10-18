@@ -1,0 +1,38 @@
+name: Detector H1-H10 Flow OI AsOf Join Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-flow-oi-join.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  join:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 39071757491
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          name: detector-h1-h10-aggtrades-3day
+          path: flow
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 39064403741
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          name: detector-h1-h10-masked-sorted-dataset
+          path: metrics
+      - name: Inspect inputs and as-of join
+        run: |
+          ls -lah flow metrics
+          python research/detector_h1_h10_flow_oi_join.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-flow-oi-asof-join
+          path: detector_h1_h10_join_audit/
+          retention-days: 30
