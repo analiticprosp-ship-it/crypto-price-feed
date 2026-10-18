@@ -56,7 +56,12 @@ def main():
  excluded=set(BASE)|set(EXT)
  candidates=sorted(m for m in inventory["BTC"]&inventory["ETH"] if "2024-01"<=m<"2026-10" and m not in excluded)
  selected=candidates[:6]
- if len(selected)!=6:raise SystemExit("INSUFFICIENT_HISTORICAL_MONTHS")
+ if len(selected)!=6:
+  folder=Path("detector_v70_reports");folder.mkdir(exist_ok=True)
+  audit={"status":"INSUFFICIENT_HISTORICAL_MONTHS","selectionRule":"earliest six common R2 months from 2024-01 through 2026-09, excluding baseline and extension","inventoryMonths":{sym:sorted(months) for sym,months in inventory.items()},"excluded":sorted(excluded),"untouchedCommonCandidates":candidates,"required":6,"available":len(candidates),"missingCount":6-len(candidates)}
+  (folder/"blocked.json").write_text(json.dumps(audit,indent=2,ensure_ascii=False))
+  print("V70_INVENTORY_BLOCKED "+json.dumps(audit,ensure_ascii=False),flush=True)
+  raise SystemExit("INSUFFICIENT_HISTORICAL_MONTHS")
  rows=[];errors=[]
  for sym in ("BTC","ETH"):
   for month in selected:
