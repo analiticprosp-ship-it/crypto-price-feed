@@ -144,7 +144,11 @@ def parse(body,date):
 def fetchone(date):
  d=date.replace("-","")
  url="https://www.federalreserve.gov/releases/h41/"+d+"/"
- raw=http(url)
+ try:
+  raw=http(url)
+ except Exception as exc:
+  return {"date":date,"status":"SOURCE_UNAVAILABLE","error":type(exc).__name__+":"+str(exc)[:200],
+   "url":url,"raw":None}
  try:
   row=parse(raw,date)
  except Exception as exc:
@@ -154,10 +158,11 @@ def fetchone(date):
    "url":url,"htmlSha256":digest(raw),"raw":raw}
 def archive_one(s,b,res,prefix):
  date=res["date"];d=date.replace("-","")
+ audit={k:v for k,v in res.items() if k!="raw"}
+ if res.get("raw") is None:return audit
  key=prefix+"official_pages/"+d+".html"
  hash_cloud=write(s,b,key,res["raw"],"text/html")
  if hash_cloud!=res["htmlSha256"]:raise SystemExit("V810_PAGE_DIGEST_CHANGED")
- audit={k:v for k,v in res.items() if k!="raw"}
  audit["r2Key"]=key
  return audit
 def year_mode(year,pilot=False):
