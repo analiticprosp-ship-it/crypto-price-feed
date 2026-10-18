@@ -4,6 +4,7 @@ Fail closed. No credentials printed. Requires scoped bucket credentials in GitHu
 """
 import datetime as dt,hashlib,io,json,os,sys,urllib.request,zipfile
 import boto3
+from detector_github_artifacts import fetch_artifact_zip
 REPO=os.environ["GITHUB_REPOSITORY"]
 TOKEN=os.environ["GH_READ_TOKEN"]
 BUCKET=os.environ["R2_BUCKET"]
@@ -46,16 +47,7 @@ for run in candidates:
   records=[]
   for art in artifacts:
    if art.get("expired") or art["size_in_bytes"]>MAX_ARTIFACT:continue
-   url=art["archive_download_url"]
-   req=urllib.request.Request(url,headers={"Authorization":"Bearer "+TOKEN,"Accept":"application/vnd.github+json","User-Agent":"detector-r2-archive"})
-   with urllib.request.urlopen(req,timeout=120) as response:
-    buf=io.BytesIO()
-    while True:
-     chunk=response.read(1048576)
-     if not chunk:break
-     if buf.tell()+len(chunk)>MAX_ARTIFACT:raise ValueError("artifact_exceeded_size_limit")
-     buf.write(chunk)
-   blob=buf.getvalue()
+   blob=fetch_artifact_zip(art["archive_download_url"],TOKEN,MAX_ARTIFACT)
    with zipfile.ZipFile(io.BytesIO(blob)) as z:
     if z.testzip() is not None:raise ValueError("corrupt artifact zip")
    object_key=f"research/{rid}/{art['id']}-{art['name']}.zip"
@@ -88,11 +80,10 @@ if all_complete:
   if get_json(latest_key)["run_id"]!=newest:raise ValueError("latest readback mismatch")
 summary={"status":"SYNC_COMPLETE" if not failed else "SYNC_PARTIAL","published":published,"already_archived":len(skipped),"failed":failed,"latest_run_id":max(all_complete) if all_complete else None,"scanned_runs":len(runs)}
 print(json.dumps(summary,ensure_ascii=False),flush=True)
-if failed:sys.exit(2)
-
-# Compact non-sensitive status in Actions job summary; accessible through GitHub connector.
+# Compact non-sensitive status, including failure; no credentials in report.
 summary_path=os.environ.get("GITHUB_STEP_SUMMARY")
 if summary_path:
  with open(summary_path,"a",encoding="utf-8") as fp:
-  fp.write("## H1–H10 R2 archive sync\\n\\n")
-  fp.write(f"- Status: {summary['status']}\\n- Newly archived: {len(published)}\\n- Already archived: {len(skipped)}\\n- Failed: {len(failed)}\\n- Latest run ID: {summary['latest_run_id']}\\n")
+  fp.write("## H1-H10 R2 archive sync\n\n")
+  fp.write(f"- Status: {summary['status']}\n- Newly archived: {len(published)}\n- Already archived: {len(skipped)}\n- Failed: {len(failed)}\n- Latest run ID: {summary['latest_run_id']}\n")
+if failed:sys.exit(2)
