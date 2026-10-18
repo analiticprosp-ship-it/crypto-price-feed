@@ -42,7 +42,8 @@ def probe(symbol,vintage):
  if len(forms)!=1:raise ValueError("FORM_NOT_UNIQUE_OR_NOT_FOUND")
  form=forms[0]
  if form.get("method","GET").lower()!="post":raise ValueError("FORM_METHOD_NOT_POST")
- units_info,uoptions=choose(form.find("select",attrs={"name":"form[units]"}),"Levels")
+ units_info,uoptions=choose(form.find("select",attrs={"name":"form[units]"}),"Index")
+ if units_info[0]!="lin":raise ValueError("V812C_UNIT_NOT_RAW_INDEX")
  type_info,toptions=choose(form.find("select",attrs={"name":"form[file_type]"}),"Observations by Vintage Date","All Observations")
  file_info,foptions=choose(form.find("select",attrs={"name":"form[file_format]"}),"Zipped Tab Delimited Text")
  params={
