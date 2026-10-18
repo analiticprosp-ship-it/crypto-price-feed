@@ -1,0 +1,36 @@
+name: BTCI extended 2010-2026 price-source regime research v8.6
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_long_history_v86.py'
+      - '.github/workflows/btci-long-history-v86.yml'
+permissions:
+  contents: read
+concurrency:
+  group: btci-research-v86-history
+  cancel-in-progress: false
+jobs:
+  extend-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Audit pre-2020 histories and calculate separate BTC reference-rate cycle states
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_long_history_v86.py
+      - name: Attach research source and result manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: btci-v86-long-history-coverage-research
+          path: btci_v86_reports/
+          retention-days: 30
