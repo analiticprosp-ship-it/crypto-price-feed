@@ -1,0 +1,42 @@
+{
+  "version": "8.12",
+  "frozenDateUTC": "2026-10-18",
+  "researchOnly": true,
+  "parent": {
+    "key": "research/btci/v8.11/runs/39147565584-1/four_lens.json",
+    "sha256": "742d693504f44fbf21165cd6773c0a5450ea424821befb7622c7af034d7ae44b"
+  },
+  "researchQuestion": "Does removing the strict BTC weekly-up gate reveal earlier alt breadth or dated-Fed-flow warnings in 2024-26, without treating increased alarm frequency as predictive proof?",
+  "identicalPopulation": "ALL 138 v8.11 completeCasePanel rows with 13wk fully observed outcomes; no change in eligibility or dates. Already in NON-EXPANSION structural confirmed BTC state; previous H4.1 five consecutive no-gap check. No use of rows censored after 2026-07-12.",
+  "definitions": {
+    "A": "Weekly BTC trend up flag",
+    "B": "ETH relative to BTC 30-day >0 and >=4/6 original alts outperformed BTC, independent of A",
+    "C": "4-release dated Fed liquidity proxy delta (assets - TGA - total reverse repos) >0, independent of A",
+    "D": "B AND C, independent of A",
+    "E": "B OR C, independent of A",
+    "F": "A OR (B AND C), complementary warning",
+    "baseline": "No signal: all eligible comparable rows; common base rate for each target"
+  },
+  "targets": {
+    "expansion": "Price-derived structural EXPANSION confirmed within next 13 full Sunday closes; NOT a true exogenous bull cycle label",
+    "return": "BTC next 13w CoinMetrics fixing return >0",
+    "drawdown": "BTC next 13w worst DAILY fixing close <= -20% from Sunday t"
+  },
+  "metrics": [
+    "Same cohort 138: TP FP FN TN precision recall specificity balanced accuracy for expansion and positive13w",
+    "Risk: alarm count, share with adverse>=20% and median 13w returns; do not interpret subset p as real forecasts",
+    "Disjoint 2020–23 vs 2024–26 pre-known stratification, note cohorts historically inspected",
+    "Fixed nonoverlap anchors: select every 13th COMMON eligible Sunday starting with earliest one, not selected alarms",
+    "Positive and negative control: compare C macro UP to inverse DOWN and B breadth to inverse NOT_BROAD; no optimized scoring",
+    "Event-level: for six original 2020–24 confirmed expansion switches reported by v8.11, use only 13 weeks preceding each expansion confirmation and count if any warning, count first date, median lead; caution repeated overlapping events",
+    "Weekly vs event: count consecutive alarm weeks in each model as one episode; for outcomes score entry Sunday only when future 13wk complete; this avoids presenting 13 consecutive alarms as 13 independent predictions"
+  ],
+  "externalNFClPlan": "Separate pilot to obtain NFCI and ANFCI true historical publication versions via ALFRED. Do not include any NFCI until actual vintage as-of extract is available, verified and archived. Store status PIT_UNVERIFIED if source unavailable. Keyless download form may be supported; do not invent token.",
+  "hardGuards": [
+    "No train or fit, all model feature thresholds frozen before calculation",
+    "Explicitly call all results RESEARCH RETROSPECTIVE, no validated OOS or probabilities",
+    "Preserve original v8.11 report and pin source SHA",
+    "Versioned Cloudflare R2 report plus verified SHA readback",
+    "No trading/Spot/Futures/NAV/capital/reserve/P&L/MASTER/risk limits changes"
+  ]
+}
