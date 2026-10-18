@@ -1,0 +1,64 @@
+name: Detector historical intraday regime robustness v7.7
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/detector_intraday_v77.py'
+      - '.github/workflows/detector-intraday-robustness-v77.yml'
+permissions:
+  contents: read
+concurrency:
+  group: detector-research-v77-intraday
+  cancel-in-progress: false
+jobs:
+  historical-asset:
+    strategy:
+      fail-fast: false
+      matrix:
+        asset: [BTC, ETH, SOL, BNB, LINK, XRP, ADA, DOGE]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Validate immutable source event reprice and calculate 1h 2h 4h
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_intraday_v77.py --asset ${{ matrix.asset }}
+      - name: Upload asset audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-v77-intraday-${{ matrix.asset }}
+          path: detector_v77_reports/
+          retention-days: 30
+  cross-regime-validation:
+    needs: historical-asset
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2' 'numpy>=2,<3'
+      - name: Join 623 frozen source-months and test regime and epoch stability
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_intraday_v77.py --combine
+      - name: Upload final audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-v77-intraday-robustness-audit
+          path: detector_v77_reports/
+          retention-days: 30
