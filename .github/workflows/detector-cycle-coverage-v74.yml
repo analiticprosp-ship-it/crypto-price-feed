@@ -1,0 +1,36 @@
+name: Detector full-cycle R2 coverage audit v7.4
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/detector_cycle_coverage_v74.py'
+      - '.github/workflows/detector-cycle-coverage-v74.yml'
+permissions:
+  contents: read
+concurrency:
+  group: detector-research-v74-inventory
+  cancel-in-progress: false
+jobs:
+  full-cycle-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Audit monthly R2 archives against 2020-Sep 2026
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_cycle_coverage_v74.py
+      - name: Upload audit copy
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-cycle-coverage-v74
+          path: detector_v74_reports/
+          retention-days: 30
