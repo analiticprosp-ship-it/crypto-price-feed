@@ -1,0 +1,27 @@
+name: Detector H1-H10 OI CSV Label Boundary Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1-h10-oi-label-transition.yml'
+      - 'research/detector_h1_h10_oi_label_transition_audit.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reinspect Binance metrics first-row and 2026-06-25 timestamp boundary
+        run: python research/detector_h1_h10_oi_label_transition_audit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1-h10-oi-csv-label-boundary
+          path: detector_h1_h10_oi_label_boundary/report.json
+          retention-days: 30
