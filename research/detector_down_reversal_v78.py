@@ -60,6 +60,25 @@ def source_v77(s3,bucket):
   or doc["firstLongEvents"]!=17678 or doc["firstSweepEvents"]!=3439):
   raise SystemExit("V78_V77_SHAPE_CHANGED")
  return doc
+def immutable_archive_hashes(s3,bucket,v77,sym):
+ # Exactly the original 5-minute source SHA-256 hashes from v7.5/v7.6;
+ # reject any changed archive even when a few selected returns coincidentally match.
+ if sym in ("BTC","ETH"):
+  key,digest=v77["sourceReports"]["core"]
+  base=get(s3,bucket,key,digest)
+  rows=[]
+  for year in base["sourceYears"]:
+   rows.extend(get(s3,bucket,year["prefix"]+"records.json",year["recordsSha256"]))
+ else:
+  key,digest=v77["sourceReports"]["alts"]
+  base=get(s3,bucket,key,digest)
+  asset=next(x for x in base["sources"] if x["symbol"]==sym)
+  rows=get(s3,bucket,asset["prefix"]+"records.json",asset["recordsSha256"])
+ matched={row["month"]:row["sourceSha256"] for row in rows if row["symbol"]==sym}
+ if len(matched)!=v77["assets"][sym]["monthCount"]:
+  raise SystemExit("V78_ARCHIVE_SOURCE_MONTH_COUNT_CHANGED")
+ return matched
+
 def bars_reader():
  tree=ast.parse((ROOT/"research/detector_matched_controls_v65.py").read_text())
  f=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=="read_month")
@@ -137,6 +156,7 @@ def calculate(sym):
  prereg_sha=prereg()
  s3=get_client();bucket=os.environ["R2_BUCKET"];doc=source_v77(s3,bucket)
  months,events=first_events(s3,bucket,doc,sym)
+ original_archive_sha=immutable_archive_hashes(s3,bucket,doc,sym)
  read_month=bars_reader()
  bymonth=defaultdict(list)
  for e in events:bymonth[e["month"]].append(e)
@@ -145,6 +165,7 @@ def calculate(sym):
   m=row["month"];current=bymonth[m]
   try:
    bars,archive_sha=read_month(s3,bucket,sym,m)
+   if archive_sha!=original_archive_sha.get(m):raise ValueError("ARCHIVE_SHA_CHANGED")
    # The archived v7.7 source checks 5m ZIP sha, CRC, OHLCV, gaplessness;
    # original v7.7 also checked UTC full-month boundary.
    start=datetime.fromtimestamp(bars[0]["t"]/1000,timezone.utc)
