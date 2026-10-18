@@ -1,0 +1,36 @@
+name: Detector recovery-checkpoint historical comparison v8.1
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/detector_recovery_checkpoint_v81.py'
+      - '.github/workflows/detector-recovery-checkpoint-v81.yml'
+permissions:
+  contents: read
+concurrency:
+  group: detector-research-v81-recovery
+  cancel-in-progress: false
+jobs:
+  day31-recovery-comparison:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compare frozen past transitions with current 31-day recovery, no lookahead
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_recovery_checkpoint_v81.py
+      - name: Upload diagnostic and manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-v81-recovery-checkpoints
+          path: detector_v81_reports/
+          retention-days: 30
