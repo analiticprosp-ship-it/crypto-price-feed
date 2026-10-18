@@ -1,0 +1,37 @@
+name: Detector H1-H10 Tardis Three-Regime Vendor-Receipt OI AsOf
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-tardis-vendor-asof-multiday.yml'
+      - 'research/detector_tardis_vendor_asof_multiday.py'
+      - 'research/test_detector_tardis_vendor_asof_multiday.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Validate free source dates and vendor-receipt anti-lookahead
+        run: python -m unittest -v research.test_detector_tardis_vendor_asof_multiday
+      - name: Audit historical Binance OI snapshots for three free sample days with full R2 SHA readback
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python research/detector_tardis_vendor_asof_multiday.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-tardis-multiday-oi-quality-report
+          path: detector_tardis_multiday/report.json
+          if-no-files-found: warn
+          retention-days: 30
