@@ -5,6 +5,7 @@ from pathlib import Path
 from datetime import datetime,timezone
 import boto3
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/"scripts"))
 # Import reusable v6.8 definitions without executing its R2 writeback main().
 v65=ast.parse((ROOT/"research/detector_matched_controls_v65.py").read_text())
 v65keep=[n for n in v65.body if isinstance(n,(ast.Import,ast.ImportFrom,ast.FunctionDef,ast.Assign)) and not (isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id in ("s3","out") for t in n.targets))]
