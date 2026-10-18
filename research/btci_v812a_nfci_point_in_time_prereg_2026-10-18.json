@@ -1,0 +1,33 @@
+{
+  "version": "8.12a",
+  "researchOnly": true,
+  "frozenDateUTC": "2026-10-18",
+  "goal": "Audit ALFRED Chicago Fed NFCI/ANFCI actual historical publication vintages and availability before joining to BTCI. This is a source access/PIT pilot, not a trained indicator.",
+  "releaseCalendar": "https://alfred.stlouisfed.org/release/downloaddates?ff=txt&rid=221",
+  "formEndpoints": [
+    "https://alfred.stlouisfed.org/series/downloaddata?seid=NFCI",
+    "https://alfred.stlouisfed.org/series/downloaddata?seid=ANFCI"
+  ],
+  "series": [
+    "NFCI",
+    "ANFCI"
+  ],
+  "initialAsOfVintages": [
+    "2012-10-10",
+    "2018-10-10",
+    "2020-10-21",
+    "2024-10-16"
+  ],
+  "earliestEligiblePublication": "2011-05-25 ALFRED; Chicago Fed first index around April 2011. Series data earlier than first publication must never be used as if known.",
+  "vintageAccess": "Try official FRED/ALFRED API only if FRED_API_KEY secret already installed. For each series/asOf request realtime_start=asOf and realtime_end=asOf, observation_start=2010-01-01, observation_end=asOf, file_type=json, limit<=10000. Do not log API key or URLs carrying secrets. Require returned realtime attributes equal requested vintage and each observation date <= asOf.",
+  "noKey": "If no FRED_API_KEY present, inspect public ALFRED form/release date calendar, archive source HTML and calendar raw plus SHA in R2, mark VINTAGE_DATA_ACCESS_NOT_AUTHORIZED; no current revised NFCI values substituted or early warning scores inferred.",
+  "releaseCalendarValidation": "At least 700 distinct ALFRED release dates between May2011 and Oct2026, all ISO dates; this calendar by itself does not prove NFCI observation was revised in each release and index may have shifted day due holidays.",
+  "publicationGuard": "For later BTC Sunday join use ONLY latest observation in vintage already published by the Sunday (Wednesday/Thursday timing). Sampling source at pre-specified asOf date may be a next-day corrected value; vintage timestamp alone does not certify intraday clock.",
+  "report": "Source status, release date coverage, detected form parameters, vintage sample source SHA and asOf records if accessible, all in versioned R2 readback manifest.",
+  "limitations": [
+    "No fabricated PIT confidence",
+    "No operational trading changes",
+    "Do not treat public revised NFCI history as past publication values",
+    "FRED API key is not requested from user unless necessary and only via secure secret, not chat text."
+  ]
+}
