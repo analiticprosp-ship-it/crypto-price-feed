@@ -1,0 +1,23 @@
+{
+  "version": "8.12b",
+  "dateUTC": "2026-10-18",
+  "researchOnly": true,
+  "aim": "Check ALFRED official browser-visible public download form as a keyless authorized alternative for point-in-time NFCI/ANFCI values, without trying to bypass access controls.",
+  "parent": {
+    "key": "research/btci/v8.12a/runs/39148594636-1/source_audit.json",
+    "sha256": "68fc78f3ea98a1d6167db954ff4ad8ecbffb09f3e8af260c60d3cf4b9569987d"
+  },
+  "testVintages": [
+    "2018-10-10",
+    "2024-10-16"
+  ],
+  "sampleSeries": [
+    "NFCI",
+    "ANFCI"
+  ],
+  "formEndpoint": "https://alfred.stlouisfed.org/series/downloaddata?seid={symbol}",
+  "approach": "With session cookies from public GET, submit the same listed POST fields of public ALFRED form, no CAPTCHA bypass and no credentials. Request one vintage per series/date using form[entered_vintage_dates], form[file_type] and form[file_format] discovered from actual form options; preserve submitted field names, response Content-Type, SHA and source URL; no secret values.",
+  "validation": "Accept only ZIP with CRC valid + data text containing explicit requested vintage date and numeric NFCI/ANFCI observation with observation date no later than vintage; otherwise STATUS_BLOCKED and never assign a macro factor.",
+  "scope": "At most 4 public form POSTs total, <5 MB each. No trading adjustments. Report pilot status in new R2 prefix and readback SHA.",
+  "noPITShortcut": "ALFRED public HTML form being accessible does not equal archival vintage numeric access. No use of current backfilled chart as authentic vintage."
+}
