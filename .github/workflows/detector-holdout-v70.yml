@@ -1,0 +1,33 @@
+name: Detector untouched-month holdout v7.0
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: detector-research-v70
+  cancel-in-progress: false
+jobs:
+  holdout-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install R2 client
+        run: python -m pip install boto3
+      - name: Replay untouched months and verify R2 writeback
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_holdout_v70.py
+      - name: Upload audit copy
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detector-v70-holdout-audit
+          path: detector_v70_reports/
+          retention-days: 30
