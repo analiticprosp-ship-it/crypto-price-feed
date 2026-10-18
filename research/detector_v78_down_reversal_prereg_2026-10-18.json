@@ -1,0 +1,65 @@
+{
+  "version": "7.8",
+  "mode": "POST_HOC_CONDITIONAL_DECLINE_SWEEP_STUDY",
+  "fixedAt": "2026-10-18",
+  "researchOnly": true,
+  "selectionStatus": "Exploratory follow-up chosen AFTER inspecting v7.7 falling-regime positive effects",
+  "assets": [
+    "BTC",
+    "ETH",
+    "SOL",
+    "BNB",
+    "LINK",
+    "XRP",
+    "ADA",
+    "DOGE"
+  ],
+  "calendar": "2020-01 to 2026-09; only the exact 623 symbol-months admitted in immutable v7.7",
+  "immutableEventRef": {
+    "key": "research/detector/v7.7/runs/39121256508-1/combined/comparison.json",
+    "sha256": "cd8ad2853a78991891e8b74134d908d5326f0a0ddb41af1c059e2aab4fd17a7a"
+  },
+  "eventDefinition": "Unchanged first eligible EARLY_CANDIDATE_SHADOW LONG per UTC day and sweptLowReclaimed from v7.7. No event or directional reclassification.",
+  "primaryOutcome": "Sweep minus non-Sweep average FUTURES close-to-close percent change in 1h (4 closed 15m), 2h (8), 4h (16), AFTER closed observation bar. Differences in percentage points, not trading P&L.",
+  "comparisonMethod": "Within same symbol, calendar month and pre-event regime group. Discard a symbol-month cell only when Sweep or non-Sweep comparison group is empty. Equal events are grouped using event-count-weighted means, as in v7.7.",
+  "past24hRegime": "DOWN when close at event candle vs close 96 15-minute candles earlier is strictly below -1.0%. UP >1% and SIDE otherwise.",
+  "severity": "Only DOWN cases: MILD when -3% < trailing24h return < -1%; DEEP when trailing24h return <= -3%; exactly -1% excluded from DOWN.",
+  "volume": "Current FULLY CLOSED event 15-minute base-volume divided by median base-volume of PREVIOUS 96 closed 15-minute bars (excluding current candle). HIGH when >=1.50; NORMAL otherwise. No future volume.",
+  "flow": "Current FULLY CLOSED 15-minute taker BUY base volume / total base volume. BUY_DOMINANT when >=0.55; otherwise OTHER. If zero candle volume, mark metric missing, never impute.",
+  "frozenConditions": [
+    "DOWN_ALL",
+    "DOWN_MILD",
+    "DOWN_DEEP",
+    "DOWN_HIGH_VOLUME",
+    "DOWN_BUY_DOMINANT",
+    "DOWN_HIGH_VOLUME_AND_BUY_DOMINANT"
+  ],
+  "centralHypothesis": "Within DOWN_ALL, the added forward return for Sweep remains >0 across both 2020-2023 and 2024-2026, more than a merely historical mean.",
+  "diagnostics": [
+    "For each of six frozen conditions: pooled and each epoch separately with group counts",
+    "Per-asset per-horizon per-year sign and group counts",
+    "Absolute Sweep positive-return rate versus non-Sweep as descriptive outcome",
+    "Sweep-minus-control within symbol and month, with regime/condition exactly matched",
+    "Sensitivity to excluding 2020-2023 and 2024-2026 independently"
+  ],
+  "inferentialFamily": "Only DOWN_ALL (8 assets times 3 horizons = 24 comparisons) receives synchronized 27-quarter (BTC/ETH/all alts) cluster bootstrap 12000 draws and max-|t| familywise two-sided approximate 95% intervals. Other conditions are diagnostics, not confirmatory statistical tests.",
+  "decisionRule": "No trade promotion. Mark candidate for PROSPECTIVE test only when DOWN_ALL effect positive in both eras, positive in >=5 of 7 available calendar years, and the 24-test simultaneous 95% lower bound >0. Otherwise unstable/inconclusive.",
+  "readiness": "If a condition has less than 30 Sweep events OR 30 nonsweep events in new era, mark LOW_SUPPORT; show actual counts, do not hide.",
+  "failClosed": [
+    "SHA-256 v7.7 combined report and per-asset events verified",
+    "Reopen original R2 5m archives, matching original v7.7 historical event returns 1/2/4h to abs 1e-9 pct points",
+    "Verify 24h history and complete UTC source month, no substitute or dropped source-month",
+    "No localStructure sweep flag changes",
+    "Persist versioned v7.8 source rows and R2 manifest, SHA readback",
+    "If any asset source fails no combined success"
+  ],
+  "limitations": [
+    "v7.8 condition chosen after studying v7.7 — no unused blind holdout remains within these months",
+    "2020-2023 versus 2024-2026 is a contextual split, NOT a randomized estimate of ETF/institutional impact",
+    "Order-flow proxy uses Binance taker-buy ratio, no authenticated order-book, OI, funding or marketwide liquidity data",
+    "Comparisons are observational and have regime/volume selection bias; medians/ratios not proven execution features",
+    "Fixed first LONG per day windows; price outcome after observation candle may be unattainable at exact close",
+    "Commissions, spreads, slippage, funding and full live Detector parity are not established",
+    "No order placement, live detector changes, NAV, reserve, Futures, P&L, capital or trading limits"
+  ]
+}
