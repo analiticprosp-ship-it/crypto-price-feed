@@ -1,0 +1,44 @@
+name: Detector H1-H10 Spot Perp Flow Sep1 Event Boundary Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-flow-sep1-boundary-audit.yml'
+      - 'research/detector_tardis_flow_boundary_audit.py'
+      - 'research/test_detector_tardis_flow_boundary_audit.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Test flow accounting, source event-time boundaries and no future vendor receipt
+        run: python -m unittest -v research.test_detector_tardis_flow_boundary_audit
+      - name: Download SHA256/CRC verified Binance Spot/perp 3-day aggTrades flow from private R2
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python research/detector_h1_h10_r2_source.py --workflow 'Detector H1-H10 Three-Day Real AggTrades Expansion' --artifact 'detector-h1-h10-aggtrades-3day' --dest flow
+      - name: Audit completed 5m flow boundaries versus verified Sep1 Tardis price and OI
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_tardis_flow_boundary_audit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-flow-sep1-boundary-audit-report
+          path: detector_flow_boundary_audit/report.json
+          retention-days: 30
+          if-no-files-found: warn
