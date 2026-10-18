@@ -1,0 +1,24 @@
+{
+  "version": "8.10.2",
+  "dateUTC": "2026-10-18",
+  "researchOnly": true,
+  "parents": {
+    "sourceVerifiedV8101": {
+      "key": "research/btci/v8.10.1/runs/39141047403-1/macro_study.json",
+      "sha256": "230f5c2eebdba583dbadf4a44d50123fb85f93c39b318f5d4fcbb7cb7480fb81"
+    },
+    "frozenBTCV89": {
+      "key": "research/btci/v8.9/runs/39138844921-1/multiscale.json",
+      "sha256": "4b8822e929aff5569fa9cd105404c02b110927a970aed33db68910925c111b73"
+    }
+  },
+  "issue": "Even after 821/824 H41 pages parsed, 3 ALFRED release dates lack official page. A 4-accepted-release macro delta can cross an unobserved H41 publication without exceeding the previous 21-day stale-data threshold, and incorrectly claim uninterrupted evidence.",
+  "newMissingness": "At each BTC Sunday with cutoff Sunday minus three calendar days, calculate the five accepted release dates used for change; if ANY rejected official listed release falls on or after the oldest of these five dates and <= cutoff, mark macro status RELEASE_UNAVAILABLE_IN_LOOKBACK, macroDirection absent, and record missing date. Does not impute zero. Never change figures for unaffected weeks.",
+  "comparison": "Recompute macro-direction counts by confirmed BTC structural state and 29 structural switch points; no threshold fitting or future leak. Report all affected Sundays, prior state versus adjusted state, and current phase. Verify current 2026-10-11 unaffected and latest release Oct8.",
+  "storage": "Immutable new run-scoped R2 report SHA+readback; original v8.10/v8.10.1 frozen.",
+  "guards": [
+    "No point-in-time revision guarantees, only dated release pages presently in archive",
+    "No financial causal or trading performance claim",
+    "No Spot, Futures, NAV, P&L, reserve, capital, MASTER, live Detector, trading settings change"
+  ]
+}
