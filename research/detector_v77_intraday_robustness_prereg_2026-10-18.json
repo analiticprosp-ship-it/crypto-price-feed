@@ -1,0 +1,66 @@
+{
+  "version": "7.7",
+  "mode": "RETROSPECTIVE_PREDECLARED_SHORT_HORIZON_AUDIT",
+  "researchOnly": true,
+  "frozenAt": "2026-10-18",
+  "instruments": [
+    "BTC",
+    "ETH",
+    "SOL",
+    "BNB",
+    "LINK",
+    "XRP",
+    "ADA",
+    "DOGE"
+  ],
+  "fixedPeriod": "2020-01 through 2026-09; each asset only full archived historically available months",
+  "sourceReports": {
+    "btcEth": {
+      "version": "7.5",
+      "key": "research/detector/v7.5/runs/39115280960-1/combined/comparison.json",
+      "sha256": "07fccb39f6973c2f6f4fb297dc4d3d95cd6e3c06fca154a503c97e242f080e8f"
+    },
+    "alts": {
+      "version": "7.6",
+      "key": "research/detector/v7.6/runs/39115615591-1/combined/comparison.json",
+      "sha256": "1d8fd630f7fc0aec6e8308128a79f66344343b0d8a5b14280b6a58507340a95c"
+    }
+  },
+  "primaryOutcome": "Sweep minus non-Sweep group mean forward return in percentage points, on the unchanged first qualifying EARLY_CANDIDATE_SHADOW LONG candidate in each UTC day, OHLCV price at end of candidate's closed 15m candle. New horizons 1h=4 15m bars, 2h=8 bars, 4h=16 bars. 24h only used as frozen source fingerprint, excluded from decision.",
+  "sourceGuards": [
+    "Original v7.5 / v7.6 comparison SHA fixed",
+    "all event.json + records.json source blob SHA guarded by original combined reports",
+    "per 5m ZIP full metadata and own SHA and bar continuity, UTC full-month boundaries",
+    "original timestamp and 4h/24h event returns must match to 1e-9 p.p.",
+    "original grouped 4h effects reproduce to within 0.000002 p.p.",
+    "no changes to Sweep LONG definitions or data window",
+    "no exclusions based on measured results"
+  ],
+  "preregisteredEpochs": [
+    "2020-2023",
+    "2024-2026"
+  ],
+  "preregisteredPastOnlyRegimes": [
+    "UP",
+    "DOWN",
+    "SIDEWAYS"
+  ],
+  "regimeDefinition": "Past-only trailing 24h BTC or asset close change; > +1% UP, < -1% DOWN, else SIDEWAYS, as frozen v7.5/v7.6 event labels",
+  "statisticalChecks": [
+    "year-by-year sign and effect for 8 assets x 3 horizons",
+    "two epoch effect estimates and sign consistency; cannot claim causal effect of ETF or institutional activity",
+    "joint synchronous 27 calendar-quarter block bootstrap (12,000 replications, fixed random seed 770018), preserving common dates/assets and within-quarter dependence",
+    "familywise simultaneous max-t bootstrap over 24 asset x horizon comparisons, alongside unadjusted 95% percentile intervals; report differences in each epoch",
+    "UTC-day parity non-overlapping observations for each asset to test selection sensitivity (1/2/4h windows already nonoverlapping for first UTC day signals, verified)",
+    "exclude no existing registered month based on market outcome; months with zero Sweep vs control events are documented, excluded from that comparison but not source audit",
+    "report descriptive post-hoc exploratory candidates only; no promotion to trading until prospective shadow tests and execution costs"
+  ],
+  "minimumMeaningfulRobustness": "For hypothesis prioritization (not proof), positive effect in both eras, positive in >= 5 of 7 historical calendar years with comparisons, and simultaneous adjusted 95% lower bound above zero for one preregistered horizon across full period. Otherwise classify as inconsistent or inconclusive. These are analyst-defined screening gates not statistical proof.",
+  "limits": [
+    "1h and 2h were requested after 4h/24h history inspected: this is POST-HOC horizon selection, not virgin holdout",
+    "No commission, spread, funding, slippage, order-book, actual trade execution, full live Detector parity, or causal interpretation",
+    "Long/short signal research not blanket market prediction",
+    "Eight selected surviving assets, survivorship and missing listing history constraints remain",
+    "No changes to live Detector, NAV, Futures, P&L, trade limits or trading orders"
+  ]
+}
