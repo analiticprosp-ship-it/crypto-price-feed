@@ -1,0 +1,61 @@
+name: BTCI audited Fed H41 full weekly history v8.10
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/btci-h41-full-v810.yml'
+permissions:
+  contents: read
+concurrency:
+  group: btci-v810-official-h41-source-archive
+  cancel-in-progress: false
+jobs:
+  archive-year:
+    strategy:
+      fail-fast: false
+      matrix:
+        year: [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2' 'beautifulsoup4>=4.12,<5'
+      - name: Archive each official H41 publication and extract Wednesday consolidated level
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_h41_full_history_v810.py --year ${{ matrix.year }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-h41-release-year-${{ matrix.year }}
+          path: btci_v810_reports/
+          retention-days: 30
+  macro-research:
+    needs: archive-year
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2' 'beautifulsoup4>=4.12,<5'
+      - name: Join lagged published historical weekly liquidity factors to BTC phases
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_h41_full_history_v810.py --combine
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-h41-v810-audited-macro-cycle
+          path: btci_v810_reports/
+          retention-days: 30
