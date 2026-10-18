@@ -64,7 +64,8 @@ class IndependentCausalReplayTests(unittest.TestCase):
             verify_derived(raw,corrupted,DAY,SYMBOL)
 
     def test_raw_symbol_must_match(self):
-        data=raw_file([(T0+300_000_000,"123.5")]).replace(b"BTCUSDT",b"ETHUSDT")
+        raw=gzip.decompress(raw_file([(T0+300_000_000,"123.5")]))
+        data=gzip.compress(raw.replace(b"BTCUSDT",b"ETHUSDT"))
         with self.assertRaisesRegex(ValueError,"RAW_SYMBOL"):
             raw_snapshots(data,DAY,SYMBOL)
 
