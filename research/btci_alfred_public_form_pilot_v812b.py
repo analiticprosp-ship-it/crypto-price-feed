@@ -45,7 +45,8 @@ def probe(symbol,vintage):
  units_info,uoptions=choose(form.find("select",attrs={"name":"form[units]"}),"Index")
  if units_info[0]!="lin":raise ValueError("V812C_UNIT_NOT_RAW_INDEX")
  type_info,toptions=choose(form.find("select",attrs={"name":"form[file_type]"}),"Observations by Vintage Date","All Observations")
- file_info,foptions=choose(form.find("select",attrs={"name":"form[file_format]"}),"Zipped Tab Delimited Text")
+ file_info,foptions=choose(form.find("select",attrs={"name":"form[file_format]"}),"Zipped CSV")
+ if file_info[0]!="csv":raise ValueError("V812D_FORMAT_NOT_ZIPPED_CSV")
  params={
  "form[units]":units_info[0],
  "form[obs_start_date]":"2017-01-01",
