@@ -1,0 +1,33 @@
+name: BTCI dated Fed H41 source audit v8.9a
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_h41_pit_pilot_v89a.py'
+      - '.github/workflows/btci-fed-h41-v89a.yml'
+permissions:
+  contents: read
+jobs:
+  macro-source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2' 'beautifulsoup4>=4.12,<5'
+      - name: Validate dated H41 primary releases and archive original pages in R2
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_h41_pit_pilot_v89a.py
+      - name: Export audit manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: btci-v89a-fed-release-audit
+          path: btci_v89a_reports/
+          retention-days: 30
