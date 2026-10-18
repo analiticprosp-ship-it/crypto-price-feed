@@ -1,0 +1,56 @@
+{
+  "version": "8.9",
+  "researchOnly": true,
+  "frozenDateUTC": "2026-10-18",
+  "purpose": "Separate short weekly BTC trend switches from durable price-only structural expansion/contraction; test breadth sequencing and prepare PIT macro data joins.",
+  "parent": {
+    "v86": {
+      "key": "research/btci/v8.6/runs/39130315439-1/extended_history.json",
+      "sha256": "9af82767fa8139685e784c131c075cec553298c4718ed4a40ac41412144248ca"
+    },
+    "v87": {
+      "key": "research/btci/v8.7/runs/39131902527-1/episodes.json",
+      "sha256": "260d7991a6567aa370cbef92c8b7294b520c5a6a1b626872c4c55ae9e6a3d5b8"
+    },
+    "v88": {
+      "key": "research/btci/v8.8/runs/39137791544-1/comparison.json",
+      "sha256": "4aa4cd2f53d670c440775022de23b50fde14a2b3b9c5fd20e624a265932a4d88"
+    }
+  },
+  "timeAndSource": "Only fully completed UTC Sunday Coin Metrics BTC PriceUSD fixings from pinned 814 weekly rows. No current intraday, no cross-venue executable price. Different daily/wk sources never combined.",
+  "series": "Construct on each t ≥ 64th eligible weekly Sunday: 52 fully observed Sunday closing prices SMA52(t); SMA52(t-13) from entirely earlier 52 completed Sunday prices; BTC 26w trailing return close(t)/close(t-26)-1. Avoid using any current week whose Sunday not closed.",
+  "rawStructuralRules": {
+    "expansion": "BTC close>SMA52 AND SMA52(t)>SMA52(t-13) AND 26weekTrailingReturn>0",
+    "contraction": "BTC close<SMA52 AND SMA52(t)<SMA52(t-13) AND 26weekTrailingReturn<0",
+    "otherwise": "TRANSITION_OR_REBOUND",
+    "notBullGroundTruth": "A 52-week price context proxy, NOT a independently verified bull/bear market definition."
+  },
+  "confirmation": "Consecutive 4 raw closed-week structural labels required before confirmed state switches. First label confirmed only after 4 consecutive observations. Ignore missing history, no backdating. After confirmation retain last confirmed regime while raw differs (with current mismatch marked PENDING).",
+  "episodeMetrics": [
+    "Raw and confirmed stage events, time from first raw candidate to confirmation, durations until next confirmed transition (never retroactively assign older state to candidate)",
+    "All weekly v8.7 entering events linked to confirmed structural state as known at that same week, and measured following 13/26 weeks BTC price returns / worst daily-close drawdown from parent v8.6, separately by structural state",
+    "Full available breadth on the same fully closed week, fraction of broadParticipation true by structural state (only complete fixed 8-asset data, others UNKNOWN). 13w subsequent broadening for weekly ENTRY uses parent v8.7 method only if full future and all other seven sources existed.",
+    "Fewer than 20 events per cohort means LOW_SAMPLE, no probability or OOS inference.",
+    "Optional annual counts and 2011-2016 / 2017-2019 / 2020-2023 / 2024-2026 eras without optimizing thresholds."
+  ],
+  "controlComparators": "RAW weekly BTC trend boolean from frozen v8.6; 4w weekly persistence confirmations from frozen v8.8; no trade execution. Compare stage assignment of weekly churn (fast flags versus slow confirmed states) to quantify switching not predictive accuracy.",
+  "current": "Last full Sunday 2026-10-11. Report raw structural, confirmed structural, last confirmed change, raw mismatch and present weekly flag, alt breadth and if not confirmed which candidate week in progress.",
+  "macroPITSourceAudit": {
+    "H4.1": "Official Federal Reserve release archive since 1996, sample selected early and later dated release URLs, preserve publication date and page SHA if retrieved; ALFRED H4.1 has vintage availability.",
+    "NFCI": "Chicago Fed index vintages via ALFRED; series initially published May 2011 per release archive; pre-2011 current backfilled index is NOT an available real-time feature.",
+    "WALCL": "ALFRED (keyed FRED/series/observations) API requires genuine key; do not claim completed PIT study without it.",
+    "ETF": "BTC Spot ETFs only since January 2024; previous v8.5.1 backfilled Farside is not true point-in-time, cannot upgrade validity."
+  },
+  "sampleIntegrity": [
+    "Pinned parent JSON SHA must match",
+    "814 weekly dates Sunday and gaps zero",
+    "Freeze all threshold definitions BEFORE report execution",
+    "All per-event future windows right-censored if unavailable",
+    "R2 run-scoped report with readback SHA and status"
+  ],
+  "restrictions": [
+    "RESEARCH_ONLY",
+    "No changes Master/Spot/Futures/NAV/P&L/reserve/capital/leverage/trading rules",
+    "No calibrated probabilities or validated big bull market declaration from price-only proxy"
+  ]
+}
