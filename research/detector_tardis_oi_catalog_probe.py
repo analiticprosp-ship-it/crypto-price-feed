@@ -44,7 +44,7 @@ def sample(day,sym):
   row["status"]=ans.get("error","SAMPLE_NOT_READ")
   return row
  data=ans["data"]
- if data[:2]!=b"\\x1f\\x8b":
+ if data[:2]!=bytes([0x1f,0x8b]):
   row["status"]="NOT_GZIP";return row
  try:
   dec=zlib.decompressobj(16+zlib.MAX_WBITS).decompress(data)
