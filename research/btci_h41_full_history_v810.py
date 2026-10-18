@@ -305,11 +305,15 @@ def combine():
  print("V810_RESULT "+json.dumps(short,ensure_ascii=False),flush=True)
 if __name__=="__main__":
  a=argparse.ArgumentParser()
+ a.add_argument("--index-debug",action="store_true")
  a.add_argument("--pilot",action="store_true")
  a.add_argument("--year",type=int,choices=YEARS)
  a.add_argument("--combine",action="store_true")
  p=a.parse_args()
- if p.pilot:year_mode(None,True)
+ if p.index_debug:
+  raw=http("https://alfred.stlouisfed.org/release/downloaddates?ff=txt&rid=20")
+  print("V810_ALFRED_TEXT_HEAD",repr(raw[:6000]),flush=True)
+ elif p.pilot:year_mode(None,True)
  elif p.year:year_mode(p.year)
  elif p.combine:combine()
  else:raise SystemExit("V810_SELECT_MODE")
