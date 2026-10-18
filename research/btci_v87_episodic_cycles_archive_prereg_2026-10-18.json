@@ -1,0 +1,54 @@
+{
+  "version": "8.7",
+  "createdUTC": "2026-10-18",
+  "researchOnly": true,
+  "frozenSource": {
+    "key": "research/btci/v8.6/runs/39130315439-1/extended_history.json",
+    "sha256": "9af82767fa8139685e784c131c075cec553298c4718ed4a40ac41412144248ca"
+  },
+  "goals": [
+    "Audit historical BTC weekly trend entry and exit as independent-episode-like units 2011-2026",
+    "Archive all raw public Coin Metrics daily PriceUSD API responses and normalized daily records for the eight studied assets privately in R2 with SHA-256/readback so reproducible data persist independently of future API availability",
+    "Audit released-data availability and vintage requirements before any macro liquidity historical joins"
+  ],
+  "entryDefinition": "For consecutive confirmed Sunday BTC trend booleans from frozen v8.6, a transition EVENT occurs only when it switches. First eligible week is left censored. Fixed 2026-10-11 final Sunday; no future.",
+  "outcomeDefinition": "After entry, count weeks until next opposite confirmed weekly transition; at each entry report BTC close-to-close forward 4/13/26/52wk returns, median worst daily-close drawdown unchanged from v8.6, or RIGHT_CENSORED. Trend persistence until 4w and 13w means next phase change >4 or >13 Sundays, not a profit win rate.",
+  "risk": "Separate unconfirmed trend exits from confirmed trend entries; classify only price trend, not bull/bear macro stage. 2011-2012 has very different market structure and liquidity.",
+  "broadening": "For trend-entry events, examine fixed ETH/BTC>0 and >=4/6 alt outperforming BTC 30d weekly flag from v8.6; only when complete valid eight-asset universe. If breadth UNKNOWN at any week within window, mark outcome DATA_CENSORED. Evaluate first 13w BROAD versus first 13w LOST_TREND, same date cannot both, censor incomplete.",
+  "split": "2011-2012,2013-2016,2017-2019,2020-2023,2024-2026. Report cases, medians, censorship, do not extrapolate across early market eras.",
+  "sensitivity": "Greedy every 13wk retained trend-entry events anchored to earliest event, show as check, still dependence and anchor bias.",
+  "sourceArchive": {
+    "endpoint": "https://community-api.coinmetrics.io/v4/timeseries/asset-metrics",
+    "assets": [
+      "btc",
+      "eth",
+      "sol",
+      "bnb",
+      "link",
+      "xrp",
+      "ada",
+      "doge"
+    ],
+    "metric": "PriceUSD",
+    "cutoff": "2026-10-17",
+    "start": "2010-01-01",
+    "rawArchive": "Each fetched JSON response page as private R2 original bytes plus normalized date/PriceUSD array",
+    "validation": "Positive finite prices; duplicate dates prohibited; exact observed count, first/last, and no gaps compared with frozen v8.6 source coverage; daily BTC Sunday PriceUSD equals every frozen v8.6 BTC weekly price to 1e-5 absolute; alt daily prices and fixed breadth count compare to all frozen weeks where eligible. Fail closed on mismatch, do not silently update v8.6.",
+    "sourceRawContentHash": "SHA-256 of bytes retrieved at execution; pinned fetch date; CoinMetrics may revise historic fixing and historical source vintage remains unknown.",
+    "storage": "Cloudflare R2 under research/btci/v8.7/runs/<id>/source/{asset}/{raw_page.json,normalized_daily.json}, immutable by unique run prefix. A manifest with object hashes, SHA-256 readback and external provenance.",
+    "note": "Original Binance Spot monthly ZIPs, Binance futures 5m archives already on their original source/earlier R2, external macro vintages not automatically mirrored in this v8.7; distinguish all clearly."
+  },
+  "macroReadiness": {
+    "WALCL": "Federal Reserve H4.1 weekly assets, Wed observation, Thurs release",
+    "WDTGAL": "Treasury General Account Wednesday H4.1",
+    "WLRRAL": "Wednesday consolidated Fed reverse repo in H.4.1; alternatively ON RRP DAILY RRPONTSYD must observe separate release/time and units",
+    "NFCI": "Chicago Fed release requires publication-time PIT mapping",
+    "required": "FRED API key for fred/series/observations with vintage_dates/realtime_start; no fabricated values without authorized API or timestamped release",
+    "validation": "Only use indicators known as-of Monday UTC weekly decision and show missingness/delays; later week-outcome windows cannot contaminate features."
+  },
+  "noHindsight": "Exploratory retrospective model created after observing history; zero point-in-time claims for CoinMetrics retro revisions, no calibrated prediction or out-of-sample claim",
+  "protection": [
+    "No changes to Master, Futures, Spot, NAV, P&L, reserve, capital, trading permissions or detector runtime"
+  ],
+  "halt": "Missing price / integrity fail => no PASS and no invented result. Storage writeback must have reread SHA."
+}
