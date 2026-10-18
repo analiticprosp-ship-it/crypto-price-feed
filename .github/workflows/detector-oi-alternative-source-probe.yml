@@ -1,0 +1,27 @@
+name: Detector H1-H10 Alternative OI Source Feasibility
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-oi-alternative-source-probe.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Probe documented read-only 5m OI sources (no credentials)
+        run: python research/detector_oi_alternative_sources_probe.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-alternative-oi-sources-report
+          path: detector_oi_sources_feasibility/report.json
+          if-no-files-found: warn
+          retention-days: 30
