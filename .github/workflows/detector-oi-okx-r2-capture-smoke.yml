@@ -1,0 +1,28 @@
+name: Detector H1-H10 OKX OI 5m One-Shot R2 Capture
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-oi-okx-r2-capture-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Verify syntax without making network requests
+        run: python -m py_compile research/detector_oi_okx_r2_capture_smoke.py
+      - name: Capture 5m OI BTC ETH SOL and verify R2 readback
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/detector_oi_okx_r2_capture_smoke.py
