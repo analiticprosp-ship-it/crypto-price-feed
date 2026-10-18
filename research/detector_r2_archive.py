@@ -31,7 +31,12 @@ for page in range(1,101):
  if len(batch)<100:
   history_scan_exhausted=True
   break
-candidates=sorted((r for r in runs if r.get("name","").startswith("Detector H1-H10 ") and r.get("name")!="Detector H1-H10 Research R2 Archive" and r.get("head_branch")=="main" and r.get("conclusion")=="success"),key=lambda x:x["id"])
+OPERATIONAL_WORKFLOWS = {
+ "Detector H1-H10 Research R2 Archive",
+ "Detector H1-H10 Independent R2 Integrity Audit",
+ "Detector H1-H10 Live OI Availability Research",
+}
+candidates=sorted((r for r in runs if r.get("name","").startswith("Detector H1-H10 ") and r.get("name") not in OPERATIONAL_WORKFLOWS and r.get("head_branch")=="main" and r.get("conclusion")=="success"),key=lambda x:x["id"])
 if not candidates:raise SystemExit("No approved successful research workflow found")
 s3=boto3.client("s3",endpoint_url="https://"+ACCOUNT+".r2.cloudflarestorage.com",aws_access_key_id=os.environ["R2_ACCESS_KEY_ID"],aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"],region_name="auto")
 def exists(key):
