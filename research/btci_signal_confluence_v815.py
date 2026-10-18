@@ -143,10 +143,10 @@ def main():
  first4={}
  for m in (*BASE,*MS):
   accepted=[];missed=[];delay=[]
-  for i,b in enumerate(blocks):
-   idx=next((k for k,x in enumerate(b[:4]) if x["signals"][m]),None)
-   if idx is None:missed.append(b[0]["date"])
-   else:accepted.append(b[idx]);delay.append(idx)
+  for i,block in enumerate(blocks):
+   idx=next((k for k,x in enumerate(block[:4]) if x["signals"][m]),None)
+   if idx is None:missed.append(block[0]["date"])
+   else:accepted.append(block[idx]);delay.append(idx)
   first4[m]={"blockWarnings":len(accepted),"missedBlocks":missed,
    "delays":delay,"metricsOnActualFirstWarningDate":metric(accepted,m),
    "dates":[slim(z) for z in accepted]}
