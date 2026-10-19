@@ -1,0 +1,79 @@
+{
+  "version": "8.18c2",
+  "frozenDateUTC": "2026-10-19",
+  "researchOnly": true,
+  "noTradingAuthority": true,
+  "question": "Do original Coin Metrics public GitHub CSV snapshots from 2026-03-26 and 2026-05-24 contain materially different older Bitcoin MVRV, price, and capitalisation rows; how far back can repository commit lineage prove historical data availability?",
+  "repository": "https://github.com/coinmetrics/data",
+  "repositoryOldestReachableMainCommit": "606d84a244c53ca53b453addfd74dee7b709b2ba",
+  "oldestMainCommitDateUTC": "2026-03-26T18:44:35Z",
+  "observedReachableMainCommitCount": 65,
+  "fixedSources": [
+    {
+      "label": "EARLY",
+      "gitCommit": "b4402ba06cf67dfd86b273b5e42e522b738491b5",
+      "commitUTC": "2026-03-26T19:58:21Z",
+      "blobGitSHA1": "b884ff99444f97d7a76a081077ddc15b1b348645",
+      "rawURL": "https://raw.githubusercontent.com/coinmetrics/data/b4402ba06cf67dfd86b273b5e42e522b738491b5/csv/btc.csv"
+    },
+    {
+      "label": "LATE",
+      "gitCommit": "f1a36afb962731c387bb03982758ab0103063da5",
+      "commitUTC": "2026-05-24T13:37:39Z",
+      "blobGitSHA1": "5e50f336d268e1f3a38e9885b5aaef36de529700",
+      "rawURL": "https://raw.githubusercontent.com/coinmetrics/data/f1a36afb962731c387bb03982758ab0103063da5/csv/btc.csv"
+    }
+  ],
+  "columnNames": [
+    "CapMVRVCur",
+    "CapMrktCurUSD",
+    "PriceUSD",
+    "SplyCur",
+    "CapRealUSD"
+  ],
+  "historicalEligibleEndDate": "2026-03-24",
+  "historicalEraIntervals": [
+    [
+      "2012-06-01",
+      "2016-12-31"
+    ],
+    [
+      "2017-01-01",
+      "2019-12-31"
+    ],
+    [
+      "2020-01-01",
+      "2023-12-31"
+    ],
+    [
+      "2024-01-01",
+      "2026-03-24"
+    ]
+  ],
+  "tests": [
+    "Confirm source SHA1 Git blobs with exact length-prefixed blob bytes, and SHA256 over full downloaded raw CSV",
+    "Reject duplicate dates, missing 'time' column, dates out of order or outside BTC history; record per-source first/last/rows",
+    "Compare only intersecting exact date strings and available metric columns; include separate missing/null/added counts, do not impute",
+    "Compare every exactly equal date using Decimal not floats; count unchanged, changed, added and removed, and record 10 largest absolute differences where both numeric (no model selection)",
+    "Separately count relevant points on 2012-06-03, 2018-11-18, 2021-04-11, 2024-01-07, 2026-03-20 if present; these are descriptive checks only",
+    "Report visible repository commits do not prove original as-of 2012-2025; commit clock attests snapshots only as of 2026; pre-2026 PIT flags must remain false",
+    "Archive full comparative report, study manifest and source SHA/byte metadata to private Cloudflare R2 with GET SHA readback; do not bulk republish Coin Metrics CSV"
+  ],
+  "priorResearch": [
+    {
+      "key": "research/btci/v8.18c1/runs/39224031916-1/onchain_official_csv_source.json",
+      "sha256": "2736819d515a9d94aa9a8a0afc29dec8f25bb281780448cb8450096ebbf90af3"
+    },
+    {
+      "key": "research/btci/v8.18d/runs/39224537060-1/mvrv_exploratory.json",
+      "sha256": "95249457f5574d62d9f55f41e80dfd582ad8d9885e13b14df9b2d8199092c7ff"
+    }
+  ],
+  "limitations": [
+    "GitHub-reachable main ancestry does not prove lack of other archives or unpublished versions",
+    "A GitHub commit timestamp alone does not prove upstream metric computational/publication latency",
+    "Retrospective rows are not independent original historical real-time vintages",
+    "No threshold tuning, no PnL/forecast or OOS claim"
+  ],
+  "guard": "RESEARCH_ONLY; no Spot, Futures, NAV, P&L, capital, reserves, MASTER, Detector, trading limits, orders, or live price writeback."
+}
