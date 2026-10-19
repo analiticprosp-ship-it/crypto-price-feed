@@ -63,5 +63,12 @@
     "reason": "Signal-date drawdown understates risk after initial rallies; also compute rolling within-forward-path high water mark drawdown, longest underwater weeks and time to first +20/+50/-20/-35 milestone.",
     "predeclare": "At 13/26/52wk horizons calculate (a) min BTC daily close divided by Sunday signal close -1; (b) worst subsequent drawdown from ANY prior daily-close peak since signal Sunday; (c) minimum daily-close return following first +20% move, (d) days from signal to first threshold crossing, right censored. Do NOT replace v8.17 previously frozen outcomes; produce separate v8.18 derived columns and compare both.",
     "safety": "No index value published after original Sunday in predictor feature; future path solely outcomes. No trading."
+  },
+  "academicEvidenceAddendum": {
+    "independentPaper": "Liu & Tsyvinski, Risks and Returns of Cryptocurrency, Review of Financial Studies 34(6) 2021; DOI 10.1093/rfs/hhaa113. Empirical past sample reports momentum and investor attention signals, weaker broad conventional macro-factor return exposures. Not proof of BTCI performance in 2026.",
+    "hypothesis": "BTC-specific time-series momentum and investor attention might provide more distinct information than additional correlated macro indices; verify against both BTC weeklyTrend and future +50%/-35% labels, not just correlation.",
+    "dataControl": "Contemporaneous Google Trends search volumes, news activity and social proxies require timestamped archives and normalized search-sample policy, or PIT_UNVERIFIED. Do not synthesize old attention series as a real-time forecast record.",
+    "selection": "Do not reuse v8.17 2020–2026 error dates to hand-pick threshold. Observe rate direction and prior signed change with frozen 4-week and 13-week comparisons, both acceleration and extremes tested separately after preregistration.",
+    "downside": "Also test BTC realized volatility, onchain realized profitability and futures leverage as candidate crash mechanisms, not assume reversal always follows overheating."
   }
 }
