@@ -1,0 +1,65 @@
+{
+  "version": "8.18a2",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "aim": "Verify authentic 2012–2019 as-of source alternatives BEFORE using broad USD / yield curve to score BTC. Some current FRED series were created in 2014 or 2019; backfilled historical values were not available in this identifier at older dates.",
+  "evidence": {
+    "newBroad": "ALFRED DTWEXBGS first original publication 2019-02-04, despite backfilled observations since 2006. Never silently score this series as PIT before 2019.",
+    "olderDollar": "ALFRED DTWEXB = goods-only daily dollar index; ALFRED first vintage 2014-03-18, and retired 2020. Only as-of 2014–2019; is NOT identical to current goods+services broad index. Compare 4w direction only and report structural measurement break 2019.",
+    "slope": "T10Y2Y series original ALFRED release since 2014-01-27; earlier observation dates in current chart are NOT necessarily as-of index vintages. Try Federal Reserve H15 constituent DGS10 and DGS2 as-of 2012–13; derive slope only if both originally available.",
+    "realYields": "DFII10 verified 2013 and later, retain same source."
+  },
+  "preRegisteredProbes": [
+    {
+      "asOf": "2012-10-07",
+      "symbols": [
+        "DGS10",
+        "DGS2",
+        "DTWEXB",
+        "TWEXB"
+      ]
+    },
+    {
+      "asOf": "2013-01-06",
+      "symbols": [
+        "DGS10",
+        "DGS2",
+        "DTWEXB",
+        "TWEXB"
+      ]
+    },
+    {
+      "asOf": "2014-04-06",
+      "symbols": [
+        "DTWEXB",
+        "T10Y2Y"
+      ]
+    },
+    {
+      "asOf": "2017-01-01",
+      "symbols": [
+        "DTWEXB",
+        "T10Y2Y"
+      ]
+    },
+    {
+      "asOf": "2019-01-06",
+      "symbols": [
+        "DTWEXB",
+        "DTWEXBGS"
+      ]
+    },
+    {
+      "asOf": "2019-03-03",
+      "symbols": [
+        "DTWEXB",
+        "DTWEXBGS"
+      ]
+    }
+  ],
+  "source": "FRED as-of Sunday observations with realtime_start=end Sunday, previous 65d daily (or weekly TWEXB) and log/sha store. Source NOT AVAILABLE before first as-of real publication must be distinguished from API failures.",
+  "validity": "accept >=3 numeric observations and latest age 2-10 calendar days (weekly TWEXB <=14d). Calculate 4wk delta from earliest value 25-35 days before latest. Never use backfilled modern reconstructed prior release.",
+  "limit": "Original source vintage not intraday verified, weekly derivatives may differ across source changes, and any methodological index splice must be flagged.",
+  "storage": "Versioned official raw R2 with SHA readback report manifest; unchanged previous original pilot v8.18a",
+  "safety": "No Spot/Futures/NAV/MASTER/P&L/reserve/capital/trading limit/live Detector changes."
+}
