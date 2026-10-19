@@ -101,7 +101,7 @@ def selftest():
     src={"label":"2020-01-31","mvrvColumn":True,
          "values":{"2020-01-30":1.3,"2020-01-31":2.4,"2020-02-01":3.2}}
     q=classify("2020-02-02",[src])
-    assert q["candidate"] and q["observedAt"]=="2020-01-30" and q["ageDays"]==3
+    assert q["candidate"] and q["observedAt"]=="2020-01-31" and q["ageDays"]==2
     assert not classify("2020-01-26",[src])["candidate"]
     assert not classify("2020-02-09",[src])["candidate"]
     print("V818C6_SELFTEST_PASS",flush=True)
