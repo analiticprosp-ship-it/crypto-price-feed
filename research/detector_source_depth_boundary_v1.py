@@ -25,7 +25,7 @@ FAMILIES = {
     "binance_usdm_1h_klines": ("monthly", "futures/um/monthly/klines/{s}/1h/{s}-1h-{d}.zip"),
     "binance_spot_aggtrades": ("monthly", "spot/monthly/aggTrades/{s}/{s}-aggTrades-{d}.zip"),
     "binance_usdm_aggtrades": ("monthly", "futures/um/monthly/aggTrades/{s}/{s}-aggTrades-{d}.zip"),
-    "binance_usdm_funding": ("daily", "futures/um/daily/fundingRate/{s}/{s}-fundingRate-{d}.zip"),
+    "binance_usdm_funding": ("monthly", "futures/um/monthly/fundingRate/{s}/{s}-fundingRate-{d}.zip"),
     "binance_usdm_metrics_oi": ("daily", "futures/um/daily/metrics/{s}/{s}-metrics-{d}.zip"),
 }
 ROOT = Path("detector_source_depth_boundary_v1")
@@ -181,7 +181,7 @@ def run():
         "schema": "detector-h1h10-free-source-depth-boundary-probe-v1",
         "generated_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
         "status": "ARCHIVE_HTTP_METADATA_PROBE_ONLY",
-        "target": "bounded historical-depth discovery, not production time series",
+        "target": "bounded historical-depth discovery (funding archive is MONTHLY), not production time series",
         "families": summarize(rows), "probes": rows,
         "methodology": "January for 2017-2026; 12 months before earliest January 200; two months day-by-day for daily data",
         "limitations": [
