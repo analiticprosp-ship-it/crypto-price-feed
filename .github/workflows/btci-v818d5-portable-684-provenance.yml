@@ -1,0 +1,36 @@
+name: BTCI v8.18d5 portable frozen 684-week independently dated MVRV registry
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818d5_consolidated_684week_MVRV_asof_register.py'
+      - '.github/workflows/btci-v818d5-portable-684-provenance.yml'
+permissions:
+  contents: read
+jobs:
+  portable-provenance-register:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile and test public asof temporal eligibility
+        run: |
+          python -m py_compile research/btci_v818d5_consolidated_684week_MVRV_asof_register.py
+          python research/btci_v818d5_consolidated_684week_MVRV_asof_register.py --self-test
+      - name: Create portable 684-week witness registry with independent SHA parent integrity checks
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_v818d5_consolidated_684week_MVRV_asof_register.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818d5-portable-684week-asof
+          path: btci_v818d5_reports/
+          retention-days: 30
