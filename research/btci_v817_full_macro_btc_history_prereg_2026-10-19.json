@@ -1,0 +1,56 @@
+{
+  "version": "8.17",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "purpose": "BTC longest available history: date-correct original CoinMetrics BTC, Fed H4.1 releases, as-of FRED NFCI and ANFCI; compare strong upside AND strong downside, no need for modern alt basket",
+  "parents": {
+    "btc": {
+      "key": "research/btci/v8.6/runs/39130315439-1/extended_history.json",
+      "sha256": "9af82767fa8139685e784c131c075cec553298c4718ed4a40ac41412144248ca"
+    },
+    "cycle": {
+      "key": "research/btci/v8.9/runs/39138844921-1/multiscale.json",
+      "sha256": "4b8822e929aff5569fa9cd105404c02b110927a970aed33db68910925c111b73"
+    },
+    "fed": {
+      "key": "research/btci/v8.10.1/runs/39141047403-1/macro_study.json",
+      "sha256": "230f5c2eebdba583dbadf4a44d50123fb85f93c39b318f5d4fcbb7cb7480fb81"
+    },
+    "previous": {
+      "key": "research/btci/v8.15/runs/39169803298-1/confluence.json",
+      "sha256": "b0c9f37d535c7636a08fd5b056926ad3e5e6004bd8a988c4bc7dd51060bfaaba"
+    }
+  },
+  "population": "ALL eligible v8.9 Sundays as far back as source permits, not just NON-EXPANSION, with complete 52wk future CoinMetrics BTC fixing until 2026-10-17, FRED NFCI+ANFCI true 4wk as-of vintage feature and valid 5 official Fed releases. Also separate non-expansion BTC subset. 2010 BTC price daily exists, 2011 earliest weekly indicators after 34 weeks; no 2010 macro backfill.",
+  "fedRule": "H4.1 assets minus TGA minus consolidated RRP four release delta >0, cutoff Sunday-3 days; five reports <=10d apart, no genuinely missing report within five release window.",
+  "financeRule": "NFCI and ANFCI as-of Sunday request with each last obs 6-18d stale and 5 weekly observations spanning 27-35 calendar days. Delta4<0 easing, >0 tightening, flat neutral. Both Chicago measures only one independent family.",
+  "models": {
+    "A": "BTC weekly up",
+    "F": "Fed delta4>0",
+    "N": "NFCI delta4<0",
+    "J": "ANFCI delta4<0",
+    "STRICT_MACRO": "F AND N AND J",
+    "STRICT_ALL": "A AND F AND N AND J",
+    "BTC_FED": "A AND F",
+    "NEG_MACRO": "Fed delta4<0 AND NFCI delta4>0 AND ANFCI delta4>0",
+    "NEG_ALL": "NOT A AND NEG_MACRO",
+    "FED_TIGHT": "Fed delta4<0",
+    "FINANCE_TIGHT": "NFCI delta4>0 AND ANFCI delta4>0"
+  },
+  "outcomes": {
+    "UP13": "within next 13 Sundays maximum BTC weekly close >=+20% vs start",
+    "UP26": "within next 26 Sundays maximum BTC weekly close >=+50% vs start",
+    "UP52": "within next 52 Sundays maximum BTC weekly close >=+100% vs start",
+    "DOWN13": "within next 13 weeks minimum BTC DAILY close <=-20% vs start",
+    "DOWN26": "within next 26 weeks minimum BTC DAILY close <=-35% vs start",
+    "DOWN52": "within next 52 weeks minimum BTC DAILY close <=-50% vs start",
+    "POSITIVE13": "next 13wk return positive",
+    "POSITIVE26": "next 26wk return positive",
+    "POSITIVE52": "next 52wk return positive"
+  },
+  "metrics": "Exact same cohort baseline prevalence and TP FP FN TN, selection counts, medians and risks, split 2012, 2013-16, 2017-19, 2020-23, 2024-25; 14wk and 27wk alert lockout first signals; dates of false bullish alarms preceding falls and missed strong up moves, without cherry-picking.",
+  "source": "R2 three SHA-pin prior parent objects, asof FRED exact requested Sunday raw historical vintages archived including response bytes base64+SHA and lag checks, R2 manifest and readback. No refresh to current FRED series. Output unknown for failed sources, no fabrication.",
+  "logic": "Research is hindsight exploratory, past history heavily viewed and groups dependent; no significance/OOS/proven trading benefit; CoinMetrics PriceUSD is not executable. Market future horizon may be right-censored and must be excluded; no 52wk outcome for late 2026.",
+  "furtherFactors": "NEXT not silently in v8.17: dollar H.10 historical vintage, real yields DFII10 historical, yield curve, credit stress; ICE BofA HY OAS official FRED restricts to 3yr data since Apr2026, older may need licensed source; onchain MVRV historical revision/availability uncertain.",
+  "safety": "RESEARCH_ONLY: Spot Futures NAV P&L capital reserve MASTER Detector risk limits untouched; no order/position changes."
+}
