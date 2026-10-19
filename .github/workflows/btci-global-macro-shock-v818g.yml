@@ -1,0 +1,32 @@
+name: BTCI global macro tariffs wars pandemic events v8.18g
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_global_macro_shock_v818g.py'
+      - '.github/workflows/btci-global-macro-shock-v818g.yml'
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Replay 16 preregistered official global macro shock dates vs historical BTC reference and price/macro state
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_global_macro_shock_v818g.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818g-global-macro-shock-btc
+          path: btci_v818g_reports/
+          retention-days: 30
