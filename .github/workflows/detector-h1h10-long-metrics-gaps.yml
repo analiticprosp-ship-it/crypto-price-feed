@@ -1,0 +1,37 @@
+name: Detector H1-H10 Long Metrics Exact 5m Gap Ledger
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1h10-long-metrics-gaps.yml'
+      - 'research/detector_metrics_exact_gap_ledger.py'
+      - 'research/test_detector_metrics_exact_gap_ledger.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gaps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Verify exact missing 5m slots and streak boundaries
+        run: python -m unittest -v research.test_detector_metrics_exact_gap_ledger
+      - name: Re-read pinned 2024 to 2026 Binance OI labels and measure gaps without imputation
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_metrics_exact_gap_ledger
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-long-metrics-exact-gaps
+          path: detector_oi_long_metrics_gap_ledger/report.json
+          retention-days: 30
+          if-no-files-found: warn
