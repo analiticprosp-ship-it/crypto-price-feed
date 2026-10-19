@@ -1,0 +1,37 @@
+name: Detector H1-H10 Existing R2 Archive Candidate Census
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1h10-existing-archive-census.yml'
+      - 'research/detector_h1h10_existing_r2_archive_census.py'
+      - 'research/test_detector_h1h10_existing_r2_archive_census.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Verify archive metadata cannot be mistaken for time-series proof
+        run: python -m unittest -v research.test_detector_h1h10_existing_r2_archive_census
+      - name: List bounded already archived source metadata; never download large ZIPs
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_h1h10_existing_r2_archive_census
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-existing-r2-archive-metadata-census
+          path: detector_archive_candidate_census/report.json
+          if-no-files-found: warn
+          retention-days: 30
