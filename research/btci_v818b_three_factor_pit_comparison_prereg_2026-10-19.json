@@ -1,0 +1,81 @@
+{
+  "version": "8.18b",
+  "frozenUTCDate": "2026-10-19",
+  "researchOnly": true,
+  "purpose": "On the already pinned 684 historical 2012–2025 BTC/Fed/NFCI/ANFCI Sundays, test whether authentic as-of 4-week changes in US real yields, broad USD and yield curve improve BTC upside selection or downside risk identification.",
+  "history": {
+    "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+    "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+  },
+  "sources": {
+    "DFII10": {
+      "id": "DFII10",
+      "eligibleSince": "2012-06-03",
+      "lagDaysAllowed": [
+        2,
+        10
+      ],
+      "fourWeekDelta": "latest official real 10-year TIPS percent yield minus as-of earlier valid value 25-35 calendar days before latest",
+      "tightening": "delta>0",
+      "easing": "delta<0"
+    },
+    "DTWEXBGS": {
+      "id": "DTWEXBGS",
+      "eligibleSince": "2019-02-03",
+      "lagDaysAllowed": [
+        2,
+        11
+      ],
+      "fourWeekDelta": "latest official Fed H.10 broad trade-weighted USD index less 25-35 calendar days earlier",
+      "tightening": "delta>0",
+      "easing": "delta<0",
+      "warning": "Series historically unavailable as of 2013/2017 due revised series introduction; do not substitute current backfilled data; 2019 methodology shift and later rebasing documented."
+    },
+    "T10Y2Y": {
+      "id": "T10Y2Y",
+      "eligibleSince": "2015-01-04",
+      "lagDaysAllowed": [
+        2,
+        10
+      ],
+      "fourWeekDelta": "10-2 year nominal Treasury spread in percent, 4wk change",
+      "stress": "spread<0 inversion or delta<0 flattening descriptive; not presumed near-term bitcoin bear indicator",
+      "warning": "2013 pilot as-of vintage gave 400, do not assume earlier data"
+    }
+  },
+  "query": "FRED series observations exact realtime_start=realtime_end=frozen Sunday; 66 calendar day observation lookback ending as-of Sunday; last observation lag2-11 calendar days; >=3 validated numeric values and at least one 25-35 days before latest. Each original JSON body and per-body SHA archived in R2 with unique versioned object key.",
+  "rateLimit": "Steady no faster than 1.2 requests per second aggregate with bounded retry/backoff for 429; missing 400=>SOURCE_NOT_AVAILABLE (not false negative), failed 429=>HTTP429_UNRESOLVED not economic datum. Preserve source errors and included sample n.",
+  "targets": "v8.17.1 immutable future path outcomes: UP13 >=20%, UP26 >=50%, UP52 >=100% gain reached, DOWN13 <= -20%, DOWN26<=-35%, DOWN52 <= -50% daily close below signal reference, positive close horizons 13/26/52. No redefinition.",
+  "candidates": {
+    "BTC_A": "v8.17.1 A weekly uptrend",
+    "BTC_FED": "v8.17.1 BTC_FED",
+    "MACRO_STRICT": "v8.17.1 STRICT_MACRO = improving Fed + both Chicago indexes",
+    "ALL_OLD": "v8.17.1 STRICT_ALL BTC AND Fed AND both Chicago indices",
+    "DOWN_OLD": "v8.17.1 NEG_ALL = no positive BTC trend and worsening all macro",
+    "REAL_EASE": "DFII10 4wk delta <0",
+    "REAL_TIGHT": "DFII10 4wk delta >0",
+    "BTC_REAL_EASE": "BTC_A AND REAL_EASE",
+    "BTC_FED_REAL_EASE": "BTC_FED AND REAL_EASE",
+    "ALL_OLD_REAL_EASE": "ALL_OLD AND REAL_EASE",
+    "DOWN_OLD_REAL_TIGHT": "DOWN_OLD AND REAL_TIGHT",
+    "REAL_TIGHT_NO_BTC": "REAL_TIGHT AND NOT BTC_A",
+    "DOLLAR_SOFT": "DTWEXBGS delta<0",
+    "DOLLAR_STRONG": "DTWEXBGS delta>0",
+    "ALL_OLD_USD_SOFT": "ALL_OLD AND DOLLAR_SOFT",
+    "DOWN_OLD_USD_STRONG": "DOWN_OLD AND DOLLAR_STRONG",
+    "REAL_AND_USD_TIGHT": "REAL_TIGHT AND DOLLAR_STRONG",
+    "REAL_AND_USD_TIGHT_NO_BTC": "REAL_TIGHT AND DOLLAR_STRONG AND NOT BTC_A",
+    "REAL_AND_USD_EASE": "REAL_EASE AND DOLLAR_SOFT",
+    "ALL_OLD_REAL_USD_EASE": "ALL_OLD AND REAL_EASE AND DOLLAR_SOFT",
+    "SPREAD_INVERTED": "T10Y2Y<0",
+    "SPREAD_FLATTEN": "T10Y2Y 4wk delta<0",
+    "DOWN_OLD_SPREAD_INVERTED": "DOWN_OLD AND SPREAD_INVERTED",
+    "ALL_OLD_SPREAD_NOT_INVERTED": "ALL_OLD AND T10Y2Y>=0"
+  },
+  "comparisons": "For each factor and combination, all conditions including baseline models compared on EXACT same factor-available dates (not 684 for USD). Compare 684 original full sample separately only for provenance. Calculate TP FP FN TN, count, PPV, recall, adverse20/35 and positive13/26, 26wk median. Results by 2012, 2013-2016, 2017-2019, 2020-23, 2024-25 and locked alerts >=14 and >=27 weeks.",
+  "preRegisteredControls": "Real yields tightening predicts risk hypothetically, easing may support upside. A simple binary 4-week sign is arbitrary; no learned coefficients, interactions predeclared. Report ALL candidates, do not select best apparent historical rate as proven edge. No p-values, small event count cautions.",
+  "quality": "All original 684 rows preserved byte-for-byte after additive features and output; no revisions to v8.17.1, no using 2026 live values as 2012. Last eligible weekly outcome 2025-10-12; not OOS.",
+  "pipeline": "Rate limit isolated source acquisition can span multiple execution runs; report partial as incomplete, and DO NOT claim full panel until source and analytics SHA manifest reread pass.",
+  "future": "After macro independent-factor evidence proceed to chain MVRV/realized capitalization PIT audit, Korea alt liquidity and global macro geopolitical/crypto contagion context on hourly sourced timestamps.",
+  "safety": "RESEARCH_ONLY. Do not change Spot, Futures, NAV, P&L, capital, reserve, MASTER, Detector, trade limits or create trading automation."
+}
