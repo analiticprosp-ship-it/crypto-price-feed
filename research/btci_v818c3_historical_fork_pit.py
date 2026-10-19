@@ -157,6 +157,18 @@ def main():
             "overlapCalendarDates": len(prev["values"].keys() & curr["values"].keys()),
             "metrics": {col: compare(prev, curr, col) for col in COLS},
         })
+    # Audit-log expansion only: reproduce the same preregistered pairwise statistics.
+    for pa in pairAudits:
+        reduced = {
+            "before": pa["before"], "after": pa["after"],
+            "overlapCalendarDates": pa["overlapCalendarDates"],
+            "metrics": {
+                col: {k: v for k, v in pa["metrics"][col].items()
+                      if k in ("status", "bothNumeric", "changedNumericValues", "oneSideMissing")}
+                for col in COLS
+            },
+        }
+        print("V818C3_REVISION_COUNTS " + json.dumps(reduced, ensure_ascii=False), flush=True)
     available = [r["label"] for r in sources if r["metricColumns"]["CapMVRVCur"]]
     status = "GIT_BLOB_VERIFIED_HISTORIC_VINTAGES_NOT_ORIGINAL_FIRST_SEEN"
     if errors:
