@@ -1,0 +1,55 @@
+{
+  "version": "8.18b1",
+  "frozenUTC": "2026-10-19",
+  "status": "PREREGISTERED_SOURCE_REPAIR_NOT_NEW_HYPOTHESIS",
+  "researchOnly": true,
+  "purpose": "Recover exactly one unresolved transient FRED DTWEXBGS Sunday vintage from v8.18b run 39249928886, without refetching any validated historical source or optimizing already observed BTC future outcomes.",
+  "immutableParents": {
+    "macroReport": {
+      "key": "research/btci/v8.18b/runs/39249928886-1/independent_factors.json",
+      "sha256": "b09e5513320edf79b8b03dfcbe6813bb115f9285b7f5d1b916ef58a1bfe406f5"
+    },
+    "usdAudit": {
+      "key": "research/btci/v8.18b/runs/39249928886-1/source/DTWEXBGS_sunday_asof.jsonl",
+      "sha256": "7c48b9e2ff5468ebfbba2064da239ed4e0f798bee4dcd123eb7afb40dea2b9e9"
+    },
+    "frozenBTC": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+    }
+  },
+  "expected": {
+    "series": "DTWEXBGS",
+    "requested": 342,
+    "validated": 341,
+    "transientCount": 1,
+    "missingStatus": "HTTP_BLOCKED",
+    "lagDaysMax": 11
+  },
+  "protocol": [
+    "Verify all parent SHA256 before doing anything",
+    "Identify the exact one missing historical Sunday from pinned source JSONL; STOP if zero or more than one",
+    "Retry only missing Sunday's official FRED realtime_start=realtime_end asof, with current authenticated FRED secret held only by GitHub Actions",
+    "Verify raw vintage SHA and Sunday-appropriate last date, reject future or staleness",
+    "Reproduce all four old study all-cohort summaries exactly before patch; STOP if mismatch",
+    "If recovery succeeds, replace only previously UNKNOWN factor and recompute same frozen models and cohorts; no retuning or post-hoc selection",
+    "If recovery fails, archive failure separately; never upgrade to full PASS",
+    "Archive full JSON, raw recovered source when available, prereg + manifest as immutable versioned R2 objects and SHA GET readback",
+    "Keep old R2 objects unchanged; distinct new run path"
+  ],
+  "statistics": "Existing 13/26/52w BTC UP/DOWN frozen targets only. Compare BTC-only same-date baseline, all original models, 14w and 27w lockout, era counts. No new significance claims.",
+  "pointInTime": "FRED Sunday ALFRED vintage is historically dated but exact intraday release clock remains unverified; BTC PriceUSD remains retrospective.",
+  "noActions": [
+    "Spot",
+    "Futures",
+    "NAV",
+    "P&L",
+    "capital",
+    "reserve",
+    "MASTER",
+    "Detector",
+    "tradingLimits",
+    "trades"
+  ],
+  "noAutotrading": true
+}
