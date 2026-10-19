@@ -148,3 +148,26 @@ R2 `research/detector-free-tardis-okx-history-audit/v1/39289452550-1.json`, SHA2
 - R2 immutable: `research/detector-binance-oi-2020-2021-origin-recon/v1/39311651357-1.json`; SHA256 `7242d39d61634d137b3f11fff24729deb47411820b7794249b054ceeb5db683a`. Publisher SHA, ZIP CRC и R2 write/readback PASS. Нет правок исходных исторических данных.
 
 **Новый суммарный gate:** `BINANCE_2022_2023_ALL_SOURCE_DAYS_AUDITED_WITH_QUALITY_MASKS`; `TARDIS_18_VENDOR_RECEIPT_ASOF_5184_5184_VERIFIED`; `BINANCE_ORIGIN_FIRST_OBSERVED_NOT_ABSOLUTE`; `EXCHANGE_RELEASE_PIT_UNVERIFIED`; `EDGE_UNVALIDATED`. Никаких изменений пользовательских Spot, Earn, Tangem, Futures, NAV, P&L, капитала, резерва и торговых лимитов.
+
+## 12. Полный календарный SOURCE-аудит BTC OI 2020-09-01 — 2021-12-31
+
+- [PR #113](https://github.com/analiticprosp-ship-it/crypto-price-feed/pull/113) merged. [Actions #39312585332](https://github.com/analiticprosp-ship-it/crypto-price-feed/actions/runs/39312585332) **SUCCESS, все пять matrix-jobs**, по 10 офлайн-регрессионных тестов в каждом. Буквально каждый из **426** дневных source ZIP BTCUSDT Binance USD-M OI за октябрь 2020 — ноябрь 2021 проверен издательским `.CHECKSUM` SHA256, ZIP CRC, исходными native значениями, 5m UTC календарём, полями, дублями и дефектами; оригиналы неизменны. Пять независимых R2 JSON с хешами / проверенным readback.
+- Результат 426 дней: **364 FULL**, **62 PARTIAL**, **490 отсутствующих пятиминутных меток**, **10 некорректных числовых OI**, ноль publisher/source failures и ноль конфликтов значений в полных дублированных строках.
+- Периоды (календарные дни / полные source-дни / частичные / пропуски 5m / invalid native OI):
+  - 2020Q4: **92 / 89 / 3 / 29 / 0**. Все 89 полных дней с 288 парами полностью идентичных строк.
+  - 2021Q1: **90 / 73 / 17 / 140 / 0**. Все 73 полных дня с 288 парами полностью идентичных строк.
+  - 2021Q2: **91 / 80 / 11 / 229 / 10**. Среди 80 полных дней **46 full exact double** и **34 full single**; переход неоднороден и имеет дефекты.
+  - 2021Q3: **92 / 80 / 12 / 32 / 0**. Все 80 полных дней одиночные.
+  - 2021 Oct–Nov: **61 / 42 / 19 / 60 / 0**. Все 42 полных дня одиночные.
+- Вместе с уже проверенными [PR #104](https://github.com/analiticprosp-ship-it/crypto-price-feed/pull/104) BTC сентябрём 2020 (30 дней, 29 FULL_DOUBLE, 1 PARTIAL, 4 missing source labels) и BTC декабрём 2021 (31 день, 26 FULL_SINGLE, 5 PARTIAL, 7 missing labels), **каждый день с 2020-09-01 по 2021-12-31 был исходно проверен: всего 487 дней, 419 полных (237 exact-double + 182 single), 68 частичных; 501 отсутствующая source 5m метка, 10 недопустимых числовых OI**.
+- **ВНИМАНИЕ:** 419 полных дней включают 237 дней с удвоенными одинаковыми источниковыми записями. Нельзя использовать `raw_rows` как число независимых 5m-наблюдений, молча дедуплицировать или заполнять отсутствующие метки. `SOURCE_5M_CALENDAR_AUDITED` НЕ означает `VINTAGE_ASOF_EXCHANGE_RELEASE_PROVEN`. Original exchange publication и исторические revisions не доказаны, `EDGE_UNVALIDATED`.
+
+| Интервал | Объект R2 | SHA256 |
+|---|---|---|
+| 2020Q4 | `research/detector-btc-usdm-oi-2020oct-2021nov/v1/2020Q4/39312585332-1.json` | `7206ede2c28c5cfd9bdc35efc788eecc619e85feddb31fca4c138291e68bd9d3` |
+| 2021Q1 | `research/detector-btc-usdm-oi-2020oct-2021nov/v1/2021Q1/39312585332-1.json` | `322c18045c7cc4755b9c21f93d618fdaa84a4bffec437847f24a0e19f11fb599` |
+| 2021Q2 | `research/detector-btc-usdm-oi-2020oct-2021nov/v1/2021Q2/39312585332-1.json` | `ea43561114bdb0611c2386e4b7869661cb5c9e7a3749fbbf823b2dd0117d9e67` |
+| 2021Q3 | `research/detector-btc-usdm-oi-2020oct-2021nov/v1/2021Q3/39312585332-1.json` | `d640ebcabd95f7e8922383b7d00b0826bba0c48e01d872879035cb0757780f26` |
+| 2021 Oct–Nov | `research/detector-btc-usdm-oi-2020oct-2021nov/v1/2021OCTNOV/39312585332-1.json` | `7fe4108e9fb734c887adfcaecbf37df0ea629993358caf5002fab845d94a72d0` |
+
+**Актуальные ограничения:** `BINANCE_BTC_2020_09_2021_12_SOURCE_CALENDAR_ALL_DAYS_AUDITED`; `BINANCE_2022_2023_ALL_SOURCE_DAYS_AUDITED_WITH_QUALITY_MASKS`; `PRE2020_ORIGIN_ABSOLUTE_NOT_PROVEN`; `EXCHANGE_ORIGINAL_RELEASE_PIT_UNVERIFIED`; `EDGE_UNVALIDATED`. Для исходных ETH/SOL OI до декабря 2021 полный дневной непрерывный архив **не сертифицирован**. Никаких изменений Spot/Earn/Tangem/Futures/NAV/P&L/капитала/резерва/лимитов.
