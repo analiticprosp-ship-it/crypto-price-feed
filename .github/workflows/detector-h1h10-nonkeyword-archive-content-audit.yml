@@ -1,0 +1,39 @@
+name: Detector H1-H10 Nonkeyword Archived ZIP Content Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1h10-nonkeyword-archive-content-audit.yml'
+      - 'research/detector_h1h10_nonkeyword_archive_content_audit.py'
+      - 'research/test_detector_h1h10_nonkeyword_archive_content_audit.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Verify exact 17 complement archives offline
+        run: |
+          python -m unittest -v research.test_detector_h1h10_nonkeyword_archive_content_audit
+          python -m unittest -v research.test_detector_h1h10_archived_candidate_content_audit
+      - name: Read bounded 17 remaining R2 archives and verify bytes CRC and coverage
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_h1h10_nonkeyword_archive_content_audit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1h10-nonkeyword-archive-content-audit
+          path: detector_archive_nonkeyword_audit/report.json
+          retention-days: 30
+          if-no-files-found: warn
