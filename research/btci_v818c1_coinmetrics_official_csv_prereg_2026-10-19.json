@@ -1,0 +1,31 @@
+{
+  "version": "8.18c1",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "parent": {
+    "key": "research/btci/v8.18c/runs/39223566949-1/onchain_source_audit.json",
+    "sha256": "ca9091b66bc82ec3b9ef37e678eacd1b3c48afad58a0bf3310b86fd1e8763bf4"
+  },
+  "sourceRepo": "https://github.com/coinmetrics/data",
+  "originalArchive": "https://raw.githubusercontent.com/coinmetrics/data/master/csv/btc.csv",
+  "originallyObservedGitBlobSHA1": "5e50f336d268e1f3a38e9885b5aaef36de529700",
+  "fallbackReason": "Community API returned HTTP 403 from GitHub Actions for seven historical dates. An official company-owned public GitHub CSV archive is available; test this source independently.",
+  "sourceRights": "Coin Metrics data repository CC BY-NC 4.0 non-commercial. Private research archive with official attribution, no public resale or mass distribution.",
+  "exactTests": [
+    "2013-11-30",
+    "2017-12-17",
+    "2019-06-30",
+    "2021-04-11",
+    "2022-11-08",
+    "2024-01-10",
+    "2025-01-05"
+  ],
+  "desiredMetrics": [
+    "CapRealUSD",
+    "CapMVRVCur"
+  ],
+  "accept": "SHA-1 git blob exact match to pre-observed blob as fetched from GitHub (blob header included), no partial CSV, canonical daily UTC date and duplicate check, metrics columns available and nonempty on sampled dates. Save raw CSV R2 + sha256 and SHA1 Git blob; R2 readback.",
+  "PIT": "Today's source is a rewritten backfilled CSV, not original temporal vintage, data earliest publication of metric must be independently proven. Even 2013 values in current CSV are not historic as-of features.",
+  "future": "If source verified and license permits, separately investigate post-2018 onchain deviations as retrospective screening only. For PIT use official Git revision committed before past signal Sunday or contemporaneous published snapshots, not current reconstructed row.",
+  "guard": "No BTC historical signal predictions tested, no Spot/Futures/NAV/master/tradeLimits/Detector changes."
+}
