@@ -1,0 +1,37 @@
+name: Detector H1-H10 Seven-Day Frozen Direction Magnitude Controls
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1h10-seven-day-controls.yml'
+      - 'research/detector_seven_day_fixed_controls.py'
+      - 'research/test_detector_seven_day_fixed_controls.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Offline source quality, time ordering and four-control equality tests
+        run: python -m unittest -v research.test_detector_seven_day_fixed_controls
+      - name: Pinned R2 7-day fixed 15m and 60m directional and absolute-magnitude evaluation
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_seven_day_fixed_controls
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-h1h10-seven-day-fixed-control-report
+          path: detector_seven_day_fixed_controls/report.json
+          if-no-files-found: warn
+          retention-days: 30
