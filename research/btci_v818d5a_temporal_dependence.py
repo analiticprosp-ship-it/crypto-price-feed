@@ -35,7 +35,7 @@ def report_for(days,last,h):
 
 def selftest():
     assert separated(["2020-01-05","2020-01-12","2020-04-05","2020-07-05"],13)==["2020-01-05","2020-04-05","2020-07-05"]
-    assert report_for(["2020-01-05","2020-04-05"],"2020-05-10",13)["labelWindowMatureByLastPanelDate"]==2
+    assert report_for(["2020-01-05","2020-04-05"],"2020-05-10",13)["labelWindowMatureByLastPanelDate"]==1
     assert report_for(["2020-01-05","2020-04-05"],"2020-05-10",26)["labelWindowMatureByLastPanelDate"]==0
     print("V818D5A_SELFTEST_PASS",flush=True)
 
