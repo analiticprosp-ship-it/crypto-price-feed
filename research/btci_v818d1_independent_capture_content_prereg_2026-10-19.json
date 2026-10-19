@@ -1,0 +1,60 @@
+{
+  "version": "8.18d1",
+  "frozenUTC": "2026-10-19",
+  "scope": "RESEARCH_ONLY",
+  "question": "Can dated independent Software Heritage origin visits and Wayback CDX captures be linked to verifiable contemporaneous Coin Metrics BTC CSV content (not merely metadata), before frozen BTCI Sunday decisions?",
+  "parents": {
+    "d0": {
+      "key": "research/btci/v8.18d0/runs/39312587553-1/independent_archives_index_audit_FULL.json",
+      "sha256": "895c95cdab46bb7a693d9942d9b546e4a6d1d9feeebc2948d2ba0376448d45f1"
+    },
+    "c8": {
+      "key": "research/btci/v8.18c8/runs/39308814539-1/independent_fork_684_asof_expansion_FULL.json",
+      "sha256": "a07ebe78d97ba5d6ccad13c2adac4e2406e76778627537fd231df7f7ef153a6f"
+    },
+    "btc": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+    }
+  },
+  "frozenTargets": [
+    "2020-08-02",
+    "2020-12-13",
+    "2021-04-04",
+    "2021-07-18",
+    "2022-06-19",
+    "2024-04-07",
+    "2025-04-13",
+    "2025-06-22"
+  ],
+  "exactVerification": {
+    "dateRequirements": "Capture timestamp UTC before Sunday 00:00; raw CSV observation Friday or earlier within seven days; cannot pull newer rows from old archive as actual as-of.",
+    "mvrv": "Coin Metrics CapMVRVCur; require CapMrktCurUSD / CapRealUSD internally consistent tol=0.000005; NEVER free-float.",
+    "wayback": "Attempt public capture-body fetch ONLY for at most two CDX records corresponding directly to GitHub BTC csv or raw.githubusercontent.com BTC CSV; 20MB cap. Verify response CSV structure and record actual bytes SHA256 and Git SHA1, no raw CSV redistribution.",
+    "softwareHeritage": "For at most four earliest archived origin visits to coinmetrics/data in 2019-2025 with nonempty snapshot IDs, attempt SWH snapshot API and locate master branch target revision. This metadata alone does not prove file byte identity; record branch target as separate historical object, do not upgrade without file content.",
+    "negativeResults": "429/403/404/502/network, archive redirect, HTML interstitial, missing metric triad, wrong CSV hash, empty visit, wrong date or unavailable body all distinct.",
+    "avoidOverclaim": "A CDX content digest without archived body is not a Git SHA or price feature witness. Original Coin Metrics first-publication clock still unknown.",
+    "unchangedControls": "684-week labels and prior 11 GitHub fork as-of weeks stay frozen; only additional independent captured file bytes can add candidate external archived data, and only if truly temporally eligible.",
+    "limits": {
+      "maxWaybackCsvBodies": 2,
+      "maxSwhSnapshots": 4,
+      "maxCSVBytes": 20000000,
+      "timeoutSeconds": 30
+    },
+    "rights": "Coin Metrics CC BY-NC: no bulk redistribution; save byte hashes, metadata and tiny fixed samples only."
+  },
+  "output": "GitHub Actions selftest, R2 pinned parent read, archival body diagnostics, exact SHA256 PUT/GET manifest. Negative results never silently imputed.",
+  "noTradeAuthority": true,
+  "portfolioWriteback": {
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "capital": false,
+    "reserve": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
