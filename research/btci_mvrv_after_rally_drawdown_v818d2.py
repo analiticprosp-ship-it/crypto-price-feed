@@ -93,7 +93,7 @@ def main():
  for row in mm["weeklyPanel"]:
   d=day(row["date"])
   x=baseline[row["date"]]
-  if abs(prices[d]-x["btcPriceReferenceUSD"])/prices[d]>1e-8:
+  if abs(prices[d]-x["btcPriceReferenceUSD"])>0.000003:
    raise SystemExit("V818D2_WEEKLY_DAILY_PRICE_CONFLICT:"+row["date"])
   windows={w:path_stats(d,prices,7*w) for w in (13,26,52)}
   q={
