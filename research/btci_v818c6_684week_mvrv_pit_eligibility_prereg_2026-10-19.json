@@ -1,0 +1,102 @@
+{
+  "version": "8.18c6",
+  "frozenUTC": "2026-10-19",
+  "mode": "RESEARCH_ONLY",
+  "noTradeAuthority": true,
+  "question": "For the exactly frozen BTCI v8.17.1 684 Sunday dates, how many would have a genuinely first-available daily MVRV at decision time as opposed to retrospectively backfilled history or source-file old Git timestamps?",
+  "hypothesis": "Prior v8.18c3 Git-vintage sources are useful candidate inputs but NOT proven original public first-seen on historical signal dates. Strict gate must not silently treat git commit timestamps, fork creation or 2019 rows in 2020 archive as availability proofs.",
+  "parent": {
+    "btcPanel": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091",
+      "expectedSundays": 684
+    },
+    "gitAudit": {
+      "key": "research/btci/v8.18c3/runs/39289134468-1/historical_fork_git_vintages_FULL.json",
+      "sha256": "b23f448547ba7cc778eafe554db614c32f010c0fbe0c91a3caa68d1503d32939"
+    },
+    "anchorMismatch": {
+      "key": "research/btci/v8.18c4/runs/39298506014-1/contemporaneous_2019_mvrv_anchor_FULL.json",
+      "sha256": "3981672dff6696c8abff44ded35eebe5168eeda8315bdb6b41194800a9f99873"
+    },
+    "fiveDayDiagnosis": {
+      "key": "research/btci/v8.18c5/runs/39298875924-1/five_day_discrepancy_FULL.json",
+      "sha256": "e481b833b397ebbc510be817d8e2d6972694e9ae347841cf2be58b41d567eb97"
+    }
+  },
+  "vintageSources": {
+    "owner": "croque-m",
+    "repo": "coinmetrics-data",
+    "forkCreatedUTC": "2024-12-08T06:11:14Z",
+    "samples": [
+      {
+        "label": "2018-07-11",
+        "sha": "a27df23ba99804b373a939367fce80765df2fbaf",
+        "blob": "dc0f93c40349fb7038d384b6095aacddfefe1b12",
+        "bytes": 421449
+      },
+      {
+        "label": "2020-01-31",
+        "sha": "bacd0afed3e4f9c76a3b63507e165313d84d9188",
+        "blob": "4bff9d1564ef9c5ba06565dd168f7b19dcf1fcdc",
+        "bytes": 2523792
+      },
+      {
+        "label": "2020-12-31",
+        "sha": "7c9ea1ae592db106de039bb3869777219e46c13a",
+        "blob": "687c3b24db62e027b45340022977e1326ccecb84",
+        "bytes": 2886213
+      },
+      {
+        "label": "2021-06-30",
+        "sha": "b6e948168dc27b7f28d1375beea9e25c74ed87ee",
+        "blob": "11884c65e4b6354dfb9524805d4275492c37f15b",
+        "bytes": 9001188
+      },
+      {
+        "label": "2022-11-30",
+        "sha": "f2217062504f5bf00918d1ee8ec97e11ab0b33e3",
+        "blob": "7fe5431e4bd0aa37ba810f42c6f673af0a6531b9",
+        "bytes": 10127007
+      },
+      {
+        "label": "2023-12-31",
+        "sha": "028cc389e272a99ebf408f31cd92087a2e300653",
+        "blob": "f58903f0158c10e4a6982e3f3fb629e2a11fe55a",
+        "bytes": 11045134
+      },
+      {
+        "label": "2024-11-30",
+        "sha": "4ebddd9c0ba53a3fe4ef306f7a0e421c2da0f572",
+        "blob": "f36e841d30648422e7040d610712f79b1a4c7bcd",
+        "bytes": 11891466
+      }
+    ]
+  },
+  "study": {
+    "decisionClock": "Sunday 00:00:00 UTC",
+    "conservativeObservationGuard": "at least two calendar days before Sunday; use Friday or older daily data, no same-Sunday nor Saturday",
+    "maxAgeDays": 7,
+    "cohort": "EXACT 684 frozen Sundays, no outcomes or price relabeling, no date additions/removals",
+    "candidateDefinition": "an earlier archive commit with MVRV available on a daily row from Friday or earlier within 7d of the Sunday and not earlier than its own commit date; this is only a Git-vintage candidate, not original PIT",
+    "strictSourceCriterion": "Original public first-seen record and exact metric/data definition and value, plus available_at UTC before Sunday decision; reconstructed CSV, historic Git object alone or Jan 1 2020 rounded article with observed-date mismatch NOT sufficient.",
+    "strictGate": "If no independently verified original public first-seen timestamps with exact aligned value, strictEligible=false and no backtesting. Do NOT declare all MVRV unavailable; unknown, not proven.",
+    "decoupledContext": "2018 MVRV concept public; archived July 2018 schema absent. 2020 article 1.33 matches Dec29 but printed Dec30, date mapping unverified; do not upgrade.",
+    "summaries": "exact 684 panel rows with time/source eligibility flags, per-era counts, nearest preserved vintage sample coverage, hard gap/quality states, report negative evidence and limitations.",
+    "noModeling": "No signals, threshold tuning, model fitting, historic predictive accuracy, OOS claims or trading recommendations",
+    "license": "Coin Metrics CC BY-NC: do not redistribute full raw original CSV; archive eligibility metadata only."
+  },
+  "quality": "Verify source raw Git SHA1, R2 pinned parent SHA256, original panel count/date ordering and Sunday, R2 SHA256 read-back; on any source failure classify failure, do not impute or downgrade guard.",
+  "prohibitions": [
+    "Spot",
+    "Futures",
+    "NAV",
+    "PnL",
+    "capital",
+    "reserve",
+    "MASTER",
+    "Detector",
+    "tradingLimits",
+    "orders"
+  ]
+}
