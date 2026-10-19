@@ -1,0 +1,88 @@
+{
+  "version": "8.18c9",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "tradeAuthority": false,
+  "goal": "Investigate whether preserved original Coin Metrics Git commits approximate an uninterrupted 2020-2025 PUBLICATION-CANDIDATE history, not claiming original public push/first-seen. Explicit negative controls 2018/2019. No prediction analysis.",
+  "parents": {
+    "v8171": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+    },
+    "c8": {
+      "key": "research/btci/v8.18c8/runs/39308814539-1/independent_fork_684_asof_expansion_FULL.json",
+      "sha256": "a07ebe78d97ba5d6ccad13c2adac4e2406e76778627537fd231df7f7ef153a6f"
+    }
+  },
+  "archivalRepoCutoffs": [
+    {
+      "repo": "croque-m/coinmetrics-data",
+      "forkCreatedUTC": "2024-12-08T06:11:14Z",
+      "coversAnchorsBefore": "2024-12-01",
+      "source": "Historic Git objects preserved in 2024 fork"
+    },
+    {
+      "repo": "wds33817/data",
+      "forkCreatedUTC": "2025-06-20T13:08:11Z",
+      "coversAnchorsFrom": "2025-01-01",
+      "source": "Historic Git objects preserved by June 2025 fork"
+    }
+  ],
+  "frozenAnchorSundays": [
+    "2018-10-07",
+    "2019-01-06",
+    "2019-07-07",
+    "2020-01-05",
+    "2020-04-05",
+    "2020-07-05",
+    "2020-10-04",
+    "2021-01-03",
+    "2021-04-04",
+    "2021-07-04",
+    "2021-10-03",
+    "2022-01-02",
+    "2022-04-03",
+    "2022-07-03",
+    "2022-10-02",
+    "2023-01-01",
+    "2023-04-02",
+    "2023-07-02",
+    "2023-10-01",
+    "2024-01-07",
+    "2024-04-07",
+    "2024-07-07",
+    "2024-10-06",
+    "2025-01-05",
+    "2025-04-06",
+    "2025-06-15"
+  ],
+  "sourceChecks": [
+    "Fetch most recent Git commit modifying csv/btc.csv at or before Sunday 00:00 UTC from cutoff-appropriate preserved fork; use GitHub REST commit query with path and until <= decision, per_page=1; retain complete original commit SHA and committer UTC.",
+    "Verify matching Git tree csv/btc.csv Git blob SHA1 and raw CSV Git SHA1 bytes, no silent replacement.",
+    "Check exact observation row from Friday or older 2-7 days before Sunday; no forward filling or date >= Saturday.",
+    "Quantify: source recency (committer-to-Sunday days), archive-row age, MVRV column, CapRealUSD and CapMrktCurUSD columns, and arithmetic agreement when all three available.",
+    "Forbid upgrading a historical committer date to genuine independent public first-seen or actual provider release. No source can be provider-clock verified with Git commit metadata alone.",
+    "Lock baseline 684 weekly panel exactly; audit 26 frozen prechosen samples only (not a complete 684 as-of MVRV panel). Mark source missing, stale, value discrepancy, or API failures separately.",
+    "Comparison to 11 independently dated fork witness weeks: unchanged strict count from c8. New historical commit dates are only weaker candidates and NOT allowed as new independently proven PIT weeks.",
+    "Raw CoinMetrics CSV CC BY-NC: do not republish full source, save metadata, Git SHA, and only compact fixed observation values.",
+    "Do not train models, search cutoffs, examine future price outcomes, infer actionable edge or create trade signal."
+  ],
+  "evidenceTiers": {
+    "A": "independent public GitHub fork as-of creation/push, previously c8: 11, pinned unchanged",
+    "B": "old original upstream Git committer date with raw Git object verification but first public push moment not independently witnessed; only chronological candidate",
+    "C": "modern data backfilled with no as-of witness; NOT PIT"
+  },
+  "output": "R2 report and SHA256 manifest, 26 frozen dates source audit, per-era summary and non-trading restrictions. Any source error retained, no fabricated PASS.",
+  "guard": {
+    "spot": false,
+    "futures": false,
+    "nav": false,
+    "pnl": false,
+    "capital": false,
+    "reserve": false,
+    "master": false,
+    "detector": false,
+    "limits": false,
+    "orders": false
+  }
+}
