@@ -1,0 +1,38 @@
+name: BTCI v8.18c9 historical Coin Metrics commit calendar, non-PIT
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818c9_historical_commit_calendar.py'
+      - '.github/workflows/btci-v818c9-historical-commit-calendar.yml'
+permissions:
+  contents: read
+jobs:
+  research-calendar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install SHA-verifiable Cloudflare R2 client
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile, unit-test, and enforce no-lookahead historical observation gate
+        run: |
+          python -m py_compile research/btci_v818c9_historical_commit_calendar.py
+          python research/btci_v818c9_historical_commit_calendar.py --self-test
+      - name: Research-only 26 fixed Git source probes and R2 SHA readback
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_v818c9_historical_commit_calendar.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818c9-historical-commit-calendar
+          path: btci_v818c9_reports/
+          retention-days: 30
