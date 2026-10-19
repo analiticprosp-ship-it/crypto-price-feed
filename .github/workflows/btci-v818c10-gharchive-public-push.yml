@@ -1,0 +1,36 @@
+name: BTCI v8.18c10 independently timestamp GitHub original push events
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818c10_gharchive_push_event.py'
+      - '.github/workflows/btci-v818c10-gharchive-public-push.yml'
+permissions:
+  contents: read
+jobs:
+  independent-public-push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile and unit-test historic event clock and sha guard
+        run: |
+          python -m py_compile research/btci_v818c10_gharchive_push_event.py
+          python research/btci_v818c10_gharchive_push_event.py --self-test
+      - name: Exactly three independent archived original GitHub PushEvent hours
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python -u research/btci_v818c10_gharchive_push_event.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818c10-independent-public-push-evidence
+          path: btci_v818c10_reports/
+          retention-days: 30
