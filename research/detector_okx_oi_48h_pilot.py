@@ -3,7 +3,7 @@
 
 Observed receipt times bound availability at this runner, not publication time.
 """
-import datetime as dt, hashlib, json, os, time, urllib.parse, urllib.request
+import datetime as dt, hashlib, json, os, time, urllib.error, urllib.parse, urllib.request
 import boto3
 from botocore.exceptions import ClientError
 
@@ -12,6 +12,8 @@ SCHEMA="detector-okx-oi-5m-forward-48h-v1"
 SYMBOLS=("BTC-USDT-SWAP","ETH-USDT-SWAP","SOL-USDT-SWAP")
 DURATION_MS=48*3600*1000
 MAX_BYTES=500_000
+MAX_POLL_ATTEMPTS=3
+RETRY_BACKOFF_SECONDS=(1,2)
 
 def now_ms():return int(time.time()*1000)
 def utc(ms):return dt.datetime.fromtimestamp(ms/1000,dt.timezone.utc).isoformat()
@@ -62,6 +64,52 @@ def poll(instrument):
          "server_date_header":server_date,"rows":validate_oi_data(json.loads(body),instrument,received),
          "provider":"OKX","api":"/api/v5/rubik/stat/contracts/open-interest-history",
          "period":"5m","scope":"observed-receipt-not-publication"}
+
+class PollAttemptFailure(Exception):
+ """Typed exhausted/terminal poll failure, with receipt-side attempt provenance."""
+ def __init__(self,cause,attempts):
+  super().__init__(str(cause))
+  self.cause=cause
+  self.attempts=attempts
+
+
+def transient_poll_error(exc):
+ """Retry only temporary empty API data, HTTP 429/5xx or network disruptions."""
+ if isinstance(exc,urllib.error.HTTPError):
+  return exc.code==429 or 500<=exc.code<600
+ if isinstance(exc,(urllib.error.URLError,TimeoutError,ConnectionError)):
+  return True
+ if isinstance(exc,ValueError):
+  return str(exc)=="OKX_OI_ROWS_INVALID"
+ return False
+
+
+def poll_with_retries(instrument,deadline_ms,fetch=None,sleeper=None,clock=None):
+ """Finite retry; each unsuccessful attempt is marked, never backdated or interpolated."""
+ if fetch is None:fetch=poll
+ if sleeper is None:sleeper=time.sleep
+ if clock is None:clock=now_ms
+ history=[]
+ for index in range(MAX_POLL_ATTEMPTS):
+  if clock()>=deadline_ms:
+   raise PollAttemptFailure(ValueError("PILOT_DEADLINE_REACHED"),history)
+  started=clock()
+  try:
+   observed=fetch(instrument)
+   history.append({"attempt":index+1,"status":"PASS",
+                   "started_ms":started,"finished_ms":clock()})
+   observed["attempt_trace"]=history
+   return observed
+  except Exception as exc:
+   temporary=transient_poll_error(exc)
+   history.append({"attempt":index+1,"status":"FAILED","started_ms":started,
+                   "finished_ms":clock(),"error_type":type(exc).__name__,
+                   "error_code":str(exc)[:100],"retryable":temporary})
+   if not temporary or index+1==MAX_POLL_ATTEMPTS:
+    raise PollAttemptFailure(exc,history) from exc
+   sleeper(RETRY_BACKOFF_SECONDS[index])
+ raise AssertionError("UNREACHABLE_POLL_LOOP")
+
 
 def changes(previous,current):
  """Only an observed earlier success permits an absence lower-bound."""
@@ -118,7 +166,7 @@ def main():
  errors=[];summary=[]
  for sym in SYMBOLS:
   try:
-   observed=poll(sym)
+   observed=poll_with_retries(sym,config["end_ms"])
    prev=load(s3,bucket,PREFIX+"/state/"+sym+".json")
    first,revisions,bootstrap=changes(prev,observed)
    # Write immutable raw poll prior to advancing last-successful state.
@@ -136,11 +184,15 @@ def main():
    label=observed["rows"][-1]["timestamp_ms"]
    summary.append({"symbol":sym,"status":"PASS","bootstrap":bootstrap,
      "rows":len(observed["rows"]),"first_observed_new":n,"revisions":len(revisions),
+     "attempts":observed["attempt_trace"],
      "newest_source_label":utc(label),"response_received_utc":utc(observed["response_received_ms"]),
      "lag_from_label_seconds":round((observed["response_received_ms"]-label)/1000,1)})
   except Exception as exc:
-   errors.append({"symbol":sym,"error_type":type(exc).__name__,"message":str(exc)[:120]})
-   summary.append({"symbol":sym,"status":"ERROR"})
+   underlying=exc.cause if isinstance(exc,PollAttemptFailure) else exc
+   trace=exc.attempts if isinstance(exc,PollAttemptFailure) else []
+   errors.append({"symbol":sym,"error_type":type(underlying).__name__,
+                  "message":str(underlying)[:120],"attempts":trace})
+   summary.append({"symbol":sym,"status":"ERROR","attempts":trace})
  result={"schema":SCHEMA,"run_id":rid,"attempt":attempt,
          "status":"POLL_PASS" if not errors else "POLL_PARTIAL",
          "pilot_start_utc":utc(config["start_ms"]),"pilot_end_utc":utc(config["end_ms"]),
