@@ -1,0 +1,37 @@
+name: Detector H1-H10 Joint BTC ETH SOL 2022-2023 Source Mask
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-joint-oi-source-2022-2023-v1.yml'
+      - 'research/detector_joint_source_oi_2022_2023_v1.py'
+      - 'research/test_detector_joint_source_oi_2022_2023_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  research-only-mask:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prevent gaps and stale source claims in joint 3-asset calendar
+        run: python -m unittest -v research.test_detector_joint_source_oi_2022_2023_v1
+      - name: Install R2 client
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Verify eight frozen publisher-audited manifests and derive joint mask
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_joint_source_oi_2022_2023_v1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-joint-2022-2023-oi-source-mask
+          path: detector_joint_3coin_oi_source_calendar/report.json
+          retention-days: 30
