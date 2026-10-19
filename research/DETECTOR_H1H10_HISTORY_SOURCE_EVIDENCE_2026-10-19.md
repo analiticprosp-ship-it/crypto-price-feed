@@ -91,3 +91,25 @@ R2 `research/detector-free-tardis-okx-history-audit/v1/39289452550-1.json`, SHA2
 - 123 подтверждённых исходных дня **не доказывают полную доступную глубину** для остальных дней 2020–2023; исходный `create_time` — метка данных, не доказательство original publication/causal PIT.
 
 **Текущий gate:** `BINANCE_EARLY_TWO_MONTHS_CALENDAR_VALIDATED_WITH_GAPS`; `TARDIS_18_VENDOR_RECEIPT_ASOF_5184_5184_VERIFIED`; `PRE2024_WHOLE_RANGE_UNCERTIFIED`; `EXCHANGE_FIRST_PUBLICATION_UNVERIFIED`; `EDGE_UNVALIDATED`. Данные research-only; ни одна торговая позиция, Spot/Futures/NAV/P&L или лимит не изменены.
+
+
+## 8. Дополнение: исходные квартальные OI-календари 2022Q1 и 2023Q1
+
+- [PR #106](https://github.com/analiticprosp-ship-it/crypto-price-feed/pull/106) merged, [Actions #39308756529](https://github.com/analiticprosp-ship-it/crypto-price-feed/actions/runs/39308756529) **оба matrix jobs SUCCESS**; 11 offline regression tests PASS. Полный календарный аудит оригинальных Binance USD-M daily metrics, BTCUSDT/ETHUSDT/SOLUSDT × 90 дней за каждый квартал. **540/540 источниковых ZIP прошли publisher SHA256, ZIP CRC и проверку временных/числовых CSV-полей.**
+- **2023Q1:** 270/270 FULL_SINGLE_VALID (90/90 каждый BTC/ETH/SOL), 0 missing 5m labels, 0 duplicate source labels, 0 invalid numeric OI; это качественная **источниковая** история за один весь квартал, но не доказательство первоначального времени публикации. Immutable R2: `research/detector-binance-oi-pre2024-quarter-calendars/v1/2023Q1/39308756529-1.json`, SHA256 `d89226756f5061dc8bcd8f84b8f59bb8733ed9c74af54bd48b5738dce308bbbc`.
+- **2022Q1:** 263/270 FULL_SINGLE_VALID; 7 PARTIAL (ошибочные native numeric OI), 352 invalid values, 0 missing source 5m labels, 0 duplicate labels. Проблемные дни: BTC/ETH/SOL **2022-03-07** — по 102 ошибочных значения, **2022-03-08** — по 15; SOL **2022-03-15** — 1 значение. Immutable R2 `research/detector-binance-oi-pre2024-quarter-calendars/v1/2022Q1/39308756529-1.json`, SHA256 `c9ba36b579e2011a350ebaf5914e6204880be84ae7bb369aecc8659f79647a30`.
+- Отсутствие пропущенных source timestamps не означает отсутствие некорректных OI **значений**. Исходные архивы не изменялись, импутации/дедупликации нет. Исследование остаётся `RESEARCH_ONLY / EDGE_UNVALIDATED / EXCHANGE_RELEASE_PIT_UNVERIFIED`.
+
+## 9. Дополнение: самые ранние фактически проверенные Tardis free derivative_ticker OI
+
+- [PR #107](https://github.com/analiticprosp-ship-it/crypto-price-feed/pull/107) merged, [Actions #39309240387](https://github.com/analiticprosp-ship-it/crypto-price-feed/actions/runs/39309240387) **SUCCESS**, 10 offline tests. Девять точных инструментов Binance Futures, Bybit, OKX Swap × BTC/ETH/SOL. Дата контрольного файла — первое число **следующего** месяца после instrument-specific `availableSince` из полного публичного Tardis catalog, не выдуманная дата начала OI и не доказательство непрерывной истории.
+- **Binance Futures BTC/ETH 2019-12-01:** оба gzip-архива действительно существуют; BTC 45 493 / 45 493 исходных записей с **пустым** `open_interest`, ETH 32 636 / 32 636 с пустым `open_interest`. **0/288 свежих vendor-receipt as-of OI интервалов у каждой монеты**. Ни в коем случае не объявлять декабрь 2019 пригодным OI-набором Binance по этим Tardis архивам.
+- **Binance Futures SOL 2020-10-01:** 94 101 numeric OI из 94 106 строк, **288/288** fresh 5m vendor receipt as-of.
+- **Bybit:** BTC **2020-06-01**, ETH **2020-11-01**, SOL **2021-07-01** — каждая дата **288/288** fresh. Прямой Bybit REST ранее дал HTTP403, что не отрицает Tardis sample.
+- **OKX Swap:** BTC и ETH **2020-01-01**, SOL **2021-02-01** — каждая дата **288/288** fresh.
+- Бounded gzip CRC/sha256, поля OI и исходные microsecond timestamp проверены, отчёт SHA256 R2 write/readback PASS. R2: `research/detector-tardis-earliest-free-receipt/v1/39309240387-1.json`, SHA256 `12b936127078b4d0318a4f6c2b59c60ccfb28db562ccdef318b4e1fa1ed7bb95`.
+- Точный rule: закрытый 5m бар +30s, Tardis vendor local receipt И событие источника не позднее cutoff, свежесть ≤120s. Это **VENDOR_RECEIPT_ASOF, а не оригинальный EXCHANGE_RELEASE_PIT**. Ни один из девяти дней не доказывает целую непрерывную 2019–2026 историю, нет сравнимости native OI units между площадками.
+
+**Сводный актуальный gate:** `EARLIEST_TARDIS_FREE_SAMPLES_9_OF_9_AUDITED` / `2023Q1_BINANCE_OI_FULL_270` / `2022Q1_BINANCE_OI_263_FULL_7_INVALID` / `PRE2024_WHOLE_RANGE_UNCERTIFIED` / `EXCHANGE_RELEASE_PIT_UNVERIFIED` / `EDGE_UNVALIDATED`.
+
+Следующий научный этап: оставшиеся кварталы 2020–2023 с дневным provenance и quality masks, классификация причин ошибочных OI 7–8 марта 2022, независимая публикационная семантика и затем frozen walk-forward H1–H10 без утечек. Все пользовательские Spot/Futures/NAV/P&L и лимиты неизменны.
