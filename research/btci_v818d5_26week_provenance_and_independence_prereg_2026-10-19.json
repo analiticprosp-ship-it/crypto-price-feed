@@ -1,0 +1,60 @@
+{
+  "version": "8.18d5",
+  "frozenUTC": "2026-10-19",
+  "authority": "RESEARCH_ONLY",
+  "tradeAuthorized": false,
+  "task": "Join 17 independently dated MVRV Sunday witnesses in v8.18d3 with nine GH Archive original provider repo public PushEvent witnesses in v8.18d4, preserve immutable 684-week BTCI dates, quantify temporal nonoverlap for 13/26/52 week evaluation windows without consulting any future BTC price outcomes.",
+  "parents": {
+    "btc": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091",
+      "weeks": 684
+    },
+    "d3": {
+      "key": "research/btci/v8.18d3/runs/39315327743-1/multi_archive_684_MVRV_provenance_FULL.json",
+      "sha256": "51c72586fa06652485d347f284045d5747f035c9f1213662115b5806cb3f0aeb",
+      "weeks": 17
+    },
+    "d4": {
+      "key": "research/btci/v8.18d4/runs/39315704074-1/original_repo_push_nine_hours_FULL.json",
+      "sha256": "859c1059858eadc3ac30d4d765afdba91762281e71207990358dc641f6510fcf",
+      "hours": 9,
+      "proven": 9
+    }
+  },
+  "frozenExpected": {
+    "old": 17,
+    "new": 9,
+    "union": 26,
+    "horizonsInWeeks": [
+      13,
+      26,
+      52
+    ],
+    "originalCoinMetricsMetricApiReleaseProof": 0
+  },
+  "tests": [
+    "Pin exact report JSON bytes via SHA256 GET from R2 and affirm research-only statuses, unmodified original 684 unique chronologically ordered Sundays.",
+    "Require old 17 evidence dates all present in original panel; require all nine d4 GH Archive matched original-repo PushEvent, public event at UTC before Sunday, original exact commit SHA identical to expected commit, source Git blob/MVRV ratio verified.",
+    "Use the source MVRV value and date in the d4 original historic Git blob report without recomputing 2026 price or current MVRV, source lag 2 through 7 calendar days, no future values.",
+    "Do not count multiple witness types for same Sunday more than once; retain overlap metadata and numerical mismatch flags if present. Expect 26 unique Sundays from pre-registered observations or stop (never force).",
+    "For temporal dependence, greedily choose earliest available Sunday, then next available Sunday at least H*7 days later, separately for H=13/26/52 weeks. This yields a time-disjoint subset size, not independent events, not a formal effective sample size, and not market predictive validation.",
+    "Separately report weeks by original BTCI era, every witnessed Sunday with type and archive timestamp; all other Sundays provenance unverified (not absence).",
+    "Do not use price outcomes, P&L, macro labels, future BTC returns, threshold fitting, or any prediction. No promotions to production.",
+    "Preserve Coin Metrics source license, never rehost raw bulk source data. Exact source audit metadata and numeric MVRV values only.",
+    "Write complete 684-row research metadata ledger and report with SHA256 manifest, R2 full readback verification."
+  ],
+  "interpretation": "GitHub public repository first-seen witnesses are not independent original Coin Metrics API metric first-publication timestamps. Nonoverlap greedily measures temporal spacing only. Prospective PIT model proof, forecasting accuracy and tradability remain unverified.",
+  "portfolioWriteback": {
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "capital": false,
+    "reserve": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
