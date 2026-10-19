@@ -1,0 +1,25 @@
+name: Detector H1-H10 Broad History Frozen Research Protocol
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-h1h10-broad-history-protocol.yml'
+      - 'research/detector_h1_h10_broad_history_prereg_v1_2026-10-19.json'
+      - 'research/DETECTOR_H1_H10_BROAD_HISTORY_PREREG_v1_2026-10-19.md'
+      - 'research/test_detector_h1_h10_broad_history_prereg.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify ten frozen hypotheses, targets, holdout exclusions and no trade authority
+        run: python -m unittest -v research.test_detector_h1_h10_broad_history_prereg
+      - name: Print sha256 of machine-readable frozen protocol
+        run: sha256sum research/detector_h1_h10_broad_history_prereg_v1_2026-10-19.json

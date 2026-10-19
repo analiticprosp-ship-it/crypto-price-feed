@@ -1,0 +1,245 @@
+{
+  "schema": "detector-h1-h10-broad-history-prereg-v1",
+  "freeze_date_utc": "2026-10-19",
+  "purpose": "future-confirmatory-isolated-research",
+  "authority": "RESEARCH_ONLY",
+  "trade_actions": false,
+  "edge_status": "EDGE_UNVALIDATED",
+  "reference_document": "research/DETECTOR_H1_H10_BROAD_HISTORY_PREREG_v1_2026-10-19.md",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "title": "taker_flow_leads_spot",
+      "contrast": "Spot event flow vs lagged spot-price baseline",
+      "required_availability_evidence": [
+        "spot_flow"
+      ],
+      "status": "NOT_YET_CONFIRMATORY_TESTED"
+    },
+    {
+      "id": "H2",
+      "title": "oi_plus_buying_leads_price",
+      "contrast": "price+flow vs price+flow+venue_OI",
+      "required_availability_evidence": [
+        "spot_perp_flow",
+        "venue_oi"
+      ],
+      "status": "NOT_YET_CONFIRMATORY_TESTED"
+    },
+    {
+      "id": "H3",
+      "title": "rising_oi_flat_price_absorption",
+      "contrast": "abs-forward-return/reversal vs matched controls",
+      "required_availability_evidence": [
+        "venue_oi",
+        "price",
+        "flow"
+      ],
+      "status": "NOT_YET_CONFIRMATORY_TESTED"
+    },
+    {
+      "id": "H4",
+      "title": "liquidation_deleveraging_recovery",
+      "contrast": "recovery vs stress-matched controls",
+      "required_availability_evidence": [
+        "liquidations",
+        "venue_oi"
+      ],
+      "status": "NOT_YET_CONFIRMATORY_TESTED"
+    },
+    {
+      "id": "H5",
+      "title": "position_metric_redundancy",
+      "contrast": "reduced vs redundant leverage features",
+      "required_availability_evidence": [
+        "funding",
+        "venue_oi",
+        "basis"
+      ],
+      "status": "NOT_YET_CONFIRMATORY_TESTED"
+    },
+    {
+      "id": "H6",
+      "title": "perp_flow_leads_spot",
+      "contrast": "matched event lead-lag with receipt guards",
+      "required_availability_evidence": [
+        "spot_flow",
+        "perp_flow"
+      ],
+      "status": "NOT_YET_CONFIRMATORY_TESTED"
+    },
+    {
+      "id": "H7",
+      "title": "flow_price_divergence_exhaustion",
+      "contrast": "future reversal vs price baseline",
+      "required_availability_evidence": [
+        "flow",
+        "price"
+      ],
+      "status": "NOT_YET_CONFIRMATORY_TESTED"
+    },
+    {
+      "id": "H8",
+      "title": "low_depth_price_impact",
+      "contrast": "impact at same quote flow vs high depth",
+      "required_availability_evidence": [
+        "orderbook_depth",
+        "spread",
+        "flow"
+      ],
+      "status": "NOT_YET_CONFIRMATORY_TESTED"
+    },
+    {
+      "id": "H9",
+      "title": "btc_eth_sol_heterogeneity",
+      "contrast": "held-out asset interaction vs pooled",
+      "required_availability_evidence": [
+        "btc_eth_sol_coverage"
+      ],
+      "status": "NOT_YET_CONFIRMATORY_TESTED"
+    },
+    {
+      "id": "H10",
+      "title": "joint_model_over_detector",
+      "contrast": "A vs B/C/D same folds net costs",
+      "required_availability_evidence": [
+        "PIT_detector_A",
+        "joint_features",
+        "execution_costs"
+      ],
+      "status": "NOT_YET_CONFIRMATORY_TESTED"
+    }
+  ],
+  "models": {
+    "A": "PIT existing Detector",
+    "B": "reduced price/flow verified",
+    "C": "joint price/flow/leverage/liquidity",
+    "D": "regime adaptive C train-only"
+  },
+  "universe": {
+    "symbols": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "SOLUSDT"
+    ],
+    "venues": [
+      "Binance",
+      "OKX",
+      "Bybit"
+    ],
+    "market_types": [
+      "spot",
+      "USDT-perpetual"
+    ],
+    "target_window_utc": [
+      "2024-01-01",
+      "2026-10-16"
+    ]
+  },
+  "reused_discovery_dates": [
+    "2024-01-01",
+    "2025-01-01",
+    "2026-09-01",
+    "2026-10-01"
+  ],
+  "datasets_must_have": [
+    "source_event_at",
+    "source_first_available_at_or_vendor_receipt_at",
+    "collector_received_at",
+    "decision_at",
+    "venue",
+    "symbol",
+    "contract_unit",
+    "source_sha256",
+    "quality_status"
+  ],
+  "history_sequence": [
+    "signed_time_provenance_inventory",
+    "7-to-14-day bounded source sample",
+    "monthly resumable free backfill",
+    "independent source and asof audit",
+    "locked walk-forward eval"
+  ],
+  "quality_fail_closed": [
+    "DATA_MISSING",
+    "ASOF_PUBLICATION_UNVERIFIED",
+    "INSUFFICIENT_COVERAGE",
+    "COST_UNVERIFIED",
+    "A_MISSING",
+    "EDGE_UNVALIDATED"
+  ],
+  "split": {
+    "initial_train_days_min": 180,
+    "test_block_days": 30,
+    "purge_embargo_hours": 24,
+    "locked_holdout_start_utc": "2026-07-01T00:00:00Z",
+    "locked_holdout_end_utc": "2026-10-16T23:59:59Z",
+    "exclude_all_previously_viewed_dates": true,
+    "already_excluded_dates": [
+      "2026-09-01",
+      "2026-10-01"
+    ],
+    "holdout_pristine_status": "NOT_YET_CERTIFIED",
+    "normalization_and_thresholds": "train-only"
+  },
+  "targets": {
+    "direction": {
+      "primary_minutes": 15,
+      "secondary_minutes": 60,
+      "primary_metric": "Brier",
+      "secondaries": [
+        "logloss",
+        "calibration"
+      ]
+    },
+    "magnitude": {
+      "primary_minutes": 15,
+      "secondary_minutes": 60,
+      "target": "abs future log return",
+      "primary_metric": "MAE",
+      "secondaries": [
+        "RMSE",
+        "train-only p90 tail event"
+      ]
+    }
+  },
+  "falsification_controls": {
+    "direction": [
+      "P(up)=0.5",
+      "Laplace train-only class prior",
+      "price only",
+      "price plus OI"
+    ],
+    "magnitude": [
+      "zero movement",
+      "train-only mean abs-return",
+      "price-only lagged volatility",
+      "price-only plus abs-OI change"
+    ]
+  },
+  "significance": {
+    "independence_unit": "calendar UTC day and nonoverlapping event episode",
+    "min_holdout_days": 60,
+    "min_independent_event_episodes": 100,
+    "required_market_regimes": 3,
+    "primary_family": "H1 to H10",
+    "correction": "Holm familywise 0.05",
+    "overlapping_5m_rows_are_independent": false
+  },
+  "economic_replay": {
+    "fees": true,
+    "spread": true,
+    "slippage": true,
+    "funding": true,
+    "capacity": true,
+    "source_timestamp_validated": true,
+    "missing_costs_status": "COST_UNVERIFIED"
+  },
+  "limits": [
+    "History obtained only from verified free sources unless user explicitly approves paid source",
+    "Tardis local_timestamp is vendor receipt, not native Binance first publication",
+    "No time-travel fill",
+    "No retrofit positive evidence from existing four sample days",
+    "No implicit overwrite of canonical portfolio/trading rules"
+  ]
+}
