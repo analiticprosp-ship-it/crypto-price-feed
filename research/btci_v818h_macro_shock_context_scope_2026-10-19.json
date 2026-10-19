@@ -1,0 +1,40 @@
+{
+  "version": "8.18h-scoping",
+  "dateUTC": "2026-10-19",
+  "researchOnly": true,
+  "state": "RESEARCH_SCOPE_REGISTERED_NOT_LIVE_DETECTOR",
+  "parents": {
+    "globalShock": {
+      "key": "research/btci/v8.18g/runs/39217491809-1/global_macro_shocks.json",
+      "sha256": "94ac77355484a2def6929f977dd1b556b3a8db06481a2c2a5e3377b5a887cfee"
+    },
+    "cryptoShock": {
+      "key": "research/btci/v8.18e/runs/39215131167-1/crypto_crisis_events.json",
+      "sha256": "78608d81f46d52b520a51377068b7221d7bb957fc6d6cba689afcf41ae230bff"
+    },
+    "BTCContext": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+    }
+  },
+  "suggestedResearchArchitecture": {
+    "structural": "Slow BTC original-as-of trend and previous cycle phase, no future label.",
+    "macro": "Real yield, broad USD, Fed flow, NFCI/ANFCI (Chicago indexes one correlated family), real rates and credit stress, same date PIT.",
+    "crypto": "Exchange/DeFi leverage, onchain flows, custody stablecoins and credit contagion with as-of records.",
+    "shock": "Global macro/geopolitical shocks: dated primary announcement, scheduled vs surprise, restrictive vs supportive vs mixed, dates of escalation/de-escalation and market stress transmission.",
+    "interaction": "Favorable Fed/NFCI with adverse war/tariff/crypto insolvency headline = CONFLICT event; freeze descriptive state but do NOT automatically sell. Adverse macro with supportive emergency Fed = crisis-response conflict, not guaranteed bounce.",
+    "response": "Measure btc return from source as-of announcement to 1h/4h/24h/7d/30d, risk over full path and 26w duration. 24/7 BTC vs weekday stock/Treasury quotes should be time-zone adjusted.",
+    "uncertainty": "Unknown event market surprise, official publication time, event degree, stock holiday means incomplete => UNKNOWN, not 0."
+  },
+  "futureValidation": {
+    "initialCorpus": "Official timestamped economic releases (FOMC decisions, CPI, payrolls, trade executive orders USTR, WHO emergencies, UN escalation statements); also large DID-NOT-MOVE announcements, matched no-event windows.",
+    "classLabels": "Announcement vs implementation vs reversal; first public date vs realized later consequences; COVID market turmoil onset prior to formal pandemic declaration; military escalation vs de-escalation; mixed April9 2025",
+    "macroSurprise": "Where pre-announcement analyst consensus available and archived, calculate release surprise using predicted vs actual; otherwise event surprise UNKNOWN.",
+    "riskConfluence": "Negative news plus already worsening BTC structure, dollar/rates tightening, widening credit stress or crypto leverage = hypothesis for crash hazard; positive headline alone does not guarantee gains.",
+    "controls": "Pre-registered baseline prices 2011-2026 daily and hourly when official source proof; same-year and same BTC volatility/price-regime controls, overlapping news clustered; no p-values for tiny independent shock groups.",
+    "usability": "Evaluate false warning counts and lead-time distribution for large BTC +20/+50 and -20/-35 actual moves at 1d,7d,13/26/52wk without minimum two-week lag; prioritize risk reduction and miss cost.",
+    "risk": "No news/market causal conclusion from a single before/after window. Macro shock lists selected after event cannot yield calibrated probabilities. Live news integration requires separate secure approved tool and disclosure.",
+    "nextStep": "First validate primary timestamp authenticity and independent factor vintages, then code full news vs nonnews corpus and hourly event replay; not a live scheduled watch."
+  },
+  "immutableAccounting": "No Spot/Futures/NAV/P&L/reserve/capital/MASTER/Detector/trading limit changes and no auto trading."
+}
