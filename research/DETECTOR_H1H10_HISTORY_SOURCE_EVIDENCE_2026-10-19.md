@@ -183,3 +183,30 @@ R2 `research/detector-free-tardis-okx-history-audit/v1/39289452550-1.json`, SHA2
 - Неизменяемый отчёт R2: `research/detector-tardis-binance-btc-eth-2020-free-monthly-oi/v1/39315710848-1.json`, SHA256 `b403139191a0ff8784adf0e2ff0ec2a215d700fada578143b92852d479892cf8` (write/readback PASS).
 
 **Исследовательский статус:** `BINANCE_METRICS_SOURCE_BTC_2020_09/ETH_SOL_2021_12_FIRST_OBSERVED_NOT_ABSOLUTE`; `TARDIS_BTC_ETH_2020_06_FIRST_FRESH_FREE_MONTHLY_SAMPLE`; `VENDOR_RECEIPT_ONLY`; `EXCHANGE_RELEASE_PIT_UNVERIFIED`; `EDGE_UNVALIDATED`. Ни Spot/Earn/Tangem, ни Futures, ни NAV/P&L, ни лимиты, ни торговые операции не менялись.
+
+## 14. Исчерпывающая проверка всех ранних Binance USD-M OI ZIP URL: 2 742 отдельных дня
+
+- [PR #118](https://github.com/analiticprosp-ship-it/crypto-price-feed/pull/118) — объединён. [Actions #39319237333](https://github.com/analiticprosp-ship-it/crypto-price-feed/actions/runs/39319237333) **SUCCESS 3/3 jobs**, 12 offline tests на каждого из трёх активов, каждый байтовый архив перепроверен по Binance publisher SHA256 + ZIP CRC. Контрольная точка предварительно закреплена в SHA-проверенном отчёте [PR #110](https://github.com/analiticprosp-ship-it/crypto-price-feed/pull/110). GitHub Actions сохранил полный список всех HTTPS HEAD наблюдений по датам; **ни одного 429/неопределённого статуса**.
+- BTCUSDT: все **610** календарных URL с 2019-01-01 по **2020-09-01** включительно — **609 HTTP404**, ровно один HTTP200 **2020-09-01**. R2 `research/detector-binance-oi-preorigin-all-daily-head/v1/BTCUSDT/39319237333-1.json`, SHA256 `532b31f5dabed14daa6b2a4730fb0a41549c3f7a89f0ec12acf01db1457636f2`.
+- ETHUSDT: все **1 066** календарных URL с 2019-01-01 по **2021-12-01** включительно — **1 065 HTTP404**, ровно один HTTP200 **2021-12-01**. R2 `research/detector-binance-oi-preorigin-all-daily-head/v1/ETHUSDT/39319237333-1.json`, SHA256 `503d064a905f42c1412b7c8dd1741289d21db46da0dc2c8481bd5ab2ddaf63e3`.
+- SOLUSDT: все **1 066** календарных URL с 2019-01-01 по **2021-12-01** включительно — **1 065 HTTP404**, ровно один HTTP200 **2021-12-01**. R2 `research/detector-binance-oi-preorigin-all-daily-head/v1/SOLUSDT/39319237333-1.json`, SHA256 `5029dadd8ce00043181f0ff7d86cd37e7d962dbf961bf27a92d632a719908473`.
+- Доказано **полное отсутствие ранее первого указанного HTTP200 файла по КОНКРЕТНОМУ дневному URL на момент проверки**, а не абсолютное начало OI, отсутствие OI у Binance, времена исходной загрузки или causal trading point-in-time. Пример принципиального отличия источников: Tardis `derivative_ticker` для Binance BTC/ETH уже показал числовые OI на свободных контрольных датах июня 2020; стандартный Binance `daily/metrics` тогда не предоставил архивы на проверенных адресах. Источники не склеивать молча.
+
+## 15. Совместный календарь BTC+ETH+SOL 2022–2023: 717 полных дат из 730
+
+- [PR #119](https://github.com/analiticprosp-ship-it/crypto-price-feed/pull/119) объединён, [Actions #39319707132](https://github.com/analiticprosp-ship-it/crypto-price-feed/actions/runs/39319707132) **SUCCESS**, 12 offline тестов PASS. Перед расчётом повторно прочитаны из R2 и сверены по SHA256 **все восемь** независимых неизменяемых квартальных исходных отчётов 2022Q1–2023Q4. Никаких новых источников цен/OI и исправлений исходных данных.
+- Отдельных полных исходных дней-активов **2 159/2 190**, частичных **31**. Однако **одновременная полнота трёх активов достигнута лишь 717/730 календарных дней**, исключены целиком **13 отдельных дат**. Это строго `ALL_THREE_SOURCE_5M_LABELS_NUMERIC_QUALITY`, **НЕ** exchange first release/PIT, latency/execution availability, торговый сигнал либо подтверждённая доходность.
+- Конкретные 13 исключённых дней (UTC) и причина:
+  - **2022-03-07** BTC/ETH/SOL: по 102 invalid OI; **2022-03-08** BTC/ETH/SOL: по 15 invalid OI.
+  - **2022-03-15**, **2022-09-03** — только SOL, по 1 invalid OI.
+  - **2023-06-06** — все три, по 4 invalid OI.
+  - **2023-08-09** — все три, по 1 invalid OI.
+  - **2023-09-12** — все три, по 3 отсутствующие метки 5m.
+  - **2023-11-11** — все три, по 1 invalid OI.
+  - **2023-11-20** — все три, по 6 invalid OI.
+  - **2023-11-23**, **2023-11-26** — все три, по 2 invalid OI на монету.
+  - **2023-12-08**, **2023-12-12** — только SOL: соответственно 8 и 9 отсутствующих меток 5m.
+- Самый длинный *полностью исходно качественный для всех трёх активов* непрерывный отрезок: **2022-09-04..2023-06-05 (275 календарных дней)**; второй **2022-03-16..2022-09-02 (171 день)**; третий **2022-01-01..2022-03-06 (65 дней)**. Ни один отрезок не объявляется пригодным для confirmatory H1–H10 без отдельной проверки реального публикационного времени, цен/flow, объективного holdout, комиссий, проскальзывания и ограничений исполнения.
+- R2 неизменяемый `research/detector-2022-2023-joint-3coin-oi-daily-mask/v1/39319707132-1.json`, SHA256 `d8a139875ef3e87976e980dfc9996a8976e108f3ed12acc3152fd63c1c202f28`; сохранены все **730** суточных quality-masks, 8 source-manifest SHA pins, точные дефекты и все бездефектные непрерывные отрезки. Обратное чтение и SHA256 PASS.
+
+**Статусы:** `BINANCE_PREORIGIN_DAILY_URLS_2742_ALL_CHECKED`; `JOINT_BTC_ETH_SOL_SOURCE_CLEAN_DAYS_717_OF_730`; `EARLY_TARDIS_VENDOR_RECEIPT_ONLY`; `EXCHANGE_ORIGINAL_FIRST_PUBLICATION_UNVERIFIED`; `EDGE_UNVALIDATED`. Контур Spot/Earn/Tangem/Futures, NAV/капитал/P&L/резерв и торговые лимиты не изменён.
