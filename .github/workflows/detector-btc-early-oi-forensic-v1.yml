@@ -1,0 +1,36 @@
+name: Detector H1-H10 BTC Earliest OI Label Forensic
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-btc-early-oi-forensic-v1.yml'
+      - 'research/detector_btc_early_oi_forensic_v1.py'
+      - 'research/test_detector_btc_early_oi_forensic_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  forensic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run raw-label duplication, reversal and no-fill tests
+        run: python -m unittest -v research.test_detector_btc_early_oi_forensic_v1
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Validate original BTC 2020 OI source and persist exact forensic ledger
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_btc_early_oi_forensic_v1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-btc-early-oi-forensic
+          path: detector_btc_early_oi_forensic/report.json
+          retention-days: 30
