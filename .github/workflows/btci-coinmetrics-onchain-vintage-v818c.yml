@@ -1,0 +1,32 @@
+name: BTCI Bitcoin onchain historical provenance v8.18c
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_onchain_source_pilot_v818c.py'
+      - '.github/workflows/btci-coinmetrics-onchain-vintage-v818c.yml'
+permissions:
+  contents: read
+jobs:
+  source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Test archival MVRV realized cap source availability but prohibit unverified historical feature vintages
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_onchain_source_pilot_v818c.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818c-btc-mvrv-realized-cap-source-audit
+          path: btci_v818c_reports/
+          retention-days: 30
