@@ -16,14 +16,14 @@ def s3():
    aws_access_key_id=os.environ["R2_ACCESS_KEY_ID"],aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"],region_name="auto")
 def get(s,b,key,h):
  raw=s.get_object(Bucket=b,Key=key)["Body"].read()
- if sha(raw)!=h:raise SystemExit("V818A22_PARENT_SOURCE_CHANGED")
+ if sha(raw)!=h:raise SystemExit("V818A2_PARENT_SOURCE_CHANGED")
  return json.loads(raw)
 def put(s,b,key,raw,ctype="application/json"):
  if not isinstance(raw,bytes):raw=json.dumps(raw,ensure_ascii=False,indent=2).encode()
  h=sha(raw)
  s.put_object(Bucket=b,Key=key,Body=raw,ContentType=ctype,Metadata={"sha256":h,"research-only":"true"})
  if sha(s.get_object(Bucket=b,Key=key)["Body"].read())!=h:
-  raise SystemExit("V818A22_R2_SHA_REREAD_FAILED")
+  raise SystemExit("V818A2_R2_SHA_REREAD_FAILED")
  return h
 def probe(series,sunday,key):
  begin=day(sunday)-dt.timedelta(days=65)
@@ -69,14 +69,14 @@ def probe(series,sunday,key):
 def main():
  prraw=(ROOT/PRE).read_bytes();p=json.loads(prraw)
  if p["version"]!="8.18a2":
-  raise SystemExit("V818A22_PREREG_CHANGED")
+  raise SystemExit("V818A2_PREREG_CHANGED")
  import re
  key=os.environ.get("FRED_API_KEY","")
- if not re.fullmatch("[a-z0-9]{32}",key):raise SystemExit("V818A22_SECURE_FRED_KEY_MISSING")
+ if not re.fullmatch("[a-z0-9]{32}",key):raise SystemExit("V818A2_SECURE_FRED_KEY_MISSING")
  s=s3();b=os.environ["R2_BUCKET"]
  base=get(s,b,*PARENT)
  if base["version"]!="8.17.1" or len(base["weeklyPanel"])!=684:
-  raise SystemExit("V818A22_ORIGINAL_684_SOURCE_CHANGED")
+  raise SystemExit("V818A2_ORIGINAL_684_SOURCE_CHANGED")
  prefix=f"research/btci/v8.18a2/runs/{os.environ.get('GITHUB_RUN_ID','manual')}-{os.environ.get('GITHUB_RUN_ATTEMPT','1')}/"
  items=[]
  for row in p["preRegisteredProbes"]:
@@ -84,11 +84,11 @@ def main():
    asof=row["asOf"]
    audit,blob=probe(symbol,asof,key)
    if blob is not None:
-    key_src=prefix+f"source/{ser['id']}_{asof}.json"
+    key_src=prefix+f"source/{symbol}_{asof}.json"
     checksum=put(s,b,key_src,blob)
     audit={**audit,"rawSha256":checksum,"r2Key":key_src}
    items.append(audit)
-   print("V818A22_SOURCE",symbol,asof,audit["status"],flush=True)
+   print("V818A2_SOURCE",symbol,asof,audit["status"],flush=True)
    time.sleep(0.7)
  result={"version":"8.18a2","researchOnly":True,"status":"SOURCE_DATE_PILOT_COMPLETED",
   "parentSource":{"key":PARENT[0],"sha256":PARENT[1]},
@@ -109,7 +109,7 @@ def main():
     "reportSha256":rh,"preregSha256":sha(prraw)})
  (out/"summary.json").write_text(json.dumps({"prefix":prefix,"reportSha256":rh,
    "manifestSha256":mh,"coverage":result["coverageBySeries"]},ensure_ascii=False,indent=2))
- print("V818A22_RESULT "+json.dumps({"status":"V818A22_R2_READBACK_VERIFIED",
+ print("V818A2_RESULT "+json.dumps({"status":"V818A2_R2_READBACK_VERIFIED",
   "prefix":prefix,"reportSha256":rh,"manifestSha256":mh,
   "coverage":result["coverageBySeries"]},ensure_ascii=False),flush=True)
 if __name__=="__main__":main()
