@@ -1,0 +1,32 @@
+name: BTCI crypto event shocks and contagion v8.18e
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_crypto_event_contagion_v818e.py'
+      - '.github/workflows/btci-crypto-contagion-events-v818e.yml'
+permissions:
+  contents: read
+jobs:
+  crisis-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Audit original Coin Metrics BTC daily history against preregistered crypto crisis and contagion dates
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_crypto_event_contagion_v818e.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818e-crypto-event-shock-contagion-study
+          path: btci_v818e_reports/
+          retention-days: 30
