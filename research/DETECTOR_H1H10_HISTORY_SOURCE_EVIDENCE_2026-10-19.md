@@ -70,3 +70,24 @@ R2 `research/detector-free-tardis-okx-history-audit/v1/39289452550-1.json`, SHA2
 4. Maintain frozen prereg H1–H10, chronological expanding walk-forward; no confirmatory holdout tests or trading advantage claims until causality, publication semantics, price/flow labels and economic fees/slippage gates are satisfied.
 
 **Immutable evidence is in GitHub Actions and project R2 keys above. Project Spot/Futures/NAV/capital/reserve are unchanged.**
+
+
+## 6. Дополнение: верифицированный 5m vendor-receipt as-of по 18 архивам Tardis
+
+- [PR #103](https://github.com/analiticprosp-ship-it/crypto-price-feed/pull/103) merged; [Actions #39298935123](https://github.com/analiticprosp-ship-it/crypto-price-feed/actions/runs/39298935123) **SUCCESS**, все 11 offline regression tests PASS. Входной immutable SHA256 из PR #98 был проверен перед скачиванием.
+- Ровно 18 источниковых файлов: Binance Futures/Bybit/OKX Swap × BTC/ETH/SOL × 2024-01-01 и 2026-09-01. Для каждого подтверждены compressed gzip SHA256, decompressed CSV SHA256, gzip CRC и точное число строк относительно PR #98.
+- **5 184 из 5 184** пятиминутных интервалов: получено ненулевое/непустое, числово валидное native OI с `local_timestamp <= конец закрытого 5m бара + 30s` И `source_event_timestamp <= момент решения`, возраст от receipt **<=120s**. **0 stale, 0 missing, 0 использованных future vendor receipts**. Для каждой из 18 выборок — строго 288/288 свежих интервалов.
+- Это «достаточно свежо по времени получения **Tardis**», **НЕ** «доказано изначально опубликовано биржей», не «наш исполнимый 5m snapshot», не сплошная доступная платная история между двумя контрольными датами. Не нормализовать единицы OI между venues.
+- R2: `research/detector-tardis-18-free-oi-asof-5m/v1/39298935123-1.json`, SHA256 `677a0ac996fbb42c02d20dae79e68696cbe01bcc8578001177abfe97233c2827` (write/readback PASS).
+
+## 7. Дополнение: полный исходный календарь двух ранних месяцев Binance OI
+
+- [PR #104](https://github.com/analiticprosp-ship-it/crypto-price-feed/pull/104) merged; [Actions #39299592505](https://github.com/analiticprosp-ship-it/crypto-price-feed/actions/runs/39299592505) **SUCCESS**, 9 offline tests PASS.
+- Источники **все 123 asset×day**: каждый из 30 дней 2020-09 для BTCUSDT плюс каждый из 31 дней 2021-12 отдельно для BTCUSDT, ETHUSDT, SOLUSDT. Для каждого издательский SHA256, ZIP CRC, native CSV, 288 ожидаемых 5m UTC меток.
+- **78 FULL_SINGLE**, **29 FULL_DOUBLE** (по две полностью идентичные source строки в каждой из 288 уникальных меток), **16 PARTIAL**, **25 пропущенных source 5m меток**, **0 ошибок скачивания/publisher SHA256**, **0 конфликтующих native OI в дублях**.
+- BTC 2020-09: 29 двойных полных дней; 2020-09-27 — 284 уникальные метки, **4 пропуска**, все 284 метки дублированы без расхождения native значений.
+- Каждый BTC/ETH/SOL 2021-12: 26 single полных дней, 5 частичных дат, синхронных по календарю: 2021-12-04 (**3** отсутствующие метки), 2021-12-15 (**1**), 2021-12-24 (**1**), 2021-12-29 (**1**), 2021-12-31 (**1**). **7 пропусков на актив**, **21 суммарно**. Совпадение дат не доказывает первопричину дефекта; отсутствующие строки не восполнялись.
+- R2: `research/detector-binance-early-oi-month-calendars/v1/39299592505-1.json`, SHA256 `13b5382f7e60dadc3c3de29913a828d4e1cf8aa89785c6d73f6de2f8d3c1b561` (write/readback PASS).
+- 123 подтверждённых исходных дня **не доказывают полную доступную глубину** для остальных дней 2020–2023; исходный `create_time` — метка данных, не доказательство original publication/causal PIT.
+
+**Текущий gate:** `BINANCE_EARLY_TWO_MONTHS_CALENDAR_VALIDATED_WITH_GAPS`; `TARDIS_18_VENDOR_RECEIPT_ASOF_5184_5184_VERIFIED`; `PRE2024_WHOLE_RANGE_UNCERTIFIED`; `EXCHANGE_FIRST_PUBLICATION_UNVERIFIED`; `EDGE_UNVALIDATED`. Данные research-only; ни одна торговая позиция, Spot/Futures/NAV/P&L или лимит не изменены.
