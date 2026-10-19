@@ -168,7 +168,7 @@ def main():
   "changes":{"Spot":False,"Futures":False,"NAV":False,"Pnl":False,"capital":False,
    "reserve":False,"MASTER":False,"Detector":False,"tradeLimits":False}
  }
- folder=Path("btci_v818e_reports");folder.mkdir(exist_ok=True)
+ folder=Path("btci_v818g_reports");folder.mkdir(exist_ok=True)
  blob=json.dumps(result,ensure_ascii=False,indent=2).encode()
  (folder/"global_macro_shocks.json").write_bytes(blob)
  prefix=f"research/btci/v8.18g/runs/{os.environ['GITHUB_RUN_ID']}-{os.environ.get('GITHUB_RUN_ATTEMPT','1')}/"
