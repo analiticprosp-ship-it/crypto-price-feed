@@ -1,0 +1,45 @@
+{
+  "version": "8.18d2",
+  "frozenUTC": "2026-10-19",
+  "status": "EXPLORATORY_PATH_RISK_PRE_REGISTERED",
+  "researchOnly": true,
+  "parents": {
+    "onchain": {
+      "key": "research/btci/v8.18d/runs/39224537060-1/mvrv_exploratory.json",
+      "sha256": "95249457f5574d62d9f55f41e80dfd582ad8d9885e13b14df9b2d8199092c7ff"
+    },
+    "btcLong": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+    },
+    "archive": {
+      "key": "research/btci/v8.7/runs/39131902527-1/archive_manifest.json",
+      "sha256": "3705a179363c9fdf50fede363fb7062481ce15c60f62dfada226e5371e674fb4"
+    }
+  },
+  "question": "Does seemingly safe low MVRV after positive BTC trend still expose investors to large AFTER-RALLY maximum peak-to-trough future drawdowns not detected by loss relative to signal date?",
+  "features": "Use exactly frozen 684 BTCI v8.18d model membership with no re-thresholding, MVRV always current-backfilled NOT original vintage.",
+  "sample": "684 distinct Sundays, BTC original CoinMetrics daily 2010-2026, future 13/26/52wk available. Original first-day reference price must SHA match parent daily source and BTCI reference, else stop.",
+  "outcomes": {
+    "PEAK2TROUGH13": "Worst daily closing drawdown after any intervening daily-close new high since signal day <=-20% within 13w",
+    "PEAK2TROUGH26": "Worst drawdown peak-to-trough <=-35% within 26w",
+    "PEAK2TROUGH52": "Worst drawdown peak-to-trough <=-50% within 52w",
+    "FROMSTART26": "Any daily close <= -35% vs original signal day within 26w (should equal frozen DOWN26; exact audit)",
+    "TIME_UP50_26": "First day of daily reference price >=150% of signal day, horizon 182 days. Daily and weekly success definitions intentionally different; no backdating.",
+    "TIME_DOWN35_26": "First day from original signal <=65% of signal within 182 days; if no crossing NULL",
+    "FIRST_EVENT": "Which of +50% and -35% first within 26w; BOTH same day tie possible, no eventual outcome assumption"
+  },
+  "models": [
+    "BASE_BTC",
+    "BASE_STRICT",
+    "BTC_LOW2",
+    "BTC_HIGH3",
+    "STRICT_LOW2",
+    "STRICT_HIGH3",
+    "BASE_NEG"
+  ],
+  "metrics": "For each model 684 cohort and 14wk spaced warning first; counts and rates of PEAK2TROUGH13/26/52 and FROMSTART26, median time-to-first +50 or -35 among observed, and dual path outcomes. Era 2012,2013-16,2017-19,2020-23,2024-25.",
+  "sourcePit": "BTC PriceUSD historic retrospective and onchain MVRV reconstructed; model is not prospective and price original-vintage PIT unverified, no investment recommendations.",
+  "storage": "Versioned R2 research report JSON manifest with SHA GET readback and Github artifact.",
+  "noChanges": "No Spot Futures NAV reserve PnL capital MASTER Detector or trading limits."
+}
