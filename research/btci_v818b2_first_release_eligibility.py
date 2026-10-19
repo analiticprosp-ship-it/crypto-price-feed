@@ -22,7 +22,7 @@ def sha(v):
 def category(asof, status):
     when = date.fromisoformat(asof)
     if when < FIRST_RELEASE:
-        if asof != ONLY_INVALID_SUNDAY or status != "HTTP_BLOCKED":
+        if when != ONLY_INVALID_SUNDAY or status != "HTTP_BLOCKED":
             raise ValueError("UNEXPECTED_PREPUBLICATION_OBSERVATION")
         return "INELIGIBLE_PRIOR_TO_FIRST_OFFICIAL_RELEASE"
     if status != "ASOF_HISTORICAL_VALID":
