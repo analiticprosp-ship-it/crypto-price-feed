@@ -1,0 +1,36 @@
+name: BTCI v8.18b2 classify first-published dollar series PIT gap
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818b2_first_release_eligibility.py'
+      - '.github/workflows/btci-v818b2-first-release-audit.yml'
+permissions:
+  contents: read
+jobs:
+  source-eligibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile and test publication-date source guard
+        run: |
+          python -m py_compile research/btci_v818b2_first_release_eligibility.py
+          python research/btci_v818b2_first_release_eligibility.py --self-test
+      - name: R2 SHA verified source eligibility correction (no FRED API requests)
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_v818b2_first_release_eligibility.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818b2-first-publication-eligibility
+          path: btci_v818b2_reports/
+          retention-days: 30
