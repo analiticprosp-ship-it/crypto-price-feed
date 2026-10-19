@@ -45,7 +45,7 @@ def main():
  if p["version"]!="8.18c-source":raise SystemExit("V818C_PREREG_CHANGED")
  s=cloud();bucket=os.environ["R2_BUCKET"]
  prefix=f"research/btci/v8.18c/runs/{os.environ['GITHUB_RUN_ID']}-{os.environ.get('GITHUB_RUN_ATTEMPT','1')}/"
- catalogStatus,catalogRaw,catalog=req("catalog/asset-metrics",{"assets":"btc"},3500000)
+ catalogStatus,catalogRaw,catalog=req("catalog-v2/asset-metrics",{"assets":"btc"},3500000)
  if catalogRaw:
   archiveCatalog=put(s,bucket,prefix+"source/coinmetrics_btc_catalog.json",catalogRaw)
  else:archiveCatalog=None
