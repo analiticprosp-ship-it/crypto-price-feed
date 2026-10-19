@@ -23,6 +23,8 @@ class BoundaryProbe(unittest.TestCase):
     def test_url_venue_specific(self):
         self.assertIn("/futures/um/daily/metrics/BTCUSDT/",
                       p.path_for("binance_usdm_metrics_oi", "BTCUSDT", "2024-01-01"))
+        self.assertIn("/futures/um/monthly/fundingRate/BTCUSDT/",
+                      p.path_for("binance_usdm_funding", "BTCUSDT", "2024-01"))
         self.assertIn("/spot/monthly/aggTrades/ETHUSDT/",
                       p.path_for("binance_spot_aggtrades", "ETHUSDT", "2024-01"))
         with self.assertRaises(ValueError):
