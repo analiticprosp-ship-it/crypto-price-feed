@@ -1,0 +1,42 @@
+name: Detector H1-H10 Binance OI Six Remaining 2022-2023 Quarters
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-binance-oi-six-2022-2023-quarters-v1.yml'
+      - 'research/detector_binance_oi_remaining_2022_2023_v1.py'
+      - 'research/test_detector_binance_oi_remaining_2022_2023_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-quarter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 23
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        quarter: [2022Q2, 2022Q3, 2022Q4, 2023Q2, 2023Q3, 2023Q4]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Offline preregistered calendar and source quality tests
+        run: python -m unittest -v research.test_detector_binance_oi_remaining_2022_2023_v1
+      - name: Install R2 client only
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Audit publisher-verified daily metrics and R2 readback
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_binance_oi_remaining_2022_2023_v1 --quarter ${{ matrix.quarter }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-binance-oi-quarter-${{ matrix.quarter }}
+          path: detector_binance_oi_2022_2023_remaining/${{ matrix.quarter }}.json
+          retention-days: 30
