@@ -1,0 +1,36 @@
+name: Detector H1-H10 Binance pre-2024 OI Source Days
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-binance-early-oi-days-v1.yml'
+      - 'research/detector_binance_early_oi_days_v1.py'
+      - 'research/test_detector_binance_early_oi_days_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check original labels and duplicate conflicts offline
+        run: python -m unittest -v research.test_detector_binance_early_oi_days_v1
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: SHA-audit early Binance OI daily samples without backfills
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_binance_early_oi_days_v1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-binance-pre2024-oi-samples-v1
+          path: detector_binance_early_oi_selected_days/report.json
+          retention-days: 30
