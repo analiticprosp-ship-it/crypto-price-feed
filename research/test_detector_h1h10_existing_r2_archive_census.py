@@ -16,6 +16,8 @@ class ArchiveMetadata(unittest.TestCase):
  def test_classification_only_suggests_candidate(self):
     self.assertIn("taker_flow",classify("H1-H10 aggTrades","flow"))
     self.assertIn("open_interest",classify("OI availability history","some-run"))
+    self.assertIn("open_interest",classify("Detector H1-H10 OI Semantics","baseline"))
+    self.assertNotIn("open_interest",classify("coin metric","BTCUSDT"))
  def test_parsed_archive_is_metadata_only(self):
     rows=parse_manifest("research/39000000000/manifest.json",json.dumps(self.sample()).encode())
     self.assertEqual(len(rows),1)
