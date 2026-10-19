@@ -1,0 +1,36 @@
+name: Detector H1-H10 Free Tardis and OKX Vintage Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-tardis-okx-free-history-v1.yml'
+      - 'research/detector_tardis_okx_free_archive_audit_v1.py'
+      - 'research/test_detector_tardis_okx_free_archive_audit_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test offline source identity, receipt clocks, gzip and vintage gates
+        run: python -m unittest -v research.test_detector_tardis_okx_free_archive_audit_v1
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Inspect first-day free archives and OKX historically scoped requests
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_tardis_okx_free_archive_audit_v1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-tardis-okx-free-history-v1
+          path: detector_free_tardis_okx_history/report.json
+          retention-days: 30
