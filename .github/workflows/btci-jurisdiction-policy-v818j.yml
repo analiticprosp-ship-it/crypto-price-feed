@@ -1,0 +1,32 @@
+name: BTCI jurisdiction crypto policy date pilot v8.18j
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_jurisdiction_policy_pilot_v818j.py'
+      - '.github/workflows/btci-jurisdiction-policy-v818j.yml'
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Date-safe historical BTC price replay for four official jurisdictional crypto policy events
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_jurisdiction_policy_pilot_v818j.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818j-jurisdiction-policy-btc-pilot
+          path: btci_v818j_reports/
+          retention-days: 30
