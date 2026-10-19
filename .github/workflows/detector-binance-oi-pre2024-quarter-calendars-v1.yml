@@ -1,0 +1,40 @@
+name: Detector H1-H10 Binance OI Pre2024 Verified Quarter Calendars
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-binance-oi-pre2024-quarter-calendars-v1.yml'
+      - 'research/detector_binance_oi_pre2024_quarter_calendars_v1.py'
+      - 'research/test_detector_binance_oi_pre2024_quarter_calendars_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quarter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        quarter: [2022Q1, 2023Q1]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test quarter bounds and source-quality fail-closed assertions
+        run: python -m unittest -v research.test_detector_binance_oi_pre2024_quarter_calendars_v1
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Audit original Binance OI files per calendar day with publisher SHA/CRC
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_binance_oi_pre2024_quarter_calendars_v1 --quarter ${{ matrix.quarter }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-binance-pre2024-oi-${{ matrix.quarter }}
+          path: detector_binance_oi_pre2024_quarter/${{ matrix.quarter }}.json
+          retention-days: 30
