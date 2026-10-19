@@ -1,0 +1,37 @@
+name: BTCI v8.18c4 historical MVRV public value anchor
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818c4_contemporaneous_mvrv_anchor.py'
+      - '.github/workflows/btci-v818c4-public-anchor.yml'
+permissions:
+  contents: read
+jobs:
+  historical-anchor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned-compatible R2 Python client
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile and self-test
+        run: |
+          python -m py_compile research/btci_v818c4_contemporaneous_mvrv_anchor.py
+          python research/btci_v818c4_contemporaneous_mvrv_anchor.py --self-test
+      - name: Audit historic Git blobs, compare public 2019 MVRV, write SHA-checked R2
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_v818c4_contemporaneous_mvrv_anchor.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818c4-historical-mvrv-public-anchor
+          path: btci_v818c4_reports/
+          retention-days: 30
