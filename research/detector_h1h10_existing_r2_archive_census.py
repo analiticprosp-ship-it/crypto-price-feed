@@ -36,7 +36,9 @@ def classify(workflow,artifact):
     ):
         if any(w in name for w in terms):
             flags.append(category)
-    if re.search(r"(?<![a-z0-9])oi(?![a-z0-9])",name) and "open_interest" not in flags:\n        flags.append("open_interest")\n    return flags if flags else ["unclassified"]
+    if re.search(r"(?<![a-z0-9])oi(?![a-z0-9])",name) and "open_interest" not in flags:
+        flags.append("open_interest")
+    return flags if flags else ["unclassified"]
 
 def parse_manifest(key,blob):
     match=MANIFEST.fullmatch(key)
