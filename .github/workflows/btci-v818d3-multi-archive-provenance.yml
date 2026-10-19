@@ -1,0 +1,37 @@
+name: BTCI v8.18d3 independent multi-archive 684-week MVRV evidence ledger
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818d3_multi_archive_provenance_union.py'
+      - '.github/workflows/btci-v818d3-multi-archive-provenance.yml'
+permissions:
+  contents: read
+jobs:
+  independent-provenance-union:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install R2 client
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile and self-test temporal provenance gate
+        run: |
+          python -m py_compile research/btci_v818d3_multi_archive_provenance_union.py
+          python research/btci_v818d3_multi_archive_provenance_union.py --self-test
+      - name: Verify 5 SHA pinned sources; join dated numeric MVRV without outcomes
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_v818d3_multi_archive_provenance_union.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818d3-independent-multi-archive-ledger
+          path: btci_v818d3_reports/
+          retention-days: 30
