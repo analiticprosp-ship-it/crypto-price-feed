@@ -1,0 +1,93 @@
+{
+  "version": "8.18j",
+  "registeredUTCDate": "2026-10-19",
+  "researchOnly": true,
+  "question": "Does crypto policy news impact BTC vs altcoin risk depend on jurisdictional marginal capital access, legal baseline, affected asset class, scope, enforceability, and information surprise? Test asymmetric China relaxation vs redundant enforcement without presuming effect.",
+  "parentResearch": {
+    "BTCI_globalMacro": "research/btci/v8.18g/runs/39217731987-1/global_macro_shocks.json",
+    "BTCI_cryptoContagion": "research/btci/v8.18e/runs/39215131167-1/crypto_crisis_events.json",
+    "BTCI_longMacro": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json"
+  },
+  "frozenJurisdictionCategories": {
+    "USA": {
+      "focus": "BTC spot ETF institutional flows, USD fiat onramp, bank rails, stablecoins, SEC/CFTC access, BTC and broad crypto"
+    },
+    "KOREA": {
+      "focus": "KRW pairs, local regulated exchanges (Upbit/Bithumb), alt liquidity, market premia, listing/delisting and domestic access"
+    },
+    "CHINA_MAINLAND": {
+      "focus": "pre-existing transaction bans 2021 onward, domestic capital controls, cross-border OTC stablecoin restrictions, potential legally implemented relaxation, mining/foreign exposure"
+    },
+    "HONG_KONG": {
+      "focus": "distinct SFC licensed virtual-asset platforms, institutional/retail admissibility, HKD/offshore renminbi bridge and cross-border restrictions; not identical to mainland"
+    },
+    "EU": {
+      "focus": "EU harmonized cryptoasset framework, EUR onramps, stablecoin/credit institutions"
+    },
+    "OTHER": {
+      "focus": "Japan, Singapore, UAE, UK, global venues; must be transparently sampled by observed exposure not picked only after market reaction"
+    }
+  },
+  "eventDimensions": {
+    "legalBaselineBefore": "BANNED | RESTRICTED | LICENSED_RETAIL | LICENSED_INSTITUTIONAL | MIXED | UNKNOWN, separately per asset type at event timestamp",
+    "eventType": "new ban, ban enforcement, newly enabled regulated investment, ETF approval, access restriction, listing/delisting, licensing change, tax, capital transfer, stablecoin controls, rumor, official guidance",
+    "intensity": "incremental change in legal access or available eligible capital and operational market rails; NOT emotionally negative news label",
+    "scope": "asset affected: BTC_ONLY | ALTS_ONLY | STABLECOINS | ALL | SELECTED_PLATFORM, and capital/geographic scope",
+    "status": "ANNOUNCED | EFFECTIVE | PAUSED | CANCELLED | COURT_VERDICT | PROPOSED | RUMOR; count announcement and effective date separately",
+    "novelty": "SURPRISE_ONLY_IF prior consensus expectation from original contemporaneous source is independently documented; otherwise UNKNOWN. Repeated ban notice may still be enforced materially or create new unexpected risk.",
+    "mixed": "separately record restrictive and easing elements rather than aggregate net benefit without comparable actual trade exposure",
+    "provenance": "source URL, original published_at timezone, earliest public market-available timestamp, legal effective date, legislation vs regulatory interpretation, subsequent corrections"
+  },
+  "capitalExposureWeighting": {
+    "primary": "Historical, as-of observed local fiat-to-crypto onramp turnover by USD/KRW/EUR/CNY/HKD & market share, where available",
+    "secondary": "As-of institutional net fund flow, regulated exchange spot volume by asset, stablecoin issuance/redemptions by jurisdiction, relevant local capital-flow restrictions",
+    "third": "Local cross-venue premium to global benchmark and normalized turnover shocks, preserve capital controls/cross-border basis and quote-currency effects",
+    "warning": "Do NOT assume country has 50% liquidity because chain data adoption rankings are high: retail adoption score, fiat onramp volume, actual orderbook depth and ultimate beneficial investor location differ; Chainalysis later published aggregates are descriptive, NOT contemporaneous daily predictor values.",
+    "weights": "No hand-coded country rank, and NEVER use future-year volume to weigh past events. If original trade/capital weight unavailable, label EXPOSURE_UNKNOWN rather than guess."
+  },
+  "historicalSourceAnchorEvents": [
+    {
+      "jurisdiction": "CHINA_MAINLAND",
+      "date": "2021-09-24",
+      "id": "pbc-virtual-crypto-trading-crackdown",
+      "source": "https://www.pbc.gov.cn/tiaofasi/144941/3581332/4348658/index.html",
+      "side": "RESTRICTIVE",
+      "baseline": "RESTRICTED_ALREADY",
+      "special": "Could still be an incremental enforced nationwide ban; measure BTC actual adverse response, no assumed zero effect."
+    },
+    {
+      "jurisdiction": "HONG_KONG",
+      "date": "2023-06-01",
+      "id": "sfc-licensed-virtual-asset-platforms-effective",
+      "source": "https://apps.sfc.hk/edistributionWeb/api/circular/list-content/circular/doc?lang=EN&refNo=23EC28",
+      "side": "LICENSED_MARKET_ACCESS",
+      "special": "Announcement May31 != implementation Jun1; ensure original source and effect separated."
+    },
+    {
+      "jurisdiction": "USA",
+      "date": "2024-01-10",
+      "id": "sec-spot-bitcoin-etp-approval",
+      "source": "https://www.sec.gov/newsroom/speeches-statements/gensler-statement-spot-bitcoin-011023",
+      "side": "BTC_INSTITUTIONAL_ACCESS",
+      "special": "Market probability of approval already evolving; not a surprise by default, ETF flows after approval are outcomes, not prior inputs."
+    },
+    {
+      "jurisdiction": "KOREA",
+      "date": "2024-07-19",
+      "id": "fsc-virtual-asset-user-protection-act-effective",
+      "source": "https://fsc.go.kr/eng/pr010101/82534",
+      "side": "INVESTOR_PROTECTION_AND_COMPLIANCE",
+      "special": "Act announced long before effective date and may raise compliance cost; do not simply call bullish."
+    }
+  ],
+  "frozenMarketResponsePlan": {
+    "time": "BTC global and available KRW-market BTC/ETH/selected alts one-hour/daily at event original published_at; fall back date only with timing UNKNOWN, no backdated precision",
+    "windows": "1h 4h 24h 3d 7d 30d 13w, returns and adverse drawdown, local alt/BTC-relative vs global alt baseline, funding and spread if source verified",
+    "controls": "Matched market-volatility/trend regime, contemporaneous global BTC daily and regional KRW alt response, equal-hour non-event windows; events clustered by same regulatory campaign; compare bad China release vs same date global BTC and KRW alts",
+    "targets": "Specific cross-asset excess response, false headline alert rates on all available published policy notices including neutral and unexecuted threats; predictive direction/up or down conditional on baseline legal regime",
+    "comparators": "Simple generic global-news +/- label vs size-weighted true access change vs policy status/novelty, no optimized thresholds after inspecting selected outcomes",
+    "uncertainty": "Historical policy event list is ex-post selected source pilot, no OOS, future policy changes and regulatory meanings are uncertain; result not a probabilistic signal until negative and no-effect controls are sampled."
+  },
+  "workflowStatus": "METHODOLOGY_FROZEN; no raw venue data acquired in this prereg, no case-study prediction calculated, no new trading detector live.",
+  "doNotModify": "Spot, Futures, NAV, P&L, capital, reserve, MASTER, Detector, risk limits, margin positions, exchange accounts."
+}
