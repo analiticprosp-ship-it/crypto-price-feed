@@ -1,0 +1,46 @@
+{
+  "version": "8.18d5a",
+  "dateFrozenUTC": "2026-10-19",
+  "scope": "RESEARCH_ONLY",
+  "tradeAuthorized": false,
+  "description": "Addendum to ALREADY ACCEPTED v8.18d5 portable 684-week MVRV as-of ledger: quantify temporal sparseness, label maturity, 13/26/52-week greedy window separation from source dates only.",
+  "canonical": {
+    "mvrv": {
+      "key": "research/btci/v8.18d5/runs/39316151679-1/portable_MVRV_684week_asof_evidence_FULL.json",
+      "sha256": "a7aa681ef291a7fafd42d4603629c54698ad3ecbf68bba2fe78cb0f74cf2fd4a",
+      "witnesses": 26,
+      "weeks": 684
+    },
+    "btc": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091",
+      "weeks": 684
+    }
+  },
+  "predeclaredHorizonWeeks": [
+    13,
+    26,
+    52
+  ],
+  "method": [
+    "Read exactly pinned canonical v8.18d5 and BTCI v8.17.1 from R2 with SHA256 full-body verification, no merge or recount from raw Coin Metrics.",
+    "Verify all 684 dates sorted ascending, unique Sundays; original canonical as-of witnesses exactly 26, not 658 others; research-only parent. Each old as-of MVRV has public UTC timestamp before Sunday and feature date age 2..7d.",
+    "Use panel LAST Sunday strictly as maturity cutoff for horizons, with mature when Sunday + H*7 days <= last panel date. This is only a conservative label-window upper bound; does not assert labels are actually available or correct.",
+    "For each horizon, compute dated witnesses with mature outcome windows, and greedy chronological subset: select earliest mature witness, next if date >= prior selected + H*7 days. Also compute greedy subset on all 26 (unmatured potential separately).",
+    "No future return values, BTC price paths, overlapping-return estimates, coefficients, reweighting, threshold fits, P&L or prediction. Temporal separation by H weeks is NOT proof of independent events.",
+    "This is not canonical v8.18d5 modification, archived under separately numbered 8.18d5a report.",
+    "R2 research prefix PUT+GET SHA256 report and manifest, portable date-count only, no source CSV redistribution."
+  ],
+  "portfolioWriteback": {
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "capital": false,
+    "reserve": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
