@@ -1,0 +1,61 @@
+{
+  "version": "8.18-PREPLAN",
+  "createdUTCDate": "2026-10-19",
+  "researchOnly": true,
+  "startOnlyAfter": "BTCI v8.17 archived/full as-of history verified; retain original v8.17 output and do not revise it",
+  "hypothesis": "Find independently dated market stress and risk appetite factors that can distinguish legitimate macro easing from subsequent big BTC drawdowns, and label early recovery separately from overheat.",
+  "factorFamilies": [
+    {
+      "name": "Real rates",
+      "primary": "DFII10",
+      "source": "https://fred.stlouisfed.org/series/DFII10",
+      "sourceControl": "FRED/ALFRED exact as-of Sunday, 4w difference, original observation publication clock verification, earliest 2003",
+      "frozenSign": "4w real yield change>0 = real borrowing discount tightening",
+      "authority": "Primary Federal Reserve H.15 series; original daily vintages stored only subject to source license"
+    },
+    {
+      "name": "Broad USD",
+      "primary": "DTWEXBGS",
+      "source": "https://fred.stlouisfed.org/series/DTWEXBGS",
+      "frozenSign": "4w change>0 = stronger dollar; financial tightening hypothesis",
+      "sourceControl": "Federal Reserve H.10 published daily; historical methodology/rebasing changes must be checked 2019 and 2026"
+    },
+    {
+      "name": "Equity systemic volatility",
+      "primary": "VIXCLS",
+      "source": "https://fred.stlouisfed.org/series/VIXCLS",
+      "frozenSign": "4w change>0 and last level> 4w prior = risk stress rising, directional warning conditional on price",
+      "sourceControl": "Cboe VIX may be copyright licensed, check archive/redistribution permissions before bulk collection; prefer store hashes/derived features if rights uncertain"
+    },
+    {
+      "name": "Yield curve",
+      "primary": "T10Y2Y",
+      "source": "https://fred.stlouisfed.org/series/T10Y2Y",
+      "frozenSign": "Slope change lower over 4w, AND separately inversion<0 descriptive; inversion not assumed a near-term BTC crash",
+      "sourceControl": "Treasury rates H15 and daily vintage lag"
+    },
+    {
+      "name": "Credit stress",
+      "primary": "Federal Reserve publicly released bank funding/spread or OFR Financial Stress Index where licensing is explicit",
+      "rejectedForUnlicensedArchive": "BAMLH0A0HYM2 ICE BofA OAS now FRED only trailing three years from Apr2026; Moody BAA10Y copyright forbids reuse and archiving without permission",
+      "frozenSign": "Independent rise in spread/stress vs previous 4w; do not normalize/rebase without prereg"
+    }
+  ],
+  "cryptoFactors": [
+    "Coin Metrics CapRealUSD (realized cap, MVRV) as-of vintage not proven; current reconstruction is NOT publication-PIT; only research with explicit vintage missing flag",
+    "Historical stablecoin circulating supply and BTC direct flows: must archive contemporaneously verifiable issuer releases or raw chain snapshots, avoid retro supplier revisions",
+    "Bitcoin derivatives OI, perpetual funding, CME basis, liquidation clusters: instrument-venue lineage starts later than 2010, require archived snapshots and real release timestamps",
+    "BTC realized volatility (only from pinned BTC price history) and on-chain volume/UTXO spend, as independent prediction value to price trend not established"
+  ],
+  "scoring": [
+    "Use v8.17 fixed targets rise/drawdown 13,26,52w without redefining threshold",
+    "Test both directional hypotheses (growth, decline) on SAME common-case subperiod",
+    "Compare each factor to BTC-only, macro-only, BTC+macro and prior no signal baselines, not just factor-selected percentage",
+    "Use lag week0, 1-4w, 5-13w, 14-26w, 27-52w as pre-specified time-to-event bins; no forced minimum median lead",
+    "Require counts, false alarms, delta precision AND delta recall, max adverse path, and no re-optimization on already seen cycle",
+    "Sources genuinely unavailable on a date => UNKNOWN, never 0. Do not combine correlated NFCI/ANFCI as independent votes.",
+    "Protect original raw rights; store only permitted content with SHA and archive data manifest."
+  ],
+  "validation": "All BTCI up to 8.18 remains retrospectively exploratory, no true OOS. Do not activate live signals until separate shadow workflow and observed forward outcomes.",
+  "noChanges": "No Spot, Futures, NAV, capital, reserve, P&L, Master, Detector, limits, trades"
+}
