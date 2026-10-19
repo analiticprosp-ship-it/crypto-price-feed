@@ -1,0 +1,74 @@
+{
+  "version": "8.18d3",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "tradeAuthorized": false,
+  "title": "Consolidate independently dated Coin Metrics MVRV witness types without double counting BTCI weekly observations",
+  "hypothesis": "Twelve independent public GitHub fork/Wayback snapshot witnesses plus five third-party archived original coinmetrics/data GitHub PushEvents are separate UTC Sunday points, yielding exactly 17 distinct as-of numerical witnesses, provided each source passes pinned SHA and timing checks.",
+  "parents": {
+    "btc": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091",
+      "weeks": 684
+    },
+    "github_forks": {
+      "key": "research/btci/v8.18c8/runs/39308814539-1/independent_fork_684_asof_expansion_FULL.json",
+      "sha256": "a07ebe78d97ba5d6ccad13c2adac4e2406e76778627537fd231df7f7ef153a6f",
+      "witnesses": 11
+    },
+    "wayback": {
+      "key": "research/btci/v8.18d2/runs/39313422848-1/wayback_mvrv_2024_684_asof_FULL.json",
+      "sha256": "1247c267a7c03914860c78b4788f343f10fc9ad68eed538e336fdd697e8bb42d",
+      "newWitnesses": 1
+    },
+    "gharchive_pilot": {
+      "key": "research/btci/v8.18c10/runs/39312699691-1/gharchive_push_event_pilot_FULL.json",
+      "sha256": "223351016640ddeb7b9e723227fbb1771ecc5d171996d2db1e64eb25dd6180e3",
+      "witnesses": 2
+    },
+    "gharchive_expansion": {
+      "key": "research/btci/v8.18c11/runs/39313043366-1/original_public_push_6hours_FULL.json",
+      "sha256": "ffb89e1f4c0b88330bce156fbad6814d8d905bdb764406b8e9e9bb6f77ad3a3a",
+      "newWitnesses": 3
+    }
+  },
+  "frozenExpected": {
+    "baselineGitHubForks": 11,
+    "independentWayback": 1,
+    "originalGitHubPushEvents": 5,
+    "totalUnique": 17,
+    "originalProviderAPIReleaseClockProven": 0,
+    "originalGitHubPushSundays": [
+      "2022-10-02",
+      "2023-04-02",
+      "2024-10-06",
+      "2025-04-06",
+      "2025-06-15"
+    ]
+  },
+  "acceptance": [
+    "Read each exact source JSON from R2, verify complete bytes SHA256 before parsing; do not substitute updated research.",
+    "Verify all sources researchOnly and no trading authority; exact BTCI 684 sorted Sunday rows unchanged; all weekly source dates must be in original panel.",
+    "GitHub fork source rows must have publicGitHubForkMvrvEvidence true and numericEvidence with positive ordinary CapMVRVCur; inherit original asof source time, not merely Git commit clock.",
+    "Wayback row must have independent capture UTC 2024-05-25 01:53:26 before Sunday; exact verified bytes and MVRV arithmetic from pinned d2 record.",
+    "For GHArchive original repo PushEvent, require independentThirdPartyEventArchive/matchedEvents and verified originalGitSource/originalGitArchive status original MVRV triad; linked commit SHA and event UTC strictly before Sunday decision; no author-timestamp substitution.",
+    "Preserve multiple evidence items for the same week as distinct source proofs, but count the Sunday once. Record conflicts without silence; no forced harmonization of MVRV values.",
+    "Classify A: independent public asof numeric GitHub fork; A: independent original GitHub PushEvent + exact source bytes; A: independent Wayback CSV bytes; separately NO verified Coin Metrics API first-release clock.",
+    "Never reuse 684 outcomes/labels to tune hypotheses, backtest, quantify trade edge, or claim original provider per-metric first publication.",
+    "Only produce joined provenance metadata+small witnessed values, not source CSV bulk; retain upstream Coin Metrics CC BY-NC rights.",
+    "Write output report and manifest to new R2 prefix with SHA256 PUT then GET readback; log exact summary."
+  ],
+  "nextResearch": "Expand separate independently timestamped original-repo GHArchive PushEvent observation testing, then true multi-week prospective PIT; no model or trading integration yet.",
+  "portfolioWriteback": {
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "capital": false,
+    "reserve": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
