@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""BTCI 8.18g: historical crypto-native crisis public-date event study.
-This tests shock/contagion context, not news predictive accuracy or trade fills.
+"""BTCI 8.18g: sixteen global macro policy, pandemic, war announcements.
+Past-only BTC fixing & macro, date-level descriptive response not causal news forecast.
 """
 import datetime as dt,hashlib,json,math,os,statistics
 from pathlib import Path
@@ -85,7 +85,7 @@ def main():
  rows=macro["weeklyPanel"]
  if [x["date"] for x in rows]!=sorted(x["date"] for x in rows):
   raise SystemExit("V818G_MACRO_ROWS_NOT_SORTED")
- events=pr["events"]
+ events=[{**x,"episode":x["cluster"]} for x in pr["events"]]
  if len(events)!=16 or len({x["id"] for x in events})!=16:raise SystemExit("V818G_EVENT_REGISTRATION_CHANGED")
  horizons=(1,3,7,14,30,90)
  item=[]
