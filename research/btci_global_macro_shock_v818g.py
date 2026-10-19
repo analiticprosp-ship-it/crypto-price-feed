@@ -141,7 +141,7 @@ def main():
    "pctDown20Within30":rnd(100*sum(x["down20Within30"] for x in candidates)/len(candidates)) if candidates else None,
    "medianWorst7Pct":rnd(statistics.median(x["worst7"] for x in candidates)) if candidates else None,
    "medianWorst30Pct":rnd(statistics.median(x["worst30"] for x in candidates)) if candidates else None,
-   "warning":"NON_EVENT_SAME_YEAR_REFERENCE_NOT_CAUSAL"
+   "warning":"NON_EVENT_SAME_YEAR_REFERENCE_NOT_CAUSAL"}
  result={
   "version":"8.18g","status":"GLOBAL_MACRO_SHOCK_DATE_STUDY_RESEARCH_ONLY",
   "researchOnly":True,"noTradingApproval":True,
