@@ -19,8 +19,8 @@ COINS=("BTC","ETH","SOL")
 SAMPLE_DATES=("2024-01-01","2026-09-01")
 OKX_YEARS=(2021,2022,2023,2024,2025,2026)
 MAX_GZ=10_000_000
-MAX_PLAIN=55_000_000
-MAX_ROWS=300_000
+MAX_PLAIN=130_000_000
+MAX_ROWS=700_000
 UA="Detector-H1H10-Historical-Forensic/1.0"
 
 def source_symbol(exchange,coin):
@@ -28,7 +28,13 @@ def source_symbol(exchange,coin):
     return coin+"-USDT-SWAP" if exchange=="okex-swap" else coin+"USDT"
 
 def dt_utc(s):
-    x=dt.datetime.fromisoformat(str(s).strip().replace("Z","+00:00"))
+    # Tardis CSV local_timestamp is often Unix microseconds (16 digits).
+    raw=str(s).strip()
+    if raw.isdigit():
+        if len(raw)==16: return dt.datetime.fromtimestamp(int(raw)/1_000_000,UTC)
+        if len(raw)==13: return dt.datetime.fromtimestamp(int(raw)/1_000,UTC)
+        raise ValueError("UNSUPPORTED_RECEIPT_EPOCH_UNIT")
+    x=dt.datetime.fromisoformat(raw.replace("Z","+00:00"))
     if x.tzinfo is None:raise ValueError("RECEIPT_TIMESTAMP_NAIVE")
     if x.utcoffset()!=dt.timedelta(0):x=x.astimezone(UTC)
     return x
@@ -179,6 +185,31 @@ def read_pinned(s3,bucket):
         raise ValueError("PINNED_CATALOG_COMPLETENESS_MISMATCH")
     return metas
 
+def refresh_truncated_catalog(meta):
+    # The pinned #96 report intentionally kept only first 120 symbols. Refresh
+    # the full public Bybit catalog and keep its SHA as a separate evidence grade.
+    if not meta.get("matched_symbols_truncated"):
+        return meta,{"status":"PINNED_COMPLETE"}
+    url="https://api.tardis.dev/v1/exchanges/"+meta["exchange"]
+    raw,http=load_bytes(url,8_000_000,25)
+    if http!=200:raise ValueError("TARDIS_FULL_CATALOG_HTTP_NOT_200")
+    doc=json.loads(raw)
+    entries=doc.get("datasets",{}).get("symbols")
+    if not isinstance(entries,list):raise ValueError("FULL_CATALOG_SYMBOL_SCHEMA_INVALID")
+    wanted={source_symbol(meta["exchange"],coin) for coin in COINS}
+    selected=[r for r in entries if isinstance(r,dict) and r.get("id") in wanted]
+    if len(selected)!=len(wanted):
+        raise ValueError("CATALOG_REQUIRED_SYMBOLS_NOT_FOUND")
+    expanded=dict(meta)
+    expanded["matched_symbols"]=[{"symbol":r["id"],"availableSince":r.get("availableSince"),
+       "availableTo":r.get("availableTo"),"dataTypes":r.get("dataTypes",[])}
+       for r in selected]
+    expanded["matched_symbols_truncated"]=False
+    return expanded,{"status":"LIVE_FULL_CATALOG_SHA256_VERIFIED",
+       "url":url,"sha256":hashlib.sha256(raw).hexdigest(),
+       "retrieved_at_utc":dt.datetime.now(UTC).isoformat(),
+       "required_symbols":sorted(wanted)}
+
 def main():
     import boto3
     OUT.mkdir(exist_ok=True)
@@ -187,6 +218,8 @@ def main():
       aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"],region_name="auto")
     bucket=os.environ["R2_BUCKET"]
     metas=read_pinned(client,bucket)
+    refreshed_bybit,catalog_ref=refresh_truncated_catalog(metas["bybit"])
+    metas["bybit"]=refreshed_bybit
     tardis=[]
     for ex in MARKETS:
       for coin in COINS:
@@ -209,6 +242,7 @@ def main():
     report={"schema":"detector-h1h10-tardis-free-csv-okx-vintage-audit-v1",
       "run_id":os.environ.get("GITHUB_RUN_ID"),"parent_key":PARENT_KEY,"parent_sha256":PARENT_SHA,
       "Tardis_free_samples":tardis,"OKX_historical_time_windows":okx,
+      "bybit_full_catalog_refresh":catalog_ref,
       "research_only":True,"edge_status":"EDGE_UNVALIDATED",
       "source_publication_time":"UNVERIFIED","portfolio_and_trading_mutations":False,
       "limitations":["Tardis first-of-month free receipt times DO NOT prove exchange release times",

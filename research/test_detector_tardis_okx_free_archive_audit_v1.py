@@ -25,6 +25,18 @@ class SampleTests(unittest.TestCase):
   self.assertEqual(out["unique_5m_receipt_buckets"],2)
   self.assertEqual(out["missing_open_interest_rows"],0)
   self.assertEqual(out["gzip_crc_eof_read"],"PASS")
+ def test_tardis_epoch_microseconds(self):
+  self.assertEqual(m.dt_utc("1704067200028250").isoformat(),"2024-01-01T00:00:00.028250+00:00")
+  self.assertEqual(m.dt_utc("1704067200028").isoformat(),"2024-01-01T00:00:00.028000+00:00")
+ def test_unsupported_epoch_unit_fails_closed(self):
+  with self.assertRaises(ValueError):m.dt_utc("1704067200")
+ def test_recovery_from_truncated_catalog(self):
+  raw=b'{"datasets":{"symbols":[{"id":"BTCUSDT","availableSince":"2020-05-28T00:00:00.000Z","dataTypes":["derivative_ticker"]},{"id":"ETHUSDT","availableSince":"2020-05-28T00:00:00.000Z","dataTypes":["derivative_ticker"]},{"id":"SOLUSDT","availableSince":"2020-05-28T00:00:00.000Z","dataTypes":["derivative_ticker"]}]}}'
+  with patch.object(m,"load_bytes",return_value=(raw,200)):
+   cat,log=m.refresh_truncated_catalog({"exchange":"bybit","status":"CATALOG_SYMBOL_METADATA_OBSERVED","matched_symbols_truncated":True,"matched_symbols":[]})
+  self.assertEqual(len(cat["matched_symbols"]),3)
+  self.assertFalse(cat["matched_symbols_truncated"])
+  self.assertEqual(log["status"],"LIVE_FULL_CATALOG_SHA256_VERIFIED")
  def test_timestamp_naive_not_pit(self):
   with self.assertRaises(ValueError):m.dt_utc("2024-01-01 01:00:00")
  def test_tampered_gzip_rejected(self):
