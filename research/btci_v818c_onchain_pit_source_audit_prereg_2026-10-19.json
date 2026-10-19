@@ -1,0 +1,27 @@
+{
+  "version": "8.18c-source",
+  "researchOnly": true,
+  "frozenUTC": "2026-10-19",
+  "rationale": "Independently test data access and original-publication vintage integrity for Bitcoin realized capitalization, MVRV and spent-profit metrics before model-fitting, following v8.18b macro-factor review.",
+  "provider": "Coin Metrics Community v4 https://community-api.coinmetrics.io/v4, no API key; metric availability determined by official catalog, not invented.",
+  "proposedMetrics": [
+    "CapRealUSD",
+    "CapMrktCurUSD",
+    "CapMVRVCur",
+    "SplyCur",
+    "SplyAdrBal1in100K"
+  ],
+  "historicalWindows": [
+    "2012-06-01..2012-06-30",
+    "2015-05-01..2015-05-31",
+    "2018-05-01..2018-05-31",
+    "2021-05-01..2021-05-31",
+    "2024-05-01..2024-05-31"
+  ],
+  "query": "Try original Coin Metrics community catalog list BTC metric availability; sample 5 known 1d historical windows only if catalog advertises asset metric. Preserve source raw bodies and per-response SHA; report failed sources without fabricated history.",
+  "vintageGuard": "Current Community API reconstruction is not as-of 2012 published metric even when observation date is 2012. Realized capitalization first discussed 2018. No ex-ante backtest uses old reconstructed metric as an authentic contemporaneous release.",
+  "externalPIT": "Glassnode provides explicitly append-only PiT metrics, but APIs require service authentication; without authorized access mark GLASSNODE_PIT_UNAVAILABLE and do not fetch private endpoints nor ask user for secret in chat.",
+  "quality": "Only 5 historical 1-month sampling windows, no score from selected events, no claim model precision, no concatenation across changed price/reference providers.",
+  "archive": "R2 raw catalog/source snapshots with SHA readback, research report and manifest; no on-chain predictor activation.",
+  "safety": "RESEARCH_ONLY no account, futures, NAV, Master, Detector, prices of active portfolio, P&L, risk limits changed."
+}
