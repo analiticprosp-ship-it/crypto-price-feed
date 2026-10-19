@@ -1,0 +1,36 @@
+name: Detector H1-H10 Binance Earliest 2019-2021 OI Source Boundary
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-binance-oi-earliest-boundary-2019-2021-v1.yml'
+      - 'research/detector_binance_oi_2019_2021_early_boundary_v1.py'
+      - 'research/test_detector_binance_oi_2019_2021_early_boundary_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Offline source search grid and causal gate tests
+        run: python -m unittest -v research.test_detector_binance_oi_2019_2021_early_boundary_v1
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Discover original early OI archives and byte verify earliest sampled source
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_binance_oi_2019_2021_early_boundary_v1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-binance-oi-2019-2021-earliest-boundary-v1
+          path: detector_binance_oi_earliest_boundary/report.json
+          retention-days: 30
