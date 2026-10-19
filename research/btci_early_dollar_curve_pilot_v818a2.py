@@ -105,7 +105,7 @@ def main():
  raw=json.dumps(result,ensure_ascii=False,indent=2).encode()
  (out/"factor_source_audit.json").write_bytes(raw)
  rh=put(s,b,prefix+"source_audit.json",raw)
- mh=put(s,b,prefix+"manifest.json",{"version":"8.18a","researchOnly":True,"status":result["status"],
+ mh=put(s,b,prefix+"manifest.json",{"version":"8.18a2","researchOnly":True,"status":result["status"],
     "reportSha256":rh,"preregSha256":sha(prraw)})
  (out/"summary.json").write_text(json.dumps({"prefix":prefix,"reportSha256":rh,
    "manifestSha256":mh,"coverage":result["coverageBySeries"]},ensure_ascii=False,indent=2))
