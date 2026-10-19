@@ -1,0 +1,33 @@
+name: BTCI v8.17.1 recover historical FRED HTTP429 gaps
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_full_macro_btc_v8171.py'
+      - '.github/workflows/btci-full-macro-429-replay-v8171.yml'
+permissions:
+  contents: read
+jobs:
+  historical-repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Retry only 125 FRED rate-limited historic asof observations and verify all 559 original rows unchanged
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python research/btci_full_macro_btc_v8171.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v8171-complete-full-macro-btc-history
+          path: btci_v8171_reports/
+          retention-days: 30
