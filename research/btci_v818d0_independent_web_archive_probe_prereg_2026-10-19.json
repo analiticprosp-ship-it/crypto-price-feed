@@ -1,0 +1,85 @@
+{
+  "version": "8.18d0",
+  "frozenUTC": "2026-10-19",
+  "scope": "RESEARCH_ONLY",
+  "noTradeAuthority": true,
+  "question": "Do independent preservation systems offer dated evidence that Coin Metrics BTC historical MVRV CSV content was publicly present in 2020-2025, beyond original Git commit author/committer dates?",
+  "parents": {
+    "btc": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+    },
+    "c8": {
+      "key": "research/btci/v8.18c8/runs/39308814539-1/independent_fork_684_asof_expansion_FULL.json",
+      "sha256": "a07ebe78d97ba5d6ccad13c2adac4e2406e76778627537fd231df7f7ef153a6f",
+      "strictNumericPublicForkWitnesses": 11
+    },
+    "c9": {
+      "key": "research/btci/v8.18c9/runs/39311162378-1/git_historical_calendar_FULL.json",
+      "sha256": "9522b7bf779c88f45c7f708ccc2767a1d4b3b23af366302448cacead0798ba0a",
+      "frozenAnchors": 26,
+      "commitChronologyCandidates": 22
+    }
+  },
+  "targets": [
+    "2020-08-02",
+    "2020-12-13",
+    "2021-04-04",
+    "2021-07-18",
+    "2022-06-19",
+    "2024-04-07",
+    "2025-04-13",
+    "2025-06-22"
+  ],
+  "sourceA": {
+    "name": "Software Heritage",
+    "documentation": "https://www.softwareheritage.org/software-heritage-faq/",
+    "apiBase": "https://archive.softwareheritage.org/api/1/",
+    "origins": [
+      "https://github.com/coinmetrics/data",
+      "https://github.com/sunshineluyao/data",
+      "https://github.com/shphrd/data"
+    ],
+    "maxResultsPerOrigin": 30
+  },
+  "sourceB": {
+    "name": "Internet Archive CDX",
+    "apiBase": "https://web.archive.org/cdx/search/cdx",
+    "urls": [
+      "raw.githubusercontent.com/coinmetrics/data/master/csv/btc.csv",
+      "github.com/coinmetrics/data/blob/master/csv/btc.csv",
+      "coinmetrics.io/community-network-data/"
+    ],
+    "fromYear": 2019,
+    "toYear": 2025,
+    "maxCapturesPerUrl": 15
+  },
+  "testRules": [
+    "Pin existing R2 source reports by SHA; verify unchanged 684 Sundays, prior c8 strict independent GitHub fork witness count 11, and c9 26 source dates.",
+    "Request Software Heritage origin visit metadata using documented read-only public API. For each visit preserve recorded visit timestamp, status, snapshot identifier if provided. Do not confuse a visit event, a snapshot ID or repository commit author timestamp with proof of a particular file value.",
+    "Request Internet Archive CDX metadata for three frozen source URL patterns in 2019-2025 and record original URL, capture timestamp, HTTP status, digest when returned.",
+    "Two routes have independent network and robots/rate/access failures. Record HTTP errors, malformed responses, empty results as distinct negative source-availability observations, not as claim that historical data never existed.",
+    "Only if a capture/visit is temporally before the target Sunday may it be listed as candidate independent historical hosting evidence; the file value is still NOT verified until actual captured CSV bytes and their Git SHA or archived file content hash are linked.",
+    "Do not upgrade number of strictly validated original provider first-seen dates or the 11 previously validated public fork witness dates based on timestamp metadata alone.",
+    "Never fetch paid services or secrets, change metrics, adopt free-float MVRV, scrape massive external content, leak full proprietary/restricted data or assume temporal continuity across samples.",
+    "No trading signals, no optimization, no price-outcome models, no recomputation of the 684-week panel, no Coin Metrics dataset raw CSV redistribution."
+  ],
+  "gradedProvenance": {
+    "tier_A": "independent dated capture with verifiable pinned numerical file bytes proven to precede decision (not yet obtained by metadata-only test)",
+    "tier_B": "independent third-party archive visit/capture date and URL, but no verified exact file content",
+    "tier_C": "original repo Git metadata or modern retrospective reconstructed CSV only"
+  },
+  "output": "GitHub Actions JSON with granular source responses, R2 upload and SHA256 read-back; no hypothesis success inferred from mere HTTP availability.",
+  "portfolioWriteback": {
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "capital": false,
+    "reserve": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
