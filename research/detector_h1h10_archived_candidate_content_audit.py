@@ -80,7 +80,7 @@ def audit_oi_csv(z,member):
         if not oi:return {"kind":"CSV_NOT_OI_SERIES","headers":headers[:45]}
         timecol=next(x for x in ("timestamp_utc","timestamp","create_time") if x in headers)
         validity=oi+"_valid" if oi+"_valid" in headers else None
-        counts=collections.Counter();seen=set()
+        counts=collections.Counter();aligned_counts=collections.Counter();seen=set()
         rows=valid=bad_ts=bad_value=duplicates=0
         first=last=None
         for row in rd:
@@ -102,15 +102,14 @@ def audit_oi_csv(z,member):
             if key in seen:duplicates+=1;continue
             seen.add(key);valid+=1
             counts[t.date().isoformat()]+=1
+            if t.minute%5==0 and t.second==0 and t.microsecond==0:
+                aligned_counts[t.date().isoformat()]+=1
             first=min(first,t) if first else t
             last=max(last,t) if last else t
         if not rows:return {"kind":"OI_VALUES_EMPTY","headers":headers[:45]}
         # A verified full 5m day must have all 288 distinct minute labels at 5m alignment.
         # Duplicate/irregular rows are not silently corrected.
-        full_days=sorted(day for day,count in counts.items() if count==288
-                         and all((dt.datetime.fromtimestamp(k,dt.timezone.utc).minute%5==0 and
-                                  dt.datetime.fromtimestamp(k,dt.timezone.utc).second==0)
-                                  for k in seen if dt.datetime.fromtimestamp(k,dt.timezone.utc).date().isoformat()==day))
+        full_days=sorted(day for day,count in counts.items() if count==288 and aligned_counts[day]==288)
         streak=0;best=0;previous=None
         for day in full_days:
             d=dt.date.fromisoformat(day)
