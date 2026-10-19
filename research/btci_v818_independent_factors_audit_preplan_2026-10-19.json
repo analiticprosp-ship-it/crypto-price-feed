@@ -57,5 +57,11 @@
     "Protect original raw rights; store only permitted content with SHA and archive data manifest."
   ],
   "validation": "All BTCI up to 8.18 remains retrospectively exploratory, no true OOS. Do not activate live signals until separate shadow workflow and observed forward outcomes.",
-  "noChanges": "No Spot, Futures, NAV, capital, reserve, P&L, Master, Detector, limits, trades"
+  "noChanges": "No Spot, Futures, NAV, capital, reserve, P&L, Master, Detector, limits, trades",
+  "pathRiskAddendum": {
+    "dateRegisteredUTC": "2026-10-19",
+    "reason": "Signal-date drawdown understates risk after initial rallies; also compute rolling within-forward-path high water mark drawdown, longest underwater weeks and time to first +20/+50/-20/-35 milestone.",
+    "predeclare": "At 13/26/52wk horizons calculate (a) min BTC daily close divided by Sunday signal close -1; (b) worst subsequent drawdown from ANY prior daily-close peak since signal Sunday; (c) minimum daily-close return following first +20% move, (d) days from signal to first threshold crossing, right censored. Do NOT replace v8.17 previously frozen outcomes; produce separate v8.18 derived columns and compare both.",
+    "safety": "No index value published after original Sunday in predictor feature; future path solely outcomes. No trading."
+  }
 }
