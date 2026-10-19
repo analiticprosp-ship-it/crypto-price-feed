@@ -1,0 +1,36 @@
+name: BTCI v8.18d2 May 2024 independent Wayback MVRV asof 684 weeks
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818d2_wayback_2024_precise_asof.py'
+      - '.github/workflows/btci-v818d2-wayback-2024-asof.yml'
+permissions:
+  contents: read
+jobs:
+  exact-archived-asof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile and test byte hash and Sunday lag checks
+        run: |
+          python -m py_compile research/btci_v818d2_wayback_2024_precise_asof.py
+          python research/btci_v818d2_wayback_2024_precise_asof.py --self-test
+      - name: Re-fetch SHA-pinned independent Wayback BTC CSV and archive full 684-week audit
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_v818d2_wayback_2024_precise_asof.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818d2-may2024-wayback-asof
+          path: btci_v818d2_reports/
+          retention-days: 30
