@@ -1,0 +1,39 @@
+name: Detector H1-H10 Three New Tardis Days Price OI Join
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-tardis-expanded-3day-price-join.yml'
+      - 'research/detector_tardis_expanded_three_day_price_join.py'
+      - 'research/test_detector_tardis_expanded_three_day_price_join.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  join:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Validate expanded R2 source identity and original price-asof target tests
+        run: |
+          python -m unittest -v research.test_detector_tardis_expanded_three_day_price_join
+          python -m unittest -v research.test_detector_tardis_price_oi_forward_labels
+      - name: Independently validate expanded OI and produce causal price features with separate future labels
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_tardis_expanded_three_day_price_join
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-new-three-day-price-oi-join-report
+          path: detector_tardis_expanded_price_join/report.json
+          if-no-files-found: warn
+          retention-days: 30
