@@ -1,0 +1,88 @@
+{
+  "version": "8.18c11",
+  "researchOnly": true,
+  "tradeAuthorized": false,
+  "frozenUTC": "2026-10-19",
+  "question": "In six additional preselected historical Saturday UTC GH Archive hourly files, can independent PushEvent for original coinmetrics/data and pinned exact BTC historical MVRV value be verified by Sunday decision?",
+  "parents": {
+    "pilotC10": {
+      "key": "research/btci/v8.18c10/runs/39312699691-1/gharchive_push_event_pilot_FULL.json",
+      "sha256": "223351016640ddeb7b9e723227fbb1771ecc5d171996d2db1e64eb25dd6180e3"
+    },
+    "btcPanel": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+    }
+  },
+  "frozenTestCases": [
+    {
+      "sunday": "2020-07-05",
+      "date": "2020-07-04",
+      "hourUTC": 13,
+      "expectedCommitSha": "25cf26da3957023f3a5668d262521073224f5652",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2020-10-04",
+      "date": "2020-10-03",
+      "hourUTC": 13,
+      "expectedCommitSha": "6bca59a76c24f5317a6e69bb0fdd0d56e3ff8a27",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2021-07-04",
+      "date": "2021-07-03",
+      "hourUTC": 13,
+      "expectedCommitSha": "c4db0c61fa4b3babc67766702e19fb27b1b9e5c7",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2023-04-02",
+      "date": "2023-04-01",
+      "hourUTC": 13,
+      "expectedCommitSha": "c204b131640703a9ca54c020b9ddef74b780c8ee",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2025-04-06",
+      "date": "2025-04-05",
+      "hourUTC": 13,
+      "expectedCommitSha": "e4869e8369b16a3281f863d57fc27765f2833f1e",
+      "gitArchiveRepo": "wds33817/data"
+    },
+    {
+      "sunday": "2025-06-15",
+      "date": "2025-06-14",
+      "hourUTC": 13,
+      "expectedCommitSha": "f482df13f7b9b6b2a6d2fe30c53f732d4f0541ec",
+      "gitArchiveRepo": "wds33817/data"
+    }
+  ],
+  "exactMethod": "Reuse v8.18c10 immutable parser, HTTP source boundaries, strict PushEvent original repo match of expected frozen SHA, event timestamp before Sunday, validate pinned original Git blob, Friday-or-older valid CapMVRVCur ratio, gzip hash. No extension of hours if missing.",
+  "sourceBoundaries": {
+    "hours": 6,
+    "maxCompressedBytesEach": 650000000,
+    "maxJsonEventLinesEach": 5000000,
+    "perUrlTimeoutSeconds": 150
+  },
+  "quality": "All source failures/missing events archived as nonproof, provider original API first-publication clock remains UNVERIFIED, original BTCI 684 date panel unmodified. Count independent GitHub provider repo push witnesses only, not model accuracy.",
+  "controls": {
+    "noNewTargets": true,
+    "noThresholdTuning": true,
+    "noSignalBacktest": true,
+    "noSpotFuturesNAVPnLMASTERDetectorTrades": true,
+    "noBulkRawRehosting": true
+  },
+  "portfolioWriteback": {
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "capital": false,
+    "reserve": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
