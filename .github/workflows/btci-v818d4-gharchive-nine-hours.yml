@@ -1,0 +1,37 @@
+name: BTCI v8.18d4 nine independent provider GitHub original push event source audits
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818d4_gharchive_nine_hours.py'
+      - '.github/workflows/btci-v818d4-gharchive-nine-hours.yml'
+permissions:
+  contents: read
+jobs:
+  gharchive-original-repo-push-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Cloudflare R2 research client
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile and self-test frozen third-party publication timestamp matching
+        run: |
+          python -m py_compile research/btci_v818d4_gharchive_nine_hours.py
+          python research/btci_v818d4_gharchive_nine_hours.py --self-test
+      - name: Audit nine frozen original GitHub PushEvent hours and publish SHA-verified R2 evidence
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python -u research/btci_v818d4_gharchive_nine_hours.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818d4-gharchive-nine-hours
+          path: btci_v818d4_reports/
+          retention-days: 30
