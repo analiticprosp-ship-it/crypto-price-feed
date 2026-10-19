@@ -1,0 +1,43 @@
+{
+  "version": "8.18a",
+  "researchOnly": true,
+  "dateFrozenUTC": "2026-10-19",
+  "purpose": "Check and archive genuine ALFRED as-of vintage data for three US Fed official independent macro factors to inform later BTC 2012-2025 asymmetrical rise/fall testing; do not score BTC outcomes in this pilot.",
+  "parentHistory": {
+    "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+    "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+  },
+  "inputSeries": [
+    {
+      "id": "DFII10",
+      "type": "10y real US Treasury inflation-indexed yield",
+      "official": "Federal Reserve Board H.15",
+      "unit": "percent"
+    },
+    {
+      "id": "DTWEXBGS",
+      "type": "Broad USD trade-weighted nominal index",
+      "official": "Federal Reserve Board H.10",
+      "unit": "index, historic 2019/2026 rebase must be noted"
+    },
+    {
+      "id": "T10Y2Y",
+      "type": "10y minus 2y Treasury nominal slope",
+      "official": "Federal Reserve Board H.15 FRED derived",
+      "unit": "percent"
+    }
+  ],
+  "probeAsOfSundays": [
+    "2013-01-06",
+    "2017-01-01",
+    "2020-01-05",
+    "2023-01-01",
+    "2025-01-05"
+  ],
+  "query": "FRED official realtime_start=asOfSunday realtime_end=asOfSunday observations via encrypted FRED_API_KEY, observation_start=asOf-65d, observation_end=asOf; no leakage from later observation dates. As-of-then historic original revision status verified; publication clock intraday not certified.",
+  "expected": "At least 3 numerical observations in 65-day window including last obs at least 2d older than Sunday and <=10 days stale; no FRED rate limit misinterpreted as missing data; 4wk change if a value 25–35 calendar days prior exists.",
+  "archive": "15 raw authenticated FRED API response bodies with SHA256 in R2 and parent sources check; full pilot and manifest readback SHA. Original BTC outcomes not joined or modified.",
+  "licencing": "Archive only original Federal Reserve or FRED-generated series. Do not archive proprietary VIXCLS/CBOE or Moody BAA10Y/ICE OAS until rights verified. No bypass.",
+  "methodology": "Positive 4w change in real yields and broad USD are hypothesized tightening; T10Y2Y low/negative and 4w flattening are stress hypotheses, not validated crash predictors. Direction and lag to be preregistered in future v8.18b before outcome test.",
+  "guard": "Research only, no changes to Spot Futures NAV reserve capital P&L MASTER live Detector trade limits or executions."
+}
