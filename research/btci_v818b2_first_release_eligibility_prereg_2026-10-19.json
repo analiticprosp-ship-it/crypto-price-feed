@@ -1,0 +1,62 @@
+{
+  "version": "8.18b2",
+  "frozenUTC": "2026-10-19",
+  "status": "PREREGISTERED_AUTHORITATIVE_SOURCE_ELIGIBILITY_CORRECTION",
+  "researchOnly": true,
+  "scope": "Classify exactly one v8.18b1 failed FRED DTWEXBGS as-of Sunday 2019-02-03 as pre-publication structurally ineligible; NO data refetch, feature retuning, indicator change, or re-estimation.",
+  "pins": {
+    "v818bReport": {
+      "key": "research/btci/v8.18b/runs/39249928886-1/independent_factors.json",
+      "sha256": "b09e5513320edf79b8b03dfcbe6813bb115f9285b7f5d1b916ef58a1bfe406f5"
+    },
+    "v818bUsdAudit": {
+      "key": "research/btci/v8.18b/runs/39249928886-1/source/DTWEXBGS_sunday_asof.jsonl",
+      "sha256": "7c48b9e2ff5468ebfbba2064da239ed4e0f798bee4dcd123eb7afb40dea2b9e9"
+    },
+    "v818b1Research": {
+      "key": "research/btci/v8.18b1/runs/39257900194-1/single_gap_recovery_FULL.json",
+      "sha256": "86891051a6961fa0e94113c014f85bf4365bdc5c73bdbb9d5c7bfb31e9387d13"
+    }
+  },
+  "sourceAuthority": [
+    {
+      "url": "https://alfred.stlouisfed.org/series?seid=DTWEXBGS",
+      "claim": "DTWEXBGS series Release Dates begin on 2019-02-04"
+    },
+    {
+      "url": "https://www.federalreserve.gov/econres/notes/feds-notes/revisions-to-the-federal-reserve-dollar-indexes-20190115.html",
+      "claim": "New broad goods+services method implemented 2019-02-04; historical 2006 values reconstructed/backfilled are not 2006 availability"
+    },
+    {
+      "url": "https://www.federalreserve.gov/releases/h10/h10_technical_qa.htm",
+      "claim": "Fed technical FAQ on 2019-02-04 methodology and 2019-06-24 reindexation"
+    }
+  ],
+  "acceptance": [
+    "Verify pinned SHA of predecessor macro report, 342-line source archive, and failed targeted retry",
+    "Exactly one unresolved date and it MUST be 2019-02-03; no other failures allowed",
+    "2019-02-03 < 2019-02-04 first DTWEXBGS release date",
+    "Reclassify historical source status only: eligible 341; validated 341; pre-publication excluded 1",
+    "Preserve all original 684 BTC rows, historical factors and UP/DOWN outcomes; all four statistical summaries must have unchanged SHA",
+    "Archive separate correction JSON manifest to R2 with GET SHA256 readback; never change prior R2 prefixes",
+    "Research-only, publication intraday clock unverified, original 2019 transition and June reindexation still require care"
+  ],
+  "nonClaims": [
+    "New statistical result",
+    "OOS trading edge",
+    "Complete dollar coverage 2012-2018",
+    "Intraday PIT verified"
+  ],
+  "noModify": [
+    "Spot",
+    "Futures",
+    "NAV",
+    "P&L",
+    "MASTER",
+    "Detector",
+    "reserve",
+    "capital",
+    "tradingLimits",
+    "orders"
+  ]
+}
