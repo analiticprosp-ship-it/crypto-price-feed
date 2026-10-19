@@ -1,0 +1,51 @@
+{
+  "version": "8.18f",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "aim": "Determine whether publicly observable Binance BTCUSDT spot trading turnover and aggressive taker-side imbalance increased during public Terra/Celsius/3AC/FTX shock windows; NOT claim confirmed forced selling.",
+  "parent": {
+    "key": "research/btci/v8.18e/runs/39215131167-1/crypto_crisis_events.json",
+    "sha256": "78608d81f46d52b520a51377068b7221d7bb957fc6d6cba689afcf41ae230bff"
+  },
+  "officialSource": "https://github.com/binance/binance-public-data/blob/master/README.md",
+  "endpointPattern": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1d/BTCUSDT-1d-YYYY-MM.zip and corresponding .CHECKSUM",
+  "months": [
+    "2022-04",
+    "2022-05",
+    "2022-06",
+    "2022-07",
+    "2022-10",
+    "2022-11"
+  ],
+  "metricSchema": {
+    "volume": "daily BTC traded quantity on Binance BTCUSDT spot",
+    "quoteVolume": "daily USDT not USD traded value",
+    "takerBuyBase": "daily BTC volume initiated by aggressive BUY market orders",
+    "takerSellBase": "volume-takerBuyBase, BTC volume initiated by aggressive SELL market orders",
+    "aggressionImbalance": "(takerBuyBase-takerSellBase)/totalDailyBaseVolume (bounded [-1,1]); positive=more aggressive buyers"
+  },
+  "fixedWindows": {
+    "Terra": {
+      "prior": "2022-04-25..2022-05-08",
+      "shock": "2022-05-09..2022-05-22"
+    },
+    "Celsius": {
+      "prior": "2022-05-29..2022-06-11",
+      "shock": "2022-06-12..2022-06-25"
+    },
+    "ThreeArrows": {
+      "prior": "2022-06-13..2022-06-26",
+      "shock": "2022-06-27..2022-07-10"
+    },
+    "FTX": {
+      "prior": "2022-10-19..2022-11-01",
+      "shock": "2022-11-02..2022-11-15",
+      "contagion": "2022-11-16..2022-11-29"
+    }
+  },
+  "archive": "Verify original Binance SHA256 CHECKSUM exact ZIP, ZIP CRC/unique daily klines, 12 cols and stable YYYY-MM month; R2 store original ZIP raw with readback SHA plus report and manifest readback, never invent values on 429/404.",
+  "metrics": "Per 14-day window daily mean/median base BTC turnover and quote USDT traded, daily sum takerBuy/takerSell, weighted net taker imbalance, ratio shock/pre for base and USDT turnover, exact daily table, max turnover day, magnitude if valid.",
+  "caution": "A matched buyer exists for every sale: cannot call executed volume 'BTC net sales'. Taker-side aggression is direction of marketable orders, not forced sales, institutional wallet flow, market-wide volume or one investor's motive. Binance BTCUSDT is one venue, not market aggregate. Monthly archive was published AFTER event, so usable for retrospective measurements, not a 2022 live signal without contemporaneous exchange API.",
+  "hypothesis": "Volume/imbalance spike may quantify panic at headline but not forecast secret exchange insolvency or pre-headline liquidation. Do not claim causal news price effect.",
+  "safety": "RESEARCH_ONLY. No Spot/Futures/NAV/MASTER/P&L/capital/reserve/limits/Detector changes."
+}
