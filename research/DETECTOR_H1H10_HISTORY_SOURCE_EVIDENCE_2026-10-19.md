@@ -113,3 +113,38 @@ R2 `research/detector-free-tardis-okx-history-audit/v1/39289452550-1.json`, SHA2
 **Сводный актуальный gate:** `EARLIEST_TARDIS_FREE_SAMPLES_9_OF_9_AUDITED` / `2023Q1_BINANCE_OI_FULL_270` / `2022Q1_BINANCE_OI_263_FULL_7_INVALID` / `PRE2024_WHOLE_RANGE_UNCERTIFIED` / `EXCHANGE_RELEASE_PIT_UNVERIFIED` / `EDGE_UNVALIDATED`.
 
 Следующий научный этап: оставшиеся кварталы 2020–2023 с дневным provenance и quality masks, классификация причин ошибочных OI 7–8 марта 2022, независимая публикационная семантика и затем frozen walk-forward H1–H10 без утечек. Все пользовательские Spot/Futures/NAV/P&L и лимиты неизменны.
+
+## 10. Подтверждённый исходный календарь OI за 2022–2023 годы: ВСЕ даты
+
+- [PR #109](https://github.com/analiticprosp-ship-it/crypto-price-feed/pull/109) объединён с main. [GitHub Actions #39311042453](https://github.com/analiticprosp-ship-it/crypto-price-feed/actions/runs/39311042453) **SUCCESS, 6/6 квартальных задач**, все 11 offline tests в каждой задаче PASS. Проверены 1 650 дополнительных ежедневных source ZIP для 2022Q2–Q4 и 2023Q2–Q4. Для каждого файла проверены издательский SHA256 из .CHECKSUM, ZIP CRC, исходные native OI значения, UTC-метки, дубли, пропуски. Неоднозначные записи не подменялись, все 6 отчётов записаны в R2 и прочитаны обратно по SHA256.
+- С учётом уже независимо завершённых [PR #106](https://github.com/analiticprosp-ship-it/crypto-price-feed/pull/106) / [Actions #39308756529](https://github.com/analiticprosp-ship-it/crypto-price-feed/actions/runs/39308756529) аудирован **каждый из 2 190 дней-активов BTC/ETH/SOL с 2022-01-01 по 2023-12-31**. Полностью качественные **2 159 / 2 190**, частичные **31**, **401 исходное некорректное числовое OI** и **26 отсутствующих пятиминутных меток**. **Нулевые** publisher/source-fetch ошибки по всем кварталам. Это качество *исторических source labels*, НЕ изначальная доступность данных во время торгового решения.
+- Кварталы (число дней-активов / полный источник / частичный):
+  - 2022Q1 **270 / 263 / 7**, 352 invalid native OI, 0 gaps.
+  - 2022Q2 **273 / 273 / 0**, 0 invalid, 0 gaps.
+  - 2022Q3 **276 / 275 / 1**, SOLUSDT 2022-09-03: 1 invalid native OI, 0 gaps.
+  - 2022Q4 **276 / 276 / 0**, 0 invalid, 0 gaps.
+  - 2023Q1 **270 / 270 / 0**, 0 invalid, 0 gaps.
+  - 2023Q2 **273 / 270 / 3**, 12 invalid, 0 gaps.
+  - 2023Q3 **276 / 270 / 6**, 3 invalid, 9 missing 5m labels.
+  - 2023Q4 **276 / 262 / 14**, 33 invalid, 17 missing 5m labels.
+- **Итог:** статус `BINANCE_2022_2023_ALL_SOURCE_DAYS_AUDITED_WITH_QUALITY_MASKS`; не равно `ALL_PIT_CERTIFIED`. Сохранить defect masks в любой производной исследовательской панели. 2 159 полных дней-активов не равны 2 159 дням трехмонетного совместного календаря.
+
+### Неизменяемые отчёты кварталов, проверенные R2 SHA256
+
+| Квартал | Объект R2 относительно bucket | SHA256 |
+|---|---|---|
+| 2022Q2 | `research/detector-binance-oi-2022-2023-rest-quarters/v1/2022Q2/39311042453-1.json` | `7c129110b5ea0cc412956269e36616138185fc3562c8e6e7431809c075e9b812` |
+| 2022Q3 | `research/detector-binance-oi-2022-2023-rest-quarters/v1/2022Q3/39311042453-1.json` | `e3e3f89227ee3eb8f4b80e5b4f6269320124e3dba457fe18de1d61694bd17c4b` |
+| 2022Q4 | `research/detector-binance-oi-2022-2023-rest-quarters/v1/2022Q4/39311042453-1.json` | `dcd4065f15c333289cebbe1faefc75d337c965df20b3b588d920d2aec1ba54bf` |
+| 2023Q2 | `research/detector-binance-oi-2022-2023-rest-quarters/v1/2023Q2/39311042453-1.json` | `b1668387ea4c10357dedd1cf38589531810eac117fc9f407bf8174c94f857741` |
+| 2023Q3 | `research/detector-binance-oi-2022-2023-rest-quarters/v1/2023Q3/39311042453-1.json` | `b0c06c8dfaab2244954cd619bbaa73d7de54bd91ddab3c45748421dc1b6e955d` |
+| 2023Q4 | `research/detector-binance-oi-2022-2023-rest-quarters/v1/2023Q4/39311042453-1.json` | `1afce2cd9b5855d84e19d6ad947620fb6e8b89872cf5383113d74420ab20c425` |
+
+## 11. Перепроверка наиболее ранних известных Binance OI источников (2020–2021)
+
+- [PR #111](https://github.com/analiticprosp-ship-it/crypto-price-feed/pull/111) объединён; [GitHub Actions #39311651357](https://github.com/analiticprosp-ship-it/crypto-price-feed/actions/runs/39311651357) **SUCCESS**, 10 offline tests PASS, **399 HEAD проверок** исходных ZIP по 3 монетам. Проверены 1-е, 15-е, последние дни каждого месяца 2020–2021 и ВСЕ даты непосредственно вокруг первого обнаруженного положительного месяца, затем источник каждого самого раннего выявленного дня перепроверен по publisher SHA256/ZIP CRC/CSV.
+- **BTCUSDT: 2020-09-01; ETHUSDT: 2021-12-01; SOLUSDT: 2021-12-01** — первые **наблюдённые и побайтово проверенные** Binance USD-M daily metrics OI ZIP в этом ограниченном методе.
+- Это `FIRST_OBSERVED_ARCHIVE_BYTES_VERIFIED`, а **не** доказательство абсолютного начала хранения/публикации: в более ранних месяцах проверены только три контрольных дня, любые остальные теоретически могут иметь архивы. До этого пункта нет `ABSOLUTE_EARLIEST_SOURCE`.
+- R2 immutable: `research/detector-binance-oi-2020-2021-origin-recon/v1/39311651357-1.json`; SHA256 `7242d39d61634d137b3f11fff24729deb47411820b7794249b054ceeb5db683a`. Publisher SHA, ZIP CRC и R2 write/readback PASS. Нет правок исходных исторических данных.
+
+**Новый суммарный gate:** `BINANCE_2022_2023_ALL_SOURCE_DAYS_AUDITED_WITH_QUALITY_MASKS`; `TARDIS_18_VENDOR_RECEIPT_ASOF_5184_5184_VERIFIED`; `BINANCE_ORIGIN_FIRST_OBSERVED_NOT_ABSOLUTE`; `EXCHANGE_RELEASE_PIT_UNVERIFIED`; `EDGE_UNVALIDATED`. Никаких изменений пользовательских Spot, Earn, Tangem, Futures, NAV, P&L, капитала, резерва и торговых лимитов.
