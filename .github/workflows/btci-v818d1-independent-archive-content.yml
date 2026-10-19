@@ -1,0 +1,37 @@
+name: BTCI v8.18d1 independent archived Coin Metrics BTC file content audit
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818d1_independent_capture_content.py'
+      - '.github/workflows/btci-v818d1-independent-archive-content.yml'
+permissions:
+  contents: read
+jobs:
+  archived-content-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install research archiving libraries
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile and self-test historical source controls
+        run: |
+          python -m py_compile research/btci_v818d1_independent_capture_content.py
+          python research/btci_v818d1_independent_capture_content.py --self-test
+      - name: SHA pin parent sources, audit Wayback bodies and Software Heritage snapshots, read back R2
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_v818d1_independent_capture_content.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818d1-independent-archive-content
+          path: btci_v818d1_reports/
+          retention-days: 30
