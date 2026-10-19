@@ -128,8 +128,10 @@ def main():
     frozen=spec["frozenAnchorSundays"]
     if len(frozen)!=26 or len(set(frozen))!=len(frozen):
         raise RuntimeError("FROZEN_ANCHORS_INVALID")
-    if any(d not in alldates for d in frozen):
-        raise RuntimeError("ANCHOR_NOT_IN_684_PANEL")
+    # Frozen calendar audit and frozen 684-week outcome panel are distinct.
+    # Keep ALL 26 preregistered calendar probes; never inject missing dates into 684 outcomes.
+    outside=[d for d in frozen if d not in alldates]
+    print("V818C9_OUTSIDE_PANEL " + json.dumps(outside),flush=True)
     audits=[]
     statuses=Counter()
     for anchor in frozen:
@@ -138,6 +140,7 @@ def main():
         rep="croque-m/coinmetrics-data" if anchor<"2025-01-01" else "wds33817/data"
         commit_api="https://api.github.com/repos/"+rep+"/commits?path=csv/btc.csv&until="+past+"&per_page=1"
         out={"Sunday":anchor,"archiveRepo":rep,"chronologyTier":"B_GIT_COMMIT_NO_INDEPENDENT_PUBLIC_PUSH_PROOF",
+             "inFrozen684Panel":anchor in alldates,
              "isIndependentlyPITProven":anchor in strictly_dated,"sourceError":None}
         try:
             commits=json.loads(get(commit_api,1_000_000))
@@ -193,6 +196,8 @@ def main():
         "strictDatedForkAsOfCountUnchanged":11,
         "originalCoinMetricsProviderFirstSeenValidated":0,
         "quarterly26SampledSundays":len(frozen),
+        "sampledSundaysOutside684Panel":outside,
+        "anchorDatesNeverAppendedToBTCPanel":True,
         "historicalCommitCandidates":eligible,
         "sourceAuditFailures":missing,
         "classifications":dict(statuses),
@@ -226,7 +231,7 @@ def main():
         "report":record,"status":resultstatus,"preregSHA256":sha(spec_raw),
         "strictPrior11Immutable":True},ensure_ascii=False,indent=2)+"\n").encode())
     summary={"status":resultstatus,"original684":684,"anchors":len(frozen),
-        "candidateOriginalGitChronology":eligible,"strictPublicPITUnchanged":11,
+        "outsideFrozen684":outside,"candidateOriginalGitChronology":eligible,"strictPublicPITUnchanged":11,
         "originalProviderPublicationClockVerified":0,"sourceFailures":missing,
         "statuses":dict(statuses),"reportSha256":record["sha256"],
         "manifestSha256":manifest["sha256"],"prefix":prefix}
