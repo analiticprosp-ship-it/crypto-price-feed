@@ -1,0 +1,33 @@
+name: BTCI complete historical rates dollar curve BTC risk v8.18b
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_independent_macro_v818b.py'
+      - '.github/workflows/btci-us-macro-factors-v818b.yml'
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Download original 2012–25 as-of FRED rate dollar Treasury vintages and compare BTC rise vs drawdown risk
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python research/btci_independent_macro_v818b.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818b-2012-2025-independent-real-yield-dollar-curve
+          path: btci_v818b_reports/
+          retention-days: 30
