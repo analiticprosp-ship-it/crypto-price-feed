@@ -1,0 +1,36 @@
+name: BTCI v8.18c5 audit 2019 MVRV five-day discrepancy
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818c5_mvrv_2019_anchor_discrepancy.py'
+      - '.github/workflows/btci-v818c5-five-day-discrepancy.yml'
+permissions:
+  contents: read
+jobs:
+  five-day-source-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile and self-test
+        run: |
+          python -m py_compile research/btci_v818c5_mvrv_2019_anchor_discrepancy.py
+          python research/btci_v818c5_mvrv_2019_anchor_discrepancy.py --self-test
+      - name: R2 SHA pinned parent and source historical mismatch diagnostic
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_v818c5_mvrv_2019_anchor_discrepancy.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818c5-mvrv-five-day-diagnostic
+          path: btci_v818c5_reports/
+          retention-days: 30
