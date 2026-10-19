@@ -1,0 +1,53 @@
+{
+  "version": "8.18d5",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "tradeAuthorized": false,
+  "purpose": "Create a single portable 684-Sunday MVRV source eligibility register joining the SHA-pinned 17-week multi-archive report and nine independent original Coin Metrics GitHub PushEvent witnesses; all future tests use precisely dated evidence, never silently use full retrospective history.",
+  "parents": {
+    "full684": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091",
+      "weeks": 684
+    },
+    "cumulativeD3": {
+      "key": "research/btci/v8.18d3/runs/39315327743-1/multi_archive_684_MVRV_provenance_FULL.json",
+      "sha256": "51c72586fa06652485d347f284045d5747f035c9f1213662115b5806cb3f0aeb",
+      "weeks": 17
+    },
+    "newD4": {
+      "key": "research/btci/v8.18d4/runs/39315704074-1/original_repo_push_nine_hours_FULL.json",
+      "sha256": "859c1059858eadc3ac30d4d765afdba91762281e71207990358dc641f6510fcf",
+      "newWeeks": 9
+    }
+  },
+  "expected": {
+    "frozenBTCPanelWeeks": 684,
+    "oldAsOfNumericWitnessWeeks": 17,
+    "newAsOfNumericWitnessWeeks": 9,
+    "totalDistinctAsOfNumericWitnessWeeks": 26,
+    "originalProviderDailyAPIReleaseClockVerified": 0
+  },
+  "rules": [
+    "All parents read from exact immutable R2 keys and verified full SHA256. Original BTCI v8.17.1 684 Sunday dates must be sorted, unique, unchanged, with original era labels.",
+    "Prior 17 evidence from d3 for original Sunday date; reread exact object, no calendar shifts. New 9 evidence from d4 must be independent provider-original GitHub PushEvent with matching original Git SHA and Friday-or-older MVRV observation 2..7 days earlier.",
+    "Carry independent UTC public push timestamp and historical MVRV; reject event after Sunday decision and missing exact source commit. Do not use Git committer timestamp alone.",
+    "Union 26 unique, preserve multiple different evidence types if any same Sunday and report conflicts. If any original MVRV values materially disagree for same Sunday, do not hide discrepancy.",
+    "Mark remaining 658 Sundays UNKNOWN_OR_UNVERIFIED, not values unavailable and not failures. 26 weeks are sparse and unrepresentative; no claim of statistical edge.",
+    "Keep original 684 BTC price outcomes untouched: do not copy future returns into feature report, no backtest, no coefficients or thresholds.",
+    "Independent public GitHub fork, third-party original GitHub PushEvent, and Wayback body prove public historical data as-of; original provider API initial daily release clock still UNKNOWN.",
+    "Write portable metadata report, per-era counts, 684 date evidence gates to R2 and verify SHA256 PUT/GET; no licensed raw Coin Metrics source redistribution."
+  ],
+  "portfolioWriteback": {
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "capital": false,
+    "reserve": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
