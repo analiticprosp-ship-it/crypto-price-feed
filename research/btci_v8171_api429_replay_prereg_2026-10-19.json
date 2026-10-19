@@ -1,0 +1,18 @@
+{
+  "version": "8.17.1",
+  "freeze": "2026-10-19",
+  "researchOnly": true,
+  "parentOriginal": {
+    "key": "research/btci/v8.17/runs/39211420135-1/full_historical_rise_fall.json",
+    "sha256": "daa2691995f30c763f381394c9ea090fbcac28b965d3f1dbda11b4ff1b759991"
+  },
+  "sourceOriginal": "Both source NFCI/ANFCI JSONL archives from v8.17 must be fetched using exact R2 key and SHA256 in v8.17 report, and per-row rawBase64 SHA verified.",
+  "parentBTC": "Unchanged exact v8.6/v8.9/v8.10.1/v8.15 pins and all v8.17 fixed upside/downside definitions and per-era statistics. NO model re-fitting.",
+  "identifiedProblem": "Original candidate sample 685; common PIT complete 559, 125 source API HTTP429 (not missing historical series), one quality rejection age/gap. HTTP429 is acquisition transient and must not be treated as economic-data absence. Old v8.17 remains immutable.",
+  "correction": "Reread 685 per-series original archived rows and retain all valid raw response bytes; retry ONLY 125 HTTP429 requests serially at <=1 request/sec with exponential delays if 429, archive actual raw as-of response. Preserve original 1 quality-rejected historical point as UNKNOWN, do not force fit.",
+  "quality": "All successful existing rows must have exact byte SHA and audit; old and new output for every original complete row must be identical feature and target values; no silent replacement.",
+  "outcome": "Full maximum accessible common historical cohort, recompute same UPCLOSE+DOWN paths and combinations, 13/26/52wk, original base rates, era, 14/27-week lockout. Show effective n increase and unchanged paired rows.",
+  "storage": "Versioned v8.17.1 Cloudflare R2 artifacts, source raw SHA, report sha and manifest readback. No deletion of v8.17 source.",
+  "limitation": "This is technical completeness replay, not OOS, not new experimental model, not live trade. Remaining quality-rejected record must be reported.",
+  "safety": "No Spot Futures NAV P&L reserve capital MASTER Detector trade limits or trades changes"
+}
