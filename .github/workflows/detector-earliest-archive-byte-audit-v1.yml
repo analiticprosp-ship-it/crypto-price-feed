@@ -1,0 +1,36 @@
+name: Detector H1-H10 Earliest Archive Publisher SHA Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-earliest-archive-byte-audit-v1.yml'
+      - 'research/detector_earliest_archive_byte_audit_v1.py'
+      - 'research/test_detector_earliest_archive_byte_audit_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate archive parser and fail-closed publisher checksum tests
+        run: python -m unittest -v research.test_detector_earliest_archive_byte_audit_v1
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Verify bounded earliest source ZIP bytes checksums and timestamps
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_earliest_archive_byte_audit_v1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-earliest-source-archive-byte-audit-v1
+          path: detector_earliest_archive_byte_audit/report.json
+          retention-days: 30
