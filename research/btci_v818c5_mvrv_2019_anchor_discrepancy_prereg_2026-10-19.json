@@ -1,0 +1,63 @@
+{
+  "version": "8.18c5",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "exploratoryPostMismatch": true,
+  "scientificClaim": "DIAGNOSTIC_AFTER_SEEING_V818C4_MISMATCH_NOT_INDEPENDENT_CONFIRMATION",
+  "parent": {
+    "run": 39298506014,
+    "status": "HISTORICAL_MVRV_ANCHOR_MISMATCH",
+    "reportSHA256": "3981672dff6696c8abff44ded35eebe5168eeda8315bdb6b41194800a9f99873",
+    "observedMvrv": "1.29751611",
+    "reportedMvrv": 1.33
+  },
+  "src": {
+    "repo": "croque-m/coinmetrics-data",
+    "one": {
+      "sha": "bacd0afed3e4f9c76a3b63507e165313d84d9188",
+      "blob": "4bff9d1564ef9c5ba06565dd168f7b19dcf1fcdc",
+      "bytes": 2523792
+    },
+    "two": {
+      "sha": "7c9ea1ae592db106de039bb3869777219e46c13a",
+      "blob": "687c3b24db62e027b45340022977e1326ccecb84",
+      "bytes": 2886213
+    }
+  },
+  "article": {
+    "url": "https://coinmetrics.substack.com/p/state-of-the-network-2019-year-in",
+    "date": "2020-01-01",
+    "claimedBTCMVRV": 1.33,
+    "claimFor": "2019-12-30"
+  },
+  "frozenDates": [
+    "2019-12-28",
+    "2019-12-29",
+    "2019-12-30",
+    "2019-12-31",
+    "2020-01-01"
+  ],
+  "questions": [
+    "Is MVRV 1.33 reproduced from any fixed nearby date in exact archived 2020 CSV under ordinary two-decimal rounding?",
+    "Did preexisting observations change in the 2020-12-31 CSV?",
+    "Does the archive recompute CapMrktCurUSD / CapRealUSD exactly?",
+    "Could price or date mapping explain the discrepancy? Label any speculative explanations as unproven."
+  ],
+  "procedures": [
+    "Validate fixed raw byte length and exact git SHA1 for both historical blobs",
+    "Compare each fixed observation date across both historic CSVs",
+    "Count differences in any rows as separate from source publication times",
+    "Write report and SHA-verified R2 archive even when no match",
+    "DO NOT shift dates or revise thresholds to force matching; cannot upgrade PIT or predictive claims"
+  ],
+  "guards": {
+    "noPortfolioWriteback": true,
+    "spot": false,
+    "futures": false,
+    "nav": false,
+    "pnl": false,
+    "master": false,
+    "detector": false,
+    "orders": false
+  }
+}
