@@ -1,0 +1,42 @@
+name: Detector H1-H10 Binance OI Preorigin Exhaustive Daily HEAD
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-binance-oi-preorigin-daily-v1.yml'
+      - 'research/detector_binance_oi_preorigin_daily_v1.py'
+      - 'research/test_detector_binance_oi_preorigin_daily_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-archives:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        symbol: [BTCUSDT, ETHUSDT, SOLUSDT]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Offline exhaustive date coverage and fail closed protections
+        run: python -m unittest -v research.test_detector_binance_oi_preorigin_daily_v1
+      - name: Install minimal R2 client
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Exhaustively check dated historical Binance ZIPs and publisher SHA
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_binance_oi_preorigin_daily_v1 --symbol ${{ matrix.symbol }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-binance-oi-preorigin-${{ matrix.symbol }}
+          path: detector_binance_oi_preorigin_exhaustive/${{ matrix.symbol }}.json
+          retention-days: 30
