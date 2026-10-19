@@ -1,0 +1,74 @@
+{
+  "version": "8.18i",
+  "frozenUTC": "2026-10-19",
+  "status": "EVENT_SCOPE_CORRECTION_PREREGISTERED",
+  "researchOnly": true,
+  "correctsInterpretationOf": "BTCI v8.18g and v8.18h source-classification only; no previous measured BTC daily prices or R2 historical reports overwritten",
+  "officialAndContemporaneousContext": "Events sourced to White House EO and joint US-China declaration; Reuters contemporaneous Greenland announcement/withdrawal; IMF and CRS retrospective sectoral effects clearly separated from 2022 ex ante public expectations.",
+  "frozenEvents": [
+    {
+      "date": "2022-02-24",
+      "id": "ukraine-invasion",
+      "topic": "geopolitical",
+      "group": "ukraine-2022",
+      "sign": "UNDETERMINED_MULTI_CHANNEL",
+      "source": "https://www.imf.org/en/blogs/articles/2022/03/15/blog-how-war-in-ukraine-is-reverberating-across-worlds-regions-031522",
+      "note": "Original event date UN, IMF follow-on identifies low direct US exposures yet global commodity inflation and uncertain defense procurement. Never label favorable for overall US or bitcoin ex ante."
+    },
+    {
+      "date": "2025-04-02",
+      "id": "broad-2025-tariff-announcement",
+      "topic": "trade",
+      "group": "global-tariffs-2025",
+      "sign": "BROAD_RESTRICTIVE",
+      "source": "https://www.whitehouse.gov/presidential-actions/2025/04/regulating-imports-with-a-reciprocal-tariff-to-rectify-trade-practices-that-contribute-to-large-and-persistent-annual-united-states-goods-trade-deficits/",
+      "note": "Baseline 10% broad worldwide subject to exceptions; additional country-specific tariff rates. Not China-only."
+    },
+    {
+      "date": "2025-04-09",
+      "id": "pause-most-non-china-tariffs",
+      "topic": "trade",
+      "group": "global-tariffs-2025",
+      "sign": "BROAD_RELIEF_PLUS_CHINA_ESCALATION",
+      "source": "https://www.whitehouse.gov/presidential-actions/2025/04/modifying-reciprocal-tariff-rates-to-reflect-trading-partner-retaliation-and-alignment/",
+      "note": "90-day suspension individualized higher duties except PRC; non-China additional 10% base retained; China rate escalated 125% in specified tariff heading, mixed simultaneous channels; April10 effective."
+    },
+    {
+      "date": "2025-05-12",
+      "id": "china-bilateral-tariff-relief",
+      "topic": "trade",
+      "group": "global-tariffs-2025",
+      "sign": "CHINA_SPECIFIC_RELIEF",
+      "source": "https://www.whitehouse.gov/briefings-statements/2025/05/joint-statement-on-u-s-china-economic-and-trade-meeting-in-geneva/",
+      "note": "Separate 90d U.S.-China truce agreed, not same as Apr9 other-trading-partner relief; action generally effective May14."
+    },
+    {
+      "date": "2026-01-17",
+      "id": "greenland-europe-tariff-threat",
+      "topic": "trade-geopolitical",
+      "group": "greenland-eu-tariffs-2026",
+      "sign": "EUROPE_SPECIFIC_THREAT_NOT_IMPLEMENTED",
+      "source": "https://www.reuters.com/world/europe/trump-vows-tariffs-eight-european-nations-over-greenland-2026-01-17/",
+      "note": "Threat of tariff 10% on eight European states starting Feb1, proposed 25% June1; threats not imposed on date. Scope 8 countries, NOT universal."
+    },
+    {
+      "date": "2026-01-21",
+      "id": "greenland-tariff-threat-withdrawn",
+      "topic": "trade-geopolitical",
+      "group": "greenland-eu-tariffs-2026",
+      "sign": "EUROPE_THREAT_WITHDRAWN",
+      "source": "https://www.reuters.com/business/davos/trump-says-no-tariffs-next-month-after-agreeing-outline-greenland-deal-2026-01-21/",
+      "note": "Tariff threat withdrawn in Jan21 social announcement; announced possible Feb1 tariff does not come into effect. Country-specific threat relief."
+    }
+  ],
+  "sourceParents": {
+    "BTC": "research/btci/v8.7/runs/39131902527-1/archive_manifest.json SHA256 3705a179363c9fdf50fede363fb7062481ce15c60f62dfada226e5371e674fb4",
+    "globalMacro": "research/btci/v8.18g/runs/39217731987-1/global_macro_shocks.json (source v8.18g, SHA to be verified from GitHub artifact before reuse)"
+  },
+  "time": "Daily CoinMetrics BTC PriceUSD from previous UTC date d-1, no exchange actual fill; UTC daily date cannot infer reaction hour. For policy effective date distinguish communication announced date (main event) vs effective date (metadata).",
+  "measures": "Pre-event 7d/30d BTC returns, day-of, forward day 1/3/7/14/30/90 min/max and closing returns. Keep results descriptive; market anticipatory pricing and contemporaneous shocks confound.",
+  "studyLimits": "This is additional POST-HOC selected historic shock sequence, not independent news-prediction precision. Do not classify war as US GDP gain or global risk absence, nor classify Apr9 2025 as one-dimensional good/bad.",
+  "hypothesis": "Market-wide removal of trade restrictions may be larger relief for global risk appetite than China-only changes; separate reach by jurisdictions and weighted trade rather than inventing quantitative benefit. Defense orders may boost US defense employment without implying net US macro GDP gain. Risk impact BTC contingent on aggregate yields, USD, inflation, BTC positioning and source surprise.",
+  "next": "Time-precise official headline and actual global cross-market DXY / SP500 / Treasury rates / oil / gold as-of response with independent release guards, no leverage live detector integration.",
+  "safety": "No modification to MASTER, Spot, Futures, NAV, P&L, capital, reserve, risk limits, live detector or trades."
+}
