@@ -1,0 +1,51 @@
+{
+  "version": "8.18d2",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "tradeAuthorized": false,
+  "question": "Does the exact Wayback BTC Coin Metrics CSV capture dated 2024-05-25 01:53:26 UTC independently witness a complete MVRV daily value before any originally frozen BTCI Sunday 00:00 decision?",
+  "parents": {
+    "d1": {
+      "key": "research/btci/v8.18d1/runs/39313031693-1/archive_exact_content_audit_FULL.json",
+      "sha256": "2c0eba341de296b5ff191455f86e2a9922eedf15b4339dad5a419821f2619b9d"
+    },
+    "c8": {
+      "key": "research/btci/v8.18c8/runs/39308814539-1/independent_fork_684_asof_expansion_FULL.json",
+      "sha256": "a07ebe78d97ba5d6ccad13c2adac4e2406e76778627537fd231df7f7ef153a6f",
+      "oldWitnesses": 11
+    },
+    "btc": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091",
+      "weeks": 684
+    }
+  },
+  "captureUTC": "2024-05-25T01:53:26Z",
+  "captureTimestamp": "20240525015326",
+  "source": "Wayback independent archive captured BTC CSV; original archive URL, verified downloaded body SHA256 and Git blob sha must match the exact d1 report entries; no replacement from current Coin Metrics",
+  "frozenEvaluation": {
+    "calendarCheckDates": [
+      "2024-05-26",
+      "2024-06-02"
+    ],
+    "fullCohort": "All 684 original Sundays, exact unchanged date set, no relabeling, no outcome calculations",
+    "rules": "Sunday 00:00 UTC strictly after capture; use only exact MVRV numerator, denominator and ratio in CSV row Friday or earlier (age 2..7d); prove ratio arithmetic and no backfill or Saturday/same-Sunday row; no value can be projected after age 7 days.",
+    "sourceChecks": "Original archived file must match d1 SHA256 and Git SHA1; optionally classify capture body state. Any hash mismatch stops.",
+    "accept": "If eligible row exists in original 684 and not one of c8's existing 11, count as NEW_INDEPENDENT_WAYBACK_NUMERIC_ASOF_WITNESS. Do not assert first actual Coin Metrics provider release clock, broad data continuity or predictive alpha.",
+    "negative": "If target Sunday absent from 684, archive stale, May24 row absent, no exact same capture or verification fails, record honestly and do not count.",
+    "methodology": "Traditional CapMVRVCur (CapMrktCurUSD/CapRealUSD) only. Older historical rows in file are not claimed published on their observation dates; capture timestamp is independent upper bound on publication of file contents.",
+    "results": "Evidence metadata and small tested value only; no licensed raw CSV redistribution. R2 readback SHA, GitHub Actions report."
+  },
+  "portfolioWriteback": {
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "capital": false,
+    "reserve": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
