@@ -1,0 +1,84 @@
+{
+  "version": "8.18c7",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "tradeAuthority": false,
+  "investigation": "Frozen public GitHub forks 2020/2021 as independent archive-first-seen witnesses for identical BTC MVRV feature rows before BTCI 684 Sunday decision times.",
+  "parentBTC": {
+    "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+    "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091",
+    "expectedSundays": 684
+  },
+  "parentPIT": {
+    "key": "research/btci/v8.18c6/runs/39306287752-1/mvrv_684_week_pit_eligibility_FULL.json",
+    "sha256": "55906fed0f69824f5d56dd248f0a51da95d414305376f64e7a4fa15eba67bacd"
+  },
+  "methodology": {
+    "target": "Coin Metrics CapMVRVCur traditional capitalization / CapRealUSD, NEVER free-float MVRV",
+    "observationCutoff": "For Sunday 00:00 UTC use max Friday UTC daily row or older; 2..7 calendar days before Sunday. GitHub public fork available_at <= Sunday 00:00 UTC.",
+    "declaredMetricFeatures": [
+      "CapMVRVCur",
+      "CapRealUSD",
+      "CapMrktCurUSD"
+    ],
+    "strictEvidence": "GitHub independent public fork snapshot that existed by decision time, original branch HEAD verified with pinned commit/tree blob, repo created/pushed timestamps <= Sunday, numeric MVRV positive and arithmetic ratio internally consistent, valid Friday-or-older feature row",
+    "notClaimed": "Does not prove first official Coin Metrics publication instant or exact original daily UTC data-clock prior to GitHub archived fork; does not qualify as broad daily feed or complete backtest.",
+    "zeroRowAfter7DayExpiry": true,
+    "onlyOneDatePerFrozenFork": true,
+    "strictScope": "independent external public GitHub fork witness only; separate from provider original first-publication provenance",
+    "precision": {
+      "ratioRelativeTolerance": 0.000005,
+      "ratioAbsoluteTolerance": 0.000005
+    },
+    "guards": [
+      "Do not use current CSV to complete missing vintage",
+      "Do not classify Git commit author date alone as first-seen",
+      "Do not infer no revisions or historical OOS from three witnesses",
+      "No outcomes, training, optimization, thresholds, performance claims",
+      "Do not modify original 684-week panel",
+      "Never distribute bulk Coin Metrics CSV; CC BY-NC 4.0 research only",
+      "No live trades or production code changes"
+    ]
+  },
+  "forks": [
+    {
+      "repo": "sunshineluyao/data",
+      "createdUTC": "2020-07-29T12:03:36Z",
+      "pushedUTC": "2020-07-28T13:08:30Z",
+      "headCommit": "7f8ce93ef93183eb9a6937725e0af4e528b88772",
+      "btcBlobSha1": "0aaecc6775834f0ad19f888d0622978df377b65a",
+      "bytes": 2769648
+    },
+    {
+      "repo": "keysemails/data",
+      "createdUTC": "2020-12-12T13:54:01Z",
+      "pushedUTC": "2020-12-12T13:54:14Z",
+      "headCommit": "104a033e46145944ca5ef60a54c5d36fbfd67055",
+      "btcBlobSha1": "cb9e229493a90f304086d2e621f3f3e82002af09",
+      "bytes": 2871692
+    },
+    {
+      "repo": "shphrd/data",
+      "createdUTC": "2021-04-02T00:10:36Z",
+      "pushedUTC": "2021-04-01T13:09:16Z",
+      "headCommit": "cd4072f40347a21261b4bdc8bd8f0c0e17f1a779",
+      "btcBlobSha1": "6fa905b6f68dade7d83e6cf2be7b60a0cf84712d",
+      "bytes": 2955858
+    }
+  ],
+  "sourceProvenance": "GitHub repository API created_at/pushed_at, public fork of coinmetrics/data and immutable /git/trees/head path csv/btc.csv. Public hosting at/after fork creation is the witnessed timestamp; exact upstream provider publication unknown.",
+  "quality": "R2 parent SHA pinned, verify actual live GitHub API metadata & fork relation and pinned branch HEAD, downloaded raw Git blob SHA1 + byte count; never use source if changed; R2 report/manifest PUT/GET SHA256.",
+  "outputs": "684 rows: fork-witness PIT flags and fork/date/value only for eligible Sundays, per-era, strict count; no BTC outcome manipulation",
+  "portfolioWriteback": {
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "capital": false,
+    "reserve": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
