@@ -1,0 +1,55 @@
+{
+  "version": "8.18c4",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "noTradeAuthority": true,
+  "question": "Does the historical 2020-01-31 Coin Metrics CSV match the specific Dec 30 2019 BTC MVRV=1.33 printed publicly by Coin Metrics on Jan 1 2020, and what timing provenance is and is not supported?",
+  "upstream": {
+    "historicalGitForensics": {
+      "runId": 39289134468,
+      "reportSha256": "b23f448547ba7cc778eafe554db614c32f010c0fbe0c91a3caa68d1503d32939"
+    },
+    "earlyGitBlob": {
+      "commit": "a27df23ba99804b373a939367fce80765df2fbaf",
+      "blob": "dc0f93c40349fb7038d384b6095aacddfefe1b12",
+      "bytes": 421449
+    },
+    "historicalGitBlob": {
+      "commit": "bacd0afed3e4f9c76a3b63507e165313d84d9188",
+      "blob": "4bff9d1564ef9c5ba06565dd168f7b19dcf1fcdc",
+      "bytes": 2523792
+    },
+    "historicalSource": "https://github.com/croque-m/coinmetrics-data",
+    "contemporaneousArticle": "https://coinmetrics.substack.com/p/state-of-the-network-2019-year-in",
+    "firstMvrvPublication": "https://bitcoinwords.github.io/bitcoin-market-value-to-realized-value-ratio"
+  },
+  "frozenAnchor": {
+    "observationDate": "2019-12-30",
+    "articlePublicationDate": "2020-01-01",
+    "articleRoundedBTCMvrv": 1.33,
+    "decimals": 2,
+    "roundedMatchCondition": "1.325<=archived_mvrv<1.335",
+    "relativeArithmeticRatioTolerance": 0.000005
+  },
+  "frozenChecks": [
+    "Fetch historical exact archived 2018 and 2020 CSV bytes via immutable commit pins; verify SHA1 blob + length, never current master",
+    "Check that July 2018 lacks MVRV/RealCap while Jan 2020 contains both",
+    "At 2019-12-30 inspect archival CapMVRVCur CapRealUSD CapMrktCurUSD, compare the archived ratio with printed rounded 1.33, and check CapMrktCurUSD / CapRealUSD versus CapMVRVCur on the same historic row",
+    "Archive findings including mismatch, source errors, exact SHA, R2 read-back, source claim provenance",
+    "Conclude only as historical-vintage and contemporaneous numerical consistency; do not infer original Jan 2020 CSV was public Jan 1 or claim that 2020 Git commit original public availability independently proved by post-hoc 2024 fork",
+    "2018 paper proves public concept Oct 1, 2018, not today's retrospective 2012 values being contemporaneous"
+  ],
+  "rights": "Coin Metrics CC BY-NC 4.0; archive aggregate evidence, source SHA, fixed anchor values; do not rehost raw CSV",
+  "excluded": "No threshold fitting, BTC backtest, out-of-sample performance, leverage advice, portfolio or live feed changes",
+  "immutableControls": {
+    "portfolioWriteback": false,
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
