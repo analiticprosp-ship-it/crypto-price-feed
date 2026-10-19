@@ -1,0 +1,32 @@
+name: BTCI Bitcoin onchain original availability pilot v8.18c
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_onchain_vintage_source_v818c.py'
+      - '.github/workflows/btci-onchain-source-v818c.yml'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Audit original Coin Metrics community BTC realized cap and other onchain metrics with historical-publication warnings
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_onchain_vintage_source_v818c.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818c-onchain-source-pit-audit
+          path: btci_v818c_reports/
+          retention-days: 30
