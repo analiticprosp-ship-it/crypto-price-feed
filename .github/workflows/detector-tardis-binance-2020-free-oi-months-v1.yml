@@ -1,0 +1,37 @@
+name: Detector H1-H10 Tardis Binance BTC ETH 2020 Free OI Monthly
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-tardis-binance-2020-free-oi-months-v1.yml'
+      - 'research/detector_tardis_binance_2020_monthly_oi_v1.py'
+      - 'research/test_detector_tardis_binance_2020_monthly_oi_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  early-vendor-asof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test exact free sample dates, source SHA origin and numeric OI cutoff
+        run: python -m unittest -v research.test_detector_tardis_binance_2020_monthly_oi_v1
+      - name: Install R2 library
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Measure 28 frozen early Tardis samples with R2 checksum readback
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_tardis_binance_2020_monthly_oi_v1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-tardis-binance-2020-monthly-oi-v1
+          path: detector_tardis_binance_2020_monthly_oi/report.json
+          retention-days: 30
