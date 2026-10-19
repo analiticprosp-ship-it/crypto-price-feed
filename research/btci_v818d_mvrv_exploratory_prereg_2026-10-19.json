@@ -1,0 +1,43 @@
+{
+  "version": "8.18d",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "status": "RETROSPECTIVE_ONCHAIN_EXPLORATORY_NON_PIT",
+  "parents": {
+    "btcLong": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+    },
+    "cmAudit": {
+      "key": "research/btci/v8.18c1/runs/39224031916-1/onchain_official_csv_source.json",
+      "sha256": "2736819d515a9d94aa9a8a0afc29dec8f25bb281780448cb8450096ebbf90af3"
+    },
+    "cmCsv": {
+      "key": "research/btci/v8.18c1/runs/39224031916-1/source/CoinMetrics_Official_btc.csv",
+      "sha256": "06495ff8e643432e6948b7b4686ce44fc106217287dabdc1b38351d9ddec46c3"
+    }
+  },
+  "question": "Can BTC historical MVRV overvaluation/undervaluation and 30d change split risky BTC uptrends into more or less likely 26wk deep drops on exactly 684 historical Sundays?",
+  "metric": "CapMVRVCur from CoinMetrics official CC BY-NC public CSV; source as of 2026-10-19, not original period vintages, NOT PIT VERIFIED. No CapRealUSD: column absent in free CSV. Never describe results as real historical live trading accuracy.",
+  "asof": "For Sunday t, use latest SATURDAY t-1 CoinMetrics value (extra 1d publication lag); for 30d trend value t-31. No values with date >=Sunday t in features. This does not prove original publication availability pre-2018.",
+  "hypotheses": {
+    "HIGH3": "MVRV >=3, broad overvaluation diagnostic",
+    "HIGH4": "MVRV >=4, extreme overvaluation diagnostic",
+    "LOW1": "MVRV <=1, aggregate price below realized cost basis diagnostic",
+    "LOW2": "MVRV <=2 (possible less expensive BTC) diagnostic",
+    "FALL30": "30d MVRV change <0",
+    "RISE30": "30d MVRV change >0",
+    "BTC_HIGH3": "v8.17.1 positive BTC weekly trend AND HIGH3",
+    "BTC_LOW2": "BTC trend AND LOW2",
+    "BTC_FALL30": "BTC trend AND FALL30",
+    "BTC_RISE30": "BTC trend AND RISE30",
+    "STRICT_HIGH3": "BTC+Fed+NFCI+ANFCI all positive AND HIGH3",
+    "STRICT_LOW2": "BTC+Fed+NFCI+ANFCI all positive AND LOW2",
+    "NEG_LOW1": "v8.17.1 negative macro and no BTC uptrend AND LOW1"
+  },
+  "targets": "Exactly frozen v8.17.1 UP13/26/52; DOWN13/26/52 and POSITIVE13/26/52; baseline dates and labels unchanged.",
+  "metrics": "Same fixed 684 Sunday panel, compare BTC-only, strict all-four, NEG_ALL vs MVRV-stratified subsets. By era and 14wk separated first warning, n, TP FP FN TN, 26wk actual ending return and drawdown. Ensure no data loss and report early pre2018 observations as RECONSTRUCTED_UNAVAILABLE_AS_PRE2018_SIGNAL.",
+  "disclosure": "Even perfect association is exploratory; BTC price in MVRV numerator creates overlapping information with BTC price trend. Current 2026 retrospective reconstruction may include historic revisions, and MVRV metric was not available to 2013 observer. Not independently prospective evidence.",
+  "rights": "Coin Metrics CC BY-NC 4.0 private research only; no public republishing bulk raw csv.",
+  "guard": "Do not change Spot, Futures, NAV, P&L, reserve, capital, MASTER, Detector, risk limits or orders."
+}
