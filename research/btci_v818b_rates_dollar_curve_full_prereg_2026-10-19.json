@@ -1,0 +1,60 @@
+{
+  "version": "8.18b",
+  "frozenUTC": "2026-10-19",
+  "status": "FROZEN_BEFORE_FETCH_AND_RESULTS",
+  "researchOnly": true,
+  "parent": {
+    "btcLong": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+    },
+    "pilot": {
+      "key": "research/btci/v8.18a2/runs/39222222797-1/source_audit.json",
+      "sha256": "f81b4102fa530974b9ef9654a79dfb2ef789739fcf7750e4c0407b2878ed93a7"
+    }
+  },
+  "question": "Do four-week changes in REAL Treasury yields, a historically genuine broad USD index and yield-curve spread improve BTC-only and strict BTC+Fed+NFCI+ANFCI up/down risk selection on original 2012-2025 weekly macro/BTC cohort?",
+  "sample": {
+    "base": "Exactly 684 same original v8.17.1 historical eligible Sunday dates. Existing BTC outcomes and macro flags unchanged; no new target optimization.",
+    "newSources": "All 684 Sunday as-of DFII10. T10Y2Y as-of from 2014-02-02; earlier 2012–Jan2014 derive from exact Sunday PIT DGS10 minus PIT DGS2, only when both are released and valid. USD DTWEXB (goods only) from 2014-03-23 through 2019-02-03, then DTWEXBGS (goods & services) from 2019-02-10, with no 4w difference spanning the regime change.",
+    "unavailable": "2012–early 2014 dollar indicator UNKNOWN. No future reconstructed DTWEXBGS before first 2019-02-04 publication; event dates and source version guard first.",
+    "era": [
+      "2012-2013",
+      "2014-2016",
+      "2017-2019",
+      "2020-2023",
+      "2024-2025"
+    ],
+    "analyticCohort": "Common triple factor dates only when all three real yield, correct USD index and slope valid; also real yield all-dates and early pre2014 two-factor separate groups. Any FRED missing => UNKNOWN, never false."
+  },
+  "sources": {
+    "FRED": "https://api.stlouisfed.org/fred/series/observations with realtime_start and realtime_end each exact Sunday, latest observation 2..10 days before Sunday, 4w comparator 25..35 calendar days before most recent observation; min3 points and numeric.",
+    "vintage": "Save exact raw as-of JSON response with per-request SHA, aggregate JSONL archive and manifest R2 readback; failed HTTP429 retry serial and do not interpret as economic missing.",
+    "dollarSemantics": "Older DTWEXB is goods-only index Jan1997=100, modern DTWEXBGS is goods+services Jan2006=100. Never combine index levels across 2019 seam; within-series four-week percentage change signs only."
+  },
+  "preregisteredIndicators": {
+    "R": "DFII10 latest minus 4w old >0, real US long interest rate tightening hypothesis",
+    "D": "US dollar 4w relative change >0 within same ORIGINAL asof vintage and same series, stronger dollar hypothesis",
+    "C": "10y–2y Treasury spread 4w change <0, flattening hypothesis; inverted level<0 separately sensitivity",
+    "R_EASE": "DFII10 4w delta <0",
+    "D_EASE": "Broad US dollar 4w relative change <0",
+    "C_STEEP": "2–10y slope 4w delta >0",
+    "RISK2": "sum of R,D,C >=2",
+    "RISK3": "all R,D,C true",
+    "RECOVERY2": "real yields easing AND broad dollar weakening",
+    "BULL_CLEAN": "v8.17.1 all BTC+Fed+NFCI+ANFCI favorable AND neither R nor D tightening",
+    "BULL_WITH_STRESS": "v8.17.1 all four favorable AND (R OR D) tightening",
+    "BTC_CLEAN": "v8.17.1 BTC trend up AND neither R nor D tightening",
+    "BTC_STRESS": "v8.17.1 BTC trend up AND (R OR D) tightening",
+    "NEG_ADD_STRESS": "v8.17.1 adverse no-trend/no-Fed/no-Chicago AND (R OR D) tightening"
+  },
+  "outcomes": "Exactly v8.17.1 frozen UP13 (+20% peak within 13 weeks), UP26 (+50% within 26w), UP52 (+100% within 52w), DOWN13 <=-20%, DOWN26 <=-35%, DOWN52 <=-50% against signal-date BTC daily close, POSITIVE13/26/52. No redefining events or threshold.",
+  "metrics": {
+    "sameCohort": "All matched samples SAME calendar dates for conditional vs original BTC-only and strict all-four. Report base and success count TP/FP/FN/TN precision recall, median close return, adverse rate 13/26/52, subperiod.",
+    "compare": "BTC-CLEAN vs BTC-STRESS vs base BTC; STRICT_ALL clean vs STRICT_ALL stress vs strict all; NEG_ADD_STRESS vs NEG_ALL and full sample.",
+    "episode": "For each indicator first warning and suppress next 13 full Sundays (14-week between alerts), 26w supplementary. Different selected dates not paired test.",
+    "warnings": "Small late epochs or zero sample invalidates conclusion; no p-values, no OOS, all eras previously inspected; benchmark risk increase only if robust in historical episodes.",
+    "missing": "Missing source and first-published data are unknown not missing economic signal. Two vintage indexes 2019 seam treated as different factor definitions even if direction signs merged."
+  },
+  "noModify": "Research-only, no changes Spot Futures NAV capital reserve PnL MASTER Detector risk limits or trades."
+}
