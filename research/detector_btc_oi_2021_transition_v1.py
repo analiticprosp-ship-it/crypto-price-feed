@@ -31,6 +31,10 @@ def bracket(first_rows):
     single=[i for i,v in enumerate(states) if v=="ALL_LABELS_SINGLE"]
     if not positions or not single:raise ValueError("TRANSITION_NOT_BRACKETED")
     left=max(positions)
+    # A single-label month before the last double-label month is a reversal,
+    # not a monotonic transition. Earlier code failed to reject this.
+    if any(i<left for i in single):
+        raise ValueError("DUPLICATION_REAPPEARS_AFTER_SINGLE_LABEL_MONTH")
     right=min(i for i in single if i>left)
     if right-left!=1:raise ValueError("TRANSITION_HAS_UNKNOWN_INTERVAL")
     if any(v=="ALL_LABELS_DOUBLE" for v in states[right+1:]):
