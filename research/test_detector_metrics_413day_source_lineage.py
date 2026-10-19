@@ -7,7 +7,7 @@ import unittest
 import zipfile
 
 from research.detector_metrics_413day_source_lineage import (
- label,numeric,compare_counts,metrics_labels,sorted_labels,json_member
+ label,numeric,compare_counts,metrics_labels,sorted_labels,json_member,index_archive
 )
 
 def pack(items):
@@ -53,6 +53,14 @@ class SourceLineage(unittest.TestCase):
                 right,_=sorted_labels(derived,"BTCUSDT")
                 self.assertEqual(sum(left.values()),0)
                 self.assertEqual(sum(right.values()),0)
+    def test_lineage_resolves_archived_run_by_manifest_id(self):
+        census={"all_archives":[{"run_id":20,"artifact_name":"older"},{"run_id":40,"artifact_name":"newer"}]}
+        manifest={"source_run_id":20}
+        selected=index_archive(census,manifest["source_run_id"])
+        self.assertEqual(selected["artifact_name"],"older")
+        with self.assertRaisesRegex(ValueError,"EXACT_ARCHIVE_RUN_NOT_FOUND"):
+            index_archive(census,99)
+
     def test_manifest_is_not_inferred_from_filename(self):
         with pack({"manifest.json":json.dumps({"source_run_id":123})}) as f:
             self.assertEqual(json_member(f,"manifest.json")["source_run_id"],123)

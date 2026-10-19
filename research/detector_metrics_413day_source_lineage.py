@@ -17,7 +17,6 @@ OUT=Path("detector_metrics_413day_provenance")
 OUT.mkdir(exist_ok=True)
 ROOT="research/detector-metrics-413day-source-lineage/v1"
 SORTED_RUN=39124177387
-MASKED_RUN=39124177376
 SYMBOLS=("BTCUSDT","ETHUSDT","SOLUSDT")
 MAX_EXTRACTED=450_000_000
 MAX_RAW_CSV_ROWS=450_000
@@ -125,12 +124,18 @@ def main():
        aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"],region_name="auto")
     census=json.loads(get_verified(s3,bucket,CENSUS_KEY,CENSUS_SHA,1_000_000))
     sorted_meta=index_archive(census,SORTED_RUN)
-    masked_meta=index_archive(census,MASKED_RUN)
+    # The sorted manifest is the authority for its input run. Multiple
+    # masked dataset revisions exist; do not guess from newest run number.
+    with open_zip(s3,bucket,sorted_meta) as discovery_z:
+        actual_masked_run=json_member(discovery_z,"manifest.json").get("source_run_id")
+    if not isinstance(actual_masked_run,int):
+        raise ValueError("SORTED_MASKED_SOURCE_RUN_MISSING")
+    masked_meta=index_archive(census,actual_masked_run)
     with open_zip(s3,bucket,sorted_meta) as sorted_z:
         with open_zip(s3,bucket,masked_meta) as masked_z:
             sort_manifest=json_member(sorted_z,"manifest.json")
             masked_manifest=json_member(masked_z,"manifest.json")
-            if sort_manifest.get("source_run_id")!=MASKED_RUN:
+            if sort_manifest.get("source_run_id")!=actual_masked_run:
                 raise ValueError("SORTED_LINEAGE_RUN_ID_MISMATCH")
             source_run=masked_manifest.get("source_metrics_run")
             source_prices_run=masked_manifest.get("source_prices_run")
@@ -152,7 +157,7 @@ def main():
                     bysource=[r for r in original_meta_records if r.get("symbol")==sym]
                     downloads=sum(str(r.get("status","")).startswith("DOWNLOADED") for r in bysource)
                     item={"symbol":sym,"archive_runs":{
-                        "original_metrics":source_run,"masked":MASKED_RUN,"sorted":SORTED_RUN,
+                        "original_metrics":source_run,"masked":actual_masked_run,"sorted":SORTED_RUN,
                         "price_candles":source_prices_run},
                         "source_downloads_reported":downloads,
                         "source_metrics_row_analysis":src,
