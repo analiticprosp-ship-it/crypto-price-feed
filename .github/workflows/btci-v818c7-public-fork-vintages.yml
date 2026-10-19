@@ -1,0 +1,37 @@
+name: BTCI v8.18c7 public Coin Metrics fork asof numeric witnesses
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818c7_contemporaneous_fork_pit.py'
+      - '.github/workflows/btci-v818c7-public-fork-vintages.yml'
+permissions:
+  contents: read
+jobs:
+  fork-publication-forensics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install S3-compatible archive client
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Self-test frozen PIT and Git SHA guards
+        run: |
+          python -m py_compile research/btci_v818c7_contemporaneous_fork_pit.py
+          python research/btci_v818c7_contemporaneous_fork_pit.py --self-test
+      - name: Verify GitHub fork creation and original Git blobs then R2 SHA readback
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_v818c7_contemporaneous_fork_pit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818c7-public-git-snapshot-witnesses
+          path: btci_v818c7_reports/
+          retention-days: 30
