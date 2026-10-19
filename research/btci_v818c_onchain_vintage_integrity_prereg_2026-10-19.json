@@ -1,0 +1,40 @@
+{
+  "version": "8.18c",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "type": "SOURCE_VINTAGE_INTEGRITY_PILOT_ONLY",
+  "notModelScoring": true,
+  "goal": "Audit original and current-reconstructed BTC onchain realized cap/MVRV historical source availability and metrics publication vintage for study of accumulation/distribution and late-cycle drawdown, without leakage",
+  "officialAPI": "https://community-api.coinmetrics.io/v4/timeseries/asset-metrics",
+  "metrics": [
+    {
+      "id": "CapRealUSD",
+      "units": "USD",
+      "meaning": "sum BTC unspent outputs valued at price of last move; original CoinMetrics released historically during 2018 era"
+    },
+    {
+      "id": "CapMVRVCur",
+      "units": "dimensionless",
+      "meaning": "market capitalization divided by realized capitalization"
+    }
+  ],
+  "testDates": [
+    "2013-11-30",
+    "2017-12-17",
+    "2019-06-30",
+    "2021-04-11",
+    "2022-11-08",
+    "2024-01-10",
+    "2025-01-05"
+  ],
+  "originalDocs": [
+    "https://github.com/coinmetrics/docs-website/blob/master/asset-metrics/market/capmvrvcur.md",
+    "https://github.com/coinmetrics/docs-website/blob/master/asset-metrics/market/caprealusd.md",
+    "https://github.com/coinmetrics/docs-website/blob/master/asset-metrics/asset-metrics-overview.md"
+  ],
+  "sourceContract": "Single historical GET date with original community-api response bytes and SHA. Explicitly record response 400/403/404 or missing metric. Request historical data once; no attempts to disguise unavailable Pro metrics.",
+  "pointInTime": "CoinMetrics free historical data today is reconstructed BACKFILL and potentially revised, unlike dated true ALFRED Sunday vintage. Do not claim pre-2018 MVRV value was published in 2013, even if returned. Mark PIT_UNVERIFIED for all historical observations without original source snapshots/status-time.",
+  "interpretion": "Can use historical reconstructed MVRV for qualitative diagnostic later with PUBLICATION_PIT_UNVERIFIED label; do not combine with authentic PIT macro into forward-decision performance score unless fixed vintage archive from period can be proven.",
+  "sourceRights": "Coin Metrics free Community endpoint for permitted noncommercial use subject to terms; don't redistribute huge source data outside our private authenticated research vault without checking rights.",
+  "safety": "Do not alter Spot/Futures/NAV/P&L/capital/reserve/MASTER/Detector/trading limits or current BTCI early alert."
+}
