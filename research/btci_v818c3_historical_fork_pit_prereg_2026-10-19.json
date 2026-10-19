@@ -1,0 +1,118 @@
+{
+  "version": "8.18c3",
+  "frozenUTC": "2026-10-19",
+  "researchOnly": true,
+  "noTradeAuthority": true,
+  "status": "PRE_REGISTERED_ORIGINAL_GIT_VINTAGE_AUDIT",
+  "motivation": "Official coinmetrics/data main was rewritten to 65 commits beginning 2026-03-26. A historical Git object chain survives via croque-m/coinmetrics-data, a fork created 2024-12-08. Test original file columns and revisions at old commit SHA, never equate historical observation dates to publication dates.",
+  "sources": {
+    "historicFork": "https://github.com/croque-m/coinmetrics-data",
+    "forkCreatedUTC": "2024-12-08T06:11:14Z",
+    "officialRepo": "https://github.com/coinmetrics/data",
+    "currentCoinMetricsDocumentation": "https://github.com/coinmetrics/docs-website/blob/master/asset-metrics/market/capmvrvcur.md",
+    "rights": "Coin Metrics CC BY-NC 4.0; privately retain only summary, small samples and source hash; no bulk original CSV redistributions."
+  },
+  "commits": [
+    {
+      "label": "2018-07-11",
+      "owner": "croque-m",
+      "repo": "coinmetrics-data",
+      "sha": "a27df23ba99804b373a939367fce80765df2fbaf",
+      "blob": "dc0f93c40349fb7038d384b6095aacddfefe1b12",
+      "bytes": 421449
+    },
+    {
+      "label": "2020-01-31",
+      "owner": "croque-m",
+      "repo": "coinmetrics-data",
+      "sha": "bacd0afed3e4f9c76a3b63507e165313d84d9188",
+      "blob": "4bff9d1564ef9c5ba06565dd168f7b19dcf1fcdc",
+      "bytes": 2523792
+    },
+    {
+      "label": "2020-12-31",
+      "owner": "croque-m",
+      "repo": "coinmetrics-data",
+      "sha": "7c9ea1ae592db106de039bb3869777219e46c13a",
+      "blob": "687c3b24db62e027b45340022977e1326ccecb84",
+      "bytes": 2886213
+    },
+    {
+      "label": "2021-06-30",
+      "owner": "croque-m",
+      "repo": "coinmetrics-data",
+      "sha": "b6e948168dc27b7f28d1375beea9e25c74ed87ee",
+      "blob": "11884c65e4b6354dfb9524805d4275492c37f15b",
+      "bytes": 9001188
+    },
+    {
+      "label": "2022-11-30",
+      "owner": "croque-m",
+      "repo": "coinmetrics-data",
+      "sha": "f2217062504f5bf00918d1ee8ec97e11ab0b33e3",
+      "blob": "7fe5431e4bd0aa37ba810f42c6f673af0a6531b9",
+      "bytes": 10127007
+    },
+    {
+      "label": "2023-12-31",
+      "owner": "croque-m",
+      "repo": "coinmetrics-data",
+      "sha": "028cc389e272a99ebf408f31cd92087a2e300653",
+      "blob": "f58903f0158c10e4a6982e3f3fb629e2a11fe55a",
+      "bytes": 11045134
+    },
+    {
+      "label": "2024-11-30",
+      "owner": "croque-m",
+      "repo": "coinmetrics-data",
+      "sha": "4ebddd9c0ba53a3fe4ef306f7a0e421c2da0f572",
+      "blob": "f36e841d30648422e7040d610712f79b1a4c7bcd",
+      "bytes": 11891466
+    },
+    {
+      "label": "2026-05-24",
+      "owner": "coinmetrics",
+      "repo": "data",
+      "sha": "f1a36afb962731c387bb03982758ab0103063da5",
+      "blob": "5e50f336d268e1f3a38e9885b5aaef36de529700",
+      "bytes": 0
+    }
+  ],
+  "metricColumns": [
+    "CapMVRVCur",
+    "CapRealUSD",
+    "CapMrktCurUSD",
+    "PriceUSD",
+    "SplyCur"
+  ],
+  "fixedAnchorDates": [
+    "2017-12-17",
+    "2018-06-30",
+    "2019-12-31",
+    "2020-01-30",
+    "2020-12-30",
+    "2021-06-29",
+    "2022-11-29",
+    "2023-12-30",
+    "2024-11-29"
+  ],
+  "studyPlan": [
+    "GET exact commit-pinned CSV byte streams; verify SHA1 Git blob with git blob header and any pinned lengths; reject mismatch",
+    "Audit per-snapshot historical columns, first/last included observation, row count, unique dates; distinguish old schema if needed",
+    "Extract anchor date values only if present; compare adjacent snapshots and 2026 retrospective MVRV on overlapping dates, reporting changed numeric cells and nulls separately",
+    "Do not claim earliest historical publication based on earliest OBSERVED among only these prespecified sample dates",
+    "Classify original Git commit timestamp as historical version evidence, not first-seen publication proof; fork created Dec 2024 does not independently timestamp earlier objects",
+    "Any unavailable raw source or Git integrity mismatch is a reportable negative and must not be silently replaced"
+  ],
+  "controls": {
+    "noPriceOutcomes": true,
+    "noHypothesisThresholdTuning": true,
+    "noHistoricalOI": true,
+    "noForwardFill": true,
+    "noLookAhead": true,
+    "keepParent684PanelUnchanged": true,
+    "noPaidData": true,
+    "noSpotFuturesNAVPnLReserveMasterDetectorTradeLimitChange": true
+  },
+  "archive": "Research report + git SHA validated metadata and small fixed samples + R2 SHA256 upload/readback and workflow artifact, no raw CSV rehosting."
+}
