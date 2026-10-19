@@ -1,0 +1,72 @@
+{
+  "version": "8.18c10",
+  "researchOnly": true,
+  "tradeAuthorized": false,
+  "frozenUTC": "2026-10-19",
+  "title": "Independent GH Archive hourly historical PushEvent publication-time witness, narrow pilot",
+  "motivation": "v8.18c9 located 22 source commit chronology candidates but 11 actually public asof fork witnesses. Original Git committer date does not prove public push. Independent third party GH Archive preserves public GitHub event stream with created_at and SHA, potentially providing original repo push evidence.",
+  "parent": {
+    "c9Report": {
+      "key": "research/btci/v8.18c9/runs/39311162378-1/git_historical_calendar_FULL.json",
+      "sha256": "9522b7bf779c88f45c7f708ccc2767a1d4b3b23af366302448cacead0798ba0a"
+    },
+    "btcPanel": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+    }
+  },
+  "thirdPartySource": "https://data.gharchive.org/YYYY-MM-DD-H.json.gz",
+  "thirdPartyResearch": "https://www.gharchive.org/",
+  "frozenTestCases": [
+    {
+      "sunday": "2020-04-05",
+      "date": "2020-04-04",
+      "hourUTC": 13,
+      "expectedCommitSha": "7ff9daccbada44ea41722ff3e7f088b2b96e0bd6",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2022-10-02",
+      "date": "2022-10-01",
+      "hourUTC": 13,
+      "expectedCommitSha": "c8319d47e59538e048717a5c01f20dae08152a60",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2024-10-06",
+      "date": "2024-10-05",
+      "hourUTC": 13,
+      "expectedCommitSha": "ad27b084ac6d360dd253d70ce8063aeb29eb40c9",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    }
+  ],
+  "frozenAcceptance": [
+    "Each case must be original repo coinmetrics/data PushEvent and event timestamp in its frozen hour, strictly before Sunday 00:00 UTC. Match event payload HEAD or included commit SHA exactly to frozen commit, not author date or third-party fork copy.",
+    "Independently verify source original Git object is reachable from preserved historical Git repo at given SHA and csv/btc.csv SHA1 raw bytes; extract MVRV from Friday or older 2-7 days prior to Sunday, validate CapMVRVCur = CapMrktCurUSD/CapRealUSD numeric triad.",
+    "Require original event timestamp earlier than Sunday AND event commit hash matches the exact SHA of the audited historic CSV; no guess or fallback to a different commit.",
+    "For a confirmed event, classify original GitHub PUBLIC_PUSH_EVENT_WITNESSED. This proves public GitHub push availability of the specific commit, not Coin Metrics API publication clock nor ability to fetch historical reconstruction at every Sunday.",
+    "GH Archive file HTTP errors, lack of complete data, schema changes and no matching event are separate nonproof outcomes; do not claim events did not happen.",
+    "Streaming gzip JSON lines, exact gz SHA256, total bytes and event count; do not distribute bulk raw GH Archive hourly data, preserve only matching event metadata and checksum.",
+    "Limit 3 frozen sample event hours, no post-hoc new hour scanning or event timestamp shifting to force a match, no full 684 temporal PIT upgrade, no predictive edge calculation.",
+    "Exact original 684 weekly BTCI panel and 11 independently witnessed fork rows remain unchanged; research-only no changes to Spot Futures NAV PnL capital reserve MASTER Detector limits orders.",
+    "R2 research report and manifest SHA256 upload and full readback; if source errors, archive partial negative result."
+  ],
+  "sourceBoundaries": {
+    "hours": 3,
+    "maxCompressedBytesEach": 650000000,
+    "maxJsonEventLinesEach": 5000000,
+    "perUrlTimeoutSeconds": 150
+  },
+  "portfolioWriteback": {
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "capital": false,
+    "reserve": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
