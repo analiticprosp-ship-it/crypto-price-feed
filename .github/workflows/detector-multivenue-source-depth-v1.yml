@@ -1,0 +1,39 @@
+name: Detector H1-H10 Multi-Venue Free History Depth v1
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-multivenue-source-depth-v1.yml'
+      - 'research/detector_multivenue_source_depth_v1.py'
+      - 'research/test_detector_multivenue_source_depth_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: detector-multivenue-free-source-depth-v1
+  cancel-in-progress: false
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reject unsupported historical extrapolation offline
+        run: python -m unittest -v research.test_detector_multivenue_source_depth_v1
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Probe bounded public Bybit OKX Tardis source coverage, archive hash verified
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_multivenue_source_depth_v1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-multivenue-free-source-depth-v1
+          path: detector_multivenue_depth_v1/report.json
+          retention-days: 30
