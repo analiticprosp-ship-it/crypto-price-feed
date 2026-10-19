@@ -1,0 +1,40 @@
+{
+  "version": "8.18b",
+  "frozenDateUTC": "2026-10-19",
+  "researchOnly": true,
+  "parentKey": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+  "parentSha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091",
+  "study": "Strict historical original-vintage Treasury real yield (DFII10), Treasury 10Y-2Y curve (T10Y2Y), broad USD index DTWEXBGS (available only after first actual series publication 2019-02-04) vs Bitcoin +50% and -35% 26-week outcomes and existing BTC/Fed/Chicago factors.",
+  "population": "Only 684 exact BTCI v8.17.1 Sunday rows for 2012-2025, no new dates, parent SHA identical. Exclude unavailable source rows with transparent explicit UNKNOWN and common same-cohort denominators. USD cohort restricted to Sunday >=2019-02-10.",
+  "sourceMethod": "FRED original as-of Sunday by realtime_start=realtime_end Sunday, or faster multi-vintage retrieval output_type=2 if validated against independent Sunday calls for a 2018 and 2024 vintage. Observation latest 2-10 days prior, 4wk comparison historical 25-35 days previous. Do not access vintages unavailable before series first publication. Archive exact source bytes, SHA readback and source status.",
+  "factors": {
+    "R_TIGHT": "DFII10 4-week change >0; monetary tightening hypothesis",
+    "R_EASE": "DFII10 4-week change <0",
+    "D_TIGHT": "DTWEXBGS 4-week percent change >0; use only after actual first release 2019-02-04",
+    "D_EASE": "DTWEXBGS 4-week percent change <0",
+    "YC_FLATTEN": "T10Y2Y 4-week change <0",
+    "YC_INVERTED": "T10Y2Y latest level <0",
+    "A": "BTC weekly up from pinned BTCI",
+    "F": "Fed liquidity positive from pinned BTCI",
+    "N": "NFCI improving from pinned BTCI",
+    "J": "ANFCI improving from pinned BTCI"
+  },
+  "candidateControls": [
+    "A only",
+    "A AND R_EASE",
+    "A AND F AND R_EASE",
+    "A AND F AND N AND J",
+    "A AND F AND N AND J AND R_EASE",
+    "NOT A AND R_TIGHT",
+    "NOT A AND NOT F AND NOT N AND NOT J",
+    "NOT A AND NOT F AND NOT N AND NOT J AND R_TIGHT",
+    "A AND R_EASE AND D_EASE (2019+)",
+    "NOT A AND R_TIGHT AND D_TIGHT (2019+)",
+    "YC_FLATTEN alone",
+    "YC_INVERTED alone"
+  ],
+  "outcomes": "Keep frozen v8.17.1 outcomes UP13/UP26/UP52, DOWN13/DOWN26/DOWN52, POSITIVE13/POSITIVE26/POSITIVE52. Main UP26=BTC maximum in next26 weeks >=+50% vs original Sunday, main DOWN26=BTC minimum daily close next26wk <=-35% vs Sunday.",
+  "report": "Per model confusion matrix TP FP FN TN, precision recall, matched baseline rates, adverse risk when bullish; 14-week and 27-week nonoverlap; historical periods 2012,2013-16,2017-19,2020-23,2024-25. Report factual data gaps and sources.",
+  "limitations": "No new OOS, historical data already inspected repeatedly, overlapping outcomes and small macro cycles, dollar never claim historical availability before 2019 first publication, don't claim causality or trading edge.",
+  "guard": "RESEARCH_ONLY no Spot/Futures/NAV/MASTER/P&L/capital/reserve/Detector/limits changes or trading activity."
+}
