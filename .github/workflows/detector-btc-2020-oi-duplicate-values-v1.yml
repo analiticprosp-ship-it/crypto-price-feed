@@ -1,0 +1,36 @@
+name: Detector H1-H10 BTC 2020 OI Duplicate Value Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-btc-2020-oi-duplicate-values-v1.yml'
+      - 'research/detector_btc_2020_oi_duplicate_value_audit_v1.py'
+      - 'research/test_detector_btc_2020_oi_duplicate_value_audit_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Guard against coalescing conflicting native OI values
+        run: python -m unittest -v research.test_detector_btc_2020_oi_duplicate_value_audit_v1
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Verify exact duplicate OI values using original Binance ZIP SHA
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_btc_2020_oi_duplicate_value_audit_v1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-btc-2020-oi-duplicate-value-audit
+          path: detector_btc_2020_oi_duplicate_value_audit/report.json
+          retention-days: 30
