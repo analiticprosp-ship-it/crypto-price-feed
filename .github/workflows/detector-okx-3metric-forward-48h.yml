@@ -1,0 +1,39 @@
+name: Detector H1-H10 OKX Three Metric 48h Forward Research
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-okx-3metric-forward-48h.yml'
+      - 'research/detector_okx_3metric_forward_48h.py'
+      - 'research/test_detector_okx_3metric_forward_48h.py'
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+permissions:
+  contents: read
+  actions: write # Only self-disable THIS 48-hour research pilot after expiry.
+concurrency:
+  group: detector-h1h10-okx-3metric-48h-forward
+  cancel-in-progress: false
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install existing private storage SDK
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Validate source units, first-seen timing, and fail-closed causal guards offline
+        run: python -m unittest -v research.test_detector_okx_3metric_forward_48h
+      - name: Collect public OKX same-venue BTC ETH SOL OI, perp price and taker flow with actual receipt stamps
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_okx_3metric_forward_48h
