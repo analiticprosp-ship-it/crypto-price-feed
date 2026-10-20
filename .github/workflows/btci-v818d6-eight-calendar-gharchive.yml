@@ -1,0 +1,37 @@
+name: BTCI v8.18d6 eight new calendar-first GHArchive Coin Metrics source witnesses
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818d6_new_calendar_gharchive.py'
+      - '.github/workflows/btci-v818d6-eight-calendar-gharchive.yml'
+permissions:
+  contents: read
+jobs:
+  independent-eight-hour-historical-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install R2 source audit client
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile and test frozen timestamp and non-overlap guards
+        run: |
+          python -m py_compile research/btci_v818d6_new_calendar_gharchive.py
+          python research/btci_v818d6_new_calendar_gharchive.py --self-test
+      - name: Archive-independent original GitHub commits and SHA-check R2
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python -u research/btci_v818d6_new_calendar_gharchive.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818d6-eight-independent-gharchive-hours
+          path: btci_v818d6_reports/
+          retention-days: 30
