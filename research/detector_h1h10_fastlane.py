@@ -8,6 +8,7 @@ a validated trading edge. Every source object must match pinned full SHA256.
 import datetime as dt,hashlib,json,os
 from pathlib import Path
 from research.detector_earliest_archive_byte_audit_v1 import r2,verify_r2
+from research.detector_h1h10_join_readiness import summarize,verify_inventory_local_and_r2
 
 OUT=Path("detector_h1h10_fastlane")
 ROOT="research/detector-h1h10-fastlane/v1"
@@ -57,9 +58,14 @@ def evaluate(verified):
                                      "PRODUCTION_DETECTOR_ACTIVATION","TRADE_ORDER","PORTFOLIO_WRITEBACK"],
       "ready_for_confirmatory_h1_h10":False,"ready_for_trading":False}
 
-def assemble(verified):
+def assemble(verified,inventory=None,inventory_proof=None):
     result=evaluate(verified)
     source=verified["joint_oi_source"]
+    extra={}
+    if inventory is not None:
+        if inventory_proof is None:raise ValueError("INVENTORY_PROOF_REQUIRED")
+        extra={"verified_source_inventory":inventory_proof,
+            "price_oi_flow_overlap_audit":summarize(inventory)}
     return {"schema":"detector-h1h10-research-fastlane-readiness-v1",
       "source_evidence":PINS,
       "source_quality_days":source["total_calendar_days"],
@@ -70,7 +76,7 @@ def assemble(verified):
       "status":"RESEARCH_PARTIAL_BLOCKED_NOT_EDGE",
       "edge_status":"EDGE_UNVALIDATED",
       "research_only":True,
-      "spot_futures_nav_pnl_reserve_limits_unchanged":True,**result}
+      "spot_futures_nav_pnl_reserve_limits_unchanged":True,**result,**extra}
 
 def main():
     OUT.mkdir(exist_ok=True)
@@ -82,7 +88,14 @@ def main():
         source=verify_r2(client,bucket,pin["key"],pin["sha256"],2_000_000)
         seen[name]=json.loads(source)
         print("FASTLANE_SHA_SOURCE_CHECK",json.dumps({"name":name,"sha256":pin["sha256"]}),flush=True)
-    core=assemble(seen)
+    inventory,inventory_proof=verify_inventory_local_and_r2(
+        "detector_h1h10_evidence_inventory/inventory.json",client,bucket,verify_r2)
+    core=assemble(seen,inventory=inventory,inventory_proof=inventory_proof)
+    print("FASTLANE_VERIFIED_PRICE_FLOW_OI_INVENTORY",json.dumps({
+        "key":inventory_proof["key"],"sha256":inventory_proof["sha256"],
+        "date_only_overlap":core["price_oi_flow_overlap_audit"]["vendor_oi_and_event_flow_date_coincidences"],
+        "causal_joint_rows":core["price_oi_flow_overlap_audit"]["causal_5m_features_eligible_for_locked_holdout"]
+    },ensure_ascii=False),flush=True)
     # Deterministic key for state comparison: don't invent change or alerts each day.
     state_blob=json.dumps(core,ensure_ascii=False,sort_keys=True).encode()
     fingerprint=hashlib.sha256(state_blob).hexdigest()
@@ -110,7 +123,10 @@ def main():
     print("H1H10_FASTLANE_READINESS",json.dumps({
         "source":"PASS","joint_source_days":1734,"pit":"UNVERIFIED",
         "joint_flow":"BLOCKED","holdout":"BLOCKED","edge":"EDGE_UNVALIDATED",
-        "new_evidence_state":changed,"r2_key":key,"sha256":fingerprint},ensure_ascii=False),flush=True)
+        "new_evidence_state":changed,"r2_key":key,"sha256":fingerprint,
+        "inventory_r2_key":inventory_proof["key"],"inventory_sha256":inventory_proof["sha256"],
+        "date_only_overlaps":core["price_oi_flow_overlap_audit"]["vendor_oi_and_event_flow_date_coincidences"],
+        "causal_joint_rows":0},ensure_ascii=False),flush=True)
     summary=os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:
         with open(summary,"a",encoding="utf-8") as f:
