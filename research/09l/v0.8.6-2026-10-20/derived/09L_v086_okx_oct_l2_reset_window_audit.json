@@ -1,0 +1,115 @@
+{
+  "study": "09L v0.8.6 full L2 resynchronization sensitivity",
+  "venue": "okex-swap",
+  "date": "2026-10-01",
+  "status": "OK",
+  "downloaded_sha256": "cc2db1c1c2e61ecdabceeb9abf8cb160d38364b047869002897ead4a9ebde329",
+  "expected_sha256": "cc2db1c1c2e61ecdabceeb9abf8cb160d38364b047869002897ead4a9ebde329",
+  "scanned_rows": 42194739,
+  "reconstructed_reset_count": 49,
+  "reset_windows": [
+    {
+      "case_id": "clock_07:24:30",
+      "group": "fixed_clock",
+      "reset_in_window_n": 0,
+      "reset_times_utc": [],
+      "eligible_no_reset": true
+    },
+    {
+      "case_id": "clock_08:32:30",
+      "group": "fixed_clock",
+      "reset_in_window_n": 0,
+      "reset_times_utc": [],
+      "eligible_no_reset": true
+    },
+    {
+      "case_id": "clock_13:49:30",
+      "group": "fixed_clock",
+      "reset_in_window_n": 0,
+      "reset_times_utc": [],
+      "eligible_no_reset": true
+    },
+    {
+      "case_id": "clock_14:19:30",
+      "group": "fixed_clock",
+      "reset_in_window_n": 0,
+      "reset_times_utc": [],
+      "eligible_no_reset": true
+    },
+    {
+      "case_id": "clock_15:10:30",
+      "group": "fixed_clock",
+      "reset_in_window_n": 0,
+      "reset_times_utc": [],
+      "eligible_no_reset": true
+    },
+    {
+      "case_id": "clock_15:49:30",
+      "group": "fixed_clock",
+      "reset_in_window_n": 0,
+      "reset_times_utc": [],
+      "eligible_no_reset": true
+    },
+    {
+      "case_id": "clock_17:28:30",
+      "group": "fixed_clock",
+      "reset_in_window_n": 0,
+      "reset_times_utc": [],
+      "eligible_no_reset": true
+    },
+    {
+      "case_id": "clock_18:38:30",
+      "group": "fixed_clock",
+      "reset_in_window_n": 1,
+      "reset_times_utc": [
+        "2026-10-01T18:39:36.610213+00:00"
+      ],
+      "eligible_no_reset": false
+    },
+    {
+      "case_id": "first_liq_after_06:00:00",
+      "group": "first_liq_per_session",
+      "reset_in_window_n": 0,
+      "reset_times_utc": [],
+      "eligible_no_reset": true
+    },
+    {
+      "case_id": "first_liq_after_12:00:00",
+      "group": "first_liq_per_session",
+      "reset_in_window_n": 0,
+      "reset_times_utc": [],
+      "eligible_no_reset": true
+    },
+    {
+      "case_id": "first_liq_after_18:00:00",
+      "group": "first_liq_per_session",
+      "reset_in_window_n": 0,
+      "reset_times_utc": [],
+      "eligible_no_reset": true
+    }
+  ],
+  "strict_no_reset_fixed_window_sensitivity": {
+    "fixed_windows_total": 8,
+    "unaffected_fixed_windows": 7,
+    "affected_fixed_windows": 1,
+    "correct": {
+      "raw_denominator": 41323075.859984,
+      "raw_matched": 677662.81,
+      "share_pct": 1.6399
+    },
+    "flipped": {
+      "raw_denominator": 41323075.859984,
+      "raw_matched": 214077.48,
+      "share_pct": 0.5181
+    },
+    "shift_5s": {
+      "raw_denominator": 41323075.859984,
+      "raw_matched": 90526.17,
+      "share_pct": 0.2191
+    },
+    "correct_gt_flipped_windows": 7,
+    "correct_gt_shift_windows": 7
+  },
+  "trade_canon_mutation": false,
+  "disclaimer": "No single observed reset in a case window is not proof there are no hidden provider capture gaps; snapshot resets are vendor source restarts, not cancelled orders or market events."
+}
