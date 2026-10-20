@@ -1,0 +1,31 @@
+name: "09L v0.8.4C L2 feasibility-only SHADOW"
+on:
+  push:
+    branches: [research/09l-v08-4-20261020]
+    paths: [.github/workflows/09l-v084c-l2-feasibility.yml, research/09l/v0.8.4-2026-10-20/l2_feasibility_probe.py]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - run: python research/09l/v0.8.4-2026-10-20/l2_feasibility_probe.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: 09l-v084c-l2-feasibility-audit
+          path: research/09l/v0.8.4-2026-10-20/derived/l2_source_feasibility_2026-10-01.json
+          retention-days: 30
+      - name: "Shadow only commit"
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/v0.8.4-2026-10-20/derived/l2_source_feasibility_2026-10-01.json
+          git diff --cached --quiet && exit 0
+          git commit -m "research(09L): log historical full L2 availability"
+          git pull --rebase origin research/09l-v08-4-20261020
+          git push origin HEAD:research/09l-v08-4-20261020
