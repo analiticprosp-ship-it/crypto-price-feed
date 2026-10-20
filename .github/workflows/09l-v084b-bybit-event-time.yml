@@ -1,0 +1,42 @@
+name: "09L v0.8.4B Bybit event-time replay SHADOW"
+on:
+  push:
+    branches:
+      - research/09l-v08-4-20261020
+    paths:
+      - research/09l/v0.8.4-2026-10-20/bybit_event_time_v084b.py
+      - .github/workflows/09l-v084b-bybit-event-time.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: 09l-v084b-event-time
+  cancel-in-progress: false
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Compile code"
+        run: python -m py_compile research/09l/v0.8.4-2026-10-20/bybit_event_time_v084b.py
+      - name: "Replay four streams from free historical day (no orders)"
+        run: python -u research/09l/v0.8.4-2026-10-20/bybit_event_time_v084b.py
+      - name: "Upload only derived event casebook"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 09l-v084b-bybit-event-time-derived
+          path: research/09l/v0.8.4-2026-10-20/derived/bybit_2026-10-01_event_time_casebook.json
+          retention-days: 30
+          if-no-files-found: warn
+      - name: "Commit derived-only 09L shadow result"
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/v0.8.4-2026-10-20/derived/bybit_2026-10-01_event_time_casebook.json
+          git diff --cached --quiet && exit 0
+          git commit -m "research(09L): archive v0.8.4B event-time casebook"
+          git pull --rebase origin research/09l-v08-4-20261020
+          git push origin HEAD:research/09l-v08-4-20261020
