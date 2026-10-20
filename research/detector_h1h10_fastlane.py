@@ -78,6 +78,17 @@ def assemble(verified,inventory=None,inventory_proof=None):
       "research_only":True,
       "spot_futures_nav_pnl_reserve_limits_unchanged":True,**result,**extra}
 
+def stable_gate_state(core):
+    """Content-address actual evidence status, not the daily inventory run ID.
+
+    Every daily inventory has its own separate signed R2 run key and SHA;
+    retaining that per-run provenance in the local artifact but removing it
+    from the stable gate-state fingerprint prevents false NEW EVIDENCE alerts.
+    """
+    frozen=dict(core)
+    frozen.pop("verified_source_inventory",None)
+    return frozen
+
 def main():
     OUT.mkdir(exist_ok=True)
     client=r2();bucket=os.environ["R2_BUCKET"]
@@ -97,7 +108,7 @@ def main():
         "causal_joint_rows":core["price_oi_flow_overlap_audit"]["causal_5m_features_eligible_for_locked_holdout"]
     },ensure_ascii=False),flush=True)
     # Deterministic key for state comparison: don't invent change or alerts each day.
-    state_blob=json.dumps(core,ensure_ascii=False,sort_keys=True).encode()
+    state_blob=json.dumps(stable_gate_state(core),ensure_ascii=False,sort_keys=True).encode()
     fingerprint=hashlib.sha256(state_blob).hexdigest()
     key=f"{ROOT}/evidence-{fingerprint}.json"
     # Fixed content object is idempotent: reruns do not overwrite with a new timestamp.

@@ -41,6 +41,18 @@ class GateTests(unittest.TestCase):
  def test_numeric_source_window_must_not_expand(self):
     x=valid();x["joint_oi_source"]["data_cutoff_last_day"]="2026-10-20"
     with self.assertRaises(ValueError):g.evaluate(x)
+ def test_run_specific_inventory_metadata_is_not_new_evidence(self):
+    a=g.assemble(valid(),inventory=None)
+    a["verified_source_inventory"]={"key":"r2-run-1","sha256":"a"*64}
+    b=g.assemble(valid(),inventory=None)
+    b["verified_source_inventory"]={"key":"r2-run-2","sha256":"b"*64}
+    self.assertEqual(g.stable_gate_state(a),g.stable_gate_state(b))
+    self.assertNotIn("verified_source_inventory",g.stable_gate_state(a))
+ def test_meaningful_gate_change_keeps_a_new_fingerprint(self):
+    a=g.assemble(valid())
+    b=dict(a)
+    b["pipeline_gates"]={**a["pipeline_gates"],"collector_first_seen_continuity":"PROVEN_NEW_EVIDENCE"}
+    self.assertNotEqual(g.stable_gate_state(a),g.stable_gate_state(b))
  def test_readiness_is_deterministic(self):
     x=valid()
     self.assertEqual(g.assemble(x),g.assemble(x))
