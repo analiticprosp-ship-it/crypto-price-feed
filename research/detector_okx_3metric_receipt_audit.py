@@ -94,6 +94,83 @@ def millis(when):
         raise ValueError("FORWARD_DATE_MUST_BE_UTC")
     return int(moment.timestamp()*1000)
 
+def summarize_stream_receipts(docs):
+    """Nine actual HTTP receipt histories, not GitHub cron or exchange-release PIT.
+
+    Missing source reports remain missing. Intervals are measured only between
+    observed HTTP responses of the *same* OKX instrument+metric. No interpolation
+    and no assumption that an OKX 5m label is the first-publication timestamp.
+    All parent manifests have already passed independent R2 SHA verification.
+    """
+    streams = {symbol + "|" + metric: [] for symbol in SYMBOLS for metric in METRICS}
+    missing = {name: 0 for name in streams}
+    for doc in docs:
+        if (doc.get("schema") != SCHEMA
+            or doc.get("scope") != "RESEARCH_ONLY"
+            or doc.get("edge_status") != "EDGE_UNVALIDATED"
+            or doc.get("trading_actions") is not False
+            or doc.get("causal_join_training") != "BLOCKED"
+            or doc.get("original_exchange_first_publication") != "UNVERIFIED"):
+            raise ValueError("NINE_STREAM_AUDIT_AUTHORITY_INVALID")
+        run_end = millis(doc["observed_at_utc"])
+        values = doc.get("source_reports")
+        if not isinstance(values, dict) or not set(values).issubset(streams):
+            raise ValueError("NINE_STREAM_FOREIGN_OR_INVALID_SOURCE")
+        for name in streams:
+            record = values.get(name)
+            if record is None:
+                missing[name] += 1
+                continue
+            receipt = record.get("response_received_ms")
+            if (type(receipt) is not int or receipt < 1600000000000
+                or receipt > run_end):
+                raise ValueError("NINE_STREAM_RECEIPT_AFTER_MANIFEST_OR_INVALID")
+            streams[name].append(receipt)
+    result = {}
+    for name, stamps in streams.items():
+        stamps.sort()
+        if any(b <= a for a, b in zip(stamps, stamps[1:])):
+            raise ValueError("NINE_STREAM_DUPLICATE_OR_NONMONOTONIC_RECEIPT")
+        gaps = [(b-a)/1000 for a, b in zip(stamps, stamps[1:])]
+        result[name] = {
+            "observed_receipts": len(stamps),
+            "missing_run_reports_for_stream": missing[name],
+            "first_received_utc": utc(stamps[0]) if stamps else None,
+            "last_received_utc": utc(stamps[-1]) if stamps else None,
+            "observed_intervals": len(gaps),
+            "median_observed_gap_seconds": statistics.median(gaps) if gaps else None,
+            "max_observed_gap_seconds": max(gaps) if gaps else None,
+            "observed_gaps_over_5min": sum(g > 300 for g in gaps),
+            "observed_gaps_over_10min": sum(g > 600 for g in gaps),
+            "observed_gaps_over_20min": sum(g > 1200 for g in gaps),
+            "five_minute_receipt_continuity_proven": False,
+            "original_exchange_publication_proven": False,
+            "causal_rows_authorized": 0,
+        }
+    return {
+        "schema": "detector-h1h10-okx-nine-actual-source-receipts-v1",
+        "scope": "RESEARCH_ONLY",
+        "streams_expected": len(result),
+        "source_reports_checked": len(docs),
+        "source_audit": result,
+        "total_observed_intervals_across_streams": sum(
+            x["observed_intervals"] for x in result.values()),
+        "observed_gaps_over_5min_across_streams": sum(
+            x["observed_gaps_over_5min"] for x in result.values()),
+        "observed_gaps_over_20min_across_streams": sum(
+            x["observed_gaps_over_20min"] for x in result.values()),
+        "worst_actual_same_stream_gap_seconds": max(
+            (x["max_observed_gap_seconds"] or 0 for x in result.values()), default=0),
+        "all_nine_streams_observed": all(x["observed_receipts"] > 0 for x in result.values()),
+        "real_5m_collector_continuity_proven": False,
+        "exchange_original_publication_pit_proven": False,
+        "historical_h1h10_confirmation": "BLOCKED",
+        "causal_rows_authorized": 0,
+        "edge_status": "EDGE_UNVALIDATED",
+        "trading_actions": False,
+    }
+
+
 def summarize(docs):
     ids=set();receipts=[];success=0;partial=0;total_streams=0
     for d in docs:
@@ -152,7 +229,7 @@ def main():
                1 for value in doc["source_reports"].values()
                if value.get("raw_r2_key") and value.get("raw_sha256"))
         documents.append(doc)
-    report={**summarize(documents),"raw_sha_verified":raw_verified,
+    report={**summarize(documents),"nine_stream_actual_receipt_audit":summarize_stream_receipts(documents),"raw_sha_verified":raw_verified,
       "legacy_streams_missing_raw_pin":legacy,
       "older_stream_raw_pins_not_reread":unsampled_raw,
       "latest_runs_raw_sha_sample_cap":RAW_SAMPLE_LAST_N_RUNS,
@@ -174,6 +251,8 @@ def main():
     print("OKX_THREE_METRIC_RECEIPT_AUDIT",json.dumps({
         "reports":len(documents),"source_streams":raw_verified,
         "legacy_raw_pins_missing":legacy,"observed_gaps_gt20min":report["gaps_over_20_minutes"],
+        "per_stream_observed_gaps_gt5min":report["nine_stream_actual_receipt_audit"]["observed_gaps_over_5min_across_streams"],
+        "worst_same_stream_gap_seconds":report["nine_stream_actual_receipt_audit"]["worst_actual_same_stream_gap_seconds"],
         "causal_pit":"UNVERIFIED","r2_key":key,"sha256":stamp}),flush=True)
     summary=os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:
