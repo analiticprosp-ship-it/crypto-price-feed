@@ -1,0 +1,37 @@
+name: BTCI v8.18d6 early GitHub archive 2020-21 adjacent hours source diagnostic
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818d6_early_2020_21_gharchive_adjacency.py'
+      - '.github/workflows/btci-v818d6-early-GHArchive-adjacency.yml'
+permissions:
+  contents: read
+jobs:
+  early-source-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install S3-compatible Cloudflare archive client
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile and self-test independent GitHub source guards
+        run: |
+          python -m py_compile research/btci_v818d6_early_2020_21_gharchive_adjacency.py
+          python research/btci_v818d6_early_2020_21_gharchive_adjacency.py --self-test
+      - name: Replay four historical sources and eight adjacent hourly event archives
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python -u research/btci_v818d6_early_2020_21_gharchive_adjacency.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818d6-adjacent-hour-forensics
+          path: btci_v818d6_reports/
+          retention-days: 30
