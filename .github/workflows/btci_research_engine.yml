@@ -44,7 +44,7 @@ jobs:
         run: |
           python -m py_compile research_engine/btci_engine.py
           if [ "${{ github.event_name }}" = "push" ]; then
-            MODE="smoke"
+            MODE="offline"
           else
             MODE="${{ inputs.mode || 'daily' }}"
           fi
