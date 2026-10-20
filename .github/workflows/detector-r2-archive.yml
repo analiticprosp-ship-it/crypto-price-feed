@@ -7,6 +7,8 @@ on:
       - 'research/detector_r2_archive.py'
       - 'research/detector_github_artifacts.py'
       - 'research/test_detector_github_artifacts.py'
+      - 'research/detector_archive_policy.py'
+      - 'research/test_detector_archive_policy.py'
   workflow_dispatch:
   schedule:
     - cron: '17 5 * * *'
@@ -27,7 +29,7 @@ jobs:
           python-version: '3.11'
       - run: python -m pip install 'boto3>=1.35,<2'
       - name: Verify artifact redirect authentication safety
-        run: python -m unittest -v research.test_detector_github_artifacts
+        run: python -m unittest -v research.test_detector_github_artifacts research.test_detector_archive_policy
       - name: Archive approved H1-H10 research to existing private R2
         env:
           GH_READ_TOKEN: ${{ github.token }}
