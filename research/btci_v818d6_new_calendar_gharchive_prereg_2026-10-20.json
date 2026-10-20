@@ -1,0 +1,113 @@
+{
+  "version": "8.18d6",
+  "frozenUTC": "2026-10-20",
+  "researchOnly": true,
+  "tradeAuthorized": false,
+  "title": "New calendar-first eight historical BTC MVRV original GitHub public PushEvent witnesses, no price-outcome optimization",
+  "parents": {
+    "portableD5": {
+      "key": "research/btci/v8.18d5/runs/39316151679-1/portable_MVRV_684week_asof_evidence_FULL.json",
+      "sha256": "a7aa681ef291a7fafd42d4603629c54698ad3ecbf68bba2fe78cb0f74cf2fd4a",
+      "weeks": 26
+    },
+    "temporalD5": {
+      "key": "research/btci/v8.18d5/runs/39377348393-1/mvrv_26witness_684_ledger_FULL.json",
+      "sha256": "42ab5078dad25a48556cb7bc40d0670768f16b66407663918581b0c0d9a0db16",
+      "spaced13": 17,
+      "spaced26": 10,
+      "spaced52": 5
+    },
+    "btcPanel": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091",
+      "weeks": 684
+    }
+  },
+  "frozenTestCases": [
+    {
+      "sunday": "2020-09-06",
+      "date": "2020-09-05",
+      "hourUTC": 13,
+      "expectedCommitSha": "62887012ead9083e827082ac0156e7b4aa7d66a0",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2020-11-01",
+      "date": "2020-10-31",
+      "hourUTC": 13,
+      "expectedCommitSha": "1c145bc1d4f177df896fa43f1f37ba6ac059203b",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2021-02-07",
+      "date": "2021-02-06",
+      "hourUTC": 13,
+      "expectedCommitSha": "c9c079fb7254c168d423ea0c72ae871ff69dee3b",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2021-08-01",
+      "date": "2021-07-31",
+      "hourUTC": 13,
+      "expectedCommitSha": "688e96c986dc3e55d3bfdf536eb87cc89213cf9f",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2022-05-01",
+      "date": "2022-04-30",
+      "hourUTC": 13,
+      "expectedCommitSha": "f58cc047040a0cf4f96a8bbe36328f96210bc556",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2023-02-05",
+      "date": "2023-02-04",
+      "hourUTC": 13,
+      "expectedCommitSha": "6feea88180e08a910658e335f1b645cc51045a0d",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2024-08-04",
+      "date": "2024-08-03",
+      "hourUTC": 13,
+      "expectedCommitSha": "80316f9615645b74f7ac1c1a64a165ef6a2fb5d0",
+      "gitArchiveRepo": "croque-m/coinmetrics-data"
+    },
+    {
+      "sunday": "2025-05-04",
+      "date": "2025-05-03",
+      "hourUTC": 13,
+      "expectedCommitSha": "ae141c55c7fd7c8677d93f0a208b6f57beda4dfe",
+      "gitArchiveRepo": "wds33817/data"
+    }
+  ],
+  "design": "Calendar-first 8 new Sundays preselected to expand coverage across 2020-2025, none overlapping inherited 26. Old commit SHAs queried before any GH Archive sample outcome. Exactly one Saturday 13 UTC GH Archive hour per Sunday, no rescue search or post-hoc shift if no event.",
+  "sourceLimit": {
+    "maxCompressedBytesEach": 650000000,
+    "maxJsonEventLinesEach": 5000000,
+    "perUrlTimeoutSeconds": 150
+  },
+  "tests": [
+    "SHA256 verify immutable R2 684 BTCI panel, successful portable 26-week witness source, successful previous 13/26/52 time spacing report.",
+    "Inspect exact fixed GitHub original coinmetrics/data PushEvent in GH Archive compressed Saturday 13 UTC file. Before subsequent Sunday 00 UTC; expected commit hash must equal prereg SHA. For no match, status nonproof, NOT evidence that event never occurred.",
+    "Audit actual original old Git BTC CSV per pinned expected commit via blob SHA1 + raw size; numeric traditional CapMVRVCur = CapMrktCurUSD / CapRealUSD positive, Friday-to-7d observation, independent public event UTC strictly preceding Sunday.",
+    "Network and source failures separately reported and never imputed. If archived Git commit metadata and event conflict, fail closed.",
+    "Only successful independent original GitHub PushEvent evidence can increase cumulative dates beyond 26; count each Sunday once; preserve original 684 dates, no changes to market data and no unseen price return targets.",
+    "Update 13/26/52-week greedy temporal spacing (no overlapping H-week windows) as purely calendar information, never claims of independent market cycles or out-of-sample edge.",
+    "Coin Metrics original API daily release timestamp remains unknown even with original GitHub public push; no source extrapolation or feature imputation.",
+    "Never rehost bulk raw Coin Metrics source or GHArchive gzip, only SHA/source event metadata and isolated MVRV.",
+    "RESEARCH_ONLY output archive: report and manifest R2 PUT-GET SHA256 verification."
+  ],
+  "portfolioWriteback": {
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "capital": false,
+    "reserve": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
