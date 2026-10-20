@@ -1,0 +1,23 @@
+name: H1H10 OKX Independent Expiry Offline Guard
+on:
+  pull_request:
+    paths:
+      - 'research/detector_h1h10_okx_pilot_expiry_audit.py'
+      - 'research/test_detector_h1h10_okx_pilot_expiry_audit.py'
+      - '.github/workflows/detector-h1h10-fastlane.yml'
+      - '.github/workflows/detector-h1h10-expiry-pr.yml'
+permissions:
+  contents: read
+jobs:
+  expiry-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install existing R2 SDK for Python imports
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Reject false self-disable proof without actual STOP log and disabled workflow state
+        run: python -m unittest -v research.test_detector_h1h10_okx_pilot_expiry_audit
