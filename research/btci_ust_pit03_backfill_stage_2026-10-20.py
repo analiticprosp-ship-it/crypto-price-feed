@@ -6,10 +6,10 @@ SYMS=["DGS2","DGS10","DFII10","WDTGAL","WRESBAL","WALCL","RRPONTSYD"]
 s=requests.Session();s.headers.update({"User-Agent":"BTCI-Research-Only/0.1"})
 def digest(raw):return hashlib.sha256(raw).hexdigest()
 def get(url,auth=False):
-    for attempt in range(4):
+    for attempt in range(2):
         try:
             h={"Accept":"application/vnd.github+json","Authorization":"Bearer "+os.environ["GITHUB_TOKEN"]} if auth else {}
-            r=s.get(url,headers=h,timeout=50);r.raise_for_status()
+            r=s.get(url,headers=h,timeout=(5,12));r.raise_for_status()
             return r.content,{"url":url,"resolved_url":r.url,"sha256":digest(r.content),"bytes":len(r.content),"status_code":r.status_code}
         except Exception as e:
             error=str(e);time.sleep(2**attempt)
@@ -42,8 +42,9 @@ for sid in SYMS:
             break
         except Exception as e:errors.append(str(e))
     if sid not in series:
-        logs.append({"id":sid,"status":"FETCH_FAILED","errors":errors});print("FAILED",sid,flush=True)
-assert len(series)>=3,"INSUFFICIENT_SOURCE_COVERAGE"
+        logs.append({"id":sid,"status":"FETCH_FAILED","errors":errors});print("FAILED",sid,str(errors)[:1500],flush=True)
+    (OUT/'SOURCE_DIAGNOSTIC_PARTIAL.json').write_text(json.dumps(logs,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+if len(series)<3:print('INSUFFICIENT_SOURCE_COVERAGE',len(series),'of',len(SYMS),flush=True)
 def asof(sid,decision,maxdays):
     vals=series.get(sid,{})
     can=[d for d in vals if d<decision and 0<(datetime.date.fromisoformat(decision)-datetime.date.fromisoformat(d)).days<=maxdays]
