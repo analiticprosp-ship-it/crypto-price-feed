@@ -1,0 +1,34 @@
+name: BTCI UST PIT03 research-only macro staging
+on:
+  push:
+    branches:
+      - research/btci-ust-pit03-20261020
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: btci-ust-pit03-research-only
+  cancel-in-progress: false
+jobs:
+  read-only-historical-macro-staging:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download public FRED history and verify immutable parent; never trade
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python -m pip install "requests>=2.31,<3"
+          python -m py_compile research/btci_ust_pit03_backfill_stage_2026-10-20.py
+          python research/btci_ust_pit03_backfill_stage_2026-10-20.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-ust-pit03-current-backfill-not-pit
+          path: btci_pit03_output/
+          if-no-files-found: warn
+          retention-days: 30
