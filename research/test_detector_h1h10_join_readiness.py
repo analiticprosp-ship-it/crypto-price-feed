@@ -40,7 +40,7 @@ class Guards(unittest.TestCase):
     x=sample()
     x["rows"][-1]["missing_intervals"]=1
     self.assertEqual(summarize(x)["vendor_oi_and_event_flow_date_coincidences"],6)
-    x["rows"][-6]["missing_intervals"]=1
+    x["rows"][21]["missing_intervals"]=1
     self.assertEqual(summarize(x)["vendor_oi_and_event_flow_date_coincidences"],5)
  def test_partial_oi_date_excluded(self):
     x=sample()
