@@ -124,5 +124,48 @@ class CandidateOnly(unittest.TestCase):
             diagnose(report, polls, BASE + 2 * P5)
 
 
+    def test_nine_alternative_anchors_remain_unverified(self):
+        report, polls = fixture()
+        result = diagnose(report, polls, BASE + 2 * P5)
+        for symbol in SYMBOLS:
+            sensitivity = result["candidates"][symbol]["anchor_shift_sensitivity"]
+            self.assertEqual(sensitivity["tested_offset_hypotheses"], 9)
+            self.assertFalse(sensitivity["historical_pit_qualified"])
+            self.assertEqual(sensitivity["causal_rows_authorized"], 0)
+            self.assertEqual(sensitivity["oi_and_flow_time_anchor_semantics"], "UNVERIFIED")
+            offsets = sensitivity["matrix"]
+            self.assertEqual(sum(x["label_only_candidate_count"] for x in offsets), 1)
+            self.assertEqual(
+                next(x["label_only_candidate_count"] for x in offsets
+                     if x["oi_source_label_offset_from_price_open_ms"] == 0
+                     and x["flow_source_label_offset_from_price_open_ms"] == 0), 1)
+
+    def test_anchor_shift_count_is_not_unique_proof_of_bucket_meaning(self):
+        report, polls = fixture()
+        for symbol in SYMBOLS:
+            for metric in METRICS:
+                key = symbol + "|" + metric
+                nxt = copy.deepcopy(polls[key]["rows"][0])
+                nxt["label_ms"] = BASE + P5
+                nxt["raw_sha256"] = "c" * 64
+                if metric == "price":
+                    nxt["data"]["source_bar_open_ms"] = BASE + P5
+                    nxt["data"]["source_bar_nominal_end_ms"] = BASE + 2 * P5
+                polls[key]["rows"].append(nxt)
+                report["source_reports"][key]["row_count"] = 2
+            report["coverage_gate"][symbol]["source_label_triples"] = 2
+        result = diagnose(report, polls, BASE + 3 * P5)
+        for symbol in SYMBOLS:
+            matrix = result["candidates"][symbol]["anchor_shift_sensitivity"]["matrix"]
+            count = {(v["oi_source_label_offset_from_price_open_ms"],
+                      v["flow_source_label_offset_from_price_open_ms"]):
+                     v["label_only_candidate_count"] for v in matrix}
+            self.assertEqual(count[(0, 0)], 2)
+            self.assertEqual(count[(P5, P5)], 1)
+            self.assertEqual(count[(-P5, -P5)], 1)
+            self.assertEqual(count[(-P5, P5)], 0)
+            self.assertEqual(result["candidates"][symbol]["causal_rows_authorized"], 0)
+
+
 if __name__ == "__main__":
     unittest.main()
