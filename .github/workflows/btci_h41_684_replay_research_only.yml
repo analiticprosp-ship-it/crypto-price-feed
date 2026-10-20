@@ -1,0 +1,36 @@
+name: BTCI H41 684 dates archived primary research PIT05
+on:
+  push:
+    branches:
+      - research/btci-ust-pit05-h41-20261020
+permissions:
+  contents: read
+  actions: read
+jobs:
+  research-only-historical-primary-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        era: ['2012-2016', '2017-2020', '2021-2025']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download dated official releases without revising BTCI history
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          BTCI_ERA: ${{ matrix.era }}
+        run: |
+          python -m pip install "requests>=2.31,<3" "beautifulsoup4>=4.12,<5"
+          python -m py_compile research/btci_ust_pit05_h41_684_primary.py
+          python research/btci_ust_pit05_h41_684_primary.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-h41-primary-replay-${{ matrix.era }}-not-strict-pit
+          path: btci_pit05_h41/
+          retention-days: 30
+          if-no-files-found: warn
