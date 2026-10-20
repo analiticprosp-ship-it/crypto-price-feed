@@ -1,0 +1,52 @@
+name: H1-H10 OKX Public Instrument Receipt Evidence
+on:
+  pull_request:
+    paths:
+      - 'research/detector_h1h10_okx_unit_receipts.py'
+      - 'research/test_detector_h1h10_okx_unit_receipts.py'
+      - '.github/workflows/detector-h1h10-okx-public-unit-receipts.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/detector_h1h10_okx_unit_receipts.py'
+      - 'research/test_detector_h1h10_okx_unit_receipts.py'
+      - '.github/workflows/detector-h1h10-okx-public-unit-receipts.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '27 7 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: detector-h1h10-okx-public-units-receipts
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install read-only R2 client for imports
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Check no historical unit conversion or execution authority
+        run: python -m unittest -v research.test_detector_h1h10_okx_unit_receipts
+  collect:
+    needs: [validate]
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Archive three public OKX instrument responses with real receipt timestamps and R2 SHA readback
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_h1h10_okx_unit_receipts
