@@ -40,7 +40,16 @@ def spaced_dates(days,h):
             chosen.append(ds)
     return chosen
 
+def research_parent_allowed(parent):
+    # Historical BTCI parent does not require an explicit tradeAuthorized key.
+    # An explicit True always blocks; missing is interpreted as no authority.
+    return parent.get("researchOnly") is True and parent.get("tradeAuthorized",False) is not True
+
 def selftest():
+    assert research_parent_allowed({"researchOnly":True})
+    assert research_parent_allowed({"researchOnly":True,"tradeAuthorized":False})
+    assert not research_parent_allowed({"researchOnly":True,"tradeAuthorized":True})
+    assert not research_parent_allowed({"researchOnly":False})
     assert sha(b"test")==hashlib.sha256(b"test").hexdigest()
     assert validate("2024-05-23","2024-05-26","2024-05-25T01:53:26+00:00",2.303)>0
     dates=["2020-01-05","2020-04-05","2020-04-12","2020-07-05"]
@@ -66,7 +75,7 @@ def main():
         raw=s3.get_object(Bucket=bucket,Key=p["key"])["Body"].read()
         if sha(raw)!=p["sha256"]:raise RuntimeError("SOURCE_REPORT_SHA256_DIFFERS_"+x)
         j=json.loads(raw)
-        if not j.get("researchOnly",False) or j.get("tradeAuthorized",False):
+        if not research_parent_allowed(j):
             raise RuntimeError("UPSTREAM_NOT_RESEARCH_ONLY_"+x)
         return j
     btc=pinned("btc")
