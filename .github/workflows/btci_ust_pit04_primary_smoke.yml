@@ -1,0 +1,34 @@
+name: BTCI UST PIT04 primary source smoke research
+on:
+  push:
+    branches:
+      - research/btci-ust-pit04-20261020
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: btci-ust-pit04-source-smoke
+  cancel-in-progress: false
+jobs:
+  primary-release-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Primary Federal Reserve and US Treasury archives only
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python -m pip install 'requests>=2.31,<3' 'beautifulsoup4>=4.12,<5'
+          python -m py_compile research/btci_ust_pit04_primary_smoke_2026_10_20.py
+          python research/btci_ust_pit04_primary_smoke_2026_10_20.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-ust-pit04-primary-source-audit-not-strict-pit
+          path: btci_pit04_primary/
+          retention-days: 30
+          if-no-files-found: warn
