@@ -20,6 +20,7 @@ from research.detector_h1h10_verified_source_inventory import bytes_from_r2
 OUT=Path("detector_h1h10_fastlane")
 AUDIT_PREFIX="research/detector-okx-3metric-forward-audit/v1"
 MAX_RUN_REPORTS=240
+RAW_SAMPLE_LAST_N_RUNS=20
 MAX_REPORT_BYTES=200000
 
 def verified_json(s3,bucket,key,expected=None,cap=MAX_REPORT_BYTES):
@@ -32,7 +33,7 @@ def verified_json(s3,bucket,key,expected=None,cap=MAX_REPORT_BYTES):
         raise ValueError("PINNED_RAW_OBJECT_SHA256_MISMATCH")
     return json.loads(data)
 
-def check_one(s3,bucket,document):
+def check_one(s3,bucket,document,verify_raw=True):
     if (document.get("schema")!=SCHEMA or
         document.get("scope")!="RESEARCH_ONLY" or
         document.get("trading_actions") is not False or
@@ -65,6 +66,8 @@ def check_one(s3,bucket,document):
             or not key.endswith("/"+document["run"]+"-"+document["attempt"]+"-"+p[0]+"-"+p[1]+".json")
             or not isinstance(expected,str) or len(expected)!=64):
             raise ValueError("RAW_SOURCE_PROVENANCE_KEY_INVALID")
+        if not verify_raw:
+            continue
         raw=verified_json(s3,bucket,key,expected)
         if (raw.get("schema")!=SCHEMA or raw.get("metric")!=p[1]
             or raw.get("symbol")!=p[0]
@@ -137,14 +140,22 @@ def main():
     for page in s3.get_paginator("list_objects_v2").paginate(Bucket=bucket,Prefix=prefix):
         keys.extend(x["Key"] for x in page.get("Contents",[]) if x["Key"].endswith(".json"))
         if len(keys)>MAX_RUN_REPORTS:raise ValueError("PILOT_REPORT_SAFETY_CAP_EXCEEDED")
-    documents=[];raw_verified=0;legacy=0
-    for key in sorted(keys):
+    documents=[];raw_verified=0;legacy=0;unsampled_raw=0
+    sorted_keys=sorted(keys)
+    for i,key in enumerate(sorted_keys):
         doc=verified_json(s3,bucket,key)
-        proven,old=check_one(s3,bucket,doc)
+        sample=i>=len(sorted_keys)-RAW_SAMPLE_LAST_N_RUNS
+        proven,old=check_one(s3,bucket,doc,verify_raw=sample)
         raw_verified+=proven;legacy+=old
+        if not sample:
+            unsampled_raw+=sum(
+               1 for value in doc["source_reports"].values()
+               if value.get("raw_r2_key") and value.get("raw_sha256"))
         documents.append(doc)
     report={**summarize(documents),"raw_sha_verified":raw_verified,
       "legacy_streams_missing_raw_pin":legacy,
+      "older_stream_raw_pins_not_reread":unsampled_raw,
+      "latest_runs_raw_sha_sample_cap":RAW_SAMPLE_LAST_N_RUNS,
       "readback_report_count":len(keys),
       "scope":"RESEARCH_ONLY",
       "replay_first_publication_pit":"UNVERIFIED",
@@ -169,6 +180,6 @@ def main():
         with open(summary,"a",encoding="utf-8") as fp:
             fp.write("## OKX three metric real receipt audit\n\n")
             fp.write(f"- Reports: {len(documents)}; SHA-verified raw streams: {raw_verified}\n")
-            fp.write(f"- Historical raw pin missing: {legacy}; observed >20min gaps: {len([x for x in spacing]) if False else report['gaps_over_20_minutes']}\n")
+            fp.write(f"- Historical raw pin missing: {legacy}; observed >20min gaps: {report['gaps_over_20_minutes']}\n")
             fp.write("- 5m PIT grade: UNVERIFIED; live trading: PROHIBITED\n")
 if __name__=="__main__":main()
