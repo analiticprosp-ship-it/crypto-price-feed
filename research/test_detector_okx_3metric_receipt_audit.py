@@ -58,7 +58,7 @@ class ReceiptAuditTests(unittest.TestCase):
     a=source();a["coverage_gate"][SYMBOLS[0]]["training_authorized"]=True
     with self.assertRaisesRegex(ValueError,"JOINS_NOT_CAUSAL"):check_one(None,None,a)
  def test_missing_symbol_rejected(self):
-    a=source();a["source_reports"]["ELON|oi"]={"response_received_ms":1792483200000,"row_count":10}
+    a=source();a["source_reports"]["ELON|oi"]=a["source_reports"].pop(SYMBOLS[0]+"|oi")
     with self.assertRaisesRegex(ValueError,"FOREIGN_SYMBOL"):check_one(None,None,a)
  def test_missing_raw_hash_and_key_is_not_reported_as_sha_verified(self):
     a=source()
