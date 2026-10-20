@@ -1,0 +1,31 @@
+name: BTCI UST PIT06 primary Treasury research
+on:
+  push:
+    branches:
+      - research/btci-ust-pit06-treasury-20261020
+permissions:
+  contents: read
+  actions: read
+jobs:
+  primary-treasury-yields-candidate-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Acquire primary public US Treasury CSV and validate 684-date freeze
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python -m pip install "requests>=2.31,<3"
+          python -m py_compile research/btci_ust_pit06_treasury_primary_684.py
+          python research/btci_ust_pit06_treasury_primary_684.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-ust-pit06-official-treasury-candidate-no-initial-PIT
+          path: btci_pit06_treasury/
+          retention-days: 30
+          if-no-files-found: warn
