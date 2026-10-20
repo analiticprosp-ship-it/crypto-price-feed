@@ -1,0 +1,70 @@
+{
+  "version": "8.18d7",
+  "frozenUTC": "2026-10-20",
+  "researchOnly": true,
+  "noTradeAuthority": true,
+  "title": "Portable 684-week original panel research-only independently witnessed MVRV historical ledger, 31 unique weeks",
+  "parents": {
+    "fullBTC": {
+      "key": "research/btci/v8.17.1/runs/39212878778-1/full_historical_rise_fall.json",
+      "sha256": "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091",
+      "count": 684
+    },
+    "portable26": {
+      "key": "research/btci/v8.18d5/runs/39316151679-1/portable_MVRV_684week_asof_evidence_FULL.json",
+      "sha256": "a7aa681ef291a7fafd42d4603629c54698ad3ecbf68bba2fe78cb0f74cf2fd4a",
+      "asOfCount": 26
+    },
+    "calendar8": {
+      "key": "research/btci/v8.18d6/runs/39381307892-1/gharchive_8_frozen_hours_FULL.json",
+      "sha256": "4553903a0388f6e7850a87dad3fb206f54c6a73639b959e702884afb7da0ec19",
+      "frozenHours": 8,
+      "accepted": 5
+    }
+  },
+  "expected": {
+    "initialWitnesses": 26,
+    "newWitnesses": 5,
+    "total": 31,
+    "unproven": 653,
+    "sourceBreakdown": {
+      "GHArchive_original_github_PushEvent": 19,
+      "internet_archive_CSV_bytes": 1,
+      "public_github_fork_snapshot": 11
+    },
+    "horizonsWeeks": [
+      13,
+      26,
+      52
+    ],
+    "greedyNonOverlap": [
+      17,
+      10,
+      5
+    ],
+    "noProviderOriginalMetricApiReleaseProof": 0
+  },
+  "frozenChecks": [
+    "All parents exact R2 SHA256 and research-only, BTCI original exactly 684 unique sorted Sundays unchanged and no outcome labels touched.",
+    "Inherit parent portableD5 684 weekly provenance and all 26 verified MVRV source values as-is, not recalculate or infer.",
+    "For each of eight frozen v8.18d6 tests, retain negatives in report; accept only independent original GitHub public GHArchive PushEvent with matching exact frozen SHA, MVRV triad, positive value, Friday-to-seven-day lag, and event time before Sunday.",
+    "New positive dates must have independent source evidence, zero overlap with old 26 and be on original weekly panel. Sum exact 31 or fail closed.",
+    "Greedy temporal spacing for 13/26/52 weeks, computed only on date list and not actual price outcomes. Time-disjoint observations are not independent market regimes.",
+    "Report missing provenance by calendar era and stage-specific negative cases: do not portray absent archived event as event never published.",
+    "No model fit, no BTC outcome label lookup, no prepublication time inference from Git committer timestamps, no current market prices.",
+    "Build complete 684-row portable source-only ledger, verify R2 write then GET SHA256, SHA-pinned manifest. Do not alter parent reports or production.",
+    "No raw Coin Metrics copyrighted bulk CSV redistribution; only source metadata and isolated previously confirmed MVRV numeric values."
+  ],
+  "portfolioWriteback": {
+    "Spot": false,
+    "Futures": false,
+    "NAV": false,
+    "PnL": false,
+    "capital": false,
+    "reserve": false,
+    "MASTER": false,
+    "Detector": false,
+    "tradingLimits": false,
+    "orders": false
+  }
+}
