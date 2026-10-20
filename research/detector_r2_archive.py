@@ -18,8 +18,8 @@ import zipfile
 import boto3
 from detector_github_artifacts import fetch_artifact_zip
 from detector_archive_policy import (
-    MAX_ARTIFACT_BYTES,LOOKBACK_DAYS,MAX_PAGES,artifact_plan,
-    is_research_candidate,is_recent,no_artifact_classification)
+    MAX_ARTIFACT_BYTES,MAX_PAGES,artifact_plan,
+    is_research_candidate,no_artifact_classification,select_since_cursor)
 
 REPO=os.environ["GITHUB_REPOSITORY"]
 TOKEN=os.environ["GH_READ_TOKEN"]
@@ -36,6 +36,12 @@ def api(path):
         return json.load(response)
 
 def digest(blob):return hashlib.sha256(blob).hexdigest()
+
+# First successful v2 scan examined every available run through this run id;
+# its archived source report is still tagged SYNC_PARTIAL because it did not
+# exhaust the arbitrary 7-day lookback. Avoid pretending an older history sync.
+BOOTSTRAP_RUN_ID=39205092827
+CURSOR_KEY="research/detector-h1h10-archive-cursor/v3/latest.json"
 
 def sync():
     now=dt.datetime.now(UTC)
@@ -66,23 +72,39 @@ def sync():
     def freeze_json(key,record):
         b=json.dumps(record,ensure_ascii=False,sort_keys=True,indent=2).encode()
         return write_verified(key,b)
-    # Look back a bounded number of pages, rather than scanning the entire
-    # Actions history every day. Never silently claim coverage when truncated.
-    runs=[];complete_scan=False;pages=0
+    # Resume from a SHA-readback checked high-water mark. Scan only run IDs
+    # strictly newer than the cursor; this also catches runs with a large
+    # delay between GitHub creation and the next daily execution.
+    previous_cursor=BOOTSTRAP_RUN_ID
+    cursor_source="VERIFIED_V2_PAGE6_BOOTSTRAP_2026_10_20"
+    if exists(CURSOR_KEY):
+        response=s3.get_object(Bucket=BUCKET,Key=CURSOR_KEY)
+        payload=response["Body"].read(100_000)
+        expected=response.get("Metadata",{}).get("sha256","")
+        if digest(payload)!=expected:
+            raise ValueError("CURSOR_R2_SHA_MISMATCH")
+        previous_doc=json.loads(payload)
+        if (previous_doc.get("schema")!="detector-archive-verified-cursor-v3"
+           or not isinstance(previous_doc.get("last_processed_run_id"),int)
+           or previous_doc["last_processed_run_id"]<BOOTSTRAP_RUN_ID):
+            raise ValueError("CURSOR_FORMAT_OR_ORDER_MISMATCH")
+        previous_cursor=previous_doc["last_processed_run_id"]
+        cursor_source="PREVIOUS_SHA_VERIFIED_CURSOR"
+    runs=[];complete_scan=False;pages=0;newest_seen=previous_cursor
     for page in range(1,MAX_PAGES+1):
-        batch=api(f"/actions/runs?per_page=100&page={page}").get("workflow_runs")
+        response=api(f"/actions/runs?per_page=100&page={page}")
+        batch=response.get("workflow_runs")
         if not isinstance(batch,list):raise ValueError("GITHUB_RUN_API_SCHEMA_INVALID")
         pages=page
-        runs.extend(batch)
-        if len(batch)<100:
+        filtered,reached=select_since_cursor(batch,previous_cursor)
+        runs.extend(filtered)
+        if batch and page==1:
+            newest_seen=max(newest_seen,batch[0]["id"])
+        if reached or len(batch)<100:
             complete_scan=True
             break
-        if not is_recent(batch[-1].get("created_at"),now,LOOKBACK_DAYS):
-            complete_scan=True
-            break
-    candidates=sorted((r for r in runs if is_research_candidate(r) and
-                       is_recent(r["created_at"],now,LOOKBACK_DAYS)),
-                       key=lambda x:x["id"])
+    candidates=sorted((r for r in runs if is_research_candidate(r)),
+                      key=lambda x:x["id"])
     published=[];already=[];benign=[];failed=[];verified_artifacts=0;verified_bytes=0
     for run in candidates:
         run_id=run["id"]
@@ -148,10 +170,21 @@ def sync():
             newmanifest=get_json(f"research/{newest}/manifest.json")
             freeze_json(latest_key,newmanifest)
     status="SYNC_COMPLETE" if complete_scan and not failed else "SYNC_PARTIAL"
-    summary={"schema":"detector-h1h10-incremental-r2-sync-v2",
+    if status=="SYNC_COMPLETE":
+        # Persist only after all newly discovered runs are reconciled without
+        # download failures; the next invocation may safely skip these run IDs.
+        freeze_json(CURSOR_KEY,{
+            "schema":"detector-archive-verified-cursor-v3",
+            "last_processed_run_id":newest_seen,
+            "previous_processed_run_id":previous_cursor,
+            "established_at_utc":now.isoformat(),
+            "bootstrap_basis":"verified scan through 39205092827 from 39382155529",
+            "research_only":True})
+    summary={"schema":"detector-h1h10-incremental-r2-sync-v3",
       "status":status,"created_at_utc":now.isoformat(),
-      "policy":{"window_days":LOOKBACK_DAYS,"max_pages":MAX_PAGES},
-      "pages_scanned":pages,"coverage_not_truncated":complete_scan,
+      "policy":{"previous_cursor_run_id":previous_cursor,"cursor_source":cursor_source,"max_pages":MAX_PAGES},
+      "pages_scanned":pages,"coverage_since_cursor_complete":complete_scan,
+      "newest_run_id_scanned":newest_seen,"updated_cursor_if_success":newest_seen if status=="SYNC_COMPLETE" else None,
       "research_runs_examined":len(candidates),
       "newly_archived":published,"already_archived_count":len(already),
       "benign_skips":benign,"real_failures":failed,
@@ -159,9 +192,9 @@ def sync():
       "verified_new_bytes":verified_bytes,
       "latest_verified_run_id":complete[-1] if complete else None,
       "scope":"RESEARCH_ONLY","trading_actions":False}
-    key=f"research/detector-h1h10-archive-sync-status/v2/{os.environ['GITHUB_RUN_ID']}-{os.environ.get('GITHUB_RUN_ATTEMPT','1')}.json"
+    key=f"research/detector-h1h10-archive-sync-status/v3/{os.environ['GITHUB_RUN_ID']}-{os.environ.get('GITHUB_RUN_ATTEMPT','1')}.json"
     stamp=freeze_json(key,summary)
-    print("DETECTOR_ARCHIVE_SYNC_V2",json.dumps({"status":status,
+    print("DETECTOR_ARCHIVE_SYNC_V3",json.dumps({"status":status,
        "published":len(published),"existing":len(already),
        "benign_skips":len(benign),"real_failures":len(failed),
        "pages":pages,"coverage_complete":complete_scan,
