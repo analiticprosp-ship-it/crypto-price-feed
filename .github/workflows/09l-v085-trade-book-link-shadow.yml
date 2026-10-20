@@ -1,0 +1,42 @@
+name: "09L v0.8.5 trade versus L2 matched replay SHADOW"
+on:
+  push:
+    branches: [research/09l-v08-5-20261020]
+    paths:
+      - research/09l/v0.8.5-2026-10-20/bybit_trade_l2_match_v085.py
+      - .github/workflows/09l-v085-trade-book-link-shadow.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: research-09l-v085
+  cancel-in-progress: false
+jobs:
+  pair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Compile runner"
+        run: python -m py_compile research/09l/v0.8.5-2026-10-20/bybit_trade_l2_match_v085.py
+      - name: "Stream public Bybit historical trades and L2; write derived matches only"
+        run: python -u research/09l/v0.8.5-2026-10-20/bybit_trade_l2_match_v085.py
+      - name: "Upload reproducible audit only (raw vendor files excluded)"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-09l-v085-price-time-l2
+          path: research/09l/v0.8.5-2026-10-20/derived/bybit_2026-10-01_price_time_trade_l2_matching.json
+          retention-days: 30
+          if-no-files-found: warn
+      - name: "Append research results to isolated branch"
+        if: success()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/v0.8.5-2026-10-20/derived/bybit_2026-10-01_price_time_trade_l2_matching.json
+          git diff --cached --quiet && exit 0
+          git commit -m "research(09L): archive exact-price trade/L2 matching with placebo"
+          git pull --rebase origin research/09l-v08-5-20261020
+          git push origin HEAD:research/09l-v08-5-20261020
