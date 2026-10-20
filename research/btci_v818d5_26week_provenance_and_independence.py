@@ -66,7 +66,7 @@ def main():
         raw=s3.get_object(Bucket=bucket,Key=p["key"])["Body"].read()
         if sha(raw)!=p["sha256"]:raise RuntimeError("SOURCE_REPORT_SHA256_DIFFERS_"+x)
         j=json.loads(raw)
-        if not j["researchOnly"] or j["tradeAuthorized"]:
+        if not j.get("researchOnly",False) or j.get("tradeAuthorized",False):
             raise RuntimeError("UPSTREAM_NOT_RESEARCH_ONLY_"+x)
         return j
     btc=pinned("btc")
