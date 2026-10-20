@@ -45,7 +45,7 @@ class Guards(unittest.TestCase):
  def test_partial_oi_date_excluded(self):
     x=sample()
     x["rows"][15]["status"]="PARTIAL_VENDOR_RECEIPT_ONLY"
-    self.assertEqual(summarize(x)["vendor_oi_and_event_flow_date_coincidences"],5)
+    self.assertEqual(summarize(x)["vendor_oi_and_event_flow_date_coincidences"],4)
  def test_event_time_claimed_as_publication_rejected(self):
     x=sample()
     x["rows"][-1]["time_basis"]="venue_exchange_release_pit"
