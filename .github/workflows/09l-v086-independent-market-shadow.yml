@@ -1,0 +1,35 @@
+name: "09L v0.8.6 independent month and exchange SHADOW"
+on:
+  push:
+    branches: [research/09l-v08-6-20261020]
+    paths:
+      - research/09l/v0.8.6-2026-10-20/independent_venue_day_v086.py
+      - .github/workflows/09l-v086-independent-market-shadow.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: 09l-v086-independent
+  cancel-in-progress: false
+jobs:
+  crosscheck:
+    strategy:
+      fail-fast: false
+      matrix:
+        study: [bybit_sep, okx_oct]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile research code
+        run: python -m py_compile research/09l/v0.8.6-2026-10-20/independent_venue_day_v086.py
+      - name: Run historical fixed-clock independent-sample comparison
+        run: python -u research/09l/v0.8.6-2026-10-20/independent_venue_day_v086.py --study ${{ matrix.study }}
+      - name: Export derived JSON only, do not redistribute raw vendor files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 09l-v086-derived-${{ matrix.study }}
+          path: research/09l/v0.8.6-2026-10-20/derived/09L_v086_${{ matrix.study }}_fixed_clock_robustness.json
+          retention-days: 60
+          if-no-files-found: warn
