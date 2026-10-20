@@ -1,0 +1,39 @@
+name: "09L v0.8.6 L2 resnapshot QA shadow"
+on:
+  push:
+    branches: [research/09l-v08-6-20261020]
+    paths:
+      - research/09l/v0.8.6-2026-10-20/l2_reset_sensitivity_v086.py
+      - .github/workflows/09l-v086-qa-reset.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 19
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile reproducible QA
+        run: python -m py_compile research/09l/v0.8.6-2026-10-20/l2_reset_sensitivity_v086.py
+      - name: Audit snapshot restart timestamps, recompute no-reset sensitivity
+        run: python -u research/09l/v0.8.6-2026-10-20/l2_reset_sensitivity_v086.py
+      - name: Upload only derived research QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 09l-v086-l2-reset-window-audit
+          path: research/09l/v0.8.6-2026-10-20/derived/*reset*.json
+          retention-days: 60
+          if-no-files-found: warn
+      - name: Archive in separate research branch
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/v0.8.6-2026-10-20/derived/*reset*.json
+          git commit -m "research(09L): audit L2 resnapshots and strict excluded-window sensitivity"
+          git pull --rebase origin research/09l-v08-6-20261020
+          git push origin HEAD:research/09l-v08-6-20261020
