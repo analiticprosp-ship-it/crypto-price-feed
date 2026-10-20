@@ -1,0 +1,41 @@
+name: "09L v0.8.3a Bybit exploratory sample SHADOW"
+on:
+  push:
+    branches:
+      - research/09l-v08-3-20261020
+    paths:
+      - research/09l/v0.8.3-2026-10-20/remote_bybit_sample_runner.py
+      - .github/workflows/09l-v083a-bybit-shadow.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: 09l-v083a-bybit-sample
+  cancel-in-progress: false
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m py_compile research/09l/v0.8.3-2026-10-20/remote_bybit_sample_runner.py
+      - name: "Process historical public Bybit sample, no live trades"
+        run: python -u research/09l/v0.8.3-2026-10-20/remote_bybit_sample_runner.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: 09l-v083a-bybit-sample-audit
+          path: research/09l/v0.8.3-2026-10-20/derived/2026-10-01_tardis_bybit_sample_audit.json
+          retention-days: 30
+          if-no-files-found: warn
+      - name: "Publish derived-only results into research branch"
+        if: success()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/v0.8.3-2026-10-20/derived/2026-10-01_tardis_bybit_sample_audit.json
+          git diff --cached --quiet && exit 0
+          git commit -m "research(09L): audit Bybit optional comparison 2026-10-01"
+          git pull --rebase origin research/09l-v08-3-20261020
+          git push origin HEAD:research/09l-v08-3-20261020
