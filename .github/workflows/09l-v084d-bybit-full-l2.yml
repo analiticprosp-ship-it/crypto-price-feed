@@ -1,0 +1,38 @@
+name: "09L v0.8.4D fixed-band full L2 shadow"
+on:
+  push:
+    branches: [research/09l-v08-4-20261020]
+    paths: [.github/workflows/09l-v084d-bybit-full-l2.yml, research/09l/v0.8.4-2026-10-20/bybit_full_l2_v084d.py]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: 09l-v084d-full-l2
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Compile reproducible code"
+        run: python -m py_compile research/09l/v0.8.4-2026-10-20/bybit_full_l2_v084d.py
+      - name: "Replay full 2026-10-01 Bybit L2 source; save only derived metrics"
+        run: python -u research/09l/v0.8.4-2026-10-20/bybit_full_l2_v084d.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: 09l-v084d-incremental-l2-derived
+          path: research/09l/v0.8.4-2026-10-20/derived/bybit_2026-10-01_full_l2_fixed_band.json
+          retention-days: 30
+          if-no-files-found: warn
+      - name: "Publish research-only JSON to isolated branch"
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/v0.8.4-2026-10-20/derived/bybit_2026-10-01_full_l2_fixed_band.json
+          git diff --cached --quiet && exit 0
+          git commit -m "research(09L): record fixed-price incremental L2 event changes"
+          git pull --rebase origin research/09l-v08-4-20261020
+          git push origin HEAD:research/09l-v08-4-20261020
