@@ -44,7 +44,7 @@ jobs:
         run: |
           python -m py_compile research_engine/btci_engine.py
           if [ "${{ github.event_name }}" = "push" ]; then
-            MODE="offline"
+            MODE="smoke"
           else
             MODE="${{ inputs.mode || 'daily' }}"
           fi
@@ -74,6 +74,15 @@ jobs:
       - name: Emit immutable, non-trading research summary
         run: |
           python research_engine/aggregate.py downloaded research_engine_report
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-engine-portable-sources-${{ github.run_id }}-research-only
+          path: |
+            research_engine/
+            .github/workflows/btci_research_engine.yml
+          retention-days: 45
+          if-no-files-found: error
       - uses: actions/upload-artifact@v4
         if: always()
         with:
