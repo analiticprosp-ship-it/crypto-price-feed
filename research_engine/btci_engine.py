@@ -4,6 +4,8 @@ import argparse, csv, datetime as dt, hashlib, io, json, os, pathlib, re, sys, t
 import requests
 from bs4 import BeautifulSoup
 PARENT_SHA = "539bcc1817a2120287497c2814d0344aae5d62714b4f35a36f30c2425e5d3091"
+JOIN_SHA = "82a66ae9a7f2ca3c5d21df10c178edde48567387b3f04e12f8b74566b3b65d92"
+PARENT_ZIP_SHA = "9cf12204ec0820de4f9303e17a47f9ea3318c089a1e19a1b9892c595e43fb726"
 PARENT_RUN = "39212878778"
 PARENT_ARTIFACT = "12168089066"
 ARCHIVE = "https://api.github.com/repos/analiticprosp-ship-it/crypto-price-feed/actions/artifacts/" + PARENT_ARTIFACT + "/zip"
@@ -34,6 +36,7 @@ def immutable_parent(session):
         zbytes,m=retrieve(ARCHIVE,session,token or None)
         if not zbytes: raise RuntimeError("CANONICAL_PARENT_MISSING: local fixture absent, GitHub artifact inaccessible: "+str(m))
         origin="TEMP_GITHUB_ACTIONS_ARTIFACT_EXPIRING"
+    if sh(zbytes)!=PARENT_ZIP_SHA:raise RuntimeError("CANONICAL_PARENT_ZIP_SHA_MISMATCH")
     with zipfile.ZipFile(io.BytesIO(zbytes)) as z:
         raw=z.read("full_historical_rise_fall.json")
     if sh(raw)!=PARENT_SHA:raise RuntimeError("CANONICAL_PARENT_SHA_MISMATCH")
@@ -45,6 +48,7 @@ def immutable_parent(session):
 def read_join(dates):
     p=FIXTURES/"BTCI_684_UST_H41_MVRV_SOURCE_ONLY_JOIN.json"
     if not p.is_file():return {"available":False,"reason":"PIT07_JOIN_FIXTURE_NOT_YET_INSTALLED","strict_pit_eligible":0}
+    if sh(p.read_bytes())!=JOIN_SHA:raise RuntimeError("PIT07_JOIN_SHA_MISMATCH")
     doc=json.loads(p.read_text(encoding="utf-8"))
     rows=doc["rows"]
     got=[r["btc_sunday_utc"] for r in rows]
@@ -114,6 +118,8 @@ def main():
         dates,base=immutable_parent(session)
         result["canonical"]=base
         result["pit07"]=read_join(dates)
+        if not result["pit07"].get("available"):
+            result["bootstrap_warning"]="PIT07_JOIN_FIXTURE_MISSING_STAGING_ONLY"
         result["sources"]=sources(a.track,a.mode,session,out)
         result["source_successes"]=sum("http" in s for s in result["sources"])
         result["status"]="PASS_BASELINE_SOURCE_STAGING_NOT_PIT"
