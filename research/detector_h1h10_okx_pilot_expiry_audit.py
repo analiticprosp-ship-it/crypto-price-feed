@@ -10,6 +10,7 @@ import datetime as dt
 import hashlib
 import json
 import os
+from pathlib import Path
 import time
 import urllib.error
 import urllib.parse
@@ -202,6 +203,9 @@ def main():
     }
     key = PREFIX + "/run-reports/" + run + "-" + attempt + ".json"
     sha = store(s3, bucket, key, report)
+    path = Path("detector_h1h10_fastlane/okx_pilot_expiry.json")
+    path.parent.mkdir(exist_ok=True)
+    path.write_text(json.dumps({**report, "r2_key": key, "sha256": sha}, indent=2), encoding="utf-8")
     print("H1H10_INDEPENDENT_PILOT_EXPIRY", json.dumps({
         "states": {k: v["status"] for k, v in states.items()},
         "r2_key": key, "sha256": sha,
