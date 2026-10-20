@@ -74,8 +74,38 @@ def summarize(inventory):
                      and r["rows"]-r["missing_intervals"]==288}
     overlap=sorted({(d,s,m) for (d,s,m) in event_only_flow if (d,s) in vendor_asof_oi})
     # These sets overlap in calendar/event labels, not in proven release-time availability.
+    # Prospective runner timestamp observations are real receipts, but GitHub
+    # cron cadence is not guaranteed. Record observed gaps; never infer 5m
+    # contiguity from a 5m *configured schedule*.
+    import math
+    aggregate=inventory.get("summary")
+    if not isinstance(aggregate,dict):raise ValueError("PROSPECTIVE_SUMMARY_MISSING")
+    okx=aggregate.get("okx")
+    if not isinstance(okx,dict):raise ValueError("PROSPECTIVE_OKX_REPORT_MISSING")
+    reports=okx.get("report_objects_read")
+    failures=okx.get("gaps_observed_gt_10_minutes")
+    median=okx.get("median_actual_gap_seconds")
+    maximum=okx.get("max_actual_gap_seconds")
+    if (not isinstance(reports,int) or reports<0 or
+        not isinstance(failures,int) or failures<0 or failures>max(0,reports-1)):
+        raise ValueError("PROSPECTIVE_GAP_COUNTS_INVALID")
+    if reports>1:
+        if (not isinstance(median,(int,float)) or not isinstance(maximum,(int,float))
+            or not math.isfinite(median) or not math.isfinite(maximum)
+            or median<0 or maximum<median):
+            raise ValueError("PROSPECTIVE_RECEIPT_GAP_INVALID")
+    cadence="NO_ACTUAL_PROSPECTIVE_OBSERVATION" if reports==0 else (
+        "INSUFFICIENT_TO_EVALUATE_GAPS" if reports==1 else (
+        "OBSERVED_GAPS_GT_10MIN" if failures>0 else
+        "UNVERIFIED_5M_CONTINUITY_DESPITE_SAMPLES"))
     values={
         "inventory_source_row_count":len(rows),
+        "okx_actual_poll_reports_read":reports,
+        "okx_observed_gaps_over_10m":failures,
+        "okx_median_observed_spacing_seconds":median,
+        "okx_max_observed_spacing_seconds":maximum,
+        "five_minute_continuous_first_seen_grade":cadence,
+        "five_minute_first_seen_pit_proven":False,
         "tardis_oi_asset_days":len(oi),
         "tardis_oi_vendor_receipt_full_asset_days":len(vendor_asof_oi),
         "binance_trade_event_asset_market_days":len(flows),
