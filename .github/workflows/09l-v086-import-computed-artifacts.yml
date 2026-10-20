@@ -1,0 +1,56 @@
+name: "09L v0.8.6 import historical research artifacts"
+on:
+  push:
+    branches: [research/09l-v08-6-20261020]
+    paths: [.github/workflows/09l-v086-import-computed-artifacts.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  writeback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Await only earlier 09L v0.8.6 research run completion"
+        shell: bash
+        run: |
+          for i in $(seq 1 105); do
+            status=$(gh api repos/analiticprosp-ship-it/crypto-price-feed/actions/runs/39421052781 --jq '.status')
+            echo "source-run status: $status"
+            test "$status" = completed && exit 0
+            sleep 8
+          done
+          echo "Source run did not finish within bounded watch" >&2
+          exit 1
+      - name: "Download only derived small JSON output from both matrix jobs"
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p research/09l/v0.8.6-2026-10-20/derived
+          for study in bybit_sep okx_oct; do
+            mkdir -p "/tmp/09l_$study"
+            if gh run download 39421052781 --repo analiticprosp-ship-it/crypto-price-feed -n "09l-v086-derived-$study" -D "/tmp/09l_$study"; then
+              source_file="/tmp/09l_$study/09L_v086_${study}_fixed_clock_robustness.json"
+              test -s "$source_file"
+              python -m json.tool "$source_file" >/dev/null
+              cp "$source_file" "research/09l/v0.8.6-2026-10-20/derived/"
+              echo "$study derived-only research artifact verified and copied"
+            else
+              echo "$study output missing; do not fabricate any data" >&2
+            fi
+          done
+      - name: "Commit derived research data to isolated branch, no main"
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/v0.8.6-2026-10-20/derived
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "research(09L): archive two independent historical sample audits v0.8.6"
+          git pull --rebase origin research/09l-v08-6-20261020
+          git push origin HEAD:research/09l-v08-6-20261020
