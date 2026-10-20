@@ -27,7 +27,9 @@ def sample():
                     "source_sha256":SHA,"rows":288,"expected_rows":288,"missing_intervals":0})
     return {"schema":"detector-h1h10-real-evidence-inventory-v1",
         "edge_status":"EDGE_UNVALIDATED","research_only":True,
-        "trading_actions":False,"rows":rows}
+        "trading_actions":False,"rows":rows,
+        "summary":{"okx":{"report_objects_read":4,"gaps_observed_gt_10_minutes":3,
+                            "median_actual_gap_seconds":1933.684,"max_actual_gap_seconds":3066.994}}}
 class Guards(unittest.TestCase):
  def test_date_coincidences_do_not_qualify_as_causal(self):
     result=summarize(sample())
@@ -36,6 +38,22 @@ class Guards(unittest.TestCase):
     self.assertEqual(result["clock_compatible_full_joint_asset_market_days"],0)
     self.assertEqual(result["causal_5m_features_eligible_for_locked_holdout"],0)
     self.assertFalse(result["holdout_and_model_training_authorized"])
+ def test_actual_cron_gap_never_promoted_to_five_minute_pit(self):
+    audit=summarize(sample())
+    self.assertEqual(audit["okx_observed_gaps_over_10m"],3)
+    self.assertEqual(audit["five_minute_continuous_first_seen_grade"],"OBSERVED_GAPS_GT_10MIN")
+    self.assertFalse(audit["five_minute_first_seen_pit_proven"])
+ def test_even_zero_observed_gaps_not_a_publication_proof(self):
+    x=sample()
+    x["summary"]["okx"]["gaps_observed_gt_10_minutes"]=0
+    self.assertEqual(summarize(x)["five_minute_continuous_first_seen_grade"],
+                     "UNVERIFIED_5M_CONTINUITY_DESPITE_SAMPLES")
+ def test_gaps_greater_than_intervals_fails(self):
+    x=sample();x["summary"]["okx"]["gaps_observed_gt_10_minutes"]=4
+    with self.assertRaisesRegex(ValueError,"PROSPECTIVE_GAP_COUNTS_INVALID"):summarize(x)
+ def test_missing_runner_spacing_fails(self):
+    x=sample();x["summary"]["okx"]["max_actual_gap_seconds"]=None
+    with self.assertRaisesRegex(ValueError,"PROSPECTIVE_RECEIPT_GAP_INVALID"):summarize(x)
  def test_missing_flow_5m_does_not_qualify(self):
     x=sample()
     x["rows"][-1]["missing_intervals"]=1
