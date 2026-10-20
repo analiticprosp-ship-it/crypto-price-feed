@@ -1,0 +1,36 @@
+name: BTCI v8.18d7 portable 31 MVRV historically dated source witnesses
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/btci_v818d7_portable_31_source_ledger.py'
+      - '.github/workflows/btci-v818d7-portable-31-asof-ledger.yml'
+permissions:
+  contents: read
+jobs:
+  portable-31-evidence-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Compile and verify temporal and numeric guards
+        run: |
+          python -m py_compile research/btci_v818d7_portable_31_source_ledger.py
+          python research/btci_v818d7_portable_31_source_ledger.py --self-test
+      - name: Pin original 684 panel and 26 plus 5 source witnesses, archive R2
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python research/btci_v818d7_portable_31_source_ledger.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-v818d7-portable-31-asof-MVRV
+          path: btci_v818d7_reports/
+          retention-days: 30
