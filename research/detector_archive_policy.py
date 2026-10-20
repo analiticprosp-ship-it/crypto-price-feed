@@ -13,7 +13,7 @@ OPERATIONAL_WORKFLOWS=frozenset({
 })
 MAX_ARTIFACT_BYTES=80_000_000
 LOOKBACK_DAYS=7
-MAX_PAGES=6
+MAX_PAGES=8
 
 def is_research_candidate(run):
     return (isinstance(run,dict)
@@ -56,7 +56,12 @@ def is_recent(iso_timestamp,now,lookback_days=LOOKBACK_DAYS):
     if stamp.tzinfo is None:raise ValueError("RUN_TIMESTAMP_NAIVE")
     return stamp >= now-dt.timedelta(days=lookback_days)
 
-def scan_is_complete(batch_length,oldest_is_recent,page,max_pages=MAX_PAGES):
-    """Bounded incremental scan; running into max pages is PARTIAL, not PASS."""
-    if batch_length<100 or not oldest_is_recent:return True
-    return page<max_pages  # more pages required; final page handled by caller
+def select_since_cursor(batch,cursor):
+    """Only unprocessed *newer* run IDs; fail-closed on pagination disorder."""
+    if not isinstance(batch,list):raise ValueError("INVALID_RUN_LIST")
+    values=[r.get("id") for r in batch]
+    if any(not isinstance(x,int) for x in values):
+        raise ValueError("GITHUB_RUN_ID_MISSING")
+    if values!=sorted(values,reverse=True):
+        raise ValueError("GITHUB_RUNS_NOT_DESCENDING")
+    return [r for r in batch if r["id"]>cursor],bool(values and values[-1]<=cursor)
