@@ -1,0 +1,43 @@
+name: "09L v0.8.3 Deribit public-sample SHADOW"
+on:
+  push:
+    branches:
+      - research/09l-v08-3-20261020
+    paths:
+      - research/09l/v0.8.3-2026-10-20/remote_deribit_sample_runner.py
+      - .github/workflows/09l-v083-deribit-cascade-shadow.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: 09l-v083-deribit-cascade
+  cancel-in-progress: false
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 26
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Python parser compile"
+        run: python -m py_compile research/09l/v0.8.3-2026-10-20/remote_deribit_sample_runner.py
+      - name: "Download and parse Tardis public-first-of-month historical samples"
+        run: python -u research/09l/v0.8.3-2026-10-20/remote_deribit_sample_runner.py
+      - name: "Upload only research aggregate; no raw vendor data"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 09l-v083-deribit-sample-audit
+          path: research/09l/v0.8.3-2026-10-20/derived/*.json
+          retention-days: 30
+          if-no-files-found: warn
+      - name: "Publish research-only results to shadow branch"
+        if: success()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/v0.8.3-2026-10-20/derived/
+          git diff --cached --quiet && exit 0
+          git commit -m "research(09L): archive historical sample audit v0.8.3"
+          git pull --rebase origin research/09l-v08-3-20261020
+          git push origin HEAD:research/09l-v08-3-20261020
