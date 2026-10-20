@@ -3,7 +3,7 @@ import datetime as dt
 import unittest
 from research.detector_archive_policy import (
   artifact_plan,no_artifact_classification,is_research_candidate,
-  is_recent,MAX_ARTIFACT_BYTES,OPERATIONAL_WORKFLOWS
+  is_recent,MAX_ARTIFACT_BYTES,OPERATIONAL_WORKFLOWS,select_since_cursor
 )
 
 def art(id=1,expired=False,size=200):
@@ -56,6 +56,18 @@ class ArtifactPolicy(unittest.TestCase):
     now=dt.datetime(2026,10,20,tzinfo=dt.timezone.utc)
     self.assertTrue(is_recent("2026-10-19T23:10:00Z",now))
     self.assertFalse(is_recent("2026-10-01T00:00:00Z",now))
+ def test_cursor_pagination_stops_at_previous_verified_run(self):
+    fresh,stop=select_since_cursor([{"id":109},{"id":108},{"id":107},{"id":106}],107)
+    self.assertEqual([x["id"] for x in fresh],[109,108])
+    self.assertTrue(stop)
+ def test_cursor_pagination_continue_for_all_new_runs(self):
+    fresh,stop=select_since_cursor([{"id":109},{"id":108}],107)
+    self.assertEqual(len(fresh),2)
+    self.assertFalse(stop)
+ def test_cursor_pagination_order_must_fail_closed(self):
+    with self.assertRaises(ValueError):select_since_cursor([{"id":108},{"id":109}],107)
+ def test_cursor_missing_id_must_fail_closed(self):
+    with self.assertRaises(ValueError):select_since_cursor([{"foo":1}],107)
  def test_naive_timestamp_rejected(self):
     with self.assertRaises(ValueError):
       is_recent("2026-10-20T01:00:00",dt.datetime.now(dt.timezone.utc))
