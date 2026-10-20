@@ -1,0 +1,22 @@
+name: H1H10 Autonomous Research Evidence Triage Guard
+on:
+  pull_request:
+    paths:
+      - 'research/detector_h1h10_automated_evidence_triage.py'
+      - 'research/test_detector_h1h10_automated_evidence_triage.py'
+      - '.github/workflows/detector-h1h10-fastlane.yml'
+      - '.github/workflows/detector-h1h10-auto-triage-pr.yml'
+permissions:
+  contents: read
+jobs:
+  research-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Prove preflight prioritization cannot promote source labels to PIT or trading
+        run: python -m unittest -v research.test_detector_h1h10_automated_evidence_triage
