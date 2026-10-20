@@ -1,0 +1,575 @@
+{
+  "study": "09L v0.8.5 trade-L2 same-price matching",
+  "date_run_utc": "2026-10-20T12:02:55.349819+00:00",
+  "source_date_utc": "2026-10-01",
+  "status": "MATCHING_EXPLORATORY_COMPLETE",
+  "scope": "RETROSPECTIVE_SHADOW_NOT_TRADEABLE",
+  "timestamp": "Tardis local_timestamp capture microseconds UTC",
+  "windows_abs_lag_ms": [
+    "[0,50]",
+    "(50,200]",
+    "(200,1000]"
+  ],
+  "source_provenance": [
+    {
+      "type": "trades",
+      "url": "https://datasets.tardis.dev/v1/bybit/trades/2026/10/01/BTCUSDT.csv.gz",
+      "status": "OK",
+      "raw_rows": 1475829,
+      "btc_rows": 1475829,
+      "invalid_rows": 0,
+      "compressed_bytes": 41730563,
+      "compressed_sha256": "abf7e614b2d6b45dbfa85bdc79432228fa034cbbdba9b7a470078d14abf3c7b6"
+    },
+    {
+      "type": "incremental_book_L2",
+      "url": "https://datasets.tardis.dev/v1/bybit/incremental_book_L2/2026/10/01/BTCUSDT.csv.gz",
+      "status": "OK",
+      "raw_rows": 26324148,
+      "btc_rows": 26324148,
+      "invalid_rows": 0,
+      "compressed_bytes": 139683883,
+      "compressed_sha256": "f8f65353fa369d98e1a4ae990dc42eb21cea8dda16b9cb941c3e92d64daefa53"
+    }
+  ],
+  "quality": {
+    "book_resets": 2,
+    "pre_snapshot_discarded": 13,
+    "l2_nonmonotonic_rows": 0,
+    "qa": {},
+    "n_events": 8
+  },
+  "results": [
+    {
+      "minute_utc": "2026-10-01T07:24:00Z",
+      "side": "sell",
+      "t0_utc": "2026-10-01T07:24:02.018689+00:00",
+      "source_mid": 83540.35,
+      "price_band_bps_each_side": 25,
+      "n_trades_in_band": 20249,
+      "n_l2_decrements_in_band": 85239,
+      "correct_side_mapping": {
+        "quantity": {
+          "bid_decrease": 11681.829,
+          "ask_decrease": 21209.904,
+          "bid_matched_50": 284.818,
+          "bid_matched_200": 85.738,
+          "bid_matched_1000": 190.095,
+          "ask_matched_50": 262.064,
+          "ask_matched_200": 56.966,
+          "ask_matched_1000": 163.293,
+          "bid_unmatched": 11121.178,
+          "ask_unmatched": 20727.581,
+          "bid_matched_total": 560.651,
+          "bid_match_share_pct": 4.7993,
+          "ask_matched_total": 482.323,
+          "ask_match_share_pct": 2.274
+        },
+        "links": {
+          "ask_200_links": 1463,
+          "bid_1000_links": 3277,
+          "ask_50_links": 4224,
+          "ask_1000_links": 4594,
+          "bid_50_links": 4388,
+          "bid_200_links": 1291
+        }
+      },
+      "flipped_side_placebo": {
+        "quantity": {
+          "bid_decrease": 11681.829,
+          "ask_decrease": 21209.904,
+          "bid_matched_50": 103.66,
+          "bid_matched_200": 52.029,
+          "bid_matched_1000": 65.322,
+          "ask_matched_50": 84.09,
+          "ask_matched_200": 71.061,
+          "ask_matched_1000": 91.241,
+          "bid_unmatched": 11460.818,
+          "ask_unmatched": 20963.512,
+          "bid_matched_total": 221.011,
+          "bid_match_share_pct": 1.8919,
+          "ask_matched_total": 246.392,
+          "ask_match_share_pct": 1.1617
+        },
+        "links": {
+          "ask_50_links": 1914,
+          "ask_200_links": 1830,
+          "ask_1000_links": 2475,
+          "bid_50_links": 2526,
+          "bid_200_links": 1488,
+          "bid_1000_links": 2150
+        }
+      },
+      "forward_5min_bps_FROM_v084b": -28.7645,
+      "cascade_confirmed": false,
+      "cluster_touch_status": "NOT_TESTED",
+      "unit_status": "SAME_VENDOR_RAW_QUANTITIES_CONTRACT_MULTIPLIER_NOT_AUDITED"
+    },
+    {
+      "minute_utc": "2026-10-01T08:32:00Z",
+      "side": "sell",
+      "t0_utc": "2026-10-01T08:32:00.019105+00:00",
+      "source_mid": 83235.25,
+      "price_band_bps_each_side": 25,
+      "n_trades_in_band": 20980,
+      "n_l2_decrements_in_band": 93833,
+      "correct_side_mapping": {
+        "quantity": {
+          "bid_decrease": 16510.883,
+          "ask_decrease": 12792.741,
+          "bid_matched_50": 314.114,
+          "bid_matched_200": 56.968,
+          "bid_matched_1000": 227.665,
+          "ask_matched_50": 168.672,
+          "ask_matched_200": 33.531,
+          "ask_matched_1000": 103.202,
+          "bid_unmatched": 15912.136,
+          "ask_unmatched": 12487.336,
+          "bid_matched_total": 598.747,
+          "bid_match_share_pct": 3.6264,
+          "ask_matched_total": 305.405,
+          "ask_match_share_pct": 2.3873
+        },
+        "links": {
+          "bid_50_links": 5411,
+          "ask_1000_links": 3146,
+          "bid_1000_links": 5931,
+          "bid_200_links": 1904,
+          "ask_200_links": 804,
+          "ask_50_links": 3228
+        }
+      },
+      "flipped_side_placebo": {
+        "quantity": {
+          "bid_decrease": 16510.883,
+          "ask_decrease": 12792.741,
+          "bid_matched_50": 51.916,
+          "bid_matched_200": 31.61,
+          "bid_matched_1000": 47.004,
+          "ask_matched_50": 111.387,
+          "ask_matched_200": 48.068,
+          "ask_matched_1000": 53.244,
+          "bid_unmatched": 16380.353,
+          "ask_unmatched": 12580.042,
+          "bid_matched_total": 130.53,
+          "bid_match_share_pct": 0.7906,
+          "ask_matched_total": 212.699,
+          "ask_match_share_pct": 1.6627
+        },
+        "links": {
+          "ask_50_links": 2800,
+          "ask_200_links": 1605,
+          "ask_1000_links": 1669,
+          "bid_50_links": 1432,
+          "bid_1000_links": 1602,
+          "bid_200_links": 891
+        }
+      },
+      "forward_5min_bps_FROM_v084b": 4.3371,
+      "cascade_confirmed": false,
+      "cluster_touch_status": "NOT_TESTED",
+      "unit_status": "SAME_VENDOR_RAW_QUANTITIES_CONTRACT_MULTIPLIER_NOT_AUDITED"
+    },
+    {
+      "minute_utc": "2026-10-01T13:49:00Z",
+      "side": "control",
+      "t0_utc": "2026-10-01T13:49:30+00:00",
+      "source_mid": 83812.35,
+      "price_band_bps_each_side": 25,
+      "n_trades_in_band": 17314,
+      "n_l2_decrements_in_band": 118720,
+      "correct_side_mapping": {
+        "quantity": {
+          "bid_decrease": 18788.105,
+          "ask_decrease": 19360.762,
+          "bid_matched_50": 127.845,
+          "bid_matched_200": 29.487,
+          "bid_matched_1000": 79.753,
+          "ask_matched_50": 111.892,
+          "ask_matched_200": 34.036,
+          "ask_matched_1000": 68.582,
+          "bid_unmatched": 18551.02,
+          "ask_unmatched": 19146.252,
+          "bid_matched_total": 237.085,
+          "bid_match_share_pct": 1.2619,
+          "ask_matched_total": 214.51,
+          "ask_match_share_pct": 1.108
+        },
+        "links": {
+          "bid_200_links": 1005,
+          "ask_1000_links": 3590,
+          "ask_200_links": 1013,
+          "bid_50_links": 4453,
+          "ask_50_links": 3512,
+          "bid_1000_links": 3768
+        }
+      },
+      "flipped_side_placebo": {
+        "quantity": {
+          "bid_decrease": 18788.105,
+          "ask_decrease": 19360.762,
+          "bid_matched_50": 62.207,
+          "bid_matched_200": 33.259,
+          "bid_matched_1000": 34.618,
+          "ask_matched_50": 45.367,
+          "ask_matched_200": 26.868,
+          "ask_matched_1000": 60.755,
+          "bid_unmatched": 18658.021,
+          "ask_unmatched": 19227.772,
+          "bid_matched_total": 130.084,
+          "bid_match_share_pct": 0.6924,
+          "ask_matched_total": 132.99,
+          "ask_match_share_pct": 0.6869
+        },
+        "links": {
+          "bid_50_links": 2190,
+          "bid_200_links": 1081,
+          "ask_1000_links": 2829,
+          "bid_1000_links": 2012,
+          "ask_50_links": 2056,
+          "ask_200_links": 1293
+        }
+      },
+      "forward_5min_bps_FROM_v084b": 5.1663,
+      "cascade_confirmed": false,
+      "cluster_touch_status": "NOT_TESTED",
+      "unit_status": "SAME_VENDOR_RAW_QUANTITIES_CONTRACT_MULTIPLIER_NOT_AUDITED"
+    },
+    {
+      "minute_utc": "2026-10-01T14:19:00Z",
+      "side": "control",
+      "t0_utc": "2026-10-01T14:19:30+00:00",
+      "source_mid": 83905.45,
+      "price_band_bps_each_side": 25,
+      "n_trades_in_band": 14959,
+      "n_l2_decrements_in_band": 108421,
+      "correct_side_mapping": {
+        "quantity": {
+          "bid_decrease": 13867.709,
+          "ask_decrease": 22531.038,
+          "bid_matched_50": 117.321,
+          "bid_matched_200": 18.88,
+          "bid_matched_1000": 55.485,
+          "ask_matched_50": 68.041,
+          "ask_matched_200": 16.053,
+          "ask_matched_1000": 61.073,
+          "bid_unmatched": 13676.023,
+          "ask_unmatched": 22385.871,
+          "bid_matched_total": 191.686,
+          "bid_match_share_pct": 1.3822,
+          "ask_matched_total": 145.167,
+          "ask_match_share_pct": 0.6443
+        },
+        "links": {
+          "ask_50_links": 3206,
+          "bid_1000_links": 2907,
+          "ask_1000_links": 3478,
+          "bid_200_links": 735,
+          "bid_50_links": 3967,
+          "ask_200_links": 788
+        }
+      },
+      "flipped_side_placebo": {
+        "quantity": {
+          "bid_decrease": 13867.709,
+          "ask_decrease": 22531.038,
+          "bid_matched_50": 48.233,
+          "bid_matched_200": 14.273,
+          "bid_matched_1000": 20.189,
+          "ask_matched_50": 48.124,
+          "ask_matched_200": 31.595,
+          "ask_matched_1000": 33.344,
+          "bid_unmatched": 13785.014,
+          "ask_unmatched": 22417.975,
+          "bid_matched_total": 82.695,
+          "bid_match_share_pct": 0.5963,
+          "ask_matched_total": 113.063,
+          "ask_match_share_pct": 0.5018
+        },
+        "links": {
+          "ask_50_links": 2097,
+          "ask_200_links": 1189,
+          "ask_1000_links": 1690,
+          "bid_1000_links": 1737,
+          "bid_50_links": 1991,
+          "bid_200_links": 810
+        }
+      },
+      "forward_5min_bps_FROM_v084b": 3.8019,
+      "cascade_confirmed": false,
+      "cluster_touch_status": "NOT_TESTED",
+      "unit_status": "SAME_VENDOR_RAW_QUANTITIES_CONTRACT_MULTIPLIER_NOT_AUDITED"
+    },
+    {
+      "minute_utc": "2026-10-01T15:10:00Z",
+      "side": "control",
+      "t0_utc": "2026-10-01T15:10:30+00:00",
+      "source_mid": 83807.05,
+      "price_band_bps_each_side": 25,
+      "n_trades_in_band": 11190,
+      "n_l2_decrements_in_band": 63556,
+      "correct_side_mapping": {
+        "quantity": {
+          "bid_decrease": 9292.572,
+          "ask_decrease": 12158.575,
+          "bid_matched_50": 151.804,
+          "bid_matched_200": 15.681,
+          "bid_matched_1000": 72.166,
+          "ask_matched_50": 110.366,
+          "ask_matched_200": 31.238,
+          "ask_matched_1000": 56.02,
+          "bid_unmatched": 9052.921,
+          "ask_unmatched": 11960.951,
+          "bid_matched_total": 239.651,
+          "bid_match_share_pct": 2.579,
+          "ask_matched_total": 197.624,
+          "ask_match_share_pct": 1.6254
+        },
+        "links": {
+          "bid_200_links": 494,
+          "ask_200_links": 842,
+          "ask_1000_links": 2691,
+          "bid_1000_links": 1856,
+          "bid_50_links": 2443,
+          "ask_50_links": 3017
+        }
+      },
+      "flipped_side_placebo": {
+        "quantity": {
+          "bid_decrease": 9292.572,
+          "ask_decrease": 12158.575,
+          "bid_matched_50": 42.187,
+          "bid_matched_200": 23.738,
+          "bid_matched_1000": 23.047,
+          "ask_matched_50": 72.44,
+          "ask_matched_200": 17.361,
+          "ask_matched_1000": 40.075,
+          "bid_unmatched": 9203.6,
+          "ask_unmatched": 12028.699,
+          "bid_matched_total": 88.972,
+          "bid_match_share_pct": 0.9575,
+          "ask_matched_total": 129.876,
+          "ask_match_share_pct": 1.0682
+        },
+        "links": {
+          "ask_200_links": 481,
+          "ask_1000_links": 947,
+          "ask_50_links": 1303,
+          "bid_200_links": 743,
+          "bid_1000_links": 1161,
+          "bid_50_links": 1431
+        }
+      },
+      "forward_5min_bps_FROM_v084b": 27.1338,
+      "cascade_confirmed": false,
+      "cluster_touch_status": "NOT_TESTED",
+      "unit_status": "SAME_VENDOR_RAW_QUANTITIES_CONTRACT_MULTIPLIER_NOT_AUDITED"
+    },
+    {
+      "minute_utc": "2026-10-01T15:49:00Z",
+      "side": "control",
+      "t0_utc": "2026-10-01T15:49:30+00:00",
+      "source_mid": 84209.15,
+      "price_band_bps_each_side": 25,
+      "n_trades_in_band": 15673,
+      "n_l2_decrements_in_band": 108346,
+      "correct_side_mapping": {
+        "quantity": {
+          "bid_decrease": 13026.722,
+          "ask_decrease": 24691.651,
+          "bid_matched_50": 132.539,
+          "bid_matched_200": 28.155,
+          "bid_matched_1000": 111.14,
+          "ask_matched_50": 222.639,
+          "ask_matched_200": 53.992,
+          "ask_matched_1000": 132.252,
+          "bid_unmatched": 12754.888,
+          "ask_unmatched": 24282.768,
+          "bid_matched_total": 271.834,
+          "bid_match_share_pct": 2.0867,
+          "ask_matched_total": 408.883,
+          "ask_match_share_pct": 1.656
+        },
+        "links": {
+          "ask_1000_links": 3653,
+          "ask_200_links": 981,
+          "ask_50_links": 3522,
+          "bid_200_links": 820,
+          "bid_1000_links": 3315,
+          "bid_50_links": 3602
+        }
+      },
+      "flipped_side_placebo": {
+        "quantity": {
+          "bid_decrease": 13026.722,
+          "ask_decrease": 24691.651,
+          "bid_matched_50": 85.538,
+          "bid_matched_200": 45.53,
+          "bid_matched_1000": 43.085,
+          "ask_matched_50": 64.461,
+          "ask_matched_200": 31.811,
+          "ask_matched_1000": 50.936,
+          "bid_unmatched": 12852.569,
+          "ask_unmatched": 24544.443,
+          "bid_matched_total": 174.153,
+          "bid_match_share_pct": 1.3369,
+          "ask_matched_total": 147.208,
+          "ask_match_share_pct": 0.5962
+        },
+        "links": {
+          "bid_1000_links": 1585,
+          "bid_200_links": 919,
+          "bid_50_links": 2362,
+          "ask_1000_links": 1992,
+          "ask_200_links": 1160,
+          "ask_50_links": 1868
+        }
+      },
+      "forward_5min_bps_FROM_v084b": -14.9152,
+      "cascade_confirmed": false,
+      "cluster_touch_status": "NOT_TESTED",
+      "unit_status": "SAME_VENDOR_RAW_QUANTITIES_CONTRACT_MULTIPLIER_NOT_AUDITED"
+    },
+    {
+      "minute_utc": "2026-10-01T17:28:00Z",
+      "side": "buy",
+      "t0_utc": "2026-10-01T17:28:30.519298+00:00",
+      "source_mid": 84853.95,
+      "price_band_bps_each_side": 25,
+      "n_trades_in_band": 21158,
+      "n_l2_decrements_in_band": 115475,
+      "correct_side_mapping": {
+        "quantity": {
+          "bid_decrease": 19525.788,
+          "ask_decrease": 34738.393,
+          "bid_matched_50": 467.49,
+          "bid_matched_200": 53.21,
+          "bid_matched_1000": 186.143,
+          "ask_matched_50": 340.863,
+          "ask_matched_200": 72.403,
+          "ask_matched_1000": 204.878,
+          "bid_unmatched": 18818.945,
+          "ask_unmatched": 34120.249,
+          "bid_matched_total": 706.843,
+          "bid_match_share_pct": 3.62,
+          "ask_matched_total": 618.144,
+          "ask_match_share_pct": 1.7794
+        },
+        "links": {
+          "bid_50_links": 5172,
+          "bid_200_links": 1301,
+          "ask_1000_links": 4744,
+          "bid_1000_links": 4833,
+          "ask_200_links": 1156,
+          "ask_50_links": 4872
+        }
+      },
+      "flipped_side_placebo": {
+        "quantity": {
+          "bid_decrease": 19525.788,
+          "ask_decrease": 34738.393,
+          "bid_matched_50": 98.843,
+          "bid_matched_200": 71.445,
+          "bid_matched_1000": 78.27,
+          "ask_matched_50": 142.725,
+          "ask_matched_200": 60.443,
+          "ask_matched_1000": 126.068,
+          "bid_unmatched": 19277.23,
+          "ask_unmatched": 34409.157,
+          "bid_matched_total": 248.558,
+          "bid_match_share_pct": 1.273,
+          "ask_matched_total": 329.236,
+          "ask_match_share_pct": 0.9478
+        },
+        "links": {
+          "ask_1000_links": 3089,
+          "bid_1000_links": 2096,
+          "ask_50_links": 2296,
+          "ask_200_links": 1463,
+          "bid_50_links": 2256,
+          "bid_200_links": 1425
+        }
+      },
+      "forward_5min_bps_FROM_v084b": -1.3317,
+      "cascade_confirmed": false,
+      "cluster_touch_status": "NOT_TESTED",
+      "unit_status": "SAME_VENDOR_RAW_QUANTITIES_CONTRACT_MULTIPLIER_NOT_AUDITED"
+    },
+    {
+      "minute_utc": "2026-10-01T18:38:00Z",
+      "side": "buy",
+      "t0_utc": "2026-10-01T18:38:03.519078+00:00",
+      "source_mid": 85083.75,
+      "price_band_bps_each_side": 25,
+      "n_trades_in_band": 16020,
+      "n_l2_decrements_in_band": 94248,
+      "correct_side_mapping": {
+        "quantity": {
+          "bid_decrease": 11854.399,
+          "ask_decrease": 21838.992,
+          "bid_matched_50": 193.947,
+          "bid_matched_200": 36.258,
+          "bid_matched_1000": 86.081,
+          "ask_matched_50": 317.982,
+          "ask_matched_200": 36.112,
+          "ask_matched_1000": 101.297,
+          "bid_unmatched": 11538.113,
+          "ask_unmatched": 21383.601,
+          "bid_matched_total": 316.286,
+          "bid_match_share_pct": 2.6681,
+          "ask_matched_total": 455.391,
+          "ask_match_share_pct": 2.0852
+        },
+        "links": {
+          "ask_1000_links": 3471,
+          "bid_1000_links": 2854,
+          "bid_200_links": 1073,
+          "bid_50_links": 3673,
+          "ask_200_links": 1013,
+          "ask_50_links": 4733
+        }
+      },
+      "flipped_side_placebo": {
+        "quantity": {
+          "bid_decrease": 11854.399,
+          "ask_decrease": 21838.992,
+          "bid_matched_50": 54.1,
+          "bid_matched_200": 25.605,
+          "bid_matched_1000": 47.931,
+          "ask_matched_50": 73.28,
+          "ask_matched_200": 31.83,
+          "ask_matched_1000": 60.175,
+          "bid_unmatched": 11726.763,
+          "ask_unmatched": 21673.707,
+          "bid_matched_total": 127.636,
+          "bid_match_share_pct": 1.0767,
+          "ask_matched_total": 165.285,
+          "ask_match_share_pct": 0.7568
+        },
+        "links": {
+          "ask_50_links": 1709,
+          "ask_200_links": 992,
+          "ask_1000_links": 1768,
+          "bid_50_links": 1872,
+          "bid_200_links": 1156,
+          "bid_1000_links": 1562
+        }
+      },
+      "forward_5min_bps_FROM_v084b": -14.7619,
+      "cascade_confirmed": false,
+      "cluster_touch_status": "NOT_TESTED",
+      "unit_status": "SAME_VENDOR_RAW_QUANTITIES_CONTRACT_MULTIPLIER_NOT_AUDITED"
+    }
+  ],
+  "limitations": [
+    "Events selected retrospectively on observed liquidation size in v0.8.3, not independent OOS",
+    "L2 is limited provider captured venue book, not all orders including all RPI",
+    "Price-and-arrival-time match plus greedy amount allocation is an ambiguous execution-associated proxy, not demonstrated fills or cancellations",
+    "Side-flipped placebo is a sanity comparison, not independent statistical evidence",
+    "The 8 event windows do not establish historical CoinGlass first-hit or true cluster lifecycle",
+    "No signed dealer gamma, counterparty identity, or identified futures/spot hedge strategy",
+    "Tardis trade and book arrival timestamps may differ from matching-engine timestamps",
+    "No calibrated probabilities, impact regression, or trade permissions"
+  ],
+  "canon_writeback": "NONE"
+}
