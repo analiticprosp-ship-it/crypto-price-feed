@@ -122,7 +122,7 @@ def main():
             result["bootstrap_warning"]="PIT07_JOIN_FIXTURE_MISSING_STAGING_ONLY"
         result["sources"]=sources(a.track,a.mode,session,out)
         result["source_successes"]=sum("http" in s for s in result["sources"])
-        result["status"]="PASS_BASELINE_SOURCE_STAGING_NOT_PIT"
+        result["status"]="PASS_BASELINE_SOURCE_STAGING_NOT_PIT" if result["pit07"].get("available") else "WARN_BOOTSTRAP_JOIN_MISSING"
         if a.mode!="offline" and a.track!="audit" and result["source_successes"]==0:
             result["status"]="WARN_NO_SOURCE_RETRIEVED"
     except Exception as exc:
