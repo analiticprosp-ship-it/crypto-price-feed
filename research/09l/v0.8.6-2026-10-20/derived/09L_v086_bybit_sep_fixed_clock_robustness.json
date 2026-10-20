@@ -1,0 +1,1180 @@
+{
+  "study": "09L v0.8.6 historical independent-date cross-venue robustness",
+  "id": "bybit_sep",
+  "venue": "bybit",
+  "symbol": "BTCUSDT",
+  "date": "2026-09-01",
+  "status": "ROBUSTNESS_EXPLORATORY_COMPLETE",
+  "design": "8_FIXED_UTC_CLOCK_PRESELECTED_IN_OLD_STUDY_PLUS_FIRST_3_SESSION_LIQ_MIXED_IF_AVAILABLE",
+  "sources": [
+    {
+      "kind": "liquidations",
+      "source_symbol": "PERPETUALS",
+      "url": "https://datasets.tardis.dev/v1/bybit/liquidations/2026/09/01/PERPETUALS.csv.gz",
+      "status": "OK",
+      "raw_rows": 14959,
+      "target_symbol_rows": 1245,
+      "invalid_rows": 0,
+      "out_of_date_rows": 0,
+      "local_timestamp_nonmonotonic": 0,
+      "compressed_sha256": "75c9e12cc79d2c5becdcdb92dc5f381979b2db597c21b59bd6d8ce35b11c5062",
+      "compressed_bytes": 233708,
+      "seconds": 0.5
+    },
+    {
+      "kind": "trades",
+      "source_symbol": "BTCUSDT",
+      "url": "https://datasets.tardis.dev/v1/bybit/trades/2026/09/01/BTCUSDT.csv.gz",
+      "status": "OK",
+      "raw_rows": 2017317,
+      "target_symbol_rows": 2017317,
+      "invalid_rows": 0,
+      "out_of_date_rows": 0,
+      "local_timestamp_nonmonotonic": 0,
+      "compressed_sha256": "25ff55e4433f2cc9efcc81e91dbac39a29f0c7eeb1cc3e210a0ea5853fc215ea",
+      "compressed_bytes": 54305683,
+      "seconds": 6.13
+    },
+    {
+      "kind": "incremental_book_L2",
+      "source_symbol": "BTCUSDT",
+      "url": "https://datasets.tardis.dev/v1/bybit/incremental_book_L2/2026/09/01/BTCUSDT.csv.gz",
+      "status": "OK",
+      "raw_rows": 23077949,
+      "target_symbol_rows": 23077949,
+      "invalid_rows": 0,
+      "out_of_date_rows": 0,
+      "local_timestamp_nonmonotonic": 0,
+      "compressed_sha256": "a21447c9e9760a06a1dca2c0fac318942ca03f4304a0da15de9f494306eb7a9d",
+      "compressed_bytes": 124072307,
+      "seconds": 57.85
+    }
+  ],
+  "quality": {
+    "reconstruction_snapshot_resets": 3,
+    "discarded_before_initial_snapshot": 9,
+    "qa_flags": {}
+  },
+  "fixed_primary_aggregate": {
+    "fixed_window_count": 8,
+    "correct": {
+      "raw_decrement": 134146.842,
+      "raw_matched": 3004.864,
+      "match_share_pct": 2.24
+    },
+    "flipped": {
+      "raw_decrement": 134146.842,
+      "raw_matched": 1266.57,
+      "match_share_pct": 0.9442
+    },
+    "shift_5s": {
+      "raw_decrement": 134146.842,
+      "raw_matched": 408.69,
+      "match_share_pct": 0.3047
+    },
+    "positive_correct_over_flipped_n": 8,
+    "positive_correct_over_shift_n": 8
+  },
+  "casebook": [
+    {
+      "case_id": "clock_07:24:30",
+      "group": "fixed_clock",
+      "utc_anchor": "2026-09-01T07:24:30+00:00",
+      "liquidation_side_if_observed": "none",
+      "price_asof": 78768.5,
+      "price_age_s": 0.874712,
+      "selected_on_future_price": false,
+      "n_trade_rows_window": 4518,
+      "n_decrements_band": 37940,
+      "correct": {
+        "bid": {
+          "total_decrement": 2249.124,
+          "matched": 84.097,
+          "share_pct": 3.7391,
+          "disjoint_lag_raw_quantities": {
+            "50": 56.808,
+            "200": 9.861,
+            "1000": 17.428
+          },
+          "unpaired": 2165.027
+        },
+        "ask": {
+          "total_decrement": 9304.56,
+          "matched": 45.274,
+          "share_pct": 0.4866,
+          "disjoint_lag_raw_quantities": {
+            "50": 22.745,
+            "200": 2.216,
+            "1000": 20.313
+          },
+          "unpaired": 9259.286
+        },
+        "combined": {
+          "total_decrement": 11553.684,
+          "matched": 129.371,
+          "share_pct": 1.1197
+        }
+      },
+      "flipped": {
+        "bid": {
+          "total_decrement": 2249.124,
+          "matched": 17.74,
+          "share_pct": 0.7888,
+          "disjoint_lag_raw_quantities": {
+            "50": 11.291,
+            "200": 3.236,
+            "1000": 3.213
+          },
+          "unpaired": 2231.384
+        },
+        "ask": {
+          "total_decrement": 9304.56,
+          "matched": 54.451,
+          "share_pct": 0.5852,
+          "disjoint_lag_raw_quantities": {
+            "50": 37.579,
+            "200": 10.702,
+            "1000": 6.17
+          },
+          "unpaired": 9250.109
+        },
+        "combined": {
+          "total_decrement": 11553.684,
+          "matched": 72.191,
+          "share_pct": 0.6248
+        }
+      },
+      "shift_5s": {
+        "bid": {
+          "total_decrement": 2249.124,
+          "matched": 10.453,
+          "share_pct": 0.4648,
+          "disjoint_lag_raw_quantities": {
+            "50": 0.149,
+            "200": 1.205,
+            "1000": 9.099
+          },
+          "unpaired": 2238.671
+        },
+        "ask": {
+          "total_decrement": 9304.56,
+          "matched": 19.269,
+          "share_pct": 0.2071,
+          "disjoint_lag_raw_quantities": {
+            "50": 1.046,
+            "200": 1.795,
+            "1000": 16.428
+          },
+          "unpaired": 9285.291
+        },
+        "combined": {
+          "total_decrement": 11553.684,
+          "matched": 29.722,
+          "share_pct": 0.2573
+        }
+      },
+      "state": "EVALUATED"
+    },
+    {
+      "case_id": "clock_08:32:30",
+      "group": "fixed_clock",
+      "utc_anchor": "2026-09-01T08:32:30+00:00",
+      "liquidation_side_if_observed": "none",
+      "price_asof": 77825.0,
+      "price_age_s": 0.042062,
+      "selected_on_future_price": false,
+      "n_trade_rows_window": 13349,
+      "n_decrements_band": 74752,
+      "correct": {
+        "bid": {
+          "total_decrement": 11088.679,
+          "matched": 179.417,
+          "share_pct": 1.618,
+          "disjoint_lag_raw_quantities": {
+            "50": 93.086,
+            "200": 15.687,
+            "1000": 70.644
+          },
+          "unpaired": 10909.262
+        },
+        "ask": {
+          "total_decrement": 8592.726,
+          "matched": 313.084,
+          "share_pct": 3.6436,
+          "disjoint_lag_raw_quantities": {
+            "50": 174.222,
+            "200": 28.498,
+            "1000": 110.364
+          },
+          "unpaired": 8279.642
+        },
+        "combined": {
+          "total_decrement": 19681.405,
+          "matched": 492.501,
+          "share_pct": 2.5024
+        }
+      },
+      "flipped": {
+        "bid": {
+          "total_decrement": 11088.679,
+          "matched": 108.759,
+          "share_pct": 0.9808,
+          "disjoint_lag_raw_quantities": {
+            "50": 51.314,
+            "200": 32.276,
+            "1000": 25.169
+          },
+          "unpaired": 10979.92
+        },
+        "ask": {
+          "total_decrement": 8592.726,
+          "matched": 83.634,
+          "share_pct": 0.9733,
+          "disjoint_lag_raw_quantities": {
+            "50": 38.918,
+            "200": 15.408,
+            "1000": 29.308
+          },
+          "unpaired": 8509.092
+        },
+        "combined": {
+          "total_decrement": 19681.405,
+          "matched": 192.393,
+          "share_pct": 0.9775
+        }
+      },
+      "shift_5s": {
+        "bid": {
+          "total_decrement": 11088.679,
+          "matched": 19.895,
+          "share_pct": 0.1794,
+          "disjoint_lag_raw_quantities": {
+            "50": 0.572,
+            "200": 2.745,
+            "1000": 16.578
+          },
+          "unpaired": 11068.784
+        },
+        "ask": {
+          "total_decrement": 8592.726,
+          "matched": 46.063,
+          "share_pct": 0.5361,
+          "disjoint_lag_raw_quantities": {
+            "50": 0.303,
+            "200": 4.686,
+            "1000": 41.074
+          },
+          "unpaired": 8546.663
+        },
+        "combined": {
+          "total_decrement": 19681.405,
+          "matched": 65.958,
+          "share_pct": 0.3351
+        }
+      },
+      "state": "EVALUATED"
+    },
+    {
+      "case_id": "clock_13:49:30",
+      "group": "fixed_clock",
+      "utc_anchor": "2026-09-01T13:49:30+00:00",
+      "liquidation_side_if_observed": "none",
+      "price_asof": 78028.3,
+      "price_age_s": 0.180465,
+      "selected_on_future_price": false,
+      "n_trade_rows_window": 26923,
+      "n_decrements_band": 97223,
+      "correct": {
+        "bid": {
+          "total_decrement": 9357.2,
+          "matched": 276.473,
+          "share_pct": 2.9547,
+          "disjoint_lag_raw_quantities": {
+            "50": 124.378,
+            "200": 36.345,
+            "1000": 115.75
+          },
+          "unpaired": 9080.727
+        },
+        "ask": {
+          "total_decrement": 11298.489,
+          "matched": 304.284,
+          "share_pct": 2.6931,
+          "disjoint_lag_raw_quantities": {
+            "50": 168.696,
+            "200": 31.083,
+            "1000": 104.505
+          },
+          "unpaired": 10994.205
+        },
+        "combined": {
+          "total_decrement": 20655.689,
+          "matched": 580.757,
+          "share_pct": 2.8116
+        }
+      },
+      "flipped": {
+        "bid": {
+          "total_decrement": 9357.2,
+          "matched": 126.189,
+          "share_pct": 1.3486,
+          "disjoint_lag_raw_quantities": {
+            "50": 53.455,
+            "200": 28.385,
+            "1000": 44.349
+          },
+          "unpaired": 9231.011
+        },
+        "ask": {
+          "total_decrement": 11298.489,
+          "matched": 140.961,
+          "share_pct": 1.2476,
+          "disjoint_lag_raw_quantities": {
+            "50": 62.674,
+            "200": 38.612,
+            "1000": 39.675
+          },
+          "unpaired": 11157.528
+        },
+        "combined": {
+          "total_decrement": 20655.689,
+          "matched": 267.15,
+          "share_pct": 1.2933
+        }
+      },
+      "shift_5s": {
+        "bid": {
+          "total_decrement": 9357.2,
+          "matched": 41.322,
+          "share_pct": 0.4416,
+          "disjoint_lag_raw_quantities": {
+            "50": 1.07,
+            "200": 6.606,
+            "1000": 33.646
+          },
+          "unpaired": 9315.878
+        },
+        "ask": {
+          "total_decrement": 11298.489,
+          "matched": 32.507,
+          "share_pct": 0.2877,
+          "disjoint_lag_raw_quantities": {
+            "50": 1.224,
+            "200": 4.278,
+            "1000": 27.005
+          },
+          "unpaired": 11265.982
+        },
+        "combined": {
+          "total_decrement": 20655.689,
+          "matched": 73.829,
+          "share_pct": 0.3574
+        }
+      },
+      "state": "EVALUATED"
+    },
+    {
+      "case_id": "clock_14:19:30",
+      "group": "fixed_clock",
+      "utc_anchor": "2026-09-01T14:19:30+00:00",
+      "liquidation_side_if_observed": "none",
+      "price_asof": 78169.9,
+      "price_age_s": 0.020888,
+      "selected_on_future_price": false,
+      "n_trade_rows_window": 11628,
+      "n_decrements_band": 66333,
+      "correct": {
+        "bid": {
+          "total_decrement": 6113.274,
+          "matched": 148.561,
+          "share_pct": 2.4301,
+          "disjoint_lag_raw_quantities": {
+            "50": 102.243,
+            "200": 10.879,
+            "1000": 35.439
+          },
+          "unpaired": 5964.713
+        },
+        "ask": {
+          "total_decrement": 8119.06,
+          "matched": 130.735,
+          "share_pct": 1.6102,
+          "disjoint_lag_raw_quantities": {
+            "50": 70.155,
+            "200": 10.751,
+            "1000": 49.829
+          },
+          "unpaired": 7988.325
+        },
+        "combined": {
+          "total_decrement": 14232.334,
+          "matched": 279.296,
+          "share_pct": 1.9624
+        }
+      },
+      "flipped": {
+        "bid": {
+          "total_decrement": 6113.274,
+          "matched": 63.841,
+          "share_pct": 1.0443,
+          "disjoint_lag_raw_quantities": {
+            "50": 35.868,
+            "200": 14.478,
+            "1000": 13.495
+          },
+          "unpaired": 6049.433
+        },
+        "ask": {
+          "total_decrement": 8119.06,
+          "matched": 63.937,
+          "share_pct": 0.7875,
+          "disjoint_lag_raw_quantities": {
+            "50": 37.119,
+            "200": 13.3,
+            "1000": 13.518
+          },
+          "unpaired": 8055.123
+        },
+        "combined": {
+          "total_decrement": 14232.334,
+          "matched": 127.778,
+          "share_pct": 0.8978
+        }
+      },
+      "shift_5s": {
+        "bid": {
+          "total_decrement": 6113.274,
+          "matched": 12.993,
+          "share_pct": 0.2125,
+          "disjoint_lag_raw_quantities": {
+            "50": 1.534,
+            "200": 2.196,
+            "1000": 9.263
+          },
+          "unpaired": 6100.281
+        },
+        "ask": {
+          "total_decrement": 8119.06,
+          "matched": 16.999,
+          "share_pct": 0.2094,
+          "disjoint_lag_raw_quantities": {
+            "50": 0.068,
+            "200": 7.735,
+            "1000": 9.196
+          },
+          "unpaired": 8102.061
+        },
+        "combined": {
+          "total_decrement": 14232.334,
+          "matched": 29.992,
+          "share_pct": 0.2107
+        }
+      },
+      "state": "EVALUATED"
+    },
+    {
+      "case_id": "clock_15:10:30",
+      "group": "fixed_clock",
+      "utc_anchor": "2026-09-01T15:10:30+00:00",
+      "liquidation_side_if_observed": "none",
+      "price_asof": 77713.7,
+      "price_age_s": 0.806478,
+      "selected_on_future_price": false,
+      "n_trade_rows_window": 13287,
+      "n_decrements_band": 63324,
+      "correct": {
+        "bid": {
+          "total_decrement": 8599.17,
+          "matched": 152.174,
+          "share_pct": 1.7696,
+          "disjoint_lag_raw_quantities": {
+            "50": 99.597,
+            "200": 9.93,
+            "1000": 42.647
+          },
+          "unpaired": 8446.996
+        },
+        "ask": {
+          "total_decrement": 6907.749,
+          "matched": 242.638,
+          "share_pct": 3.5125,
+          "disjoint_lag_raw_quantities": {
+            "50": 130.021,
+            "200": 32.441,
+            "1000": 80.176
+          },
+          "unpaired": 6665.111
+        },
+        "combined": {
+          "total_decrement": 15506.919,
+          "matched": 394.812,
+          "share_pct": 2.546
+        }
+      },
+      "flipped": {
+        "bid": {
+          "total_decrement": 8599.17,
+          "matched": 109.074,
+          "share_pct": 1.2684,
+          "disjoint_lag_raw_quantities": {
+            "50": 46.277,
+            "200": 27.097,
+            "1000": 35.7
+          },
+          "unpaired": 8490.096
+        },
+        "ask": {
+          "total_decrement": 6907.749,
+          "matched": 72.576,
+          "share_pct": 1.0506,
+          "disjoint_lag_raw_quantities": {
+            "50": 35.06,
+            "200": 21.99,
+            "1000": 15.526
+          },
+          "unpaired": 6835.173
+        },
+        "combined": {
+          "total_decrement": 15506.919,
+          "matched": 181.65,
+          "share_pct": 1.1714
+        }
+      },
+      "shift_5s": {
+        "bid": {
+          "total_decrement": 8599.17,
+          "matched": 20.248,
+          "share_pct": 0.2355,
+          "disjoint_lag_raw_quantities": {
+            "50": 1.667,
+            "200": 2.058,
+            "1000": 16.523
+          },
+          "unpaired": 8578.922
+        },
+        "ask": {
+          "total_decrement": 6907.749,
+          "matched": 29.832,
+          "share_pct": 0.4319,
+          "disjoint_lag_raw_quantities": {
+            "50": 1.545,
+            "200": 3.809,
+            "1000": 24.478
+          },
+          "unpaired": 6877.917
+        },
+        "combined": {
+          "total_decrement": 15506.919,
+          "matched": 50.08,
+          "share_pct": 0.323
+        }
+      },
+      "state": "EVALUATED"
+    },
+    {
+      "case_id": "clock_15:49:30",
+      "group": "fixed_clock",
+      "utc_anchor": "2026-09-01T15:49:30+00:00",
+      "liquidation_side_if_observed": "none",
+      "price_asof": 77995.0,
+      "price_age_s": 0.239631,
+      "selected_on_future_price": false,
+      "n_trade_rows_window": 7536,
+      "n_decrements_band": 51671,
+      "correct": {
+        "bid": {
+          "total_decrement": 11856.912,
+          "matched": 152.413,
+          "share_pct": 1.2854,
+          "disjoint_lag_raw_quantities": {
+            "50": 106.24,
+            "200": 10.701,
+            "1000": 35.472
+          },
+          "unpaired": 11704.499
+        },
+        "ask": {
+          "total_decrement": 4100.468,
+          "matched": 90.867,
+          "share_pct": 2.216,
+          "disjoint_lag_raw_quantities": {
+            "50": 60.017,
+            "200": 9.069,
+            "1000": 21.781
+          },
+          "unpaired": 4009.601
+        },
+        "combined": {
+          "total_decrement": 15957.38,
+          "matched": 243.28,
+          "share_pct": 1.5246
+        }
+      },
+      "flipped": {
+        "bid": {
+          "total_decrement": 11856.912,
+          "matched": 49.884,
+          "share_pct": 0.4207,
+          "disjoint_lag_raw_quantities": {
+            "50": 28.235,
+            "200": 9.647,
+            "1000": 12.002
+          },
+          "unpaired": 11807.028
+        },
+        "ask": {
+          "total_decrement": 4100.468,
+          "matched": 32.893,
+          "share_pct": 0.8022,
+          "disjoint_lag_raw_quantities": {
+            "50": 18.053,
+            "200": 6.811,
+            "1000": 8.029
+          },
+          "unpaired": 4067.575
+        },
+        "combined": {
+          "total_decrement": 15957.38,
+          "matched": 82.777,
+          "share_pct": 0.5187
+        }
+      },
+      "shift_5s": {
+        "bid": {
+          "total_decrement": 11856.912,
+          "matched": 24.009,
+          "share_pct": 0.2025,
+          "disjoint_lag_raw_quantities": {
+            "50": 0.177,
+            "200": 1.668,
+            "1000": 22.164
+          },
+          "unpaired": 11832.903
+        },
+        "ask": {
+          "total_decrement": 4100.468,
+          "matched": 10.191,
+          "share_pct": 0.2485,
+          "disjoint_lag_raw_quantities": {
+            "50": 1.057,
+            "200": 2.043,
+            "1000": 7.091
+          },
+          "unpaired": 4090.277
+        },
+        "combined": {
+          "total_decrement": 15957.38,
+          "matched": 34.2,
+          "share_pct": 0.2143
+        }
+      },
+      "state": "EVALUATED"
+    },
+    {
+      "case_id": "clock_17:28:30",
+      "group": "fixed_clock",
+      "utc_anchor": "2026-09-01T17:28:30+00:00",
+      "liquidation_side_if_observed": "none",
+      "price_asof": 77448.9,
+      "price_age_s": 0.735102,
+      "selected_on_future_price": false,
+      "n_trade_rows_window": 5533,
+      "n_decrements_band": 38136,
+      "correct": {
+        "bid": {
+          "total_decrement": 2532.202,
+          "matched": 21.093,
+          "share_pct": 0.833,
+          "disjoint_lag_raw_quantities": {
+            "50": 12.746,
+            "200": 1.947,
+            "1000": 6.4
+          },
+          "unpaired": 2511.109
+        },
+        "ask": {
+          "total_decrement": 5551.402,
+          "matched": 57.177,
+          "share_pct": 1.03,
+          "disjoint_lag_raw_quantities": {
+            "50": 36.411,
+            "200": 3.658,
+            "1000": 17.108
+          },
+          "unpaired": 5494.225
+        },
+        "combined": {
+          "total_decrement": 8083.604,
+          "matched": 78.27,
+          "share_pct": 0.9683
+        }
+      },
+      "flipped": {
+        "bid": {
+          "total_decrement": 2532.202,
+          "matched": 16.847,
+          "share_pct": 0.6653,
+          "disjoint_lag_raw_quantities": {
+            "50": 12.068,
+            "200": 2.973,
+            "1000": 1.806
+          },
+          "unpaired": 2515.355
+        },
+        "ask": {
+          "total_decrement": 5551.402,
+          "matched": 11.898,
+          "share_pct": 0.2143,
+          "disjoint_lag_raw_quantities": {
+            "50": 8.328,
+            "200": 2.13,
+            "1000": 1.44
+          },
+          "unpaired": 5539.504
+        },
+        "combined": {
+          "total_decrement": 8083.604,
+          "matched": 28.745,
+          "share_pct": 0.3556
+        }
+      },
+      "shift_5s": {
+        "bid": {
+          "total_decrement": 2532.202,
+          "matched": 2.52,
+          "share_pct": 0.0995,
+          "disjoint_lag_raw_quantities": {
+            "50": 0.07,
+            "200": 0.165,
+            "1000": 2.285
+          },
+          "unpaired": 2529.682
+        },
+        "ask": {
+          "total_decrement": 5551.402,
+          "matched": 7.728,
+          "share_pct": 0.1392,
+          "disjoint_lag_raw_quantities": {
+            "50": 0.061,
+            "200": 2.9,
+            "1000": 4.767
+          },
+          "unpaired": 5543.674
+        },
+        "combined": {
+          "total_decrement": 8083.604,
+          "matched": 10.248,
+          "share_pct": 0.1268
+        }
+      },
+      "state": "EVALUATED"
+    },
+    {
+      "case_id": "clock_18:38:30",
+      "group": "fixed_clock",
+      "utc_anchor": "2026-09-01T18:38:30+00:00",
+      "liquidation_side_if_observed": "none",
+      "price_asof": 76736.8,
+      "price_age_s": 0.155162,
+      "selected_on_future_price": false,
+      "n_trade_rows_window": 27578,
+      "n_decrements_band": 91842,
+      "correct": {
+        "bid": {
+          "total_decrement": 14799.012,
+          "matched": 395.967,
+          "share_pct": 2.6756,
+          "disjoint_lag_raw_quantities": {
+            "50": 224.867,
+            "200": 56.141,
+            "1000": 114.959
+          },
+          "unpaired": 14403.045
+        },
+        "ask": {
+          "total_decrement": 13676.815,
+          "matched": 410.61,
+          "share_pct": 3.0022,
+          "disjoint_lag_raw_quantities": {
+            "50": 257.96,
+            "200": 38.799,
+            "1000": 113.851
+          },
+          "unpaired": 13266.205
+        },
+        "combined": {
+          "total_decrement": 28475.827,
+          "matched": 806.577,
+          "share_pct": 2.8325
+        }
+      },
+      "flipped": {
+        "bid": {
+          "total_decrement": 14799.012,
+          "matched": 122.587,
+          "share_pct": 0.8283,
+          "disjoint_lag_raw_quantities": {
+            "50": 37.144,
+            "200": 37.402,
+            "1000": 48.041
+          },
+          "unpaired": 14676.425
+        },
+        "ask": {
+          "total_decrement": 13676.815,
+          "matched": 191.299,
+          "share_pct": 1.3987,
+          "disjoint_lag_raw_quantities": {
+            "50": 76.618,
+            "200": 49.479,
+            "1000": 65.202
+          },
+          "unpaired": 13485.516
+        },
+        "combined": {
+          "total_decrement": 28475.827,
+          "matched": 313.886,
+          "share_pct": 1.1023
+        }
+      },
+      "shift_5s": {
+        "bid": {
+          "total_decrement": 14799.012,
+          "matched": 52.167,
+          "share_pct": 0.3525,
+          "disjoint_lag_raw_quantities": {
+            "50": 2.976,
+            "200": 5.478,
+            "1000": 43.713
+          },
+          "unpaired": 14746.845
+        },
+        "ask": {
+          "total_decrement": 13676.815,
+          "matched": 62.494,
+          "share_pct": 0.4569,
+          "disjoint_lag_raw_quantities": {
+            "50": 3.657,
+            "200": 9.626,
+            "1000": 49.211
+          },
+          "unpaired": 13614.321
+        },
+        "combined": {
+          "total_decrement": 28475.827,
+          "matched": 114.661,
+          "share_pct": 0.4027
+        }
+      },
+      "state": "EVALUATED"
+    },
+    {
+      "case_id": "first_liq_after_06:00:00",
+      "group": "first_liq_per_session",
+      "utc_anchor": "2026-09-01T06:02:58.019045+00:00",
+      "liquidation_side_if_observed": "buy",
+      "price_asof": 79067.9,
+      "price_age_s": 0.311125,
+      "selected_on_future_price": false,
+      "n_trade_rows_window": 3866,
+      "n_decrements_band": 42769,
+      "correct": {
+        "bid": {
+          "total_decrement": 2761.321,
+          "matched": 97.427,
+          "share_pct": 3.5283,
+          "disjoint_lag_raw_quantities": {
+            "50": 76.636,
+            "200": 5.316,
+            "1000": 15.475
+          },
+          "unpaired": 2663.894
+        },
+        "ask": {
+          "total_decrement": 9525.921,
+          "matched": 60.114,
+          "share_pct": 0.6311,
+          "disjoint_lag_raw_quantities": {
+            "50": 36.164,
+            "200": 5.534,
+            "1000": 18.416
+          },
+          "unpaired": 9465.807
+        },
+        "combined": {
+          "total_decrement": 12287.242,
+          "matched": 157.541,
+          "share_pct": 1.2822
+        }
+      },
+      "flipped": {
+        "bid": {
+          "total_decrement": 2761.321,
+          "matched": 21.276,
+          "share_pct": 0.7705,
+          "disjoint_lag_raw_quantities": {
+            "50": 13.213,
+            "200": 6.134,
+            "1000": 1.929
+          },
+          "unpaired": 2740.045
+        },
+        "ask": {
+          "total_decrement": 9525.921,
+          "matched": 43.378,
+          "share_pct": 0.4554,
+          "disjoint_lag_raw_quantities": {
+            "50": 20.67,
+            "200": 14.999,
+            "1000": 7.709
+          },
+          "unpaired": 9482.543
+        },
+        "combined": {
+          "total_decrement": 12287.242,
+          "matched": 64.654,
+          "share_pct": 0.5262
+        }
+      },
+      "shift_5s": {
+        "bid": {
+          "total_decrement": 2761.321,
+          "matched": 16.403,
+          "share_pct": 0.594,
+          "disjoint_lag_raw_quantities": {
+            "50": 0.552,
+            "200": 1.589,
+            "1000": 14.262
+          },
+          "unpaired": 2744.918
+        },
+        "ask": {
+          "total_decrement": 9525.921,
+          "matched": 13.261,
+          "share_pct": 0.1392,
+          "disjoint_lag_raw_quantities": {
+            "50": 1.118,
+            "200": 3.602,
+            "1000": 8.541
+          },
+          "unpaired": 9512.66
+        },
+        "combined": {
+          "total_decrement": 12287.242,
+          "matched": 29.664,
+          "share_pct": 0.2414
+        }
+      },
+      "state": "EVALUATED"
+    },
+    {
+      "case_id": "first_liq_after_12:00:00",
+      "group": "first_liq_per_session",
+      "utc_anchor": "2026-09-01T12:02:01.018362+00:00",
+      "liquidation_side_if_observed": "sell",
+      "price_asof": 77919.3,
+      "price_age_s": 0.141995,
+      "selected_on_future_price": false,
+      "n_trade_rows_window": 8173,
+      "n_decrements_band": 50830,
+      "correct": {
+        "bid": {
+          "total_decrement": 11257.036,
+          "matched": 98.496,
+          "share_pct": 0.875,
+          "disjoint_lag_raw_quantities": {
+            "50": 51.495,
+            "200": 8.105,
+            "1000": 38.896
+          },
+          "unpaired": 11158.54
+        },
+        "ask": {
+          "total_decrement": 5704.544,
+          "matched": 326.431,
+          "share_pct": 5.7223,
+          "disjoint_lag_raw_quantities": {
+            "50": 270.003,
+            "200": 19.199,
+            "1000": 37.229
+          },
+          "unpaired": 5378.113
+        },
+        "combined": {
+          "total_decrement": 16961.58,
+          "matched": 424.927,
+          "share_pct": 2.5052
+        }
+      },
+      "flipped": {
+        "bid": {
+          "total_decrement": 11257.036,
+          "matched": 62.514,
+          "share_pct": 0.5553,
+          "disjoint_lag_raw_quantities": {
+            "50": 29.984,
+            "200": 13.289,
+            "1000": 19.241
+          },
+          "unpaired": 11194.522
+        },
+        "ask": {
+          "total_decrement": 5704.544,
+          "matched": 37.855,
+          "share_pct": 0.6636,
+          "disjoint_lag_raw_quantities": {
+            "50": 21.799,
+            "200": 7.722,
+            "1000": 8.334
+          },
+          "unpaired": 5666.689
+        },
+        "combined": {
+          "total_decrement": 16961.58,
+          "matched": 100.369,
+          "share_pct": 0.5917
+        }
+      },
+      "shift_5s": {
+        "bid": {
+          "total_decrement": 11257.036,
+          "matched": 8.518,
+          "share_pct": 0.0757,
+          "disjoint_lag_raw_quantities": {
+            "50": 0.117,
+            "200": 0.408,
+            "1000": 7.993
+          },
+          "unpaired": 11248.518
+        },
+        "ask": {
+          "total_decrement": 5704.544,
+          "matched": 20.316,
+          "share_pct": 0.3561,
+          "disjoint_lag_raw_quantities": {
+            "50": 1.108,
+            "200": 3.291,
+            "1000": 15.917
+          },
+          "unpaired": 5684.228
+        },
+        "combined": {
+          "total_decrement": 16961.58,
+          "matched": 28.834,
+          "share_pct": 0.17
+        }
+      },
+      "state": "EVALUATED"
+    },
+    {
+      "case_id": "first_liq_after_18:00:00",
+      "group": "first_liq_per_session",
+      "utc_anchor": "2026-09-01T18:01:11.019440+00:00",
+      "liquidation_side_if_observed": "sell",
+      "price_asof": 77203.4,
+      "price_age_s": 0.031545,
+      "selected_on_future_price": false,
+      "n_trade_rows_window": 14713,
+      "n_decrements_band": 71143,
+      "correct": {
+        "bid": {
+          "total_decrement": 6189.428,
+          "matched": 224.979,
+          "share_pct": 3.6349,
+          "disjoint_lag_raw_quantities": {
+            "50": 148.975,
+            "200": 21.628,
+            "1000": 54.376
+          },
+          "unpaired": 5964.449
+        },
+        "ask": {
+          "total_decrement": 10258.879,
+          "matched": 202.099,
+          "share_pct": 1.97,
+          "disjoint_lag_raw_quantities": {
+            "50": 132.106,
+            "200": 15.541,
+            "1000": 54.452
+          },
+          "unpaired": 10056.78
+        },
+        "combined": {
+          "total_decrement": 16448.307,
+          "matched": 427.078,
+          "share_pct": 2.5965
+        }
+      },
+      "flipped": {
+        "bid": {
+          "total_decrement": 6189.428,
+          "matched": 51.122,
+          "share_pct": 0.826,
+          "disjoint_lag_raw_quantities": {
+            "50": 24.247,
+            "200": 12.99,
+            "1000": 13.885
+          },
+          "unpaired": 6138.306
+        },
+        "ask": {
+          "total_decrement": 10258.879,
+          "matched": 94.252,
+          "share_pct": 0.9187,
+          "disjoint_lag_raw_quantities": {
+            "50": 35.731,
+            "200": 37.629,
+            "1000": 20.892
+          },
+          "unpaired": 10164.627
+        },
+        "combined": {
+          "total_decrement": 16448.307,
+          "matched": 145.374,
+          "share_pct": 0.8838
+        }
+      },
+      "shift_5s": {
+        "bid": {
+          "total_decrement": 6189.428,
+          "matched": 31.045,
+          "share_pct": 0.5016,
+          "disjoint_lag_raw_quantities": {
+            "50": 0.277,
+            "200": 4.117,
+            "1000": 26.651
+          },
+          "unpaired": 6158.383
+        },
+        "ask": {
+          "total_decrement": 10258.879,
+          "matched": 20.441,
+          "share_pct": 0.1993,
+          "disjoint_lag_raw_quantities": {
+            "50": 1.001,
+            "200": 2.938,
+            "1000": 16.502
+          },
+          "unpaired": 10238.438
+        },
+        "combined": {
+          "total_decrement": 16448.307,
+          "matched": 51.486,
+          "share_pct": 0.313
+        }
+      },
+      "state": "EVALUATED"
+    }
+  ],
+  "scientific_limits": [
+    "Fixed windows are not genuine independent random samples; historical day preselected before this replay but not prospective forecast",
+    "Correct side versus flipped side is microstructure sanity, not causal evidence or proof of order execution matching",
+    "Greedy same-price L2 decrease vs trade association with 1s capture lag is not maker cancel/fill/replenishment identity",
+    "Shift_5s uses no future information for signal; it is a retrospective falsification only",
+    "Source raw quantity unit/contract multiplier not cross-exchange normalized; never compare raw volumes between venues",
+    "First-day-of-month Tardis free historical samples; generalization to other dates or all venues untested",
+    "Missing liquidation messages do not prove absence of liquidations; no historical CoinGlass cluster PIT, no dealer signed gamma",
+    "No first-hit/cascade probability, no predictive OOS, no trade signal or accepted canonical revisions"
+  ],
+  "trade_canon_mutation": false
+}
