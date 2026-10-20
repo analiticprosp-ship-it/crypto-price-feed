@@ -86,6 +86,55 @@ def _identity(poll, symbol, metric, proof, check_ms):
     return {x["label_ms"]: x for x in rows}
 
 
+def anchor_shift_sensitivity(maps, raw_polls, symbol, decision_ms):
+    """Nine *alternative* source-label conventions; never historical PIT.
+
+    Price timestamp is documented as opening time. OI and taker flow timestamp
+    anchors are not proved equal to price. The offset hypotheses only quantify
+    how much the candidate count depends on that unproved assumption.
+    """
+    if set(maps) != set(METRICS) or symbol not in SYMBOLS:
+        raise ValueError("ALIGNMENT_UNTRUSTED_STREAMS")
+    if not isinstance(decision_ms, int) or decision_ms < 1600000000000:
+        raise ValueError("ALIGNMENT_INVALID_DECISION")
+    price_closed = {
+        label for label, item in maps["price"].items()
+        if item["data"]["confirm"] == "1" and label + P5 <= decision_ms
+    }
+    results = []
+    for oi_shift in (-P5, 0, P5):
+        for flow_shift in (-P5, 0, P5):
+            counts = 0
+            for price_open in price_closed:
+                oi_label = price_open + oi_shift
+                flow_label = price_open + flow_shift
+                if oi_label not in maps["oi"] or flow_label not in maps["flow"]:
+                    continue
+                if any(
+                    raw_polls[symbol + "|" + m]["response_received_ms"] > decision_ms
+                    for m in METRICS
+                ):
+                    continue
+                counts += 1
+            results.append({
+                "oi_source_label_offset_from_price_open_ms": oi_shift,
+                "flow_source_label_offset_from_price_open_ms": flow_shift,
+                "label_only_candidate_count": counts,
+                "causal_authorized": 0,
+                "status": "ANCHOR_HYPOTHESIS_ONLY",
+            })
+    return {
+        "tested_offset_hypotheses": 9,
+        "offsets_milliseconds": [-P5, 0, P5],
+        "price_open_and_confirm_semantics": "OFFICIAL_OKX_CANDLE",
+        "oi_and_flow_time_anchor_semantics": "UNVERIFIED",
+        "matrix": results,
+        "historical_pit_qualified": False,
+        "predictive_model_training_authorized": False,
+        "causal_rows_authorized": 0,
+    }
+
+
 def diagnose(report, raw_polls, candidate_check_at_ms):
     """Return fail-closed RECEIPT-AWARE CANDIDATES; training authorization is zero."""
     if (not isinstance(candidate_check_at_ms, int)
@@ -147,6 +196,8 @@ def diagnose(report, raw_polls, candidate_check_at_ms):
                 "status": "JOIN_CANDIDATE_ONLY",
             })
         diagnostic[symbol] = {
+            "anchor_shift_sensitivity": anchor_shift_sensitivity(
+                maps, raw_polls, symbol, candidate_check_at_ms),
             "raw_source_label_triples": len(overlap),
             "cutoff_passed_candidates": len(rows),
             "rejected": rejected,
