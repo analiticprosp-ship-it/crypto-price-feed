@@ -1,0 +1,44 @@
+{
+  "study": "09L_v0.8.4A_options_strike_placebo",
+  "date": "2026-10-20",
+  "source": "pitspa/btc-vol-surface, third party daily Deribit snapshots",
+  "source_derived_sha256": "ceb3459d101fe85cec459f15c5c29372a8d84d26e8df12ff04e68d0ef92abefb",
+  "source_dates": "2026-09-20..2026-10-19",
+  "source_snapshot_files": 30,
+  "source_publication_audit": {
+    "commits_checked": 30,
+    "commit_lag_seconds_min": 41,
+    "commit_lag_seconds_max": 58,
+    "commit_before_next_daily_snapshot": 30,
+    "subsample_multi_commit_revisions_checked": 5,
+    "subsample_multiple_commits_found": 0
+  },
+  "options_placebo": {
+    "fixed_strikes": [
+      80000,
+      85000,
+      87000,
+      90000,
+      95000
+    ],
+    "max_distance_pct": 7.5,
+    "valid_next_snapshot_pairs": 29,
+    "largest_oi_strike_correct": 12,
+    "nearest_strike_correct": 14,
+    "discordant_largest_wins": 4,
+    "discordant_nearest_wins": 6,
+    "expiry_boundary_sensitivity": {
+      "dates": 27,
+      "largest_oi_strike_correct": 11,
+      "nearest_strike_correct": 13
+    }
+  },
+  "cascades": {
+    "verified": false,
+    "coinglass_model2_PIT": false,
+    "dealer_signed_gamma": "UNKNOWN",
+    "event_time_replay": "NOT_RUN_LOCAL_NETWORK_BLOCKED"
+  },
+  "scope": "SHADOW_ONLY_NOT_TRADEABLE",
+  "main_modified": false
+}
