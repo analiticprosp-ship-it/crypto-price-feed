@@ -9,6 +9,8 @@ on:
       - 'research/detector_h1h10_join_readiness.py'
       - 'research/test_detector_h1h10_join_readiness.py'
       - 'research/detector_h1h10_verified_source_inventory.py'
+      - 'research/detector_okx_3metric_receipt_audit.py'
+      - 'research/test_detector_okx_3metric_receipt_audit.py'
   workflow_dispatch:
   schedule:
     - cron: '45 6 * * *'
@@ -29,7 +31,7 @@ jobs:
       - name: Install minimal storage client before tests that import it
         run: python -m pip install 'boto3>=1.35,<2'
       - name: Offline anti-lookahead, frozen SHA and no trading authority tests
-        run: python -m unittest -v research.test_detector_h1h10_fastlane research.test_detector_h1h10_join_readiness research.test_detector_h1h10_verified_source_inventory
+        run: python -m unittest -v research.test_detector_h1h10_fastlane research.test_detector_h1h10_join_readiness research.test_detector_h1h10_verified_source_inventory research.test_detector_okx_3metric_receipt_audit
       - name: Build independent SHA and clock-aware 7-day OI plus 3-day flow inventory
         env:
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
@@ -37,6 +39,13 @@ jobs:
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
         run: python -m research.detector_h1h10_verified_source_inventory
+      - name: Audit actual OKX first-receipts and R2-linked price OI flow with strict PIT limits
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_okx_3metric_receipt_audit
       - name: Compute research stage gates from SHA-pinned primary evidence
         env:
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
@@ -50,6 +59,7 @@ jobs:
           name: detector-h1h10-fastlane-readiness
           path: |
             detector_h1h10_fastlane/status.json
+            detector_h1h10_fastlane/okx_three_metric_receipt_audit.json
             detector_h1h10_evidence_inventory/inventory.json
             detector_h1h10_evidence_inventory/inventory.csv
           retention-days: 30

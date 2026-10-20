@@ -87,6 +87,7 @@ def stable_gate_state(core):
     """
     frozen=dict(core)
     frozen.pop("verified_source_inventory",None)
+    frozen.pop("okx_forward_three_metric_receipts",None)
     return frozen
 
 def main():
@@ -102,6 +103,28 @@ def main():
     inventory,inventory_proof=verify_inventory_local_and_r2(
         "detector_h1h10_evidence_inventory/inventory.json",client,bucket,verify_r2)
     core=assemble(seen,inventory=inventory,inventory_proof=inventory_proof)
+    receipt_path=OUT/"okx_three_metric_receipt_audit.json"
+    if not receipt_path.is_file():
+        raise ValueError("MISSING_AUTOMATED_THREE_METRIC_RECEIPT_AUDIT")
+    receipt=json.loads(receipt_path.read_text(encoding="utf-8"))
+    if (receipt.get("scope")!="RESEARCH_ONLY"
+        or receipt.get("edge_status")!="EDGE_UNVALIDATED"
+        or receipt.get("continuous_5m_pit_grade")!="UNVERIFIED"
+        or receipt.get("historical_h1h10_confirmation")!="BLOCKED"
+        or receipt.get("trading_actions") is not False
+        or not isinstance(receipt.get("sha256"),str)
+        or len(receipt["sha256"])!=64):
+        raise ValueError("THREE_METRIC_AUDIT_MISREPRESENTS_PIT")
+    # This dynamic prospective receipt counter is attached to this run's
+    # artifact, but excluded from content-addressed historical gate state.
+    core["okx_forward_three_metric_receipts"]={
+        "r2_key":receipt["r2_key"],"sha256":receipt["sha256"],
+        "reports":receipt["reports"],
+        "raw_sha_verified":receipt["raw_sha_verified"],
+        "legacy_raw_pin_missing":receipt["legacy_streams_missing_raw_pin"],
+        "observed_gaps_over_20m":receipt["gaps_over_20_minutes"],
+        "causal_5m_eligibility":"UNVERIFIED",
+        "trading_actions":False}
     print("FASTLANE_VERIFIED_PRICE_FLOW_OI_INVENTORY",json.dumps({
         "key":inventory_proof["key"],"sha256":inventory_proof["sha256"],
         "date_only_overlap":core["price_oi_flow_overlap_audit"]["vendor_oi_and_event_flow_date_coincidences"],

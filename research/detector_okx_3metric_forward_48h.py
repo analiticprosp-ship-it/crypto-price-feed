@@ -210,7 +210,7 @@ def main():
             if r.status!=204:raise ValueError("SELF_DISABLE_UNVERIFIED")
         print("THREE_METRIC_PILOT_STOPPED",utc(config["end_ms"]))
         return
-    all_polls={};problems=[];new_obs=0;revisions=0
+    all_polls={};poll_proofs={};problems=[];new_obs=0;revisions=0
     for instrument in SYMBOLS:
         for metric in METRICS:
             try:
@@ -220,7 +220,7 @@ def main():
                 first,changed,bootstrap=reconcile(previous,current)
                 poll_key=(PREFIX+"/polls/"+utc(current["response_received_ms"])[:10]+
                    "/"+run+"-"+attempt+"-"+instrument+"-"+metric+".json")
-                store(s3,bucket,poll_key,current)  # Raw before changing last state.
+                raw_sha=store(s3,bucket,poll_key,current)  # Raw before changing last state.
                 for item in first:
                     key=PREFIX+"/first-observed/"+instrument+"/"+metric+"/"+str(item["source_label_ms"])+".json"
                     existing=load(s3,bucket,key)
@@ -237,6 +237,7 @@ def main():
                     revisions+=1
                 store(s3,bucket,state_key,current)
                 all_polls[(instrument,metric)]=current
+                poll_proofs[(instrument,metric)]={"r2_key":poll_key,"sha256":raw_sha}
                 print("THREE_METRIC_SOURCE",instrument,metric,
                     "rows",len(current["rows"]),"new",len(first),
                     "bootstrap",bootstrap,flush=True)
@@ -248,7 +249,9 @@ def main():
        "observed_at_utc":utc(now_ms()),"pilot_end_utc":utc(config["end_ms"]),
        "source_reports":{i+"|"+m:{
           "response_received_ms":r["response_received_ms"],
-          "row_count":len(r["rows"])} for (i,m),r in all_polls.items()},
+          "row_count":len(r["rows"]),
+          "raw_r2_key":poll_proofs[i,m]["r2_key"],
+          "raw_sha256":poll_proofs[i,m]["sha256"]} for (i,m),r in all_polls.items()},
        "coverage_gate":coverage_gate(all_polls),
        "first_observations_saved":new_obs,"revisions_saved":revisions,
        "errors":problems,"edge_status":"EDGE_UNVALIDATED",
