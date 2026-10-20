@@ -6,7 +6,7 @@ readback. Source-label equality is diagnostic only: OKX OI and taker bar-anchor
 semantics, first-publication timestamps and historical contract units remain
 UNVERIFIED. No synthetic 5m observations, historic availability or trade actions.
 """
-import datetime as dt
+import hashlib
 import json
 import os
 import time
@@ -17,7 +17,7 @@ from research.detector_okx_3metric_forward_48h import (
 from research.detector_okx_3metric_receipt_audit import (
     MAX_RUN_REPORTS, check_one, verified_json,
 )
-from research.detector_okx_oi_48h_pilot import store
+from research.detector_okx_oi_48h_pilot import encoded, store
 
 OUTPUT_PREFIX = "research/detector-okx-3metric-receipt-candidates/v1"
 EXPECTED_ENDPOINTS = {
@@ -209,6 +209,7 @@ def main():
     candidate_check_at_ms = int(time.time() * 1000)
     result = diagnose(report, raw_polls, candidate_check_at_ms)
     result["source_report_r2_key"] = key
+    result["source_report_sha256"] = hashlib.sha256(encoded(report)).hexdigest()
     result["source_report_raw_sha_readback_count"] = verified
     result["source_report_sha_provenance"] = "R2_METADATA_AND_RAW_LINKED_OBJECTS_VERIFIED"
     result["not_exchange_first_release"] = True
@@ -232,7 +233,7 @@ def main():
             fp.write("## H1H10 receipt-aware same-venue candidate-only audit\n\n")
             fp.write(f"9/9 source SHA readback: PASS. Candidate counts: {counts}.\n\n")
             fp.write("**Causal rows authorized: 0. Locked holdout: BLOCKED.**\n\n")
-            fp.write(f"R2 key: \`{out_key}\`, SHA256: \`{digest}\`.\n")
+            fp.write(f"R2 key: {out_key}, SHA256: {digest}.\n")
 
 
 if __name__ == "__main__":
