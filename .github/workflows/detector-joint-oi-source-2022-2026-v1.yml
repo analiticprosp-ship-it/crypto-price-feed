@@ -1,0 +1,37 @@
+name: Detector H1-H10 Joint Three Coin OI Source Calendar 2022-2026
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/detector-joint-oi-source-2022-2026-v1.yml'
+      - 'research/detector_joint_source_oi_2022_2026_v1.py'
+      - 'research/test_detector_joint_source_oi_2022_2026_v1.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verified-source-merge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check immutable source and 1750-day intersection quality gates
+        run: python -m unittest -v research.test_detector_joint_source_oi_2022_2026_v1
+      - name: Install readback client
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Verify SHA-pinned research sources and freeze 3-asset 2022-2026 calendar
+        env:
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_joint_source_oi_2022_2026_v1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detector-3-coin-oi-joint-2022-2026-v1
+          path: detector_joint_source_oi_2022_2026/report.json
+          retention-days: 30
