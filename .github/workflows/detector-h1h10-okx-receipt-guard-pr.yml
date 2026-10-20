@@ -1,0 +1,23 @@
+name: H1-H10 OKX Receipt Candidate Offline Guard
+on:
+  pull_request:
+    paths:
+      - 'research/detector_h1h10_okx_receipt_join_guard.py'
+      - 'research/test_detector_h1h10_okx_receipt_join_guard.py'
+      - '.github/workflows/detector-h1h10-fastlane.yml'
+      - '.github/workflows/detector-h1h10-okx-receipt-guard-pr.yml'
+permissions:
+  contents: read
+jobs:
+  no-lookahead-offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependency required by existing 3-metric source module
+        run: python -m pip install 'boto3>=1.35,<2'
+      - name: Execute no-lookahead and native-unit fail-closed tests without R2 or trading keys
+        run: python -m unittest -v research.test_detector_h1h10_okx_receipt_join_guard
