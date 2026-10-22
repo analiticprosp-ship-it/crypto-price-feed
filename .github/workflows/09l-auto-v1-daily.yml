@@ -19,7 +19,7 @@ jobs:
       - name: "Checkout isolated research ref, not main"
         uses: actions/checkout@v4
         with:
-          ref: research/09l-auto-v1-1-20261022
+          ref: research/09l-v087-r2-expansion-20261022
           persist-credentials: false
       - name: "Compile and run exact historical QA selftest"
         run: |
@@ -33,6 +33,16 @@ jobs:
           python research/09l/auto/v1/no_lookahead_v087.py --selftest
           python -u research/09l/auto/v1/no_lookahead_v087.py --study bybit_latest
           python -u research/09l/auto/v1/no_lookahead_v087.py --study okx_latest
+      - name: "Archive verified historical label cohorts in EXISTING private Cloudflare R2 with SHA readback"
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          python -m pip install --quiet boto3
+          python research/09l/auto/v1/r2_archive_v087.py --selftest
+          python -u research/09l/auto/v1/r2_archive_v087.py --all-available
       - name: "Publish daily data-health report with explicit missingness"
         run: |
           python research/09l/auto/v1/health_report.py --selftest
@@ -47,6 +57,7 @@ jobs:
             research/09l/auto/v1/derived/runs/*.json
             research/09l/auto/v1/derived/v087_labels/**/*.json
             research/09l/auto/v1/derived/health/*.json
+            research/09l/auto/v1/derived/r2_receipts/*.json
           retention-days: 30
           if-no-files-found: warn
       - name: "Writeback strictly under research/09l/auto/v1/derived to research branch ONLY"
@@ -56,7 +67,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git branch --show-current)" = "research/09l-auto-v1-1-20261022"
+          test "$(git branch --show-current)" = "research/09l-v087-r2-expansion-20261022"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research/09l/auto/v1/derived
@@ -66,6 +77,6 @@ jobs:
             exit 1
           fi
           git commit -m "research(09L AUTO): append daily source provenance, quality and PIT status"
-          git pull --rebase origin research/09l-auto-v1-1-20261022
+          git pull --rebase origin research/09l-v087-r2-expansion-20261022
           B64="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
-          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${B64}" push origin HEAD:research/09l-auto-v1-1-20261022
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${B64}" push origin HEAD:research/09l-v087-r2-expansion-20261022
