@@ -1,8 +1,9 @@
 """Offline tests: never silently promote an OKX label overlap to causal PIT."""
 import copy
 import unittest
+from unittest import mock
 
-from research.detector_h1h10_okx_receipt_join_guard import diagnose
+from research.detector_h1h10_okx_receipt_join_guard import diagnose, select_latest_full_receipt
 from research.detector_okx_3metric_forward_48h import P5, SCHEMA, SYMBOLS, METRICS
 
 
@@ -165,6 +166,45 @@ class CandidateOnly(unittest.TestCase):
             self.assertEqual(count[(-P5, -P5)], 1)
             self.assertEqual(count[(-P5, P5)], 0)
             self.assertEqual(result["candidates"][symbol]["causal_rows_authorized"], 0)
+
+
+class VerifiedCompleteSelection(unittest.TestCase):
+    def test_newer_partial_run_is_skipped_but_not_hidden(self):
+        reports = {
+            "research/run-reports/200-1.json": {"run": "200", "status": "PARTIAL_SOURCE_FAILURE"},
+            "research/run-reports/199-1.json": {"run": "199", "status": "SOURCES_ALL_RECEIVED"},
+        }
+        with mock.patch("research.detector_h1h10_okx_receipt_join_guard.verified_json",
+                        side_effect=lambda s,b,k: reports[k]), \
+             mock.patch("research.detector_h1h10_okx_receipt_join_guard.check_one",
+                        side_effect=lambda s,b,d,verify_raw: (8,0) if d["run"]=="200" else (9,0)):
+            key, report, count, skipped = select_latest_full_receipt(
+                object(), "bucket", list(reports))
+        self.assertEqual(report["run"], "199")
+        self.assertEqual(count, 9)
+        self.assertEqual(skipped[0]["reason"], "PARTIAL_SOURCE_FAILURE")
+        self.assertEqual(skipped[0]["verified_source_receipts"], 8)
+
+    def test_claimed_full_run_bad_raw_sha_fails_closed(self):
+        reports = {
+            "research/run-reports/200-1.json": {"run": "200", "status": "SOURCES_ALL_RECEIVED"},
+            "research/run-reports/199-1.json": {"run": "199", "status": "SOURCES_ALL_RECEIVED"},
+        }
+        with mock.patch("research.detector_h1h10_okx_receipt_join_guard.verified_json",
+                        side_effect=lambda s,b,k: reports[k]), \
+             mock.patch("research.detector_h1h10_okx_receipt_join_guard.check_one",
+                        side_effect=lambda s,b,d,verify_raw: (8,0) if d["run"]=="200" else (9,0)):
+            with self.assertRaisesRegex(ValueError, "FULL_RUN_RAW_PROVENANCE_DEFECT"):
+                select_latest_full_receipt(object(), "bucket", list(reports))
+
+    def test_no_valid_full_run_never_yields_causal_rows(self):
+        reports = {"research/run-reports/200-1.json": {"run": "200", "status": "PARTIAL_SOURCE_FAILURE"}}
+        with mock.patch("research.detector_h1h10_okx_receipt_join_guard.verified_json",
+                        side_effect=lambda s,b,k: reports[k]), \
+             mock.patch("research.detector_h1h10_okx_receipt_join_guard.check_one",
+                        return_value=(8,0)):
+            with self.assertRaisesRegex(ValueError, "NO_COMPLETE_NINE_STREAM"):
+                select_latest_full_receipt(object(), "bucket", list(reports))
 
 
 if __name__ == "__main__":
