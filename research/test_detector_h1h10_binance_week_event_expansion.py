@@ -116,7 +116,7 @@ class DiscoveryWeek(unittest.TestCase):
             return hashlib.sha256(body).hexdigest()
         with mock.patch("research.detector_h1h10_binance_week_event_expansion.put_immutable",side_effect=store):
             a=run(DAY,object(),"bucket","123456","1",loader)
-        self.assertEqual(a["status"],"COMPLETE_EVENT_ONLY_NOT_PIT")
+        self.assertEqual(a["status"],"COMPLETE_EVENT_ONLY_NOT_PIT",a["failed_sources"])
         self.assertEqual(a["actual_trades_verified"],1152)
         self.assertEqual(a["observed_event_flow_buckets"],1152)
         self.assertEqual(a["exploratory"]["h6_matched_coin_count"],2)
@@ -138,7 +138,7 @@ class DiscoveryWeek(unittest.TestCase):
             report=run(DAY,object(),"bucket","234567","1",bad_loader)
         self.assertEqual(report["status"],"INCOMPLETE_DO_NOT_JOIN")
         self.assertIsNone(report["exploratory"])
-        self.assertEqual(len(report["failed_sources"]),1)
+        self.assertEqual(len(report["failed_sources"]),1,report["failed_sources"])
         self.assertEqual(report["causal_joint_rows_authorized"],0)
 
 
