@@ -1,0 +1,24 @@
+name: H1H10 May05-10 Extension Offline Guard
+on:
+  pull_request:
+    paths:
+      - 'research/detector_h1h10_binance_week_event_expansion.py'
+      - 'research/test_detector_h1h10_binance_week_event_expansion.py'
+      - 'research/detector_h1h10_binance_aggtrades_first_verified.py'
+      - 'research/detector_h1h10_binance_one_day_event_diagnostics.py'
+      - '.github/workflows/detector-h1h10-may-week-event-expansion.yml'
+      - '.github/workflows/detector-h1h10-may-week-event-expansion-pr.yml'
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: New 6-day guard plus original single-day invariants
+        run: python -m unittest -v research.test_detector_h1h10_binance_week_event_expansion research.test_detector_h1h10_binance_aggtrades_first_verified research.test_detector_h1h10_binance_one_day_event_diagnostics
