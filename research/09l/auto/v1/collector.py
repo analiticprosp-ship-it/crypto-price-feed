@@ -80,7 +80,12 @@ def monthly_asof(now):
  return sample
 def monthly_ingest(now,force=False):
  sample=monthly_asof(now);dest=OUT/"monthly"/(sample.isoformat()+".json")
- if dest.exists() and not force:return {"status":"ALREADY_ARCHIVED","path":str(dest.relative_to(ROOT)),"source_date":sample.isoformat()}
+ if dest.exists() and not force:
+  old=json.loads(dest.read_text(encoding="utf8"))
+  if old.get("status")=="SOURCE_AUDIT_OK":
+   return {"status":"ALREADY_ARCHIVED","path":str(dest.relative_to(ROOT)),"source_date":sample.isoformat()}
+  # Retry incomplete snapshots on a NEW append-only file; never silently overwrite.
+  dest=OUT/"monthly"/(sample.isoformat()+"_retry_"+now.strftime("%Y%m%dT%H%M%SZ")+".json")
  items=[get_tardis_liquidations(venue,sym,sample) for venue,sym in TARDIS_SOURCES]
  result={"study":"09L-AUTO-v1 public monthly source ledger","captured_at_utc":iso(utcnow()),
          "source_date":sample.isoformat(),"scope":"RESEARCH_SHADOW","sources":items,
