@@ -108,8 +108,17 @@ def validate_5m_zip(body,market,symbol,day):
             raise ValueError("KLINE_CSV_UNPACKED_SIZE")
         raw=z.read(info)
     lines=list(csv.reader(io.StringIO(raw.decode("utf-8-sig"))))
+    # Some Binance archives have a CSV header. Accept it ONLY if the exact
+    # price/time column shape is recognized; never skip arbitrary first bars.
+    has_header=False
+    if len(lines)==EXPECTED_ROWS+1:
+        first=[x.strip().lower().replace(" ","_") for x in lines[0]]
+        if (len(first)>=7 and first[:7]==[
+            "open_time","open","high","low","close","volume","close_time"]):
+            has_header=True
+            lines=lines[1:]
     if len(lines)!=EXPECTED_ROWS:
-        raise ValueError("KLINE_NOT_FULL_DAY")
+        raise ValueError("KLINE_NOT_FULL_DAY_COUNT_"+str(len(lines)))
     multiplier=1000000 if market=="spot" else 1000
     date_start=dt.datetime.fromisoformat(day+"T00:00:00+00:00")
     begin_ms=int(date_start.timestamp()*1000)
@@ -125,7 +134,8 @@ def validate_5m_zip(body,market,symbol,day):
         end=(begin_ms+(i+1)*300000)*(multiplier//1000)-1
         if start!=expected or close_t!=end or not 0<close<1e9 or not 0<=vol<1e18:
             raise ValueError("KLINE_CLOCK_OR_PRICE_INVALID")
-    return {"rows":len(lines),"utc_day":day,"market":market,"symbol":symbol,
+    return {"rows":len(lines),"publisher_csv_header_present":has_header,
+            "utc_day":day,"market":market,"symbol":symbol,
             "timestamp_unit":"microseconds" if market=="spot" else "milliseconds",
             "publisher_zip_crc_verified":True,"source_time_basis":"BAR_OPEN_NOT_ORIGINAL_PUBLICATION",
             "first_bar_open":lines[0][0],"last_bar_open":lines[-1][0]}

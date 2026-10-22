@@ -60,6 +60,25 @@ class BoundedBinancePilot(unittest.TestCase):
                 self.assertEqual(result["timestamp_unit"],unit)
                 self.assertTrue(result["publisher_zip_crc_verified"])
 
+    def test_official_column_header_allowed_but_arbitrary_extra_row_is_not(self):
+        raw=sample()
+        with zipfile.ZipFile(io.BytesIO(raw)) as z:
+            original=z.read(z.namelist()[0]).decode()
+        for header,allowed in [
+            ("open_time,open,high,low,close,volume,close_time,quote_volume,count,taker_buy_base_volume,taker_buy_quote_volume,ignore",True),
+            ("x,y,z,w,r,t,q",False),
+        ]:
+            mem=io.BytesIO()
+            with zipfile.ZipFile(mem,"w",compression=zipfile.ZIP_DEFLATED) as z:
+                z.writestr(f"BTCUSDT-5m-{DAYS[0]}.csv",header+"\n"+original)
+            if allowed:
+                result=validate_5m_zip(mem.getvalue(),"spot","BTCUSDT",DAYS[0])
+                self.assertEqual(result["rows"],288)
+                self.assertTrue(result["publisher_csv_header_present"])
+            else:
+                with self.assertRaisesRegex(ValueError,"KLINE_NOT_FULL_DAY_COUNT"):
+                    validate_5m_zip(mem.getvalue(),"spot","BTCUSDT",DAYS[0])
+
     def test_spot_milliseconds_cannot_masquerade_as_microseconds(self):
         with self.assertRaisesRegex(ValueError,"KLINE_CLOCK_OR_PRICE_INVALID"):
             validate_5m_zip(sample("um"),"spot","BTCUSDT",DAYS[0])
