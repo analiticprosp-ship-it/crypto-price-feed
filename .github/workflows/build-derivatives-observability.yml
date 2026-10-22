@@ -1,0 +1,45 @@
+name: Build research derivatives observability
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_derivatives_observability.py'
+      - 'tests/test_derivatives_observability.py'
+      - '.github/workflows/build-derivatives-observability.yml'
+  workflow_run:
+    workflows:
+      - "Update market structure"
+      - "Update Detector serverless REST research"
+    types: [completed]
+permissions:
+  contents: write
+concurrency:
+  group: research-derivatives-observability
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Validate deterministic no-fake-data contracts
+        run: python -m unittest discover -s tests -p 'test_derivatives_observability.py' -v
+      - name: Build read-only observed 1H metrics
+        run: python scripts/build_derivatives_observability.py
+      - name: Commit research output only
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add derivatives-observability.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Update research-only derivatives observability'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 3
+          done
+          exit 1
