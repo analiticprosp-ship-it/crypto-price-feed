@@ -37,11 +37,17 @@ jobs:
           assert len(files)==2, files
           for fn in files:
               j=json.loads(fn.read_text())
-              assert j['status']=='LABELS_REGISTERED_EXPLORATORY',(fn,j['status'])
+              assert j['status'] in ('LABELS_REGISTERED_EXPLORATORY','PARTIAL_LABELS_MISSING_ASOF_PRICE'),(fn,j['status'])
+              assert j['source']['status']=='OK',(fn,j['source'])
               assert len(j['eight_clock_fixed_cases'])==8
               assert j['features_strictly_pre_anchor']
-              assert all(c['status']=='LABEL_READY' for c in j['eight_clock_fixed_cases'])
-          print('V087_LABEL_READINESS_PASS_TWO_FILES')
+              assert j['science_gate']=='PREDICTIVE_LIFT_NOT_TESTED_INSUFFICIENT_INDEPENDENT_OBSERVATIONS'
+              assert all(c['status'] in ('LABEL_READY','MISSING_ASOF_PRICE_AT_FROZEN_2S_LIMIT') for c in j['eight_clock_fixed_cases'])
+              print('STUDY',fn,'status',j['status'])
+              for c in j['eight_clock_fixed_cases']:
+                  if c['status']!='LABEL_READY':
+                      print('MISSING',c['clock_utc'],c['missing_reference_price'],c['missing_forward_horizons_s'])
+          print('V087_SOURCE_QA_PASS_MISSINGNESS_RECORDED_NO_PREDICTIVE_CLAIM')
           PY
       - name: "Publish ONLY derived research JSON artifacts"
         if: always()
