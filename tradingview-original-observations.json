@@ -1,0 +1,2578 @@
+{
+  "schemaVersion": "tradingview-original-work-observations-v1.0",
+  "generatedAtUTC": "2026-10-22T18:22:40Z",
+  "connectionStatus": "PARTIALLY_CONNECTED",
+  "command": "Индикаторы",
+  "block": "TECHNICAL_CONVERGENCE_NOT_EIGHTH_FAMILY",
+  "researchOnly": true,
+  "tradeAuthority": false,
+  "notCanonical": true,
+  "collection": {
+    "mode": "MANUAL_WORK_UI_SESSION",
+    "automaticallyRefreshed": false,
+    "scheduledCollectorInstalled": false,
+    "verifiedAutomaticUpdateFrequency": null,
+    "observedWindowUTC": {
+      "start": "2026-10-22T18:00:22.466Z",
+      "end": "2026-10-22T18:13:16.451Z"
+    },
+    "requestedCoreCoverage": [
+      "BTC/4H",
+      "BTC/1D",
+      "ETH/4H",
+      "ETH/1D"
+    ],
+    "optionalAltsStatus": "NOT_COLLECTED_IN_THIS_PACKET",
+    "currentSystemPriceSource": false
+  },
+  "freshnessPolicy": {
+    "recalculateAtEveryRead": true,
+    "rule": "A record ceases to represent the latest closed candle at nextExpectedBarCloseUTC; preserve as historical evidence, never relabel as live. Reject barCloseUTC > observedAtUTC or observedAtUTC > read time.",
+    "latestAtReadStatusNotPersistentlyGuaranteed": true
+  },
+  "standaloneBurj": {
+    "status": "NOT_FOUND_IN_CHECKED_OFFICIAL_CATALOG",
+    "standaloneScriptID": null,
+    "existenceGlobally": "UNVERIFIED",
+    "confirmedModeInOriginalBigGuy": true,
+    "independentEvidenceFamily": false,
+    "officialCatalogURL": "https://www.pifagor.trade/indicators"
+  },
+  "transport": {
+    "tradingViewBasicWebhook": "BLOCKED_UPGRADE_PROMPT_OBSERVED",
+    "technicalAlertsOnBasic": "NOT_INCLUDED_OFFICIAL_PLAN_TABLE",
+    "chartCSVExportOnBasic": "NOT_AVAILABLE_AS_BASIC_FEATURE_OFFICIAL_PLAN_TABLE_NOT_DOWNLOAD_TESTED",
+    "alertsCreated": 0,
+    "webhookDeliveryTested": false,
+    "receiverDeployed": false,
+    "githubMainConsumerConnected": false,
+    "regularChatRuntimeTested": false,
+    "publicReadbackEvidenceLocation": "PR body: read committed file and compare SHA256; not self-certified by this packet",
+    "note": "This snapshot is a static manual Work transfer. A public URL allows reading this historical packet without re-opening TradingView; it cannot refresh original scripts."
+  },
+  "separationFromIndependentModel": {
+    "existingFile": "nadaraya-watson-research.json",
+    "modelID": "NWE_CAUSAL_GAUSSIAN_8_50_40_3_RESEARCH_PROXY_V1",
+    "parityStatus": "UNVERIFIED_NOT_PROMOTED",
+    "independentGeneratedAtUTC": "2026-10-22T17:53:41.666000+00:00",
+    "sameVenueAndMarket": true,
+    "sameDailyCandleBoundaries": false,
+    "dailyOriginalBoundary": "00:00 UTC",
+    "dailyExistingModelBoundary": "16:00 UTC (OKX 1D UTC+8)",
+    "ETH4HInputDiscrepancy": {
+      "barCloseUTC": "2026-10-22T16:00:00Z",
+      "originalDisplayedLow": 2385.96,
+      "githubOKXLow": 2384.0,
+      "status": "INPUT_FEED_MISMATCH_DO_NOT_ASSERT_PARITY"
+    },
+    "modelValuesNotCopiedToOriginalObservations": true
+  },
+  "sourceAudit": {
+    "marketStructureBlobSHA": "e539459f8d8128743f1a8568b9ccce8984cdeced",
+    "marketStructureGeneratedAtUTC": "2026-10-22T17:52:52.329416+00:00",
+    "UTC1DAggregationMatched": [
+      "BTC",
+      "ETH"
+    ],
+    "original4HBarCloseMatchedGithub": [
+      "BTC",
+      "ETH"
+    ]
+  },
+  "limitations": [
+    "PROTECTED_PIFAGOR_FORMULAS_NOT_RECONSTRUCTED",
+    "NO_FORWARD_REPAINT_VALIDATION",
+    "BIG_GUY_PLOTS_NOT_DECODED_INTO_AUTHOR_EVENTS",
+    "BURJ_FLOOR_NOT_EXPLICITLY_LABELED",
+    "LUXALGO_CENTER_IS_DERIVED_MIDPOINT_ONLY",
+    "NO_SCHEDULED_ORIGINAL_SIGNAL_COLLECTION",
+    "MAIN_TECHNICAL_TABLE_STILL_NOT_CONNECTED",
+    "NO_NORMAL_CHAT_RUNTIME_EXECUTED"
+  ],
+  "observations": [
+    {
+      "id": "PIFAGOR_MFI:BTCUSDT.P:4H:2026-10-22T16:00:00Z",
+      "indicator": "PIFAGOR_MFI",
+      "script": {
+        "name": "Pifagor Mfi 3.2",
+        "author": "Pifagor_trade",
+        "version": "v38.0",
+        "publicationID": "FYWz9vnb",
+        "url": "https://ru.tradingview.com/script/FYWz9vnb-02-mfi-pifagor-free-indicator/",
+        "settings": {
+          "method": "MFI",
+          "percent": 10,
+          "daysDown": 2,
+          "greenPercent": 2,
+          "timeframe": "chart"
+        },
+        "nonRepaintStatus": "UNVERIFIED_PROTECTED_SOURCE",
+        "alertConditions": [
+          "Buy signal",
+          "Strong buy signal"
+        ]
+      },
+      "asset": "BTC",
+      "ticker": "OKX:BTCUSDT.P",
+      "apiInstrument": "BTC-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "4H",
+      "barOpenUTC": "2026-10-22T12:00:00Z",
+      "barCloseUTC": "2026-10-22T16:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "4H chart open time UTC+3 minus 3h",
+      "observedAtUTC": "2026-10-22T18:00:22.466Z",
+      "barAgeSecondsAtObservation": 7222.466,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-22T20:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 81712.2,
+        "high": 82061.9,
+        "low": 81257.4,
+        "close": 81649.9
+      },
+      "series": [
+        {
+          "label": "Plot",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "MF",
+          "ordinal": 1,
+          "value": -45.0,
+          "display": "−45,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 2,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 3,
+          "value": -10.0,
+          "display": "−10,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 4,
+          "value": -90.0,
+          "display": "−90,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 5,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Buy_plot",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Strong_buy_plot",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Sell_plot",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,0"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "observedSignals": {
+        "Buy_plot": 0.0,
+        "Strong_buy_plot": 0.0,
+        "Sell_plot": 0.0
+      },
+      "eventStatus": "PLOT_VALUES_OBSERVED_NO_SERVER_ALERT_RECEIPT",
+      "sellAuthorAlertAvailable": false,
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "PIFAGOR_MFI:BTCUSDT.P:1D:2026-10-22T00:00:00Z",
+      "indicator": "PIFAGOR_MFI",
+      "script": {
+        "name": "Pifagor Mfi 3.2",
+        "author": "Pifagor_trade",
+        "version": "v38.0",
+        "publicationID": "FYWz9vnb",
+        "url": "https://ru.tradingview.com/script/FYWz9vnb-02-mfi-pifagor-free-indicator/",
+        "settings": {
+          "method": "MFI",
+          "percent": 10,
+          "daysDown": 2,
+          "greenPercent": 2,
+          "timeframe": "chart"
+        },
+        "nonRepaintStatus": "UNVERIFIED_PROTECTED_SOURCE",
+        "alertConditions": [
+          "Buy signal",
+          "Strong buy signal"
+        ]
+      },
+      "asset": "BTC",
+      "ticker": "OKX:BTCUSDT.P",
+      "apiInstrument": "BTC-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "1D",
+      "barOpenUTC": "2026-10-21T00:00:00Z",
+      "barCloseUTC": "2026-10-22T00:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "TradingView date at UTC00; BTC/ETH 21 Oct OHLC independently matches six UTC-aligned OKX 4H bars",
+      "observedAtUTC": "2026-10-22T18:00:39.489Z",
+      "barAgeSecondsAtObservation": 64839.489,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-23T00:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 82984.6,
+        "high": 84876.0,
+        "low": 82587.5,
+        "close": 84049.9
+      },
+      "series": [
+        {
+          "label": "Plot",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "MF",
+          "ordinal": 1,
+          "value": -42.9,
+          "display": "−42,9"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 2,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 3,
+          "value": -10.0,
+          "display": "−10,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 4,
+          "value": -90.0,
+          "display": "−90,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 5,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Buy_plot",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Strong_buy_plot",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Sell_plot",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,0"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "observedSignals": {
+        "Buy_plot": 0.0,
+        "Strong_buy_plot": 0.0,
+        "Sell_plot": 0.0
+      },
+      "eventStatus": "PLOT_VALUES_OBSERVED_NO_SERVER_ALERT_RECEIPT",
+      "sellAuthorAlertAvailable": false,
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "PIFAGOR_MFI:ETHUSDT.P:1D:2026-10-22T00:00:00Z",
+      "indicator": "PIFAGOR_MFI",
+      "script": {
+        "name": "Pifagor Mfi 3.2",
+        "author": "Pifagor_trade",
+        "version": "v38.0",
+        "publicationID": "FYWz9vnb",
+        "url": "https://ru.tradingview.com/script/FYWz9vnb-02-mfi-pifagor-free-indicator/",
+        "settings": {
+          "method": "MFI",
+          "percent": 10,
+          "daysDown": 2,
+          "greenPercent": 2,
+          "timeframe": "chart"
+        },
+        "nonRepaintStatus": "UNVERIFIED_PROTECTED_SOURCE",
+        "alertConditions": [
+          "Buy signal",
+          "Strong buy signal"
+        ]
+      },
+      "asset": "ETH",
+      "ticker": "OKX:ETHUSDT.P",
+      "apiInstrument": "ETH-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "1D",
+      "barOpenUTC": "2026-10-21T00:00:00Z",
+      "barCloseUTC": "2026-10-22T00:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "TradingView date at UTC00; BTC/ETH 21 Oct OHLC independently matches six UTC-aligned OKX 4H bars",
+      "observedAtUTC": "2026-10-22T18:00:51.731Z",
+      "barAgeSecondsAtObservation": 64851.731,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-23T00:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 2448.06,
+        "high": 2527.63,
+        "low": 2435.51,
+        "close": 2472.97
+      },
+      "series": [
+        {
+          "label": "Plot",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "MF",
+          "ordinal": 1,
+          "value": -60.07,
+          "display": "−60,07"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 2,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 3,
+          "value": -10.0,
+          "display": "−10,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 4,
+          "value": -90.0,
+          "display": "−90,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 5,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Buy_plot",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Strong_buy_plot",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Sell_plot",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,00"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "observedSignals": {
+        "Buy_plot": 0.0,
+        "Strong_buy_plot": 0.0,
+        "Sell_plot": 0.0
+      },
+      "eventStatus": "PLOT_VALUES_OBSERVED_NO_SERVER_ALERT_RECEIPT",
+      "sellAuthorAlertAvailable": false,
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "PIFAGOR_MFI:ETHUSDT.P:4H:2026-10-22T16:00:00Z",
+      "indicator": "PIFAGOR_MFI",
+      "script": {
+        "name": "Pifagor Mfi 3.2",
+        "author": "Pifagor_trade",
+        "version": "v38.0",
+        "publicationID": "FYWz9vnb",
+        "url": "https://ru.tradingview.com/script/FYWz9vnb-02-mfi-pifagor-free-indicator/",
+        "settings": {
+          "method": "MFI",
+          "percent": 10,
+          "daysDown": 2,
+          "greenPercent": 2,
+          "timeframe": "chart"
+        },
+        "nonRepaintStatus": "UNVERIFIED_PROTECTED_SOURCE",
+        "alertConditions": [
+          "Buy signal",
+          "Strong buy signal"
+        ]
+      },
+      "asset": "ETH",
+      "ticker": "OKX:ETHUSDT.P",
+      "apiInstrument": "ETH-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "4H",
+      "barOpenUTC": "2026-10-22T12:00:00Z",
+      "barCloseUTC": "2026-10-22T16:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "4H chart open time UTC+3 minus 3h",
+      "observedAtUTC": "2026-10-22T18:01:06.795Z",
+      "barAgeSecondsAtObservation": 7266.795,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-22T20:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 2399.17,
+        "high": 2417.27,
+        "low": 2385.96,
+        "close": 2397.58
+      },
+      "series": [
+        {
+          "label": "Plot",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "MF",
+          "ordinal": 1,
+          "value": -38.15,
+          "display": "−38,15"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 2,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 3,
+          "value": -10.0,
+          "display": "−10,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 4,
+          "value": -90.0,
+          "display": "−90,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 5,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Buy_plot",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Strong_buy_plot",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Sell_plot",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,00"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "observedSignals": {
+        "Buy_plot": 0.0,
+        "Strong_buy_plot": 0.0,
+        "Sell_plot": 0.0
+      },
+      "eventStatus": "PLOT_VALUES_OBSERVED_NO_SERVER_ALERT_RECEIPT",
+      "sellAuthorAlertAvailable": false,
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "BIG_GUY:BTCUSDT.P:4H:2026-10-22T16:00:00Z",
+      "indicator": "BIG_GUY",
+      "script": {
+        "name": "Pifagor_Big guy ()()()",
+        "author": "Pifagor_trade",
+        "version": "v28.0",
+        "publicationID": "2J1GG431",
+        "url": "https://ru.tradingview.com/script/2J1GG431-01-big-guy-2-mode-pifagor-free-indicator/",
+        "settings": {
+          "mode": 2,
+          "length": 14,
+          "redDotPercent": 93,
+          "burjKhalifa": false,
+          "timeframe": "chart"
+        },
+        "nonRepaintStatus": "TRADINGVIEW_RECALCULATION_WARNING_FORWARD_TEST_NOT_DONE",
+        "alertConditions": [
+          "Khalifa 1 floor",
+          "Khalifa 2 floor",
+          "Khalifa 3 floor",
+          "Khalifa any floor",
+          "Green dots",
+          "Big pump signal",
+          "Small pump signal",
+          "Volume up",
+          "Sell"
+        ]
+      },
+      "asset": "BTC",
+      "ticker": "OKX:BTCUSDT.P",
+      "apiInstrument": "BTC-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "4H",
+      "barOpenUTC": "2026-10-22T12:00:00Z",
+      "barCloseUTC": "2026-10-22T16:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "4H chart open time UTC+3 minus 3h",
+      "observedAtUTC": "2026-10-22T18:02:44.588Z",
+      "barAgeSecondsAtObservation": 7364.588,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-22T20:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 81712.2,
+        "high": 82061.9,
+        "low": 81257.4,
+        "close": 81649.9
+      },
+      "series": [
+        {
+          "label": "Plot",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 2,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 3,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Echange vol",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "pppl",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 1,
+          "value": 17.8,
+          "display": "17,8"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 2,
+          "value": 32.8,
+          "display": "32,8"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 3,
+          "value": 29.0,
+          "display": "29,0"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 4,
+          "value": 41.6,
+          "display": "41,6"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 5,
+          "value": 41.3,
+          "display": "41,3"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 6,
+          "value": 51.8,
+          "display": "51,8"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 4,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 5,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 6,
+          "value": -0.2,
+          "display": "−0,2"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "eventStatus": "UNMAPPED_SERIES_NOT_EQUIVALENT_TO_ALERT_EVENTS",
+      "normalizedEvents": {
+        "Khalifa 1 floor": null,
+        "Khalifa 2 floor": null,
+        "Khalifa 3 floor": null,
+        "Khalifa any floor": null,
+        "Green dots": null,
+        "Big pump signal": null,
+        "Small pump signal": null,
+        "Volume up": null,
+        "Sell": null
+      },
+      "observedFloor": null,
+      "floorStatus": "NO_EXPLICIT_LABELED_FLOOR_AT_ANALYZED_BAR",
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "BIG_GUY:BTCUSDT.P:1D:2026-10-22T00:00:00Z",
+      "indicator": "BIG_GUY",
+      "script": {
+        "name": "Pifagor_Big guy ()()()",
+        "author": "Pifagor_trade",
+        "version": "v28.0",
+        "publicationID": "2J1GG431",
+        "url": "https://ru.tradingview.com/script/2J1GG431-01-big-guy-2-mode-pifagor-free-indicator/",
+        "settings": {
+          "mode": 2,
+          "length": 14,
+          "redDotPercent": 93,
+          "burjKhalifa": false,
+          "timeframe": "chart"
+        },
+        "nonRepaintStatus": "TRADINGVIEW_RECALCULATION_WARNING_FORWARD_TEST_NOT_DONE",
+        "alertConditions": [
+          "Khalifa 1 floor",
+          "Khalifa 2 floor",
+          "Khalifa 3 floor",
+          "Khalifa any floor",
+          "Green dots",
+          "Big pump signal",
+          "Small pump signal",
+          "Volume up",
+          "Sell"
+        ]
+      },
+      "asset": "BTC",
+      "ticker": "OKX:BTCUSDT.P",
+      "apiInstrument": "BTC-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "1D",
+      "barOpenUTC": "2026-10-21T00:00:00Z",
+      "barCloseUTC": "2026-10-22T00:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "TradingView date at UTC00; BTC/ETH 21 Oct OHLC independently matches six UTC-aligned OKX 4H bars",
+      "observedAtUTC": "2026-10-22T18:03:07.810Z",
+      "barAgeSecondsAtObservation": 64987.81,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-23T00:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 82984.6,
+        "high": 84876.0,
+        "low": 82587.5,
+        "close": 84049.9
+      },
+      "series": [
+        {
+          "label": "Plot",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 2,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 3,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Echange vol",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "pppl",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 1,
+          "value": 50.4,
+          "display": "50,4"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 2,
+          "value": 38.6,
+          "display": "38,6"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 3,
+          "value": 50.0,
+          "display": "50,0"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 4,
+          "value": 50.4,
+          "display": "50,4"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 5,
+          "value": 64.8,
+          "display": "64,8"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 6,
+          "value": 59.9,
+          "display": "59,9"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 4,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 5,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 6,
+          "value": 0.2,
+          "display": "0,2"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "eventStatus": "UNMAPPED_SERIES_NOT_EQUIVALENT_TO_ALERT_EVENTS",
+      "normalizedEvents": {
+        "Khalifa 1 floor": null,
+        "Khalifa 2 floor": null,
+        "Khalifa 3 floor": null,
+        "Khalifa any floor": null,
+        "Green dots": null,
+        "Big pump signal": null,
+        "Small pump signal": null,
+        "Volume up": null,
+        "Sell": null
+      },
+      "observedFloor": null,
+      "floorStatus": "NO_EXPLICIT_LABELED_FLOOR_AT_ANALYZED_BAR",
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "BIG_GUY:ETHUSDT.P:1D:2026-10-22T00:00:00Z",
+      "indicator": "BIG_GUY",
+      "script": {
+        "name": "Pifagor_Big guy ()()()",
+        "author": "Pifagor_trade",
+        "version": "v28.0",
+        "publicationID": "2J1GG431",
+        "url": "https://ru.tradingview.com/script/2J1GG431-01-big-guy-2-mode-pifagor-free-indicator/",
+        "settings": {
+          "mode": 2,
+          "length": 14,
+          "redDotPercent": 93,
+          "burjKhalifa": false,
+          "timeframe": "chart"
+        },
+        "nonRepaintStatus": "TRADINGVIEW_RECALCULATION_WARNING_FORWARD_TEST_NOT_DONE",
+        "alertConditions": [
+          "Khalifa 1 floor",
+          "Khalifa 2 floor",
+          "Khalifa 3 floor",
+          "Khalifa any floor",
+          "Green dots",
+          "Big pump signal",
+          "Small pump signal",
+          "Volume up",
+          "Sell"
+        ]
+      },
+      "asset": "ETH",
+      "ticker": "OKX:ETHUSDT.P",
+      "apiInstrument": "ETH-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "1D",
+      "barOpenUTC": "2026-10-21T00:00:00Z",
+      "barCloseUTC": "2026-10-22T00:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "TradingView date at UTC00; BTC/ETH 21 Oct OHLC independently matches six UTC-aligned OKX 4H bars",
+      "observedAtUTC": "2026-10-22T18:03:58.600Z",
+      "barAgeSecondsAtObservation": 65038.6,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-23T00:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 2448.06,
+        "high": 2527.63,
+        "low": 2435.51,
+        "close": 2472.97
+      },
+      "series": [
+        {
+          "label": "Plot",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 2,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 3,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Echange vol",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "pppl",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 1,
+          "value": 31.78,
+          "display": "31,78"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 2,
+          "value": 26.23,
+          "display": "26,23"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 3,
+          "value": 25.92,
+          "display": "25,92"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 4,
+          "value": 22.0,
+          "display": "22,00"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 5,
+          "value": 25.92,
+          "display": "25,92"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 6,
+          "value": 22.0,
+          "display": "22,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 4,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 5,
+          "value": 0.19,
+          "display": "0,19"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 6,
+          "value": 0.15,
+          "display": "0,15"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "eventStatus": "UNMAPPED_SERIES_NOT_EQUIVALENT_TO_ALERT_EVENTS",
+      "normalizedEvents": {
+        "Khalifa 1 floor": null,
+        "Khalifa 2 floor": null,
+        "Khalifa 3 floor": null,
+        "Khalifa any floor": null,
+        "Green dots": null,
+        "Big pump signal": null,
+        "Small pump signal": null,
+        "Volume up": null,
+        "Sell": null
+      },
+      "observedFloor": null,
+      "floorStatus": "NO_EXPLICIT_LABELED_FLOOR_AT_ANALYZED_BAR",
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "BIG_GUY:ETHUSDT.P:4H:2026-10-22T16:00:00Z",
+      "indicator": "BIG_GUY",
+      "script": {
+        "name": "Pifagor_Big guy ()()()",
+        "author": "Pifagor_trade",
+        "version": "v28.0",
+        "publicationID": "2J1GG431",
+        "url": "https://ru.tradingview.com/script/2J1GG431-01-big-guy-2-mode-pifagor-free-indicator/",
+        "settings": {
+          "mode": 2,
+          "length": 14,
+          "redDotPercent": 93,
+          "burjKhalifa": false,
+          "timeframe": "chart"
+        },
+        "nonRepaintStatus": "TRADINGVIEW_RECALCULATION_WARNING_FORWARD_TEST_NOT_DONE",
+        "alertConditions": [
+          "Khalifa 1 floor",
+          "Khalifa 2 floor",
+          "Khalifa 3 floor",
+          "Khalifa any floor",
+          "Green dots",
+          "Big pump signal",
+          "Small pump signal",
+          "Volume up",
+          "Sell"
+        ]
+      },
+      "asset": "ETH",
+      "ticker": "OKX:ETHUSDT.P",
+      "apiInstrument": "ETH-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "4H",
+      "barOpenUTC": "2026-10-22T12:00:00Z",
+      "barCloseUTC": "2026-10-22T16:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "4H chart open time UTC+3 minus 3h",
+      "observedAtUTC": "2026-10-22T18:04:25.956Z",
+      "barAgeSecondsAtObservation": 7465.956,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-22T20:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 2399.17,
+        "high": 2417.27,
+        "low": 2385.96,
+        "close": 2397.58
+      },
+      "series": [
+        {
+          "label": "Plot",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 2,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 3,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Echange vol",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "pppl",
+          "ordinal": 1,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 1,
+          "value": 23.71,
+          "display": "23,71"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 2,
+          "value": 36.13,
+          "display": "36,13"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 3,
+          "value": 40.3,
+          "display": "40,30"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 4,
+          "value": 49.56,
+          "display": "49,56"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 5,
+          "value": 43.42,
+          "display": "43,42"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 6,
+          "value": 52.03,
+          "display": "52,03"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 4,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 5,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 6,
+          "value": -0.28,
+          "display": "−0,28"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "eventStatus": "UNMAPPED_SERIES_NOT_EQUIVALENT_TO_ALERT_EVENTS",
+      "normalizedEvents": {
+        "Khalifa 1 floor": null,
+        "Khalifa 2 floor": null,
+        "Khalifa 3 floor": null,
+        "Khalifa any floor": null,
+        "Green dots": null,
+        "Big pump signal": null,
+        "Small pump signal": null,
+        "Volume up": null,
+        "Sell": null
+      },
+      "observedFloor": null,
+      "floorStatus": "NO_EXPLICIT_LABELED_FLOOR_AT_ANALYZED_BAR",
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "BURJ_KHALIFA_MODE:ETHUSDT.P:4H:2026-10-22T16:00:00Z",
+      "indicator": "BURJ_KHALIFA_MODE",
+      "script": {
+        "name": "Pifagor_Big guy ()()()",
+        "author": "Pifagor_trade",
+        "version": "v28.0",
+        "publicationID": "2J1GG431",
+        "url": "https://ru.tradingview.com/script/2J1GG431-01-big-guy-2-mode-pifagor-free-indicator/",
+        "settings": {
+          "mode": 2,
+          "length": 14,
+          "redDotPercent": 93,
+          "burjKhalifa": true,
+          "timeframe": "chart"
+        },
+        "nonRepaintStatus": "TRADINGVIEW_RECALCULATION_WARNING_FORWARD_TEST_NOT_DONE",
+        "alertConditions": [
+          "Khalifa 1 floor",
+          "Khalifa 2 floor",
+          "Khalifa 3 floor",
+          "Khalifa any floor",
+          "Green dots",
+          "Big pump signal",
+          "Small pump signal",
+          "Volume up",
+          "Sell"
+        ],
+        "modeOf": "BIG_GUY",
+        "independentSource": false
+      },
+      "asset": "ETH",
+      "ticker": "OKX:ETHUSDT.P",
+      "apiInstrument": "ETH-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "4H",
+      "barOpenUTC": "2026-10-22T12:00:00Z",
+      "barCloseUTC": "2026-10-22T16:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "4H chart open time UTC+3 minus 3h",
+      "observedAtUTC": "2026-10-22T18:05:56.026Z",
+      "barAgeSecondsAtObservation": 7556.026,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-22T20:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 2399.17,
+        "high": 2417.27,
+        "low": 2385.96,
+        "close": 2397.58
+      },
+      "series": [
+        {
+          "label": "Plot",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 2,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 3,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Echange vol",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "pppl",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 1,
+          "value": 23.71,
+          "display": "23,71"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 2,
+          "value": 36.13,
+          "display": "36,13"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 3,
+          "value": 40.3,
+          "display": "40,30"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 4,
+          "value": 49.56,
+          "display": "49,56"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 5,
+          "value": 43.42,
+          "display": "43,42"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 6,
+          "value": 52.03,
+          "display": "52,03"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 4,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 5,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 6,
+          "value": null,
+          "display": "∅"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "eventStatus": "UNMAPPED_SERIES_NOT_EQUIVALENT_TO_ALERT_EVENTS",
+      "normalizedEvents": {
+        "Khalifa 1 floor": null,
+        "Khalifa 2 floor": null,
+        "Khalifa 3 floor": null,
+        "Khalifa any floor": null,
+        "Green dots": null,
+        "Big pump signal": null,
+        "Small pump signal": null,
+        "Volume up": null,
+        "Sell": null
+      },
+      "observedFloor": null,
+      "floorStatus": "NO_EXPLICIT_LABELED_FLOOR_AT_ANALYZED_BAR",
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "BURJ_KHALIFA_MODE:ETHUSDT.P:1D:2026-10-22T00:00:00Z",
+      "indicator": "BURJ_KHALIFA_MODE",
+      "script": {
+        "name": "Pifagor_Big guy ()()()",
+        "author": "Pifagor_trade",
+        "version": "v28.0",
+        "publicationID": "2J1GG431",
+        "url": "https://ru.tradingview.com/script/2J1GG431-01-big-guy-2-mode-pifagor-free-indicator/",
+        "settings": {
+          "mode": 2,
+          "length": 14,
+          "redDotPercent": 93,
+          "burjKhalifa": true,
+          "timeframe": "chart"
+        },
+        "nonRepaintStatus": "TRADINGVIEW_RECALCULATION_WARNING_FORWARD_TEST_NOT_DONE",
+        "alertConditions": [
+          "Khalifa 1 floor",
+          "Khalifa 2 floor",
+          "Khalifa 3 floor",
+          "Khalifa any floor",
+          "Green dots",
+          "Big pump signal",
+          "Small pump signal",
+          "Volume up",
+          "Sell"
+        ],
+        "modeOf": "BIG_GUY",
+        "independentSource": false
+      },
+      "asset": "ETH",
+      "ticker": "OKX:ETHUSDT.P",
+      "apiInstrument": "ETH-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "1D",
+      "barOpenUTC": "2026-10-21T00:00:00Z",
+      "barCloseUTC": "2026-10-22T00:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "TradingView date at UTC00; BTC/ETH 21 Oct OHLC independently matches six UTC-aligned OKX 4H bars",
+      "observedAtUTC": "2026-10-22T18:06:20.487Z",
+      "barAgeSecondsAtObservation": 65180.487,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-23T00:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 2448.06,
+        "high": 2527.63,
+        "low": 2435.51,
+        "close": 2472.97
+      },
+      "series": [
+        {
+          "label": "Plot",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 2,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 3,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Echange vol",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "pppl",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 1,
+          "value": 31.78,
+          "display": "31,78"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 2,
+          "value": 26.23,
+          "display": "26,23"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 3,
+          "value": 25.92,
+          "display": "25,92"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 4,
+          "value": 22.0,
+          "display": "22,00"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 5,
+          "value": 25.92,
+          "display": "25,92"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 6,
+          "value": 22.0,
+          "display": "22,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 4,
+          "value": 0.0,
+          "display": "0,00"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 5,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 6,
+          "value": null,
+          "display": "∅"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "eventStatus": "UNMAPPED_SERIES_NOT_EQUIVALENT_TO_ALERT_EVENTS",
+      "normalizedEvents": {
+        "Khalifa 1 floor": null,
+        "Khalifa 2 floor": null,
+        "Khalifa 3 floor": null,
+        "Khalifa any floor": null,
+        "Green dots": null,
+        "Big pump signal": null,
+        "Small pump signal": null,
+        "Volume up": null,
+        "Sell": null
+      },
+      "observedFloor": null,
+      "floorStatus": "NO_EXPLICIT_LABELED_FLOOR_AT_ANALYZED_BAR",
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "BURJ_KHALIFA_MODE:BTCUSDT.P:1D:2026-10-22T00:00:00Z",
+      "indicator": "BURJ_KHALIFA_MODE",
+      "script": {
+        "name": "Pifagor_Big guy ()()()",
+        "author": "Pifagor_trade",
+        "version": "v28.0",
+        "publicationID": "2J1GG431",
+        "url": "https://ru.tradingview.com/script/2J1GG431-01-big-guy-2-mode-pifagor-free-indicator/",
+        "settings": {
+          "mode": 2,
+          "length": 14,
+          "redDotPercent": 93,
+          "burjKhalifa": true,
+          "timeframe": "chart"
+        },
+        "nonRepaintStatus": "TRADINGVIEW_RECALCULATION_WARNING_FORWARD_TEST_NOT_DONE",
+        "alertConditions": [
+          "Khalifa 1 floor",
+          "Khalifa 2 floor",
+          "Khalifa 3 floor",
+          "Khalifa any floor",
+          "Green dots",
+          "Big pump signal",
+          "Small pump signal",
+          "Volume up",
+          "Sell"
+        ],
+        "modeOf": "BIG_GUY",
+        "independentSource": false
+      },
+      "asset": "BTC",
+      "ticker": "OKX:BTCUSDT.P",
+      "apiInstrument": "BTC-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "1D",
+      "barOpenUTC": "2026-10-21T00:00:00Z",
+      "barCloseUTC": "2026-10-22T00:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "TradingView date at UTC00; BTC/ETH 21 Oct OHLC independently matches six UTC-aligned OKX 4H bars",
+      "observedAtUTC": "2026-10-22T18:06:43.345Z",
+      "barAgeSecondsAtObservation": 65203.345,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-23T00:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 82984.6,
+        "high": 84876.0,
+        "low": 82587.5,
+        "close": 84049.9
+      },
+      "series": [
+        {
+          "label": "Plot",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 2,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 3,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Echange vol",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "pppl",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 1,
+          "value": 50.4,
+          "display": "50,4"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 2,
+          "value": 38.6,
+          "display": "38,6"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 3,
+          "value": 50.0,
+          "display": "50,0"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 4,
+          "value": 50.4,
+          "display": "50,4"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 5,
+          "value": 64.8,
+          "display": "64,8"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 6,
+          "value": 59.9,
+          "display": "59,9"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 4,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 5,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 6,
+          "value": null,
+          "display": "∅"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "eventStatus": "UNMAPPED_SERIES_NOT_EQUIVALENT_TO_ALERT_EVENTS",
+      "normalizedEvents": {
+        "Khalifa 1 floor": null,
+        "Khalifa 2 floor": null,
+        "Khalifa 3 floor": null,
+        "Khalifa any floor": null,
+        "Green dots": null,
+        "Big pump signal": null,
+        "Small pump signal": null,
+        "Volume up": null,
+        "Sell": null
+      },
+      "observedFloor": null,
+      "floorStatus": "NO_EXPLICIT_LABELED_FLOOR_AT_ANALYZED_BAR",
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "BURJ_KHALIFA_MODE:BTCUSDT.P:4H:2026-10-22T16:00:00Z",
+      "indicator": "BURJ_KHALIFA_MODE",
+      "script": {
+        "name": "Pifagor_Big guy ()()()",
+        "author": "Pifagor_trade",
+        "version": "v28.0",
+        "publicationID": "2J1GG431",
+        "url": "https://ru.tradingview.com/script/2J1GG431-01-big-guy-2-mode-pifagor-free-indicator/",
+        "settings": {
+          "mode": 2,
+          "length": 14,
+          "redDotPercent": 93,
+          "burjKhalifa": true,
+          "timeframe": "chart"
+        },
+        "nonRepaintStatus": "TRADINGVIEW_RECALCULATION_WARNING_FORWARD_TEST_NOT_DONE",
+        "alertConditions": [
+          "Khalifa 1 floor",
+          "Khalifa 2 floor",
+          "Khalifa 3 floor",
+          "Khalifa any floor",
+          "Green dots",
+          "Big pump signal",
+          "Small pump signal",
+          "Volume up",
+          "Sell"
+        ],
+        "modeOf": "BIG_GUY",
+        "independentSource": false
+      },
+      "asset": "BTC",
+      "ticker": "OKX:BTCUSDT.P",
+      "apiInstrument": "BTC-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "4H",
+      "barOpenUTC": "2026-10-22T12:00:00Z",
+      "barCloseUTC": "2026-10-22T16:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "4H chart open time UTC+3 minus 3h",
+      "observedAtUTC": "2026-10-22T18:07:06.721Z",
+      "barAgeSecondsAtObservation": 7626.721,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-22T20:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 81712.2,
+        "high": 82061.9,
+        "low": 81257.4,
+        "close": 81649.9
+      },
+      "series": [
+        {
+          "label": "Plot",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 2,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 3,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Echange vol",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "pppl",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 1,
+          "value": 17.8,
+          "display": "17,8"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 2,
+          "value": 32.8,
+          "display": "32,8"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 3,
+          "value": 29.0,
+          "display": "29,0"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 4,
+          "value": 41.6,
+          "display": "41,6"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 5,
+          "value": 41.3,
+          "display": "41,3"
+        },
+        {
+          "label": "Green_dot",
+          "ordinal": 6,
+          "value": 51.8,
+          "display": "51,8"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 4,
+          "value": 0.0,
+          "display": "0,0"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 5,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Plot",
+          "ordinal": 6,
+          "value": null,
+          "display": "∅"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "eventStatus": "UNMAPPED_SERIES_NOT_EQUIVALENT_TO_ALERT_EVENTS",
+      "normalizedEvents": {
+        "Khalifa 1 floor": null,
+        "Khalifa 2 floor": null,
+        "Khalifa 3 floor": null,
+        "Khalifa any floor": null,
+        "Green dots": null,
+        "Big pump signal": null,
+        "Small pump signal": null,
+        "Volume up": null,
+        "Sell": null
+      },
+      "observedFloor": null,
+      "floorStatus": "NO_EXPLICIT_LABELED_FLOOR_AT_ANALYZED_BAR",
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "LUXALGO_NWE:BTCUSDT.P:4H:2026-10-22T16:00:00Z",
+      "indicator": "LUXALGO_NWE",
+      "script": {
+        "name": "LuxAlgo - Nadaraya-Watson Envelope",
+        "author": "LuxAlgo",
+        "version": "v4.0",
+        "publicationID": "Iko0E2kL",
+        "url": "https://www.tradingview.com/script/Iko0E2kL-Nadaraya-Watson-Envelope-LuxAlgo/",
+        "settings": {
+          "bandwidth": 8,
+          "multiplier": 3,
+          "source": "close",
+          "repaintingSmoothing": false
+        },
+        "nonRepaintStatus": "REPAINTING_SMOOTHING_OFF_CONFIRMED_NO_FORWARD_RELOAD_TEST"
+      },
+      "asset": "BTC",
+      "ticker": "OKX:BTCUSDT.P",
+      "apiInstrument": "BTC-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "4H",
+      "barOpenUTC": "2026-10-22T12:00:00Z",
+      "barCloseUTC": "2026-10-22T16:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "4H chart open time UTC+3 minus 3h",
+      "observedAtUTC": "2026-10-22T18:11:32.021Z",
+      "barAgeSecondsAtObservation": 7892.021,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-22T20:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 81712.2,
+        "high": 82061.9,
+        "low": 81257.4,
+        "close": 81649.9
+      },
+      "series": [
+        {
+          "label": "Upper",
+          "ordinal": 1,
+          "value": 85022.2,
+          "display": "85,022.2"
+        },
+        {
+          "label": "Lower",
+          "ordinal": 1,
+          "value": 80643.9,
+          "display": "80,643.9"
+        },
+        {
+          "label": "Crossunder",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Crossover",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "originalChannel": {
+        "upper": 85022.2,
+        "lower": 80643.9,
+        "center": null,
+        "centerStatus": "NOT_EXPOSED_AS_SERIES",
+        "crossunderMarker": null,
+        "crossoverMarker": null
+      },
+      "eventStatus": "ORIGINAL_CROSS_MARKERS_OBSERVED_NO_SERVER_ALERT_RECEIPT",
+      "derivedFromDisplayedBounds": {
+        "notDirectOriginalSeries": true,
+        "midpoint": 82833.05,
+        "formula": "(displayed Upper + displayed Lower) / 2",
+        "precision": "Rounded UI values only, not underlying Pine full precision",
+        "direction": "DOWN",
+        "previousObservationID": "LUXALGO_NWE:BTCUSDT.P:4H:2026-10-22T12:00:00Z:previous",
+        "previousMidpoint": 82941.5,
+        "pricePosition": "IN_CHANNEL_BELOW_MIDPOINT",
+        "returnInsideFromBelow": false,
+        "returnInsideFromAbove": false
+      },
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "LUXALGO_NWE:BTCUSDT.P:4H:2026-10-22T12:00:00Z:previous",
+      "indicator": "LUXALGO_NWE",
+      "script": {
+        "name": "LuxAlgo - Nadaraya-Watson Envelope",
+        "author": "LuxAlgo",
+        "version": "v4.0",
+        "publicationID": "Iko0E2kL",
+        "url": "https://www.tradingview.com/script/Iko0E2kL-Nadaraya-Watson-Envelope-LuxAlgo/",
+        "settings": {
+          "bandwidth": 8,
+          "multiplier": 3,
+          "source": "close",
+          "repaintingSmoothing": false
+        },
+        "nonRepaintStatus": "REPAINTING_SMOOTHING_OFF_CONFIRMED_NO_FORWARD_RELOAD_TEST"
+      },
+      "asset": "BTC",
+      "ticker": "OKX:BTCUSDT.P",
+      "apiInstrument": "BTC-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "4H",
+      "barOpenUTC": "2026-10-22T08:00:00Z",
+      "barCloseUTC": "2026-10-22T12:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "4H chart open time UTC+3 minus 3h",
+      "observedAtUTC": "2026-10-22T18:11:32.076Z",
+      "barAgeSecondsAtObservation": 22292.076,
+      "latestClosedAtObservation": false,
+      "nextExpectedBarCloseUTC": "2026-10-22T16:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 82202.0,
+        "high": 82242.7,
+        "low": 81588.9,
+        "close": 81712.1
+      },
+      "series": [
+        {
+          "label": "Upper",
+          "ordinal": 1,
+          "value": 85126.3,
+          "display": "85,126.3"
+        },
+        {
+          "label": "Lower",
+          "ordinal": 1,
+          "value": 80756.7,
+          "display": "80,756.7"
+        },
+        {
+          "label": "Crossunder",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Crossover",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": true,
+      "originalChannel": {
+        "upper": 85126.3,
+        "lower": 80756.7,
+        "center": null,
+        "centerStatus": "NOT_EXPOSED_AS_SERIES",
+        "crossunderMarker": null,
+        "crossoverMarker": null
+      },
+      "eventStatus": "ORIGINAL_CROSS_MARKERS_OBSERVED_NO_SERVER_ALERT_RECEIPT",
+      "freshnessAtPacketBuild": "PREVIOUS_BAR_CONTEXT"
+    },
+    {
+      "id": "LUXALGO_NWE:BTCUSDT.P:1D:2026-10-22T00:00:00Z",
+      "indicator": "LUXALGO_NWE",
+      "script": {
+        "name": "LuxAlgo - Nadaraya-Watson Envelope",
+        "author": "LuxAlgo",
+        "version": "v4.0",
+        "publicationID": "Iko0E2kL",
+        "url": "https://www.tradingview.com/script/Iko0E2kL-Nadaraya-Watson-Envelope-LuxAlgo/",
+        "settings": {
+          "bandwidth": 8,
+          "multiplier": 3,
+          "source": "close",
+          "repaintingSmoothing": false
+        },
+        "nonRepaintStatus": "REPAINTING_SMOOTHING_OFF_CONFIRMED_NO_FORWARD_RELOAD_TEST"
+      },
+      "asset": "BTC",
+      "ticker": "OKX:BTCUSDT.P",
+      "apiInstrument": "BTC-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "1D",
+      "barOpenUTC": "2026-10-21T00:00:00Z",
+      "barCloseUTC": "2026-10-22T00:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "TradingView date at UTC00; BTC/ETH 21 Oct OHLC independently matches six UTC-aligned OKX 4H bars",
+      "observedAtUTC": "2026-10-22T18:11:56.201Z",
+      "barAgeSecondsAtObservation": 65516.201,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-23T00:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 82984.6,
+        "high": 84876.0,
+        "low": 82587.5,
+        "close": 84049.9
+      },
+      "series": [
+        {
+          "label": "Upper",
+          "ordinal": 1,
+          "value": 90052.0,
+          "display": "90,052.0"
+        },
+        {
+          "label": "Lower",
+          "ordinal": 1,
+          "value": 75176.4,
+          "display": "75,176.4"
+        },
+        {
+          "label": "Crossunder",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Crossover",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "originalChannel": {
+        "upper": 90052.0,
+        "lower": 75176.4,
+        "center": null,
+        "centerStatus": "NOT_EXPOSED_AS_SERIES",
+        "crossunderMarker": null,
+        "crossoverMarker": null
+      },
+      "eventStatus": "ORIGINAL_CROSS_MARKERS_OBSERVED_NO_SERVER_ALERT_RECEIPT",
+      "derivedFromDisplayedBounds": {
+        "notDirectOriginalSeries": true,
+        "midpoint": 82614.2,
+        "formula": "(displayed Upper + displayed Lower) / 2",
+        "precision": "Rounded UI values only, not underlying Pine full precision",
+        "direction": "UP",
+        "previousObservationID": "LUXALGO_NWE:BTCUSDT.P:1D:2026-10-21T00:00:00Z:previous",
+        "previousMidpoint": 82511.0,
+        "pricePosition": "IN_CHANNEL_ABOVE_MIDPOINT",
+        "returnInsideFromBelow": false,
+        "returnInsideFromAbove": false
+      },
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "LUXALGO_NWE:BTCUSDT.P:1D:2026-10-21T00:00:00Z:previous",
+      "indicator": "LUXALGO_NWE",
+      "script": {
+        "name": "LuxAlgo - Nadaraya-Watson Envelope",
+        "author": "LuxAlgo",
+        "version": "v4.0",
+        "publicationID": "Iko0E2kL",
+        "url": "https://www.tradingview.com/script/Iko0E2kL-Nadaraya-Watson-Envelope-LuxAlgo/",
+        "settings": {
+          "bandwidth": 8,
+          "multiplier": 3,
+          "source": "close",
+          "repaintingSmoothing": false
+        },
+        "nonRepaintStatus": "REPAINTING_SMOOTHING_OFF_CONFIRMED_NO_FORWARD_RELOAD_TEST"
+      },
+      "asset": "BTC",
+      "ticker": "OKX:BTCUSDT.P",
+      "apiInstrument": "BTC-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "1D",
+      "barOpenUTC": "2026-10-20T00:00:00Z",
+      "barCloseUTC": "2026-10-21T00:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "TradingView date at UTC00; BTC/ETH 21 Oct OHLC independently matches six UTC-aligned OKX 4H bars",
+      "observedAtUTC": "2026-10-22T18:11:56.251Z",
+      "barAgeSecondsAtObservation": 151916.251,
+      "latestClosedAtObservation": false,
+      "nextExpectedBarCloseUTC": "2026-10-22T00:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 81909.5,
+        "high": 83436.9,
+        "low": 81166.0,
+        "close": 82984.5
+      },
+      "series": [
+        {
+          "label": "Upper",
+          "ordinal": 1,
+          "value": 89967.0,
+          "display": "89,967.0"
+        },
+        {
+          "label": "Lower",
+          "ordinal": 1,
+          "value": 75055.0,
+          "display": "75,055.0"
+        },
+        {
+          "label": "Crossunder",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Crossover",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": true,
+      "originalChannel": {
+        "upper": 89967.0,
+        "lower": 75055.0,
+        "center": null,
+        "centerStatus": "NOT_EXPOSED_AS_SERIES",
+        "crossunderMarker": null,
+        "crossoverMarker": null
+      },
+      "eventStatus": "ORIGINAL_CROSS_MARKERS_OBSERVED_NO_SERVER_ALERT_RECEIPT",
+      "freshnessAtPacketBuild": "PREVIOUS_BAR_CONTEXT"
+    },
+    {
+      "id": "LUXALGO_NWE:ETHUSDT.P:1D:2026-10-22T00:00:00Z",
+      "indicator": "LUXALGO_NWE",
+      "script": {
+        "name": "LuxAlgo - Nadaraya-Watson Envelope",
+        "author": "LuxAlgo",
+        "version": "v4.0",
+        "publicationID": "Iko0E2kL",
+        "url": "https://www.tradingview.com/script/Iko0E2kL-Nadaraya-Watson-Envelope-LuxAlgo/",
+        "settings": {
+          "bandwidth": 8,
+          "multiplier": 3,
+          "source": "close",
+          "repaintingSmoothing": false
+        },
+        "nonRepaintStatus": "REPAINTING_SMOOTHING_OFF_CONFIRMED_NO_FORWARD_RELOAD_TEST"
+      },
+      "asset": "ETH",
+      "ticker": "OKX:ETHUSDT.P",
+      "apiInstrument": "ETH-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "1D",
+      "barOpenUTC": "2026-10-21T00:00:00Z",
+      "barCloseUTC": "2026-10-22T00:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "TradingView date at UTC00; BTC/ETH 21 Oct OHLC independently matches six UTC-aligned OKX 4H bars",
+      "observedAtUTC": "2026-10-22T18:12:49.651Z",
+      "barAgeSecondsAtObservation": 65569.651,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-23T00:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 2448.06,
+        "high": 2527.63,
+        "low": 2435.51,
+        "close": 2472.97
+      },
+      "series": [
+        {
+          "label": "Upper",
+          "ordinal": 1,
+          "value": 2841.89,
+          "display": "2,841.89"
+        },
+        {
+          "label": "Lower",
+          "ordinal": 1,
+          "value": 2087.51,
+          "display": "2,087.51"
+        },
+        {
+          "label": "Crossunder",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Crossover",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "originalChannel": {
+        "upper": 2841.89,
+        "lower": 2087.51,
+        "center": null,
+        "centerStatus": "NOT_EXPOSED_AS_SERIES",
+        "crossunderMarker": null,
+        "crossoverMarker": null
+      },
+      "eventStatus": "ORIGINAL_CROSS_MARKERS_OBSERVED_NO_SERVER_ALERT_RECEIPT",
+      "derivedFromDisplayedBounds": {
+        "notDirectOriginalSeries": true,
+        "midpoint": 2464.7,
+        "formula": "(displayed Upper + displayed Lower) / 2",
+        "precision": "Rounded UI values only, not underlying Pine full precision",
+        "direction": "DOWN",
+        "previousObservationID": "LUXALGO_NWE:ETHUSDT.P:1D:2026-10-21T00:00:00Z:previous",
+        "previousMidpoint": 2468.92,
+        "pricePosition": "IN_CHANNEL_ABOVE_MIDPOINT",
+        "returnInsideFromBelow": false,
+        "returnInsideFromAbove": false
+      },
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "LUXALGO_NWE:ETHUSDT.P:1D:2026-10-21T00:00:00Z:previous",
+      "indicator": "LUXALGO_NWE",
+      "script": {
+        "name": "LuxAlgo - Nadaraya-Watson Envelope",
+        "author": "LuxAlgo",
+        "version": "v4.0",
+        "publicationID": "Iko0E2kL",
+        "url": "https://www.tradingview.com/script/Iko0E2kL-Nadaraya-Watson-Envelope-LuxAlgo/",
+        "settings": {
+          "bandwidth": 8,
+          "multiplier": 3,
+          "source": "close",
+          "repaintingSmoothing": false
+        },
+        "nonRepaintStatus": "REPAINTING_SMOOTHING_OFF_CONFIRMED_NO_FORWARD_RELOAD_TEST"
+      },
+      "asset": "ETH",
+      "ticker": "OKX:ETHUSDT.P",
+      "apiInstrument": "ETH-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "1D",
+      "barOpenUTC": "2026-10-20T00:00:00Z",
+      "barCloseUTC": "2026-10-21T00:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "TradingView date at UTC00; BTC/ETH 21 Oct OHLC independently matches six UTC-aligned OKX 4H bars",
+      "observedAtUTC": "2026-10-22T18:12:49.707Z",
+      "barAgeSecondsAtObservation": 151969.707,
+      "latestClosedAtObservation": false,
+      "nextExpectedBarCloseUTC": "2026-10-22T00:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 2407.06,
+        "high": 2477.75,
+        "low": 2369.03,
+        "close": 2448.07
+      },
+      "series": [
+        {
+          "label": "Upper",
+          "ordinal": 1,
+          "value": 2846.8,
+          "display": "2,846.80"
+        },
+        {
+          "label": "Lower",
+          "ordinal": 1,
+          "value": 2091.04,
+          "display": "2,091.04"
+        },
+        {
+          "label": "Crossunder",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Crossover",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": true,
+      "originalChannel": {
+        "upper": 2846.8,
+        "lower": 2091.04,
+        "center": null,
+        "centerStatus": "NOT_EXPOSED_AS_SERIES",
+        "crossunderMarker": null,
+        "crossoverMarker": null
+      },
+      "eventStatus": "ORIGINAL_CROSS_MARKERS_OBSERVED_NO_SERVER_ALERT_RECEIPT",
+      "freshnessAtPacketBuild": "PREVIOUS_BAR_CONTEXT"
+    },
+    {
+      "id": "LUXALGO_NWE:ETHUSDT.P:4H:2026-10-22T16:00:00Z",
+      "indicator": "LUXALGO_NWE",
+      "script": {
+        "name": "LuxAlgo - Nadaraya-Watson Envelope",
+        "author": "LuxAlgo",
+        "version": "v4.0",
+        "publicationID": "Iko0E2kL",
+        "url": "https://www.tradingview.com/script/Iko0E2kL-Nadaraya-Watson-Envelope-LuxAlgo/",
+        "settings": {
+          "bandwidth": 8,
+          "multiplier": 3,
+          "source": "close",
+          "repaintingSmoothing": false
+        },
+        "nonRepaintStatus": "REPAINTING_SMOOTHING_OFF_CONFIRMED_NO_FORWARD_RELOAD_TEST"
+      },
+      "asset": "ETH",
+      "ticker": "OKX:ETHUSDT.P",
+      "apiInstrument": "ETH-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "4H",
+      "barOpenUTC": "2026-10-22T12:00:00Z",
+      "barCloseUTC": "2026-10-22T16:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "4H chart open time UTC+3 minus 3h",
+      "observedAtUTC": "2026-10-22T18:13:16.408Z",
+      "barAgeSecondsAtObservation": 7996.408,
+      "latestClosedAtObservation": true,
+      "nextExpectedBarCloseUTC": "2026-10-22T20:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 2399.17,
+        "high": 2417.27,
+        "low": 2385.96,
+        "close": 2397.58
+      },
+      "series": [
+        {
+          "label": "Upper",
+          "ordinal": 1,
+          "value": 2526.36,
+          "display": "2,526.36"
+        },
+        {
+          "label": "Lower",
+          "ordinal": 1,
+          "value": 2357.43,
+          "display": "2,357.43"
+        },
+        {
+          "label": "Crossunder",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Crossover",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": false,
+      "originalChannel": {
+        "upper": 2526.36,
+        "lower": 2357.43,
+        "center": null,
+        "centerStatus": "NOT_EXPOSED_AS_SERIES",
+        "crossunderMarker": null,
+        "crossoverMarker": null
+      },
+      "eventStatus": "ORIGINAL_CROSS_MARKERS_OBSERVED_NO_SERVER_ALERT_RECEIPT",
+      "derivedFromDisplayedBounds": {
+        "notDirectOriginalSeries": true,
+        "midpoint": 2441.895,
+        "formula": "(displayed Upper + displayed Lower) / 2",
+        "precision": "Rounded UI values only, not underlying Pine full precision",
+        "direction": "DOWN",
+        "previousObservationID": "LUXALGO_NWE:ETHUSDT.P:4H:2026-10-22T12:00:00Z:previous",
+        "previousMidpoint": 2445.925,
+        "pricePosition": "IN_CHANNEL_BELOW_MIDPOINT",
+        "returnInsideFromBelow": false,
+        "returnInsideFromAbove": false
+      },
+      "freshnessAtPacketBuild": "LATEST_CLOSED_BAR_AT_BUILD"
+    },
+    {
+      "id": "LUXALGO_NWE:ETHUSDT.P:4H:2026-10-22T12:00:00Z:previous",
+      "indicator": "LUXALGO_NWE",
+      "script": {
+        "name": "LuxAlgo - Nadaraya-Watson Envelope",
+        "author": "LuxAlgo",
+        "version": "v4.0",
+        "publicationID": "Iko0E2kL",
+        "url": "https://www.tradingview.com/script/Iko0E2kL-Nadaraya-Watson-Envelope-LuxAlgo/",
+        "settings": {
+          "bandwidth": 8,
+          "multiplier": 3,
+          "source": "close",
+          "repaintingSmoothing": false
+        },
+        "nonRepaintStatus": "REPAINTING_SMOOTHING_OFF_CONFIRMED_NO_FORWARD_RELOAD_TEST"
+      },
+      "asset": "ETH",
+      "ticker": "OKX:ETHUSDT.P",
+      "apiInstrument": "ETH-USDT-SWAP",
+      "venue": "OKX",
+      "market": "USDT_MARGINED_PERPETUAL_SWAP",
+      "timeframe": "4H",
+      "barOpenUTC": "2026-10-22T08:00:00Z",
+      "barCloseUTC": "2026-10-22T12:00:00Z",
+      "closed": true,
+      "barTimeEvidence": "4H chart open time UTC+3 minus 3h",
+      "observedAtUTC": "2026-10-22T18:13:16.451Z",
+      "barAgeSecondsAtObservation": 22396.451,
+      "latestClosedAtObservation": false,
+      "nextExpectedBarCloseUTC": "2026-10-22T16:00:00Z",
+      "freshnessRecheckRequired": true,
+      "ohlc": {
+        "open": 2428.59,
+        "high": 2429.3,
+        "low": 2393.35,
+        "close": 2399.17
+      },
+      "series": [
+        {
+          "label": "Upper",
+          "ordinal": 1,
+          "value": 2530.26,
+          "display": "2,530.26"
+        },
+        {
+          "label": "Lower",
+          "ordinal": 1,
+          "value": 2361.59,
+          "display": "2,361.59"
+        },
+        {
+          "label": "Crossunder",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        },
+        {
+          "label": "Crossover",
+          "ordinal": 1,
+          "value": null,
+          "display": "∅"
+        }
+      ],
+      "color": null,
+      "colorStatus": "NOT_INDIVIDUALLY_AUDITED_FOR_THIS_CLOSED_BAR",
+      "sourceType": "ORIGINAL_TRADINGVIEW_UI",
+      "method": "Work Cloud Browser authenticated session; visible Data window read via DOM after selecting closed bar",
+      "authenticationProof": "SESSION_CONFIRMED_NO_ACCOUNT_IDENTIFIER_PUBLISHED",
+      "eventReceipt": null,
+      "researchOnly": true,
+      "tradeAuthority": false,
+      "isPreviousBarForSlope": true,
+      "originalChannel": {
+        "upper": 2530.26,
+        "lower": 2361.59,
+        "center": null,
+        "centerStatus": "NOT_EXPOSED_AS_SERIES",
+        "crossunderMarker": null,
+        "crossoverMarker": null
+      },
+      "eventStatus": "ORIGINAL_CROSS_MARKERS_OBSERVED_NO_SERVER_ALERT_RECEIPT",
+      "freshnessAtPacketBuild": "PREVIOUS_BAR_CONTEXT"
+    }
+  ]
+}
