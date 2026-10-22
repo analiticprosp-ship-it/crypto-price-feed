@@ -1,0 +1,30 @@
+name: "09L SHADOW v0.8.5 Bybit event-clock replay"
+on:
+  push:
+    branches:
+      - research/09l-v08-5-20261022
+    paths:
+      - ".github/workflows/09l-v085-bybit-eventclock.yml"
+      - "research/09l/v0.8.5-2026-10-22/remote_v085_eventclock.py"
+permissions:
+  contents: write
+concurrency:
+  group: "09l-v085-eventclock"
+  cancel-in-progress: false
+jobs:
+  historical-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run immutable 2026-10-01 sample study
+        run: python research/09l/v0.8.5-2026-10-22/remote_v085_eventclock.py
+      - name: Write research-derived JSON only to this branch
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/v0.8.5-2026-10-22/derived/eventclock_2026-10-01.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'research(09L): publish v085 event-clock derived results'
+          git push origin HEAD:research/09l-v08-5-20261022
