@@ -1,0 +1,30 @@
+name: "09L CoinGlass licensed access presence audit (NO API CALL)"
+on:
+  push:
+    branches: [research/09l-v087-r2-expansion-20261022]
+    paths: [.github/workflows/09l-coinglass-access-preflight.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  presence-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      CG_API_KEY: ${{ secrets.CG_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Compile licensed Model2 PRIVATE R2 acquisition code, no API access"
+        run: |
+          python -m py_compile research/09l/auto/v1/coinglass_existing_r2_pit.py
+          python research/09l/auto/v1/coinglass_existing_r2_pit.py --selftest
+      - name: "Check ONLY whether key exists; never print or send key value"
+        shell: bash
+        run: |
+          if [ -z "${CG_API_KEY}" ]; then
+            echo "COINGLASS_KEY_NOT_CONFIGURED (no provider request, no billing)" >> "$GITHUB_STEP_SUMMARY"
+            echo "PIT_SNAPSHOT_MISSING"
+          else
+            echo "COINGLASS_KEY_CONFIGURED_ENTITLEMENT_UNVERIFIED (no provider request)" >> "$GITHUB_STEP_SUMMARY"
+            echo "COINGLASS_KEY_PRESENT_BUT_API_NOT_CALLED"
+          fi
