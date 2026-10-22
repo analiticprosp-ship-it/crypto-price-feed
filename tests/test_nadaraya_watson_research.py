@@ -38,7 +38,7 @@ class TestNadarayaWatson(unittest.TestCase):
 
     def test_historical_prefix_is_future_independent(self):
         seq = candles()
-        past_now = NOW - 10*P
+        past_now = NOW - 11*P
         baseline = calculate(seq[:-10], "1H", past_now)
         with_future = calculate(seq, "1H", past_now)
         self.assertEqual(baseline["center"], with_future["center"])
