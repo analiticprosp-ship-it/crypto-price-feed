@@ -1,0 +1,44 @@
+name: "09L AUTO v1.0 isolated first-run pilot"
+on:
+  push:
+    branches: [research/09l-auto-v1-20261022]
+    paths:
+      - research/09l/auto/v1/collector.py
+      - .github/workflows/09l-auto-v1-isolated-pilot.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: 09l-auto-v1-isolated-first-run
+  cancel-in-progress: false
+jobs:
+  test-and-archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Python compile and locked-history QA"
+        run: |
+          python -m py_compile research/09l/auto/v1/collector.py
+          python research/09l/auto/v1/collector.py --mode selftest
+      - name: "Archive public first-of-month liquidation samples and honest PIT status"
+        run: python -u research/09l/auto/v1/collector.py --mode daily
+      - name: "Upload only public-source derived audit metadata"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 09l-auto-v1-first-run-metadata
+          path: research/09l/auto/v1/derived/**/*.json
+          retention-days: 30
+          if-no-files-found: warn
+      - name: "Append to isolated research branch, not trading canon"
+        if: success()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/auto/v1/derived
+          git diff --cached --quiet && exit 0
+          git commit -m "research(09L AUTO): record public sample provenance and PIT availability"
+          git pull --rebase origin research/09l-auto-v1-20261022
+          git push origin HEAD:research/09l-auto-v1-20261022
