@@ -8,7 +8,13 @@ OUT=ROOT/"derived"/"v087_labels"
 CLOCKS=["07:24:30","08:32:30","13:49:30","14:19:30",
         "15:10:30","15:49:30","17:28:30","18:38:30"]
 STUDIES={"bybit_sep":("bybit","BTCUSDT","2026-09-01"),
-         "okx_oct":("okex-swap","BTC-USDT-SWAP","2026-10-01")}
+         "okx_oct":("okex-swap","BTC-USDT-SWAP","2026-10-01"),
+         "bybit_jun":("bybit","BTCUSDT","2026-06-01"),
+         "bybit_jul":("bybit","BTCUSDT","2026-07-01"),
+         "bybit_aug":("bybit","BTCUSDT","2026-08-01"),
+         "okx_jun":("okex-swap","BTC-USDT-SWAP","2026-06-01"),
+         "okx_jul":("okex-swap","BTC-USDT-SWAP","2026-07-01"),
+         "okx_aug":("okex-swap","BTC-USDT-SWAP","2026-08-01")}
 MONTHS={"bybit_latest":("bybit","BTCUSDT"),"okx_latest":("okex-swap","BTC-USDT-SWAP")}
 MAX_COMPRESSED_BYTES=160_000_000
 class Tap:
@@ -156,6 +162,7 @@ def main():
   assert sample_day(dt.datetime(2026,11,1,15,tzinfo=dt.timezone.utc))==dt.date(2026,10,1)
   assert sample_day(dt.datetime(2026,11,3,15,tzinfo=dt.timezone.utc))==dt.date(2026,11,1)
   assert len(CLOCKS)==8
+  assert len([k for k in STUDIES if k in ("bybit_jun","bybit_jul","bybit_aug","okx_jun","okx_jul","okx_aug")])==6
   ev=create_events(dt.date(2026,9,1))[0]
   assert validate_asof(ev,0) is None
   assert all("t" not in d for d in [])
