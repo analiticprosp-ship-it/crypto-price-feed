@@ -31,7 +31,7 @@ class TestNadarayaWatson(unittest.TestCase):
     def test_future_bar_and_live_candle_ignored(self):
         seq = candles()
         base = calculate(seq, "1H", NOW)
-        future = {"t": 200*P, "o": 1000, "h": 1200, "l": 900, "c": 1100}
+        future = {"t": 201*P, "o": 1000, "h": 1200, "l": 900, "c": 1100}
         test = calculate(seq + [future], "1H", NOW)
         self.assertEqual(base["center"], test["center"])
         self.assertEqual(base["upper"], test["upper"])
