@@ -1,0 +1,63 @@
+name: "09L v0.8.7 six monthly historical samples to EXISTING R2 (SHADOW)"
+on:
+  push:
+    branches: [research/09l-v087-r2-expansion-20261022]
+    paths: [.github/workflows/09l-v087-r2-six-months.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: research-09l-v087-six-months-r2
+  cancel-in-progress: false
+jobs:
+  historic-backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Install only R2 SDK"
+        run: python -m pip install --quiet boto3
+      - name: "Preflight prereg source and no-lookahead tests"
+        run: |
+          python -m py_compile research/09l/auto/v1/no_lookahead_v087.py research/09l/auto/v1/r2_archive_v087.py
+          python research/09l/auto/v1/no_lookahead_v087.py --selftest
+          python research/09l/auto/v1/r2_archive_v087.py --selftest
+      - name: "Reconstruct forward labels from six predeclared free historical first-of-month trade archives"
+        run: |
+          set -euo pipefail
+          for study in bybit_jun bybit_jul bybit_aug okx_jun okx_jul okx_aug; do
+            echo "BEGIN PRE-LOCKED STUDY $study"
+            python -u research/09l/auto/v1/no_lookahead_v087.py --study "$study"
+          done
+      - name: "Archive derived labels ONLY to existing private R2 bucket and verify SHA-256 readback"
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python -u research/09l/auto/v1/r2_archive_v087.py
+      - name: "Archive small reproducible research audit output"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 09l-v087-six-month-source-and-r2-receipts
+          path: |
+            research/09l/auto/v1/derived/v087_labels/**/*.json
+            research/09l/auto/v1/derived/r2_receipts/*.json
+          retention-days: 45
+          if-no-files-found: warn
+      - name: "Commit compact results ONLY to isolated research branch"
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/auto/v1/derived/v087_labels research/09l/auto/v1/derived/r2_receipts
+          if git diff --cached --quiet; then echo "NO_DERIVED_CHANGES"; exit 0; fi
+          if git diff --cached --name-only | grep -Ev '^research/09l/auto/v1/derived/'; then
+            echo "UNAUTHORIZED_WRITE" >&2; exit 1
+          fi
+          git commit -m "research(09L v087): append six monthly label source audits and R2 SHA256 readback receipts"
+          git pull --rebase origin research/09l-v087-r2-expansion-20261022
+          git push origin HEAD:research/09l-v087-r2-expansion-20261022
