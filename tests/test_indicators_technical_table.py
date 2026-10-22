@@ -24,13 +24,13 @@ class TestIndicatorTable(unittest.TestCase):
         self.assertEqual(quality(NOW+60001,NOW,15*60000),"NO_TIMESTAMP")
 
     def test_completed_hour_and_gap(self):
-        r=observed_taker(flow(),NOW)
+        r=observed_taker({'taker':flow()},NOW)
         self.assertEqual(r["status"],"FRESH")
         self.assertEqual(r["imbalancePct"],20)
         self.assertEqual(r["closedBars"],12)
         s=flow(); s["recentClosed5m"].pop(5)
-        self.assertEqual(observed_taker(s,NOW)["reason"],"GAPPED_1H_5M_BARS")
-        old=observed_taker(flow(END-2*HOUR),NOW)
+        self.assertEqual(observed_taker({'taker':s},NOW)["reason"],"GAPPED_1H_5M_BARS")
+        old=observed_taker({'taker':flow(END-2*HOUR)},NOW)
         self.assertEqual(old["status"],"STALE")
         self.assertEqual(old["imbalancePct"],20)
         self.assertEqual(observed_taker({},NOW)["status"],"NO_DATA")
