@@ -20,7 +20,7 @@ import zipfile
 import boto3
 
 from research.detector_h1h10_binance_flow_archive_pilot import (
-    OUT as PRICE_ROOT, validate_5m_zip, sha, put_immutable,
+    OUT as PRICE_ROOT, DAYS, validate_5m_zip, sha, put_immutable,
 )
 from research.detector_h1h10_binance_aggtrades_first_verified import (
     ROOT as FLOW_ROOT, DAY,
@@ -92,7 +92,7 @@ def kline_closes(body,market,symbol):
 
 def read_flow_5m(raw,day=DAY):
     """Do not accept unobserved 5m rows or price/flow publisher time conflation."""
-    if day!=DAY:
+    if day not in DAYS:
         raise ValueError("NON_FROZEN_DAY")
     start=int(dt.datetime.fromisoformat(day+"T00:00:00+00:00").timestamp()*1000)
     rows=list(csv.DictReader(io.StringIO(raw.decode("utf-8-sig"))))
