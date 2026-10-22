@@ -1,0 +1,74 @@
+name: "09L v0.8.7 frozen baseline vs flow (SHADOW, non-predictive)"
+on:
+  push:
+    branches: [research/09l-v087-predictive-baseline-20261022]
+    paths:
+      - .github/workflows/09l-v087-baseline-vs-flow-shadow.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: 09l-v087-frozen-baseline-validation
+  cancel-in-progress: false
+jobs:
+  date-split-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Compile Python and run frozen study's math self-tests"
+        run: |
+          python -m py_compile research/09l/v0.8.7-2026-10-22/predictive_retrospective_v087.py research/09l/v0.8.7-2026-10-22/archive_validation_to_existing_r2.py
+          python research/09l/v0.8.7-2026-10-22/predictive_retrospective_v087.py --selftest
+      - name: "Replay nine predeclared venue/day derived source files: train Jun-Aug, evaluate Sep-Oct"
+        run: python -u research/09l/v0.8.7-2026-10-22/predictive_retrospective_v087.py
+      - name: "Validate no-lookahead, dates, metrics and scientific guard"
+        run: |
+          python - <<'PY'
+          import json,pathlib,math
+          p=pathlib.Path('research/09l/v0.8.7-2026-10-22/derived/09L_v087_retrospective_chronological_baseline_vs_flow.json')
+          d=json.loads(p.read_text())
+          assert d['status']=='RETROSPECTIVE_BASELINE_DIAGNOSTIC_COMPLETE_NOT_PROSPECTIVE_OOS'
+          assert d['trade_canon_mutation'] is False
+          assert len(d['source_cohorts'])==9 and d['total_cases']==72
+          for horizon in ('300','30','60'):
+              x=d['horizons'][horizon]
+              assert x['n_calendar_days_train']==3 and x['n_calendar_days_holdout']==2
+              assert sum(v['n'] for v in x['metrics']['baseline']['by_date'].values())==x['n_holdout']
+              assert set(x['metrics']['baseline']['by_date'])=={'2026-09-01','2026-10-01'}
+              assert set(p['date'] for p in x['holdout_predictions'])=={'2026-09-01','2026-10-01'}
+              assert all(0<=p['model_probabilities_up'][m]<=1 for p in x['holdout_predictions'] for m in ('baseline','augmented','prevalence'))
+          print('FROZEN_DATE_SPLIT_RESEARCH_QA_PASS_NO_TRADING_AUTHORITY')
+          PY
+      - name: "Store ONLY validation JSON to existing private R2 and prove readback SHA"
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          python -m pip install --quiet boto3
+          python -u research/09l/v0.8.7-2026-10-22/archive_validation_to_existing_r2.py
+      - name: "Upload compact derived JSON and R2 receipts only"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 09l-v087-frozen-retrospective-lift-audit
+          path: research/09l/v0.8.7-2026-10-22/derived/*.json
+          retention-days: 60
+          if-no-files-found: warn
+      - name: "Commit ONLY shadow derived JSON files to isolated research branch"
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/v0.8.7-2026-10-22/derived
+          if git diff --cached --quiet; then exit 0; fi
+          if git diff --cached --name-only | grep -Ev '^research/09l/v0.8.7-2026-10-22/derived/[^/]+\.json$'; then
+            echo "UNAUTHORIZED_DERIVED_WRITE" >&2; exit 1
+          fi
+          git commit -m "research(09L v087): store prereg time-split flow-vs-baseline diagnostic and R2 checksum"
+          git pull --rebase origin research/09l-v087-predictive-baseline-20261022
+          git push origin HEAD:research/09l-v087-predictive-baseline-20261022
