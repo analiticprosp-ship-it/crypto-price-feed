@@ -1,0 +1,49 @@
+name: Build Indicators research technical table
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '3,18,33,48 * * * *'
+  pull_request:
+    paths:
+      - 'scripts/build_indicators_technical_table.py'
+      - 'tests/test_indicators_technical_table.py'
+      - '.github/workflows/build-indicators-technical-table.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_indicators_technical_table.py'
+      - 'tests/test_indicators_technical_table.py'
+      - '.github/workflows/build-indicators-technical-table.yml'
+  workflow_run:
+    workflows: ["Build research derivatives observability"]
+    types: [completed]
+permissions:
+  contents: write
+concurrency:
+  group: research-indicators-technical-table
+  cancel-in-progress: false
+jobs:
+  report:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate technical table provenance and status guards
+        run: python -m unittest discover -s tests -p 'test_indicators_technical_table.py' -v
+      - name: Generate independently timestamped research table
+        run: python scripts/build_indicators_technical_table.py
+      - name: Publish research table only
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add indicators-technical-table.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Update timestamped Indicators technical table'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 3
+          done
+          exit 1
