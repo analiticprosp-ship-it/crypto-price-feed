@@ -181,7 +181,7 @@ def selftest():
  a=solve([[3.,1.],[1.,2.]],[5.,5.])
  assert max(abs(a[0]-1),abs(a[1]-2))<1e-10
  assert round(sigmoid(0),8)==0.5
- assert 0<sigmoid(-900)<1 and 0<sigmoid(900)<=1
+ assert sigmoid(-900)==0.0 and sigmoid(900)==1.0  # expected IEEE754 saturation
  assert loss(.5,1)["brier"]==.25
  print(json.dumps({"status":"SELFTEST_PASS","cohort_count":9,"date_split":"2026-06..08 -> 2026-09..10"}))
 def main():
