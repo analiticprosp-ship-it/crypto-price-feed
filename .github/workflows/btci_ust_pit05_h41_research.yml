@@ -1,0 +1,31 @@
+name: BTCI UST PIT05 historical H41 source audit RESEARCH_ONLY
+on:
+  push:
+    branches:
+      - research/btci-ust-pit05-20261022
+permissions:
+  contents: read
+  actions: read
+jobs:
+  historical-h41-source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Collect original release-dated Federal Reserve H41 data without trading
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python -m pip install "requests>=2.31,<3" "beautifulsoup4>=4.12,<5"
+          python -m py_compile research/btci_ust_pit05_h41_archive_releases_2026-10-22.py
+          python research/btci_ust_pit05_h41_archive_releases_2026-10-22.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: btci-pit05-H41-DATED-BUT-NOT-ORIGINAL-BYTES
+          path: btci_pit05_output/
+          if-no-files-found: warn
+          retention-days: 30
