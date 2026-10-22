@@ -127,17 +127,26 @@ with cf.ThreadPoolExecutor(max_workers=5) as executor:
 save("H41_RELEASES_PARSED.json",found)
 mapped=[]
 for decision in days:
- rel=map_releases.get(dec)
+ rel=map_releases.get(decision)
  dat=found.get(rel.isoformat(),{}) if rel else {}
  v=dat.get("values",{})
- mapped.append({"date":decision,"h41_release_date":dat.get("release_date",rel.isoformat() if rel else None),"tga_wednesday_musd":v.get("TGA"),"reserves_wednesday_musd":v.get("RESERVES"),"h41_source_sha256":dat.get("source_sha256_retrieval_2026"),"method":dat.get("parse_method"),"strict_PIT":False})
+ actual=dat.get("release_date")
+ age=(dt.date.fromisoformat(decision)-dt.date.fromisoformat(actual)).days if actual else None
+ assert age is None or age>0, ("FUTURE_INFORMATION_FORBIDDEN",decision,actual)
+ weekly_fresh=bool(age is not None and age<=9)
+ mapped.append({"date":decision,"h41_release_date":actual,"h41_release_age_days":age,
+    "tga_wednesday_musd":v.get("TGA"),"reserves_wednesday_musd":v.get("RESERVES"),
+    "weekly_fresh_le9days":weekly_fresh,"h41_source_sha256":dat.get("source_sha256_retrieval_2026"),
+    "method":dat.get("parse_method"),"strict_PIT":False})
 assert len(mapped)==684 and [r["date"] for r in mapped]==days
 anchor_check=[]
 for k,values in expected.items():
  row=next(x for x in mapped if x["date"]==k)
  ok=[row["tga_wednesday_musd"],row["reserves_wednesday_musd"]]==values
  anchor_check.append({"date":k,"expected":values,"observed":[row["tga_wednesday_musd"],row["reserves_wednesday_musd"]],"match":ok})
-summary={"status":"H41_RELEASE_DATED_ARCHIVE_CURRENT_RETRIEVAL_NOT_ORIGINAL_BYTES","canonical":"BTCI v8.18d7","mode":"RESEARCH_ONLY","parent_sha256":SHA,"parent_weeks":684,"archive_index_sha256":sha(index),"archive_release_links":None,"candidate_thursdays":len(links),"index_is_dynamic_and_has_no_server_html_historical_links":True,"mapped_sundays":len(map_releases),"unique_release_urls":len(unique),"released_parsed_both":sum(set(x.get("values",{}))=={"TGA","RESERVES"} for x in found.values()),"tga_coverage":sum(r["tga_wednesday_musd"] is not None for r in mapped),"reserves_coverage":sum(r["reserves_wednesday_musd"] is not None for r in mapped),"anchor_comparison":{"match":sum(x["match"] for x in anchor_check),"n":len(anchor_check)},"strict_historical_pit":False,"trading_authority":False,"no_model_training":True,"main_branch_untouched":True,"R2_untouched":True}
+summary={"status":"H41_RELEASE_DATED_ARCHIVE_CURRENT_RETRIEVAL_NOT_ORIGINAL_BYTES","canonical":"BTCI v8.18d7","mode":"RESEARCH_ONLY","parent_sha256":SHA,"parent_weeks":684,"archive_index_sha256":sha(index),"archive_release_links":None,"candidate_thursdays":len(links),"index_is_dynamic_and_has_no_server_html_historical_links":True,"mapped_sundays":len(map_releases),"unique_release_urls":len(unique),"released_parsed_both":sum(set(x.get("values",{}))=={"TGA","RESERVES"} for x in found.values()),"tga_coverage":sum(r["tga_wednesday_musd"] is not None for r in mapped),"reserves_coverage":sum(r["reserves_wednesday_musd"] is not None for r in mapped),"weekly_fresh_coverage":sum(r["weekly_fresh_le9days"] for r in mapped),"stale_dates":[r["date"] for r in mapped if not r["weekly_fresh_le9days"]],"anchor_comparison":{"match":sum(x["match"] for x in anchor_check),"n":len(anchor_check)},"strict_historical_pit":False,"trading_authority":False,"no_model_training":True,"main_branch_untouched":True,"R2_untouched":True}
+assert all(x["match"] for x in anchor_check), ("FROZEN_15_ANCHORS_MISMATCH",anchor_check)
+assert sum(x["weekly_fresh_le9days"] for x in mapped)>=680, "INSUFFICIENT_DATED_RELEASE_FRESHNESS"
 save("JOIN_684_H41_SPARSE_OR_FULL.json",{"metadata":summary,"rows":mapped})
 save("ANCHOR_COMPARE_15.json",anchor_check)
 save("RESULT.json",summary)
