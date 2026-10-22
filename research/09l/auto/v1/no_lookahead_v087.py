@@ -60,7 +60,7 @@ def compute(study,now,check_only=False):
   rows=csv.DictReader(io.TextIOWrapper(gzip.GzipFile(fileobj=tap),encoding="utf8",newline=""))
   required={"symbol","local_timestamp","side","amount","price"}
   if not required.issubset(rows.fieldnames or []):raise ValueError("TRADES_SOURCE_MISSING_COLUMNS")
-  n=0;invalid=0;nonmono=0;last_ts=None;start_day=cases[0]["anchor_us"]-7*3600_000_000
+  n=0;invalid=0;nonmono=0;last_ts=None;start_day=int(dt.datetime(day.year,day.month,day.day,tzinfo=dt.timezone.utc).timestamp()*1e6)
   for row in rows:
    n+=1
    if row["symbol"]!=symbol:continue
@@ -118,9 +118,13 @@ def compute(study,now,check_only=False):
   else:caveat="NO_DECLARED_L2_RESTART_IN_THIS_HISTORICAL_WINDOW"
   output.append({"clock_utc":e["clock_utc"],"anchor_utc":dt.datetime.fromtimestamp(e["anchor_us"]/1e6,dt.timezone.utc).isoformat(),
    "reference_trade":t0,"past_features_only":feats,"forward_outcomes_not_features":outcomes,
-   "status":"LABEL_READY" if t0 and all(x["return_bps"] is not None for x in outcomes.values()) else "DATA_INCOMPLETE",
+   "status":"LABEL_READY" if t0 and all(x["return_bps"] is not None for x in outcomes.values()) else "MISSING_ASOF_PRICE_AT_FROZEN_2S_LIMIT",
+   "missing_reference_price":t0 is None,
+   "missing_forward_horizons_s":[int(h) for h,v in outcomes.items() if v["return_bps"] is None],
    "source_caveat":caveat})
- status="LABELS_REGISTERED_EXPLORATORY" if audit.get("status")=="OK" and len(output)==8 and all(x["status"]=="LABEL_READY" for x in output) else "DATA_INCOMPLETE"
+ status=("LABELS_REGISTERED_EXPLORATORY" if audit.get("status")=="OK" and len(output)==8 and all(x["status"]=="LABEL_READY" for x in output)
+    else "PARTIAL_LABELS_MISSING_ASOF_PRICE" if audit.get("status")=="OK" and len(output)==8
+    else "DATA_INCOMPLETE")
  obj={"study":"09L v0.8.7 no-lookahead forward label readiness","date_run_utc":now.isoformat(),
    "status":status,"source_date_utc":day.isoformat(),"venue":venue,"symbol":symbol,
    "source":audit,"eight_clock_fixed_cases":output,
