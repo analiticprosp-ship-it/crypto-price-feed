@@ -1,0 +1,24 @@
+name: H1H10 Binance Bounded Archive Offline Guard
+on:
+  pull_request:
+    paths:
+      - 'research/detector_h1h10_binance_flow_archive_pilot.py'
+      - 'research/test_detector_h1h10_binance_flow_archive_pilot.py'
+      - 'research/detector_h1h10_okx_receipt_join_guard.py'
+      - 'research/test_detector_h1h10_okx_receipt_join_guard.py'
+      - '.github/workflows/detector-h1h10-binance-flow-pilot.yml'
+      - '.github/workflows/detector-h1h10-binance-flow-pr.yml'
+permissions:
+  contents: read
+jobs:
+  source-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Strict offline source validation and partial-run archive guard
+        run: python -m unittest -v research.test_detector_h1h10_binance_flow_archive_pilot research.test_detector_h1h10_okx_receipt_join_guard
