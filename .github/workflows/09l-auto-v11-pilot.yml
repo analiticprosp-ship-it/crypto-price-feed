@@ -1,0 +1,67 @@
+name: "09L AUTO v1.1 research-only pilot"
+on:
+  push:
+    branches: [research/09l-auto-v1-1-20261022]
+    paths:
+      - .github/workflows/09l-auto-v11-pilot.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: 09l-auto-v11-pilot
+  cancel-in-progress: false
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Static compile and deterministic self-tests"
+        run: |
+          python -m py_compile research/09l/auto/v1/collector.py research/09l/auto/v1/live_book_sampler.py research/09l/auto/v1/no_lookahead_v087.py
+          python research/09l/auto/v1/collector.py --mode selftest
+          python research/09l/auto/v1/live_book_sampler.py --selftest
+          python research/09l/auto/v1/no_lookahead_v087.py --selftest
+      - name: "Fetch four fresh PUBLIC orderbook snapshots (PIT sparse only)"
+        run: python -u research/09l/auto/v1/live_book_sampler.py
+      - name: "v0.8.7 prior-only features and forward outcomes, independent Bybit Sep"
+        run: python -u research/09l/auto/v1/no_lookahead_v087.py --study bybit_sep
+      - name: "v0.8.7 prior-only features and forward outcomes, independent OKX Oct"
+        run: python -u research/09l/auto/v1/no_lookahead_v087.py --study okx_oct
+      - name: "Validate statuses and no-lookahead from derived files"
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          root=pathlib.Path('research/09l/auto/v1/derived/v087_labels')
+          files=sorted(root.rglob('*_no_lookahead_trade_labels.json'))
+          assert len(files)==2, files
+          for fn in files:
+              j=json.loads(fn.read_text())
+              assert j['status']=='LABELS_REGISTERED_EXPLORATORY',(fn,j['status'])
+              assert len(j['eight_clock_fixed_cases'])==8
+              assert j['features_strictly_pre_anchor']
+              assert all(c['status']=='LABEL_READY' for c in j['eight_clock_fixed_cases'])
+          print('V087_LABEL_READINESS_PASS_TWO_FILES')
+          PY
+      - name: "Publish ONLY derived research JSON artifacts"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 09l-auto-v11-pilot-results
+          path: |
+            research/09l/auto/v1/derived/v087_labels/**/*.json
+            research/09l/auto/v1/derived/live_snapshots/**/*.json
+          retention-days: 60
+          if-no-files-found: warn
+      - name: "Commit derived-only artifacts into isolated research branch"
+        if: success()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/auto/v1/derived/v087_labels research/09l/auto/v1/derived/live_snapshots
+          if git diff --cached --quiet; then exit 0; fi
+          git diff --cached --name-only | grep -Ev '^research/09l/auto/v1/derived/' && exit 1 || true
+          git commit -m 'research(09L AUTO): archive first hourly public book capture and v087 forward label readiness'
+          git pull --rebase origin research/09l-auto-v1-1-20261022
+          git push origin HEAD:research/09l-auto-v1-1-20261022
