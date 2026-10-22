@@ -79,7 +79,7 @@ def compute(study,now,check_only=False):
     if anchor-30_000_000<=ts<anchor:e["past"].append((ts,price,amount,side))
     for offset in (-30,0,30,60,300):
      target=anchor+offset*1_000_000
-     if ts<=target and (target-offset*1_000_000)<2**63:
+     if ts<=target:
       # overwrite with most recent captured trade at or before the query timestamp
       e["asof"][offset]=(ts,price)
   audit.update(status="OK",raw_rows=n,invalid_rows=invalid,nonmonotonic_capture_rows=nonmono,
@@ -105,8 +105,8 @@ def compute(study,now,check_only=False):
   feats["buy_amount_native"]=round(buy,8);feats["sell_amount_native"]=round(sell,8)
   feats["raw_flow_imbalance"]=(round((buy-sell)/(buy+sell),6) if buy+sell else None)
   pre=validate_asof(e,-30)
-  feats["past_30s_price_return_bps"]=(round(10000*(t0["price"]/pre["price"]-1),5) if pre and t0 else None)
-  feats["past_30s_high_low_range_bps"]=(round(10000*(max(x[1] for x in past)-min(x[1] for x in past))/t0["price"],5) if past and t0 else None)
+  feats["past_30s_price_return_bps"]=(round(10000*(past[-1][1]/pre["price"]-1),5) if pre and past else None)
+  feats["past_30s_high_low_range_bps"]=(round(10000*(max(x[1] for x in past)-min(x[1] for x in past))/past[-1][1],5) if past else None)
   outcomes={}
   for h in (30,60,300):
    ph=validate_asof(e,h)
