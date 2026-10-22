@@ -2,7 +2,7 @@
 """09L AUTO v1.1: unattended sparse hourly as-collected public orderbook snapshots.
 NO TRADING. Hourly REST samples are NOT continuous L2, liquidation clusters or CoinGlass PIT.
 """
-import argparse, datetime as dt, hashlib, json, math, pathlib, urllib.request
+import argparse, datetime as dt, hashlib, json, math, pathlib, urllib.request, urllib.error
 BASE=pathlib.Path(__file__).resolve().parent
 DEST=BASE/"derived"/"live_snapshots"
 SOURCES=[
@@ -67,8 +67,12 @@ def read_one(venue,kind,symbol,url):
     raw_response_sha256=hashlib.sha256(raw).hexdigest(),raw_response_bytes=len(raw),
     units="NATIVE_VENUE_BOOK_AMOUNTS_DO_NOT_CROSS_COMPARE",**vals,**extra)
  except Exception as e:
-  record.update(status="SOURCE_UNAVAILABLE_OR_INVALID",request_completed_ms=now_ms(),
-   error_type=type(e).__name__,error_tag=str(e)[:80] if isinstance(e,ValueError) else type(e).__name__)
+  restricted=isinstance(e,urllib.error.HTTPError) and e.code==403
+  record.update(status="SOURCE_ACCESS_RESTRICTED" if restricted else "SOURCE_UNAVAILABLE_OR_INVALID",
+   request_completed_ms=now_ms(),
+   error_type=type(e).__name__,
+   http_status=e.code if isinstance(e,urllib.error.HTTPError) else None,
+   error_tag=str(e)[:80] if isinstance(e,ValueError) else "HTTP_403_ACCESS_RESTRICTED" if restricted else type(e).__name__)
  return record
 def main(test=False):
  if test:
