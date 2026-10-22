@@ -1,4 +1,4 @@
-name: "09L AUTO v1.0 daily historical research metadata (NO TRADING)"
+name: "09L AUTO v1.1 daily source audits and no-lookahead label archive (NO TRADING)"
 on:
   push:
     branches: [main]
@@ -19,11 +19,11 @@ jobs:
       - name: "Checkout isolated research ref, not main"
         uses: actions/checkout@v4
         with:
-          ref: research/09l-auto-v1-20261022
+          ref: research/09l-auto-v1-1-20261022
           persist-credentials: false
       - name: "Compile and run exact historical QA selftest"
         run: |
-          python -m py_compile research/09l/auto/v1/collector.py
+          python -m py_compile research/09l/auto/v1/collector.py research/09l/auto/v1/no_lookahead_v087.py
           python -u research/09l/auto/v1/collector.py --mode selftest
       - name: "Append monthly FREE first-day-of-month data provenance and PIT missingness"
         # No CoinGlass API secrets are passed to this publicly scheduled research-only job.
@@ -36,6 +36,7 @@ jobs:
           path: |
             research/09l/auto/v1/derived/monthly/*.json
             research/09l/auto/v1/derived/runs/*.json
+            research/09l/auto/v1/derived/v087_labels/**/*.json
           retention-days: 30
           if-no-files-found: warn
       - name: "Writeback strictly under research/09l/auto/v1/derived to research branch ONLY"
@@ -45,7 +46,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git branch --show-current)" = "research/09l-auto-v1-20261022"
+          test "$(git branch --show-current)" = "research/09l-auto-v1-1-20261022"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research/09l/auto/v1/derived
@@ -55,6 +56,6 @@ jobs:
             exit 1
           fi
           git commit -m "research(09L AUTO): append daily source provenance, quality and PIT status"
-          git pull --rebase origin research/09l-auto-v1-20261022
+          git pull --rebase origin research/09l-auto-v1-1-20261022
           B64="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
-          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${B64}" push origin HEAD:research/09l-auto-v1-20261022
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${B64}" push origin HEAD:research/09l-auto-v1-1-20261022
