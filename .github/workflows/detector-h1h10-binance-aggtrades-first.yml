@@ -1,0 +1,41 @@
+name: H1H10 Binance Bounded Verified AggTrades Pilot
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/detector_h1h10_binance_aggtrades_first_verified.py'
+      - 'research/test_detector_h1h10_binance_aggtrades_first_verified.py'
+      - '.github/workflows/detector-h1h10-binance-aggtrades-first.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: h1h10-binance-aggtrades-bounded-once
+  cancel-in-progress: false
+jobs:
+  raw-flow-source-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'boto3>=1.35,<2'
+      - name: Enforce Spot microsecond and Futures millisecond clocks, gap masking and capped ZIPs
+        run: python -m unittest -v research.test_detector_h1h10_binance_aggtrades_first_verified
+      - name: Fetch at most 4 publisher SHA-checked Spot and USD-M aggTrades archives and independently audit raw 5m events
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python -m research.detector_h1h10_binance_aggtrades_first_verified
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h1h10-binance-aggtrades-bounded-provenance
+          path: detector_h1h10_aggtrades_first_source/verified.json
+          retention-days: 30
+          if-no-files-found: warn
