@@ -119,18 +119,45 @@ def oi_hour_change(perpetual, now_ms):
     }
 
 
-def build(structure, flow, now_ms):
+def build(structure, flow, now_ms, nw=None):
+    """N-W is a separate closed-bar research proxy, never a vendor-equivalent signal."""
+    nw = nw if isinstance(nw, dict) else {}
+    nw_generated_at = nw.get("generatedAt")
+    try:
+        source_age_ms = now_ms - int(datetime.fromisoformat(nw_generated_at.replace("Z", "+00:00")).timestamp() * 1000)
+    except (ValueError, TypeError, AttributeError):
+        source_age_ms = None
+    nw_fresh = source_age_ms is not None and 0 <= source_age_ms <= 30 * 60_000
+
     instruments = {}
     oi_map = (structure.get("instruments") or {})
     taker_map = (flow.get("instruments") or {})
     for symbol in SYMBOLS:
         pp = (oi_map.get(symbol) or {}).get("perpetual") or {}
         fb = (taker_map.get(symbol) or {}).get("taker") or {}
+        nw_frames = (nw.get("instruments") or {}).get(symbol) or {}
+        validated_frames = {}
+        if nw_fresh and nw.get("model", {}).get("parityStatus") == "TRADINGVIEW_PARITY_UNVERIFIED":
+            for timeframe in ("15m", "1H", "4H", "1D"):
+                state = nw_frames.get(timeframe) or {}
+                if (state.get("status") == "MODEL_OBSERVED_UNVERIFIED_PARITY"
+                        and state.get("closedCandleOnly") is True
+                        and state.get("parityStatus") == "TRADINGVIEW_PARITY_UNVERIFIED"):
+                    validated_frames[timeframe] = state
+        nw_bridge = ({
+            "status": "RESEARCH_PROXY_UNVERIFIED",
+            "parityStatus": "TRADINGVIEW_PARITY_UNVERIFIED",
+            "timeframes": validated_frames,
+            "notTradeApproval": True,
+        } if validated_frames else {
+            "status": NO_DATA,
+            "reason": "NO_FRESH_CLOSED_BAR_NW_PROXY_OR_TV_PARITY_NOT_TESTED",
+        })
         instruments[symbol] = {
             "oi1h": oi_hour_change(pp, now_ms),
             "taker1h": normalized_hour_taker(fb, now_ms),
             "liquidations": {"status": NO_DATA, "reason": "CONTINUOUS_VERIFIED_LIQUIDATION_STREAM_NOT_CONNECTED"},
-            "nadarayaWatsonNR": {"status": NO_DATA, "reason": "SCRIPT_AND_PARAMETERS_NOT_FIXED"},
+            "nadarayaWatsonNR": nw_bridge,
             "pifagorMFI": {"status": NO_DATA, "reason": "AUTHORIZED_ORIGINAL_ALERT_NOT_CONNECTED"},
             "bigGuyBurjKhalifa": {"status": NO_DATA, "reason": "AUTHORIZED_ORIGINAL_ALERT_NOT_CONNECTED"},
         }
@@ -138,7 +165,7 @@ def build(structure, flow, now_ms):
         "schemaVersion": "derivatives-observability-1.0.0",
         "generatedAt": datetime.fromtimestamp(now_ms / 1000, timezone.utc).isoformat(),
         "researchOnly": True, "notTradeApproval": True, "noSpotOrFuturesWriteback": True,
-        "sourceFiles": ["market-structure.json", "detector-rest-flow.json"],
+        "sourceFiles": ["market-structure.json", "detector-rest-flow.json", "nadaraya-watson-research.json"],
         "sourceTimestamps": {
             "marketStructure": structure.get("generatedAt"),
             "detectorRestFlow": flow.get("generatedAt")},
@@ -159,7 +186,8 @@ def main():
             return {}
     payload = build(load(ROOT / "market-structure.json"),
                     load(ROOT / "detector-rest-flow.json"),
-                    int(time.time() * 1000))
+                    int(time.time() * 1000),
+                    load(ROOT / "nadaraya-watson-research.json"))
     output = ROOT / "derivatives-observability.json"
     output.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     ready = sum(field["status"] == OBSERVED for x in payload["instruments"].values()

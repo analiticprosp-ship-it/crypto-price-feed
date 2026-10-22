@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'scripts/build_derivatives_observability.py'
+      - 'scripts/build_nadaraya_watson_research.py'
       - 'tests/test_derivatives_observability.py'
       - '.github/workflows/build-derivatives-observability.yml'
   push:
@@ -16,6 +17,7 @@ on:
     workflows:
       - "Update market structure"
       - "Update Detector serverless REST research"
+      - "Build research Nadaraya Watson"
     types: [completed]
 permissions:
   contents: write

@@ -111,5 +111,28 @@ class TestBuilder(unittest.TestCase):
         self.assertEqual(out["bigGuyBurjKhalifa"]["status"], "NO_DATA")
 
 
+    def test_nw_proxy_visible_without_vendor_parity_promotion(self):
+        from datetime import datetime, timezone
+        stamp = datetime.fromtimestamp(NOW/1000, timezone.utc).isoformat()
+        nw = {
+            "generatedAt": stamp,
+            "model": {"parityStatus": "TRADINGVIEW_PARITY_UNVERIFIED"},
+            "instruments": {"BTC": {"1H": {
+                "status": "MODEL_OBSERVED_UNVERIFIED_PARITY",
+                "closedCandleOnly": True,
+                "parityStatus": "TRADINGVIEW_PARITY_UNVERIFIED",
+                "center": 90000.0, "upper": 91000.0,
+                "lower": 89000.0,
+            }}},
+        }
+        result = build({}, {}, NOW, nw)["instruments"]["BTC"]["nadarayaWatsonNR"]
+        self.assertEqual(result["status"], "RESEARCH_PROXY_UNVERIFIED")
+        self.assertEqual(result["timeframes"]["1H"]["center"], 90000.0)
+        self.assertTrue(result["notTradeApproval"])
+        unavailable = build({}, {}, NOW + 31 * 60_000, nw)["instruments"]["BTC"]["nadarayaWatsonNR"]
+        self.assertEqual(unavailable["status"], "NO_DATA")
+        self.assertEqual(build({}, {}, NOW)["instruments"]["BTC"]["nadarayaWatsonNR"]["status"], "NO_DATA")
+
+
 if __name__ == "__main__":
     unittest.main()
