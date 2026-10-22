@@ -28,6 +28,11 @@ jobs:
       - name: "Append monthly FREE first-day-of-month data provenance and PIT missingness"
         # No CoinGlass API secrets are passed to this publicly scheduled research-only job.
         run: python -u research/09l/auto/v1/collector.py --mode daily
+      - name: "Register monthly no-lookahead v0.8.7 research observations (no model fitting)"
+        run: |
+          python research/09l/auto/v1/no_lookahead_v087.py --selftest
+          python -u research/09l/auto/v1/no_lookahead_v087.py --study bybit_latest
+          python -u research/09l/auto/v1/no_lookahead_v087.py --study okx_latest
       - name: "Archive audit artifact only; no raw vendor data"
         if: always()
         uses: actions/upload-artifact@v4
