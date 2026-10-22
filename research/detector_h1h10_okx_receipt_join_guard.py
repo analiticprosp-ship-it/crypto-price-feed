@@ -228,6 +228,37 @@ def diagnose(report, raw_polls, candidate_check_at_ms):
     }
 
 
+def select_latest_full_receipt(s3, bucket, keys):
+    """Select most recent fully SHA-linked nine-HTTP report, never forge missing data.
+
+    All candidate parent manifests pass R2 metadata SHA validation. Partial runs
+    are checked as partial evidence and recorded, but never promoted to nine
+    source receipts. A *claimed complete* run with broken provenance fails
+    closed and cannot be silently skipped for an older report.
+    """
+    if not keys:
+        raise ValueError("PILOT_REPORTS_MISSING")
+    skipped = []
+    ordered = sorted(keys, key=lambda k: tuple(int(x) for x in
+        k.rsplit("/", 1)[1].removesuffix(".json").split("-")), reverse=True)
+    for key in ordered:
+        report = verified_json(s3, bucket, key)
+        verified, legacy = check_one(s3, bucket, report, verify_raw=True)
+        if report["status"] == "SOURCES_ALL_RECEIVED":
+            if verified != 9 or legacy:
+                # Claimed completeness without 9 raw pins is defective, except
+                # the explicit old bootstrap with 9 missing legacy raw keys.
+                if legacy and verified == 0 and legacy == 9:
+                    skipped.append({"run": report["run"], "reason": "LEGACY_BOOTSTRAP_UNLINKED"})
+                    continue
+                raise ValueError("FULL_RUN_RAW_PROVENANCE_DEFECT")
+            return key, report, verified, skipped
+        skipped.append({"run": report["run"], "reason": "PARTIAL_SOURCE_FAILURE",
+                        "verified_source_receipts": verified,
+                        "legacy_raw_pins_missing": legacy})
+    raise ValueError("NO_COMPLETE_NINE_STREAM_SHA_PROVEN_RUN")
+
+
 def main():
     import boto3
     bucket = os.environ["R2_BUCKET"]
@@ -246,13 +277,10 @@ def main():
             raise ValueError("PILOT_REPORT_SAFETY_CAP_EXCEEDED")
     if not keys:
         raise ValueError("PILOT_REPORTS_MISSING")
-    # Run IDs are monotonically allocated by GitHub, while attempts may repeat.
-    key = max(keys, key=lambda k: tuple(int(x) for x in
-              k.rsplit("/", 1)[1].removesuffix(".json").split("-")))
-    report = verified_json(s3, bucket, key)
-    verified, legacy = check_one(s3, bucket, report, verify_raw=True)
-    if verified != 9 or legacy:
-        raise ValueError("NINE_RAW_SHA_READBACKS_REQUIRED")
+    # A failed/partial collection does not erase older valid research receipts.
+    # Verify the latest manifests independently. Skip only explicitly incomplete
+    # source sets; integrity defects in a claimed complete set remain fatal.
+    key, report, verified, skipped = select_latest_full_receipt(s3, bucket, keys)
     raw_polls = {
         name: verified_json(s3, bucket, proof["raw_r2_key"], proof["raw_sha256"])
         for name, proof in report["source_reports"].items()
@@ -264,12 +292,15 @@ def main():
     result["source_report_raw_sha_readback_count"] = verified
     result["source_report_sha_provenance"] = "R2_METADATA_AND_RAW_LINKED_OBJECTS_VERIFIED"
     result["not_exchange_first_release"] = True
+    result["newer_partial_or_legacy_runs_not_joined"] = skipped
+    result["selection_rule"] = "MOST_RECENT_SHA_VERIFIED_COMPLETE_9STREAM_RUN_ONLY"
     run_id = os.environ["GITHUB_RUN_ID"]
     attempt = os.environ.get("GITHUB_RUN_ATTEMPT", "1")
     out_key = OUTPUT_PREFIX + "/" + run_id + "-" + attempt + ".json"
     digest = store(s3, bucket, out_key, result)  # Write, R2 read back and compare.
     counts = {s: r["cutoff_passed_candidates"] for s, r in result["candidates"].items()}
     output = {"r2_key": out_key, "sha256": digest, "verified_raw_sha": verified,
+              "newer_partial_reports_excluded": sum(x["reason"] == "PARTIAL_SOURCE_FAILURE" for x in skipped),
               "source_run": report["run"], "candidate_counts": counts,
               "causal_authorized": 0, "confirmatory": "BLOCKED"}
     print("H1H10_RECEIPT_JOIN_CANDIDATE_ONLY", json.dumps(output), flush=True)
