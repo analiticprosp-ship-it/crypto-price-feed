@@ -102,7 +102,7 @@ def run(day,s3,bucket,run_id,attempt,loader=fetch_http):
             item={"day":day,"venue":"Binance","market":market,"symbol":symbol}
             try:
                 f_url=archive_url(market,"aggTrades",symbol,day)
-                flow_head=loader(f_url,"HEAD")
+                flow_head=loader(f_url,"HEAD",cap=0)
                 n=flow_head.get("bytes")
                 if (flow_head.get("http")!=200 or type(n) is not int
                     or not 0<n<=MAX_ZIP_BYTES
