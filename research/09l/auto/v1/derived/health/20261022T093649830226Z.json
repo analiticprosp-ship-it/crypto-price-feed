@@ -1,0 +1,77 @@
+{
+  "coinglass_model2_pit": "MISSING_NO_CREDENTIALS_OR_PRIVATE_PIT_COLLECTOR",
+  "latest_live_source_status": {
+    "bybit_linear": {
+      "error_tag": "HTTP_403_ACCESS_RESTRICTED",
+      "http_status": 403,
+      "last_capture_utc": "2026-10-22T09:33:45.918Z",
+      "source_age_ms": null,
+      "status": "SOURCE_ACCESS_RESTRICTED"
+    },
+    "bybit_spot": {
+      "error_tag": "HTTP_403_ACCESS_RESTRICTED",
+      "http_status": 403,
+      "last_capture_utc": "2026-10-22T09:33:45.918Z",
+      "source_age_ms": null,
+      "status": "SOURCE_ACCESS_RESTRICTED"
+    },
+    "okx_spot": {
+      "error_tag": null,
+      "http_status": null,
+      "last_capture_utc": "2026-10-22T09:33:45.918Z",
+      "source_age_ms": 59,
+      "status": "SOURCE_SNAPSHOT_VALID"
+    },
+    "okx_swap": {
+      "error_tag": null,
+      "http_status": null,
+      "last_capture_utc": "2026-10-22T09:33:45.918Z",
+      "source_age_ms": 62,
+      "status": "SOURCE_SNAPSHOT_VALID"
+    }
+  },
+  "live_snapshot_coverage": {
+    "captured_completed_hours": 0,
+    "completed_hours_since_activation": 0,
+    "count_samples_total": 2,
+    "from_first_observed_utc": "2026-10-22T09:32:07.917000+00:00",
+    "missing_completed_hours": [],
+    "note": "Github Actions scheduled UTC cron is best-effort; sparse snapshots do not cover intra-hour events."
+  },
+  "predictive_cascade_model_status": "NOT_VALIDATED_NO_INDEPENDENT_CHRONOLOGICAL_TEST",
+  "report_at_utc": "2026-10-22T09:36:49.830226+00:00",
+  "status": "CAPTURE_WITH_SOURCE_GAPS",
+  "study": "09L AUTO v1.1 data health",
+  "trading_canon_changes": false,
+  "v087_historical_labels": {
+    "complete_case_labels": 22,
+    "datasets": [
+      {
+        "case_count": 8,
+        "cases_ready": 6,
+        "date": "2026-09-01",
+        "source_sha256": "25ff55e4433f2cc9efcc81e91dbac39a29f0c7eeb1cc3e210a0ea5853fc215ea",
+        "status": "PARTIAL_LABELS_MISSING_ASOF_PRICE",
+        "venue": "bybit"
+      },
+      {
+        "case_count": 8,
+        "cases_ready": 8,
+        "date": "2026-10-01",
+        "source_sha256": "abf7e614b2d6b45dbfa85bdc79432228fa034cbbdba9b7a470078d14abf3c7b6",
+        "status": "LABELS_REGISTERED_EXPLORATORY",
+        "venue": "bybit"
+      },
+      {
+        "case_count": 8,
+        "cases_ready": 8,
+        "date": "2026-10-01",
+        "source_sha256": "ce646e61b99804e6e9c08a7b3d6c16579c68bde72eea4525198d32d216a8c637",
+        "status": "LABELS_REGISTERED_EXPLORATORY",
+        "venue": "okex-swap"
+      }
+    ],
+    "incomplete_or_missing_case_labels": 2,
+    "observed_cases": 24
+  }
+}
