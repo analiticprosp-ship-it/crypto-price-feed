@@ -133,6 +133,14 @@ def compute(study,now,check_only=False):
    "sample_count":len(output),"science_gate":"PREDICTIVE_LIFT_NOT_TESTED_INSUFFICIENT_INDEPENDENT_OBSERVATIONS",
    "coinglass_historical_pit":"MISSING","dealer_signed_gamma":"UNKNOWN",
    "trading_canon_unchanged":True}
+ if audit.get("status")!="OK":
+  # Never permanently block monthly future samples when the provider has not published the file yet.
+  # Keep each failure as an append-only audit and try again on the next daily cycle.
+  attempt=OUT/"attempts"/venue/day.isoformat()/(now.strftime("%Y%m%dT%H%M%S%fZ")+".json")
+  attempt.parent.mkdir(parents=True,exist_ok=True)
+  with attempt.open("x",encoding="utf8") as o:o.write(json.dumps(obj,ensure_ascii=False,indent=2,sort_keys=True)+"\n")
+  return {"status":status,"path":str(attempt.relative_to(ROOT)),"study":study,
+    "source_status":audit.get("status"),"retry_next_schedule":True}
  result_path.parent.mkdir(parents=True,exist_ok=True)
  with result_path.open("x",encoding="utf8") as o:o.write(json.dumps(obj,ensure_ascii=False,indent=2,sort_keys=True)+"\n")
  return {"status":status,"path":str(result_path.relative_to(ROOT)),"study":study,
