@@ -23,7 +23,7 @@ jobs:
           persist-credentials: false
       - name: "Compile and run exact historical QA selftest"
         run: |
-          python -m py_compile research/09l/auto/v1/collector.py research/09l/auto/v1/no_lookahead_v087.py
+          python -m py_compile research/09l/auto/v1/collector.py research/09l/auto/v1/no_lookahead_v087.py research/09l/auto/v1/health_report.py
           python -u research/09l/auto/v1/collector.py --mode selftest
       - name: "Append monthly FREE first-day-of-month data provenance and PIT missingness"
         # No CoinGlass API secrets are passed to this publicly scheduled research-only job.
@@ -33,6 +33,10 @@ jobs:
           python research/09l/auto/v1/no_lookahead_v087.py --selftest
           python -u research/09l/auto/v1/no_lookahead_v087.py --study bybit_latest
           python -u research/09l/auto/v1/no_lookahead_v087.py --study okx_latest
+      - name: "Publish daily data-health report with explicit missingness"
+        run: |
+          python research/09l/auto/v1/health_report.py --selftest
+          python -u research/09l/auto/v1/health_report.py
       - name: "Archive audit artifact only; no raw vendor data"
         if: always()
         uses: actions/upload-artifact@v4
@@ -42,6 +46,7 @@ jobs:
             research/09l/auto/v1/derived/monthly/*.json
             research/09l/auto/v1/derived/runs/*.json
             research/09l/auto/v1/derived/v087_labels/**/*.json
+            research/09l/auto/v1/derived/health/*.json
           retention-days: 30
           if-no-files-found: warn
       - name: "Writeback strictly under research/09l/auto/v1/derived to research branch ONLY"
