@@ -1,0 +1,1165 @@
+{
+  "research": "09L",
+  "version": "v0.8.5",
+  "source_date": "2026-10-01",
+  "run_at_utc": "2026-10-22T08:45:25.177658+00:00",
+  "status": "EVENTCLOCK_EXPLORATORY_COMPLETE",
+  "source_provenance": [
+    {
+      "kind": "liquidations",
+      "url": "https://datasets.tardis.dev/v1/bybit/liquidations/2026/10/01/PERPETUALS.csv.gz",
+      "status": "OK",
+      "raw_rows": 11785,
+      "btc_rows": 526,
+      "case_rows": 171,
+      "compressed_sha256": "e236aca7b8e0ba0b32e39779bcf243f08747785c14e6d18539c551f3b4f040b5",
+      "compressed_bytes": 189015,
+      "sha_match_v083": true
+    },
+    {
+      "kind": "trades",
+      "url": "https://datasets.tardis.dev/v1/bybit/trades/2026/10/01/BTCUSDT.csv.gz",
+      "status": "OK",
+      "raw_rows": 1475829,
+      "btc_rows": 1475829,
+      "case_rows": 168177,
+      "compressed_sha256": "abf7e614b2d6b45dbfa85bdc79432228fa034cbbdba9b7a470078d14abf3c7b6",
+      "compressed_bytes": 41730563,
+      "sha_match_v083": true
+    },
+    {
+      "kind": "quotes",
+      "url": "https://datasets.tardis.dev/v1/bybit/quotes/2026/10/01/BTCUSDT.csv.gz",
+      "status": "OK",
+      "raw_rows": 1311333,
+      "btc_rows": 1311333,
+      "case_rows": 83716,
+      "compressed_sha256": "021c7cd3437b0ba14331a387de00dea7d622098964e0a268e865896584f8781a",
+      "compressed_bytes": 15934652,
+      "sha_match_v083": true
+    },
+    {
+      "kind": "book_snapshot_5",
+      "url": "https://datasets.tardis.dev/v1/bybit/book_snapshot_5/2026/10/01/BTCUSDT.csv.gz",
+      "status": "OK",
+      "raw_rows": 1562205,
+      "btc_rows": 1562205,
+      "case_rows": 93930,
+      "compressed_sha256": "b143c170e6a36c1f6cdbe7727b50c36fa3495eaa2d2b9612737e9a6c1d88f8d1",
+      "compressed_bytes": 25620607,
+      "sha_match_v083": true
+    }
+  ],
+  "frozen_cases": [
+    {
+      "minute_utc": "2026-10-01T07:24:00Z",
+      "side": "sell",
+      "prior_minute_close_return_5m_bps": -3.9949,
+      "clock": "first_observed_same_side_liquidation_local_timestamp",
+      "t0_utc": "2026-10-01T07:24:02.018689+00:00",
+      "cluster_first_hit_verified": false,
+      "dealer_signed_gamma": "UNKNOWN",
+      "case_source_rows": {
+        "liquidations": 35,
+        "trades": 32970,
+        "quotes": 11696,
+        "book_snapshot_5": 12879
+      },
+      "trades_pre30": {
+        "message_count": 1390,
+        "buy_amount_raw": 29.276,
+        "sell_amount_raw": 28.202,
+        "buy_minus_sell_raw": 1.074
+      },
+      "liq_pre30": {
+        "message_count": 1,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0.018,
+        "buy_minus_sell_raw": -0.018
+      },
+      "trades_post30": {
+        "message_count": 2080,
+        "buy_amount_raw": 44.689,
+        "sell_amount_raw": 90.043,
+        "buy_minus_sell_raw": -45.354
+      },
+      "liq_post30": {
+        "message_count": 2,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 1.559,
+        "buy_minus_sell_raw": -1.559
+      },
+      "trades_post60": {
+        "message_count": 9534,
+        "buy_amount_raw": 351.744,
+        "sell_amount_raw": 868.522,
+        "buy_minus_sell_raw": -516.778
+      },
+      "liq_post60": {
+        "message_count": 20,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 3.312,
+        "buy_minus_sell_raw": -3.312
+      },
+      "trades_post300": {
+        "message_count": 28795,
+        "buy_amount_raw": 823.954,
+        "sell_amount_raw": 1299.237,
+        "buy_minus_sell_raw": -475.283
+      },
+      "liq_post300": {
+        "message_count": 34,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 5.819,
+        "buy_minus_sell_raw": -5.819
+      },
+      "p0": 83540.3,
+      "p30": 83500.1,
+      "return_30s_bps": -4.812,
+      "p60": 83357.3,
+      "return_60s_bps": -21.9056,
+      "p300": 83300.0,
+      "return_300s_bps": -28.7646,
+      "quote_0s": {
+        "spread_bps": 0.01197,
+        "bid": 83540.3,
+        "ask": 83540.4,
+        "bid_qty_raw": 0.881,
+        "ask_qty_raw": 2.228,
+        "staleness_ms": 13.069
+      },
+      "top5_0s": {
+        "spread_bps": 0.01197,
+        "bid": 83540.3,
+        "ask": 83540.4,
+        "bid_qty_raw": 2.29,
+        "ask_qty_raw": 2.351,
+        "staleness_ms": 13.069
+      },
+      "quote_30s": {
+        "spread_bps": 0.01198,
+        "bid": 83500.0,
+        "ask": 83500.1,
+        "bid_qty_raw": 3.191,
+        "ask_qty_raw": 5.194,
+        "staleness_ms": 13.044
+      },
+      "top5_30s": {
+        "spread_bps": 0.01198,
+        "bid": 83500.0,
+        "ask": 83500.1,
+        "bid_qty_raw": 3.3259999999999996,
+        "ask_qty_raw": 6.7219999999999995,
+        "staleness_ms": 13.044
+      },
+      "quote_60s": {
+        "spread_bps": 0.012,
+        "bid": 83357.2,
+        "ask": 83357.3,
+        "bid_qty_raw": 1.596,
+        "ask_qty_raw": 3.78,
+        "staleness_ms": 33.4
+      },
+      "top5_60s": {
+        "spread_bps": 0.012,
+        "bid": 83357.2,
+        "ask": 83357.3,
+        "bid_qty_raw": 1.8,
+        "ask_qty_raw": 6.633,
+        "staleness_ms": 33.4
+      },
+      "quote_300s": {
+        "spread_bps": 0.012,
+        "bid": 83300.0,
+        "ask": 83300.1,
+        "bid_qty_raw": 0.047,
+        "ask_qty_raw": 6.947,
+        "staleness_ms": 73.436
+      },
+      "top5_300s": {
+        "spread_bps": 0.012,
+        "bid": 83300.0,
+        "ask": 83300.1,
+        "bid_qty_raw": 0.052,
+        "ask_qty_raw": 7.747,
+        "staleness_ms": 73.436
+      },
+      "same_direction_20bps_5m_descriptive": true,
+      "minute_vs_event_return_diff_bps": -24.7697,
+      "status": "MECHANICS_ONLY"
+    },
+    {
+      "minute_utc": "2026-10-01T08:32:00Z",
+      "side": "sell",
+      "prior_minute_close_return_5m_bps": 23.5641,
+      "clock": "first_observed_same_side_liquidation_local_timestamp",
+      "t0_utc": "2026-10-01T08:32:00.019105+00:00",
+      "cluster_first_hit_verified": false,
+      "dealer_signed_gamma": "UNKNOWN",
+      "case_source_rows": {
+        "liquidations": 37,
+        "trades": 22612,
+        "quotes": 10579,
+        "book_snapshot_5": 11726
+      },
+      "trades_pre30": {
+        "message_count": 2880,
+        "buy_amount_raw": 20.698,
+        "sell_amount_raw": 110.729,
+        "buy_minus_sell_raw": -90.031
+      },
+      "liq_pre30": {
+        "message_count": 7,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 3.759,
+        "buy_minus_sell_raw": -3.759
+      },
+      "trades_post30": {
+        "message_count": 1820,
+        "buy_amount_raw": 17.602,
+        "sell_amount_raw": 99.216,
+        "buy_minus_sell_raw": -81.614
+      },
+      "liq_post30": {
+        "message_count": 12,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0.408,
+        "buy_minus_sell_raw": -0.408
+      },
+      "trades_post60": {
+        "message_count": 6271,
+        "buy_amount_raw": 51.706,
+        "sell_amount_raw": 479.539,
+        "buy_minus_sell_raw": -427.833
+      },
+      "liq_post60": {
+        "message_count": 27,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 5.45,
+        "buy_minus_sell_raw": -5.45
+      },
+      "trades_post300": {
+        "message_count": 18029,
+        "buy_amount_raw": 308.266,
+        "sell_amount_raw": 745.737,
+        "buy_minus_sell_raw": -437.471
+      },
+      "liq_post300": {
+        "message_count": 30,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 5.548,
+        "buy_minus_sell_raw": -5.548
+      },
+      "p0": 83227.8,
+      "p30": 83209.1,
+      "return_30s_bps": -2.2468,
+      "p60": 83134.9,
+      "return_60s_bps": -11.1621,
+      "p300": 83271.3,
+      "return_300s_bps": 5.2266,
+      "quote_0s": {
+        "spread_bps": 0.01201,
+        "bid": 83235.2,
+        "ask": 83235.3,
+        "bid_qty_raw": 2.153,
+        "ask_qty_raw": 1.756,
+        "staleness_ms": 13.871
+      },
+      "top5_0s": {
+        "spread_bps": 0.01201,
+        "bid": 83235.2,
+        "ask": 83235.3,
+        "bid_qty_raw": 3.204,
+        "ask_qty_raw": 1.761,
+        "staleness_ms": 13.871
+      },
+      "quote_30s": {
+        "spread_bps": 0.01202,
+        "bid": 83209.1,
+        "ask": 83209.2,
+        "bid_qty_raw": 3.088,
+        "ask_qty_raw": 1.662,
+        "staleness_ms": 33.828
+      },
+      "top5_30s": {
+        "spread_bps": 0.01202,
+        "bid": 83209.1,
+        "ask": 83209.2,
+        "bid_qty_raw": 3.274,
+        "ask_qty_raw": 1.67,
+        "staleness_ms": 33.828
+      },
+      "quote_60s": {
+        "spread_bps": 0.01203,
+        "bid": 83134.9,
+        "ask": 83135.0,
+        "bid_qty_raw": 3.748,
+        "ask_qty_raw": 2.186,
+        "staleness_ms": 13.635
+      },
+      "top5_60s": {
+        "spread_bps": 0.01203,
+        "bid": 83134.9,
+        "ask": 83135.0,
+        "bid_qty_raw": 5.263,
+        "ask_qty_raw": 2.38,
+        "staleness_ms": 13.635
+      },
+      "quote_300s": {
+        "spread_bps": 0.01201,
+        "bid": 83271.3,
+        "ask": 83271.4,
+        "bid_qty_raw": 0.05,
+        "ask_qty_raw": 5.313,
+        "staleness_ms": 73.896
+      },
+      "top5_300s": {
+        "spread_bps": 0.01201,
+        "bid": 83271.3,
+        "ask": 83271.4,
+        "bid_qty_raw": 0.301,
+        "ask_qty_raw": 5.324999999999999,
+        "staleness_ms": 73.896
+      },
+      "same_direction_20bps_5m_descriptive": false,
+      "minute_vs_event_return_diff_bps": -18.3375,
+      "status": "MECHANICS_ONLY"
+    },
+    {
+      "minute_utc": "2026-10-01T13:49:00Z",
+      "side": "control",
+      "prior_minute_close_return_5m_bps": 31.0037,
+      "clock": "minute_plus_30s_control",
+      "t0_utc": "2026-10-01T13:49:30+00:00",
+      "cluster_first_hit_verified": false,
+      "dealer_signed_gamma": "UNKNOWN",
+      "case_source_rows": {
+        "liquidations": 0,
+        "trades": 19471,
+        "quotes": 10745,
+        "book_snapshot_5": 12172
+      },
+      "trades_pre30": {
+        "message_count": 1320,
+        "buy_amount_raw": 13.108,
+        "sell_amount_raw": 21.933,
+        "buy_minus_sell_raw": -8.825
+      },
+      "liq_pre30": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post30": {
+        "message_count": 4725,
+        "buy_amount_raw": 77.601,
+        "sell_amount_raw": 188.214,
+        "buy_minus_sell_raw": -110.613
+      },
+      "liq_post30": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post60": {
+        "message_count": 6801,
+        "buy_amount_raw": 105.521,
+        "sell_amount_raw": 205.985,
+        "buy_minus_sell_raw": -100.464
+      },
+      "liq_post60": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post300": {
+        "message_count": 15932,
+        "buy_amount_raw": 229.771,
+        "sell_amount_raw": 295.133,
+        "buy_minus_sell_raw": -65.362
+      },
+      "liq_post300": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "p0": 83812.3,
+      "p30": 83635.2,
+      "return_30s_bps": -21.1306,
+      "p60": 83730.5,
+      "return_60s_bps": -9.7599,
+      "p300": 83855.6,
+      "return_300s_bps": 5.1663,
+      "quote_0s": {
+        "spread_bps": 0.01193,
+        "bid": 83812.3,
+        "ask": 83812.4,
+        "bid_qty_raw": 2.511,
+        "ask_qty_raw": 7.339,
+        "staleness_ms": 74.267
+      },
+      "top5_0s": {
+        "spread_bps": 0.01193,
+        "bid": 83812.3,
+        "ask": 83812.4,
+        "bid_qty_raw": 2.517,
+        "ask_qty_raw": 8.323,
+        "staleness_ms": 74.267
+      },
+      "quote_30s": {
+        "spread_bps": 0.01196,
+        "bid": 83635.1,
+        "ask": 83635.2,
+        "bid_qty_raw": 2.313,
+        "ask_qty_raw": 1.063,
+        "staleness_ms": 74.055
+      },
+      "top5_30s": {
+        "spread_bps": 0.01196,
+        "bid": 83635.1,
+        "ask": 83635.2,
+        "bid_qty_raw": 2.319,
+        "ask_qty_raw": 1.0679999999999998,
+        "staleness_ms": 74.055
+      },
+      "quote_60s": {
+        "spread_bps": 0.01194,
+        "bid": 83730.5,
+        "ask": 83730.6,
+        "bid_qty_raw": 1.058,
+        "ask_qty_raw": 4.303,
+        "staleness_ms": 34.059
+      },
+      "top5_60s": {
+        "spread_bps": 0.01194,
+        "bid": 83730.5,
+        "ask": 83730.6,
+        "bid_qty_raw": 1.064,
+        "ask_qty_raw": 4.858,
+        "staleness_ms": 34.059
+      },
+      "quote_300s": {
+        "spread_bps": 0.01193,
+        "bid": 83855.6,
+        "ask": 83855.7,
+        "bid_qty_raw": 10.111,
+        "ask_qty_raw": 1.205,
+        "staleness_ms": 14.714
+      },
+      "top5_300s": {
+        "spread_bps": 0.01193,
+        "bid": 83855.6,
+        "ask": 83855.7,
+        "bid_qty_raw": 10.156,
+        "ask_qty_raw": 1.328,
+        "staleness_ms": 14.714
+      },
+      "same_direction_20bps_5m_descriptive": null,
+      "minute_vs_event_return_diff_bps": -25.8374,
+      "status": "MECHANICS_ONLY"
+    },
+    {
+      "minute_utc": "2026-10-01T14:19:00Z",
+      "side": "control",
+      "prior_minute_close_return_5m_bps": 7.2551,
+      "clock": "minute_plus_30s_control",
+      "t0_utc": "2026-10-01T14:19:30+00:00",
+      "cluster_first_hit_verified": false,
+      "dealer_signed_gamma": "UNKNOWN",
+      "case_source_rows": {
+        "liquidations": 0,
+        "trades": 17105,
+        "quotes": 10386,
+        "book_snapshot_5": 11779
+      },
+      "trades_pre30": {
+        "message_count": 1414,
+        "buy_amount_raw": 12.269,
+        "sell_amount_raw": 20.794,
+        "buy_minus_sell_raw": -8.525
+      },
+      "liq_pre30": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post30": {
+        "message_count": 2388,
+        "buy_amount_raw": 18.953,
+        "sell_amount_raw": 93.415,
+        "buy_minus_sell_raw": -74.462
+      },
+      "liq_post30": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post60": {
+        "message_count": 3908,
+        "buy_amount_raw": 37.763,
+        "sell_amount_raw": 105.298,
+        "buy_minus_sell_raw": -67.535
+      },
+      "liq_post60": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post300": {
+        "message_count": 13541,
+        "buy_amount_raw": 138.494,
+        "sell_amount_raw": 217.984,
+        "buy_minus_sell_raw": -79.49
+      },
+      "liq_post300": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "p0": 83905.5,
+      "p30": 83940.5,
+      "return_30s_bps": 4.1714,
+      "p60": 83927.4,
+      "return_60s_bps": 2.6101,
+      "p300": 83937.4,
+      "return_300s_bps": 3.8019,
+      "quote_0s": {
+        "spread_bps": 0.01192,
+        "bid": 83905.4,
+        "ask": 83905.5,
+        "bid_qty_raw": 5.693,
+        "ask_qty_raw": 2.631,
+        "staleness_ms": 14.278
+      },
+      "top5_0s": {
+        "spread_bps": 0.01192,
+        "bid": 83905.4,
+        "ask": 83905.5,
+        "bid_qty_raw": 5.742999999999999,
+        "ask_qty_raw": 2.65,
+        "staleness_ms": 14.278
+      },
+      "quote_30s": {
+        "spread_bps": 0.01191,
+        "bid": 83940.4,
+        "ask": 83940.5,
+        "bid_qty_raw": 0.9,
+        "ask_qty_raw": 9.012,
+        "staleness_ms": 93.98
+      },
+      "top5_30s": {
+        "spread_bps": 0.01191,
+        "bid": 83940.4,
+        "ask": 83940.5,
+        "bid_qty_raw": 0.974,
+        "ask_qty_raw": 9.056000000000001,
+        "staleness_ms": 14.32
+      },
+      "quote_60s": {
+        "spread_bps": 0.01191,
+        "bid": 83932.2,
+        "ask": 83932.3,
+        "bid_qty_raw": 0.002,
+        "ask_qty_raw": 0.242,
+        "staleness_ms": 13.468
+      },
+      "top5_60s": {
+        "spread_bps": 0.01191,
+        "bid": 83932.2,
+        "ask": 83932.3,
+        "bid_qty_raw": 0.007,
+        "ask_qty_raw": 4.8340000000000005,
+        "staleness_ms": 13.468
+      },
+      "quote_300s": {
+        "spread_bps": 0.01191,
+        "bid": 83937.3,
+        "ask": 83937.4,
+        "bid_qty_raw": 11.664,
+        "ask_qty_raw": 0.425,
+        "staleness_ms": 94.081
+      },
+      "top5_300s": {
+        "spread_bps": 0.01191,
+        "bid": 83937.3,
+        "ask": 83937.4,
+        "bid_qty_raw": 12.782,
+        "ask_qty_raw": 0.5479999999999999,
+        "staleness_ms": 14.19
+      },
+      "same_direction_20bps_5m_descriptive": null,
+      "minute_vs_event_return_diff_bps": -3.4532,
+      "status": "MECHANICS_ONLY"
+    },
+    {
+      "minute_utc": "2026-10-01T15:10:00Z",
+      "side": "control",
+      "prior_minute_close_return_5m_bps": 16.3971,
+      "clock": "minute_plus_30s_control",
+      "t0_utc": "2026-10-01T15:10:30+00:00",
+      "cluster_first_hit_verified": false,
+      "dealer_signed_gamma": "UNKNOWN",
+      "case_source_rows": {
+        "liquidations": 0,
+        "trades": 16463,
+        "quotes": 8780,
+        "book_snapshot_5": 10004
+      },
+      "trades_pre30": {
+        "message_count": 2367,
+        "buy_amount_raw": 37.947,
+        "sell_amount_raw": 123.352,
+        "buy_minus_sell_raw": -85.405
+      },
+      "liq_pre30": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post30": {
+        "message_count": 1564,
+        "buy_amount_raw": 58.295,
+        "sell_amount_raw": 12.025,
+        "buy_minus_sell_raw": 46.27
+      },
+      "liq_post30": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post60": {
+        "message_count": 3106,
+        "buy_amount_raw": 77.783,
+        "sell_amount_raw": 64.092,
+        "buy_minus_sell_raw": 13.691
+      },
+      "liq_post60": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post300": {
+        "message_count": 9644,
+        "buy_amount_raw": 184.72,
+        "sell_amount_raw": 186.908,
+        "buy_minus_sell_raw": -2.188
+      },
+      "liq_post300": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "p0": 83807.1,
+      "p30": 83917.1,
+      "return_30s_bps": 13.1254,
+      "p60": 83944.9,
+      "return_60s_bps": 16.4425,
+      "p300": 84034.5,
+      "return_300s_bps": 27.1337,
+      "quote_0s": {
+        "spread_bps": 0.01193,
+        "bid": 83807.0,
+        "ask": 83807.1,
+        "bid_qty_raw": 3.724,
+        "ask_qty_raw": 2.301,
+        "staleness_ms": 14.791
+      },
+      "top5_0s": {
+        "spread_bps": 0.01193,
+        "bid": 83807.0,
+        "ask": 83807.1,
+        "bid_qty_raw": 11.939,
+        "ask_qty_raw": 2.37,
+        "staleness_ms": 14.791
+      },
+      "quote_30s": {
+        "spread_bps": 0.01192,
+        "bid": 83917.1,
+        "ask": 83917.2,
+        "bid_qty_raw": 1.456,
+        "ask_qty_raw": 11.923,
+        "staleness_ms": 70.126
+      },
+      "top5_30s": {
+        "spread_bps": 0.01192,
+        "bid": 83917.1,
+        "ask": 83917.2,
+        "bid_qty_raw": 5.937,
+        "ask_qty_raw": 16.637,
+        "staleness_ms": 70.126
+      },
+      "quote_60s": {
+        "spread_bps": 0.01191,
+        "bid": 83944.8,
+        "ask": 83944.9,
+        "bid_qty_raw": 1.036,
+        "ask_qty_raw": 13.925,
+        "staleness_ms": 14.888
+      },
+      "top5_60s": {
+        "spread_bps": 0.01191,
+        "bid": 83944.8,
+        "ask": 83944.9,
+        "bid_qty_raw": 4.771,
+        "ask_qty_raw": 17.477,
+        "staleness_ms": 14.888
+      },
+      "quote_300s": {
+        "spread_bps": 0.0119,
+        "bid": 84034.4,
+        "ask": 84034.5,
+        "bid_qty_raw": 2.786,
+        "ask_qty_raw": 7.884,
+        "staleness_ms": 74.191
+      },
+      "top5_300s": {
+        "spread_bps": 0.0119,
+        "bid": 84034.4,
+        "ask": 84034.5,
+        "bid_qty_raw": 4.331,
+        "ask_qty_raw": 10.932,
+        "staleness_ms": 74.191
+      },
+      "same_direction_20bps_5m_descriptive": null,
+      "minute_vs_event_return_diff_bps": 10.7366,
+      "status": "MECHANICS_ONLY"
+    },
+    {
+      "minute_utc": "2026-10-01T15:49:00Z",
+      "side": "control",
+      "prior_minute_close_return_5m_bps": -16.8132,
+      "clock": "minute_plus_30s_control",
+      "t0_utc": "2026-10-01T15:49:30+00:00",
+      "cluster_first_hit_verified": false,
+      "dealer_signed_gamma": "UNKNOWN",
+      "case_source_rows": {
+        "liquidations": 2,
+        "trades": 18872,
+        "quotes": 9787,
+        "book_snapshot_5": 11200
+      },
+      "trades_pre30": {
+        "message_count": 2426,
+        "buy_amount_raw": 88.96,
+        "sell_amount_raw": 80.553,
+        "buy_minus_sell_raw": 8.407
+      },
+      "liq_pre30": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post30": {
+        "message_count": 2330,
+        "buy_amount_raw": 56.789,
+        "sell_amount_raw": 43.545,
+        "buy_minus_sell_raw": 13.244
+      },
+      "liq_post30": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post60": {
+        "message_count": 4291,
+        "buy_amount_raw": 118.396,
+        "sell_amount_raw": 68.982,
+        "buy_minus_sell_raw": 49.414
+      },
+      "liq_post60": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post300": {
+        "message_count": 13072,
+        "buy_amount_raw": 341.694,
+        "sell_amount_raw": 237.207,
+        "buy_minus_sell_raw": 104.487
+      },
+      "liq_post300": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "p0": 84209.2,
+      "p30": 84219.3,
+      "return_30s_bps": 1.1994,
+      "p60": 84249.7,
+      "return_60s_bps": 4.8095,
+      "p300": 84083.6,
+      "return_300s_bps": -14.9152,
+      "quote_0s": {
+        "spread_bps": 0.01188,
+        "bid": 84209.1,
+        "ask": 84209.2,
+        "bid_qty_raw": 1.883,
+        "ask_qty_raw": 2.662,
+        "staleness_ms": 154.932
+      },
+      "top5_0s": {
+        "spread_bps": 0.01188,
+        "bid": 84209.1,
+        "ask": 84209.2,
+        "bid_qty_raw": 3.043,
+        "ask_qty_raw": 2.669,
+        "staleness_ms": 154.932
+      },
+      "quote_30s": {
+        "spread_bps": 0.01187,
+        "bid": 84219.3,
+        "ask": 84219.4,
+        "bid_qty_raw": 0.215,
+        "ask_qty_raw": 3.708,
+        "staleness_ms": 15.088
+      },
+      "top5_30s": {
+        "spread_bps": 0.01187,
+        "bid": 84219.3,
+        "ask": 84219.4,
+        "bid_qty_raw": 0.222,
+        "ask_qty_raw": 4.118,
+        "staleness_ms": 15.088
+      },
+      "quote_60s": {
+        "spread_bps": 0.01187,
+        "bid": 84249.9,
+        "ask": 84250.0,
+        "bid_qty_raw": 1.35,
+        "ask_qty_raw": 3.948,
+        "staleness_ms": 14.514
+      },
+      "top5_60s": {
+        "spread_bps": 0.01187,
+        "bid": 84249.9,
+        "ask": 84250.0,
+        "bid_qty_raw": 1.4280000000000002,
+        "ask_qty_raw": 3.953,
+        "staleness_ms": 14.514
+      },
+      "quote_300s": {
+        "spread_bps": 0.01189,
+        "bid": 84083.5,
+        "ask": 84083.6,
+        "bid_qty_raw": 7.801,
+        "ask_qty_raw": 1.693,
+        "staleness_ms": 54.676
+      },
+      "top5_300s": {
+        "spread_bps": 0.01189,
+        "bid": 84083.5,
+        "ask": 84083.6,
+        "bid_qty_raw": 7.836,
+        "ask_qty_raw": 1.698,
+        "staleness_ms": 34.406
+      },
+      "same_direction_20bps_5m_descriptive": null,
+      "minute_vs_event_return_diff_bps": 1.898,
+      "status": "MECHANICS_ONLY"
+    },
+    {
+      "minute_utc": "2026-10-01T17:28:00Z",
+      "side": "buy",
+      "prior_minute_close_return_5m_bps": -6.1382,
+      "clock": "first_observed_same_side_liquidation_local_timestamp",
+      "t0_utc": "2026-10-01T17:28:30.519298+00:00",
+      "cluster_first_hit_verified": false,
+      "dealer_signed_gamma": "UNKNOWN",
+      "case_source_rows": {
+        "liquidations": 44,
+        "trades": 22858,
+        "quotes": 11636,
+        "book_snapshot_5": 12904
+      },
+      "trades_pre30": {
+        "message_count": 1981,
+        "buy_amount_raw": 78.135,
+        "sell_amount_raw": 18.712,
+        "buy_minus_sell_raw": 59.423
+      },
+      "liq_pre30": {
+        "message_count": 0,
+        "buy_amount_raw": 0,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0
+      },
+      "trades_post30": {
+        "message_count": 1494,
+        "buy_amount_raw": 76.673,
+        "sell_amount_raw": 33.416,
+        "buy_minus_sell_raw": 43.257
+      },
+      "liq_post30": {
+        "message_count": 22,
+        "buy_amount_raw": 3.719,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 3.719
+      },
+      "trades_post60": {
+        "message_count": 2718,
+        "buy_amount_raw": 108.862,
+        "sell_amount_raw": 65.332,
+        "buy_minus_sell_raw": 43.53
+      },
+      "liq_post60": {
+        "message_count": 22,
+        "buy_amount_raw": 3.719,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 3.719
+      },
+      "trades_post300": {
+        "message_count": 19149,
+        "buy_amount_raw": 589.483,
+        "sell_amount_raw": 719.83,
+        "buy_minus_sell_raw": -130.347
+      },
+      "liq_post300": {
+        "message_count": 44,
+        "buy_amount_raw": 5.213,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 5.213
+      },
+      "p0": 84854.0,
+      "p30": 84884.2,
+      "return_30s_bps": 3.5591,
+      "p60": 84858.9,
+      "return_60s_bps": 0.5775,
+      "p300": 84842.6,
+      "return_300s_bps": -1.3435,
+      "quote_0s": {
+        "spread_bps": 0.01178,
+        "bid": 84853.9,
+        "ask": 84854.0,
+        "bid_qty_raw": 4.653,
+        "ask_qty_raw": 0.417,
+        "staleness_ms": 14.126
+      },
+      "top5_0s": {
+        "spread_bps": 0.01178,
+        "bid": 84853.9,
+        "ask": 84854.0,
+        "bid_qty_raw": 6.739999999999999,
+        "ask_qty_raw": 0.421,
+        "staleness_ms": 14.126
+      },
+      "quote_30s": {
+        "spread_bps": 0.01178,
+        "bid": 84884.2,
+        "ask": 84884.3,
+        "bid_qty_raw": 0.463,
+        "ask_qty_raw": 0.001,
+        "staleness_ms": 13.703
+      },
+      "top5_30s": {
+        "spread_bps": 0.01178,
+        "bid": 84884.2,
+        "ask": 84884.3,
+        "bid_qty_raw": 4.390000000000001,
+        "ask_qty_raw": 1.084,
+        "staleness_ms": 13.703
+      },
+      "quote_60s": {
+        "spread_bps": 0.01178,
+        "bid": 84859.7,
+        "ask": 84859.8,
+        "bid_qty_raw": 8.408,
+        "ask_qty_raw": 0.027,
+        "staleness_ms": 14.147
+      },
+      "top5_60s": {
+        "spread_bps": 0.01178,
+        "bid": 84859.7,
+        "ask": 84859.8,
+        "bid_qty_raw": 9.296,
+        "ask_qty_raw": 0.106,
+        "staleness_ms": 14.147
+      },
+      "quote_300s": {
+        "spread_bps": 0.01179,
+        "bid": 84842.6,
+        "ask": 84842.7,
+        "bid_qty_raw": 4.527,
+        "ask_qty_raw": 2.077,
+        "staleness_ms": 13.873
+      },
+      "top5_300s": {
+        "spread_bps": 0.01179,
+        "bid": 84842.6,
+        "ask": 84842.7,
+        "bid_qty_raw": 7.013,
+        "ask_qty_raw": 2.146,
+        "staleness_ms": 13.873
+      },
+      "same_direction_20bps_5m_descriptive": false,
+      "minute_vs_event_return_diff_bps": 4.7947,
+      "status": "MECHANICS_ONLY"
+    },
+    {
+      "minute_utc": "2026-10-01T18:38:00Z",
+      "side": "buy",
+      "prior_minute_close_return_5m_bps": -38.6436,
+      "clock": "first_observed_same_side_liquidation_local_timestamp",
+      "t0_utc": "2026-10-01T18:38:03.519078+00:00",
+      "cluster_first_hit_verified": false,
+      "dealer_signed_gamma": "UNKNOWN",
+      "case_source_rows": {
+        "liquidations": 53,
+        "trades": 17826,
+        "quotes": 10107,
+        "book_snapshot_5": 11266
+      },
+      "trades_pre30": {
+        "message_count": 1657,
+        "buy_amount_raw": 80.638,
+        "sell_amount_raw": 30.077,
+        "buy_minus_sell_raw": 50.561
+      },
+      "liq_pre30": {
+        "message_count": 1,
+        "buy_amount_raw": 0.006,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0.006
+      },
+      "trades_post30": {
+        "message_count": 2197,
+        "buy_amount_raw": 86.745,
+        "sell_amount_raw": 27.35,
+        "buy_minus_sell_raw": 59.395
+      },
+      "liq_post30": {
+        "message_count": 18,
+        "buy_amount_raw": 0.39,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 0.39
+      },
+      "trades_post60": {
+        "message_count": 6391,
+        "buy_amount_raw": 295.631,
+        "sell_amount_raw": 105.019,
+        "buy_minus_sell_raw": 190.612
+      },
+      "liq_post60": {
+        "message_count": 47,
+        "buy_amount_raw": 5.403,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 5.403
+      },
+      "trades_post300": {
+        "message_count": 14360,
+        "buy_amount_raw": 407.032,
+        "sell_amount_raw": 311.301,
+        "buy_minus_sell_raw": 95.731
+      },
+      "liq_post300": {
+        "message_count": 50,
+        "buy_amount_raw": 5.509,
+        "sell_amount_raw": 0,
+        "buy_minus_sell_raw": 5.509
+      },
+      "p0": 85083.8,
+      "p30": 85135.0,
+      "return_30s_bps": 6.0176,
+      "p60": 85201.9,
+      "return_60s_bps": 13.8804,
+      "p300": 84958.2,
+      "return_300s_bps": -14.7619,
+      "quote_0s": {
+        "spread_bps": 0.01175,
+        "bid": 85083.7,
+        "ask": 85083.8,
+        "bid_qty_raw": 3.334,
+        "ask_qty_raw": 0.948,
+        "staleness_ms": 34.102
+      },
+      "top5_0s": {
+        "spread_bps": 0.01175,
+        "bid": 85083.7,
+        "ask": 85083.8,
+        "bid_qty_raw": 3.922,
+        "ask_qty_raw": 1.503,
+        "staleness_ms": 34.102
+      },
+      "quote_30s": {
+        "spread_bps": 0.01175,
+        "bid": 85135.3,
+        "ask": 85135.4,
+        "bid_qty_raw": 14.193,
+        "ask_qty_raw": 0.072,
+        "staleness_ms": 14.166
+      },
+      "top5_30s": {
+        "spread_bps": 0.01175,
+        "bid": 85135.3,
+        "ask": 85135.4,
+        "bid_qty_raw": 17.941,
+        "ask_qty_raw": 0.077,
+        "staleness_ms": 14.166
+      },
+      "quote_60s": {
+        "spread_bps": 0.01174,
+        "bid": 85201.9,
+        "ask": 85202.0,
+        "bid_qty_raw": 6.733,
+        "ask_qty_raw": 0.642,
+        "staleness_ms": 14.032
+      },
+      "top5_60s": {
+        "spread_bps": 0.01174,
+        "bid": 85201.9,
+        "ask": 85202.0,
+        "bid_qty_raw": 6.739,
+        "ask_qty_raw": 0.763,
+        "staleness_ms": 14.032
+      },
+      "quote_300s": {
+        "spread_bps": 0.01177,
+        "bid": 84958.1,
+        "ask": 84958.2,
+        "bid_qty_raw": 1.735,
+        "ask_qty_raw": 3.124,
+        "staleness_ms": 134.258
+      },
+      "top5_300s": {
+        "spread_bps": 0.01177,
+        "bid": 84958.1,
+        "ask": 84958.2,
+        "bid_qty_raw": 1.741,
+        "ask_qty_raw": 3.132,
+        "staleness_ms": 134.258
+      },
+      "same_direction_20bps_5m_descriptive": false,
+      "minute_vs_event_return_diff_bps": 23.8817,
+      "status": "MECHANICS_ONLY"
+    }
+  ],
+  "case_count": 8,
+  "verified_cluster_first_touch": false,
+  "dealer_gamma_sign": "UNKNOWN",
+  "causal_inference": false,
+  "controls_confirmed_liquidation_free": false,
+  "no_trade_authority": true,
+  "limitations": [
+    "Retrospective case selection, one sample day, no OOS",
+    "No historical Model2 point-in-time cluster states",
+    "No signed dealer inventory or first-hit",
+    "Zero observed liquidation messages does not mean zero actual liquidations",
+    "Top5 snapshots do not reveal cancellation vs replenishment",
+    "Events anchored to observed message capture, not necessarily first real exchange liquidation"
+  ]
+}
