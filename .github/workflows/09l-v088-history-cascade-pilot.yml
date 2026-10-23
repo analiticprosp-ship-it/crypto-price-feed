@@ -1,0 +1,119 @@
+name: "09L v0.8.8 eight new months+observed liquidation behaviour (SHADOW)"
+on:
+  push:
+    branches: [research/09l-v088-history-cascade-20261023]
+    paths:
+      - .github/workflows/09l-v088-history-cascade-pilot.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: 09l-v088-prereg-first-liq-historical
+  cancel-in-progress: false
+jobs:
+  replay-and-private-r2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile + selftest + confirm prereg exists
+        run: |
+          test -f research/09l/v0.8.8-2026-10-23/PREREG_EXTRA_DATES_LIQUIDATION_BEHAVIOUR_LOCKED.md
+          python -m py_compile research/09l/auto/v1/no_lookahead_v087.py research/09l/v0.8.8-2026-10-23/first_liquidation_event_behaviour.py research/09l/v0.8.8-2026-10-23/r2_archive_v088.py
+          python research/09l/auto/v1/no_lookahead_v087.py --selftest
+          python research/09l/v0.8.8-2026-10-23/first_liquidation_event_behaviour.py --selftest
+      - name: "Download eight fixed source-day/venue trade archives and compute no-lookahead labels"
+        run: |
+          python -u - <<'PY'
+          import concurrent.futures,subprocess
+          root='research/09l/auto/v1/no_lookahead_v087.py'
+          studies=['bybit_feb','bybit_mar','bybit_apr','bybit_may','okx_feb','okx_mar','okx_apr','okx_may']
+          def worker(n):
+              r=subprocess.run(['python','-u',root,'--study',n],capture_output=True,text=True,timeout=240)
+              return n,r.returncode,r.stdout.strip(),r.stderr[-350:]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+              out=list(pool.map(worker,studies))
+          for x in out:print('STUDY',*x,flush=True)
+          assert all(x[1]==0 for x in out),'HISTORICAL_LABEL_JOB_FAILED'
+          PY
+      - name: "Download actual observed liquidation messages + independently audit pre-event and 5m response"
+        run: |
+          python -u - <<'PY'
+          import concurrent.futures,subprocess
+          root='research/09l/v0.8.8-2026-10-23/first_liquidation_event_behaviour.py'
+          studies=['bybit_feb','bybit_mar','bybit_apr','bybit_may','okx_feb','okx_mar','okx_apr','okx_may']
+          def worker(n):
+              r=subprocess.run(['python','-u',root,'--study',n],capture_output=True,text=True,timeout=260)
+              return n,r.returncode,r.stdout.strip(),r.stderr[-350:]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+              out=list(pool.map(worker,studies))
+          for x in out:print('EVENT_STUDY',*x,flush=True)
+          assert all(x[1]==0 for x in out),'LIQUIDATION_BEHAVIOUR_JOB_FAILED'
+          PY
+      - name: "Cross-check sources and fixed eight-case completeness WITHOUT requesting success outcome"
+        run: |
+          python -u - <<'PY'
+          import pathlib,json,collections
+          root=pathlib.Path('research/09l')
+          n_source_ok=0;ready=0;events=0;valid=0;labels=collections.Counter();problems=[]
+          for venue in ['bybit','okex-swap']:
+            for month in ['02','03','04','05']:
+              day=f'2026-{month}-01'
+              p=root/'auto/v1/derived/v087_labels'/venue/f'{day}_no_lookahead_trade_labels.json'
+              q=root/'v0.8.8-2026-10-23/derived/liquidation_event_proxies'/venue/f'{day}_first_message_behaviour.json'
+              a=json.loads(p.read_text());b=json.loads(q.read_text())
+              assert len(a['eight_clock_fixed_cases'])==8
+              assert len(b['selected_session_events'])==3
+              assert a['venue']==b['venue']==venue
+              assert a['source_date_utc']==b['source_day_utc']==day
+              assert a['trading_canon_unchanged'] and b['trading_canon_unchanged']
+              if a['source']['status']=='OK' and b['trade_sources'].get('status')=='OK':
+                assert a['source']['compressed_sha256']==b['trade_sources']['gzip_sha256'],(venue,day)
+                n_source_ok+=1
+              else:problems.append([venue,day,a['source']['status'],b['trade_sources'].get('status')])
+              ready+=sum(e['status']=='LABEL_READY' for e in a['eight_clock_fixed_cases'])
+              events+=b['event_count'];valid+=b['valid_behaviour_labels']
+              for z in b['selected_session_events']:
+                labels[z.get('price_behaviour_label',z['status'])]+=1
+          summary={'data_sets_cross_sha_ok':n_source_ok,'complete_clock_cases':ready,'total_clock_cases':64,
+            'observed_liquidation_events':events,'evaluated_event_behaviours':valid,
+            'class_counts':dict(labels),'source_problems':problems,
+            'science':'NO_COIN_GLASS_PIT_NO_CASCADE_MECHANISM_PROOF'}
+          print(json.dumps(summary,sort_keys=True),flush=True)
+          assert n_source_ok>=4, 'SOURCE_CROSSCHECK_COHORT_COVERAGE_TOO_LOW'
+          PY
+      - name: "Install R2 client and archive verified compact research objects into existing private R2"
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          python -m pip install --quiet boto3
+          python -u research/09l/v0.8.8-2026-10-23/r2_archive_v088.py
+      - name: Publish derived compact QA files only, NEVER raw licensed source data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 09l-v088-extra-dates-and-first-liquidation-proxies
+          path: |
+            research/09l/auto/v1/derived/v087_labels/bybit/2026-0[2-5]-01*.json
+            research/09l/auto/v1/derived/v087_labels/okex-swap/2026-0[2-5]-01*.json
+            research/09l/v0.8.8-2026-10-23/derived/**/*.json
+          retention-days: 45
+          if-no-files-found: warn
+      - name: Write derived files only to the isolated research branch (no trading code)
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/auto/v1/derived/v087_labels research/09l/v0.8.8-2026-10-23/derived
+          if git diff --cached --quiet; then exit 0; fi
+          if git diff --cached --name-only | grep -Ev '^research/09l/(auto/v1/derived/v087_labels/|v0.8.8-2026-10-23/derived/)'; then
+            echo "UNAUTHORIZED_WRITEBACK_PATH" >&2; exit 1
+          fi
+          git commit -m "research(09L v088): archive locked 8 historical cohorts, first liq price proxies and R2 readbacks"
+          git pull --rebase origin research/09l-v088-history-cascade-20261023
+          git push origin HEAD:research/09l-v088-history-cascade-20261023
