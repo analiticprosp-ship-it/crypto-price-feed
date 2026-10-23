@@ -2,7 +2,8 @@
 import hashlib
 import unittest
 from research.detector_h1h10_selected_falling_jan21_flow import (
-    DAY, PRIOR_SELECTION_PIN, confirm_selection, run
+    DAY, PRIOR_SELECTION_PIN, JAN21_FLOW_ZIP_CAP, JAN21_FLOW_DAY_CAP,
+    JAN21_MAX_AGGTRADES_PER_FILE, confirm_selection, run
 )
 from research.test_detector_h1h10_regime_prewindow_three_dates import (
     synthetic_zip
@@ -37,6 +38,33 @@ def writer(_s3,_bucket,key,body):
 
 
 class SelectedFallingOnly(unittest.TestCase):
+    def test_jan21_retry_caps_explicit_and_not_unbounded(self):
+        self.assertEqual(JAN21_FLOW_ZIP_CAP,70*1024*1024)
+        self.assertEqual(JAN21_FLOW_DAY_CAP,150*1024*1024)
+        self.assertEqual(JAN21_MAX_AGGTRADES_PER_FILE,7_000_000)
+
+    def test_original_parser_default_cap_is_still_strict_on_may(self):
+        from research.detector_h1h10_binance_aggtrades_first_verified import parse_day_zip
+        raw=synthetic_zip(DAY,"aggTrades","um","ETHUSDT")
+        with self.assertRaisesRegex(ValueError,"AGGTRADE_ZIP_SIZE_LIMIT"):
+            parse_day_zip(raw,"um","ETHUSDT",DAY,allowed_days=(DAY,),max_zip_bytes=100)
+        with self.assertRaisesRegex(ValueError,"AGGTRADE_ROW_COUNT_LIMIT"):
+            parse_day_zip(raw,"um","ETHUSDT",DAY,allowed_days=(DAY,),max_rows=100)
+        quality,rows=parse_day_zip(raw,"um","ETHUSDT",DAY,
+                         allowed_days=(DAY,),max_zip_bytes=JAN21_FLOW_ZIP_CAP)
+        self.assertEqual(quality["trades"],288)
+
+    def test_jan21_risk_cap_rejects_oversized_head_without_join(self):
+        def enormous(url,method,cap):
+            if method=="HEAD" and "/um/daily/aggTrades/ETHUSDT/" in url:
+                return {"http":200,"bytes":JAN21_FLOW_ZIP_CAP+1}
+            return loader(url,method,cap)
+        report=run(object(),"bucket","998453","1",enormous,writer,selected())
+        self.assertEqual(report["status"],"INCOMPLETE_NO_JOIN")
+        self.assertTrue(any(x["reason"]=="JAN21_FLOW_SOURCE_SIZE_CAP" for x in report["failed_source_files"]))
+        self.assertIsNone(report["h1_h6_h7_exploratory"])
+        self.assertEqual(report["causal_joint_rows_authorized"],0)
+
     def test_exact_prior_pin_required(self):
         v=selected()
         self.assertTrue(confirm_selection(v)["is_falling"])
