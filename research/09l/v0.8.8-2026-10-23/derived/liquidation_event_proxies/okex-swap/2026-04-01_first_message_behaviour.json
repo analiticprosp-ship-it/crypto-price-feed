@@ -1,0 +1,166 @@
+{
+  "coinglass_model2_pit": "MISSING",
+  "event_count": 3,
+  "frozen_selection": "FIRST_BTC_LIQ_MSG_AFTER_06_12_18_UTC_SESSION_START",
+  "liquidation_source": {
+    "btc_liquidation_messages": 567,
+    "gzip_bytes": 162968,
+    "gzip_sha256": "1caea92c6f4ff9cb44a32b56772fc144ff5c55de1444a873c25a7430e9167c01",
+    "invalid": 0,
+    "kind": "observed_liquidation_messages",
+    "nonmonotonic_capture": 0,
+    "rows_all_symbols": 9852,
+    "status": "OK",
+    "url": "https://datasets.tardis.dev/v1/okex-swap/liquidations/2026/04/01/PERPETUALS.csv.gz"
+  },
+  "scientific_restrictions": [
+    "Observed liquidation messages are NOT predicted pre-event clusters or CoinGlass Model2 heatmaps.",
+    "No direct evidence of maker absorption, cancellation, or market-maker gamma.",
+    "Signs are based on vendor reported liquidation side; BUY shorts / SELL longs.",
+    "This is a first-message time-bucket sample, not a severity or representative event sample.",
+    "No calibrated cascade probability or cluster first-hit probability; no trading authorization."
+  ],
+  "selected_session_events": [
+    {
+      "event": {
+        "local_timestamp_us": 1775023814936422,
+        "observed_post_ticks": 14715,
+        "reported_liquidation_amount_native": 0.18,
+        "reported_liquidation_price": 68630.9,
+        "side": "sell"
+      },
+      "forward_outcomes_not_features": {
+        "30": {
+          "asof_age_ms": 107.609,
+          "signed_return_bps": 0.699237
+        },
+        "300": {
+          "asof_age_ms": 256.53,
+          "signed_return_bps": 3.102862
+        },
+        "60": {
+          "asof_age_ms": 16.544,
+          "signed_return_bps": 2.884351
+        }
+      },
+      "maximum_same_direction_excursion_bps": 7.98295,
+      "pre_liquidation_features_only": {
+        "buy_amount_native_pre_30s": 2137.25,
+        "flow_imbalance_pre_30s": 0.277141,
+        "momentum_pre_30s_bps": 9.477802,
+        "range_pre_30s_bps": 11.114947,
+        "sell_amount_native_pre_30s": 1209.68,
+        "trades_pre_30s": 2219
+      },
+      "price_behaviour_label": "LIMITED_CONTINUATION_PROXY",
+      "reference_trade_asof": {
+        "age_ms": 155.945,
+        "price": 68646.3,
+        "timestamp_us": 1775023814780477
+      },
+      "session_start_hour": 6,
+      "session_utc": "06:00-12:00",
+      "status": "EVALUATED_BEHAVIOUR_PROXY"
+    },
+    {
+      "event": {
+        "local_timestamp_us": 1775044961363372,
+        "observed_post_ticks": 13423,
+        "reported_liquidation_amount_native": 0.16,
+        "reported_liquidation_price": 68565.8,
+        "side": "buy"
+      },
+      "forward_outcomes_not_features": {
+        "30": {
+          "asof_age_ms": 7.305,
+          "signed_return_bps": -10.369435
+        },
+        "300": {
+          "asof_age_ms": 850.168,
+          "signed_return_bps": -3.83567
+        },
+        "60": {
+          "asof_age_ms": 59.457,
+          "signed_return_bps": -12.134135
+        }
+      },
+      "maximum_same_direction_excursion_bps": 0.452113,
+      "pre_liquidation_features_only": {
+        "buy_amount_native_pre_30s": 1563.27,
+        "flow_imbalance_pre_30s": -0.467427,
+        "momentum_pre_30s_bps": -4.329661,
+        "range_pre_30s_bps": 6.052483,
+        "sell_amount_native_pre_30s": 4307.36,
+        "trades_pre_30s": 1899
+      },
+      "price_behaviour_label": "LIMITED_CONTINUATION_PROXY",
+      "reference_trade_asof": {
+        "age_ms": 87.472,
+        "price": 68566.9,
+        "timestamp_us": 1775044961275900
+      },
+      "session_start_hour": 12,
+      "session_utc": "12:00-18:00",
+      "status": "EVALUATED_BEHAVIOUR_PROXY"
+    },
+    {
+      "event": {
+        "local_timestamp_us": 1775066427241744,
+        "observed_post_ticks": 34132,
+        "reported_liquidation_amount_native": 0.02,
+        "reported_liquidation_price": 67928.1,
+        "side": "sell"
+      },
+      "forward_outcomes_not_features": {
+        "30": {
+          "asof_age_ms": 503.943,
+          "signed_return_bps": 1.363674
+        },
+        "300": {
+          "asof_age_ms": 220.283,
+          "signed_return_bps": 24.634117
+        },
+        "60": {
+          "asof_age_ms": 49.412,
+          "signed_return_bps": 8.240699
+        }
+      },
+      "maximum_same_direction_excursion_bps": 42.640484,
+      "pre_liquidation_features_only": {
+        "buy_amount_native_pre_30s": 2150.87,
+        "flow_imbalance_pre_30s": -0.721393,
+        "momentum_pre_30s_bps": -5.847182,
+        "range_pre_30s_bps": 15.469639,
+        "sell_amount_native_pre_30s": 13289.28,
+        "trades_pre_30s": 4502
+      },
+      "price_behaviour_label": "CONTINUATION_PROXY",
+      "reference_trade_asof": {
+        "age_ms": 12.098,
+        "price": 68198.1,
+        "timestamp_us": 1775066427229646
+      },
+      "session_start_hour": 18,
+      "session_utc": "18:00-24:00",
+      "status": "EVALUATED_BEHAVIOUR_PROXY"
+    }
+  ],
+  "source_day_utc": "2026-04-01",
+  "status": "EVENT_PROXIES_EXPLORATORY",
+  "study": "09L v0.8.8 retrospective FIRST OBSERVED liquidation message event behaviour",
+  "symbol": "BTC-USDT-SWAP",
+  "trade_sources": {
+    "btc_trades": 3920423,
+    "gzip_bytes": 31529024,
+    "gzip_sha256": "37f3d5e896b36e60e721fe34979309b754cec3d76da7f98c8696049e32080e08",
+    "invalid": 0,
+    "kind": "individual_aggressive_trades",
+    "nonmonotonic_capture": 0,
+    "rows_all_symbols": 3920423,
+    "status": "OK",
+    "url": "https://datasets.tardis.dev/v1/okex-swap/trades/2026/04/01/BTC-USDT-SWAP.csv.gz"
+  },
+  "trading_canon_unchanged": true,
+  "valid_behaviour_labels": 3,
+  "venue": "okex-swap"
+}
