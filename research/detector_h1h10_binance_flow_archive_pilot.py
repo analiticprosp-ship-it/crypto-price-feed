@@ -43,9 +43,9 @@ def sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def archive_url(market,kind,symbol,day):
+def archive_url(market,kind,symbol,day,allowed_days=DAYS):
     if (market not in MARKETS or kind not in DATASETS or symbol not in SYMBOLS
-        or day not in DAYS):
+        or day not in allowed_days):
         raise ValueError("UNAPPROVED_ARCHIVE_SCOPE")
     root=f"{BASE}/"+("spot" if market=="spot" else "futures/um")+f"/daily/{kind}/{symbol}"
     if kind=="klines":
