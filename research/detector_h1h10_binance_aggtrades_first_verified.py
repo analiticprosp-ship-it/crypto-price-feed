@@ -40,11 +40,13 @@ EXPECTED_HEADERS = (
 )
 
 
-def parse_day_zip(payload, market, symbol, day, allowed_days=DAYS):
+def parse_day_zip(payload, market, symbol, day, allowed_days=DAYS,
+                  max_zip_bytes=MAX_ZIP_BYTES, max_csv_uncompressed=MAX_CSV_UNCOMPRESSED,
+                  max_rows=MAX_ROWS):
     """Source event-time audit ONLY; never claim as-of publication or fill gaps."""
     if market not in MARKETS or symbol not in SYMBOLS or day not in allowed_days:
         raise ValueError("AGGTRADE_UNAUTHORIZED_SOURCE_IDENTITY")
-    if not 0 < len(payload) <= MAX_ZIP_BYTES:
+    if not 0 < len(payload) <= max_zip_bytes:
         raise ValueError("AGGTRADE_ZIP_SIZE_LIMIT")
     start = int(dt.datetime.fromisoformat(day + "T00:00:00+00:00").timestamp() * 1000)
     time_divisor = 1000 if market == "spot" else 1
@@ -60,7 +62,7 @@ def parse_day_zip(payload, market, symbol, day, allowed_days=DAYS):
         if names != [expected]:
             raise ValueError("AGGTRADE_ZIP_MEMBER_IDENTITY_MISMATCH")
         member = archive.getinfo(expected)
-        if not 0 < member.file_size <= MAX_CSV_UNCOMPRESSED:
+        if not 0 < member.file_size <= max_csv_uncompressed:
             raise ValueError("AGGTRADE_UNPACKED_SIZE_LIMIT")
         if archive.testzip() is not None:
             raise ValueError("AGGTRADE_ZIP_CRC_FAILURE")
@@ -77,7 +79,7 @@ def parse_day_zip(payload, market, symbol, day, allowed_days=DAYS):
                     continue
                 if len(row) not in (7, 8):
                     raise ValueError("AGGTRADE_CSV_COLUMNS_INVALID")
-                if count >= MAX_ROWS:
+                if count >= max_rows:
                     raise ValueError("AGGTRADE_ROW_COUNT_LIMIT")
                 try:
                     aid = int(row[0])
