@@ -7,7 +7,15 @@ ROOT=pathlib.Path(__file__).resolve().parent
 OUT=ROOT/"derived"/"v087_labels"
 CLOCKS=["07:24:30","08:32:30","13:49:30","14:19:30",
         "15:10:30","15:49:30","17:28:30","18:38:30"]
-STUDIES={"bybit_sep":("bybit","BTCUSDT","2026-09-01"),
+STUDIES={"bybit_feb":("bybit","BTCUSDT","2026-02-01"),
+         "bybit_mar":("bybit","BTCUSDT","2026-03-01"),
+         "bybit_apr":("bybit","BTCUSDT","2026-04-01"),
+         "bybit_may":("bybit","BTCUSDT","2026-05-01"),
+         "okx_feb":("okex-swap","BTC-USDT-SWAP","2026-02-01"),
+         "okx_mar":("okex-swap","BTC-USDT-SWAP","2026-03-01"),
+         "okx_apr":("okex-swap","BTC-USDT-SWAP","2026-04-01"),
+         "okx_may":("okex-swap","BTC-USDT-SWAP","2026-05-01"),
+         "bybit_sep":("bybit","BTCUSDT","2026-09-01"),
          "okx_oct":("okex-swap","BTC-USDT-SWAP","2026-10-01"),
          "bybit_jun":("bybit","BTCUSDT","2026-06-01"),
          "bybit_jul":("bybit","BTCUSDT","2026-07-01"),
