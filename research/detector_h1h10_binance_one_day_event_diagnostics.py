@@ -90,9 +90,9 @@ def kline_closes(body,market,symbol):
     return price
 
 
-def read_flow_5m(raw,day=DAY):
+def read_flow_5m(raw,day=DAY,allowed_days=DAYS):
     """Do not accept unobserved 5m rows or price/flow publisher time conflation."""
-    if day not in DAYS:
+    if day not in allowed_days:
         raise ValueError("NON_FROZEN_DAY")
     start=int(dt.datetime.fromisoformat(day+"T00:00:00+00:00").timestamp()*1000)
     rows=list(csv.DictReader(io.StringIO(raw.decode("utf-8-sig"))))

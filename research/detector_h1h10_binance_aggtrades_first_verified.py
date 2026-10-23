@@ -40,9 +40,9 @@ EXPECTED_HEADERS = (
 )
 
 
-def parse_day_zip(payload, market, symbol, day):
+def parse_day_zip(payload, market, symbol, day, allowed_days=DAYS):
     """Source event-time audit ONLY; never claim as-of publication or fill gaps."""
-    if market not in MARKETS or symbol not in SYMBOLS or day not in DAYS:
+    if market not in MARKETS or symbol not in SYMBOLS or day not in allowed_days:
         raise ValueError("AGGTRADE_UNAUTHORIZED_SOURCE_IDENTITY")
     if not 0 < len(payload) <= MAX_ZIP_BYTES:
         raise ValueError("AGGTRADE_ZIP_SIZE_LIMIT")
