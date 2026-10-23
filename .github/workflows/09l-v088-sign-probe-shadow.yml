@@ -1,0 +1,51 @@
+name: "09L v0.8.8 pre-liquidation sign probe (SHADOW descriptive)"
+on:
+  push:
+    branches: [research/09l-v088-history-cascade-20261023]
+    paths: [.github/workflows/09l-v088-sign-probe-shadow.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Frozen prereg and source metadata checks
+        run: |
+          test -f research/09l/v0.8.8-2026-10-23/PREREG_PRE_LIQUIDATION_SIMPLE_SIGN_PROBE.md
+          python -m py_compile research/09l/v0.8.8-2026-10-23/prior_sign_probe_v088.py
+          python -u research/09l/v0.8.8-2026-10-23/prior_sign_probe_v088.py
+      - name: Reject any predictive/trading claims
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('research/09l/v0.8.8-2026-10-23/derived/diagnostics/09L_v088_sign_probe_first_liquidations.json')
+          j=json.loads(p.read_text())
+          assert j['status']=='RETROSPECTIVE_EVENT_SIGN_PROBE_NONPREDICTIVE'
+          assert j['trading_canon_unchanged'] and j['coinglass_model2_first_hit']=='NOT_RUN_PIT_MISSING'
+          assert j['distinct_calendar_days']==4 and len(j['source_files'])==8
+          assert j['eligible_decisive_events']+sum(j['excluded_reason'].values())==24
+          print('SHADOW_RESEARCH_DATE_GROUP_QA_PASS')
+          PY
+      - name: Derived JSON GitHub artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 09l-v088-past-sign-descriptive-audit
+          path: research/09l/v0.8.8-2026-10-23/derived/diagnostics/*.json
+          retention-days: 45
+          if-no-files-found: warn
+      - name: Append-only derived JSON to isolated branch only
+        if: success()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/v0.8.8-2026-10-23/derived/diagnostics
+          if git diff --cached --quiet; then exit 0; fi
+          git diff --cached --name-only | grep -Ev '^research/09l/v0.8.8-2026-10-23/derived/diagnostics/' && exit 1 || true
+          git commit -m 'research(09L): append pre-event fixed sign feasibility and caveats, no forecast'
+          git pull --rebase origin research/09l-v088-history-cascade-20261023
+          git push origin HEAD:research/09l-v088-history-cascade-20261023
