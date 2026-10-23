@@ -8,6 +8,17 @@ OUT=ROOT/"derived"/"liquidation_event_proxies"
 STUDIES={f"{'bybit' if v=='bybit' else 'okx'}_{m}":(v,"BTCUSDT" if v=="bybit" else "BTC-USDT-SWAP",f"2026-{n:02d}-01")
  for v in ("bybit","okex-swap") for m,n in (("feb",2),("mar",3),("apr",4),("may",5))}
 BUCKETS=((6,12),(12,18),(18,24))
+def latest_public_sample(now):
+ day=dt.date(now.year,now.month,1)
+ if now.day<3:
+  day=(day-dt.timedelta(days=1)).replace(day=1)
+ return day
+def study_source(which):
+ if which in STUDIES:return STUDIES[which]
+ if which not in ("bybit_latest","okx_latest"):raise ValueError("UNKNOWN_STUDY")
+ venue="bybit" if which=="bybit_latest" else "okex-swap"
+ symbol="BTCUSDT" if venue=="bybit" else "BTC-USDT-SWAP"
+ return venue,symbol,latest_public_sample(dt.datetime.now(dt.timezone.utc)).isoformat()
 MAX_BYTES=160_000_000
 def shaurl(venue,kind,day,symbol):
  return f"https://datasets.tardis.dev/v1/{venue}/{kind}/{day:%Y/%m/%d}/"+("PERPETUALS" if kind=="liquidations" else symbol)+".csv.gz"
@@ -127,7 +138,7 @@ def trades_evaluate(venue,symbol,day,anchors):
   info.update(status="SOURCE_UNAVAILABLE",error_type=type(e).__name__)
  return info
 def study(which):
- venue,symbol,datestr=STUDIES[which];day=dt.date.fromisoformat(datestr)
+ venue,symbol,datestr=study_source(which);day=dt.date.fromisoformat(datestr)
  dest=OUT/venue/(datestr+"_first_message_behaviour.json")
  if dest.exists():return {"study":which,"status":"ALREADY_ARCHIVED"}
  anchors,liq=first_events(venue,symbol,day)
@@ -174,6 +185,10 @@ def study(which):
        "This is a first-message time-bucket sample, not a severity or representative event sample.",
        "No calibrated cascade probability or cluster first-hit probability; no trading authorization."],
        "coinglass_model2_pit":"MISSING","trading_canon_unchanged":True}
+ if result["status"]!="EVENT_PROXIES_EXPLORATORY":
+  # Missing/unavailable vendor month: append failure audit and retry next scheduled run,
+  # never poison the canonical date output with an incomplete permanently frozen file.
+  dest=OUT/"attempts"/venue/datestr/(dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")+".json")
  dest.parent.mkdir(parents=True,exist_ok=True)
  with dest.open("x",encoding="utf8") as f:json.dump(result,f,ensure_ascii=False,indent=2,sort_keys=True);f.write("\n")
  cnt={}
@@ -183,11 +198,13 @@ def study(which):
          "valid_labels":result["valid_behaviour_labels"],"classes":cnt,
          "source_checks":[liq.get("status"),trades.get("status")],"path":str(dest.relative_to(ROOT))}
 def main():
- p=argparse.ArgumentParser();p.add_argument("--study",choices=sorted(STUDIES))
+ p=argparse.ArgumentParser();p.add_argument("--study",choices=sorted(STUDIES)+['bybit_latest','okx_latest'])
  p.add_argument("--selftest",action="store_true")
  a=p.parse_args()
  if a.selftest:
   assert len(STUDIES)==8
+  assert latest_public_sample(dt.datetime(2026,11,2,8,tzinfo=dt.timezone.utc))==dt.date(2026,10,1)
+  assert latest_public_sample(dt.datetime(2026,11,3,8,tzinfo=dt.timezone.utc))==dt.date(2026,11,1)
   assert classify(18,23)=="CONTINUATION_PROXY"
   assert classify(-14,30)=="OPPOSITE_REVERSAL_PROXY"
   assert classify(3,8)=="LIMITED_CONTINUATION_PROXY"
