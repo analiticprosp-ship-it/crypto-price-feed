@@ -33,6 +33,12 @@ jobs:
           python research/09l/auto/v1/no_lookahead_v087.py --selftest
           python -u research/09l/auto/v1/no_lookahead_v087.py --study bybit_latest
           python -u research/09l/auto/v1/no_lookahead_v087.py --study okx_latest
+      - name: "Collect first observed BTC liquidation outcome proxies for the next available free monthly day (RESEARCH ONLY)"
+        run: |
+          python -m py_compile research/09l/v0.8.8-2026-10-23/first_liquidation_event_behaviour.py research/09l/v0.8.8-2026-10-23/r2_archive_v088.py
+          python research/09l/v0.8.8-2026-10-23/first_liquidation_event_behaviour.py --selftest
+          python -u research/09l/v0.8.8-2026-10-23/first_liquidation_event_behaviour.py --study bybit_latest
+          python -u research/09l/v0.8.8-2026-10-23/first_liquidation_event_behaviour.py --study okx_latest
       - name: "Archive verified historical label cohorts in EXISTING private Cloudflare R2 with SHA readback"
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
@@ -43,6 +49,13 @@ jobs:
           python -m pip install --quiet boto3
           python research/09l/auto/v1/r2_archive_v087.py --selftest
           python -u research/09l/auto/v1/r2_archive_v087.py --all-available
+      - name: "Archive observed liquidation behaviour source receipts into EXISTING private R2"
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python -u research/09l/v0.8.8-2026-10-23/r2_archive_v088.py --all-available
       - name: "Publish daily data-health report with explicit missingness"
         run: |
           python research/09l/auto/v1/health_report.py --selftest
@@ -58,6 +71,8 @@ jobs:
             research/09l/auto/v1/derived/v087_labels/**/*.json
             research/09l/auto/v1/derived/health/*.json
             research/09l/auto/v1/derived/r2_receipts/*.json
+            research/09l/v0.8.8-2026-10-23/derived/liquidation_event_proxies/**/*.json
+            research/09l/v0.8.8-2026-10-23/derived/r2/*.json
           retention-days: 30
           if-no-files-found: warn
       - name: "Writeback strictly under research/09l/auto/v1/derived to research branch ONLY"
@@ -70,9 +85,9 @@ jobs:
           test "$(git branch --show-current)" = "research/09l-v088-history-cascade-20261023"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research/09l/auto/v1/derived
+          git add research/09l/auto/v1/derived research/09l/v0.8.8-2026-10-23/derived/liquidation_event_proxies research/09l/v0.8.8-2026-10-23/derived/r2
           if git diff --cached --quiet; then echo "Idempotent/no new artifacts"; exit 0; fi
-          if git diff --cached --name-only | grep -Ev '^research/09l/auto/v1/derived/'; then
+          if git diff --cached --name-only | grep -Ev '^research/09l/(auto/v1/derived/|v0.8.8-2026-10-23/derived/(liquidation_event_proxies/|r2/))'; then
             echo "UNAUTHORIZED_PATH_IN_WRITEBACK" >&2
             exit 1
           fi
