@@ -37,6 +37,11 @@ PRIOR_SELECTION_PIN={
 }
 MARKETS=("spot","um")
 SYMBOLS=("ETHUSDT","SOLUSDT")
+# Jan21 one-off historic stress expansion; other dates retain original 25MiB caps.
+JAN21_FLOW_ZIP_CAP=70*1024*1024
+JAN21_FLOW_DAY_CAP=150*1024*1024
+JAN21_FLOW_UNPACK_CAP=650*1024*1024
+JAN21_MAX_AGGTRADES_PER_FILE=7_000_000
 
 
 def confirm_selection(document):
@@ -74,11 +79,17 @@ def run(s3,bucket,rid,attempt,loader=fetch_http,write=put_immutable,selection=No
                 metadata=loader(f_url,"HEAD",cap=0)
                 n=metadata.get("bytes")
                 if (metadata.get("http")!=200 or type(n) is not int or
-                    not 0<n<=MAX_ZIP_BYTES or total_flow_bytes+n>MAX_TOTAL_ZIP_BYTES):
+                    not 0<n<=JAN21_FLOW_ZIP_CAP or total_flow_bytes+n>JAN21_FLOW_DAY_CAP):
                     raise ValueError("JAN21_FLOW_SOURCE_SIZE_CAP")
-                f_raw,f_sha=exact_publisher_file(f_url,MAX_ZIP_BYTES,loader)
+                f_raw,f_sha=exact_publisher_file(f_url,JAN21_FLOW_ZIP_CAP,loader)
+                if total_flow_bytes+len(f_raw)>JAN21_FLOW_DAY_CAP:
+                    raise ValueError("JAN21_ACTUAL_FLOW_DAY_BYTE_CAP")
                 total_flow_bytes+=len(f_raw)
-                quality,rows=parse_day_zip(f_raw,market,symbol,DAY,allowed_days=FROZEN)
+                quality,rows=parse_day_zip(
+                    f_raw,market,symbol,DAY,allowed_days=FROZEN,
+                    max_zip_bytes=JAN21_FLOW_ZIP_CAP,
+                    max_csv_uncompressed=JAN21_FLOW_UNPACK_CAP,
+                    max_rows=JAN21_MAX_AGGTRADES_PER_FILE)
                 d_raw=flow_csv_bytes(rows)
                 flows=read_flow_5m(d_raw,DAY,allowed_days=FROZEN)
                 if len(flows)!=quality["five_minute_slots_with_trades"]:
@@ -104,6 +115,7 @@ def run(s3,bucket,rid,attempt,loader=fetch_http,write=put_immutable,selection=No
                         raise ValueError("JAN21_R2_SHA_READBACK_FAIL")
                 panel[market,symbol]=(prices,flows)
                 successes.append({**item,"status":"PUBLISHER_SHA_CRC_EVENT_CLOCK_PASS",
+                    "original_flow_zip_bytes":len(f_raw),
                     "source_aggtrades":quality["trades"],"flow_5m_slots":len(flows),
                     "flow_missing_5m_slots":288-len(flows),
                     "price_5m_slots":288,"original_first_available":"UNVERIFIED",
@@ -133,6 +145,9 @@ def run(s3,bucket,rid,attempt,loader=fetch_http,write=put_immutable,selection=No
         "study_selection_exact_r2_pin":PRIOR_SELECTION_PIN,
         "prior_btc_regime":classification,
         "source_files":successes,"failed_source_files":failures,
+        "one_off_max_original_trade_zip":JAN21_FLOW_ZIP_CAP,
+        "one_off_max_total_trade_zip_bytes":JAN21_FLOW_DAY_CAP,
+        "one_off_max_trade_rows_per_source":JAN21_MAX_AGGTRADES_PER_FILE,
         "status":"COMPLETE_FALLING_EVENT_ONLY" if complete else "INCOMPLETE_NO_JOIN",
         "verified_aggtrades":sum(x["source_aggtrades"] for x in successes),
         "verified_5m_event_slots":sum(x["flow_5m_slots"] for x in successes),

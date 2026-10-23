@@ -2,6 +2,7 @@ name: H1H10 January21 Prior BTC Selection Offline Guard
 on:
   pull_request:
     paths:
+      - 'research/detector_h1h10_binance_aggtrades_first_verified.py'
       - 'research/detector_h1h10_selected_falling_jan21_flow.py'
       - 'research/test_detector_h1h10_selected_falling_jan21_flow.py'
       - '.github/workflows/detector-h1h10-jan21-falling-source-study.yml'
@@ -19,4 +20,4 @@ jobs:
           python-version: '3.11'
       - run: python -m pip install 'boto3>=1.35,<2'
       - name: Reject flow-based date choice, missing BTC prehistory, source gaps and holdout promotion
-        run: python -m unittest -v research.test_detector_h1h10_selected_falling_jan21_flow
+        run: python -m unittest -v research.test_detector_h1h10_selected_falling_jan21_flow research.test_detector_h1h10_binance_aggtrades_first_verified research.test_detector_h1h10_regime_prewindow_three_dates
