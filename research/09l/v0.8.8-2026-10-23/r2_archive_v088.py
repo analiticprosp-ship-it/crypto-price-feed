@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """09L v0.8.8 append-only private R2 archive for derived first-day labels & event proxies."""
-import datetime as dt,hashlib,json,os,pathlib
+import argparse,datetime as dt,hashlib,json,os,pathlib
 import boto3
 from botocore.exceptions import ClientError
 ROOT=pathlib.Path(__file__).resolve().parents[1]
@@ -25,10 +25,17 @@ def record(client,bucket,key,raw):
  read=client.get_object(Bucket=bucket,Key=key)["Body"].read()
  if hashlib.sha256(read).hexdigest()!=sha:raise RuntimeError("R2_READBACK_FAILED")
  return {"status":"R2_READBACK_SHA256_PASS","sha256":sha,"r2_key":key,"mode":mode}
-def main():
+def main(all_available=False):
  c=client();bucket=os.environ["R2_BUCKET"];receipts=[]
- for venue in VENUES:
-  for day in DAYS:
+ targets=[(venue,day) for venue in VENUES for day in DAYS]
+ if all_available:
+  targets=[]
+  for venue in VENUES:
+   for p in sorted((ROOT/"v0.8.8-2026-10-23"/"derived"/"liquidation_event_proxies"/venue).glob("*_first_message_behaviour.json")):
+    day=p.name.split("_first_message_behaviour.json")[0]
+    if len(day)!=10 or not day.endswith("-01"):raise ValueError("EXPECTED_FIRST_DAY_ONLY")
+    targets.append((venue,day))
+ for venue,day in targets:
    specs=[
     (ROOT/"auto"/"v1"/"derived"/"v087_labels"/venue/(day+"_no_lookahead_trade_labels.json"),"no_lookahead_labels",{"LABELS_REGISTERED_EXPLORATORY","PARTIAL_LABELS_MISSING_ASOF_PRICE"}),
     (ROOT/"v0.8.8-2026-10-23"/"derived"/"liquidation_event_proxies"/venue/(day+"_first_message_behaviour.json"),"liquidation_behaviour_proxies",{"EVENT_PROXIES_EXPLORATORY"})]
@@ -52,8 +59,8 @@ def main():
  at=dt.datetime.now(dt.timezone.utc)
  n=sum(x["status"]=="R2_READBACK_SHA256_PASS" for x in receipts)
  receipt={"study":"09L v088 more dates & observed liq price proxy source archive",
-  "created_at_utc":at.isoformat(),"status":"ARCHIVE_COMPLETE" if n==16 else "ARCHIVE_PARTIAL",
-  "valid_r2_objects":n,"expected":16,"receipts":receipts,
+  "created_at_utc":at.isoformat(),"status":"ARCHIVE_COMPLETE" if len(targets)>0 and n==2*len(targets) else "ARCHIVE_PARTIAL",
+  "valid_r2_objects":n,"expected":2*len(targets),"receipts":receipts,
   "r2_existing_bucket":True,"r2_prefix":"research/09l/v088",
   "model2_cluster_first_hit":"MISSING_NO_PIT","no_prospective_trading_claim":True,
   "trade_canon_mutation":False}
@@ -63,6 +70,8 @@ def main():
  OUT.mkdir(parents=True,exist_ok=True)
  p=OUT/(at.strftime("%Y%m%dT%H%M%S%fZ")+".json")
  with p.open("x",encoding="utf8") as f:json.dump(receipt,f,indent=2,ensure_ascii=False)
- print(json.dumps({"status":receipt["status"],"archived":n,"expected":16,
+ print(json.dumps({"status":receipt["status"],"archived":n,"expected":2*len(targets),
     "manifest_readback":receipt["manifest_receipt"]["status"],"receipt_file":str(p.relative_to(ROOT))}))
-if __name__=="__main__":main()
+if __name__=="__main__":
+ p=argparse.ArgumentParser();p.add_argument("--all-available",action="store_true")
+ main(p.parse_args().all_available)
