@@ -12,6 +12,7 @@ no confirmatory H1-H10, no statistical independence of 5m observations,
 no model training, no trades, no portfolio or risk-limit mutations.
 """
 import datetime as dt
+from decimal import Decimal
 import json
 import os
 from pathlib import Path
@@ -75,10 +76,11 @@ def regime_prior_week(day,first_prices,last_prices):
     start=first_prices[0];finish=last_prices[-1]
     if not 0<start<1e9 or not 0<finish<1e9:
         raise ValueError("REGIME_BTC_PRICE_INVALID")
-    change=finish/start-1.0
-    label=("RISING" if change>UP_THRESHOLD else
-           "FALLING" if change<DOWN_THRESHOLD else "CONSOLIDATING")
-    return {"label":label,"seven_day_return":round(change,10),
+    # Exact decimal comparison avoids 103/100 rounding above the +3% gate.
+    change=Decimal(str(finish))/Decimal(str(start))-Decimal("1")
+    label=("RISING" if change>Decimal("0.03") else
+           "FALLING" if change<Decimal("-0.03") else "CONSOLIDATING")
+    return {"label":label,"seven_day_return":round(float(change),10),
             "first_price_day":begin,"last_price_day":end,
             "classification_cutoff_utc":day+"T00:00:00+00:00",
             "defined_ex_ante":True,
