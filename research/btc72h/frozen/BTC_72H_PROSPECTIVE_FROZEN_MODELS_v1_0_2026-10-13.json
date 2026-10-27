@@ -1,0 +1,350 @@
+{
+  "name": "BTC 72H prospective shadow fixed model v1.0",
+  "status": "SHADOW_RESEARCH_ONLY_NO_TRADES",
+  "frozen_at_utc": "2026-10-13T00:04:40+00:00",
+  "dataset": "10 historical selected cases (not OOS/independent), 2025-07 to 2026-04",
+  "source_sha256": {
+    "BTC_72H_LIQUIDATIONS_10_EPISODES_RETEST_2026-10-13.csv": "1c2377bd1697c6a4acad6987395bc41274e23cec3d0d6987e841abdd0fef2247",
+    "BTC_72H_OI_HISTORICAL_EVENTS_2026-10-12.csv": "3cf77bf34090a5edbb259ef0b13877ab02552c793fb44533975f56cab78e5a48"
+  },
+  "label": "a future 1h BTC spot low STRICTLY under initial low in the next 7, 14 or 30 days after j+72 1h close; price-only downside alternatives separate",
+  "known_at": "after close of hourly candle starting at t0_hour+72h, i.e. >=t0_hour+73h",
+  "primary_oos": "newly qualified episodes after frozen_at_utc; register before outcome windows and without consulting future prices",
+  "notes": [
+    "October 2026 BTC event already studied in hypothesis selection: track separately, not pristine future OOS.",
+    "No model updates before protocol revision; never overwrite predictions or missing data.",
+    "Historical 10 events overlapping and selection-biased; these model coefficients are research benchmarks, not validated probabilities.",
+    "Model C uses SIDE COUNT delta SELL percent points between the 24h after vs 24h before t0. Not quote-volume or dollar liquidation volumes.",
+    "Spot 1h anchor preserves original dataset convention. Independent minute low verification is a separate diagnostic; do not silently relabel historical outcomes.",
+    "OI in BTC, not notional USD; funding rate last 3 published 8h observations as of the checkpoint.",
+    "Missing/unverifiable model inputs => model unavailable; never fill with invented 0 values."
+  ],
+  "horizons": {
+    "7": {
+      "constant": {
+        "p": 0.25,
+        "method": "Laplace-smoothed historical prevalence (10 reviewed events)"
+      },
+      "n": 10,
+      "positives": 2,
+      "models": {
+        "A_price": {
+          "features": [
+            "drop",
+            "rec"
+          ],
+          "scale_mean": [
+            0.09237707785652123,
+            0.6061577407044327
+          ],
+          "scale": [
+            0.05494555870933626,
+            0.23005618788127669
+          ],
+          "coef": [
+            -0.21022426438736655,
+            -0.2360835745567123
+          ],
+          "intercept": -1.4225834645983662,
+          "sklearn_C": 0.25,
+          "prob_positive": 1,
+          "fit_n": 10
+        },
+        "B_price_OI_funding": {
+          "features": [
+            "drop",
+            "rec",
+            "oi_fall_pct",
+            "oi_rebound_pct",
+            "fund_3_mean"
+          ],
+          "scale_mean": [
+            0.09237707785652123,
+            0.6061577407044327,
+            -0.32515268857862156,
+            -2.2649610933112063,
+            2.3539e-05
+          ],
+          "scale": [
+            0.05494555870933626,
+            0.23005618788127669,
+            4.185134849817314,
+            5.114429180737244,
+            4.151713820286215e-05
+          ],
+          "coef": [
+            -0.15594787915263905,
+            -0.22798765272626742,
+            -0.22128313620780535,
+            0.3140765348181489,
+            0.18488491562016976
+          ],
+          "intercept": -1.4945413262059646,
+          "sklearn_C": 0.25,
+          "prob_positive": 1,
+          "fit_n": 10
+        },
+        "C_plus_liquidations": {
+          "features": [
+            "drop",
+            "rec",
+            "oi_fall_pct",
+            "oi_rebound_pct",
+            "fund_3_mean",
+            "post_minus_pre24_pp"
+          ],
+          "scale_mean": [
+            0.09237707785652123,
+            0.6061577407044327,
+            -0.32515268857862156,
+            -2.2649610933112063,
+            2.3539e-05,
+            -18.74823360628982
+          ],
+          "scale": [
+            0.05494555870933626,
+            0.23005618788127669,
+            4.185134849817314,
+            5.114429180737244,
+            4.151713820286215e-05,
+            6.32065442817868
+          ],
+          "coef": [
+            -0.15698340334772856,
+            -0.22117209734718946,
+            -0.2090419460229498,
+            0.31101270649411955,
+            0.19258232337966322,
+            0.07013459928144335
+          ],
+          "intercept": -1.5019460226799621,
+          "sklearn_C": 0.25,
+          "prob_positive": 1,
+          "fit_n": 10
+        }
+      }
+    },
+    "14": {
+      "constant": {
+        "p": 0.4166666666666667,
+        "method": "Laplace-smoothed historical prevalence (10 reviewed events)"
+      },
+      "n": 10,
+      "positives": 4,
+      "models": {
+        "A_price": {
+          "features": [
+            "drop",
+            "rec"
+          ],
+          "scale_mean": [
+            0.09237707785652123,
+            0.6061577407044327
+          ],
+          "scale": [
+            0.05494555870933626,
+            0.23005618788127669
+          ],
+          "coef": [
+            -0.35340651026551567,
+            -0.30531175490251
+          ],
+          "intercept": -0.4344970203963926,
+          "sklearn_C": 0.25,
+          "prob_positive": 1,
+          "fit_n": 10
+        },
+        "B_price_OI_funding": {
+          "features": [
+            "drop",
+            "rec",
+            "oi_fall_pct",
+            "oi_rebound_pct",
+            "fund_3_mean"
+          ],
+          "scale_mean": [
+            0.09237707785652123,
+            0.6061577407044327,
+            -0.32515268857862156,
+            -2.2649610933112063,
+            2.3539e-05
+          ],
+          "scale": [
+            0.05494555870933626,
+            0.23005618788127669,
+            4.185134849817314,
+            5.114429180737244,
+            4.151713820286215e-05
+          ],
+          "coef": [
+            -0.2954023305713783,
+            -0.2872841123909014,
+            0.09905336655928783,
+            0.08507824527452221,
+            0.14325382853901053
+          ],
+          "intercept": -0.4511214903866743,
+          "sklearn_C": 0.25,
+          "prob_positive": 1,
+          "fit_n": 10
+        },
+        "C_plus_liquidations": {
+          "features": [
+            "drop",
+            "rec",
+            "oi_fall_pct",
+            "oi_rebound_pct",
+            "fund_3_mean",
+            "post_minus_pre24_pp"
+          ],
+          "scale_mean": [
+            0.09237707785652123,
+            0.6061577407044327,
+            -0.32515268857862156,
+            -2.2649610933112063,
+            2.3539e-05,
+            -18.74823360628982
+          ],
+          "scale": [
+            0.05494555870933626,
+            0.23005618788127669,
+            4.185134849817314,
+            5.114429180737244,
+            4.151713820286215e-05,
+            6.32065442817868
+          ],
+          "coef": [
+            -0.2952500426617418,
+            -0.27151897623202964,
+            0.12166526902505549,
+            0.08073589929140791,
+            0.15573952021376225,
+            0.10759826631156108
+          ],
+          "intercept": -0.4541156142924289,
+          "sklearn_C": 0.25,
+          "prob_positive": 1,
+          "fit_n": 10
+        }
+      }
+    },
+    "30": {
+      "constant": {
+        "p": 0.5833333333333334,
+        "method": "Laplace-smoothed historical prevalence (10 reviewed events)"
+      },
+      "n": 10,
+      "positives": 6,
+      "models": {
+        "A_price": {
+          "features": [
+            "drop",
+            "rec"
+          ],
+          "scale_mean": [
+            0.09237707785652123,
+            0.6061577407044327
+          ],
+          "scale": [
+            0.05494555870933626,
+            0.23005618788127669
+          ],
+          "coef": [
+            -0.14794534132742904,
+            -0.17839812645120282
+          ],
+          "intercept": 0.4117817018803684,
+          "sklearn_C": 0.25,
+          "prob_positive": 1,
+          "fit_n": 10
+        },
+        "B_price_OI_funding": {
+          "features": [
+            "drop",
+            "rec",
+            "oi_fall_pct",
+            "oi_rebound_pct",
+            "fund_3_mean"
+          ],
+          "scale_mean": [
+            0.09237707785652123,
+            0.6061577407044327,
+            -0.32515268857862156,
+            -2.2649610933112063,
+            2.3539e-05
+          ],
+          "scale": [
+            0.05494555870933626,
+            0.23005618788127669,
+            4.185134849817314,
+            5.114429180737244,
+            4.151713820286215e-05
+          ],
+          "coef": [
+            -0.15157397323221422,
+            -0.18385719883780874,
+            -0.12691349368611027,
+            0.049593566575818385,
+            -0.006915607700275144
+          ],
+          "intercept": 0.41310074993399964,
+          "sklearn_C": 0.25,
+          "prob_positive": 1,
+          "fit_n": 10
+        },
+        "C_plus_liquidations": {
+          "features": [
+            "drop",
+            "rec",
+            "oi_fall_pct",
+            "oi_rebound_pct",
+            "fund_3_mean",
+            "post_minus_pre24_pp"
+          ],
+          "scale_mean": [
+            0.09237707785652123,
+            0.6061577407044327,
+            -0.32515268857862156,
+            -2.2649610933112063,
+            2.3539e-05,
+            -18.74823360628982
+          ],
+          "scale": [
+            0.05494555870933626,
+            0.23005618788127669,
+            4.185134849817314,
+            5.114429180737244,
+            4.151713820286215e-05,
+            6.32065442817868
+          ],
+          "coef": [
+            -0.1516719086317682,
+            -0.14058715617179735,
+            -0.06978029921033757,
+            0.04396936511285509,
+            0.01856248872410774,
+            0.2428392244979454
+          ],
+          "intercept": 0.4194423580217218,
+          "sklearn_C": 0.25,
+          "prob_positive": 1,
+          "fit_n": 10
+        }
+      }
+    }
+  },
+  "evaluation": {
+    "main_metrics": [
+      "Brier",
+      "log_loss"
+    ],
+    "baseline": "constant",
+    "event_groups": "30-day low-time cluster for independence summary; also report original 7-day-signal sample as exploratory",
+    "checkpoints": [
+      7,
+      14,
+      30
+    ],
+    "model_success": "only if incremental gains persist in prospective independent cases and within data-availability cohort; no pre-announced threshold after seeing outcomes"
+  }
+}
