@@ -18,6 +18,8 @@ jobs:
         run: python research/btc72h/collect_closed_1h.py
       - name: Scan research-only BTC72H candidates and matured outcomes
         run: python research/btc72h/detect_events.py
+      - name: Audit BTC72H research state before persistence
+        run: python research/btc72h/audit_state.py
       - name: Commit isolated research dataset only
         shell: bash
         run: |
