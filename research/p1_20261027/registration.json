@@ -1,0 +1,59 @@
+{
+  "id": "P1_V816_OPERATIONAL_FORWARD_V1_20261027",
+  "registered_at_utc": "2026-10-27T12:19:41.994900+00:00",
+  "mode": "RESEARCH_ONLY_NO_TRADES",
+  "parent_protocol_path": "research/btci_v816_prospective_confluence_protocol_frozen_2026-10-18.json",
+  "parent_protocol_sha256": "434072512649cdc7734dba26316602643a342315b1b5a7a450863990bd7baa4f",
+  "parent_blob_sha": "a71c5db286c59685b9093bdb95ca01cd4f042437",
+  "runner_sha256": "183c2386c8a1ed5f7d11deee962b8db2375517c86df0560c45df6176dc611559",
+  "dependencies": {
+    "h41": {
+      "path": "research/btci_h41_full_history_v810.py",
+      "sha256": "682cb5155cf52a94fa1cdeec7d866c8094878aed81b71c464432a7be9fac6d51",
+      "blob_sha": "0bb802531efb206ee3a8feda0c36155ca8f66e81"
+    },
+    "fred": {
+      "path": "research/btci_nfci_asof_v813.py",
+      "sha256": "37f69d855cc0e7dcadaf6877f0ce3b763e813315590db7a2cf9ba82afc40812e",
+      "blob_sha": "990d72f23af8b9eec2205b3b269e3eaa8f5af43f"
+    }
+  },
+  "first_sunday": "2026-11-01",
+  "first_decision_clock_utc": "2026-11-02T10:00:00Z",
+  "operational_window_hours": 4,
+  "decision_clock": "Monday10:00UTC for previous completed Sunday; >4h late => no historical forecast backfill",
+  "models": {
+    "early": "FED_EASING AND NFCI_EASING AND ANFCI_EASING",
+    "confirmation": "BTC_WEEKLY_UP AND FED_EASING AND NFCI_EASING AND ANFCI_EASING"
+  },
+  "independent_counterfactuals": [
+    "BTC_WEEKLY_UP",
+    "FED_EASING",
+    "ANFCI_EASING",
+    "ALL_DATES_BASELINE"
+  ],
+  "BTC_feature": "exact original30weekSMA plus4weekSMA slope plus rising4week close extrema",
+  "structural_target": "any confirmed EXP price-proxy state in next13 completed weeks, originalv8.11 convention; separate already-expansion diagnostics",
+  "cohort_policy": "store all complete future observations; NON_EXPANSION_PRIMARY vs ALREADY_EXPANSION_DIAGNOSTIC separately, no pooling",
+  "outcome_horizon_weeks": 13,
+  "review_after_consecutive_future_weeks": 26,
+  "minimum_weeks_not_success_gate": true,
+  "macro_freshness": "inherit v8.13 6..18day as-of last observation and exactly5weekly observations; H41 last5date-indexed releases <=Sunday, gaps<=10days and latest<=10days",
+  "cloud_namespace": "research/p1/v1/",
+  "storage_policy": "IfNoneMatch create-only + GET SHA verification; no mutable canonical latest pointer; conflicting bytes fail closed",
+  "branch": "research/p1-readiness-20261027",
+  "limits_unchanged": true,
+  "btc72h_model_A_unchanged": true,
+  "current_paper_long_unchanged": true,
+  "limitations": [
+    "Research labels, not calibrated probabilities or trading authorization",
+    "ReferenceUSD fixing is not an executable exchange price",
+    "Historical price revisions and exact intraday original release clock not independently proven",
+    "H41 pages can be corrected; captured bytes and retrieval time retained",
+    "NFCI and ANFCI form one correlated family",
+    "Source pending is not false/no signal",
+    "No historical forecast records before1Nov2026",
+    "Late runs skip forecast; future scoring uses only matured13week horizon and archives raw bytes",
+    "No changes to main,production prices,Spot,Futures,NAV,P&L,reserve,capital,orders or tradinglimits"
+  ]
+}
