@@ -7,6 +7,14 @@ import argparse,csv,datetime as dt,hashlib,io,json,math,pathlib,re,urllib.reques
 ROOT=pathlib.Path(__file__).resolve().parent
 OUT=ROOT/"derived"/"daily_binance"
 DATES=tuple(f"2026-10-{n:02d}" for n in range(19,27))
+FORWARD_START=dt.date(2026,10,27)
+def valid_day(day):
+ try:d=dt.date.fromisoformat(day)
+ except ValueError:return False
+ return day in DATES or (FORWARD_START<=d<dt.datetime.now(dt.timezone.utc).date())
+def recent_days():
+ today=dt.datetime.now(dt.timezone.utc).date()
+ return [str(d) for j in range(7,0,-1) if (d:=today-dt.timedelta(days=j))>=FORWARD_START]
 CLOCKS=("07:24:30","08:32:30","13:49:30","14:19:30","15:10:30","15:49:30","17:28:30","18:38:30")
 BASE="https://data.binance.vision/data/futures/um/daily/aggTrades/BTCUSDT/"
 MAX_ZIP=140_000_000
@@ -24,7 +32,12 @@ def fetch(url,max_bytes):
  if len(raw)>max_bytes:raise ValueError("SOURCE_TOO_LARGE")
  return raw
 def parse(day):
- if day not in DATES:raise ValueError("DATE_NOT_PRE_REGISTERED")
+ if not valid_day(day):raise ValueError("DATE_NOT_PRE_REGISTERED_OR_NOT_COMPLETED")
+ archived=OUT/(day+".json")
+ if archived.exists():
+  meta=json.loads(archived.read_text(encoding="utf8"))
+  if meta.get("status")=="DAILY_PRICE_ONLY_EXPLORATORY":
+   return {"date":day,"status":"ALREADY_ARCHIVED","path":str(archived.relative_to(ROOT))}
  filename=f"BTCUSDT-aggTrades-{day}.zip"
  url=BASE+filename
  observed_at=dt.datetime.now(dt.timezone.utc).isoformat()
@@ -130,13 +143,20 @@ def parse(day):
    "labels_ready":sum(x["status"]=="LABEL_READY" for x in result["eight_fixed_utc_windows"]),
    "error_category":source.get("error_category"),"path":str(dest.relative_to(ROOT))}
 def main():
- p=argparse.ArgumentParser();p.add_argument("--date",choices=DATES)
+ p=argparse.ArgumentParser();p.add_argument("--date")
+ p.add_argument("--recent",action="store_true")
  p.add_argument("--selftest",action="store_true")
  a=p.parse_args()
  if a.selftest:
   assert len(DATES)==8 and len(CLOCKS)==8
   assert day_ms("2026-10-24")%86400000==0
-  print(json.dumps({"status":"SELFTEST_PASS","dates":len(DATES)}));return
- if not a.date:p.error("requires --date")
+  assert valid_day("2026-10-25") and not valid_day("2026-10-28") if dt.datetime.now(dt.timezone.utc).date()==dt.date(2026,10,27) else True
+  print(json.dumps({"status":"SELFTEST_PASS","dates":len(DATES),"future_start":FORWARD_START.isoformat()}));return
+ if a.recent:
+  ds=recent_days()
+  if not ds:print(json.dumps({"status":"NO_CLOSED_FORWARD_DAILY_DATES_YET"}));return
+  for day in ds:print(json.dumps(parse(day),ensure_ascii=False),flush=True)
+  return
+ if not a.date:p.error("requires --date or --recent")
  print(json.dumps(parse(a.date),ensure_ascii=False))
 if __name__=="__main__":main()
