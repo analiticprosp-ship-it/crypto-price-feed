@@ -19,7 +19,7 @@ jobs:
       - name: "Checkout isolated research ref, not main"
         uses: actions/checkout@v4
         with:
-          ref: research/09l-v088-history-cascade-20261023
+          ref: research/09l-v089-historical-robustness-20261027
           persist-credentials: false
       - name: "Compile and run exact historical QA selftest"
         run: |
@@ -82,7 +82,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git branch --show-current)" = "research/09l-v088-history-cascade-20261023"
+          test "$(git branch --show-current)" = "research/09l-v089-historical-robustness-20261027"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research/09l/auto/v1/derived research/09l/v0.8.8-2026-10-23/derived/liquidation_event_proxies research/09l/v0.8.8-2026-10-23/derived/r2
@@ -92,6 +92,6 @@ jobs:
             exit 1
           fi
           git commit -m "research(09L AUTO): append daily source provenance, quality and PIT status"
-          git pull --rebase origin research/09l-v088-history-cascade-20261023
+          git pull --rebase origin research/09l-v089-historical-robustness-20261027
           B64="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
-          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${B64}" push origin HEAD:research/09l-v088-history-cascade-20261023
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${B64}" push origin HEAD:research/09l-v089-historical-robustness-20261027
