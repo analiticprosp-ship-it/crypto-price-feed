@@ -20,6 +20,8 @@ jobs:
         run: python research/btc72h/detect_events.py
       - name: Audit BTC72H research state before persistence
         run: python research/btc72h/audit_state.py
+      - name: Register frozen model A prospective checkpoints only
+        run: python research/btc72h/register_model_a.py
       - name: Commit isolated research dataset only
         shell: bash
         run: |
@@ -27,6 +29,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add research/btc72h/data/btc_spot_1h.json research/btc72h/data/detector_state.json
           if [ -d research/btc72h/events ]; then git add research/btc72h/events/; fi
+          if [ -d research/btc72h/forecasts ]; then git add research/btc72h/forecasts/; fi
           git diff --cached --quiet && exit 0
           git commit -m 'Update BTC72H research-only closed 1h candles'
           for i in 1 2 3; do
