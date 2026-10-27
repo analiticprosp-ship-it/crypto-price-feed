@@ -1,0 +1,13 @@
+name: BTC72H frozen model A read-only validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify pinned model A and prospective separation
+        run: python research/btc72h/test_frozen_model.py
