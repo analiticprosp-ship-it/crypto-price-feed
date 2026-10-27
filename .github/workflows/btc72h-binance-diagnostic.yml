@@ -1,0 +1,13 @@
+name: BTC72H Binance Spot diagnostic (manual only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe Binance Spot 1h closed candles
+        run: python research/btc72h/diagnose_binance_spot.py
