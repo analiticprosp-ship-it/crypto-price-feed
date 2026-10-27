@@ -1,0 +1,31 @@
+name: BTC72H research hourly OHLCV collector
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '12 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: btc72h-research-collector
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect and validate closed Binance Spot BTCUSDT 1h
+        run: python research/btc72h/collect_closed_1h.py
+      - name: Commit isolated research dataset only
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/btc72h/data/btc_spot_1h.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Update BTC72H research-only closed 1h candles'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 3
+          done
+          exit 1
