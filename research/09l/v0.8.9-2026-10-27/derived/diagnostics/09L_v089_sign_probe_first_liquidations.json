@@ -1,0 +1,275 @@
+{
+  "coinglass_model2_first_hit": "NOT_RUN_PIT_MISSING",
+  "distinct_calendar_days": 5,
+  "eligible_decisive_events": 2,
+  "eligible_events": [
+    {
+      "bucket_utc": "12:00-18:00",
+      "date": "2025-04-01",
+      "liquidation_side": "buy",
+      "rules": {
+        "constant_continuation": true,
+        "positive_signed_flow": true,
+        "positive_signed_momentum": true
+      },
+      "signed_flow_imbalance": 0.608874,
+      "signed_past_momentum_bps": 0.772355,
+      "true_continuation_proxy": false,
+      "venue": "okex-swap"
+    },
+    {
+      "bucket_utc": "18:00-24:00",
+      "date": "2025-10-01",
+      "liquidation_side": "sell",
+      "rules": {
+        "constant_continuation": true,
+        "positive_signed_flow": true,
+        "positive_signed_momentum": true
+      },
+      "signed_flow_imbalance": 0.629846,
+      "signed_past_momentum_bps": 4.366651,
+      "true_continuation_proxy": false,
+      "venue": "okex-swap"
+    }
+  ],
+  "excluded_reason": {
+    "LIMITED_CONTINUATION_PROXY": 19,
+    "MIXED_OR_UNCLASSIFIED": 9
+  },
+  "limitations": [
+    "No real Model2 PIT clusters, so NO first-hit predictions.",
+    "First observed liquidation event per fixed session is not typical of large liquidations.",
+    "Two exchanges share underlying BTC paths, so these cases are NOT independent trials.",
+    "The source outcomes were already visible before this probe; retrospective, no truly blind OOS.",
+    "These fixed signs do not identify market-maker absorption, cancellations, position closure causes, or calibrated cascade odds."
+  ],
+  "model_free_fixed_sign_diagnostics": {
+    "constant_continuation": {
+      "accuracy": 0.0,
+      "by_day": {
+        "2025-01-01": {
+          "accuracy": null,
+          "correct": 0,
+          "n": 0
+        },
+        "2025-04-01": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 1
+        },
+        "2025-07-01": {
+          "accuracy": null,
+          "correct": 0,
+          "n": 0
+        },
+        "2025-10-01": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 1
+        },
+        "2026-01-01": {
+          "accuracy": null,
+          "correct": 0,
+          "n": 0
+        }
+      },
+      "by_venue": {
+        "bybit": {
+          "accuracy": null,
+          "correct": 0,
+          "n": 0
+        },
+        "okex-swap": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 2
+        }
+      },
+      "confusion": {
+        "FN": 0,
+        "FP": 2,
+        "TN": 0,
+        "TP": 0
+      },
+      "correct": 0,
+      "n": 2
+    },
+    "positive_signed_flow": {
+      "accuracy": 0.0,
+      "by_day": {
+        "2025-01-01": {
+          "accuracy": null,
+          "correct": 0,
+          "n": 0
+        },
+        "2025-04-01": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 1
+        },
+        "2025-07-01": {
+          "accuracy": null,
+          "correct": 0,
+          "n": 0
+        },
+        "2025-10-01": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 1
+        },
+        "2026-01-01": {
+          "accuracy": null,
+          "correct": 0,
+          "n": 0
+        }
+      },
+      "by_venue": {
+        "bybit": {
+          "accuracy": null,
+          "correct": 0,
+          "n": 0
+        },
+        "okex-swap": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 2
+        }
+      },
+      "confusion": {
+        "FN": 0,
+        "FP": 2,
+        "TN": 0,
+        "TP": 0
+      },
+      "correct": 0,
+      "n": 2
+    },
+    "positive_signed_momentum": {
+      "accuracy": 0.0,
+      "by_day": {
+        "2025-01-01": {
+          "accuracy": null,
+          "correct": 0,
+          "n": 0
+        },
+        "2025-04-01": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 1
+        },
+        "2025-07-01": {
+          "accuracy": null,
+          "correct": 0,
+          "n": 0
+        },
+        "2025-10-01": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 1
+        },
+        "2026-01-01": {
+          "accuracy": null,
+          "correct": 0,
+          "n": 0
+        }
+      },
+      "by_venue": {
+        "bybit": {
+          "accuracy": null,
+          "correct": 0,
+          "n": 0
+        },
+        "okex-swap": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "n": 2
+        }
+      },
+      "confusion": {
+        "FN": 0,
+        "FP": 2,
+        "TN": 0,
+        "TP": 0
+      },
+      "correct": 0,
+      "n": 2
+    }
+  },
+  "prereg": "PREREG_2025_QTR_2026_JAN_LOCKED.md",
+  "source_files": [
+    {
+      "date": "2025-01-01",
+      "liquidations_sha256": "575687cf2428e16c31c390ebb98d793d92b30e3834f4b64dda3e08978bc01fff",
+      "sha256": "05c6aaec6d0042a611a0022e95cabcec21f2ac30b399237a4dab7270d70da576",
+      "trades_sha256": "748fd67118309582ecfc94a1e62d6d6a489e3a0a78040114411bc45a6be3c533",
+      "venue": "bybit"
+    },
+    {
+      "date": "2025-01-01",
+      "liquidations_sha256": "f57ae00d0571f17201935228c609897b223180fadd1db7f9caa3129c39dde912",
+      "sha256": "bf8ac72ab2a2c2a0235e4542b322ee35b76b5e394f74fe46e185427f33727cf4",
+      "trades_sha256": "401c427b51a16d66ea11801cc4b5289d1537f029a5c5ebdf828e77b201990d13",
+      "venue": "okex-swap"
+    },
+    {
+      "date": "2025-04-01",
+      "liquidations_sha256": "14f55b18e8d2e51e1e01e87ca89512d1efcbc917e20e51e42a4df1240e6681f3",
+      "sha256": "a24294a5c9d91de1884145f6f6bdd9664f49f423d9d60d233b7ad2a5e2ebdc7d",
+      "trades_sha256": "b26acb506f7477c6f0e740d55b8be13f2eb4107e94d78635ea0b8b45a34e7fef",
+      "venue": "bybit"
+    },
+    {
+      "date": "2025-04-01",
+      "liquidations_sha256": "4b88985ad0b29598e1b0b685d857df1994d19250ceb9542770017aa24d2ce6e1",
+      "sha256": "135e429185577b2b46c03caafa335a7bac4315d0ecda5279223a35007f8bc1ec",
+      "trades_sha256": "40efe9bf1de149b678d3c5343adbff9f35fdcbc191993182131e3b244d7bf569",
+      "venue": "okex-swap"
+    },
+    {
+      "date": "2025-07-01",
+      "liquidations_sha256": "2b3bac55d64617d8c5d6bfb9ab029001dfd189d01508db891a843612fa351c64",
+      "sha256": "c02ed5c1aefbeb51d23f9a4245422ea641ff57ea79a9d31e208f8c0931cfe6d3",
+      "trades_sha256": "8c3014eb530dee934600034b0ca84748be7375c2321faa8eb2fa9997305cfc45",
+      "venue": "bybit"
+    },
+    {
+      "date": "2025-07-01",
+      "liquidations_sha256": "d8fb84506694c100fcf31f00b33376af4425bfecd4b6063e003e439e266b4fb6",
+      "sha256": "01ed82c3c1eb18d49d38d59d47a196bff5953d81edc775037c9d05baee4cd959",
+      "trades_sha256": "b5dbbeadeff639b300c258ff8c27cfcd2c336640a727c72fe6f357f7c178afeb",
+      "venue": "okex-swap"
+    },
+    {
+      "date": "2025-10-01",
+      "liquidations_sha256": "730fc6ed950ba9e5c79daf7eeacad426bdd6c2b573e6a50580a01fae5513cdd8",
+      "sha256": "d1c6959f1c6e0f8284a41a67db4697fd572b76df3b65bc379af1abbc6c7c55f4",
+      "trades_sha256": "30e37552b15bd834891f0d897d2e3aa7b84ea3409961491806d06a458668110e",
+      "venue": "bybit"
+    },
+    {
+      "date": "2025-10-01",
+      "liquidations_sha256": "a15122b2b4f537ac487c6f25fbfa812537b42e4a4701172152f2cba126fa2885",
+      "sha256": "d33ee845b218bd6993e7961119c642357dd2db2fa3a19b4e708d74cee9724029",
+      "trades_sha256": "4f0da0c4bc78bcd4d91a006bf599b122d158fa5952b2771841dd42ee93ae7596",
+      "venue": "okex-swap"
+    },
+    {
+      "date": "2026-01-01",
+      "liquidations_sha256": "8f09616c4bc9a5b9e6faca4b878950331944adc6f5082c4eec75d82ff53ee2a6",
+      "sha256": "fcc6a78a93b0d64ae2c26a8ff36061d91f781b6365de0a3aa86b6198eba6a2f7",
+      "trades_sha256": "e75dfaf7e448af4cae355bca9321b45531464abaca79aa19784cab2aa32f6ee2",
+      "venue": "bybit"
+    },
+    {
+      "date": "2026-01-01",
+      "liquidations_sha256": "8b3fa727402e27774d14658e06e8d244ba7cf73927e2c6bab97b7bd9792677e3",
+      "sha256": "8816412cc20c4f9f64f66acd1a3528584f44e55267acde4405e442d9ba758938",
+      "trades_sha256": "37996f6562fcba4a7a50f134259c7a2685ce20b68013e11cf3b2f9fc3f8637d0",
+      "venue": "okex-swap"
+    }
+  ],
+  "status": "RETROSPECTIVE_EVENT_SIGN_PROBE_NONPREDICTIVE",
+  "study": "09L v089 retrospective simple sign feasibility on observed liquidation message",
+  "total_source_events": 30,
+  "trading_canon_unchanged": true
+}
