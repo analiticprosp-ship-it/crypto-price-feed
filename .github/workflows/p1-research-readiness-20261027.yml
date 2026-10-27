@@ -1,0 +1,29 @@
+name: P1 v8.16 isolated source readiness (NO FORECASTS)
+on:
+  push:
+    branches: ['research/p1-readiness-20261027']
+    paths:
+      - 'research/p1_20261027/readiness.py'
+      - '.github/workflows/p1-research-readiness-20261027.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate official sources without forecasts or production writes
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python research/p1_20261027/readiness.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p1-v816-source-readiness
+          path: p1_readiness_artifact/
+          retention-days: 30
