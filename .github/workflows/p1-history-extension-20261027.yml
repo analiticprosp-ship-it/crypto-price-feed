@@ -1,0 +1,27 @@
+name: P1 historical extension 20261027
+on:
+  push:
+    branches: [research/p1-readiness-20261027]
+    paths: [research/p1_extension_20261027/collect.py, .github/workflows/p1-history-extension-20261027.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install 'boto3>=1.35,<2'
+      - run: python research/p1_extension_20261027/collect.py
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p1-history-extension
+          path: p1-extension-data/
+          retention-days: 30
