@@ -1,0 +1,30 @@
+{
+  "id": "LONG_BTC72H_ENTRY_DIAGNOSTIC_EXPANSION_V1",
+  "status": "FROZEN_BEFORE_EXPANDED_COMPUTATION_EXPLORATORY_NOT_OOS",
+  "date": "2026-10-27",
+  "scope": "Entry timing only, equal notional, common calendar exit. Not full LONG_BTC72H_ENTRY_COMPARISON_V1 or prospective trading model.",
+  "source": "Binance spot market-data-only API https://data-api.binance.vision/api/v3/klines",
+  "assets": ["BTCUSDT", "ETHUSDT"],
+  "retrieval_start_utc": "2017-08-17T00:00:00Z",
+  "closed_data_cutoff_utc": "2026-10-27T12:00:00Z",
+  "intervals": ["BTC 1h", "BTC/ETH 4h", "BTC/ETH 1d"],
+  "candidate_rule": "Exact detect_events.py at 9d46ae8284a62d89111fcfe7e7f3b5502bce14e0; accept all candidates before future Survivor is known; 168h signal spacing; 66h initial warmup.",
+  "arms": {
+    "EARLY": "Next 4h opening at or after candidate hourly close",
+    "LONG_CONFIRM": "First causal 4h breakout20 and above NW500 center after candidate; original phase/chase/structural-distance gates; wait only until common exit",
+    "SURVIVOR72": "Next 4h opening at or after t0_hour+73h, only if all 72 subsequent hourly lows >= initial low"
+  },
+  "common_gates": "Own UP or constructive TRANSITION at entry, BTC not DOWN for ETH; otherwise skip, retain event. Daily phase from pinned LONG runner.",
+  "comparison_cohort": "Candidate must have continuous BTC/ETH 4h history with >=500 completed bars and >=220 completed daily bars at EARLY time; report warmup/data exclusions explicitly, never exclude on future Survivor or signal intersection.",
+  "exit": "Same 4h opening, 7 or 14 calendar days after EARLY time for every arm. No stops, position sizing, partials or compounding.",
+  "primary": "7-day paired difference Survivor72 minus EARLY in net return, equal weight to independent 30-day cluster means, BTC and ETH reported separately",
+  "secondary": "LONG_CONFIRM minus EARLY; 14-day horizons; per-entry mean, fill coverage, MAE/MFE, regime and cycle-calendar diagnostics",
+  "cost_each_side": 0.0015,
+  "stress_cost_each_side": 0.003,
+  "missing": "No fill=zero only with fully observed search window; unknown inputs/unmatured outcomes=null; warmup is excluded explicitly from common cohort",
+  "clusters": "Chronological non-overlapping anchored 30-day low-time blocks, first low anchors block, new block when low >= anchor+30d. Never sum within-cluster events as independent.",
+  "historical_blocks": ["2017-2019", "2020-2022", "2023-2026-10-27"],
+  "probability_models": "Frozen A/B/C unchanged; probabilities are not entry gates. B/C UNKNOWN until own inputs verified. This run does not assess Brier/Log Loss.",
+  "claims": "No p-value winner, no threshold optimization, no pristine historical OOS claim, no auto change to PAPER LONG or trading. Negative results retained. Historical idealized open fill differs from operational mid and latency. Archived source retrieval times are not historical first-availability evidence.",
+  "followup": "Full managed-strategy comparison and genuinely prospective protocol require separate registration; this diagnostic cannot promote models."
+}
