@@ -1,0 +1,67 @@
+name: "09L v089B eight independent-calendar Binance daily price-only receipts (SHADOW)"
+on:
+  push:
+    branches: [research/09l-v089-historical-robustness-20261027]
+    paths: [.github/workflows/09l-v089-binance-eight-daily-shadow.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: 09l-v089B-eight-arbitrary-days-no-trade
+  cancel-in-progress: false
+jobs:
+  public-daily:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure prereg, parser and rule code frozen before data download
+        run: |
+          test -s research/09l/v0.8.9-2026-10-27/PREREG_BINANCE_DAILY_OCT19_26_LOCKED.md
+          python -m py_compile research/09l/v0.8.9-2026-10-27/binance_daily_aggtrade_price_probe.py research/09l/v0.8.9-2026-10-27/binance_daily_fixed_sign_summary.py research/09l/v0.8.9-2026-10-27/binance_daily_r2_archive.py
+          python research/09l/v0.8.9-2026-10-27/binance_daily_aggtrade_price_probe.py --selftest
+      - name: Download official Binance daily BTCUSD-M aggTrade ZIPs + CHECKSUMs and UTC audit
+        run: |
+          python -u - <<'PY'
+          import concurrent.futures,subprocess,json
+          root='research/09l/v0.8.9-2026-10-27/binance_daily_aggtrade_price_probe.py'
+          dates=[f'2026-10-{d:02d}' for d in range(19,27)]
+          def task(d):
+              r=subprocess.run(['python','-u',root,'--date',d],capture_output=True,text=True,timeout=240)
+              return (d,r.returncode,r.stdout.strip(),r.stderr[-250:])
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:out=list(pool.map(task,dates))
+          for item in out:print('BINANCE_DAILY_SOURCE',*item,flush=True)
+          assert all(item[1]==0 for item in out),'BINANCE_SOURCE_PROCESS_ERROR'
+          assert all(json.loads(item[2]).get('status')=='DAILY_PRICE_ONLY_EXPLORATORY' for item in out),'BINANCE_DAILY_SOURCE_QA_REJECTED'
+          PY
+      - name: Compare predeclared sign rule to unoptimized price-only benchmarks per actual calendar date
+        run: python -u research/09l/v0.8.9-2026-10-27/binance_daily_fixed_sign_summary.py
+      - name: Write compact daily-only source metadata to existing PRIVATE Cloudflare R2 with SHA-256 readback
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          python -m pip install --quiet boto3
+          python -u research/09l/v0.8.9-2026-10-27/binance_daily_r2_archive.py
+      - name: Only derived JSON artifacts, never raw provider files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 09l-v089B-binance-eight-daily-no-liq
+          path: research/09l/v0.8.9-2026-10-27/derived/**/*.json
+          if-no-files-found: warn
+          retention-days: 35
+      - name: Strict research-only writeback
+        if: success()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/09l/v0.8.9-2026-10-27/derived
+          if git diff --cached --quiet; then exit 0; fi
+          if git diff --cached --name-only | grep -Ev '^research/09l/v0.8.9-2026-10-27/derived/'; then echo 'UNAUTHORIZED_PATH' >&2;exit 1;fi
+          git commit -m "research(09L): append Binance public daily SHA-verified non-first-day BTC-only outcomes, no liquidation inference"
+          git pull --rebase origin research/09l-v089-historical-robustness-20261027
+          git push origin HEAD:research/09l-v089-historical-robustness-20261027
