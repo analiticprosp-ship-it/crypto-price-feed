@@ -3,12 +3,12 @@
 All cloud writes confined to research/p1/v1/, immutable conditional puts.
 Official-source bytes are archived; delayed runs never backdate forecasts.
 """
-import datetime as dt,hashlib,importlib.util,json,math,os,re,sys,urllib.parse,urllib.request
+import datetime as dt,hashlib,importlib.util,json,math,os,re,sys,time,urllib.error,urllib.parse,urllib.request
 from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
 REPO=HERE.parents[1]
-PREFIX='research/p1/v1/'
+PREFIX='research/p1/v1_1/'
 P86=('research/btci/v8.6/runs/39130315439-1/extended_history.json','9af82767fa8139685e784c131c075cec553298c4718ed4a40ac41412144248ca')
 P89=('research/btci/v8.9/runs/39138844921-1/multiscale.json','4b8822e929aff5569fa9cd105404c02b110927a970aed33db68910925c111b73')
 EXP='STRUCTURAL_EXPANSION_PRICE_PROXY';CON='STRUCTURAL_CONTRACTION_PRICE_PROXY';MID='TRANSITION_OR_REBOUND_PRICE_PROXY'
@@ -17,9 +17,15 @@ def date(s):return dt.date.fromisoformat(s)
 def rawjson(obj):return (json.dumps(obj,ensure_ascii=False,sort_keys=True,indent=2)+'\n').encode()
 def utcnow():return dt.datetime.now(dt.timezone.utc)
 def geturl(url,maxbytes=2500000):
- with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'P1 prospective research v1','Accept':'application/json,text/html,text/plain'}),timeout=30) as r:raw=r.read(maxbytes+1)
- if len(raw)>maxbytes:raise ValueError('SOURCE_TOO_LARGE')
- return raw
+ for attempt in range(3):
+  try:
+   with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'P1 prospective research v1.1','Accept':'application/json,text/html,text/plain'}),timeout=30) as r:raw=r.read(maxbytes+1)
+   if len(raw)>maxbytes:raise ValueError('SOURCE_TOO_LARGE')
+   return raw
+  except (TimeoutError,urllib.error.URLError) as exc:
+   if isinstance(exc,urllib.error.HTTPError) and exc.code not in (429,500,502,503,504):raise
+   if attempt==2:raise
+   time.sleep(attempt+1)
 def last_sunday(now):
  day=now.date();ans=day-dt.timedelta(days=(day.weekday()+1)%7)
  if day==ans:ans-=dt.timedelta(days=7)
@@ -105,9 +111,16 @@ def prices(sunday,start):
  if any(start+dt.timedelta(days=i) not in result for i in range((sunday-start).days+1)):raise ValueError('PRICE_DAILY_GAP')
  return result,raw,url
 def fed_features(sunday,parser,archive):
- url='https://alfred.stlouisfed.org/release/downloaddates?ff=txt&rid=20';raw=geturl(url)
- archive('H41_release_calendar.txt',raw,url,'text/plain')
- dates=sorted({date(x) for x in re.findall(r'(?<!\d)((?:19|20)\d{2}-[01]\d-[0-3]\d)(?!\d)',raw.decode('utf-8','replace')) if date(x)<=sunday})
+ params={'release_id':20,'file_type':'json','sort_order':'desc','limit':20,'realtime_end':sunday.isoformat(),'include_release_dates_with_no_data':'false'}
+ safeurl='https://api.stlouisfed.org/fred/release/dates?'+urllib.parse.urlencode(params)
+ key=os.environ.get('FRED_API_KEY','')
+ if not re.fullmatch(r'[a-z0-9]{32}',key):raise ValueError('FRED_RELEASE_CALENDAR_KEY_MISSING')
+ raw=geturl(safeurl+'&api_key='+key);calendar=json.loads(raw)
+ archive('H41_release_calendar.json',raw,safeurl)
+ if calendar.get('realtime_end')!=sunday.isoformat():raise ValueError('RELEASE_CALENDAR_CUTOFF_NOT_VERIFIED')
+ entries=calendar.get('release_dates',[])
+ if any(z.get('release_id')!=20 for z in entries):raise ValueError('WRONG_RELEASE_ID')
+ dates=sorted({date(z['date']) for z in entries if date(z['date'])<=sunday})
  last=dates[-5:]
  if len(last)!=5 or (sunday-last[-1]).days>10 or any(not 1<=(b-a).days<=10 for a,b in zip(last,last[1:])):raise ValueError('H41_RELEASE_WINDOW_GAP')
  rows=[]
@@ -143,7 +156,7 @@ def main():
  fred=import_pinned(reg['dependencies']['fred']['path'],reg['dependencies']['fred']['sha256'])
  s=cloud();bucket=os.environ['R2_BUCKET'];parent=getparent(s,bucket,*P86);context=getparent(s,bucket,*P89)
  parity=acceptance(parent,context)
- register=immutable(s,bucket,PREFIX+'registrations/operational_v1.json',registration_raw)
+ register=immutable(s,bucket,PREFIX+'registrations/operational_v1_1.json',registration_raw)
  # Strict conditional-write test uses only this research namespace.
  test=rawjson({'kind':'IMMUTABILITY_ACCEPTANCE','registration_sha256':sha(registration_raw)})
  testkey=PREFIX+'acceptance/immutable_v1.json';immutable(s,bucket,testkey,test);again=immutable(s,bucket,testkey,test)
