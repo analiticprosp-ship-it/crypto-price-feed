@@ -1,0 +1,13 @@
+name: BTC72H isolated historical and fail-closed integration tests
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run isolated BTC72H historical and synthetic checkpoint tests
+        run: python research/btc72h/test_integration_isolated.py
