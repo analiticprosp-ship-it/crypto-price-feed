@@ -7,7 +7,17 @@ ROOT=pathlib.Path(__file__).resolve().parent
 OUT=ROOT/"derived"/"v087_labels"
 CLOCKS=["07:24:30","08:32:30","13:49:30","14:19:30",
         "15:10:30","15:49:30","17:28:30","18:38:30"]
-STUDIES={"bybit_feb":("bybit","BTCUSDT","2026-02-01"),
+STUDIES={"bybit_2025jan":("bybit","BTCUSDT","2025-01-01"),
+         "okx_2025jan":("okex-swap","BTC-USDT-SWAP","2025-01-01"),
+         "bybit_2025apr":("bybit","BTCUSDT","2025-04-01"),
+         "okx_2025apr":("okex-swap","BTC-USDT-SWAP","2025-04-01"),
+         "bybit_2025jul":("bybit","BTCUSDT","2025-07-01"),
+         "okx_2025jul":("okex-swap","BTC-USDT-SWAP","2025-07-01"),
+         "bybit_2025oct":("bybit","BTCUSDT","2025-10-01"),
+         "okx_2025oct":("okex-swap","BTC-USDT-SWAP","2025-10-01"),
+         "bybit_2026jan":("bybit","BTCUSDT","2026-01-01"),
+         "okx_2026jan":("okex-swap","BTC-USDT-SWAP","2026-01-01"),
+         "bybit_feb":("bybit","BTCUSDT","2026-02-01"),
          "bybit_mar":("bybit","BTCUSDT","2026-03-01"),
          "bybit_apr":("bybit","BTCUSDT","2026-04-01"),
          "bybit_may":("bybit","BTCUSDT","2026-05-01"),
