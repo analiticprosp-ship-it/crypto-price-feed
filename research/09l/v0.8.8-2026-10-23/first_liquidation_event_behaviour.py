@@ -7,6 +7,16 @@ ROOT=pathlib.Path(__file__).resolve().parent
 OUT=ROOT/"derived"/"liquidation_event_proxies"
 STUDIES={f"{'bybit' if v=='bybit' else 'okx'}_{m}":(v,"BTCUSDT" if v=="bybit" else "BTC-USDT-SWAP",f"2026-{n:02d}-01")
  for v in ("bybit","okex-swap") for m,n in (("feb",2),("mar",3),("apr",4),("may",5))}
+STUDIES["bybit_2025jan"]=("bybit","BTCUSDT","2025-01-01")
+STUDIES["okx_2025jan"]=("okex-swap","BTC-USDT-SWAP","2025-01-01")
+STUDIES["bybit_2025apr"]=("bybit","BTCUSDT","2025-04-01")
+STUDIES["okx_2025apr"]=("okex-swap","BTC-USDT-SWAP","2025-04-01")
+STUDIES["bybit_2025jul"]=("bybit","BTCUSDT","2025-07-01")
+STUDIES["okx_2025jul"]=("okex-swap","BTC-USDT-SWAP","2025-07-01")
+STUDIES["bybit_2025oct"]=("bybit","BTCUSDT","2025-10-01")
+STUDIES["okx_2025oct"]=("okex-swap","BTC-USDT-SWAP","2025-10-01")
+STUDIES["bybit_2026jan"]=("bybit","BTCUSDT","2026-01-01")
+STUDIES["okx_2026jan"]=("okex-swap","BTC-USDT-SWAP","2026-01-01")
 BUCKETS=((6,12),(12,18),(18,24))
 def latest_public_sample(now):
  day=dt.date(now.year,now.month,1)
@@ -202,7 +212,7 @@ def main():
  p.add_argument("--selftest",action="store_true")
  a=p.parse_args()
  if a.selftest:
-  assert len(STUDIES)==8
+  assert len(STUDIES)==18
   assert latest_public_sample(dt.datetime(2026,11,2,8,tzinfo=dt.timezone.utc))==dt.date(2026,10,1)
   assert latest_public_sample(dt.datetime(2026,11,3,8,tzinfo=dt.timezone.utc))==dt.date(2026,11,1)
   assert classify(18,23)=="CONTINUATION_PROXY"
