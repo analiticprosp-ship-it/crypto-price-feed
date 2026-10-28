@@ -1,0 +1,188 @@
+{
+  "schema": "P1_EVENT_STUDY_REGISTRATION_V1",
+  "study_id": "P1_FOMC_MIDTERMS_2026_EVENT_STUDY_V1",
+  "approval": "USER_EXPLICIT_2026-10-28",
+  "design_as_of_utc": "2026-10-28T08:37:30Z",
+  "program": "P1_MARKET_REGIME_AND_RECOVERY",
+  "module": "MACRO_EVENT_FOMC_US_MIDTERMS_2026",
+  "downstream_read_only": "P2_LONG_BTC_ETH",
+  "status": "REGISTERED_DESIGN_ONLY_DATA_CAPTURE_NOT_YET_VERIFIED",
+  "mode": "RESEARCH_ONLY_SHADOW_NO_TRADES",
+  "purpose": "Observe BTC and ETH spot and market-regime behavior around the 2026-10-28 FOMC and 2026-11-03 US midterm elections; test whether event-aware information adds explanatory or predictive value beyond matched regimes. Do not infer causality from temporal coincidence.",
+  "factual_event_sources": [
+    {
+      "event": "FOMC statement",
+      "scheduled_utc": "2026-10-28T18:00:00Z",
+      "url": "https://www.federalreserve.gov/newsevents/2026-october.htm",
+      "timing": "scheduled, not yet published as of registration"
+    },
+    {
+      "event": "FOMC press conference",
+      "scheduled_utc": "2026-10-28T18:30:00Z",
+      "url": "https://www.federalreserve.gov/newsevents/2026-october.htm",
+      "timing": "scheduled"
+    },
+    {
+      "event": "US midterm election day",
+      "local_date": "2026-11-03",
+      "timezone": "America/New_York",
+      "url": "https://www.usa.gov/midterm-elections",
+      "timing": "election day, not the date when all results become final"
+    }
+  ],
+  "prospective_event_anchors": [
+    {
+      "id": "fomc_statement",
+      "kind": "scheduled_publication",
+      "utc": "2026-10-28T18:00:00Z",
+      "actual_available_at_utc": null
+    },
+    {
+      "id": "fomc_press_conference",
+      "kind": "scheduled_publication",
+      "utc": "2026-10-28T18:30:00Z",
+      "actual_available_at_utc": null
+    },
+    {
+      "id": "election_night_fixed_clock",
+      "kind": "predeclared_comparison_clock_not_result_timestamp",
+      "utc": "2026-11-04T01:00:00Z",
+      "equivalent": "2026-11-03 20:00 US/Eastern",
+      "actual_available_at_utc": null
+    },
+    {
+      "id": "first_verified_chamber_control_result",
+      "kind": "first_authoritative_publication",
+      "utc": null,
+      "actual_available_at_utc": null,
+      "source_and_publication_time_required": true
+    },
+    {
+      "id": "certified_election_result",
+      "kind": "separate_late_publication",
+      "utc": null,
+      "actual_available_at_utc": null,
+      "source_and_publication_time_required": true
+    }
+  ],
+  "primary_assets": [
+    "BTC_USDT_SPOT",
+    "ETH_USDT_SPOT"
+  ],
+  "market_context": [
+    "SP500",
+    "NASDAQ_COMPOSITE",
+    "DXY_OR_BROAD_USD",
+    "US_2Y_YIELD",
+    "US_10Y_YIELD",
+    "VIX",
+    "FED_RATE_EXPECTATIONS",
+    "BTC_PERP_OI_NATIVE_UNITS",
+    "BTC_PERP_FUNDING",
+    "BTC_SPOT_VOLUME"
+  ],
+  "baselines": {
+    "reference_points": [
+      "t_minus_7d",
+      "t_minus_24h",
+      "last_completed_candle_before_t0"
+    ],
+    "horizons_after_each_anchor": [
+      "1h",
+      "4h",
+      "24h",
+      "3d",
+      "7d",
+      "14d",
+      "30d",
+      "90d"
+    ],
+    "reporting_rule": "Do not report future horizons until mature; event return uses last eligible completed 1h spot close pre-anchor and fixed eligible closes after t0. Separate cash-market session returns and 24/7 crypto returns; do not create synthetic weekend stock prices.",
+    "price_sources": "Primary exchange spot OHLCV with source, venue, time, retrieval, hash and gaps; prices.json systemPrice may be used only when actually fresh, never backfilled as if live.",
+    "outcomes": [
+      "signed_return_pct",
+      "absolute_return_pct",
+      "max_favorable_excursion_pct",
+      "max_adverse_excursion_pct",
+      "max_drawdown_pct",
+      "realized_volatility",
+      "volume_ratio_when_covered",
+      "btc_vs_eth_relative_return",
+      "btc_vs_sp500_date_aligned",
+      "retest_of_pre_event_support_when_predefined"
+    ],
+    "macro_surprise": "Actual FOMC decision, statement and forward-guidance surprise must be evaluated against a dated, as-of-pre-publication expectation, not classified using future market reaction."
+  },
+  "comparator": {
+    "midterm_years": [
+      2014,
+      2018,
+      2022
+    ],
+    "rule": "Enumerate all eligible prior midterm events with verified BTC data and contemporaneous FOMC proximity; compare against pre-specified time-matched non-election controls in the same UP/TRANSITION/SIDEWAYS/DOWN regime, similar volatility and macro conditions. Keep all negative episodes.",
+    "groups": [
+      "all_midterms",
+      "event_cluster_fomc_plus_midterms",
+      "regime_matched_non_event_days"
+    ],
+    "warning": "Only three prior midterms with mature BTC coverage; no confident probability/causality claims, no in-sample tuning passed off as out-of-sample.",
+    "event_dependency": "2026 FOMC and election are six days apart; 7/14/30/90-day windows overlap and must be treated as one dependent event cluster, not independent votes."
+  },
+  "records_contract": {
+    "required": [
+      "parent_event_id",
+      "module_event_id",
+      "event_time_utc",
+      "observed_at_utc",
+      "available_at_utc",
+      "retrieved_at_utc",
+      "source_uri",
+      "source_sha256",
+      "market_venue",
+      "spot_or_perpetual",
+      "unit",
+      "definition_version",
+      "quality_status",
+      "regime_asof",
+      "prediction_or_outcome",
+      "horizon_maturity"
+    ],
+    "status_values": [
+      "PENDING",
+      "UNKNOWN",
+      "UNAVAILABLE",
+      "VERIFIED_HISTORICAL_DIAGNOSTIC",
+      "VERIFIED_PROSPECTIVE_RECORD"
+    ],
+    "no_future_information": true,
+    "store_raw_versions_without_overwrite": true,
+    "no_composite_trading_score": true
+  },
+  "handoffs": {
+    "P1": "Describe event window and independent market regime evidence with limitations.",
+    "P2": "Read-only candidate comparison for early entry, post-FOMC entry and post-election confirmation after real information availability; BTC and ETH separately, fees/slippage/MAE/MFE; current LONG PAPER unchanged.",
+    "P3": "BTC72H is external shadow risk context only; frozen model, checkpoint and baseline unchanged."
+  },
+  "milestones": [
+    "2026-10-29 preliminary FOMC reaction",
+    "2026-11-04 election night first report",
+    "2026-11-11 one-week observation",
+    "2026-12-03 thirty-day election horizon after maturity",
+    "2027-02-01 ninety-day election horizon after maturity"
+  ],
+  "outcome_status": "NO_RESULTS_RECORDED",
+  "backtest_status": "NOT_RUN",
+  "trading_applicability": "NOT_ESTABLISHED",
+  "protections": [
+    "P1_v8.16_frozen_and_forward_scheduler",
+    "P2_LONG_FORWARD_PAPER",
+    "P3_BTC72H_FROZEN",
+    "P4_CORE_RTCARE",
+    "SPOT_FUTURES",
+    "NAV_CAPITAL_PNL_RESERVE",
+    "ACTION_MAP",
+    "TRADE_SIGNALS_LIMITS",
+    "GITHUB_MAIN_AND_PRODUCTION_WORKFLOWS"
+  ],
+  "writeback_boundary": "This registration is a stand-alone research-branch sidecar; it does not by itself update Project Sources, CURRENT_MANIFEST, the separate program registry, GitHub main, scheduled workflows, or financial books."
+}
