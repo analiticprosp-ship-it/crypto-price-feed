@@ -23,10 +23,14 @@ jobs:
           p=json.loads(Path("research/hype-derivatives/latest.json").read_text())
           assert p["authority"]=="SHADOW_RESEARCH_ONLY_NO_TRADES"
           assert len(p["observations"])==2
-          assert any(x["status"]=="OK" for x in p["observations"]), "No live HYPE derivatives source available"
+          assert all(x["status"]=="OK" for x in p["observations"]), "Both independent venues must respond for parity testing"
           for x in p["observations"]:
               if x["status"]=="OK":
                   assert all(k in x["metrics"] for k in ("openInterest","funding","volume24h","liquidations"))
+                  for k in ("openInterest","volume24h"):
+                      assert isinstance(x["metrics"][k]["value"], (int,float)) and x["metrics"][k]["value"] >= 0
+                  assert isinstance(x["metrics"]["funding"]["value"], (int,float))
+                  assert x["metrics"]["liquidations"]["status"]=="UNAVAILABLE"
           PY
       - name: Upload test snapshot artifact only
         if: always()
