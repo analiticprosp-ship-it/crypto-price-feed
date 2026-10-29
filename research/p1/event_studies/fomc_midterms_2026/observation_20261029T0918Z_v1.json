@@ -1,0 +1,621 @@
+{
+  "schema": "P1_EVENT_STUDY_OBSERVATION_SIDECAR_V1",
+  "study_id": "P1_FOMC_MIDTERMS_2026_EVENT_STUDY_V1",
+  "registration_git_blob_sha1": "4a85840ada197bf0b96fd77cf2b51b4a22a936da",
+  "mode": "RESEARCH_ONLY_SHADOW_NO_TRADES",
+  "retrieved_at_utc": "2026-10-29T09:19:32.143Z",
+  "source_retrieval": "GitHub connected fetch_file + official Fed/FEC/Cboe webpages + AP/Reuters; no exchange OHLCV retrieved",
+  "fomc": {
+    "statement": {
+      "parent_event_id": "FOMC_2026_10_28",
+      "module_event_id": "fomc_statement",
+      "event_time_utc": "2026-10-28T18:00:00Z",
+      "observed_at_utc": "2026-10-28T18:00:00Z",
+      "available_at_utc": "2026-10-28T18:00:00Z",
+      "retrieved_at_utc": "2026-10-29T09:19:32.143Z",
+      "source_uri": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm",
+      "source_sha256": null,
+      "market_venue": null,
+      "spot_or_perpetual": null,
+      "unit": "percentage_points",
+      "definition_version": "FOMC_statement_2026-10-28",
+      "quality_status": "VERIFIED_HISTORICAL_DIAGNOSTIC",
+      "regime_asof": "UNKNOWN",
+      "prediction_or_outcome": "RATE_HOLD_3.75_TO_4.00_VOTE_10_TO_2_DISSENTS_FOR_25BP_HIKE_LISA_COOK_BETH_HAMMACK",
+      "horizon_maturity": {
+        "1h": "MATURE_DATA_UNAVAILABLE",
+        "4h": "MATURE_DATA_UNAVAILABLE",
+        "24h": "PENDING_TIME",
+        "3d": "PENDING_TIME",
+        "7d": "PENDING_TIME",
+        "14d": "PENDING_TIME",
+        "30d": "PENDING_TIME",
+        "90d": "PENDING_TIME"
+      }
+    },
+    "press_conference": {
+      "parent_event_id": "FOMC_2026_10_28",
+      "module_event_id": "fomc_press_conference",
+      "event_time_utc": "2026-10-28T18:30:00Z",
+      "observed_at_utc": null,
+      "available_at_utc": null,
+      "retrieved_at_utc": "2026-10-29T09:19:32.143Z",
+      "source_uri": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20261028.htm",
+      "source_sha256": null,
+      "market_venue": null,
+      "spot_or_perpetual": null,
+      "unit": null,
+      "definition_version": "FOMC_press_conference_scheduled_anchor",
+      "quality_status": "PENDING",
+      "regime_asof": "UNKNOWN",
+      "prediction_or_outcome": "Official scheduled 18:30 UTC; exact first public statement time and transcript not verified; Reuters reports Warsh remarks",
+      "horizon_maturity": {
+        "1h": "MATURE_DATA_UNAVAILABLE",
+        "4h": "MATURE_DATA_UNAVAILABLE",
+        "24h": "PENDING_TIME",
+        "3d": "PENDING_TIME",
+        "7d": "PENDING_TIME",
+        "14d": "PENDING_TIME",
+        "30d": "PENDING_TIME",
+        "90d": "PENDING_TIME"
+      }
+    },
+    "prepublication_rate_expectations": {
+      "source_uri": "https://etf.net/news/fed-futures-price-hold-december-hike-2026-10-27",
+      "source_publication_date": "2026-10-27",
+      "probability_october_hike_pct": 10.5,
+      "probability_rate_higher_by_december_pct": 82.3,
+      "quality_status": "VERIFIED_HISTORICAL_DIAGNOSTIC",
+      "limitation": "Secondary contemporaneous report, not original CME snapshot; no verified intraday available_at. FOMC surprise classification UNKNOWN."
+    }
+  },
+  "elections": {
+    "election_day_local": "2026-11-03",
+    "source_uri": "https://www.fec.gov/help-candidates-and-committees/dates-and-deadlines/2026-reporting-dates/federal-election-activity-periods-each-state-2026/",
+    "election_night_fixed_clock_utc": "2026-11-04T01:00:00Z",
+    "first_verified_chamber_control_result": {
+      "status": "PENDING",
+      "available_at_utc": null,
+      "source_uri": null
+    },
+    "certified_election_result": {
+      "status": "PENDING",
+      "available_at_utc": null,
+      "source_uri": null
+    },
+    "outcomes": {
+      "1h": "PENDING_TIME",
+      "4h": "PENDING_TIME",
+      "24h": "PENDING_TIME",
+      "3d": "PENDING_TIME",
+      "7d": "PENDING_TIME",
+      "14d": "PENDING_TIME",
+      "30d": "PENDING_TIME",
+      "90d": "PENDING_TIME"
+    }
+  },
+  "spot_observations": [
+    {
+      "parent_event_id": "FOMC_2026_10_28",
+      "module_event_id": "POST_FOMC_SPOT_POINT_BTC",
+      "event_time_utc": "2026-10-28T18:00:00Z",
+      "observed_at_utc": [
+        "2026-10-29T08:57:24.379Z",
+        "2026-10-29T08:57:25.163Z"
+      ],
+      "available_at_utc": "2026-10-29T08:57:27.928770+00:00",
+      "retrieved_at_utc": "2026-10-29T09:19:32.143Z",
+      "source_uri": "https://github.com/analiticprosp-ship-it/crypto-price-feed/blob/main/prices.json",
+      "source_sha256": null,
+      "source_git_blob_sha1": "088fac08088ce7dfb6d52efe252904e37127c1a1",
+      "market_venue": [
+        "MEXC",
+        "OKX"
+      ],
+      "spot_or_perpetual": "SPOT",
+      "unit": "BTC/USDT",
+      "definition_version": "price-feed 1.0.1",
+      "quality_status": "VERIFIED_HISTORICAL_DIAGNOSTIC",
+      "regime_asof": "UNKNOWN",
+      "prediction_or_outcome": "POST_EVENT_POINT_OBSERVATION_ONLY_NOT_EVENT_RETURN",
+      "horizon_maturity": "1h_4h_MATURE_BUT_OHLCV_UNAVAILABLE",
+      "value": 80060.07500000001,
+      "quote_method": "mean_2",
+      "source_count": 2,
+      "source_spread_pct": 0.009306,
+      "source_observations": [
+        {
+          "venue": "MEXC",
+          "ok": true,
+          "symbol": "BTC",
+          "market": "spot",
+          "bid": 80063.71,
+          "ask": 80063.89,
+          "last": 80069.05,
+          "price": 80063.8,
+          "priceType": "mid_bid_ask",
+          "sourceTimestampMs": 1793264244379,
+          "sourceTime": "2026-10-29T08:57:24.379Z",
+          "receivedAtMs": 1793264245300,
+          "receivedAt": "2026-10-29T08:57:25.300Z",
+          "endpoint": "https://api.mexc.com/api/v3/ticker/24hr?symbol=BTCUSDT",
+          "ageMs": 921,
+          "fresh": true
+        },
+        {
+          "venue": "OKX",
+          "ok": true,
+          "symbol": "BTC",
+          "market": "spot",
+          "bid": 80056.3,
+          "ask": 80056.4,
+          "last": 80056.4,
+          "price": 80056.35,
+          "priceType": "mid_bid_ask",
+          "sourceTimestampMs": 1793264245163,
+          "sourceTime": "2026-10-29T08:57:25.163Z",
+          "receivedAtMs": 1793264245300,
+          "receivedAt": "2026-10-29T08:57:25.300Z",
+          "endpoint": "https://www.okx.com/api/v5/market/ticker?instId=BTC-USDT",
+          "endpointRegion": "GLOBAL",
+          "ageMs": 137,
+          "fresh": true
+        },
+        {
+          "venue": "Bybit",
+          "ok": false,
+          "fresh": false,
+          "symbol": "BTC",
+          "market": "spot",
+          "error": "HTTP 403",
+          "receivedAtMs": 1793264245300,
+          "receivedAt": "2026-10-29T08:57:25.300Z"
+        }
+      ],
+      "notes": "Captured after generatedAt; do not treat as current or event-anchor price; no OHLCV; SHA256 unavailable; Git blob SHA1 retained."
+    },
+    {
+      "parent_event_id": "FOMC_2026_10_28",
+      "module_event_id": "POST_FOMC_SPOT_POINT_ETH",
+      "event_time_utc": "2026-10-28T18:00:00Z",
+      "observed_at_utc": [
+        "2026-10-29T08:57:25.530Z",
+        "2026-10-29T08:57:24.856Z"
+      ],
+      "available_at_utc": "2026-10-29T08:57:27.928770+00:00",
+      "retrieved_at_utc": "2026-10-29T09:19:32.143Z",
+      "source_uri": "https://github.com/analiticprosp-ship-it/crypto-price-feed/blob/main/prices.json",
+      "source_sha256": null,
+      "source_git_blob_sha1": "088fac08088ce7dfb6d52efe252904e37127c1a1",
+      "market_venue": [
+        "MEXC",
+        "OKX"
+      ],
+      "spot_or_perpetual": "SPOT",
+      "unit": "ETH/USDT",
+      "definition_version": "price-feed 1.0.1",
+      "quality_status": "VERIFIED_HISTORICAL_DIAGNOSTIC",
+      "regime_asof": "UNKNOWN",
+      "prediction_or_outcome": "POST_EVENT_POINT_OBSERVATION_ONLY_NOT_EVENT_RETURN",
+      "horizon_maturity": "1h_4h_MATURE_BUT_OHLCV_UNAVAILABLE",
+      "value": 2319.88,
+      "quote_method": "mean_2",
+      "source_count": 2,
+      "source_spread_pct": 0.010776,
+      "source_observations": [
+        {
+          "venue": "MEXC",
+          "ok": true,
+          "symbol": "ETH",
+          "market": "spot",
+          "bid": 2320,
+          "ask": 2320.01,
+          "last": 2320.48,
+          "price": 2320.005,
+          "priceType": "mid_bid_ask",
+          "sourceTimestampMs": 1793264245530,
+          "sourceTime": "2026-10-29T08:57:25.530Z",
+          "receivedAtMs": 1793264245300,
+          "receivedAt": "2026-10-29T08:57:25.300Z",
+          "endpoint": "https://api.mexc.com/api/v3/ticker/24hr?symbol=ETHUSDT",
+          "ageMs": 0,
+          "fresh": true
+        },
+        {
+          "venue": "OKX",
+          "ok": true,
+          "symbol": "ETH",
+          "market": "spot",
+          "bid": 2319.75,
+          "ask": 2319.76,
+          "last": 2319.76,
+          "price": 2319.755,
+          "priceType": "mid_bid_ask",
+          "sourceTimestampMs": 1793264244856,
+          "sourceTime": "2026-10-29T08:57:24.856Z",
+          "receivedAtMs": 1793264245300,
+          "receivedAt": "2026-10-29T08:57:25.300Z",
+          "endpoint": "https://www.okx.com/api/v5/market/ticker?instId=ETH-USDT",
+          "endpointRegion": "GLOBAL",
+          "ageMs": 444,
+          "fresh": true
+        },
+        {
+          "venue": "Bybit",
+          "ok": false,
+          "fresh": false,
+          "symbol": "ETH",
+          "market": "spot",
+          "error": "HTTP 403",
+          "receivedAtMs": 1793264245300,
+          "receivedAt": "2026-10-29T08:57:25.300Z"
+        }
+      ],
+      "notes": "Captured after generatedAt; do not treat as current or event-anchor price; no OHLCV; SHA256 unavailable; Git blob SHA1 retained."
+    }
+  ],
+  "market_context": [
+    {
+      "asset": "SP500",
+      "value": 7743.98,
+      "unit": "index_points",
+      "observed_at_utc": "2026-10-28T20:00:00Z",
+      "available_at_utc": null,
+      "retrieved_at_utc": "2026-10-29T09:19:32.143Z",
+      "source_uri": "https://apnews.com/article/7864eac2e13db75f07758ed9c39ad96b",
+      "source_sha256": null,
+      "quality_status": "VERIFIED_HISTORICAL_DIAGNOSTIC",
+      "note": "Cash session close, not crypto event-window return"
+    },
+    {
+      "asset": "NASDAQ_COMPOSITE",
+      "value": 26549.85,
+      "unit": "index_points",
+      "observed_at_utc": "2026-10-28T20:00:00Z",
+      "available_at_utc": null,
+      "retrieved_at_utc": "2026-10-29T09:19:32.143Z",
+      "source_uri": "https://apnews.com/article/7864eac2e13db75f07758ed9c39ad96b",
+      "source_sha256": null,
+      "quality_status": "VERIFIED_HISTORICAL_DIAGNOSTIC",
+      "note": "Cash session close"
+    },
+    {
+      "asset": "VIX",
+      "value": 16.91,
+      "unit": "index_points",
+      "observed_at_utc": "2026-10-28T20:15:01Z",
+      "available_at_utc": null,
+      "retrieved_at_utc": "2026-10-29T09:19:32.143Z",
+      "source_uri": "https://www.cboe.com/delayed_quotes/_vix/quote_table",
+      "source_sha256": null,
+      "quality_status": "VERIFIED_HISTORICAL_DIAGNOSTIC",
+      "note": "Cboe delayed quote 16:15:01 ET"
+    },
+    {
+      "asset": "US_2Y_YIELD",
+      "value": 4.7,
+      "unit": "percent",
+      "observed_at_utc": null,
+      "observed_date": "2026-10-27",
+      "available_at_utc": "2026-10-28T20:15:00Z",
+      "retrieved_at_utc": "2026-10-29T09:19:32.143Z",
+      "source_uri": "https://www.federalreserve.gov/releases/h15/",
+      "source_sha256": null,
+      "quality_status": "VERIFIED_HISTORICAL_DIAGNOSTIC",
+      "note": "Official H.15 Oct28 release only through Oct27; Oct28 yield PENDING official release"
+    },
+    {
+      "asset": "US_10Y_YIELD",
+      "value": 4.99,
+      "unit": "percent",
+      "observed_at_utc": null,
+      "observed_date": "2026-10-27",
+      "available_at_utc": "2026-10-28T20:15:00Z",
+      "retrieved_at_utc": "2026-10-29T09:19:32.143Z",
+      "source_uri": "https://www.federalreserve.gov/releases/h15/",
+      "source_sha256": null,
+      "quality_status": "VERIFIED_HISTORICAL_DIAGNOSTIC",
+      "note": "Official H.15 Oct28 release only through Oct27"
+    },
+    {
+      "asset": "DXY",
+      "value": 102.13,
+      "unit": "index_points",
+      "observed_at_utc": null,
+      "observed_date": "2026-10-28",
+      "available_at_utc": null,
+      "retrieved_at_utc": "2026-10-29T09:19:32.143Z",
+      "source_uri": "https://portfolio-terminal.com/markets/us-dollar-index/october-2026",
+      "source_sha256": null,
+      "quality_status": "VERIFIED_HISTORICAL_DIAGNOSTIC",
+      "note": "Secondary ICE-attributed daily close; exact availability and ICE primary verification missing; contextual only"
+    },
+    {
+      "asset": "FED_RATE_EXPECTATIONS",
+      "value": null,
+      "unit": "probability",
+      "observed_at_utc": null,
+      "available_at_utc": null,
+      "retrieved_at_utc": "2026-10-29T09:19:32.143Z",
+      "source_uri": null,
+      "source_sha256": null,
+      "quality_status": "UNKNOWN",
+      "note": "Primary as-of-pre-FOMC CME snapshot unavailable; secondary dated preview recorded separately"
+    },
+    {
+      "asset": "BTC_PERP_OI_NATIVE_UNITS",
+      "value": null,
+      "quality_status": "UNAVAILABLE"
+    },
+    {
+      "asset": "BTC_PERP_FUNDING",
+      "value": null,
+      "quality_status": "UNAVAILABLE"
+    },
+    {
+      "asset": "BTC_SPOT_VOLUME",
+      "value": null,
+      "quality_status": "UNAVAILABLE"
+    }
+  ],
+  "outcomes": {
+    "BTC_USDT_SPOT": {
+      "fomc_statement": {
+        "1h": {
+          "maturity": "MATURE_DATA_UNAVAILABLE",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "4h": {
+          "maturity": "MATURE_DATA_UNAVAILABLE",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "24h": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "3d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "7d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "14d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "30d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "90d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        }
+      },
+      "fomc_press_conference": {
+        "1h": {
+          "maturity": "MATURE_DATA_UNAVAILABLE",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "4h": {
+          "maturity": "MATURE_DATA_UNAVAILABLE",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "24h": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "3d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "7d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "14d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "30d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "90d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        }
+      }
+    },
+    "ETH_USDT_SPOT": {
+      "fomc_statement": {
+        "1h": {
+          "maturity": "MATURE_DATA_UNAVAILABLE",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "4h": {
+          "maturity": "MATURE_DATA_UNAVAILABLE",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "24h": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "3d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "7d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "14d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "30d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        },
+        "90d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null,
+          "MAE": null,
+          "MFE": null,
+          "realized_volatility": null
+        }
+      },
+      "fomc_press_conference": {
+        "1h": {
+          "maturity": "MATURE_DATA_UNAVAILABLE",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "4h": {
+          "maturity": "MATURE_DATA_UNAVAILABLE",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "24h": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "3d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "7d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "14d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "30d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        },
+        "90d": {
+          "maturity": "PENDING_TIME",
+          "signed_return_pct": null,
+          "max_drawdown_pct": null
+        }
+      }
+    }
+  },
+  "historical_comparators": [
+    {
+      "year": 2014,
+      "election_day": "2014-11-04",
+      "fomc_meeting": "2014-10-28/29",
+      "status": "DATES_VERIFIED_OHLCV_PENDING",
+      "source_uri": "https://www.federalreserve.gov/monetarypolicy/fomchistorical2014.htm"
+    },
+    {
+      "year": 2018,
+      "election_day": "2018-11-06",
+      "fomc_meeting": "2018-11-07/08",
+      "status": "DATES_VERIFIED_OHLCV_PENDING",
+      "source_uri": "https://www.federalreserve.gov/monetarypolicy/fomchistorical2018.htm"
+    },
+    {
+      "year": 2022,
+      "election_day": "2022-11-08",
+      "fomc_meeting": "2022-11-01/02",
+      "status": "DATES_VERIFIED_OHLCV_PENDING",
+      "source_uri": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20221102.htm"
+    }
+  ],
+  "methodological_warnings": [
+    "1h and 4h FOMC horizons have matured but verified 1h exchange spot OHLCV pre/post anchors unavailable; do not calculate returns or MAE/MFE from later price snapshots.",
+    "Press conference actual available_at unknown; do not substitute scheduled time as verified first spoken remark.",
+    "US cash-session close cannot be compared with continuous crypto 24/7 as an identical interval.",
+    "FOMC and election windows 7d/14d/30d/90d overlap: dependent cluster, not independent votes.",
+    "2014/2018/2022 historical diagnostics are not prospective OOS.",
+    "SHA256 of original external source bytes unavailable; explicit null, Git blob SHA1 retained for prices.json."
+  ],
+  "P2_read_only_handoff": {
+    "status": "PENDING",
+    "requirements": "Compare early/post-FOMC/post-election BTC and ETH entries with actual fees, spread, slippage, MAE/MFE after verified OHLCV; no modifications to P2 LONG PAPER"
+  },
+  "backtest_status": "NOT_RUN",
+  "trading_applicability": "NOT_ESTABLISHED",
+  "writeback_scope": "RESEARCH_BRANCH_SIDECAR_ONLY_NO_OTHER_CHANGES"
+}
