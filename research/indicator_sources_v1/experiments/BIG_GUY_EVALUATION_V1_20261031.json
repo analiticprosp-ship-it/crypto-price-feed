@@ -1,0 +1,58 @@
+{
+  "schema": "BIG_GUY_EVALUATION_V1",
+  "status": "RESEARCH_ONLY",
+  "registered_at": "2026-10-31T19:58:00Z",
+  "registration_note": "Actual availability starts at repository commit time, not this declared wall-clock timestamp.",
+  "historical_points": "RETROSPECTIVE_DIAGNOSTIC_ONLY_PARAMETERS_NOT_PREEXISTING",
+  "signal_definition": "Only explicitly verified visible green buy marker on a closed bar; six numeric Green_dot series alone do not establish a new buy signal. Archive four points retained as observed indicator episodes, not four independent trades.",
+  "forward_activation": "first eligible bar opening strictly after registration commit; signal must be recorded by close+15min, otherwise MISSED_OBSERVATION_NO_RETRO_FILL",
+  "universe": [
+    "OKX:BTCUSDT.P",
+    "OKX:ETHUSDT.P"
+  ],
+  "parameters": {
+    "mode": 2,
+    "length": 14,
+    "red": 93
+  },
+  "market": "OKX USDT perpetual for indicator parity; no spot substitution",
+  "rules": {
+    "four_hour": {
+      "primary_hours": 24,
+      "secondary_hours": [
+        4,
+        12,
+        72
+      ],
+      "target_pct": 2,
+      "stop_pct": -1
+    },
+    "daily": {
+      "primary_hours": 168,
+      "secondary_hours": [
+        24,
+        72
+      ],
+      "target_pct": 5,
+      "stop_pct": -2.5
+    },
+    "entry": "first 1-minute open strictly after recorded observation timestamp; never signal-bar historical close",
+    "execution_costs": {
+      "fee_per_side_bps": 5,
+      "slippage_per_side_bps": 5,
+      "funding": "actual signed cashflows if position spans funding; missing => net_result_unavailable"
+    },
+    "outcomes": "TARGET_FIRST, STOP_FIRST, TIMEOUT, AMBIGUOUS_SAME_BAR, PENDING, DATA_GAP",
+    "same_bar": "resolve with 1m; unresolved mark ambiguous and report conservative stop-first separately",
+    "dedup": "one active episode per asset/timeframe until primary horizon; 4H and 1D correlated, not independent votes",
+    "metrics": [
+      "gross/net return",
+      "MFE",
+      "MAE from entry",
+      "peak-to-trough drawdown",
+      "time to target/stop",
+      "signal retention"
+    ],
+    "prohibition": "No threshold optimization after outcomes; rule changes require new version."
+  }
+}
