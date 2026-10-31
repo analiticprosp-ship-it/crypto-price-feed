@@ -27,7 +27,7 @@
         "Strong_buy_plot": 0,
         "Sell_plot": 0
       },
-      "comparison": "NEW_CAPTURE_NO_PREVIOUS_MFI_BASELINE",
+      "comparison": "MATCH_ARCHIVED_MFI",
       "cutoff": "MFI captured before 12:00 UTC; 08–12 bar closed during subsequent BIG GUY collection"
     },
     {
@@ -83,7 +83,7 @@
         "Strong_buy_plot": 0,
         "Sell_plot": 0
       },
-      "comparison": "NEW_CAPTURE_NO_PREVIOUS_MFI_BASELINE",
+      "comparison": "MATCH_ARCHIVED_MFI",
       "cutoff": "MFI captured before 12:00 UTC; 08–12 bar closed during subsequent BIG GUY collection"
     },
     {
@@ -139,7 +139,7 @@
         "Strong_buy_plot": 0,
         "Sell_plot": 0
       },
-      "comparison": "NEW_CAPTURE_NO_PREVIOUS_MFI_BASELINE",
+      "comparison": "NUMERIC_DIFFERENCE_FLAGS_UNCHANGED",
       "cutoff": "MFI captured before 12:00 UTC; 08–12 bar closed during subsequent BIG GUY collection"
     },
     {
@@ -167,7 +167,7 @@
         "Strong_buy_plot": 0,
         "Sell_plot": 0
       },
-      "comparison": "NEW_CAPTURE_NO_PREVIOUS_MFI_BASELINE",
+      "comparison": "NUMERIC_DIFFERENCE_FLAGS_UNCHANGED",
       "cutoff": "MFI captured before 12:00 UTC; 08–12 bar closed during subsequent BIG GUY collection"
     },
     {
@@ -1018,5 +1018,46 @@
   "parameters_changed": false,
   "portfolio_changed": false,
   "repainting_claim": "Only recorded points compared; no universal non-repainting claim",
-  "dealer_gamma": "NOT_INFERRED"
+  "dealer_gamma": "NOT_INFERRED",
+  "baseline_mfi_comparison": [
+    {
+      "symbol": "BTCUSDT.P",
+      "tf": "4H",
+      "bar_close_utc": "2026-10-31T04:00:00Z",
+      "previous_mfi": -71.8,
+      "rechecked_mfi": -71.8,
+      "delta": 0,
+      "signal_flags_unchanged": true
+    },
+    {
+      "symbol": "BTCUSDT.P",
+      "tf": "1D",
+      "bar_close_utc": "2026-10-31T00:00:00Z",
+      "previous_mfi": -58.7,
+      "rechecked_mfi": -58.7,
+      "delta": 0,
+      "signal_flags_unchanged": true
+    },
+    {
+      "symbol": "ETHUSDT.P",
+      "tf": "4H",
+      "bar_close_utc": "2026-10-31T04:00:00Z",
+      "previous_mfi": -67.1,
+      "rechecked_mfi": -67.55,
+      "delta": -0.45,
+      "signal_flags_unchanged": true,
+      "reason": "NUMERIC_DIFFERENCE_CAUSE_UNVERIFIED"
+    },
+    {
+      "symbol": "ETHUSDT.P",
+      "tf": "1D",
+      "bar_close_utc": "2026-10-31T00:00:00Z",
+      "previous_mfi": -64.51,
+      "rechecked_mfi": -64.38,
+      "delta": 0.13,
+      "signal_flags_unchanged": true,
+      "reason": "NUMERIC_DIFFERENCE_CAUSE_UNVERIFIED"
+    }
+  ],
+  "baseline_mfi_source": "INDICATORS_AUDIT_2026-10-31/tradingview_observations.json"
 }
