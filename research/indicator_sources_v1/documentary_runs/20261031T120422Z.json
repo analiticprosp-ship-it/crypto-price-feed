@@ -1,0 +1,58 @@
+{
+  "schema": "DOCUMENTARY_INDICATOR_SOURCES_V1",
+  "retrieved_at": "2026-10-31T12:04:22Z",
+  "collection_mode": "MANUAL_BOOTSTRAP_FOR_SCHEDULED_DOCUMENTARY_FALLBACK",
+  "daily_api_connected": false,
+  "observations": [
+    {
+      "metric": "US_ISM_MANUFACTURING_PMI",
+      "observation_month": "2026-09",
+      "value": 54.5,
+      "previous_value": 54.6,
+      "publication_date": "2026-10-01",
+      "source_url": "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/pmi/september/",
+      "source_class": "PRIMARY_OFFICIAL_REPORT",
+      "retrieval_route": "WEB_SEARCH_PRIMARY_REPORT_INDEX",
+      "freshness": "LAST_PUBLISHED_MONTHLY_NOT_DAILY"
+    },
+    {
+      "metric": "US_ISM_SERVICES_PMI",
+      "observation_month": "2026-09",
+      "value": 54.9,
+      "previous_value": 55.4,
+      "publication_date": "2026-10-05",
+      "source_url": "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/services/september/",
+      "source_class": "PRIMARY_OFFICIAL_REPORT",
+      "retrieval_route": "WEB_SEARCH_PRIMARY_REPORT_INDEX",
+      "freshness": "LAST_PUBLISHED_MONTHLY_NOT_DAILY"
+    },
+    {
+      "metric": "BTC_APPARENT_DEMAND_30D",
+      "observed_at_date": "2026-10-25",
+      "value": -76000,
+      "unit": "BTC",
+      "approximate": true,
+      "publication_date": "2026-10-27",
+      "source_url": "https://cryptoquant.com/insights/research",
+      "source_class": "PRIMARY_PROVIDER_WEEKLY_REPORT",
+      "report_title": "Why Uptober Disappointed",
+      "retrieval_route": "WEB_SEARCH_INDEX_OF_PRIMARY_PAGE; direct open returns JS shell",
+      "freshness": "LAST_VERIFIED_PUBLISHED_POINT_NOT_CURRENT_DAILY_SERIES"
+    },
+    {
+      "metric": "BTC_COINBASE_PREMIUM_INDEX",
+      "observed_at_date": "2026-10-24",
+      "value": -0.146,
+      "unit": "PROVIDER_INDEX_DISPLAY",
+      "publication_date": "2026-10-27",
+      "source_url": "https://cryptoquant.com/insights/research",
+      "source_class": "PRIMARY_PROVIDER_WEEKLY_REPORT",
+      "freshness": "HISTORICAL_PROVIDER_POINT",
+      "not_all_us_demand": true
+    }
+  ],
+  "limitations": [
+    "API failures remain failures; these are dated published observations, not successful API pulls.",
+    "Scheduled documentary fallback configured; its first complete end-to-end run has not yet been verified."
+  ]
+}
