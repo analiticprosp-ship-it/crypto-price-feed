@@ -28,6 +28,9 @@ class SourceGuards(unittest.TestCase):
         with self.assertRaises(ValueError):c.okx({'code':'500','data':[]})
     def test_no_surface_extrapolation(self):
         self.assertIsNone(c.interpolate([(1,.4),(3,.6)],7))
+    def test_coinbase_maker_side_inversion(self):
+        self.assertEqual(c.coinbase_trade_delta({'size':'2','price':'100','side':'sell'}),(2,200))
+        self.assertEqual(c.coinbase_trade_delta({'size':'2','price':'100','side':'buy'}),(-2,-200))
     def test_flat_iv_surface_has_zero_skew(self):
         from datetime import datetime,timezone
         now=datetime(2026,10,31,8,tzinfo=timezone.utc).timestamp()*1000
