@@ -1,0 +1,234 @@
+{
+  "schema": "MFI_BIG_GUY_DIAGNOSTIC_20261031_V1",
+  "status": "PARTIAL_CAUSAL_DIAGNOSIS_NO_TRADE_AUTHORIZATION",
+  "evidence": {
+    "original_archive": "libfile_31e25c2e67b48191aa40a34923d2cf84",
+    "original_read_window": "2026-10-31T06:52:00Z/2026-10-31T07:02:00Z",
+    "receipts": [
+      "tv_runs/20261031120210Z.json",
+      "tv_runs/20261031192840Z.json"
+    ],
+    "ohlcv_run": "20261031T171419096528Z"
+  },
+  "mfi": {
+    "current_UI_observations": [
+      {
+        "asset": "BTC",
+        "tf": "1D",
+        "bar_open_utc": "2026-10-30T00:00:00Z",
+        "MF": -58.7,
+        "observed_at": "2026-10-31T19:58:24Z",
+        "repeat_at": "2026-10-31T19:59:03Z",
+        "flags": [
+          0,
+          0,
+          0
+        ],
+        "OHLC": [
+          77966.8,
+          78767,
+          76260,
+          77286.8
+        ],
+        "volume_display": "9.81B"
+      },
+      {
+        "asset": "ETH",
+        "tf": "1D",
+        "bar_open_utc": "2026-10-30T00:00:00Z",
+        "MF": -64.38,
+        "observed_at": "2026-10-31T19:59:31Z",
+        "flags": [
+          0,
+          0,
+          0
+        ],
+        "OHLC": [
+          2252.49,
+          2261.63,
+          2171.52,
+          2243.41
+        ],
+        "volume_display": "8.55B"
+      },
+      {
+        "asset": "ETH",
+        "tf": "4H",
+        "bar_open_utc": "2026-10-31T00:00:00Z",
+        "MF": -67.54,
+        "observed_at": "2026-10-31T20:00:26Z",
+        "flags": [
+          0,
+          0,
+          0
+        ],
+        "OHLC": [
+          2243.42,
+          2251.15,
+          2237.07,
+          2238.15
+        ],
+        "volume_display": "286.03M"
+      }
+    ],
+    "parameters": [
+      "MFI",
+      10,
+      2,
+      2
+    ],
+    "display_name": "Pifagor Mfi 3.2",
+    "input_revision_evidence": {
+      "ETH_4H_quote_volume_display": {
+        "original": "286.01M",
+        "now": "286.03M"
+      },
+      "BTC_4H_quote_volume_display": {
+        "original": "470.51M",
+        "later_api": 470833637.62013
+      },
+      "note": "Observed volume differences are evidence that input histories are not byte-identical; they do not alone prove MFI causality or identify which series the protected script uses."
+    },
+    "finding": "ETH numeric differences reproduce; BTC1D evening -58.9 not reproduced and returns to archive -58.7. Changes are not explained solely by comparing different bars: explicit timestamps and OHLC checked.",
+    "root_cause": "NOT_ESTABLISHED",
+    "source_access": "Protected-source script; Source code tab disabled; release notes contain no causal explanation.",
+    "unresolved_hypotheses": [
+      "provider input history revisions",
+      "script initialization/history depth or hidden cross-series dependencies",
+      "earlier extraction/transcription error, especially BTC1D"
+    ],
+    "causal_blocker": "No complete original OHLCV input window nor script implementation/version hash. Cannot isolate input revision from script/extraction effects.",
+    "requirements_to_close": [
+      "capture exact bar key + OHLCV and all available settings/version per reading",
+      "retain original full input window used by script, not only latest candle",
+      "controlled repeat after reload/history-depth change; compare unchanged inputs",
+      "if unresolved request author clarification; do not label proven repainting"
+    ]
+  },
+  "big_guy": {
+    "correction": "Green_dot numeric series are not binary buy orders. Existing receipts explicitly say not_binary_buy_signal=true; preservation is not confirmation that actual large investors purchased.",
+    "preregistration_commit": "4cccdfb19fab964eea42f4dbb7fed6c7c777ffa3",
+    "protocol_path": "research/indicator_sources_v1/experiments/BIG_GUY_EVALUATION_V1_20261031.json",
+    "retrospective_four_hour": [
+      {
+        "symbol": "BTC",
+        "reference_price": 77107,
+        "window": "04:00–16:00 UTC; reference close only, NOT executable entry",
+        "hours": 12,
+        "return_pct": 0.5649292541533235,
+        "MFE_pct": 0.7638735782743433,
+        "MAE_pct": -0.07457169906752714,
+        "target": 78649.14,
+        "stop": 76335.93,
+        "rows": [
+          [
+            "1793419200000",
+            "77107",
+            "77450",
+            "77049.5",
+            "77296.9",
+            "471395.62",
+            "4713.9562",
+            "364191345.46957",
+            "1"
+          ],
+          [
+            "1793433600000",
+            "77297",
+            "77638.5",
+            "77209",
+            "77561.8",
+            "390285.1",
+            "3902.851",
+            "302178555.64877",
+            "1"
+          ],
+          [
+            "1793448000000",
+            "77561.9",
+            "77696",
+            "77322.2",
+            "77542.6",
+            "403613.33",
+            "4036.1333",
+            "312756874.73286",
+            "1"
+          ]
+        ]
+      },
+      {
+        "symbol": "ETH",
+        "reference_price": 2238.15,
+        "window": "04:00–16:00 UTC; reference close only, NOT executable entry",
+        "hours": 12,
+        "return_pct": 0.49192413377119326,
+        "MFE_pct": 0.7247056720952383,
+        "MAE_pct": -0.15548555726827562,
+        "target": 2282.913,
+        "stop": 2215.7685,
+        "rows": [
+          [
+            "1793419200000",
+            "2238.16",
+            "2247.34",
+            "2234.67",
+            "2242.18",
+            "1078256.48",
+            "107825.648",
+            "241629698.3597",
+            "1"
+          ],
+          [
+            "1793433600000",
+            "2242.18",
+            "2250.6",
+            "2236.58",
+            "2246.51",
+            "1231292.68",
+            "123129.268",
+            "276313300.66859",
+            "1"
+          ],
+          [
+            "1793448000000",
+            "2246.51",
+            "2254.37",
+            "2242.7",
+            "2249.16",
+            "1457987.11",
+            "145798.711",
+            "327879019.17048",
+            "1"
+          ]
+        ]
+      }
+    ],
+    "retrospective_daily": [
+      {
+        "symbol": "BTC",
+        "reference_price": 77286.8,
+        "hours": 16,
+        "return_pct": 0.3309750177261872,
+        "MFE_pct": 0.52945651780123,
+        "MAE_pct": -0.30703820057241815,
+        "target": 81151.14,
+        "stop": 75354.63,
+        "status": "PENDING_RETROSPECTIVE_REFERENCE_ONLY"
+      },
+      {
+        "symbol": "ETH",
+        "reference_price": 2243.41,
+        "hours": 16,
+        "return_pct": 0.25630624807770896,
+        "MFE_pct": 0.488541996335945,
+        "MAE_pct": -0.3895854970781043,
+        "target": 2355.5805,
+        "stop": 2187.3247499999998,
+        "status": "PENDING_RETROSPECTIVE_REFERENCE_ONLY"
+      }
+    ],
+    "verdict": "Neither target nor adverse limit reached in covered interval. Primary horizons incomplete. No actual executable entry or net return established. Prior points are selected retrospective diagnostics, not OOS evidence."
+  },
+  "production_changed": false,
+  "portfolio_changed": false
+}
