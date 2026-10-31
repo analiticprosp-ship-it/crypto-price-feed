@@ -26,5 +26,20 @@ class SourceGuards(unittest.TestCase):
         self.assertEqual(v['close'],2)
     def test_provider_error_not_empty_signal(self):
         with self.assertRaises(ValueError):c.okx({'code':'500','data':[]})
+    def test_no_surface_extrapolation(self):
+        self.assertIsNone(c.interpolate([(1,.4),(3,.6)],7))
+    def test_flat_iv_surface_has_zero_skew(self):
+        from datetime import datetime,timezone
+        now=datetime(2026,10,31,8,tzinfo=timezone.utc).timestamp()*1000
+        rows=[]
+        for expiry in ('6NOV26','13NOV26','27NOV26','25DEC26'):
+            for strike in (50,70,80,90,100,110,120,140,160):
+                for side in ('C','P'):
+                    rows.append({'instrument_name':f'BTC-{expiry}-{strike}-{side}',
+                       'underlying_price':100,'mark_iv':40,'open_interest':1,'bid_price':.01,'ask_price':.02})
+        v=c.option_surface(rows,now)
+        for d in ('7d','30d'):
+            self.assertAlmostEqual(v['tenors'][d]['atm_iv_percent'],40)
+            self.assertAlmostEqual(v['tenors'][d]['put_minus_call_25d_pp'],0)
 
 if __name__=='__main__':unittest.main()
