@@ -14,6 +14,7 @@ import urllib.request
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import quote
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'research/indicator_sources_v1'
@@ -65,14 +66,16 @@ def closed_flow(d, now_ms):
 
 def oi_history(d, now_ms):
     rows = sorted((int(r[0]), [finite(v) for v in r[1:4]]) for r in okx(d))
-    rows = [r for r in rows if r[0] <= now_ms]
+    rows = [r for r in rows if r[0]+HOUR <= now_ms]
     t, vals = rows[-1]
-    if now_ms - t > 2 * HOUR:
+    if now_ms - (t+HOUR) > 2 * HOUR:
         raise ValueError('stale OI')
     hist = dict(rows)
     base_t = t - 120 * HOUR
     baseline = hist.get(base_t)
-    return {'observed_at': iso(t), 'venue': 'OKX', 'market': 'PERPETUAL',
+    return {'observed_at': iso(t), 'bucket_end':iso(t+HOUR),'closed_bucket':True,
+            'timestamp_semantics':'HISTORICAL_HOURLY_BUCKET_NOT_EXACT_INSTANT_QUOTE',
+            'venue': 'OKX', 'market': 'PERPETUAL',
             'contracts': vals[0], 'coins': vals[1], 'usd': vals[2],
             'baseline_120h': {'observed_at': iso(base_t), 'contracts': baseline[0],
                 'delta_contracts_pct': 100*(vals[0]/baseline[0]-1),
@@ -133,7 +136,7 @@ def yahoo(d):
     meta = x['meta']
     rows = [(int(t), finite(v)) for t,v in zip(x['timestamp'],q['close']) if v is not None]
     # Daily current-session candle is not declared a final close.
-    tz = timezone(timedelta(seconds=int(meta.get('gmtoffset', 0))))
+    tz = ZoneInfo(meta['exchangeTimezoneName'])
     today = utc().astimezone(tz).date()
     rows = [r for r in rows if datetime.fromtimestamp(r[0],tz).date() < today]
     if len(rows)<6:
@@ -369,6 +372,9 @@ def definitions():
 
 def main():
     OUT.mkdir(parents=True,exist_ok=True)
+    try:previous=json.loads((OUT/'latest.json').read_text())
+    except (OSError,ValueError):previous={}
+    last={r['key']:r for r in previous.get('sources',[])}
     started = utc(); rid = started.strftime('%Y%m%dT%H%M%S%fZ')
     run = OUT/'runs'/rid; run.mkdir(parents=True)
     results = []
@@ -428,6 +434,11 @@ def main():
                 item.update(status='COLLECTED_VALIDATED',value=value)
         except Exception as e:
             item['reason'] = type(e).__name__+': '+str(e)[:200]
+            old=last.get(key,{})
+            if old.get('status')=='COLLECTED_VALIDATED':
+                item['last_good_observation']={'value':old['value'],'retrieved_at':old.get('retrieved_at'),'status':'HISTORICAL_RETAINED_NOT_CURRENT'}
+            elif old.get('last_good_observation'):
+                item['last_good_observation']=old['last_good_observation']
         item['finished_at'] = utc().isoformat()
         results.append(item)
         print(key,item['status'],flush=True)
