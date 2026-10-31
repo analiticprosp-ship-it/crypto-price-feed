@@ -1,8 +1,8 @@
 {
   "schema": "indicator-sources-v1",
-  "run_id": "20261031T114753808075Z",
-  "started_at": "2026-10-31T11:47:53.808075+00:00",
-  "finished_at": "2026-10-31T11:48:21.358985+00:00",
+  "run_id": "20261031T115122115231Z",
+  "started_at": "2026-10-31T11:51:22.115231+00:00",
+  "finished_at": "2026-10-31T11:52:21.152200+00:00",
   "sequential": true,
   "research_only": true,
   "last_good_is_not_current": true,
@@ -11,25 +11,25 @@
     {
       "key": "BTC_funding",
       "url": "https://www.okx.com/api/v5/public/funding-rate-history?instId=BTC-USDT-SWAP&limit=100",
-      "started_at": "2026-10-31T11:47:53.808351+00:00",
+      "started_at": "2026-10-31T11:51:22.115607+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_funding.raw",
       "sha256": "5cbf05261978444f0a34a3c1d3c190f4ab082ae6e5bc0d0e8f66b037eb8b9c1c",
-      "retrieved_at": "2026-10-31T11:47:54.043854+00:00",
+      "retrieved_at": "2026-10-31T11:51:22.391282+00:00",
       "value": {
         "observed_at": "2026-10-31T08:00:00+00:00",
         "realized_percent_per_period": 0.01,
         "venue": "OKX",
         "instId": "BTC-USDT-SWAP"
       },
-      "finished_at": "2026-10-31T11:47:54.045357+00:00"
+      "finished_at": "2026-10-31T11:51:22.392975+00:00"
     },
     {
       "key": "BTC_oi",
       "url": "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=BTC-USDT-SWAP&period=1H",
-      "started_at": "2026-10-31T11:47:54.045384+00:00",
+      "started_at": "2026-10-31T11:51:22.392998+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
@@ -39,36 +39,36 @@
       ],
       "stored_payload": "MERGED_PROVIDER_PAGES",
       "raw_file": "BTC_oi.raw",
-      "sha256": "8091707748c2878a8970a8df02376a5670216181b82d7d5c02d95aa20148ddfd",
-      "retrieved_at": "2026-10-31T11:47:54.432806+00:00",
+      "sha256": "3597a54a9c50a7e48a8965ef9d5d7e70562b8daf7263ebc57200cd7e7d6d236b",
+      "retrieved_at": "2026-10-31T11:51:22.766756+00:00",
       "value": {
         "observed_at": "2026-10-31T11:00:00+00:00",
         "venue": "OKX",
         "market": "PERPETUAL",
-        "contracts": 3422700.8900000206,
-        "coins": 34227.008900000204,
-        "usd": 2654088910.0389457,
+        "contracts": 3422751.3700000206,
+        "coins": 34227.51370000021,
+        "usd": 2653659137.161016,
         "baseline_120h": {
           "observed_at": "2026-10-26T11:00:00+00:00",
           "contracts": 3105394.920000013,
-          "delta_contracts_pct": 10.217894283153095,
-          "delta_usd_pct": 6.2992393118671774
+          "delta_contracts_pct": 10.219519841296275,
+          "delta_usd_pct": 6.282026425807463
         },
         "baseline_status": "EXACT",
         "not_directional_long_short": true
       },
-      "finished_at": "2026-10-31T11:47:54.433482+00:00"
+      "finished_at": "2026-10-31T11:51:22.767977+00:00"
     },
     {
       "key": "BTC_spot_cvd",
       "url": "https://www.okx.com/api/v5/rubik/stat/taker-volume?ccy=BTC&instType=SPOT&period=1H",
-      "started_at": "2026-10-31T11:47:54.433498+00:00",
+      "started_at": "2026-10-31T11:51:22.767999+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_spot_cvd.raw",
       "sha256": "ceb319808c553a66c77b1ec5efcf48f9df9b54922f12f550294eb5ed2392c525",
-      "retrieved_at": "2026-10-31T11:47:54.643543+00:00",
+      "retrieved_at": "2026-10-31T11:51:22.963894+00:00",
       "value": {
         "observed_at": "2026-10-31T11:00:00+00:00",
         "window_start": "2026-10-30T11:00:00+00:00",
@@ -83,38 +83,38 @@
         "closed_hours": 24,
         "not_global_flow": true
       },
-      "finished_at": "2026-10-31T11:47:54.644644+00:00"
+      "finished_at": "2026-10-31T11:51:22.967137+00:00"
     },
     {
       "key": "BTC_options",
       "url": "https://www.deribit.com/api/v2/public/get_book_summary_by_currency?currency=BTC&kind=option",
-      "started_at": "2026-10-31T11:47:54.644659+00:00",
+      "started_at": "2026-10-31T11:51:22.967163+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_options.raw",
-      "sha256": "a19cdc180c8193e7c8802d3f4eb9cbe5572a14b71943cd2d28037e98c02b20d5",
-      "retrieved_at": "2026-10-31T11:47:54.830086+00:00",
+      "sha256": "5f99c8cfff731da4acff9d96c6196b7a70dacde41243363e93ad89f19c3c475b",
+      "retrieved_at": "2026-10-31T11:51:23.151598+00:00",
       "value": {
-        "observed_at": "2026-10-31T11:47:53.919000+00:00",
+        "observed_at": "2026-10-31T11:51:21.513000+00:00",
         "venue": "Deribit",
         "instruments": 966,
-        "put_oi": 119341.20000000001,
-        "call_oi": 179536.19999999987,
-        "put_call_oi_ratio": 0.6647194270570509,
+        "put_oi": 119344.50000000001,
+        "call_oi": 179549.0999999999,
+        "put_call_oi_ratio": 0.6646900485716726,
         "expiry_oi": {
           "2026-11-13T08:00:00+00:00": 10095.599999999999,
           "2027-03-26T08:00:00+00:00": 44239.200000000004,
-          "2026-12-25T08:00:00+00:00": 136114.10000000003,
-          "2026-11-01T08:00:00+00:00": 3876.2,
+          "2026-12-25T08:00:00+00:00": 136115.90000000005,
+          "2026-11-01T08:00:00+00:00": 3876.7999999999997,
           "2026-11-27T08:00:00+00:00": 48651.1,
           "2027-09-24T08:00:00+00:00": 5523.100000000001,
           "2027-06-25T08:00:00+00:00": 15330.000000000005,
           "2027-01-29T08:00:00+00:00": 2422.3999999999996,
           "2026-11-06T08:00:00+00:00": 26857.7,
           "2026-11-20T08:00:00+00:00": 2041.9999999999995,
-          "2026-11-02T08:00:00+00:00": 2758.3,
-          "2026-11-04T08:00:00+00:00": 72.9,
+          "2026-11-02T08:00:00+00:00": 2770.8999999999996,
+          "2026-11-04T08:00:00+00:00": 74.10000000000001,
           "2026-11-03T08:00:00+00:00": 894.7999999999998
         },
         "mark_iv_chain_saved": true,
@@ -125,16 +125,16 @@
           "valid_expiries": 13,
           "tenors": {
             "7d": {
-              "atm_iv_percent": 40.26395607491896,
-              "put25_iv_percent": 44.841390994507364,
-              "call25_iv_percent": 38.060246944519314,
-              "put_minus_call_25d_pp": 6.78114404998805
+              "atm_iv_percent": 40.257474183398124,
+              "put25_iv_percent": 44.81752827462612,
+              "call25_iv_percent": 38.06303587720558,
+              "put_minus_call_25d_pp": 6.754492397420542
             },
             "30d": {
-              "atm_iv_percent": 37.91103417663385,
-              "put25_iv_percent": 41.91076254171243,
-              "call25_iv_percent": 36.09077290632731,
-              "put_minus_call_25d_pp": 5.81998963538512
+              "atm_iv_percent": 37.89542973075707,
+              "put25_iv_percent": 41.91286573883757,
+              "call25_iv_percent": 36.06175941833322,
+              "put_minus_call_25d_pp": 5.85110632050435
             }
           }
         },
@@ -142,18 +142,18 @@
         "gamma_status": "DEALER_POSITION_SIGN_UNOBSERVABLE",
         "not_dealer_gex": true
       },
-      "finished_at": "2026-10-31T11:47:54.855880+00:00"
+      "finished_at": "2026-10-31T11:51:23.186658+00:00"
     },
     {
       "key": "BTC_4H",
       "url": "https://www.okx.com/api/v5/market/candles?instId=BTC-USDT-SWAP&bar=4H&limit=100",
-      "started_at": "2026-10-31T11:47:54.855920+00:00",
+      "started_at": "2026-10-31T11:51:23.186684+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_4H.raw",
-      "sha256": "609068c8653e53766a0d21db75d8d037e0fb8b69ae1faaf117b029a02e08037d",
-      "retrieved_at": "2026-10-31T11:47:55.042738+00:00",
+      "sha256": "53a926936dd137a664552c1026f0288253ebc2066673659f1bc4f842e1365b40",
+      "retrieved_at": "2026-10-31T11:51:23.383436+00:00",
       "value": {
         "observed_at": "2026-10-31T08:00:00+00:00",
         "bar_open": "2026-10-31T04:00:00+00:00",
@@ -168,18 +168,18 @@
         "venue": "OKX",
         "not_indicator_signal": true
       },
-      "finished_at": "2026-10-31T11:47:55.043515+00:00"
+      "finished_at": "2026-10-31T11:51:23.384559+00:00"
     },
     {
       "key": "BTC_1Dutc",
       "url": "https://www.okx.com/api/v5/market/candles?instId=BTC-USDT-SWAP&bar=1Dutc&limit=100",
-      "started_at": "2026-10-31T11:47:55.043529+00:00",
+      "started_at": "2026-10-31T11:51:23.384577+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_1Dutc.raw",
-      "sha256": "f530b8a95fb7b61eaf93b0fe5488d51f12d46673288576692f2b256e6925f190",
-      "retrieved_at": "2026-10-31T11:47:55.221615+00:00",
+      "sha256": "629ab96cafd7eefa219d182ec71b0d47f80b19ffbd3853fcd3d182fcc80d853d",
+      "retrieved_at": "2026-10-31T11:51:23.566199+00:00",
       "value": {
         "observed_at": "2026-10-31T00:00:00+00:00",
         "bar_open": "2026-10-30T00:00:00+00:00",
@@ -194,30 +194,30 @@
         "venue": "OKX",
         "not_indicator_signal": true
       },
-      "finished_at": "2026-10-31T11:47:55.222015+00:00"
+      "finished_at": "2026-10-31T11:51:23.567030+00:00"
     },
     {
       "key": "ETH_funding",
       "url": "https://www.okx.com/api/v5/public/funding-rate-history?instId=ETH-USDT-SWAP&limit=100",
-      "started_at": "2026-10-31T11:47:55.222033+00:00",
+      "started_at": "2026-10-31T11:51:23.567047+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_funding.raw",
       "sha256": "b2643b3d61d7b99e5d435e75e4f54c7ff825f56a30b4a3e3a05a6bc3498cb67a",
-      "retrieved_at": "2026-10-31T11:47:55.423693+00:00",
+      "retrieved_at": "2026-10-31T11:51:23.741831+00:00",
       "value": {
         "observed_at": "2026-10-31T08:00:00+00:00",
         "realized_percent_per_period": -0.0086221056351,
         "venue": "OKX",
         "instId": "ETH-USDT-SWAP"
       },
-      "finished_at": "2026-10-31T11:47:55.424086+00:00"
+      "finished_at": "2026-10-31T11:51:23.742667+00:00"
     },
     {
       "key": "ETH_oi",
       "url": "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=ETH-USDT-SWAP&period=1H",
-      "started_at": "2026-10-31T11:47:55.424104+00:00",
+      "started_at": "2026-10-31T11:51:23.742683+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
@@ -227,36 +227,36 @@
       ],
       "stored_payload": "MERGED_PROVIDER_PAGES",
       "raw_file": "ETH_oi.raw",
-      "sha256": "58d2af2cabfea670d35167bfa287aacc79c8ba38f950e249219dafdc630bb5df",
-      "retrieved_at": "2026-10-31T11:47:55.853414+00:00",
+      "sha256": "5c39dcb013d2838c929de97518dac21fc298510c5e398ae96930ac31d7a2e7e6",
+      "retrieved_at": "2026-10-31T11:51:24.170968+00:00",
       "value": {
         "observed_at": "2026-10-31T11:00:00+00:00",
         "venue": "OKX",
         "market": "PERPETUAL",
-        "contracts": 6250680.110000019,
-        "coins": 625391.460000002,
-        "usd": 1405377913.2119644,
+        "contracts": 6260418.010000019,
+        "coins": 626041.801000002,
+        "usd": 1406966343.5674043,
         "baseline_120h": {
           "observed_at": "2026-10-26T11:00:00+00:00",
           "contracts": 6255218.360000017,
-          "delta_contracts_pct": -0.07255142408806314,
-          "delta_usd_pct": -3.735827157684335
+          "delta_contracts_pct": 0.08312499581553112,
+          "delta_usd_pct": -3.6270244414565167
         },
         "baseline_status": "EXACT",
         "not_directional_long_short": true
       },
-      "finished_at": "2026-10-31T11:47:55.853980+00:00"
+      "finished_at": "2026-10-31T11:51:24.172063+00:00"
     },
     {
       "key": "ETH_spot_cvd",
       "url": "https://www.okx.com/api/v5/rubik/stat/taker-volume?ccy=ETH&instType=SPOT&period=1H",
-      "started_at": "2026-10-31T11:47:55.853995+00:00",
+      "started_at": "2026-10-31T11:51:24.172080+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_spot_cvd.raw",
       "sha256": "e522d54d7bf6f9d676250094e77462358d94c1c36b05101e1aba72add490f92c",
-      "retrieved_at": "2026-10-31T11:47:56.054491+00:00",
+      "retrieved_at": "2026-10-31T11:51:24.360558+00:00",
       "value": {
         "observed_at": "2026-10-31T11:00:00+00:00",
         "window_start": "2026-10-30T11:00:00+00:00",
@@ -271,28 +271,28 @@
         "closed_hours": 24,
         "not_global_flow": true
       },
-      "finished_at": "2026-10-31T11:47:56.055618+00:00"
+      "finished_at": "2026-10-31T11:51:24.362513+00:00"
     },
     {
       "key": "ETH_options",
       "url": "https://www.deribit.com/api/v2/public/get_book_summary_by_currency?currency=ETH&kind=option",
-      "started_at": "2026-10-31T11:47:56.055633+00:00",
+      "started_at": "2026-10-31T11:51:24.362531+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_options.raw",
-      "sha256": "8d12566339c7c92b7bd6ad0f5c06ef369fb0d0565843294109494b71b1b6f3b3",
-      "retrieved_at": "2026-10-31T11:47:56.240095+00:00",
+      "sha256": "a6d4cf9c57e2a061da7b5836fac86411bb198d502893f01ce877dc1f2306db13",
+      "retrieved_at": "2026-10-31T11:51:24.478586+00:00",
       "value": {
-        "observed_at": "2026-10-31T11:47:55.691000+00:00",
+        "observed_at": "2026-10-31T11:51:23.805000+00:00",
         "venue": "Deribit",
         "instruments": 804,
         "put_oi": 495207.0,
-        "call_oi": 919072.0,
-        "put_call_oi_ratio": 0.5388119755579541,
+        "call_oi": 919073.0,
+        "put_call_oi_ratio": 0.5388113893020468,
         "expiry_oi": {
           "2026-11-04T08:00:00+00:00": 1720.0,
-          "2026-11-27T08:00:00+00:00": 189912.0,
+          "2026-11-27T08:00:00+00:00": 189913.0,
           "2027-01-29T08:00:00+00:00": 8509.0,
           "2027-06-25T08:00:00+00:00": 86696.0,
           "2026-11-06T08:00:00+00:00": 52190.0,
@@ -313,16 +313,16 @@
           "valid_expiries": 13,
           "tenors": {
             "7d": {
-              "atm_iv_percent": 53.981248981426354,
-              "put25_iv_percent": 60.97922578405489,
-              "call25_iv_percent": 51.04179447288387,
-              "put_minus_call_25d_pp": 9.937431311171018
+              "atm_iv_percent": 54.05293395132258,
+              "put25_iv_percent": 61.003461740983575,
+              "call25_iv_percent": 51.122784263722686,
+              "put_minus_call_25d_pp": 9.880677477260889
             },
             "30d": {
-              "atm_iv_percent": 52.498225444364756,
-              "put25_iv_percent": 57.17415640870097,
-              "call25_iv_percent": 50.86060874151692,
-              "put_minus_call_25d_pp": 6.313547667184054
+              "atm_iv_percent": 52.45554651298928,
+              "put25_iv_percent": 57.20451970786961,
+              "call25_iv_percent": 50.90379486267754,
+              "put_minus_call_25d_pp": 6.3007248451920645
             }
           }
         },
@@ -330,18 +330,18 @@
         "gamma_status": "DEALER_POSITION_SIGN_UNOBSERVABLE",
         "not_dealer_gex": true
       },
-      "finished_at": "2026-10-31T11:47:56.254415+00:00"
+      "finished_at": "2026-10-31T11:51:24.506927+00:00"
     },
     {
       "key": "ETH_4H",
       "url": "https://www.okx.com/api/v5/market/candles?instId=ETH-USDT-SWAP&bar=4H&limit=100",
-      "started_at": "2026-10-31T11:47:56.254434+00:00",
+      "started_at": "2026-10-31T11:51:24.506951+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_4H.raw",
-      "sha256": "ba9cf8f20118019a231c65c4fe8e2c40510f7ee6b4ff95a712c11a01e1c935d2",
-      "retrieved_at": "2026-10-31T11:47:56.437862+00:00",
+      "sha256": "2304bbde350b968bf809674ce8f5c32e7e727c454f48fe3c66a6a09f593602bb",
+      "retrieved_at": "2026-10-31T11:51:24.681575+00:00",
       "value": {
         "observed_at": "2026-10-31T08:00:00+00:00",
         "bar_open": "2026-10-31T04:00:00+00:00",
@@ -356,18 +356,18 @@
         "venue": "OKX",
         "not_indicator_signal": true
       },
-      "finished_at": "2026-10-31T11:47:56.438591+00:00"
+      "finished_at": "2026-10-31T11:51:24.682589+00:00"
     },
     {
       "key": "ETH_1Dutc",
       "url": "https://www.okx.com/api/v5/market/candles?instId=ETH-USDT-SWAP&bar=1Dutc&limit=100",
-      "started_at": "2026-10-31T11:47:56.438611+00:00",
+      "started_at": "2026-10-31T11:51:24.682608+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_1Dutc.raw",
-      "sha256": "7cf76917d2fc700219f03663a403a621ceaef07aaef8f81b505f694be9876b9f",
-      "retrieved_at": "2026-10-31T11:47:56.617189+00:00",
+      "sha256": "e1444933e0021f252d7f1d47a6fff9e5810a58f3c88e966e44b175c2f6b2b906",
+      "retrieved_at": "2026-10-31T11:51:24.891743+00:00",
       "value": {
         "observed_at": "2026-10-31T00:00:00+00:00",
         "bar_open": "2026-10-30T00:00:00+00:00",
@@ -382,18 +382,18 @@
         "venue": "OKX",
         "not_indicator_signal": true
       },
-      "finished_at": "2026-10-31T11:47:56.617597+00:00"
+      "finished_at": "2026-10-31T11:51:24.892449+00:00"
     },
     {
       "key": "FRED_DGS2",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:47:56.617611+00:00",
+      "started_at": "2026-10-31T11:51:24.892465+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DGS2.raw",
       "sha256": "81be02e7f3dd445517bd1b428b6fcff7a394f17c9b167a7ef16f6896e5326083",
-      "retrieved_at": "2026-10-31T11:47:57.102076+00:00",
+      "retrieved_at": "2026-10-31T11:51:25.275819+00:00",
       "value": {
         "observed_at_date": "2026-10-29",
         "value": 4.61,
@@ -416,18 +416,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 2
       },
-      "finished_at": "2026-10-31T11:47:57.102694+00:00"
+      "finished_at": "2026-10-31T11:51:25.276754+00:00"
     },
     {
       "key": "FRED_DGS10",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:47:57.102712+00:00",
+      "started_at": "2026-10-31T11:51:25.276776+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DGS10.raw",
       "sha256": "bbb1de17446d06bdb04273947eb7d34fe0746139659eda8e0b5efcff9747ba63",
-      "retrieved_at": "2026-10-31T11:47:57.612393+00:00",
+      "retrieved_at": "2026-10-31T11:51:25.508879+00:00",
       "value": {
         "observed_at_date": "2026-10-29",
         "value": 4.98,
@@ -450,18 +450,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 2
       },
-      "finished_at": "2026-10-31T11:47:57.612930+00:00"
+      "finished_at": "2026-10-31T11:51:25.509851+00:00"
     },
     {
       "key": "FRED_DFII10",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFII10&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:47:57.612945+00:00",
+      "started_at": "2026-10-31T11:51:25.509869+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DFII10.raw",
       "sha256": "da1d0a12d2069997eeecd0ab665083b3f4d5a327da8da4dce125d06f885ac87c",
-      "retrieved_at": "2026-10-31T11:47:58.021905+00:00",
+      "retrieved_at": "2026-10-31T11:51:25.738972+00:00",
       "value": {
         "observed_at_date": "2026-10-29",
         "value": 2.63,
@@ -484,18 +484,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 2
       },
-      "finished_at": "2026-10-31T11:47:58.022501+00:00"
+      "finished_at": "2026-10-31T11:51:25.739866+00:00"
     },
     {
       "key": "FRED_DTWEXBGS",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:47:58.022519+00:00",
+      "started_at": "2026-10-31T11:51:25.739883+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DTWEXBGS.raw",
       "sha256": "c573deabf79ebd90a383fa0f45ec66b81346bc21fcab976b709234751fc9fe89",
-      "retrieved_at": "2026-10-31T11:47:58.500226+00:00",
+      "retrieved_at": "2026-10-31T11:51:26.002854+00:00",
       "value": {
         "observed_at_date": "2026-10-23",
         "value": 121.3202,
@@ -518,18 +518,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 8
       },
-      "finished_at": "2026-10-31T11:47:58.500785+00:00"
+      "finished_at": "2026-10-31T11:51:26.003959+00:00"
     },
     {
       "key": "FRED_BAMLH0A0HYM2",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:47:58.500800+00:00",
+      "started_at": "2026-10-31T11:51:26.003983+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_BAMLH0A0HYM2.raw",
       "sha256": "7778e203495a25e3926deeb66c29d945ed32969a50cf39be09790ee04fefec6a",
-      "retrieved_at": "2026-10-31T11:47:59.006593+00:00",
+      "retrieved_at": "2026-10-31T11:51:26.371026+00:00",
       "value": {
         "observed_at_date": "2026-10-29",
         "value": 3.26,
@@ -552,18 +552,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 2
       },
-      "finished_at": "2026-10-31T11:47:59.007147+00:00"
+      "finished_at": "2026-10-31T11:51:26.371972+00:00"
     },
     {
       "key": "FRED_NFCI",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NFCI&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:47:59.007180+00:00",
+      "started_at": "2026-10-31T11:51:26.371995+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_NFCI.raw",
       "sha256": "d05d9fd6c540c9ce245aa5b54669a499ed1f638189b8271264774b905f5a1468",
-      "retrieved_at": "2026-10-31T11:47:59.547811+00:00",
+      "retrieved_at": "2026-10-31T11:51:26.809956+00:00",
       "value": {
         "observed_at_date": "2026-10-23",
         "value": -0.487,
@@ -583,18 +583,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 8
       },
-      "finished_at": "2026-10-31T11:47:59.547982+00:00"
+      "finished_at": "2026-10-31T11:51:26.810191+00:00"
     },
     {
       "key": "FRED_ANFCI",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=ANFCI&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:47:59.548000+00:00",
+      "started_at": "2026-10-31T11:51:26.810210+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_ANFCI.raw",
       "sha256": "b127fff8ccf2c21adbb1b9f53d14472cdcdb94bdcdfbdbf1dc90463f87923b22",
-      "retrieved_at": "2026-10-31T11:48:00.071119+00:00",
+      "retrieved_at": "2026-10-31T11:51:27.303130+00:00",
       "value": {
         "observed_at_date": "2026-10-23",
         "value": -0.501,
@@ -614,18 +614,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 8
       },
-      "finished_at": "2026-10-31T11:48:00.071338+00:00"
+      "finished_at": "2026-10-31T11:51:27.303410+00:00"
     },
     {
       "key": "FRED_WALCL",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WALCL&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:48:00.071356+00:00",
+      "started_at": "2026-10-31T11:51:27.303436+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_WALCL.raw",
       "sha256": "327df24e41545752f1a2e17921686d1f8e37c3c5feb9613f561a0555e4c7fd9d",
-      "retrieved_at": "2026-10-31T11:48:00.706558+00:00",
+      "retrieved_at": "2026-10-31T11:51:27.568111+00:00",
       "value": {
         "observed_at_date": "2026-10-28",
         "value": 6745635.0,
@@ -645,18 +645,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 3
       },
-      "finished_at": "2026-10-31T11:48:00.706733+00:00"
+      "finished_at": "2026-10-31T11:51:27.568342+00:00"
     },
     {
       "key": "FRED_WTREGEN",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WTREGEN&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:48:00.706751+00:00",
+      "started_at": "2026-10-31T11:51:27.568360+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_WTREGEN.raw",
       "sha256": "523ca23fc3d3fec03ad6095044f86eca8440ffa3c821fafacc0393dbaa013b82",
-      "retrieved_at": "2026-10-31T11:48:01.192106+00:00",
+      "retrieved_at": "2026-10-31T11:51:27.818728+00:00",
       "value": {
         "observed_at_date": "2026-10-28",
         "value": 999727.0,
@@ -676,18 +676,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 3
       },
-      "finished_at": "2026-10-31T11:48:01.192331+00:00"
+      "finished_at": "2026-10-31T11:51:27.818957+00:00"
     },
     {
       "key": "FRED_RRPONTSYD",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=RRPONTSYD&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:48:01.192349+00:00",
+      "started_at": "2026-10-31T11:51:27.818975+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_RRPONTSYD.raw",
       "sha256": "fff589374663f75b6e32d7dd2e6b10eafdd94d4e8900894c2d0f21b01f24a6c1",
-      "retrieved_at": "2026-10-31T11:48:01.611099+00:00",
+      "retrieved_at": "2026-10-31T11:51:28.046469+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 4.375,
@@ -710,18 +710,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 1
       },
-      "finished_at": "2026-10-31T11:48:01.611705+00:00"
+      "finished_at": "2026-10-31T11:51:28.047522+00:00"
     },
     {
       "key": "FRED_WRESBAL",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:48:01.611719+00:00",
+      "started_at": "2026-10-31T11:51:28.047544+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_WRESBAL.raw",
       "sha256": "3ae2b575f8b3eade10caea79d4d3e407021d2884e7109302c177024db10818a2",
-      "retrieved_at": "2026-10-31T11:48:02.045602+00:00",
+      "retrieved_at": "2026-10-31T11:51:28.274967+00:00",
       "value": {
         "observed_at_date": "2026-10-28",
         "value": 2893770.0,
@@ -741,18 +741,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 3
       },
-      "finished_at": "2026-10-31T11:48:02.045774+00:00"
+      "finished_at": "2026-10-31T11:51:28.275320+00:00"
     },
     {
       "key": "FRED_CPIAUCSL",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:48:02.045791+00:00",
+      "started_at": "2026-10-31T11:51:28.275344+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_CPIAUCSL.raw",
       "sha256": "534f7c5fd9b49fe39afe5c0d020a6ae61fe542946e4179dad0cb4a6c33d80dcc",
-      "retrieved_at": "2026-10-31T11:48:02.432636+00:00",
+      "retrieved_at": "2026-10-31T11:51:28.315222+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 336.298,
@@ -772,18 +772,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 60
       },
-      "finished_at": "2026-10-31T11:48:02.432734+00:00"
+      "finished_at": "2026-10-31T11:51:28.315359+00:00"
     },
     {
       "key": "FRED_CPILFESL",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPILFESL&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:48:02.432753+00:00",
+      "started_at": "2026-10-31T11:51:28.315386+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_CPILFESL.raw",
       "sha256": "96b80fb34d8ffb9f03d906fda1f28647ce0062b6810296504fe24909f0eb0d4b",
-      "retrieved_at": "2026-10-31T11:48:02.776314+00:00",
+      "retrieved_at": "2026-10-31T11:51:28.638324+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 338.896,
@@ -803,18 +803,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 60
       },
-      "finished_at": "2026-10-31T11:48:02.776412+00:00"
+      "finished_at": "2026-10-31T11:51:28.638449+00:00"
     },
     {
       "key": "FRED_PCEPI",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PCEPI&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:48:02.776426+00:00",
+      "started_at": "2026-10-31T11:51:28.638472+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_PCEPI.raw",
       "sha256": "2b5a44c064b6b66af7c79bcf7a6c4a298805d27d32b21ae0aa21b71fdaa4c4e2",
-      "retrieved_at": "2026-10-31T11:48:03.248479+00:00",
+      "retrieved_at": "2026-10-31T11:51:28.973083+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 132.257,
@@ -834,18 +834,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 60
       },
-      "finished_at": "2026-10-31T11:48:03.248578+00:00"
+      "finished_at": "2026-10-31T11:51:28.973203+00:00"
     },
     {
       "key": "FRED_PCEPILFE",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PCEPILFE&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:48:03.248595+00:00",
+      "started_at": "2026-10-31T11:51:28.973224+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_PCEPILFE.raw",
       "sha256": "2f46549ed8d2b7dcb2f0ffc65e653cb173af6eb9bd3742469a528ffcca843e8e",
-      "retrieved_at": "2026-10-31T11:48:03.752089+00:00",
+      "retrieved_at": "2026-10-31T11:51:29.432865+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 130.902,
@@ -865,18 +865,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 60
       },
-      "finished_at": "2026-10-31T11:48:03.752232+00:00"
+      "finished_at": "2026-10-31T11:51:29.432970+00:00"
     },
     {
       "key": "FRED_INDPRO",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=INDPRO&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:48:03.752249+00:00",
+      "started_at": "2026-10-31T11:51:29.432993+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_INDPRO.raw",
       "sha256": "91881ac50a59bb4582f12625ab4fa068c7b71ca824c0335fa8a2be35537cfb8f",
-      "retrieved_at": "2026-10-31T11:48:04.161593+00:00",
+      "retrieved_at": "2026-10-31T11:51:29.783348+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 103.9506,
@@ -896,18 +896,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 60
       },
-      "finished_at": "2026-10-31T11:48:04.161689+00:00"
+      "finished_at": "2026-10-31T11:51:29.783544+00:00"
     },
     {
       "key": "FRED_PAYEMS",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PAYEMS&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:48:04.161705+00:00",
+      "started_at": "2026-10-31T11:51:29.783566+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_PAYEMS.raw",
       "sha256": "0670d551b6db472fafe433e8a267f6503e5100f79b937004eb2b34fa7a673b70",
-      "retrieved_at": "2026-10-31T11:48:04.505027+00:00",
+      "retrieved_at": "2026-10-31T11:51:30.009646+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 159044.0,
@@ -927,18 +927,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 60
       },
-      "finished_at": "2026-10-31T11:48:04.505129+00:00"
+      "finished_at": "2026-10-31T11:51:30.009755+00:00"
     },
     {
       "key": "FRED_UNRATE",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UNRATE&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:48:04.505148+00:00",
+      "started_at": "2026-10-31T11:51:30.009777+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_UNRATE.raw",
       "sha256": "d55ab6b9a2949aa9ed65975faadd8aa75783cb8fa613c8b4093ed66d8b68c59a",
-      "retrieved_at": "2026-10-31T11:48:04.840292+00:00",
+      "retrieved_at": "2026-10-31T11:51:30.295367+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 4.2,
@@ -958,18 +958,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 60
       },
-      "finished_at": "2026-10-31T11:48:04.840390+00:00"
+      "finished_at": "2026-10-31T11:51:30.295472+00:00"
     },
     {
       "key": "FRED_DCOILWTICO",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO&cosd=2025-04-29",
-      "started_at": "2026-10-31T11:48:04.840404+00:00",
+      "started_at": "2026-10-31T11:51:30.295531+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DCOILWTICO.raw",
       "sha256": "46ba05c282657464979e05d95239bd496f186c3e81a067b3dbf80d1d47a28b97",
-      "retrieved_at": "2026-10-31T11:48:05.467935+00:00",
+      "retrieved_at": "2026-10-31T11:51:30.535590+00:00",
       "value": {
         "observed_at_date": "2026-10-27",
         "value": 103.37,
@@ -992,18 +992,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 4
       },
-      "finished_at": "2026-10-31T11:48:05.468536+00:00"
+      "finished_at": "2026-10-31T11:51:30.536526+00:00"
     },
     {
       "key": "YAHOO_SPY",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:05.468553+00:00",
+      "started_at": "2026-10-31T11:51:30.536545+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_SPY.raw",
-      "sha256": "1bf87759bbdd3b184a86f5a7c1a13eef8bf53a4d691a783907a0a58c3f6c835d",
-      "retrieved_at": "2026-10-31T11:48:05.649225+00:00",
+      "sha256": "c2013d132cea4276211d53f47431633faa3174fd60fd5034510852df58219128",
+      "retrieved_at": "2026-10-31T11:51:30.582888+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1016,18 +1016,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:05.649418+00:00"
+      "finished_at": "2026-10-31T11:51:30.583186+00:00"
     },
     {
       "key": "YAHOO_QQQ",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/QQQ?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:05.649433+00:00",
+      "started_at": "2026-10-31T11:51:30.583203+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_QQQ.raw",
-      "sha256": "03a4b298d4912e4863e54b2b322bfe3947d2aec9269466eb7d3a8e1b7f6255f0",
-      "retrieved_at": "2026-10-31T11:48:05.772214+00:00",
+      "sha256": "b476e8bba2374ea6f67da64ef8b11c4567052f2af47260bb33eedba30e611580",
+      "retrieved_at": "2026-10-31T11:51:30.660930+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1040,18 +1040,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:05.772418+00:00"
+      "finished_at": "2026-10-31T11:51:30.661192+00:00"
     },
     {
       "key": "YAHOO_IWM",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/IWM?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:05.772435+00:00",
+      "started_at": "2026-10-31T11:51:30.661210+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_IWM.raw",
-      "sha256": "e37b79557f047f797245a15dbdfcfe6a2fcfd9d3fa3d14ec64ef58443b1b0ee9",
-      "retrieved_at": "2026-10-31T11:48:05.919761+00:00",
+      "sha256": "633480c649bf8ba867f25543df39d4d36b7773ce8dbf15eb51df8a4a68e536e8",
+      "retrieved_at": "2026-10-31T11:51:30.731860+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1064,18 +1064,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:05.919956+00:00"
+      "finished_at": "2026-10-31T11:51:30.732181+00:00"
     },
     {
       "key": "YAHOO_SOXX",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/SOXX?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:05.919973+00:00",
+      "started_at": "2026-10-31T11:51:30.732200+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_SOXX.raw",
-      "sha256": "439d265be04952d4f8d72218d7e22ceb0d0e181f3da83c2fa77a7af99bfd1611",
-      "retrieved_at": "2026-10-31T11:48:06.053935+00:00",
+      "sha256": "637d9d18dc127a63d1d9604782d3f1dfcf7cfeb9adb2e3e550759d658168459b",
+      "retrieved_at": "2026-10-31T11:51:30.802112+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1088,18 +1088,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:06.054125+00:00"
+      "finished_at": "2026-10-31T11:51:30.802412+00:00"
     },
     {
       "key": "YAHOO_RSP",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/RSP?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:06.054141+00:00",
+      "started_at": "2026-10-31T11:51:30.802430+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_RSP.raw",
-      "sha256": "9c2a1a20d6d43a9682ef1030cf7416fc118dff249bf43efa844f7de2a8b3cf77",
-      "retrieved_at": "2026-10-31T11:48:06.160256+00:00",
+      "sha256": "f300bc7e0947d3e4f22caa97d6ed47fe017e5cc8dd676fdee8189e181dffde87",
+      "retrieved_at": "2026-10-31T11:51:30.870484+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1112,18 +1112,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:06.160456+00:00"
+      "finished_at": "2026-10-31T11:51:30.870789+00:00"
     },
     {
       "key": "YAHOO_HYG",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/HYG?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:06.160471+00:00",
+      "started_at": "2026-10-31T11:51:30.870804+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_HYG.raw",
-      "sha256": "ab8412d381a2e9cb126bf8b507671aab08018600010094406a08de069ca03693",
-      "retrieved_at": "2026-10-31T11:48:06.248120+00:00",
+      "sha256": "e368a783f1d769f0ac625abda9dd77438f164502a351d74e1b2451fe0d9cbef4",
+      "retrieved_at": "2026-10-31T11:51:30.949353+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1136,18 +1136,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:06.248347+00:00"
+      "finished_at": "2026-10-31T11:51:30.949643+00:00"
     },
     {
       "key": "YAHOO_LQD",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/LQD?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:06.248361+00:00",
+      "started_at": "2026-10-31T11:51:30.949659+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_LQD.raw",
-      "sha256": "fc8eece51760e358e30be866f4a2df5d57113b38ad011fb737dd11e1aab56f5d",
-      "retrieved_at": "2026-10-31T11:48:06.341903+00:00",
+      "sha256": "6982fe827907fe8867be1cbd21b35684277697ef9cc872327a73207d243d0a5d",
+      "retrieved_at": "2026-10-31T11:51:31.019143+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1160,18 +1160,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:06.342100+00:00"
+      "finished_at": "2026-10-31T11:51:31.019459+00:00"
     },
     {
       "key": "YAHOO_COIN",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/COIN?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:06.342118+00:00",
+      "started_at": "2026-10-31T11:51:31.019477+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_COIN.raw",
-      "sha256": "6bce3156f3ef869eadae65d7a9fe38286a10d93cb6693429b1801e4b4c212d89",
-      "retrieved_at": "2026-10-31T11:48:06.475609+00:00",
+      "sha256": "c34474eea4b7c62f5d52804c71862c00ea925bf65982720ebdc94cc483d2883c",
+      "retrieved_at": "2026-10-31T11:51:31.075217+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1184,18 +1184,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:06.475807+00:00"
+      "finished_at": "2026-10-31T11:51:31.075565+00:00"
     },
     {
       "key": "YAHOO_MSTR",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/MSTR?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:06.475826+00:00",
+      "started_at": "2026-10-31T11:51:31.075581+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_MSTR.raw",
-      "sha256": "32a551573f0dfe51c2d6850b6c5a26a01fe67917dcb830a6edbc6ebd494db62c",
-      "retrieved_at": "2026-10-31T11:48:06.772313+00:00",
+      "sha256": "53f8ed642a3a27ee5de727a50c3ea70212e11d92811b4f6711ab5d38141d75cb",
+      "retrieved_at": "2026-10-31T11:51:31.136977+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1208,18 +1208,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:06.772507+00:00"
+      "finished_at": "2026-10-31T11:51:31.137238+00:00"
     },
     {
       "key": "YAHOO_HOOD",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/HOOD?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:06.772525+00:00",
+      "started_at": "2026-10-31T11:51:31.137253+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_HOOD.raw",
-      "sha256": "e554472cc309bc8f048f2cbfd2f24913a35c767f65339cca0e0ea3f0b9360790",
-      "retrieved_at": "2026-10-31T11:48:06.851113+00:00",
+      "sha256": "30adb48b475bd26a80e2867506b3637322dab809722710b6293c5641dc6d1299",
+      "retrieved_at": "2026-10-31T11:51:31.193652+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1232,18 +1232,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:06.851340+00:00"
+      "finished_at": "2026-10-31T11:51:31.193901+00:00"
     },
     {
       "key": "YAHOO_DX-Y.NYB",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:06.851356+00:00",
+      "started_at": "2026-10-31T11:51:31.193917+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_DX-Y_NYB.raw",
-      "sha256": "a48f3ae78c7f17f67e32a4029d10f476a1ac23823947fcc276851926b18fa584",
-      "retrieved_at": "2026-10-31T11:48:06.939387+00:00",
+      "sha256": "3fc092c497acc20401a61d37c351e8fba70f3ca5f6282ae85ca8cd8608c0ba96",
+      "retrieved_at": "2026-10-31T11:51:31.359053+00:00",
       "value": {
         "observed_at": "2026-10-30T04:00:00+00:00",
         "session_date": "2026-10-30",
@@ -1256,18 +1256,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:06.939589+00:00"
+      "finished_at": "2026-10-31T11:51:31.359350+00:00"
     },
     {
       "key": "YAHOO_^VIX",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:06.939607+00:00",
+      "started_at": "2026-10-31T11:51:31.359368+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO__VIX.raw",
-      "sha256": "ce1813ac141124aee96189871b50146b40f9e4d43a02823943f7a0b5abb1be74",
-      "retrieved_at": "2026-10-31T11:48:07.059870+00:00",
+      "sha256": "84ca38488686cbbfa28ef7e3f6e9c319f7fb81915de4ccc47a218f350e0e6810",
+      "retrieved_at": "2026-10-31T11:51:31.435581+00:00",
       "value": {
         "observed_at": "2026-10-30T07:00:00+00:00",
         "session_date": "2026-10-30",
@@ -1280,18 +1280,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:07.060073+00:00"
+      "finished_at": "2026-10-31T11:51:31.435898+00:00"
     },
     {
       "key": "YAHOO_CL=F",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/CL%3DF?range=1mo&interval=1d",
-      "started_at": "2026-10-31T11:48:07.060092+00:00",
+      "started_at": "2026-10-31T11:51:31.435917+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_CL_F.raw",
-      "sha256": "1448db150c7410509fd73edf8f1828b8bb621de7e6e5168c44fef4bab15c7735",
-      "retrieved_at": "2026-10-31T11:48:07.199536+00:00",
+      "sha256": "c7b566e6e42419e944fad2f92d3a9c2f31501f07132a4432a90c1d28f65d4a3c",
+      "retrieved_at": "2026-10-31T11:51:31.487047+00:00",
       "value": {
         "observed_at": "2026-10-30T04:00:00+00:00",
         "session_date": "2026-10-30",
@@ -1304,36 +1304,55 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-10-31T11:48:07.199734+00:00"
+      "finished_at": "2026-10-31T11:51:31.487311+00:00"
     },
     {
       "key": "stablecoins",
       "url": "https://stablecoins.llama.fi/stablecoincharts/all",
-      "started_at": "2026-10-31T11:48:07.199753+00:00",
+      "started_at": "2026-10-31T11:51:31.487334+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "stablecoins.raw.gz",
       "sha256": "843ba119b41bd9b534b3cc9f43edfb8421c70027c4ca09a47db76f8a22401a64",
-      "retrieved_at": "2026-10-31T11:48:07.432868+00:00",
+      "retrieved_at": "2026-10-31T11:51:31.641757+00:00",
       "value": {
         "observed_at": "2026-10-30T00:00:00+00:00",
         "value_usd": 299703274343.0,
         "definition": "DefiLlama totalCirculatingUSD.peggedUSD; do not mix with nominal circulating",
         "day_completed": true
       },
-      "finished_at": "2026-10-31T11:48:07.457818+00:00"
+      "finished_at": "2026-10-31T11:51:31.687765+00:00"
+    },
+    {
+      "key": "COINBASE_BTC_spot_cvd",
+      "url": "https://api.exchange.coinbase.com/products/BTC-USD/trades?limit=1000",
+      "started_at": "2026-10-31T11:51:31.687787+00:00",
+      "status": "FAILED",
+      "available_at": null,
+      "http_status": 200,
+      "reason": "HTTPError: HTTP Error 429: Too Many Requests",
+      "finished_at": "2026-10-31T11:52:10.287689+00:00"
+    },
+    {
+      "key": "COINBASE_ETH_spot_cvd",
+      "url": "https://api.exchange.coinbase.com/products/ETH-USD/trades?limit=1000",
+      "started_at": "2026-10-31T11:52:10.287717+00:00",
+      "status": "FAILED",
+      "available_at": null,
+      "reason": "HTTPError: HTTP Error 429: Too Many Requests",
+      "finished_at": "2026-10-31T11:52:10.307087+00:00"
     },
     {
       "key": "ETF_BTC",
       "url": "https://farside.co.uk/btc/",
-      "started_at": "2026-10-31T11:48:07.457845+00:00",
+      "started_at": "2026-10-31T11:52:10.307112+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETF_BTC.raw",
-      "sha256": "fd7592654cbc4efb3594705c873ded22cc569c33a706e8c3aa76c111a7a2f48a",
-      "retrieved_at": "2026-10-31T11:48:08.254885+00:00",
+      "sha256": "a7913e93f857f7cd279e4a1e74d33cffb14f6ce72c1f6ad261dbd2d0f02b7ca6",
+      "retrieved_at": "2026-10-31T11:52:10.934244+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "net_flow_million_usd": -643.2,
@@ -1349,18 +1368,18 @@
         "revision_policy": "LATEST_REVISED_DESCRIPTIVE_NOT_PIT",
         "available_at": null
       },
-      "finished_at": "2026-10-31T11:48:08.266767+00:00"
+      "finished_at": "2026-10-31T11:52:10.953802+00:00"
     },
     {
       "key": "ETF_ETH",
       "url": "https://farside.co.uk/eth/",
-      "started_at": "2026-10-31T11:48:08.266797+00:00",
+      "started_at": "2026-10-31T11:52:10.953826+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETF_ETH.raw",
-      "sha256": "9d980ceaa05c883a63860cc8c94a857e84e6d646e0605900f000ca265482b1b1",
-      "retrieved_at": "2026-10-31T11:48:08.560824+00:00",
+      "sha256": "4a45c4ec2f9ca2a59137dcb804bde2d057806b733d5aedf380485acebbe2fded",
+      "retrieved_at": "2026-10-31T11:52:11.301599+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "net_flow_million_usd": -155.7,
@@ -1376,18 +1395,18 @@
         "revision_policy": "LATEST_REVISED_DESCRIPTIVE_NOT_PIT",
         "available_at": null
       },
-      "finished_at": "2026-10-31T11:48:08.569349+00:00"
+      "finished_at": "2026-10-31T11:52:11.317183+00:00"
     },
     {
       "key": "RWA",
       "url": "https://app.rwa.xyz/networks",
-      "started_at": "2026-10-31T11:48:08.569373+00:00",
+      "started_at": "2026-10-31T11:52:11.317204+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "RWA.raw.gz",
-      "sha256": "7cee8bdca92b06c69e2cd21e05dee534e2d1a11e79a2cfb296897ffcce7a864c",
-      "retrieved_at": "2026-10-31T11:48:09.090366+00:00",
+      "sha256": "247414cca8fe93566eb0e348e4c80f5d617a2b2c668a940d1f9cfee711995c25",
+      "retrieved_at": "2026-10-31T11:52:11.677510+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "aggregates": {
@@ -1647,57 +1666,57 @@
         ],
         "snapshot_not_completed_day": true
       },
-      "finished_at": "2026-10-31T11:48:09.266006+00:00"
+      "finished_at": "2026-10-31T11:52:12.022263+00:00"
     },
     {
       "key": "ISM",
       "url": "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-report-on-business/",
-      "started_at": "2026-10-31T11:48:09.266042+00:00",
+      "started_at": "2026-10-31T11:52:12.022296+00:00",
       "status": "ACCESS_BLOCKED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ISM.raw",
       "sha256": "2b00e9ba5232405175ee282eb5bee399299c655c105edb7531500a5ffaa006dc",
-      "retrieved_at": "2026-10-31T11:48:09.872355+00:00",
+      "retrieved_at": "2026-10-31T11:52:12.701268+00:00",
       "reason": "ValueError: provider access block; no bypass attempted",
-      "finished_at": "2026-10-31T11:48:09.872399+00:00"
+      "finished_at": "2026-10-31T11:52:12.701311+00:00"
     },
     {
       "key": "APPARENT_DEMAND",
       "url": "https://cryptoquant.com/asset/btc/chart/network-indicator/apparent-demand",
-      "started_at": "2026-10-31T11:48:09.872419+00:00",
+      "started_at": "2026-10-31T11:52:12.701333+00:00",
       "status": "FAILED",
       "available_at": null,
       "reason": "HTTPError: HTTP Error 403: Forbidden",
-      "finished_at": "2026-10-31T11:48:09.976882+00:00"
+      "finished_at": "2026-10-31T11:52:12.783629+00:00"
     },
     {
       "key": "BRK_date",
       "url": "https://bitview.space/api/series/date/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:09.976915+00:00",
+      "started_at": "2026-10-31T11:52:12.783662+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_date.raw",
       "sha256": "9fba26429fae22e26a6d88c860002a874dad51831b812fc26b861be2fa9f9372",
-      "retrieved_at": "2026-10-31T11:48:10.184348+00:00",
+      "retrieved_at": "2026-10-31T11:52:12.929748+00:00",
       "value": {
         "status": "DATE_ALIGNMENT_INDEX",
         "start": 6498,
         "end": 6512
       },
-      "finished_at": "2026-10-31T11:48:10.185430+00:00"
+      "finished_at": "2026-10-31T11:52:12.930859+00:00"
     },
     {
       "key": "BRK_lth_supply",
       "url": "https://bitview.space/api/series/lth_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:10.185455+00:00",
+      "started_at": "2026-10-31T11:52:12.930880+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_lth_supply.raw",
       "sha256": "9e87af436d7a30301f97d8cebce3509a1e8d6ddcc6b9b60d45f5b19c9838373c",
-      "retrieved_at": "2026-10-31T11:48:10.362384+00:00",
+      "retrieved_at": "2026-10-31T11:52:13.053947+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 16372738.85041068,
@@ -1724,18 +1743,18 @@
         },
         "computation_version": 1154016262
       },
-      "finished_at": "2026-10-31T11:48:10.362470+00:00"
+      "finished_at": "2026-10-31T11:52:13.054046+00:00"
     },
     {
       "key": "BRK_sth_supply",
       "url": "https://bitview.space/api/series/sth_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:10.362487+00:00",
+      "started_at": "2026-10-31T11:52:13.054064+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_sth_supply.raw",
       "sha256": "e0dd84f08315e4c0cd54665dbb87b47ccdfdb8225964cd7e77c08b23afb0f072",
-      "retrieved_at": "2026-10-31T11:48:10.547366+00:00",
+      "retrieved_at": "2026-10-31T11:52:13.168809+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 3732956.01562702,
@@ -1762,18 +1781,18 @@
         },
         "computation_version": 1154016262
       },
-      "finished_at": "2026-10-31T11:48:10.547448+00:00"
+      "finished_at": "2026-10-31T11:52:13.168897+00:00"
     },
     {
       "key": "BRK_circulating_supply",
       "url": "https://bitview.space/api/series/circulating_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:10.547467+00:00",
+      "started_at": "2026-10-31T11:52:13.168920+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_circulating_supply.raw",
       "sha256": "1f3404c10e6fc68dcdd02aa34109ab4840e0e22b6d3409ccb46700d3bd864714",
-      "retrieved_at": "2026-10-31T11:48:10.718208+00:00",
+      "retrieved_at": "2026-10-31T11:52:13.286409+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 20105694.8660377,
@@ -1800,18 +1819,18 @@
         },
         "computation_version": 3448840617
       },
-      "finished_at": "2026-10-31T11:48:10.718297+00:00"
+      "finished_at": "2026-10-31T11:52:13.286539+00:00"
     },
     {
       "key": "BRK_balance_1_to_10_btc_supply",
       "url": "https://bitview.space/api/series/balance_1_to_10_btc_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:10.718313+00:00",
+      "started_at": "2026-10-31T11:52:13.286556+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1_to_10_btc_supply.raw",
       "sha256": "ee4bc617ee1d31707070ead4d2f15ba7b482a49eeb2f37fa587bddf2fdda9d3d",
-      "retrieved_at": "2026-10-31T11:48:10.909418+00:00",
+      "retrieved_at": "2026-10-31T11:52:13.410033+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 2038572.99626677,
@@ -1838,18 +1857,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:10.909499+00:00"
+      "finished_at": "2026-10-31T11:52:13.410120+00:00"
     },
     {
       "key": "BRK_balance_1_to_10_sats_supply",
       "url": "https://bitview.space/api/series/balance_1_to_10_sats_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:10.909519+00:00",
+      "started_at": "2026-10-31T11:52:13.410138+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1_to_10_sats_supply.raw",
       "sha256": "b1a442545b882ffa4eee25410480692f660cf54244a75159137b35c1e7d8278c",
-      "retrieved_at": "2026-10-31T11:48:11.104047+00:00",
+      "retrieved_at": "2026-10-31T11:52:13.546391+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 0.00845016,
@@ -1876,18 +1895,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:11.104127+00:00"
+      "finished_at": "2026-10-31T11:52:13.546523+00:00"
     },
     {
       "key": "BRK_balance_100_to_1k_btc_supply",
       "url": "https://bitview.space/api/series/balance_100_to_1k_btc_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:11.104144+00:00",
+      "started_at": "2026-10-31T11:52:13.546543+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_100_to_1k_btc_supply.raw",
       "sha256": "da9b8a29ea08301ed3522e31cbbd4d163175688c6d6e477ff139ef2e83ac941e",
-      "retrieved_at": "2026-10-31T11:48:11.286801+00:00",
+      "retrieved_at": "2026-10-31T11:52:13.673463+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 5282316.19256765,
@@ -1914,18 +1933,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:11.286886+00:00"
+      "finished_at": "2026-10-31T11:52:13.673583+00:00"
     },
     {
       "key": "BRK_balance_10_to_100_btc_supply",
       "url": "https://bitview.space/api/series/balance_10_to_100_btc_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:11.286903+00:00",
+      "started_at": "2026-10-31T11:52:13.673599+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10_to_100_btc_supply.raw",
       "sha256": "bb0311baedbb464436ab448ba41b23a1b152b2e776a6ab9861b9a61048305470",
-      "retrieved_at": "2026-10-31T11:48:11.472557+00:00",
+      "retrieved_at": "2026-10-31T11:52:13.811073+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 4221101.91817581,
@@ -1952,18 +1971,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:11.472638+00:00"
+      "finished_at": "2026-10-31T11:52:13.811174+00:00"
     },
     {
       "key": "BRK_balance_1k_to_10k_btc_supply",
       "url": "https://bitview.space/api/series/balance_1k_to_10k_btc_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:11.472655+00:00",
+      "started_at": "2026-10-31T11:52:13.811196+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1k_to_10k_btc_supply.raw",
       "sha256": "ba174cd5c5ab12cbdac6c6b6e7585075d52bb37b7fb730ffb0bc9b69f682059b",
-      "retrieved_at": "2026-10-31T11:48:11.632889+00:00",
+      "retrieved_at": "2026-10-31T11:52:13.947413+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 4179948.45715514,
@@ -1990,18 +2009,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:11.632970+00:00"
+      "finished_at": "2026-10-31T11:52:13.947573+00:00"
     },
     {
       "key": "BRK_balance_over_100k_btc_supply",
       "url": "https://bitview.space/api/series/balance_over_100k_btc_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:11.632989+00:00",
+      "started_at": "2026-10-31T11:52:13.947594+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_over_100k_btc_supply.raw",
       "sha256": "3756eeedb7bf8c1c796580ba1e342cbc2a16be8be3de178bb17b3543ff698c82",
-      "retrieved_at": "2026-10-31T11:48:11.811088+00:00",
+      "retrieved_at": "2026-10-31T11:52:14.069867+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 693445.52528876,
@@ -2028,18 +2047,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:11.811198+00:00"
+      "finished_at": "2026-10-31T11:52:14.069962+00:00"
     },
     {
       "key": "BRK_balance_100_to_1k_sats_supply",
       "url": "https://bitview.space/api/series/balance_100_to_1k_sats_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:11.811212+00:00",
+      "started_at": "2026-10-31T11:52:14.069979+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_100_to_1k_sats_supply.raw",
       "sha256": "01e9fa781db6a13de30539339fac2997bc6512036294eb72db02db1cc0c73d3b",
-      "retrieved_at": "2026-10-31T11:48:12.004239+00:00",
+      "retrieved_at": "2026-10-31T11:52:14.192028+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 30.17488803,
@@ -2066,18 +2085,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:12.004321+00:00"
+      "finished_at": "2026-10-31T11:52:14.192119+00:00"
     },
     {
       "key": "BRK_balance_10_to_100_sats_supply",
       "url": "https://bitview.space/api/series/balance_10_to_100_sats_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:12.004337+00:00",
+      "started_at": "2026-10-31T11:52:14.192144+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10_to_100_sats_supply.raw",
       "sha256": "7256f755ab4b81b9027413a1436c1870064a39a7ece20ce1b4216ec7b4865ce3",
-      "retrieved_at": "2026-10-31T11:48:12.225324+00:00",
+      "retrieved_at": "2026-10-31T11:52:14.337214+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 0.06188236,
@@ -2104,18 +2123,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:12.225404+00:00"
+      "finished_at": "2026-10-31T11:52:14.337308+00:00"
     },
     {
       "key": "BRK_balance_1k_to_10k_sats_supply",
       "url": "https://bitview.space/api/series/balance_1k_to_10k_sats_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:12.225420+00:00",
+      "started_at": "2026-10-31T11:52:14.337331+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1k_to_10k_sats_supply.raw",
       "sha256": "1c71024f0082ceef43fe73666aa7ebcad1092801a21b7a012df472bfe277e232",
-      "retrieved_at": "2026-10-31T11:48:12.405024+00:00",
+      "retrieved_at": "2026-10-31T11:52:14.461191+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 505.66094882,
@@ -2142,18 +2161,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:12.405104+00:00"
+      "finished_at": "2026-10-31T11:52:14.461292+00:00"
     },
     {
       "key": "BRK_balance_1m_to_10m_sats_supply",
       "url": "https://bitview.space/api/series/balance_1m_to_10m_sats_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:12.405121+00:00",
+      "started_at": "2026-10-31T11:52:14.461314+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1m_to_10m_sats_supply.raw",
       "sha256": "99391bac05418499f6da62cb3cf4d89d1544a13dd9faa7558972cdf7e2753364",
-      "retrieved_at": "2026-10-31T11:48:12.571024+00:00",
+      "retrieved_at": "2026-10-31T11:52:14.583931+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 277572.24067538,
@@ -2180,18 +2199,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:12.571105+00:00"
+      "finished_at": "2026-10-31T11:52:14.584018+00:00"
     },
     {
       "key": "BRK_balance_100k_to_1m_sats_supply",
       "url": "https://bitview.space/api/series/balance_100k_to_1m_sats_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:12.571120+00:00",
+      "started_at": "2026-10-31T11:52:14.584041+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_100k_to_1m_sats_supply.raw",
       "sha256": "060ea8bcfa8ecdb12144c37e1e7eb20b3155865f9ea1b016c519f28d6e2b0aa9",
-      "retrieved_at": "2026-10-31T11:48:12.754603+00:00",
+      "retrieved_at": "2026-10-31T11:52:14.720265+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 45020.47166373,
@@ -2218,18 +2237,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:12.754685+00:00"
+      "finished_at": "2026-10-31T11:52:14.720351+00:00"
     },
     {
       "key": "BRK_balance_10k_to_100k_btc_supply",
       "url": "https://bitview.space/api/series/balance_10k_to_100k_btc_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:12.754700+00:00",
+      "started_at": "2026-10-31T11:52:14.720373+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10k_to_100k_btc_supply.raw",
       "sha256": "657ec2a945e6ef73226c7e81fec6ccfd13ece6bc649c598fc03df64a9db42ace",
-      "retrieved_at": "2026-10-31T11:48:12.924338+00:00",
+      "retrieved_at": "2026-10-31T11:52:14.842634+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 2294800.53124379,
@@ -2256,18 +2275,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:12.924418+00:00"
+      "finished_at": "2026-10-31T11:52:14.842719+00:00"
     },
     {
       "key": "BRK_balance_10k_to_100k_sats_supply",
       "url": "https://bitview.space/api/series/balance_10k_to_100k_sats_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:12.924433+00:00",
+      "started_at": "2026-10-31T11:52:14.842742+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10k_to_100k_sats_supply.raw",
       "sha256": "6c3a4dd3dfd46613c5bed52161423ebacf2c119d5578e3d28b6767b8bc8f707a",
-      "retrieved_at": "2026-10-31T11:48:13.101242+00:00",
+      "retrieved_at": "2026-10-31T11:52:14.967854+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 5295.24103432,
@@ -2294,18 +2313,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:13.101324+00:00"
+      "finished_at": "2026-10-31T11:52:14.967937+00:00"
     },
     {
       "key": "BRK_balance_10m_to_100m_sats_supply",
       "url": "https://bitview.space/api/series/balance_10m_to_100m_sats_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:13.101338+00:00",
+      "started_at": "2026-10-31T11:52:14.967955+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10m_to_100m_sats_supply.raw",
       "sha256": "e3c57c7ea3a3a9dc74aa3369d32d4ace9afe3d1fbf4a7a3c9f1e5ed3b4bfaefe",
-      "retrieved_at": "2026-10-31T11:48:13.287211+00:00",
+      "retrieved_at": "2026-10-31T11:52:15.092919+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 1064448.83457908,
@@ -2332,18 +2351,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-10-31T11:48:13.287296+00:00"
+      "finished_at": "2026-10-31T11:52:15.093005+00:00"
     },
     {
       "key": "BRK_age_1d_to_1w_supply",
       "url": "https://bitview.space/api/series/age_1d_to_1w_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:13.287314+00:00",
+      "started_at": "2026-10-31T11:52:15.093027+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1d_to_1w_supply.raw",
       "sha256": "305134a4d5c0081de4eec68e9b2d5a18d7a795ceb8beb695cb7a506052e4703f",
-      "retrieved_at": "2026-10-31T11:48:13.484404+00:00",
+      "retrieved_at": "2026-10-31T11:52:15.211173+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 330486.07020522,
@@ -2370,18 +2389,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:13.484490+00:00"
+      "finished_at": "2026-10-31T11:52:15.211257+00:00"
     },
     {
       "key": "BRK_age_1h_to_1d_supply",
       "url": "https://bitview.space/api/series/age_1h_to_1d_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:13.484505+00:00",
+      "started_at": "2026-10-31T11:52:15.211281+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1h_to_1d_supply.raw",
       "sha256": "a9454d95c6c127e536b397ba21fd1a0ba2fd4a5f67e402f523a7fbfdb5ae8c42",
-      "retrieved_at": "2026-10-31T11:48:13.670405+00:00",
+      "retrieved_at": "2026-10-31T11:52:15.325412+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 296825.30761371,
@@ -2408,18 +2427,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:13.670488+00:00"
+      "finished_at": "2026-10-31T11:52:15.325558+00:00"
     },
     {
       "key": "BRK_age_1m_to_2m_supply",
       "url": "https://bitview.space/api/series/age_1m_to_2m_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:13.670506+00:00",
+      "started_at": "2026-10-31T11:52:15.325580+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1m_to_2m_supply.raw",
       "sha256": "7e9e916185e1092c5a90f3454e598027e00564c3e34321f1d30f6e7050f71ece",
-      "retrieved_at": "2026-10-31T11:48:13.855973+00:00",
+      "retrieved_at": "2026-10-31T11:52:15.462732+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 724275.57820074,
@@ -2446,18 +2465,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:13.856057+00:00"
+      "finished_at": "2026-10-31T11:52:15.462817+00:00"
     },
     {
       "key": "BRK_age_1w_to_1m_supply",
       "url": "https://bitview.space/api/series/age_1w_to_1m_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:13.856078+00:00",
+      "started_at": "2026-10-31T11:52:15.462840+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1w_to_1m_supply.raw",
       "sha256": "5f69861f2033bf8f925010711a370851230fea3cb0b99721a0cee06138862602",
-      "retrieved_at": "2026-10-31T11:48:14.048804+00:00",
+      "retrieved_at": "2026-10-31T11:52:15.612032+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 990313.19614382,
@@ -2484,18 +2503,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:14.048889+00:00"
+      "finished_at": "2026-10-31T11:52:15.612119+00:00"
     },
     {
       "key": "BRK_age_2m_to_3m_supply",
       "url": "https://bitview.space/api/series/age_2m_to_3m_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:14.048905+00:00",
+      "started_at": "2026-10-31T11:52:15.612137+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_2m_to_3m_supply.raw",
       "sha256": "b84cb24284d72cd0f1d50efc383ab04d587a260c8dae0b63a2dd008092bb17d4",
-      "retrieved_at": "2026-10-31T11:48:14.239111+00:00",
+      "retrieved_at": "2026-10-31T11:52:15.727070+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 631958.60266293,
@@ -2522,18 +2541,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:14.239224+00:00"
+      "finished_at": "2026-10-31T11:52:15.727156+00:00"
     },
     {
       "key": "BRK_age_2y_to_3y_supply",
       "url": "https://bitview.space/api/series/age_2y_to_3y_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:14.239242+00:00",
+      "started_at": "2026-10-31T11:52:15.727174+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_2y_to_3y_supply.raw",
       "sha256": "989bce07d5b13c6edc3d45922a1c12b045c93d419550ff328dc2f95cf36ae54b",
-      "retrieved_at": "2026-10-31T11:48:14.399646+00:00",
+      "retrieved_at": "2026-10-31T11:52:15.870407+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 1324766.46596301,
@@ -2560,18 +2579,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:14.399728+00:00"
+      "finished_at": "2026-10-31T11:52:15.870544+00:00"
     },
     {
       "key": "BRK_age_3m_to_4m_supply",
       "url": "https://bitview.space/api/series/age_3m_to_4m_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:14.399746+00:00",
+      "started_at": "2026-10-31T11:52:15.870569+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_3m_to_4m_supply.raw",
       "sha256": "577b93951d1897a9cffae2a25e19d3ae352be78499c8a657abe661d7d2420677",
-      "retrieved_at": "2026-10-31T11:48:14.594824+00:00",
+      "retrieved_at": "2026-10-31T11:52:16.153151+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 409321.05955579,
@@ -2598,18 +2617,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:14.594912+00:00"
+      "finished_at": "2026-10-31T11:52:16.153236+00:00"
     },
     {
       "key": "BRK_age_3y_to_4y_supply",
       "url": "https://bitview.space/api/series/age_3y_to_4y_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:14.594929+00:00",
+      "started_at": "2026-10-31T11:52:16.153259+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_3y_to_4y_supply.raw",
       "sha256": "416b7236fa6ae1e7a3e2a2431a230fed95e9e3b35a116b6efbcb1bf8c694e6f1",
-      "retrieved_at": "2026-10-31T11:48:14.758615+00:00",
+      "retrieved_at": "2026-10-31T11:52:16.277833+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 986353.35824619,
@@ -2636,18 +2655,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:14.758700+00:00"
+      "finished_at": "2026-10-31T11:52:16.277922+00:00"
     },
     {
       "key": "BRK_age_4m_to_5m_supply",
       "url": "https://bitview.space/api/series/age_4m_to_5m_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:14.758716+00:00",
+      "started_at": "2026-10-31T11:52:16.277947+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_4m_to_5m_supply.raw",
       "sha256": "046677ac20226ee3e626a203e5c442dc18052a8c6280e8f2bae784b7aa85cecc",
-      "retrieved_at": "2026-10-31T11:48:14.936861+00:00",
+      "retrieved_at": "2026-10-31T11:52:16.400286+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 332963.64197246,
@@ -2674,18 +2693,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:14.936946+00:00"
+      "finished_at": "2026-10-31T11:52:16.400373+00:00"
     },
     {
       "key": "BRK_age_4y_to_5y_supply",
       "url": "https://bitview.space/api/series/age_4y_to_5y_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:14.936965+00:00",
+      "started_at": "2026-10-31T11:52:16.400393+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_4y_to_5y_supply.raw",
       "sha256": "eb17f834a73f52a3c7f1a0d3f25f80937f57cd83e034425b87e89404d164eb11",
-      "retrieved_at": "2026-10-31T11:48:15.101752+00:00",
+      "retrieved_at": "2026-10-31T11:52:16.532694+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 697530.21105891,
@@ -2712,18 +2731,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:15.101833+00:00"
+      "finished_at": "2026-10-31T11:52:16.532779+00:00"
     },
     {
       "key": "BRK_age_5m_to_6m_supply",
       "url": "https://bitview.space/api/series/age_5m_to_6m_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:15.101850+00:00",
+      "started_at": "2026-10-31T11:52:16.532801+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_5m_to_6m_supply.raw",
       "sha256": "e78181e79d2b988db5bd2b831753a6f152f57c0c6456870baa043dc94036d991",
-      "retrieved_at": "2026-10-31T11:48:15.258543+00:00",
+      "retrieved_at": "2026-10-31T11:52:16.660288+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 326745.72055002,
@@ -2750,18 +2769,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:15.258623+00:00"
+      "finished_at": "2026-10-31T11:52:16.660387+00:00"
     },
     {
       "key": "BRK_age_5y_to_6y_supply",
       "url": "https://bitview.space/api/series/age_5y_to_6y_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:15.258640+00:00",
+      "started_at": "2026-10-31T11:52:16.660408+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_5y_to_6y_supply.raw",
       "sha256": "550e426dbda1d7c6e132376df7047c584e745fecc93a8dad867dee28805a2628",
-      "retrieved_at": "2026-10-31T11:48:15.424970+00:00",
+      "retrieved_at": "2026-10-31T11:52:16.776244+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 1157255.92973013,
@@ -2788,18 +2807,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:15.425052+00:00"
+      "finished_at": "2026-10-31T11:52:16.776330+00:00"
     },
     {
       "key": "BRK_age_6m_to_9m_supply",
       "url": "https://bitview.space/api/series/age_6m_to_9m_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:15.425070+00:00",
+      "started_at": "2026-10-31T11:52:16.776350+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_6m_to_9m_supply.raw",
       "sha256": "9af4d18ea25659e821cf365e7a3258d30dd3b5e0bdb7756a620b865b89b40f04",
-      "retrieved_at": "2026-10-31T11:48:15.602967+00:00",
+      "retrieved_at": "2026-10-31T11:52:16.898369+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 991921.46660725,
@@ -2826,18 +2845,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:15.603048+00:00"
+      "finished_at": "2026-10-31T11:52:16.898456+00:00"
     },
     {
       "key": "BRK_age_6y_to_7y_supply",
       "url": "https://bitview.space/api/series/age_6y_to_7y_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:15.603067+00:00",
+      "started_at": "2026-10-31T11:52:16.898475+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_6y_to_7y_supply.raw",
       "sha256": "049c6e77b94bca1f7498a32c5e8ea3bbc68f9d5111aa7565a1faf282317a9d16",
-      "retrieved_at": "2026-10-31T11:48:15.770035+00:00",
+      "retrieved_at": "2026-10-31T11:52:17.023010+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 406165.33103648,
@@ -2864,18 +2883,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:15.770116+00:00"
+      "finished_at": "2026-10-31T11:52:17.023109+00:00"
     },
     {
       "key": "BRK_age_7y_to_8y_supply",
       "url": "https://bitview.space/api/series/age_7y_to_8y_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:15.770135+00:00",
+      "started_at": "2026-10-31T11:52:17.023130+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_7y_to_8y_supply.raw",
       "sha256": "1dc864099d59af28e643efcca87219dfc51047bb3cc5fac4ceac90fd0936eea6",
-      "retrieved_at": "2026-10-31T11:48:15.934836+00:00",
+      "retrieved_at": "2026-10-31T11:52:17.154132+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 467672.82944025,
@@ -2902,18 +2921,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:15.934918+00:00"
+      "finished_at": "2026-10-31T11:52:17.154216+00:00"
     },
     {
       "key": "BRK_age_9m_to_1y_supply",
       "url": "https://bitview.space/api/series/age_9m_to_1y_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:15.934938+00:00",
+      "started_at": "2026-10-31T11:52:17.154235+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_9m_to_1y_supply.raw",
       "sha256": "9ae958f093727f44a7ce3e89ef63b62a6355563517d61094806ba3e8a8447f12",
-      "retrieved_at": "2026-10-31T11:48:16.100220+00:00",
+      "retrieved_at": "2026-10-31T11:52:17.278569+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 2182917.30301586,
@@ -2940,18 +2959,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:16.100304+00:00"
+      "finished_at": "2026-10-31T11:52:17.278671+00:00"
     },
     {
       "key": "BRK_age_over_15y_supply",
       "url": "https://bitview.space/api/series/age_over_15y_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:16.100323+00:00",
+      "started_at": "2026-10-31T11:52:17.278694+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_over_15y_supply.raw",
       "sha256": "1c26f60be60d30474f9e34dd9b69ab3688392de8e7be1bdbb5decede88617337",
-      "retrieved_at": "2026-10-31T11:48:16.279396+00:00",
+      "retrieved_at": "2026-10-31T11:52:17.424298+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 2207817.34253204,
@@ -2978,18 +2997,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:16.279480+00:00"
+      "finished_at": "2026-10-31T11:52:17.424381+00:00"
     },
     {
       "key": "BRK_age_under_1h_supply",
       "url": "https://bitview.space/api/series/age_under_1h_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:16.279496+00:00",
+      "started_at": "2026-10-31T11:52:17.424400+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_under_1h_supply.raw",
       "sha256": "828723ca79cf01ae0cd2d3ff484b8b72607fef4df47456e0f436a6b4126b42dd",
-      "retrieved_at": "2026-10-31T11:48:16.474102+00:00",
+      "retrieved_at": "2026-10-31T11:52:17.544451+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 16812.55927235,
@@ -3016,18 +3035,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:16.474227+00:00"
+      "finished_at": "2026-10-31T11:52:17.544576+00:00"
     },
     {
       "key": "BRK_age_18m_to_2y_supply",
       "url": "https://bitview.space/api/series/age_18m_to_2y_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:16.474245+00:00",
+      "started_at": "2026-10-31T11:52:17.544592+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_18m_to_2y_supply.raw",
       "sha256": "8a0652988612f7289b4b2a4a8050830c00585068bdb6b65e3a7797344d62fab2",
-      "retrieved_at": "2026-10-31T11:48:16.642353+00:00",
+      "retrieved_at": "2026-10-31T11:52:17.672679+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 1081202.3578748,
@@ -3054,18 +3073,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:16.642440+00:00"
+      "finished_at": "2026-10-31T11:52:17.672767+00:00"
     },
     {
       "key": "BRK_age_1y_to_18m_supply",
       "url": "https://bitview.space/api/series/age_1y_to_18m_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:16.642456+00:00",
+      "started_at": "2026-10-31T11:52:17.672789+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1y_to_18m_supply.raw",
       "sha256": "41938d4565a513f0b8717f0ae6e0562cf2969189c57a648f3495f1ddf5e0cb18",
-      "retrieved_at": "2026-10-31T11:48:16.813831+00:00",
+      "retrieved_at": "2026-10-31T11:52:17.801905+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 1957363.8404796,
@@ -3092,18 +3111,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:16.813915+00:00"
+      "finished_at": "2026-10-31T11:52:17.801997+00:00"
     },
     {
       "key": "BRK_age_8y_to_10y_supply",
       "url": "https://bitview.space/api/series/age_8y_to_10y_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:16.813938+00:00",
+      "started_at": "2026-10-31T11:52:17.802016+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_8y_to_10y_supply.raw",
       "sha256": "be5c86eac0ff6b9e20aeb02eba108e6e96b1590d66f630deca2df47a807e4046",
-      "retrieved_at": "2026-10-31T11:48:16.992561+00:00",
+      "retrieved_at": "2026-10-31T11:52:17.916290+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 1200468.88687387,
@@ -3130,18 +3149,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:16.992644+00:00"
+      "finished_at": "2026-10-31T11:52:17.916377+00:00"
     },
     {
       "key": "BRK_age_10y_to_12y_supply",
       "url": "https://bitview.space/api/series/age_10y_to_12y_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:16.992661+00:00",
+      "started_at": "2026-10-31T11:52:17.916399+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_10y_to_12y_supply.raw",
       "sha256": "6250189df89a9133a605ca3fd66faac15bed8fdd129beddac56eb132389924f7",
-      "retrieved_at": "2026-10-31T11:48:17.157335+00:00",
+      "retrieved_at": "2026-10-31T11:52:18.035606+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 442389.26981866,
@@ -3168,18 +3187,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:17.157422+00:00"
+      "finished_at": "2026-10-31T11:52:18.035704+00:00"
     },
     {
       "key": "BRK_age_12y_to_15y_supply",
       "url": "https://bitview.space/api/series/age_12y_to_15y_supply/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:17.157441+00:00",
+      "started_at": "2026-10-31T11:52:18.035722+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_12y_to_15y_supply.raw",
       "sha256": "99ef78014e3e761bd190ed9055a465c3e966e7711b1b7a534aba578ca177e65f",
-      "retrieved_at": "2026-10-31T11:48:17.351487+00:00",
+      "retrieved_at": "2026-10-31T11:52:18.156259+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 942168.53718361,
@@ -3206,18 +3225,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:17.351570+00:00"
+      "finished_at": "2026-10-31T11:52:18.156357+00:00"
     },
     {
       "key": "BRK_age_1d_to_1w_realized_cap",
       "url": "https://bitview.space/api/series/age_1d_to_1w_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:17.351587+00:00",
+      "started_at": "2026-10-31T11:52:18.156384+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1d_to_1w_realized_cap.raw",
       "sha256": "f08e5344f07ec9476aeb4369f8ba60847f9619ad36d4dae585f5e76b436f342e",
-      "retrieved_at": "2026-10-31T11:48:17.509975+00:00",
+      "retrieved_at": "2026-10-31T11:52:18.278749+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 26546137079.82,
@@ -3244,18 +3263,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:17.510059+00:00"
+      "finished_at": "2026-10-31T11:52:18.278842+00:00"
     },
     {
       "key": "BRK_age_1h_to_1d_realized_cap",
       "url": "https://bitview.space/api/series/age_1h_to_1d_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:17.510077+00:00",
+      "started_at": "2026-10-31T11:52:18.278864+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1h_to_1d_realized_cap.raw",
       "sha256": "02e9bfa691bd31c8742d02b6b94f21a51806267ba752aa62d9ac81a2235fc05a",
-      "retrieved_at": "2026-10-31T11:48:17.687335+00:00",
+      "retrieved_at": "2026-10-31T11:52:18.424020+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 22971866582.02,
@@ -3282,18 +3301,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:17.687418+00:00"
+      "finished_at": "2026-10-31T11:52:18.424108+00:00"
     },
     {
       "key": "BRK_age_1m_to_2m_realized_cap",
       "url": "https://bitview.space/api/series/age_1m_to_2m_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:17.687435+00:00",
+      "started_at": "2026-10-31T11:52:18.424124+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1m_to_2m_realized_cap.raw",
       "sha256": "2fba84d1b7a352d023b34c769c25361eeaddeea2c70e017ec4d61d10812f9ba4",
-      "retrieved_at": "2026-10-31T11:48:17.857373+00:00",
+      "retrieved_at": "2026-10-31T11:52:18.540481+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 58908712120.03,
@@ -3320,18 +3339,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:17.857460+00:00"
+      "finished_at": "2026-10-31T11:52:18.540600+00:00"
     },
     {
       "key": "BRK_age_1w_to_1m_realized_cap",
       "url": "https://bitview.space/api/series/age_1w_to_1m_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:17.857478+00:00",
+      "started_at": "2026-10-31T11:52:18.540629+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1w_to_1m_realized_cap.raw",
       "sha256": "85219016e2394f432aadf10c2a4cd707f44851a2d16273b85b45c9470677e029",
-      "retrieved_at": "2026-10-31T11:48:18.021923+00:00",
+      "retrieved_at": "2026-10-31T11:52:18.677222+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 81706709542.89,
@@ -3358,18 +3377,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:18.022008+00:00"
+      "finished_at": "2026-10-31T11:52:18.677320+00:00"
     },
     {
       "key": "BRK_age_2m_to_3m_realized_cap",
       "url": "https://bitview.space/api/series/age_2m_to_3m_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:18.022026+00:00",
+      "started_at": "2026-10-31T11:52:18.677342+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_2m_to_3m_realized_cap.raw",
       "sha256": "9940982305b915d655e188eb0742f1323c9835ee87eb576e649f69bb65cdb704",
-      "retrieved_at": "2026-10-31T11:48:18.191123+00:00",
+      "retrieved_at": "2026-10-31T11:52:18.794479+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 44496645850.79,
@@ -3396,18 +3415,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:18.191234+00:00"
+      "finished_at": "2026-10-31T11:52:18.794634+00:00"
     },
     {
       "key": "BRK_age_2y_to_3y_realized_cap",
       "url": "https://bitview.space/api/series/age_2y_to_3y_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:18.191248+00:00",
+      "started_at": "2026-10-31T11:52:18.794653+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_2y_to_3y_realized_cap.raw",
       "sha256": "3529ebba5f68c96a6140a9f9cf23664e79303d83996917cbeae18e8978b156df",
-      "retrieved_at": "2026-10-31T11:48:18.382747+00:00",
+      "retrieved_at": "2026-10-31T11:52:18.916324+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 79427240666.43,
@@ -3434,18 +3453,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:18.382829+00:00"
+      "finished_at": "2026-10-31T11:52:18.916422+00:00"
     },
     {
       "key": "BRK_age_3m_to_4m_realized_cap",
       "url": "https://bitview.space/api/series/age_3m_to_4m_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:18.382847+00:00",
+      "started_at": "2026-10-31T11:52:18.916443+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_3m_to_4m_realized_cap.raw",
       "sha256": "3ce2c95ef7b34a9d091d5846d097a9308affa7568d469ba5dce45475f504cac6",
-      "retrieved_at": "2026-10-31T11:48:18.558928+00:00",
+      "retrieved_at": "2026-10-31T11:52:19.030292+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 26081664530.78,
@@ -3472,18 +3491,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:18.559009+00:00"
+      "finished_at": "2026-10-31T11:52:19.030378+00:00"
     },
     {
       "key": "BRK_age_3y_to_4y_realized_cap",
       "url": "https://bitview.space/api/series/age_3y_to_4y_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:18.559030+00:00",
+      "started_at": "2026-10-31T11:52:19.030398+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_3y_to_4y_realized_cap.raw",
       "sha256": "69b3d8e31b2ba556d6abc546fba5731da458b5c91c3c16daaff901beb6cb8d08",
-      "retrieved_at": "2026-10-31T11:48:18.706264+00:00",
+      "retrieved_at": "2026-10-31T11:52:19.154709+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 22811744563.42,
@@ -3510,18 +3529,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:18.706349+00:00"
+      "finished_at": "2026-10-31T11:52:19.154797+00:00"
     },
     {
       "key": "BRK_age_4m_to_5m_realized_cap",
       "url": "https://bitview.space/api/series/age_4m_to_5m_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:18.706366+00:00",
+      "started_at": "2026-10-31T11:52:19.154815+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_4m_to_5m_realized_cap.raw",
       "sha256": "f8fa62abfdf7c1fb649213345e23f33201aa890b27f60b872b70912341139a18",
-      "retrieved_at": "2026-10-31T11:48:18.857493+00:00",
+      "retrieved_at": "2026-10-31T11:52:19.311675+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 20699838120.06,
@@ -3548,18 +3567,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:18.857581+00:00"
+      "finished_at": "2026-10-31T11:52:19.311768+00:00"
     },
     {
       "key": "BRK_age_4y_to_5y_realized_cap",
       "url": "https://bitview.space/api/series/age_4y_to_5y_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:18.857601+00:00",
+      "started_at": "2026-10-31T11:52:19.311789+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_4y_to_5y_realized_cap.raw",
       "sha256": "d8b86ef89b8290ae02f87b8fd0c692077246778b333163e5d13c44b6e677cef4",
-      "retrieved_at": "2026-10-31T11:48:19.029466+00:00",
+      "retrieved_at": "2026-10-31T11:52:19.435732+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 24750712949.91,
@@ -3586,18 +3605,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:19.029553+00:00"
+      "finished_at": "2026-10-31T11:52:19.435827+00:00"
     },
     {
       "key": "BRK_age_5m_to_6m_realized_cap",
       "url": "https://bitview.space/api/series/age_5m_to_6m_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:19.029572+00:00",
+      "started_at": "2026-10-31T11:52:19.435853+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_5m_to_6m_realized_cap.raw",
       "sha256": "5a827bbb9e5b8cd65fe5406d0149790daf4de95af070e30d61c5ff589ff38fb3",
-      "retrieved_at": "2026-10-31T11:48:19.205736+00:00",
+      "retrieved_at": "2026-10-31T11:52:19.579574+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 25142268590.87,
@@ -3624,18 +3643,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:19.205819+00:00"
+      "finished_at": "2026-10-31T11:52:19.579671+00:00"
     },
     {
       "key": "BRK_age_5y_to_6y_realized_cap",
       "url": "https://bitview.space/api/series/age_5y_to_6y_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:19.205838+00:00",
+      "started_at": "2026-10-31T11:52:19.579694+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_5y_to_6y_realized_cap.raw",
       "sha256": "9cb74171f1bc4af74e77e686033d0230669a65fc74a69932d1044a054feea4c6",
-      "retrieved_at": "2026-10-31T11:48:19.380131+00:00",
+      "retrieved_at": "2026-10-31T11:52:19.712529+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 48946973502.0,
@@ -3662,18 +3681,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:19.380250+00:00"
+      "finished_at": "2026-10-31T11:52:19.712623+00:00"
     },
     {
       "key": "BRK_age_6m_to_9m_realized_cap",
       "url": "https://bitview.space/api/series/age_6m_to_9m_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:19.380266+00:00",
+      "started_at": "2026-10-31T11:52:19.712639+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_6m_to_9m_realized_cap.raw",
       "sha256": "e8ccc3427bdc46fefd687111122bc7d0dae1a86b3340a29b0c6f12edf70bbf00",
-      "retrieved_at": "2026-10-31T11:48:19.563552+00:00",
+      "retrieved_at": "2026-10-31T11:52:19.837466+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 70947936819.57,
@@ -3700,18 +3719,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:19.563636+00:00"
+      "finished_at": "2026-10-31T11:52:19.837600+00:00"
     },
     {
       "key": "BRK_age_6y_to_7y_realized_cap",
       "url": "https://bitview.space/api/series/age_6y_to_7y_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:19.563655+00:00",
+      "started_at": "2026-10-31T11:52:19.837621+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_6y_to_7y_realized_cap.raw",
       "sha256": "9861c4e0ba214a9104f3ff4d203ffcc9dd84f4c9ee2cfab95009a06bfa25b0a5",
-      "retrieved_at": "2026-10-31T11:48:19.737503+00:00",
+      "retrieved_at": "2026-10-31T11:52:19.971829+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 3670416221.96,
@@ -3738,18 +3757,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:19.737589+00:00"
+      "finished_at": "2026-10-31T11:52:19.971931+00:00"
     },
     {
       "key": "BRK_age_7y_to_8y_realized_cap",
       "url": "https://bitview.space/api/series/age_7y_to_8y_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:19.737606+00:00",
+      "started_at": "2026-10-31T11:52:19.971952+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_7y_to_8y_realized_cap.raw",
       "sha256": "069124de7c8952250c5dbf83a3a089e0a0aece1cb0341fe49ab4edd7acc909b9",
-      "retrieved_at": "2026-10-31T11:48:19.922099+00:00",
+      "retrieved_at": "2026-10-31T11:52:20.086399+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 3084950672.6,
@@ -3776,18 +3795,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:19.922215+00:00"
+      "finished_at": "2026-10-31T11:52:20.086537+00:00"
     },
     {
       "key": "BRK_age_9m_to_1y_realized_cap",
       "url": "https://bitview.space/api/series/age_9m_to_1y_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:19.922235+00:00",
+      "started_at": "2026-10-31T11:52:20.086557+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_9m_to_1y_realized_cap.raw",
       "sha256": "449d1c5ed8387540096c904354ea838e49e95958696af2bb679490b7f848332e",
-      "retrieved_at": "2026-10-31T11:48:20.096325+00:00",
+      "retrieved_at": "2026-10-31T11:52:20.208138+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 196152497463.87,
@@ -3814,18 +3833,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:20.096410+00:00"
+      "finished_at": "2026-10-31T11:52:20.208237+00:00"
     },
     {
       "key": "BRK_age_over_15y_realized_cap",
       "url": "https://bitview.space/api/series/age_over_15y_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:20.096431+00:00",
+      "started_at": "2026-10-31T11:52:20.208259+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_over_15y_realized_cap.raw",
       "sha256": "5c7c631435682ce755a9bf43ee616d2737698d12bc0e3d9164b1aa120dfe06ba",
-      "retrieved_at": "2026-10-31T11:48:20.271778+00:00",
+      "retrieved_at": "2026-10-31T11:52:20.331483+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 2374576.17,
@@ -3852,18 +3871,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:20.271866+00:00"
+      "finished_at": "2026-10-31T11:52:20.331642+00:00"
     },
     {
       "key": "BRK_age_under_1h_realized_cap",
       "url": "https://bitview.space/api/series/age_under_1h_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:20.271886+00:00",
+      "started_at": "2026-10-31T11:52:20.331662+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_under_1h_realized_cap.raw",
       "sha256": "11ef9270101c87a43dc943c50bd6e1c7a288092f57771bd2c5624a500c24c523",
-      "retrieved_at": "2026-10-31T11:48:20.432834+00:00",
+      "retrieved_at": "2026-10-31T11:52:20.477030+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 1290847131.39,
@@ -3890,18 +3909,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:20.432918+00:00"
+      "finished_at": "2026-10-31T11:52:20.477117+00:00"
     },
     {
       "key": "BRK_age_18m_to_2y_realized_cap",
       "url": "https://bitview.space/api/series/age_18m_to_2y_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:20.432936+00:00",
+      "started_at": "2026-10-31T11:52:20.477136+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_18m_to_2y_realized_cap.raw",
       "sha256": "61719ca31eee18f6a3f4741848ffbf7ae78aab2968dfab7f3a4514cdf0ad61fe",
-      "retrieved_at": "2026-10-31T11:48:20.593707+00:00",
+      "retrieved_at": "2026-10-31T11:52:20.598965+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 101084168124.24,
@@ -3928,18 +3947,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:20.593796+00:00"
+      "finished_at": "2026-10-31T11:52:20.599062+00:00"
     },
     {
       "key": "BRK_age_1y_to_18m_realized_cap",
       "url": "https://bitview.space/api/series/age_1y_to_18m_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:20.593813+00:00",
+      "started_at": "2026-10-31T11:52:20.599082+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1y_to_18m_realized_cap.raw",
       "sha256": "5673d12e576d4abbd4ce3e7c6c065bf341bcf608580ae31ec431bbd89e96252d",
-      "retrieved_at": "2026-10-31T11:48:20.815805+00:00",
+      "retrieved_at": "2026-10-31T11:52:20.730612+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 218772988887.36,
@@ -3966,18 +3985,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:20.815894+00:00"
+      "finished_at": "2026-10-31T11:52:20.730709+00:00"
     },
     {
       "key": "BRK_age_8y_to_10y_realized_cap",
       "url": "https://bitview.space/api/series/age_8y_to_10y_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:20.815912+00:00",
+      "started_at": "2026-10-31T11:52:20.730726+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_8y_to_10y_realized_cap.raw",
       "sha256": "408fe085201b72bbba22cc76f34020a1e396e23dcfb631ab2720248a6009e646",
-      "retrieved_at": "2026-10-31T11:48:20.975849+00:00",
+      "retrieved_at": "2026-10-31T11:52:20.878678+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 8096490216.95,
@@ -4004,18 +4023,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:20.975936+00:00"
+      "finished_at": "2026-10-31T11:52:20.878776+00:00"
     },
     {
       "key": "BRK_age_10y_to_12y_realized_cap",
       "url": "https://bitview.space/api/series/age_10y_to_12y_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:20.975961+00:00",
+      "started_at": "2026-10-31T11:52:20.878796+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_10y_to_12y_realized_cap.raw",
       "sha256": "5596f941e78bc8dfc5a2cc472c247551f5db58fd1658c8bb1bdd07a00f4fe149",
-      "retrieved_at": "2026-10-31T11:48:21.180809+00:00",
+      "retrieved_at": "2026-10-31T11:52:21.003900+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 181201136.63,
@@ -4042,18 +4061,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:21.180896+00:00"
+      "finished_at": "2026-10-31T11:52:21.003993+00:00"
     },
     {
       "key": "BRK_age_12y_to_15y_realized_cap",
       "url": "https://bitview.space/api/series/age_12y_to_15y_realized_cap/day1?start=2026-10-17&end=2026-10-31",
-      "started_at": "2026-10-31T11:48:21.180916+00:00",
+      "started_at": "2026-10-31T11:52:21.004012+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_12y_to_15y_realized_cap.raw",
       "sha256": "682f5c2cb906e681d4090e98fe676b9240fd75b874c2420b34ae98e8c4d963d9",
-      "retrieved_at": "2026-10-31T11:48:21.358866+00:00",
+      "retrieved_at": "2026-10-31T11:52:21.152065+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 261856087.13,
@@ -4080,7 +4099,7 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-10-31T11:48:21.358953+00:00"
+      "finished_at": "2026-10-31T11:52:21.152166+00:00"
     },
     {
       "key": "TV_MFI",
@@ -4101,11 +4120,6 @@
       "key": "ONCHAIN_ENTITY_FLOWS",
       "status": "NOT_CONNECTED",
       "reason": "PROVIDER_ACCESS_NOT_CONFIGURED"
-    },
-    {
-      "key": "US_SPOT_CVD",
-      "status": "NOT_CONNECTED",
-      "reason": "CONTINUOUS_TRADE_COVERAGE_NOT_CONFIGURED"
     },
     {
       "key": "ACTUAL_STOCK_BREADTH",
