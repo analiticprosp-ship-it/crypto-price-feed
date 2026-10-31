@@ -291,6 +291,56 @@ def bitview(d,dates):
             'provider_parity':'INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT',
             'daily_history':dict(rows),'computation_version':d.get('version')}
 
+def coinbase_trade_delta(r):
+    # Coinbase side is MAKER side; inverse is the aggressive trade direction.
+    size=finite(r['size']);price=finite(r['price'])
+    if size<=0 or price<=0 or r['side'] not in ('buy','sell'):
+        raise ValueError('bad Coinbase trade')
+    sign=1 if r['side']=='sell' else -1
+    return sign*size,sign*size*price
+
+def coinbase_window(url, first_raw, first_cursor, now_ms):
+    end=now_ms//HOUR*HOUR;start=end-24*HOUR
+    raw=first_raw;cursor=first_cursor;seen=set();cursors=set();receipts=[]
+    bins={t:{'base_delta':0.,'usd_delta':0.,'trade_count':0} for t in range(start,end,HOUR)}
+    reached=False
+    for page in range(500):
+        rows=json.loads(raw)
+        if not isinstance(rows,list) or not rows:raise ValueError('Coinbase empty history page')
+        stamps=[]
+        for r in rows:
+            tid=int(r['trade_id']);t=int(datetime.fromisoformat(r['time'].replace('Z','+00:00')).timestamp()*1000)
+            stamps.append(t)
+            if tid in seen:continue
+            seen.add(tid)
+            delta,usd=coinbase_trade_delta(r)
+            if start<=t<end:
+                b=bins[t//HOUR*HOUR];b['base_delta']+=delta;b['usd_delta']+=usd;b['trade_count']+=1
+        receipts.append({'page':page+1,'sha256':hashlib.sha256(raw).hexdigest(),
+                         'oldest':iso(min(stamps)),'newest':iso(max(stamps)),
+                         'trade_id_min':min(int(r['trade_id']) for r in rows),
+                         'trade_id_max':max(int(r['trade_id']) for r in rows),'count':len(rows),'next_cursor':cursor})
+        if min(stamps)<start:
+            reached=True;break
+        if not cursor or cursor in cursors:raise ValueError('Coinbase pagination cursor missing or repeated')
+        cursors.add(cursor)
+        time.sleep(.12)
+        with urllib.request.urlopen(urllib.request.Request(url+'&after='+quote(cursor,safe=''),headers={'User-Agent':'IndicatorResearchCollector/1.0'}),timeout=12) as response:
+            raw=response.read(2*1024*1024);cursor=response.headers.get('CB-AFTER')
+    if not reached:raise ValueError('Coinbase 24h coverage not reached within 500 pages')
+    ids=sorted(seen)
+    if ids[-1]-ids[0]+1!=len(ids):raise ValueError('Coinbase product trade-id gap')
+    if any(b['trade_count']==0 for b in bins.values()):raise ValueError('Coinbase hour has no verified trades')
+    return {'observed_at':iso(end),'window_start':iso(start),'window_end':iso(end),
+            'venue':'Coinbase Exchange','market':'SPOT','quote_currency':'USD',
+            'base_delta':sum(b['base_delta'] for b in bins.values()),
+            'usd_delta':sum(b['usd_delta'] for b in bins.values()),
+            'closed_hours':24,'hours':{iso(t):v for t,v in bins.items()},
+            'coverage':'FULL_CURSOR_CHAIN_AND_CONTIGUOUS_PRODUCT_TRADE_IDS',
+            'side_definition':'MAKER_SIDE_INVERTED_TO_AGGRESSOR',
+            'page_receipts':receipts,'not_global_or_all_us_demand':True,
+            'stored_payload':'AGGREGATED_HOURS_AND_SOURCE_PAGE_HASHES_NOT_FULL_TRADE_TAPE'}
+
 def definitions():
     result = []
     for asset in ('BTC','ETH'):
@@ -308,6 +358,8 @@ def definitions():
     for ticker in ('SPY','QQQ','IWM','SOXX','RSP','HYG','LQD','COIN','MSTR','HOOD','DX-Y.NYB','^VIX','CL=F'):
         result.append(('YAHOO_'+ticker,'https://query1.finance.yahoo.com/v8/finance/chart/'+quote(ticker,safe='')+'?range=1mo&interval=1d','yahoo'))
     result.append(('stablecoins','https://stablecoins.llama.fi/stablecoincharts/all','stable'))
+    for asset in ('BTC','ETH'):
+        result.append(('COINBASE_'+asset+'_spot_cvd','https://api.exchange.coinbase.com/products/'+asset+'-USD/trades?limit=1000','coinbase'))
     # Fetch primary pages too, but don't label unparsed HTML a verified indicator.
     for key,url in (('ETF_BTC','https://farside.co.uk/btc/'),('ETF_ETH','https://farside.co.uk/eth/'),('RWA','https://app.rwa.xyz/networks'),('ISM','https://www.ismworld.org/supply-management-news-and-reports/reports/ism-report-on-business/'),('APPARENT_DEMAND','https://cryptoquant.com/asset/btc/chart/network-indicator/apparent-demand')):
         result.append((key,url,'etf' if key.startswith('ETF_') else 'rwa' if key=='RWA' else 'page'))
@@ -328,6 +380,10 @@ def main():
             with urllib.request.urlopen(req,timeout=12) as response:
                 raw = response.read(8*1024*1024+1)
                 item['http_status'] = response.status
+                cursor=response.headers.get('CB-AFTER')
+            if kind=='coinbase':
+                value=coinbase_window(url,raw,cursor,int(time.time()*1000))
+                raw=json.dumps(value).encode()
             if kind=='oi':
                 first=json.loads(raw); initial=okx(first)
                 next_url=url+'&end='+str(min(int(r[0]) for r in initial))
@@ -365,6 +421,7 @@ def main():
                 elif kind=='bitview_dates':
                     dates=d;value={'status':'DATE_ALIGNMENT_INDEX','start':d['start'],'end':d['end']}
                 elif kind=='bitview':value=bitview(d,dates)
+                elif kind=='coinbase':value=d
                 elif kind.startswith('candles:'): value = candles(d,now_ms,kind.split(':')[1])
                 elif kind.startswith('fred:'): value = fred(d,kind.split(':')[1])
                 else: raise ValueError('unsupported parser')
@@ -374,7 +431,7 @@ def main():
         item['finished_at'] = utc().isoformat()
         results.append(item)
         print(key,item['status'],flush=True)
-    for key,reason in [('TV_MFI','BROWSER_CAPTURE_REQUIRED'),('TV_BIG_GUY_BURJ','BROWSER_CAPTURE_REQUIRED'),('TV_LUXALGO','BROWSER_CAPTURE_REQUIRED'),('ONCHAIN_ENTITY_FLOWS','PROVIDER_ACCESS_NOT_CONFIGURED'),('US_SPOT_CVD','CONTINUOUS_TRADE_COVERAGE_NOT_CONFIGURED'),('ACTUAL_STOCK_BREADTH','CONSTITUENT_SERIES_NOT_CONFIGURED')]:
+    for key,reason in [('TV_MFI','BROWSER_CAPTURE_REQUIRED'),('TV_BIG_GUY_BURJ','BROWSER_CAPTURE_REQUIRED'),('TV_LUXALGO','BROWSER_CAPTURE_REQUIRED'),('ONCHAIN_ENTITY_FLOWS','PROVIDER_ACCESS_NOT_CONFIGURED'),('ACTUAL_STOCK_BREADTH','CONSTITUENT_SERIES_NOT_CONFIGURED')]:
         results.append({'key':key,'status':'NOT_CONNECTED','reason':reason})
     packet = {'schema':'indicator-sources-v1','run_id':rid,'started_at':started.isoformat(),
               'finished_at':utc().isoformat(),'sequential':True,'research_only':True,
