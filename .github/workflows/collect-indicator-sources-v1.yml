@@ -1,0 +1,38 @@
+name: Sequential Indicator Sources v1
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/collect_indicator_sources.py
+      - tests/test_indicator_sources_v1.py
+      - .github/workflows/collect-indicator-sources-v1.yml
+  workflow_dispatch:
+  schedule:
+    - cron: '12 0,4,8,12,16,20 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: indicator-sources-v1
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate timestamp, coverage and signal guards
+        run: python3 -m unittest discover -s tests -p test_indicator_sources_v1.py -v
+      - name: Collect each source sequentially
+        run: python3 scripts/collect_indicator_sources.py
+      - name: Commit isolated research receipts
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/indicator_sources_v1
+          git commit -m 'Archive sequential indicator source receipts'
+          for attempt in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 3
+          done
+          exit 1
