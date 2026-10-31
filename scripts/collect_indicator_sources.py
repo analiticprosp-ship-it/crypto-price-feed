@@ -11,6 +11,7 @@ import re
 from html.parser import HTMLParser
 import time
 import urllib.request
+from urllib.error import HTTPError
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import quote
@@ -307,7 +308,9 @@ def coinbase_window(url, first_raw, first_cursor, now_ms):
     raw=first_raw;cursor=first_cursor;seen=set();cursors=set();receipts=[]
     bins={t:{'base_delta':0.,'usd_delta':0.,'trade_count':0} for t in range(start,end,HOUR)}
     reached=False
+    deadline=time.monotonic()+240
     for page in range(500):
+        if time.monotonic()>deadline:raise ValueError('Coinbase coverage budget exceeded; incomplete is not CVD')
         rows=json.loads(raw)
         if not isinstance(rows,list) or not rows:raise ValueError('Coinbase empty history page')
         stamps=[]
@@ -327,9 +330,18 @@ def coinbase_window(url, first_raw, first_cursor, now_ms):
             reached=True;break
         if not cursor or cursor in cursors:raise ValueError('Coinbase pagination cursor missing or repeated')
         cursors.add(cursor)
-        time.sleep(.12)
-        with urllib.request.urlopen(urllib.request.Request(url+'&after='+quote(cursor,safe=''),headers={'User-Agent':'IndicatorResearchCollector/1.0'}),timeout=12) as response:
-            raw=response.read(2*1024*1024);cursor=response.headers.get('CB-AFTER')
+        time.sleep(1)
+        request=urllib.request.Request(url+'&after='+quote(cursor,safe=''),headers={'User-Agent':'IndicatorResearchCollector/1.0'})
+        for attempt in range(2):
+            try:
+                with urllib.request.urlopen(request,timeout=12) as response:
+                    raw=response.read(2*1024*1024);cursor=response.headers.get('CB-AFTER')
+                break
+            except HTTPError as e:
+                if e.code!=429 or attempt:raise
+                delay=e.headers.get('Retry-After','15')
+                if not delay.isdigit() or int(delay)>60:raise
+                time.sleep(max(15,int(delay)))
     if not reached:raise ValueError('Coinbase 24h coverage not reached within 500 pages')
     ids=sorted(seen)
     if ids[-1]-ids[0]+1!=len(ids):raise ValueError('Coinbase product trade-id gap')
