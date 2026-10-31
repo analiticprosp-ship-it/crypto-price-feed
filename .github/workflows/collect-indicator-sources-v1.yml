@@ -20,6 +20,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Validate timestamp, coverage and signal guards
         run: python3 -m unittest discover -s tests -p test_indicator_sources_v1.py -v
       - name: Collect each source sequentially
