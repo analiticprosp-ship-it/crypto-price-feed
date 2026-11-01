@@ -1,0 +1,69 @@
+{
+  "status": "PARTIAL_TV_READING_NOT_COMPLETED",
+  "retrieved_at": "2026-11-01 07:26:05 UTC",
+  "server": {
+    "run_id": "20261101T055635800330Z",
+    "started_at": "2026-11-01T05:56:35.800330+00:00",
+    "finished_at": "2026-11-01T06:02:44.046985+00:00",
+    "status_counts": {
+      "COLLECTED_VALIDATED": 113,
+      "FAILED": 2,
+      "ACCESS_BLOCKED": 1,
+      "NOT_CONNECTED": 5
+    },
+    "all_sources_connected": false
+  },
+  "tv": {
+    "access": "AUTHORIZED",
+    "venue": "OKX",
+    "symbol": "BTCUSDT.P",
+    "tf": "1D",
+    "parameters_observed": {
+      "BIG_GUY": [
+        2,
+        14,
+        93
+      ],
+      "LuxAlgo": [
+        8,
+        3,
+        "close"
+      ]
+    },
+    "closed_bar_observations": [],
+    "current_bar_excluded": true,
+    "reason": "Only current unclosed 2026-11-01 daily bar observed; four required closed-bar readings and repeat diagnosis not completed. No access blocker established.",
+    "settings_changed": false
+  },
+  "documentary_sources": [
+    {
+      "metric": "ISM manufacturing",
+      "value": 54.5,
+      "period": "2026-09",
+      "status": "LAST_KNOWN_REPORT",
+      "url": "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/pmi/september/"
+    },
+    {
+      "metric": "ISM services",
+      "value": 54.9,
+      "period": "2026-09",
+      "status": "LAST_KNOWN_REPORT",
+      "url": "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/services/september/"
+    },
+    {
+      "metric": "Apparent Demand 30d",
+      "value": -76000,
+      "unit": "BTC",
+      "date": "2026-10-25",
+      "quality": "APPROXIMATE",
+      "status": "LAST_KNOWN_REPORT",
+      "url": "https://cryptoquant.com/insights/research"
+    }
+  ],
+  "big_guy_evaluation": {
+    "status": "DATA_GAP",
+    "reason": "Full subsequent OHLCV not read; no retrospective fill or trade result computed"
+  },
+  "production_changed": false,
+  "portfolio_changed": false
+}
