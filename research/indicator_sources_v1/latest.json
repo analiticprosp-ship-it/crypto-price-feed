@@ -1,8 +1,8 @@
 {
   "schema": "indicator-sources-v1",
-  "run_id": "20261101T055635800330Z",
-  "started_at": "2026-11-01T05:56:35.800330+00:00",
-  "finished_at": "2026-11-01T06:02:44.046985+00:00",
+  "run_id": "20261101T150412387460Z",
+  "started_at": "2026-11-01T15:04:12.387460+00:00",
+  "finished_at": "2026-11-01T15:10:45.231358+00:00",
   "sequential": true,
   "research_only": true,
   "last_good_is_not_current": true,
@@ -11,114 +11,114 @@
     {
       "key": "BTC_funding",
       "url": "https://www.okx.com/api/v5/public/funding-rate-history?instId=BTC-USDT-SWAP&limit=100",
-      "started_at": "2026-11-01T05:56:35.800648+00:00",
+      "started_at": "2026-11-01T15:04:12.387723+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_funding.raw",
-      "sha256": "ad2b6fd0db68b032695266caae63be73b8a68fa8f33206e215e9ac4efb95ce44",
-      "retrieved_at": "2026-11-01T05:56:36.036119+00:00",
+      "sha256": "57120ae0f6968aa1b2f971bd676ea925b4912e0cd85e55d50a73b5256d1c0eda",
+      "retrieved_at": "2026-11-01T15:04:12.617326+00:00",
       "value": {
-        "observed_at": "2026-11-01T00:00:00+00:00",
-        "realized_percent_per_period": 0.01,
+        "observed_at": "2026-11-01T08:00:00+00:00",
+        "realized_percent_per_period": 0.0067897681588699995,
         "venue": "OKX",
         "instId": "BTC-USDT-SWAP"
       },
-      "finished_at": "2026-11-01T05:56:36.037337+00:00"
+      "finished_at": "2026-11-01T15:04:12.618197+00:00"
     },
     {
       "key": "BTC_oi",
       "url": "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=BTC-USDT-SWAP&period=1H",
-      "started_at": "2026-11-01T05:56:36.037361+00:00",
+      "started_at": "2026-11-01T15:04:12.618211+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "pagination_urls": [
         "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=BTC-USDT-SWAP&period=1H",
-        "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=BTC-USDT-SWAP&period=1H&end=1793152800000"
+        "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=BTC-USDT-SWAP&period=1H&end=1793188800000"
       ],
       "stored_payload": "MERGED_PROVIDER_PAGES",
       "raw_file": "BTC_oi.raw",
-      "sha256": "a7797c862ee5fff9fe2f18facfb3be6a45606d85ba3479225b8798b6ba8f1812",
-      "retrieved_at": "2026-11-01T05:56:36.472529+00:00",
+      "sha256": "f5b7d3741ecd20e9fbc2f7556d05d8527b435844d357fcde32404d894ea8fc19",
+      "retrieved_at": "2026-11-01T15:04:13.028815+00:00",
       "value": {
-        "observed_at": "2026-11-01T04:00:00+00:00",
-        "bucket_end": "2026-11-01T05:00:00+00:00",
+        "observed_at": "2026-11-01T14:00:00+00:00",
+        "bucket_end": "2026-11-01T15:00:00+00:00",
         "closed_bucket": true,
         "timestamp_semantics": "HISTORICAL_HOURLY_BUCKET_NOT_EXACT_INSTANT_QUOTE",
         "venue": "OKX",
         "market": "PERPETUAL",
-        "contracts": 3449563.250000019,
-        "coins": 34495.63250000019,
-        "usd": 2682428677.085515,
+        "contracts": 3454931.080000019,
+        "coins": 34549.31080000019,
+        "usd": 2695129546.7485747,
         "baseline_120h": {
-          "observed_at": "2026-10-27T04:00:00+00:00",
-          "contracts": 3267148.7400000137,
-          "delta_contracts_pct": 5.583293707038406,
-          "delta_usd_pct": 2.967830773703617
+          "observed_at": "2026-10-27T14:00:00+00:00",
+          "contracts": 3282710.5000000144,
+          "delta_contracts_pct": 5.246292050426127,
+          "delta_usd_pct": 2.193516178769239
         },
         "baseline_status": "EXACT",
         "not_directional_long_short": true
       },
-      "finished_at": "2026-11-01T05:56:36.473179+00:00"
+      "finished_at": "2026-11-01T15:04:13.029495+00:00"
     },
     {
       "key": "BTC_spot_cvd",
       "url": "https://www.okx.com/api/v5/rubik/stat/taker-volume?ccy=BTC&instType=SPOT&period=1H",
-      "started_at": "2026-11-01T05:56:36.473196+00:00",
+      "started_at": "2026-11-01T15:04:13.029510+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_spot_cvd.raw",
-      "sha256": "1836fd473c981e3847b9e3c5169560c33e61467c83bd343ce876f9024405fb9a",
-      "retrieved_at": "2026-11-01T05:56:36.669310+00:00",
+      "sha256": "deca2910809ce17af03f29a26140e6a85ff31e892ac7505edf26e8cace135cc0",
+      "retrieved_at": "2026-11-01T15:04:13.221483+00:00",
       "value": {
-        "observed_at": "2026-11-01T05:00:00+00:00",
-        "window_start": "2026-10-31T05:00:00+00:00",
-        "window_end": "2026-11-01T05:00:00+00:00",
+        "observed_at": "2026-11-01T15:00:00+00:00",
+        "window_start": "2026-10-31T15:00:00+00:00",
+        "window_end": "2026-11-01T15:00:00+00:00",
         "market": "SPOT",
         "venue": "OKX",
         "unit": "base_asset",
-        "buy": 1992.3971999999999,
-        "sell": 1321.4061,
-        "delta": 670.9911,
+        "buy": 2154.1037,
+        "sell": 1598.9919,
+        "delta": 555.1118000000001,
         "cvd_definition": "sum(buy-sell), reset at window_start",
         "closed_hours": 24,
         "not_global_flow": true
       },
-      "finished_at": "2026-11-01T05:56:36.670514+00:00"
+      "finished_at": "2026-11-01T15:04:13.222546+00:00"
     },
     {
       "key": "BTC_options",
       "url": "https://www.deribit.com/api/v2/public/get_book_summary_by_currency?currency=BTC&kind=option",
-      "started_at": "2026-11-01T05:56:36.670533+00:00",
+      "started_at": "2026-11-01T15:04:13.222557+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_options.raw",
-      "sha256": "a277d7a6d343a4961190cb8986d4eff0e43ab17e887a849ecf9d61d556d49ee9",
-      "retrieved_at": "2026-11-01T05:56:36.883691+00:00",
+      "sha256": "ee46b8acb9abc88a08e39dbb68d40ccfde9bfe986d3919cb141c677495e73b65",
+      "retrieved_at": "2026-11-01T15:04:13.468759+00:00",
       "value": {
-        "observed_at": "2026-11-01T05:56:35.555000+00:00",
+        "observed_at": "2026-11-01T15:04:12.991000+00:00",
         "venue": "Deribit",
-        "instruments": 966,
-        "put_oi": 120566.20000000001,
-        "call_oi": 180346.1999999999,
-        "put_call_oi_ratio": 0.6685264230685208,
+        "instruments": 956,
+        "put_oi": 117978.80000000002,
+        "call_oi": 179299.50000000003,
+        "put_call_oi_ratio": 0.6579984885624333,
         "expiry_oi": {
-          "2026-11-13T08:00:00+00:00": 10116.299999999997,
-          "2027-03-26T08:00:00+00:00": 44258.900000000016,
-          "2026-12-25T08:00:00+00:00": 136172.80000000005,
-          "2026-11-01T08:00:00+00:00": 4293.3,
-          "2026-11-27T08:00:00+00:00": 49252.099999999984,
-          "2027-09-24T08:00:00+00:00": 5532.4000000000015,
-          "2027-06-25T08:00:00+00:00": 15329.900000000003,
-          "2027-01-29T08:00:00+00:00": 2481.3999999999996,
-          "2026-11-06T08:00:00+00:00": 26953.300000000007,
-          "2026-11-20T08:00:00+00:00": 2044.1999999999996,
-          "2026-11-02T08:00:00+00:00": 3326.7,
-          "2026-11-04T08:00:00+00:00": 212.40000000000003,
-          "2026-11-03T08:00:00+00:00": 938.7000000000003
+          "2026-11-13T08:00:00+00:00": 10144.8,
+          "2027-03-26T08:00:00+00:00": 44422.60000000001,
+          "2026-12-25T08:00:00+00:00": 136219.40000000005,
+          "2026-11-27T08:00:00+00:00": 49113.299999999996,
+          "2027-09-24T08:00:00+00:00": 5534.600000000001,
+          "2027-06-25T08:00:00+00:00": 15314.900000000007,
+          "2027-01-29T08:00:00+00:00": 2522.7,
+          "2026-11-06T08:00:00+00:00": 26982.20000000001,
+          "2026-11-20T08:00:00+00:00": 2096.5,
+          "2026-11-02T08:00:00+00:00": 3457.4,
+          "2026-11-05T08:00:00+00:00": 44.7,
+          "2026-11-04T08:00:00+00:00": 426.2,
+          "2026-11-03T08:00:00+00:00": 999.0000000000002
         },
         "mark_iv_chain_saved": true,
         "iv_skew": {
@@ -128,16 +128,16 @@
           "valid_expiries": 13,
           "tenors": {
             "7d": {
-              "atm_iv_percent": 40.39346689485633,
-              "put25_iv_percent": 44.2030134808887,
-              "call25_iv_percent": 38.674137947886614,
-              "put_minus_call_25d_pp": 5.528875533002086
+              "atm_iv_percent": 39.781389513542884,
+              "put25_iv_percent": 42.95890388818799,
+              "call25_iv_percent": 38.59758276822093,
+              "put_minus_call_25d_pp": 4.361321119967059
             },
             "30d": {
-              "atm_iv_percent": 37.746563207840815,
-              "put25_iv_percent": 41.250922911034074,
-              "call25_iv_percent": 35.97661239670597,
-              "put_minus_call_25d_pp": 5.274310514328107
+              "atm_iv_percent": 37.96179727385085,
+              "put25_iv_percent": 41.12896834262526,
+              "call25_iv_percent": 36.70530398415637,
+              "put_minus_call_25d_pp": 4.4236643584688835
             }
           }
         },
@@ -145,44 +145,44 @@
         "gamma_status": "DEALER_POSITION_SIGN_UNOBSERVABLE",
         "not_dealer_gex": true
       },
-      "finished_at": "2026-11-01T05:56:36.904748+00:00"
+      "finished_at": "2026-11-01T15:04:13.488208+00:00"
     },
     {
       "key": "BTC_4H",
       "url": "https://www.okx.com/api/v5/market/candles?instId=BTC-USDT-SWAP&bar=4H&limit=100",
-      "started_at": "2026-11-01T05:56:36.904774+00:00",
+      "started_at": "2026-11-01T15:04:13.488221+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_4H.raw",
-      "sha256": "05fcea03af9c7fd39a40455e5345c8b01b97aeb5dc2578cc65169d2bf6d06fd6",
-      "retrieved_at": "2026-11-01T05:56:37.086219+00:00",
+      "sha256": "dd628445429d87a0ec9cbff473778129ad717332a6dec6afe2fe4d41e5ebaf23",
+      "retrieved_at": "2026-11-01T15:04:13.673270+00:00",
       "value": {
-        "observed_at": "2026-11-01T04:00:00+00:00",
-        "bar_open": "2026-11-01T00:00:00+00:00",
-        "bar_close": "2026-11-01T04:00:00+00:00",
+        "observed_at": "2026-11-01T12:00:00+00:00",
+        "bar_open": "2026-11-01T08:00:00+00:00",
+        "bar_close": "2026-11-01T12:00:00+00:00",
         "closed": true,
-        "open": 77520.9,
-        "high": 77866.2,
-        "low": 77465.2,
-        "close": 77740.2,
-        "volume_contracts": 340073.04,
+        "open": 77906.0,
+        "high": 78207.0,
+        "low": 77840.4,
+        "close": 77924.4,
+        "volume_contracts": 593723.96,
         "market": "PERPETUAL",
         "venue": "OKX",
         "not_indicator_signal": true
       },
-      "finished_at": "2026-11-01T05:56:37.086914+00:00"
+      "finished_at": "2026-11-01T15:04:13.673726+00:00"
     },
     {
       "key": "BTC_1Dutc",
       "url": "https://www.okx.com/api/v5/market/candles?instId=BTC-USDT-SWAP&bar=1Dutc&limit=100",
-      "started_at": "2026-11-01T05:56:37.086937+00:00",
+      "started_at": "2026-11-01T15:04:13.673759+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_1Dutc.raw",
-      "sha256": "32cfe233e9a7a1dda848a1adf09ca2c97b7cea70f98917a65847d7a0c39d5335",
-      "retrieved_at": "2026-11-01T05:56:37.284807+00:00",
+      "sha256": "dfa0d06ae0cff0e9a6a20850bfbe26227e92860ee8c9adc1bec0b3cd0d8208d6",
+      "retrieved_at": "2026-11-01T15:04:13.855047+00:00",
       "value": {
         "observed_at": "2026-11-01T00:00:00+00:00",
         "bar_open": "2026-10-31T00:00:00+00:00",
@@ -197,138 +197,138 @@
         "venue": "OKX",
         "not_indicator_signal": true
       },
-      "finished_at": "2026-11-01T05:56:37.285220+00:00"
+      "finished_at": "2026-11-01T15:04:13.855371+00:00"
     },
     {
       "key": "ETH_funding",
       "url": "https://www.okx.com/api/v5/public/funding-rate-history?instId=ETH-USDT-SWAP&limit=100",
-      "started_at": "2026-11-01T05:56:37.285242+00:00",
+      "started_at": "2026-11-01T15:04:13.855383+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_funding.raw",
-      "sha256": "187441603904a5b9c36678ac362792a9c49be880601bd4c9086351f53fc22d4a",
-      "retrieved_at": "2026-11-01T05:56:37.472871+00:00",
+      "sha256": "827c12361102111b879c033491b87ff7cefcc30ea4ea58fd37ae9df95faf141e",
+      "retrieved_at": "2026-11-01T15:04:14.037454+00:00",
       "value": {
-        "observed_at": "2026-11-01T00:00:00+00:00",
-        "realized_percent_per_period": 0.00026673318192,
+        "observed_at": "2026-11-01T08:00:00+00:00",
+        "realized_percent_per_period": -4.90910514e-06,
         "venue": "OKX",
         "instId": "ETH-USDT-SWAP"
       },
-      "finished_at": "2026-11-01T05:56:37.473357+00:00"
+      "finished_at": "2026-11-01T15:04:14.037837+00:00"
     },
     {
       "key": "ETH_oi",
       "url": "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=ETH-USDT-SWAP&period=1H",
-      "started_at": "2026-11-01T05:56:37.473377+00:00",
+      "started_at": "2026-11-01T15:04:14.037845+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "pagination_urls": [
         "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=ETH-USDT-SWAP&period=1H",
-        "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=ETH-USDT-SWAP&period=1H&end=1793152800000"
+        "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=ETH-USDT-SWAP&period=1H&end=1793188800000"
       ],
       "stored_payload": "MERGED_PROVIDER_PAGES",
       "raw_file": "ETH_oi.raw",
-      "sha256": "842b3c0300aeff8863b2fcb5326fcbce0469443d067225068e3d7d8fac1505ee",
-      "retrieved_at": "2026-11-01T05:56:37.895539+00:00",
+      "sha256": "37b5cfe546bd1e5e0b17b7242d420f471cd4f2285f0d6f0c70da392ad756cbe7",
+      "retrieved_at": "2026-11-01T15:04:14.431940+00:00",
       "value": {
-        "observed_at": "2026-11-01T04:00:00+00:00",
-        "bucket_end": "2026-11-01T05:00:00+00:00",
+        "observed_at": "2026-11-01T14:00:00+00:00",
+        "bucket_end": "2026-11-01T15:00:00+00:00",
         "closed_bucket": true,
         "timestamp_semantics": "HISTORICAL_HOURLY_BUCKET_NOT_EXACT_INSTANT_QUOTE",
         "venue": "OKX",
         "market": "PERPETUAL",
-        "contracts": 6543790.420000017,
-        "coins": 654379.0420000016,
-        "usd": 1482417194.1659636,
+        "contracts": 6605839.280000019,
+        "coins": 660583.9280000019,
+        "usd": 1499835991.0061643,
         "baseline_120h": {
-          "observed_at": "2026-10-27T04:00:00+00:00",
-          "contracts": 6491518.850000023,
-          "delta_contracts_pct": 0.8052286561563982,
-          "delta_usd_pct": -1.2778301329409936
+          "observed_at": "2026-10-27T14:00:00+00:00",
+          "contracts": 6566633.520000018,
+          "delta_contracts_pct": 0.59704504417053,
+          "delta_usd_pct": -2.156234316284622
         },
         "baseline_status": "EXACT",
         "not_directional_long_short": true
       },
-      "finished_at": "2026-11-01T05:56:37.896197+00:00"
+      "finished_at": "2026-11-01T15:04:14.432465+00:00"
     },
     {
       "key": "ETH_spot_cvd",
       "url": "https://www.okx.com/api/v5/rubik/stat/taker-volume?ccy=ETH&instType=SPOT&period=1H",
-      "started_at": "2026-11-01T05:56:37.896215+00:00",
+      "started_at": "2026-11-01T15:04:14.432475+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_spot_cvd.raw",
-      "sha256": "46f24e36540bafba42dca5c86ca337b3e32bb107804b742245567a7ed1bd9323",
-      "retrieved_at": "2026-11-01T05:56:38.104762+00:00",
+      "sha256": "3d9ddc20ae974b5062fda5fa2e4b6901c70c5fe486e0f1412b600b7d5ab5eb28",
+      "retrieved_at": "2026-11-01T15:04:14.643857+00:00",
       "value": {
-        "observed_at": "2026-11-01T05:00:00+00:00",
-        "window_start": "2026-10-31T05:00:00+00:00",
-        "window_end": "2026-11-01T05:00:00+00:00",
+        "observed_at": "2026-11-01T15:00:00+00:00",
+        "window_start": "2026-10-31T15:00:00+00:00",
+        "window_end": "2026-11-01T15:00:00+00:00",
         "market": "SPOT",
         "venue": "OKX",
         "unit": "base_asset",
-        "buy": 31105.3416,
-        "sell": 31444.602,
-        "delta": -339.2603999999992,
+        "buy": 30530.4653,
+        "sell": 32140.3137,
+        "delta": -1609.848399999999,
         "cvd_definition": "sum(buy-sell), reset at window_start",
         "closed_hours": 24,
         "not_global_flow": true
       },
-      "finished_at": "2026-11-01T05:56:38.105919+00:00"
+      "finished_at": "2026-11-01T15:04:14.644862+00:00"
     },
     {
       "key": "ETH_options",
       "url": "https://www.deribit.com/api/v2/public/get_book_summary_by_currency?currency=ETH&kind=option",
-      "started_at": "2026-11-01T05:56:38.105939+00:00",
+      "started_at": "2026-11-01T15:04:14.644872+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_options.raw",
-      "sha256": "8b8a68a5746b9d9f5d6a6e880876824bff7b58d4e65307b4c365765bb0fd0773",
-      "retrieved_at": "2026-11-01T05:56:38.329379+00:00",
+      "sha256": "c621bc389d91a9a751882a7773e4f0c2b812190ef47a7388dca56fccb73f5c3e",
+      "retrieved_at": "2026-11-01T15:04:14.926664+00:00",
       "value": {
-        "observed_at": "2026-11-01T05:56:37.954000+00:00",
+        "observed_at": "2026-11-01T15:04:12.517000+00:00",
         "venue": "Deribit",
-        "instruments": 804,
-        "put_oi": 498221.0,
-        "call_oi": 925825.0,
-        "put_call_oi_ratio": 0.5381373369697297,
+        "instruments": 784,
+        "put_oi": 483843.0,
+        "call_oi": 910078.0,
+        "put_call_oi_ratio": 0.5316500343926565,
         "expiry_oi": {
-          "2026-11-04T08:00:00+00:00": 2274.0,
-          "2026-11-27T08:00:00+00:00": 193709.0,
-          "2027-01-29T08:00:00+00:00": 9304.0,
-          "2027-06-25T08:00:00+00:00": 86753.0,
-          "2026-11-06T08:00:00+00:00": 52579.0,
-          "2026-12-25T08:00:00+00:00": 616386.0,
-          "2026-11-03T08:00:00+00:00": 22898.0,
-          "2027-03-26T08:00:00+00:00": 223974.0,
-          "2026-11-02T08:00:00+00:00": 48712.0,
-          "2026-11-13T08:00:00+00:00": 79095.0,
-          "2027-09-24T08:00:00+00:00": 31044.0,
-          "2026-11-20T08:00:00+00:00": 16191.0,
-          "2026-11-01T08:00:00+00:00": 41127.0
+          "2026-11-04T08:00:00+00:00": 3534.0,
+          "2026-11-27T08:00:00+00:00": 194176.0,
+          "2027-01-29T08:00:00+00:00": 9432.0,
+          "2027-06-25T08:00:00+00:00": 86859.0,
+          "2026-11-06T08:00:00+00:00": 53732.0,
+          "2026-12-25T08:00:00+00:00": 617004.0,
+          "2026-11-03T08:00:00+00:00": 27689.0,
+          "2027-03-26T08:00:00+00:00": 223965.0,
+          "2026-11-02T08:00:00+00:00": 50867.0,
+          "2026-11-05T08:00:00+00:00": 171.0,
+          "2026-11-13T08:00:00+00:00": 79150.0,
+          "2027-09-24T08:00:00+00:00": 31054.0,
+          "2026-11-20T08:00:00+00:00": 16288.0
         },
         "mark_iv_chain_saved": true,
         "iv_skew": {
           "method": "MODEL_BLACK76_UNDISCOUNTED_FORWARD_DELTA_MARK_IV; delta-linear legs; maturity-total-variance interpolation; no extrapolation",
           "quality": "MODEL_ESTIMATE_NOT_PROVIDER_QUOTED_SKEW",
           "two_sided_positive_oi_filter": true,
-          "valid_expiries": 12,
+          "valid_expiries": 13,
           "tenors": {
             "7d": {
-              "atm_iv_percent": 55.07038774261307,
-              "put25_iv_percent": 60.725521283777994,
-              "call25_iv_percent": 52.9610078241676,
-              "put_minus_call_25d_pp": 7.7645134596103915
+              "atm_iv_percent": 54.26448616635181,
+              "put25_iv_percent": 59.71072718726376,
+              "call25_iv_percent": 52.623809287162395,
+              "put_minus_call_25d_pp": 7.086917900101362
             },
             "30d": {
-              "atm_iv_percent": 52.20262431831113,
-              "put25_iv_percent": 56.47150697404613,
-              "call25_iv_percent": 50.761802001705156,
-              "put_minus_call_25d_pp": 5.7097049723409725
+              "atm_iv_percent": 51.950776162048925,
+              "put25_iv_percent": 56.1349586958204,
+              "call25_iv_percent": 50.61339759752435,
+              "put_minus_call_25d_pp": 5.521561098296054
             }
           }
         },
@@ -336,44 +336,44 @@
         "gamma_status": "DEALER_POSITION_SIGN_UNOBSERVABLE",
         "not_dealer_gex": true
       },
-      "finished_at": "2026-11-01T05:56:38.345784+00:00"
+      "finished_at": "2026-11-01T15:04:14.941177+00:00"
     },
     {
       "key": "ETH_4H",
       "url": "https://www.okx.com/api/v5/market/candles?instId=ETH-USDT-SWAP&bar=4H&limit=100",
-      "started_at": "2026-11-01T05:56:38.345811+00:00",
+      "started_at": "2026-11-01T15:04:14.941188+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_4H.raw",
-      "sha256": "a39a91e4e2573706e5305a0cd684d9d4c0386aa9fae3910d2f3c6e3a6eed90d7",
-      "retrieved_at": "2026-11-01T05:56:38.533650+00:00",
+      "sha256": "eb66c28e559e3cfacbf365465f71c12a9cf71051baee31a5936a714044dd3879",
+      "retrieved_at": "2026-11-01T15:04:15.141722+00:00",
       "value": {
-        "observed_at": "2026-11-01T04:00:00+00:00",
-        "bar_open": "2026-11-01T00:00:00+00:00",
-        "bar_close": "2026-11-01T04:00:00+00:00",
+        "observed_at": "2026-11-01T12:00:00+00:00",
+        "bar_open": "2026-11-01T08:00:00+00:00",
+        "bar_close": "2026-11-01T12:00:00+00:00",
         "closed": true,
-        "open": 2254.05,
-        "high": 2275.0,
-        "low": 2252.94,
-        "close": 2266.68,
-        "volume_contracts": 2154206.79,
+        "open": 2268.82,
+        "high": 2277.51,
+        "low": 2265.55,
+        "close": 2268.99,
+        "volume_contracts": 1471842.07,
         "market": "PERPETUAL",
         "venue": "OKX",
         "not_indicator_signal": true
       },
-      "finished_at": "2026-11-01T05:56:38.534328+00:00"
+      "finished_at": "2026-11-01T15:04:15.142190+00:00"
     },
     {
       "key": "ETH_1Dutc",
       "url": "https://www.okx.com/api/v5/market/candles?instId=ETH-USDT-SWAP&bar=1Dutc&limit=100",
-      "started_at": "2026-11-01T05:56:38.534348+00:00",
+      "started_at": "2026-11-01T15:04:15.142200+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_1Dutc.raw",
-      "sha256": "177316dc802a9f1c7297aad095409a832853ed29619f4986961d59b16b85b9eb",
-      "retrieved_at": "2026-11-01T05:56:38.711453+00:00",
+      "sha256": "dce691a2996fc87b422ed9db7e9c95d5e0e4c55e872b8e7c26798d2737db7f0d",
+      "retrieved_at": "2026-11-01T15:04:15.325468+00:00",
       "value": {
         "observed_at": "2026-11-01T00:00:00+00:00",
         "bar_open": "2026-10-31T00:00:00+00:00",
@@ -388,18 +388,18 @@
         "venue": "OKX",
         "not_indicator_signal": true
       },
-      "finished_at": "2026-11-01T05:56:38.711917+00:00"
+      "finished_at": "2026-11-01T15:04:15.325810+00:00"
     },
     {
       "key": "FRED_DGS2",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:38.711941+00:00",
+      "started_at": "2026-11-01T15:04:15.325819+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DGS2.raw",
       "sha256": "3748866247287228833cb42ccaca33396cc37147e5b4f40c62c5b2da04dc3be4",
-      "retrieved_at": "2026-11-01T05:56:39.053704+00:00",
+      "retrieved_at": "2026-11-01T15:04:15.990665+00:00",
       "value": {
         "observed_at_date": "2026-10-29",
         "value": 4.61,
@@ -422,18 +422,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 3
       },
-      "finished_at": "2026-11-01T05:56:39.054302+00:00"
+      "finished_at": "2026-11-01T15:04:15.991166+00:00"
     },
     {
       "key": "FRED_DGS10",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:39.054321+00:00",
+      "started_at": "2026-11-01T15:04:15.991176+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DGS10.raw",
       "sha256": "cc146bc61dc23d0252571162266d6886e8a7b87dc3095ed9ce294f480ff0fe17",
-      "retrieved_at": "2026-11-01T05:56:39.374869+00:00",
+      "retrieved_at": "2026-11-01T15:04:16.284978+00:00",
       "value": {
         "observed_at_date": "2026-10-29",
         "value": 4.98,
@@ -456,18 +456,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 3
       },
-      "finished_at": "2026-11-01T05:56:39.375428+00:00"
+      "finished_at": "2026-11-01T15:04:16.285492+00:00"
     },
     {
       "key": "FRED_DFII10",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFII10&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:39.375450+00:00",
+      "started_at": "2026-11-01T15:04:16.285505+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DFII10.raw",
       "sha256": "3844341db81d01fc1e6d6fba6d2932db05d090cf2c43253069f802715b752688",
-      "retrieved_at": "2026-11-01T05:56:39.786196+00:00",
+      "retrieved_at": "2026-11-01T15:04:16.655750+00:00",
       "value": {
         "observed_at_date": "2026-10-29",
         "value": 2.63,
@@ -490,18 +490,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 3
       },
-      "finished_at": "2026-11-01T05:56:39.786777+00:00"
+      "finished_at": "2026-11-01T15:04:16.656243+00:00"
     },
     {
       "key": "FRED_DTWEXBGS",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:39.786796+00:00",
+      "started_at": "2026-11-01T15:04:16.656253+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DTWEXBGS.raw",
       "sha256": "9175feffb712c028f041d97e54cf7f287c55ccfdeef1622d7f88484cd864a393",
-      "retrieved_at": "2026-11-01T05:56:40.460777+00:00",
+      "retrieved_at": "2026-11-01T15:04:16.908048+00:00",
       "value": {
         "observed_at_date": "2026-10-23",
         "value": 121.3202,
@@ -524,18 +524,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 9
       },
-      "finished_at": "2026-11-01T05:56:40.461341+00:00"
+      "finished_at": "2026-11-01T15:04:16.908516+00:00"
     },
     {
       "key": "FRED_BAMLH0A0HYM2",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:40.461362+00:00",
+      "started_at": "2026-11-01T15:04:16.908528+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_BAMLH0A0HYM2.raw",
       "sha256": "5f576beb5aaeef3633075132eb180d1a8c127136446a44054a026da707812565",
-      "retrieved_at": "2026-11-01T05:56:41.128475+00:00",
+      "retrieved_at": "2026-11-01T15:04:17.158828+00:00",
       "value": {
         "observed_at_date": "2026-10-29",
         "value": 3.26,
@@ -558,18 +558,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 3
       },
-      "finished_at": "2026-11-01T05:56:41.129074+00:00"
+      "finished_at": "2026-11-01T15:04:17.159291+00:00"
     },
     {
       "key": "FRED_NFCI",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NFCI&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:41.129094+00:00",
+      "started_at": "2026-11-01T15:04:17.159301+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_NFCI.raw",
       "sha256": "d05d9fd6c540c9ce245aa5b54669a499ed1f638189b8271264774b905f5a1468",
-      "retrieved_at": "2026-11-01T05:56:41.612040+00:00",
+      "retrieved_at": "2026-11-01T15:04:17.656974+00:00",
       "value": {
         "observed_at_date": "2026-10-23",
         "value": -0.487,
@@ -589,18 +589,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 9
       },
-      "finished_at": "2026-11-01T05:56:41.612210+00:00"
+      "finished_at": "2026-11-01T15:04:17.657092+00:00"
     },
     {
       "key": "FRED_ANFCI",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=ANFCI&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:41.612233+00:00",
+      "started_at": "2026-11-01T15:04:17.657107+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_ANFCI.raw",
       "sha256": "b127fff8ccf2c21adbb1b9f53d14472cdcdb94bdcdfbdbf1dc90463f87923b22",
-      "retrieved_at": "2026-11-01T05:56:42.132708+00:00",
+      "retrieved_at": "2026-11-01T15:04:18.162213+00:00",
       "value": {
         "observed_at_date": "2026-10-23",
         "value": -0.501,
@@ -620,18 +620,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 9
       },
-      "finished_at": "2026-11-01T05:56:42.132893+00:00"
+      "finished_at": "2026-11-01T15:04:18.162333+00:00"
     },
     {
       "key": "FRED_WALCL",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WALCL&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:42.132914+00:00",
+      "started_at": "2026-11-01T15:04:18.162344+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_WALCL.raw",
       "sha256": "327df24e41545752f1a2e17921686d1f8e37c3c5feb9613f561a0555e4c7fd9d",
-      "retrieved_at": "2026-11-01T05:56:42.491093+00:00",
+      "retrieved_at": "2026-11-01T15:04:18.533653+00:00",
       "value": {
         "observed_at_date": "2026-10-28",
         "value": 6745635.0,
@@ -651,18 +651,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 4
       },
-      "finished_at": "2026-11-01T05:56:42.491275+00:00"
+      "finished_at": "2026-11-01T15:04:18.533797+00:00"
     },
     {
       "key": "FRED_WTREGEN",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WTREGEN&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:42.491296+00:00",
+      "started_at": "2026-11-01T15:04:18.533806+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_WTREGEN.raw",
       "sha256": "523ca23fc3d3fec03ad6095044f86eca8440ffa3c821fafacc0393dbaa013b82",
-      "retrieved_at": "2026-11-01T05:56:42.974454+00:00",
+      "retrieved_at": "2026-11-01T15:04:18.901237+00:00",
       "value": {
         "observed_at_date": "2026-10-28",
         "value": 999727.0,
@@ -682,18 +682,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 4
       },
-      "finished_at": "2026-11-01T05:56:42.974671+00:00"
+      "finished_at": "2026-11-01T15:04:18.901357+00:00"
     },
     {
       "key": "FRED_RRPONTSYD",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=RRPONTSYD&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:42.974690+00:00",
+      "started_at": "2026-11-01T15:04:18.901370+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_RRPONTSYD.raw",
       "sha256": "fae86d1d7903d1ad18a47770f6d3319948e6f23c0402cb6cd97d3c637529cb9d",
-      "retrieved_at": "2026-11-01T05:56:43.407590+00:00",
+      "retrieved_at": "2026-11-01T15:04:19.386020+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "value": 4.375,
@@ -716,18 +716,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 2
       },
-      "finished_at": "2026-11-01T05:56:43.408161+00:00"
+      "finished_at": "2026-11-01T15:04:19.386526+00:00"
     },
     {
       "key": "FRED_WRESBAL",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:43.408181+00:00",
+      "started_at": "2026-11-01T15:04:19.386539+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_WRESBAL.raw",
       "sha256": "3ae2b575f8b3eade10caea79d4d3e407021d2884e7109302c177024db10818a2",
-      "retrieved_at": "2026-11-01T05:56:43.861654+00:00",
+      "retrieved_at": "2026-11-01T15:04:19.742770+00:00",
       "value": {
         "observed_at_date": "2026-10-28",
         "value": 2893770.0,
@@ -747,18 +747,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 4
       },
-      "finished_at": "2026-11-01T05:56:43.861846+00:00"
+      "finished_at": "2026-11-01T15:04:19.742896+00:00"
     },
     {
       "key": "FRED_CPIAUCSL",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:43.861864+00:00",
+      "started_at": "2026-11-01T15:04:19.742905+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_CPIAUCSL.raw",
       "sha256": "534f7c5fd9b49fe39afe5c0d020a6ae61fe542946e4179dad0cb4a6c33d80dcc",
-      "retrieved_at": "2026-11-01T05:56:44.182792+00:00",
+      "retrieved_at": "2026-11-01T15:04:20.084471+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 336.298,
@@ -778,18 +778,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 61
       },
-      "finished_at": "2026-11-01T05:56:44.182899+00:00"
+      "finished_at": "2026-11-01T15:04:20.084527+00:00"
     },
     {
       "key": "FRED_CPILFESL",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPILFESL&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:44.182920+00:00",
+      "started_at": "2026-11-01T15:04:20.084539+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_CPILFESL.raw",
       "sha256": "96b80fb34d8ffb9f03d906fda1f28647ce0062b6810296504fe24909f0eb0d4b",
-      "retrieved_at": "2026-11-01T05:56:44.579372+00:00",
+      "retrieved_at": "2026-11-01T15:04:20.440305+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 338.896,
@@ -809,18 +809,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 61
       },
-      "finished_at": "2026-11-01T05:56:44.579487+00:00"
+      "finished_at": "2026-11-01T15:04:20.440358+00:00"
     },
     {
       "key": "FRED_PCEPI",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PCEPI&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:44.579527+00:00",
+      "started_at": "2026-11-01T15:04:20.440371+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_PCEPI.raw",
       "sha256": "2b5a44c064b6b66af7c79bcf7a6c4a298805d27d32b21ae0aa21b71fdaa4c4e2",
-      "retrieved_at": "2026-11-01T05:56:44.907975+00:00",
+      "retrieved_at": "2026-11-01T15:04:20.766598+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 132.257,
@@ -840,18 +840,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 61
       },
-      "finished_at": "2026-11-01T05:56:44.908078+00:00"
+      "finished_at": "2026-11-01T15:04:20.766649+00:00"
     },
     {
       "key": "FRED_PCEPILFE",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PCEPILFE&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:44.908101+00:00",
+      "started_at": "2026-11-01T15:04:20.766661+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_PCEPILFE.raw",
       "sha256": "2f46549ed8d2b7dcb2f0ffc65e653cb173af6eb9bd3742469a528ffcca843e8e",
-      "retrieved_at": "2026-11-01T05:56:45.379966+00:00",
+      "retrieved_at": "2026-11-01T15:04:21.133031+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 130.902,
@@ -871,18 +871,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 61
       },
-      "finished_at": "2026-11-01T05:56:45.380072+00:00"
+      "finished_at": "2026-11-01T15:04:21.133084+00:00"
     },
     {
       "key": "FRED_INDPRO",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=INDPRO&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:45.380093+00:00",
+      "started_at": "2026-11-01T15:04:21.133097+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_INDPRO.raw",
       "sha256": "91881ac50a59bb4582f12625ab4fa068c7b71ca824c0335fa8a2be35537cfb8f",
-      "retrieved_at": "2026-11-01T05:56:45.741197+00:00",
+      "retrieved_at": "2026-11-01T15:04:21.448623+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 103.9506,
@@ -902,18 +902,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 61
       },
-      "finished_at": "2026-11-01T05:56:45.741305+00:00"
+      "finished_at": "2026-11-01T15:04:21.448687+00:00"
     },
     {
       "key": "FRED_PAYEMS",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PAYEMS&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:45.741326+00:00",
+      "started_at": "2026-11-01T15:04:21.448701+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_PAYEMS.raw",
       "sha256": "0670d551b6db472fafe433e8a267f6503e5100f79b937004eb2b34fa7a673b70",
-      "retrieved_at": "2026-11-01T05:56:46.083082+00:00",
+      "retrieved_at": "2026-11-01T15:04:21.827129+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 159044.0,
@@ -933,18 +933,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 61
       },
-      "finished_at": "2026-11-01T05:56:46.083186+00:00"
+      "finished_at": "2026-11-01T15:04:21.827189+00:00"
     },
     {
       "key": "FRED_UNRATE",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UNRATE&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:46.083207+00:00",
+      "started_at": "2026-11-01T15:04:21.827200+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_UNRATE.raw",
       "sha256": "d55ab6b9a2949aa9ed65975faadd8aa75783cb8fa613c8b4093ed66d8b68c59a",
-      "retrieved_at": "2026-11-01T05:56:46.354825+00:00",
+      "retrieved_at": "2026-11-01T15:04:22.074585+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 4.2,
@@ -964,18 +964,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 61
       },
-      "finished_at": "2026-11-01T05:56:46.354925+00:00"
+      "finished_at": "2026-11-01T15:04:22.074635+00:00"
     },
     {
       "key": "FRED_DCOILWTICO",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO&cosd=2025-04-30",
-      "started_at": "2026-11-01T05:56:46.354946+00:00",
+      "started_at": "2026-11-01T15:04:22.074646+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DCOILWTICO.raw",
       "sha256": "9b1eaa3d6b2d89701652a54243998a65ab6bec4e423c491e99a602cc32d8da62",
-      "retrieved_at": "2026-11-01T05:56:46.705008+00:00",
+      "retrieved_at": "2026-11-01T15:04:22.444228+00:00",
       "value": {
         "observed_at_date": "2026-10-27",
         "value": 103.37,
@@ -998,18 +998,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 5
       },
-      "finished_at": "2026-11-01T05:56:46.705636+00:00"
+      "finished_at": "2026-11-01T15:04:22.444762+00:00"
     },
     {
       "key": "YAHOO_SPY",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:46.705657+00:00",
+      "started_at": "2026-11-01T15:04:22.444771+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_SPY.raw",
-      "sha256": "2b857b8ff23a72cbd9806cd3febc68f06fee498d3cd0dd8402fb6c6ce8c50135",
-      "retrieved_at": "2026-11-01T05:56:46.915619+00:00",
+      "sha256": "16f44b4cd9e426fc82df639bd5c68fb7bd4a57b185caef9fad54f26518c35fa9",
+      "retrieved_at": "2026-11-01T15:04:22.680416+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1022,18 +1022,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:46.922570+00:00"
+      "finished_at": "2026-11-01T15:04:22.684178+00:00"
     },
     {
       "key": "YAHOO_QQQ",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/QQQ?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:46.922589+00:00",
+      "started_at": "2026-11-01T15:04:22.684188+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_QQQ.raw",
-      "sha256": "f4e0ef9ef39832fc7cf475c6a7231dc05abcc4054b28ff238145670e2834e1f6",
-      "retrieved_at": "2026-11-01T05:56:47.079044+00:00",
+      "sha256": "e4ab7b158f1d89894554814c5dac601467e960840d4f1f89d41ee3ba43b715b8",
+      "retrieved_at": "2026-11-01T15:04:22.885032+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1046,18 +1046,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:47.079245+00:00"
+      "finished_at": "2026-11-01T15:04:22.885162+00:00"
     },
     {
       "key": "YAHOO_IWM",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/IWM?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:47.079266+00:00",
+      "started_at": "2026-11-01T15:04:22.885174+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_IWM.raw",
-      "sha256": "ef45a3f69e5d1782b12be9bf8ef75a21c4ebc99952284b4e3766b805bfd6bd3d",
-      "retrieved_at": "2026-11-01T05:56:47.253893+00:00",
+      "sha256": "514aacbfb077aebf3ccee900f247aafaba99220c6242d717068d6eb8d7ebccbd",
+      "retrieved_at": "2026-11-01T15:04:23.074981+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1070,18 +1070,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:47.254099+00:00"
+      "finished_at": "2026-11-01T15:04:23.075113+00:00"
     },
     {
       "key": "YAHOO_SOXX",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/SOXX?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:47.254119+00:00",
+      "started_at": "2026-11-01T15:04:23.075124+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_SOXX.raw",
-      "sha256": "8542f5c91a43014031a0c5d230186f88ea0fae1e91a48c5769f184e4154dfacb",
-      "retrieved_at": "2026-11-01T05:56:47.411286+00:00",
+      "sha256": "b9d86b68a2c84710eff186b3052fddc6922cb9a147fd89205a8e1f8e1833c1ea",
+      "retrieved_at": "2026-11-01T15:04:23.263999+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1094,18 +1094,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:47.411554+00:00"
+      "finished_at": "2026-11-01T15:04:23.264129+00:00"
     },
     {
       "key": "YAHOO_RSP",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/RSP?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:47.411574+00:00",
+      "started_at": "2026-11-01T15:04:23.264139+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_RSP.raw",
-      "sha256": "df9852606ba5cff5780aef4082561f7f0c7337cf9ed7f49f02d6975cf575c7fd",
-      "retrieved_at": "2026-11-01T05:56:47.583990+00:00",
+      "sha256": "fc271908e780c0e4dfa97802566aa90e022ec0db387a509f46103a2c97c37133",
+      "retrieved_at": "2026-11-01T15:04:23.444480+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1118,18 +1118,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:47.584193+00:00"
+      "finished_at": "2026-11-01T15:04:23.444614+00:00"
     },
     {
       "key": "YAHOO_HYG",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/HYG?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:47.584213+00:00",
+      "started_at": "2026-11-01T15:04:23.444626+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_HYG.raw",
-      "sha256": "476d9967f5eb2c104ba0905035f874fb94611cd0ce45d678c54cb5ec412eadab",
-      "retrieved_at": "2026-11-01T05:56:47.722360+00:00",
+      "sha256": "1c2b907e994a8e544f82b7a68adb64748e3f2d290c9faf7ac65282ebe84bf20c",
+      "retrieved_at": "2026-11-01T15:04:23.627268+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1142,18 +1142,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:47.722599+00:00"
+      "finished_at": "2026-11-01T15:04:23.627403+00:00"
     },
     {
       "key": "YAHOO_LQD",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/LQD?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:47.722616+00:00",
+      "started_at": "2026-11-01T15:04:23.627414+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_LQD.raw",
-      "sha256": "90c9cc396e336828c8736b063bca8ff3710beabc6b5890035e992ee8a5f14b09",
-      "retrieved_at": "2026-11-01T05:56:47.917429+00:00",
+      "sha256": "84979e71a50df52decc63c36ad97fc21678745545b8ce56dc62eed5977bea20a",
+      "retrieved_at": "2026-11-01T15:04:23.807227+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1166,18 +1166,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:47.917655+00:00"
+      "finished_at": "2026-11-01T15:04:23.807361+00:00"
     },
     {
       "key": "YAHOO_COIN",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/COIN?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:47.917670+00:00",
+      "started_at": "2026-11-01T15:04:23.807371+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_COIN.raw",
-      "sha256": "ebc6481e28b1e5d2a8117b3c94b31d289b82a02825b1c1e5b39de221b8c10df9",
-      "retrieved_at": "2026-11-01T05:56:48.068719+00:00",
+      "sha256": "82824159a70d04af4238f78e1b7a8b073d988d44fee250a3d05f38fa7487e772",
+      "retrieved_at": "2026-11-01T15:04:23.998195+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1190,18 +1190,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:48.068920+00:00"
+      "finished_at": "2026-11-01T15:04:23.998326+00:00"
     },
     {
       "key": "YAHOO_MSTR",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/MSTR?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:48.068940+00:00",
+      "started_at": "2026-11-01T15:04:23.998337+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_MSTR.raw",
-      "sha256": "fa3b65e28f1d0acc404771c89439d00c9d054135ce8dacff4f2a651b0eb3e350",
-      "retrieved_at": "2026-11-01T05:56:48.229800+00:00",
+      "sha256": "b4b5a6ac7d91419aaaae4f735c83d4c21b9e255cedb0aa2b2f40ff643b5b399f",
+      "retrieved_at": "2026-11-01T15:04:24.173291+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1214,18 +1214,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:48.229980+00:00"
+      "finished_at": "2026-11-01T15:04:24.173425+00:00"
     },
     {
       "key": "YAHOO_HOOD",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/HOOD?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:48.229998+00:00",
+      "started_at": "2026-11-01T15:04:24.173435+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_HOOD.raw",
-      "sha256": "8f652758e6bb39de13446748b46e108f62e105dd7d5abb94b9a4fedbc5f7f5d5",
-      "retrieved_at": "2026-11-01T05:56:48.402132+00:00",
+      "sha256": "158096c0e421f78270befd2f843c5c52099c689e6659b758f870bb4035f2a29c",
+      "retrieved_at": "2026-11-01T15:04:24.343668+00:00",
       "value": {
         "observed_at": "2026-10-30T13:30:00+00:00",
         "session_date": "2026-10-30",
@@ -1238,18 +1238,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:48.402328+00:00"
+      "finished_at": "2026-11-01T15:04:24.343825+00:00"
     },
     {
       "key": "YAHOO_DX-Y.NYB",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:48.402349+00:00",
+      "started_at": "2026-11-01T15:04:24.343835+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_DX-Y_NYB.raw",
-      "sha256": "531f903af09fccdd5384f5921e861039af5ae2d7b5604d92b7aaccecc5d7537c",
-      "retrieved_at": "2026-11-01T05:56:48.536754+00:00",
+      "sha256": "c5132c01267a4da0b11d40f6fec58b1ab148c49f371e658202c6ea59763c35ac",
+      "retrieved_at": "2026-11-01T15:04:24.510818+00:00",
       "value": {
         "observed_at": "2026-10-30T04:00:00+00:00",
         "session_date": "2026-10-30",
@@ -1262,18 +1262,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:48.536949+00:00"
+      "finished_at": "2026-11-01T15:04:24.510959+00:00"
     },
     {
       "key": "YAHOO_^VIX",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:48.536969+00:00",
+      "started_at": "2026-11-01T15:04:24.510969+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO__VIX.raw",
-      "sha256": "b1b9a85a3ae9dbeaed18b3c4936438f42d03dc8c03ee16ebee99834b510c841a",
-      "retrieved_at": "2026-11-01T05:56:48.714462+00:00",
+      "sha256": "52e07123c73106c751ea96e6f796cab8c388ed9f775c63c79cad353be48c2657",
+      "retrieved_at": "2026-11-01T15:04:24.684779+00:00",
       "value": {
         "observed_at": "2026-10-30T07:00:00+00:00",
         "session_date": "2026-10-30",
@@ -1286,18 +1286,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:48.719617+00:00"
+      "finished_at": "2026-11-01T15:04:24.688661+00:00"
     },
     {
       "key": "YAHOO_CL=F",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/CL%3DF?range=1mo&interval=1d",
-      "started_at": "2026-11-01T05:56:48.719634+00:00",
+      "started_at": "2026-11-01T15:04:24.688672+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_CL_F.raw",
-      "sha256": "7f40f6ad51d4d2e618afcdbd7459bebfef1bba525eabc98af1fe328468a3893d",
-      "retrieved_at": "2026-11-01T05:56:48.853486+00:00",
+      "sha256": "176b83ba4b14f1b0818df537fd3822f8e41b8355806a825d7962e9993e819691",
+      "retrieved_at": "2026-11-01T15:04:24.865481+00:00",
       "value": {
         "observed_at": "2026-10-30T04:00:00+00:00",
         "session_date": "2026-10-30",
@@ -1310,102 +1310,57 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-01T05:56:48.853700+00:00"
+      "finished_at": "2026-11-01T15:04:24.865611+00:00"
     },
     {
       "key": "stablecoins",
       "url": "https://stablecoins.llama.fi/stablecoincharts/all",
-      "started_at": "2026-11-01T05:56:48.853715+00:00",
+      "started_at": "2026-11-01T15:04:24.865622+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "stablecoins.raw.gz",
-      "sha256": "799d5c5d7440445eaa5857c883df6e96a8dd0c3b93878f609c8d34475046ed7c",
-      "retrieved_at": "2026-11-01T05:56:49.161670+00:00",
+      "sha256": "f0bc5986f8eb5763ee6e893a64f3136af8047b5e19392e369d40a32debbf4f40",
+      "retrieved_at": "2026-11-01T15:04:25.100366+00:00",
       "value": {
         "observed_at": "2026-10-31T00:00:00+00:00",
         "value_usd": 298964317927.0,
         "definition": "DefiLlama totalCirculatingUSD.peggedUSD; do not mix with nominal circulating",
         "day_completed": true
       },
-      "finished_at": "2026-11-01T05:56:49.193289+00:00"
+      "finished_at": "2026-11-01T15:04:25.126733+00:00"
     },
     {
       "key": "COINBASE_BTC_spot_cvd",
       "url": "https://api.exchange.coinbase.com/products/BTC-USD/trades?limit=1000",
-      "started_at": "2026-11-01T05:56:49.193317+00:00",
+      "started_at": "2026-11-01T15:04:25.126744+00:00",
       "status": "FAILED",
       "available_at": null,
       "http_status": 200,
       "reason": "ValueError: Coinbase coverage budget exceeded; incomplete is not CVD",
-      "finished_at": "2026-11-01T06:00:49.385301+00:00"
+      "finished_at": "2026-11-01T15:08:26.061414+00:00"
     },
     {
       "key": "COINBASE_ETH_spot_cvd",
       "url": "https://api.exchange.coinbase.com/products/ETH-USD/trades?limit=1000",
-      "started_at": "2026-11-01T06:00:49.385345+00:00",
+      "started_at": "2026-11-01T15:08:26.061438+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "COINBASE_ETH_spot_cvd.raw",
-      "sha256": "0c50c83ab35e950baf6f9445c828a6cf76c608cc65df7e987bfbefcf8d3fd62f",
-      "retrieved_at": "2026-11-01T06:02:28.816859+00:00",
+      "sha256": "d48f525d82b946c2d0c8fe0db3d764c19b324a8c2ff923f2cee272e8c4386208",
+      "retrieved_at": "2026-11-01T15:10:27.642346+00:00",
       "value": {
-        "observed_at": "2026-11-01T06:00:00+00:00",
-        "window_start": "2026-10-31T06:00:00+00:00",
-        "window_end": "2026-11-01T06:00:00+00:00",
+        "observed_at": "2026-11-01T15:00:00+00:00",
+        "window_start": "2026-10-31T15:00:00+00:00",
+        "window_end": "2026-11-01T15:00:00+00:00",
         "venue": "Coinbase Exchange",
         "market": "SPOT",
         "quote_currency": "USD",
-        "base_delta": -10918.682778960005,
-        "usd_delta": -24564752.59741079,
+        "base_delta": -10303.37054509999,
+        "usd_delta": -23263110.15205363,
         "closed_hours": 24,
         "hours": {
-          "2026-10-31T06:00:00+00:00": {
-            "base_delta": -18.48770574999978,
-            "usd_delta": -41393.41635042475,
-            "trade_count": 3193
-          },
-          "2026-10-31T07:00:00+00:00": {
-            "base_delta": -200.9061014100001,
-            "usd_delta": -450016.88611963886,
-            "trade_count": 3056
-          },
-          "2026-10-31T08:00:00+00:00": {
-            "base_delta": -379.1152419100003,
-            "usd_delta": -848952.5792820001,
-            "trade_count": 3530
-          },
-          "2026-10-31T09:00:00+00:00": {
-            "base_delta": -10.514215850000001,
-            "usd_delta": -23670.600154224125,
-            "trade_count": 2719
-          },
-          "2026-10-31T10:00:00+00:00": {
-            "base_delta": -781.2600527200012,
-            "usd_delta": -1751954.8691003495,
-            "trade_count": 3089
-          },
-          "2026-10-31T11:00:00+00:00": {
-            "base_delta": -449.4710900600006,
-            "usd_delta": -1008032.0801280087,
-            "trade_count": 3077
-          },
-          "2026-10-31T12:00:00+00:00": {
-            "base_delta": -592.6799046100019,
-            "usd_delta": -1331950.3744549963,
-            "trade_count": 3548
-          },
-          "2026-10-31T13:00:00+00:00": {
-            "base_delta": -604.025523250002,
-            "usd_delta": -1356252.8147170816,
-            "trade_count": 3366
-          },
-          "2026-10-31T14:00:00+00:00": {
-            "base_delta": -1687.5109584200034,
-            "usd_delta": -3790314.8056103694,
-            "trade_count": 4712
-          },
           "2026-10-31T15:00:00+00:00": {
             "base_delta": -419.4286638900005,
             "usd_delta": -941245.3808858569,
@@ -1480,6 +1435,51 @@
             "base_delta": -121.46350337999975,
             "usd_delta": -274886.4993428848,
             "trade_count": 3603
+          },
+          "2026-11-01T06:00:00+00:00": {
+            "base_delta": -343.42608808000085,
+            "usd_delta": -778389.0009645142,
+            "trade_count": 3441
+          },
+          "2026-11-01T07:00:00+00:00": {
+            "base_delta": -166.44500477999986,
+            "usd_delta": -376787.0958933886,
+            "trade_count": 3163
+          },
+          "2026-11-01T08:00:00+00:00": {
+            "base_delta": -253.33464351000097,
+            "usd_delta": -574628.076634879,
+            "trade_count": 4097
+          },
+          "2026-11-01T09:00:00+00:00": {
+            "base_delta": -903.3800237799978,
+            "usd_delta": -2048768.8020990554,
+            "trade_count": 3185
+          },
+          "2026-11-01T10:00:00+00:00": {
+            "base_delta": -70.12797782999951,
+            "usd_delta": -158699.57802141362,
+            "trade_count": 3420
+          },
+          "2026-11-01T11:00:00+00:00": {
+            "base_delta": -621.0135427499973,
+            "usd_delta": -1406691.6426086877,
+            "trade_count": 3616
+          },
+          "2026-11-01T12:00:00+00:00": {
+            "base_delta": -1375.8550216799995,
+            "usd_delta": -3108008.6015251605,
+            "trade_count": 6318
+          },
+          "2026-11-01T13:00:00+00:00": {
+            "base_delta": -203.798249939999,
+            "usd_delta": -461277.4719130428,
+            "trade_count": 5381
+          },
+          "2026-11-01T14:00:00+00:00": {
+            "base_delta": -171.27800777000013,
+            "usd_delta": -387645.7108997911,
+            "trade_count": 5539
           }
         },
         "coverage": "FULL_CURSOR_CHAIN_AND_CONTIGUOUS_PRODUCT_TRADE_IDS",
@@ -1487,920 +1487,1010 @@
         "page_receipts": [
           {
             "page": 1,
-            "sha256": "3285cb1b6fae08a39f77ec6b7868598afcf1c98ba88353617655f1c3a8936497",
-            "oldest": "2026-11-01T05:41:42.005000+00:00",
-            "newest": "2026-11-01T06:00:45.278000+00:00",
-            "trade_id_min": 851404749,
-            "trade_id_max": 851405748,
+            "sha256": "85433f7e332110bb1ac2135ff322738b30cd73fbd450afc5d84b1e390598deae",
+            "oldest": "2026-11-01T14:55:50.679000+00:00",
+            "newest": "2026-11-01T15:08:23.708000+00:00",
+            "trade_id_min": 851443592,
+            "trade_id_max": 851444591,
             "count": 1000,
-            "next_cursor": "851404749"
+            "next_cursor": "851443592"
           },
           {
             "page": 2,
-            "sha256": "738a72cb8599102c19a21b4b7a150308c463f1fb766bf7e5e0f357ce5b80b025",
-            "oldest": "2026-11-01T05:25:52.217000+00:00",
-            "newest": "2026-11-01T05:41:41.378000+00:00",
-            "trade_id_min": 851403749,
-            "trade_id_max": 851404748,
+            "sha256": "da124a5fe14a332b9c327eaca1431b5ff929a4df6704321ee222963b8d7dae5e",
+            "oldest": "2026-11-01T14:44:55.671000+00:00",
+            "newest": "2026-11-01T14:55:50.679000+00:00",
+            "trade_id_min": 851442592,
+            "trade_id_max": 851443591,
             "count": 1000,
-            "next_cursor": "851403749"
+            "next_cursor": "851442592"
           },
           {
             "page": 3,
-            "sha256": "a9ba6de55849b19135baf5490c173a434a4ede39a3b67a22fb9d8f1ea5b51974",
-            "oldest": "2026-11-01T05:08:32.825000+00:00",
-            "newest": "2026-11-01T05:25:52.166000+00:00",
-            "trade_id_min": 851402749,
-            "trade_id_max": 851403748,
+            "sha256": "f31fa1d50ea9742ba6096e8bdf98a6fa0b6aac99c176c7cc75ebcdcb91864658",
+            "oldest": "2026-11-01T14:30:40.222000+00:00",
+            "newest": "2026-11-01T14:44:55.369000+00:00",
+            "trade_id_min": 851441592,
+            "trade_id_max": 851442591,
             "count": 1000,
-            "next_cursor": "851402749"
+            "next_cursor": "851441592"
           },
           {
             "page": 4,
-            "sha256": "61d4cbb249568380e19d75ef6088b8380f80d561f81b5ee0af6c1d8dc2f7f194",
-            "oldest": "2026-11-01T04:54:21.071000+00:00",
-            "newest": "2026-11-01T05:08:32.169000+00:00",
-            "trade_id_min": 851401749,
-            "trade_id_max": 851402748,
+            "sha256": "b55cc8b69fe21836d839cec0658f96b00a21f7d510a2df5d5a1453f4d863567c",
+            "oldest": "2026-11-01T14:19:12.133000+00:00",
+            "newest": "2026-11-01T14:30:40.213000+00:00",
+            "trade_id_min": 851440592,
+            "trade_id_max": 851441591,
             "count": 1000,
-            "next_cursor": "851401749"
+            "next_cursor": "851440592"
           },
           {
             "page": 5,
-            "sha256": "f13c85ef5dfc4711e20a5729abb140f34e28ee127abeb53d0d6122a876a3715a",
-            "oldest": "2026-11-01T04:36:30.828000+00:00",
-            "newest": "2026-11-01T04:54:14.499000+00:00",
-            "trade_id_min": 851400749,
-            "trade_id_max": 851401748,
+            "sha256": "e1df19c2f29b8d0d521d16060487cf7f8bc77dd64291e6267dd0007ed9464cc7",
+            "oldest": "2026-11-01T14:11:27.167000+00:00",
+            "newest": "2026-11-01T14:19:12.132000+00:00",
+            "trade_id_min": 851439592,
+            "trade_id_max": 851440591,
             "count": 1000,
-            "next_cursor": "851400749"
+            "next_cursor": "851439592"
           },
           {
             "page": 6,
-            "sha256": "a9e64789e16977febb77ab304df5c4391b8686e4d30ea25995e0670ab6bc21ec",
-            "oldest": "2026-11-01T04:21:01.145000+00:00",
-            "newest": "2026-11-01T04:36:30.769000+00:00",
-            "trade_id_min": 851399749,
-            "trade_id_max": 851400748,
+            "sha256": "733ab3d45719f4c0b12d6d9d349f5668b9bc552c9e668b7aa2bc319dc6e44a88",
+            "oldest": "2026-11-01T14:02:35.612000+00:00",
+            "newest": "2026-11-01T14:11:25.565000+00:00",
+            "trade_id_min": 851438592,
+            "trade_id_max": 851439591,
             "count": 1000,
-            "next_cursor": "851399749"
+            "next_cursor": "851438592"
           },
           {
             "page": 7,
-            "sha256": "f59b09192cf995ae9b4f3b93d9e9af82bc2b7e7043aad3e561f42b8806d1f3c4",
-            "oldest": "2026-11-01T04:05:49.910000+00:00",
-            "newest": "2026-11-01T04:20:59.977000+00:00",
-            "trade_id_min": 851398749,
-            "trade_id_max": 851399748,
+            "sha256": "7034adc52ffcb685c6ae21dad758cfa83f86fc1c4cc5b3d8e2db37bffcd17624",
+            "oldest": "2026-11-01T13:50:27.142000+00:00",
+            "newest": "2026-11-01T14:02:35.612000+00:00",
+            "trade_id_min": 851437592,
+            "trade_id_max": 851438591,
             "count": 1000,
-            "next_cursor": "851398749"
+            "next_cursor": "851437592"
           },
           {
             "page": 8,
-            "sha256": "8213fdbe4d6d7b191e3bf303b369905d4096a10f39518613ae29a4b8d89035cc",
-            "oldest": "2026-11-01T03:51:58.925000+00:00",
-            "newest": "2026-11-01T04:05:48.799000+00:00",
-            "trade_id_min": 851397749,
-            "trade_id_max": 851398748,
+            "sha256": "822e48eccbd41ad3b3b71e865b29d8c193130ed844f636228cc69d09d4709205",
+            "oldest": "2026-11-01T13:35:30.870000+00:00",
+            "newest": "2026-11-01T13:50:27.142000+00:00",
+            "trade_id_min": 851436592,
+            "trade_id_max": 851437591,
             "count": 1000,
-            "next_cursor": "851397749"
+            "next_cursor": "851436592"
           },
           {
             "page": 9,
-            "sha256": "da62c2410255485e7173069f5338b540a3b989675b83eb69a566b43f3e93d27d",
-            "oldest": "2026-11-01T03:40:08.020000+00:00",
-            "newest": "2026-11-01T03:51:58.838000+00:00",
-            "trade_id_min": 851396749,
-            "trade_id_max": 851397748,
+            "sha256": "f0c6be781f374ab843d6aed6faa9d7a8c40a208e7bdb11262c4d6e2d823349c0",
+            "oldest": "2026-11-01T13:21:28.492000+00:00",
+            "newest": "2026-11-01T13:35:30.870000+00:00",
+            "trade_id_min": 851435592,
+            "trade_id_max": 851436591,
             "count": 1000,
-            "next_cursor": "851396749"
+            "next_cursor": "851435592"
           },
           {
             "page": 10,
-            "sha256": "ae6e5b96e5e72a295c9a7a1ea276f9b7f6d3435029452d6ae2991edd9bc03fea",
-            "oldest": "2026-11-01T03:23:07.242000+00:00",
-            "newest": "2026-11-01T03:40:08.020000+00:00",
-            "trade_id_min": 851395749,
-            "trade_id_max": 851396748,
+            "sha256": "67d15dec6334767465630521e433ffa1b71c85afc03fc91e08e470474d323662",
+            "oldest": "2026-11-01T13:13:37.160000+00:00",
+            "newest": "2026-11-01T13:21:28.492000+00:00",
+            "trade_id_min": 851434592,
+            "trade_id_max": 851435591,
             "count": 1000,
-            "next_cursor": "851395749"
+            "next_cursor": "851434592"
           },
           {
             "page": 11,
-            "sha256": "99655bfd5323c76b1b173e226cb3b6041f73f31c2cc5a452e93907b6b12676f3",
-            "oldest": "2026-11-01T03:07:38.833000+00:00",
-            "newest": "2026-11-01T03:23:07.002000+00:00",
-            "trade_id_min": 851394749,
-            "trade_id_max": 851395748,
+            "sha256": "493571ebeb0e2483be065270fa6e977f766c448edb751b316dbfe4e08c6f0269",
+            "oldest": "2026-11-01T13:06:18.182000+00:00",
+            "newest": "2026-11-01T13:13:37.160000+00:00",
+            "trade_id_min": 851433592,
+            "trade_id_max": 851434591,
             "count": 1000,
-            "next_cursor": "851394749"
+            "next_cursor": "851433592"
           },
           {
             "page": 12,
-            "sha256": "fa931188d796b6abba15b64c562924e773071914c9bb12f1139de73c987a412c",
-            "oldest": "2026-11-01T02:51:58.721000+00:00",
-            "newest": "2026-11-01T03:07:38.803000+00:00",
-            "trade_id_min": 851393749,
-            "trade_id_max": 851394748,
+            "sha256": "11cd366a76032509892511b7ad0f94798d82559739f4b1c19851fc17dc07d2b3",
+            "oldest": "2026-11-01T12:55:37.025000+00:00",
+            "newest": "2026-11-01T13:06:18.182000+00:00",
+            "trade_id_min": 851432592,
+            "trade_id_max": 851433591,
             "count": 1000,
-            "next_cursor": "851393749"
+            "next_cursor": "851432592"
           },
           {
             "page": 13,
-            "sha256": "47dd1031fd4294c5a34736f59a1a7692b64d2cf0222587717219fd877d8fce67",
-            "oldest": "2026-11-01T02:36:28.087000+00:00",
-            "newest": "2026-11-01T02:51:55.385000+00:00",
-            "trade_id_min": 851392749,
-            "trade_id_max": 851393748,
+            "sha256": "a1119d7edcc9e5c36b277b85540b0bf6ef84b3a4d9e594fa57e3c4cc3734a83a",
+            "oldest": "2026-11-01T12:42:05.423000+00:00",
+            "newest": "2026-11-01T12:55:37.025000+00:00",
+            "trade_id_min": 851431592,
+            "trade_id_max": 851432591,
             "count": 1000,
-            "next_cursor": "851392749"
+            "next_cursor": "851431592"
           },
           {
             "page": 14,
-            "sha256": "ddb586b9adffce1131e1be1920a712754006d39c13b264a4a8015c8449c4b1d0",
-            "oldest": "2026-11-01T02:21:12.368000+00:00",
-            "newest": "2026-11-01T02:36:27.527000+00:00",
-            "trade_id_min": 851391749,
-            "trade_id_max": 851392748,
+            "sha256": "6d8b76df447c13d9324ca4fab2bbd13a9572cadea5ddd710f06b48f630f7d568",
+            "oldest": "2026-11-01T12:31:25.891000+00:00",
+            "newest": "2026-11-01T12:42:03.415000+00:00",
+            "trade_id_min": 851430592,
+            "trade_id_max": 851431591,
             "count": 1000,
-            "next_cursor": "851391749"
+            "next_cursor": "851430592"
           },
           {
             "page": 15,
-            "sha256": "30a4f528c9c929f939cbdb7c64f6ab855118bb43e1094edc8a0dfe37a57b2736",
-            "oldest": "2026-11-01T02:09:56.667000+00:00",
-            "newest": "2026-11-01T02:21:12.368000+00:00",
-            "trade_id_min": 851390749,
-            "trade_id_max": 851391748,
+            "sha256": "815b51ceec606b427b59f463f106a6befba2e723b29da67509f524de185de594",
+            "oldest": "2026-11-01T12:21:34.118000+00:00",
+            "newest": "2026-11-01T12:31:23.825000+00:00",
+            "trade_id_min": 851429592,
+            "trade_id_max": 851430591,
             "count": 1000,
-            "next_cursor": "851390749"
+            "next_cursor": "851429592"
           },
           {
             "page": 16,
-            "sha256": "e1323775f8dadc2d314e7794703f9f997691a98f7d1f641669f592ec4a140bb0",
-            "oldest": "2026-11-01T02:04:03.089000+00:00",
-            "newest": "2026-11-01T02:09:54.017000+00:00",
-            "trade_id_min": 851389749,
-            "trade_id_max": 851390748,
+            "sha256": "8df4ac971b38617f477fc5ec2bbb176d988b2c706c41291a2ce809ca821f29f1",
+            "oldest": "2026-11-01T12:16:04.118000+00:00",
+            "newest": "2026-11-01T12:21:34.118000+00:00",
+            "trade_id_min": 851428592,
+            "trade_id_max": 851429591,
             "count": 1000,
-            "next_cursor": "851389749"
+            "next_cursor": "851428592"
           },
           {
             "page": 17,
-            "sha256": "5a2b3d4117d3bbc0c2282529a261812fa8d5845b5187e552cf9b5e0d239b1a7c",
-            "oldest": "2026-11-01T01:56:14.071000+00:00",
-            "newest": "2026-11-01T02:04:03.088000+00:00",
-            "trade_id_min": 851388749,
-            "trade_id_max": 851389748,
+            "sha256": "1fa7f78f1e0babbe6d90bc22b02efec3eebdf409774aa3edb30930d393f8c3f5",
+            "oldest": "2026-11-01T12:13:53.014000+00:00",
+            "newest": "2026-11-01T12:16:03.929000+00:00",
+            "trade_id_min": 851427592,
+            "trade_id_max": 851428591,
             "count": 1000,
-            "next_cursor": "851388749"
+            "next_cursor": "851427592"
           },
           {
             "page": 18,
-            "sha256": "f3bc4ed80148ed13b8df3139db77804e482a5fff88dfb04dd95ecd439ce1443c",
-            "oldest": "2026-11-01T01:42:32.100000+00:00",
-            "newest": "2026-11-01T01:56:12.102000+00:00",
-            "trade_id_min": 851387749,
-            "trade_id_max": 851388748,
+            "sha256": "cb30bd79ac9e062657e0d3a856f2e56102030599d18d9325f214d862f6872f26",
+            "oldest": "2026-11-01T11:59:54.495000+00:00",
+            "newest": "2026-11-01T12:13:53.014000+00:00",
+            "trade_id_min": 851426592,
+            "trade_id_max": 851427591,
             "count": 1000,
-            "next_cursor": "851387749"
+            "next_cursor": "851426592"
           },
           {
             "page": 19,
-            "sha256": "87bf0d188a41c74dbac8ae31f66836434ca1f99d88f57f40db327eed6c15af0f",
-            "oldest": "2026-11-01T01:32:46.355000+00:00",
-            "newest": "2026-11-01T01:42:29.724000+00:00",
-            "trade_id_min": 851386749,
-            "trade_id_max": 851387748,
+            "sha256": "f92cbb2517a9c5b77e2d9ec55d3a01d6160df2704e4868a8fe127455d2275579",
+            "oldest": "2026-11-01T11:37:06.776000+00:00",
+            "newest": "2026-11-01T11:59:54.495000+00:00",
+            "trade_id_min": 851425592,
+            "trade_id_max": 851426591,
             "count": 1000,
-            "next_cursor": "851386749"
+            "next_cursor": "851425592"
           },
           {
             "page": 20,
-            "sha256": "8cb41f6c91761145608597f77cdfe378e1d1f2a8131ff4d91215faf4cfe01671",
-            "oldest": "2026-11-01T01:21:53.622000+00:00",
-            "newest": "2026-11-01T01:32:46.355000+00:00",
-            "trade_id_min": 851385749,
-            "trade_id_max": 851386748,
+            "sha256": "e1153ef18fc9e864228ec5f72d4c2ef6a0df871aae55a4026798ea6cacd23a94",
+            "oldest": "2026-11-01T11:24:32.890000+00:00",
+            "newest": "2026-11-01T11:37:06.411000+00:00",
+            "trade_id_min": 851424592,
+            "trade_id_max": 851425591,
             "count": 1000,
-            "next_cursor": "851385749"
+            "next_cursor": "851424592"
           },
           {
             "page": 21,
-            "sha256": "90c1e38b2f2f99d8f9f2a9ebd2b8e32d73de5120c0bdd38785ec46ede3b7208b",
-            "oldest": "2026-11-01T01:09:47.877000+00:00",
-            "newest": "2026-11-01T01:21:49.167000+00:00",
-            "trade_id_min": 851384749,
-            "trade_id_max": 851385748,
+            "sha256": "2718ec27ea0c732486e871eab98aa1e1f3e10e08d9f4f32cd5740a2ab9dbf904",
+            "oldest": "2026-11-01T11:07:42.190000+00:00",
+            "newest": "2026-11-01T11:24:32.432000+00:00",
+            "trade_id_min": 851423592,
+            "trade_id_max": 851424591,
             "count": 1000,
-            "next_cursor": "851384749"
+            "next_cursor": "851423592"
           },
           {
             "page": 22,
-            "sha256": "5160ae343fa8897a0c59264856d27545eb94eb2d7bbb62844204a3b64507145c",
-            "oldest": "2026-11-01T00:58:55.558000+00:00",
-            "newest": "2026-11-01T01:09:46.809000+00:00",
-            "trade_id_min": 851383749,
-            "trade_id_max": 851384748,
+            "sha256": "6851858fbecd8bc2ec447c9b1a78e8f2578650b1c00a14ed460c0949cba0622e",
+            "oldest": "2026-11-01T10:52:47.775000+00:00",
+            "newest": "2026-11-01T11:07:42.190000+00:00",
+            "trade_id_min": 851422592,
+            "trade_id_max": 851423591,
             "count": 1000,
-            "next_cursor": "851383749"
+            "next_cursor": "851422592"
           },
           {
             "page": 23,
-            "sha256": "fb5b8f2b838352de4a37896d275efa56137e4f6dbf2b296e1024277b7414eb4e",
-            "oldest": "2026-11-01T00:46:40.690000+00:00",
-            "newest": "2026-11-01T00:58:50.210000+00:00",
-            "trade_id_min": 851382749,
-            "trade_id_max": 851383748,
+            "sha256": "7b49a4ad38037a6506995671f6434f5abf540f69b577aca63643f60584e5f900",
+            "oldest": "2026-11-01T10:34:16.927000+00:00",
+            "newest": "2026-11-01T10:52:47.266000+00:00",
+            "trade_id_min": 851421592,
+            "trade_id_max": 851422591,
             "count": 1000,
-            "next_cursor": "851382749"
+            "next_cursor": "851421592"
           },
           {
             "page": 24,
-            "sha256": "d32c0f9ff6d8a2396c4af3ff29f05780083e9f5ea7a2e86d6ed1f66b46eda3c8",
-            "oldest": "2026-11-01T00:32:34.718000+00:00",
-            "newest": "2026-11-01T00:46:40.289000+00:00",
-            "trade_id_min": 851381749,
-            "trade_id_max": 851382748,
+            "sha256": "3a5877a6c7ac82fda4c8cfe22e4f3e3aa3b7dc24f2d49699180e807a2f4b08ea",
+            "oldest": "2026-11-01T10:17:34.650000+00:00",
+            "newest": "2026-11-01T10:34:16.927000+00:00",
+            "trade_id_min": 851420592,
+            "trade_id_max": 851421591,
             "count": 1000,
-            "next_cursor": "851381749"
+            "next_cursor": "851420592"
           },
           {
             "page": 25,
-            "sha256": "df75e7f22da90e938394ad10de53a2d489c7fcf54efcc4d4f72426fe0f81f573",
-            "oldest": "2026-11-01T00:20:00.547000+00:00",
-            "newest": "2026-11-01T00:32:32.523000+00:00",
-            "trade_id_min": 851380749,
-            "trade_id_max": 851381748,
+            "sha256": "76bbd31d17397469b4360be854d7843802a630ac2aeddd7ff5e70e0ce3ad3145",
+            "oldest": "2026-11-01T10:00:10.659000+00:00",
+            "newest": "2026-11-01T10:17:34.650000+00:00",
+            "trade_id_min": 851419592,
+            "trade_id_max": 851420591,
             "count": 1000,
-            "next_cursor": "851380749"
+            "next_cursor": "851419592"
           },
           {
             "page": 26,
-            "sha256": "c6679303ff16ed880097da9fbec722f7b2b5ee099217d41598658be7f57a483b",
-            "oldest": "2026-11-01T00:05:22.093000+00:00",
-            "newest": "2026-11-01T00:19:52.309000+00:00",
-            "trade_id_min": 851379749,
-            "trade_id_max": 851380748,
+            "sha256": "49e2c4b8f35e6bc076dd040515384e419c837167507a58cc7a5b9de9ee07a899",
+            "oldest": "2026-11-01T09:35:32.283000+00:00",
+            "newest": "2026-11-01T10:00:10.358000+00:00",
+            "trade_id_min": 851418592,
+            "trade_id_max": 851419591,
             "count": 1000,
-            "next_cursor": "851379749"
+            "next_cursor": "851418592"
           },
           {
             "page": 27,
-            "sha256": "257171a3a615a4958f7ce6df37380e72d7b6587820e9fa20495562fa470e7338",
-            "oldest": "2026-10-31T23:48:00.454000+00:00",
-            "newest": "2026-11-01T00:05:22.093000+00:00",
-            "trade_id_min": 851378749,
-            "trade_id_max": 851379748,
+            "sha256": "f12e97c9f68c6056e9b9674b955b71caa91a103f2ec5ebe146dddecc49af3adf",
+            "oldest": "2026-11-01T09:20:03.151000+00:00",
+            "newest": "2026-11-01T09:35:32.283000+00:00",
+            "trade_id_min": 851417592,
+            "trade_id_max": 851418591,
             "count": 1000,
-            "next_cursor": "851378749"
+            "next_cursor": "851417592"
           },
           {
             "page": 28,
-            "sha256": "cacb18f8a307c245551cba4587ecaab1c9db9905bb1e16c34c356d1c9d4d0372",
-            "oldest": "2026-10-31T23:30:12.616000+00:00",
-            "newest": "2026-10-31T23:48:00.305000+00:00",
-            "trade_id_min": 851377749,
-            "trade_id_max": 851378748,
+            "sha256": "73e5c005c9be82cce06391b9bc01e38ea963452b8a465b66bb8dbf756bf2b329",
+            "oldest": "2026-11-01T09:02:42.656000+00:00",
+            "newest": "2026-11-01T09:20:03.151000+00:00",
+            "trade_id_min": 851416592,
+            "trade_id_max": 851417591,
             "count": 1000,
-            "next_cursor": "851377749"
+            "next_cursor": "851416592"
           },
           {
             "page": 29,
-            "sha256": "3b34daa5bc10a5acd28f9f3da462a4969bb2d1b39a0fa2dbf463ab6bfcd67e8a",
-            "oldest": "2026-10-31T23:09:09.750000+00:00",
-            "newest": "2026-10-31T23:30:10.488000+00:00",
-            "trade_id_min": 851376749,
-            "trade_id_max": 851377748,
+            "sha256": "cbe98925a692797e5a33d74c87453273c0b3b13dc87489a66ec8dac5391b9673",
+            "oldest": "2026-11-01T08:49:11.437000+00:00",
+            "newest": "2026-11-01T09:02:38.554000+00:00",
+            "trade_id_min": 851415592,
+            "trade_id_max": 851416591,
             "count": 1000,
-            "next_cursor": "851376749"
+            "next_cursor": "851415592"
           },
           {
             "page": 30,
-            "sha256": "08be61476cbf453e727a55c4632bce15cba57de7cef27feb8980dc5a0ad9db9f",
-            "oldest": "2026-10-31T22:52:33.077000+00:00",
-            "newest": "2026-10-31T23:09:09.301000+00:00",
-            "trade_id_min": 851375749,
-            "trade_id_max": 851376748,
+            "sha256": "228a4485810c03f8ef5ec10b0cf95e9eb7963412db28ba76a9a14cfa7977a35c",
+            "oldest": "2026-11-01T08:35:02.232000+00:00",
+            "newest": "2026-11-01T08:49:10.918000+00:00",
+            "trade_id_min": 851414592,
+            "trade_id_max": 851415591,
             "count": 1000,
-            "next_cursor": "851375749"
+            "next_cursor": "851414592"
           },
           {
             "page": 31,
-            "sha256": "d226562c9917c48bf5115c2093a1ab62daab18c31062134bc2af8dafcdd5b82c",
-            "oldest": "2026-10-31T22:36:04.155000+00:00",
-            "newest": "2026-10-31T22:52:30.632000+00:00",
-            "trade_id_min": 851374749,
-            "trade_id_max": 851375748,
+            "sha256": "449cf5233e95ef3b5a0e43a4ed6c414311c345cbaed735c30a165b5827ca142f",
+            "oldest": "2026-11-01T08:20:42.348000+00:00",
+            "newest": "2026-11-01T08:35:02.232000+00:00",
+            "trade_id_min": 851413592,
+            "trade_id_max": 851414591,
             "count": 1000,
-            "next_cursor": "851374749"
+            "next_cursor": "851413592"
           },
           {
             "page": 32,
-            "sha256": "2bfe4d3dcdc5dc9d0bf3332fac1444ed1924a14ec0b62c7f98b3dcbe3c519251",
-            "oldest": "2026-10-31T22:18:42.603000+00:00",
-            "newest": "2026-10-31T22:36:04.155000+00:00",
-            "trade_id_min": 851373749,
-            "trade_id_max": 851374748,
+            "sha256": "6846a2cbc5b1ea2dbbfc56dfda566c5c534ef1362f0b3e0f4cb66651902e2383",
+            "oldest": "2026-11-01T08:04:06.396000+00:00",
+            "newest": "2026-11-01T08:20:33.897000+00:00",
+            "trade_id_min": 851412592,
+            "trade_id_max": 851413591,
             "count": 1000,
-            "next_cursor": "851373749"
+            "next_cursor": "851412592"
           },
           {
             "page": 33,
-            "sha256": "958cd15c59110246736ec2efde8ff0dc799c47ccb36c0e677b46e7d836a9511a",
-            "oldest": "2026-10-31T22:04:54.640000+00:00",
-            "newest": "2026-10-31T22:18:42.603000+00:00",
-            "trade_id_min": 851372749,
-            "trade_id_max": 851373748,
+            "sha256": "dd2a17fbe3a3467ba1e307a3da8344a8060c69d5a2efc6087290675ca1607e39",
+            "oldest": "2026-11-01T07:43:40.651000+00:00",
+            "newest": "2026-11-01T08:04:04.330000+00:00",
+            "trade_id_min": 851411592,
+            "trade_id_max": 851412591,
             "count": 1000,
-            "next_cursor": "851372749"
+            "next_cursor": "851411592"
           },
           {
             "page": 34,
-            "sha256": "e565ad46d661ddc48add9a1c2310550648600fe240355ba1dcb096703ab81190",
-            "oldest": "2026-10-31T22:01:25.382000+00:00",
-            "newest": "2026-10-31T22:04:54.640000+00:00",
-            "trade_id_min": 851371749,
-            "trade_id_max": 851372748,
+            "sha256": "ce4b7be350180d3b6600cd75c0d2d6a49b5c3094df1dd88e7fc140520afea8c7",
+            "oldest": "2026-11-01T07:21:30.024000+00:00",
+            "newest": "2026-11-01T07:43:40.651000+00:00",
+            "trade_id_min": 851410592,
+            "trade_id_max": 851411591,
             "count": 1000,
-            "next_cursor": "851371749"
+            "next_cursor": "851410592"
           },
           {
             "page": 35,
-            "sha256": "288d01e789c0e232cea19c74cf756fec8519c50a855c15ba0fcc37e3333fb907",
-            "oldest": "2026-10-31T21:43:40.398000+00:00",
-            "newest": "2026-10-31T22:01:24.425000+00:00",
-            "trade_id_min": 851370749,
-            "trade_id_max": 851371748,
+            "sha256": "6e48574671f6a27be271c78e522289c5b8415952c5b2264709940fe288d9bb6c",
+            "oldest": "2026-11-01T07:06:35.478000+00:00",
+            "newest": "2026-11-01T07:21:30.022000+00:00",
+            "trade_id_min": 851409592,
+            "trade_id_max": 851410591,
             "count": 1000,
-            "next_cursor": "851370749"
+            "next_cursor": "851409592"
           },
           {
             "page": 36,
-            "sha256": "d9b6233653617e9d0af96ea5ba5872096b260cdd46ad04385fd18444d75816ea",
-            "oldest": "2026-10-31T21:25:28.234000+00:00",
-            "newest": "2026-10-31T21:43:40.261000+00:00",
-            "trade_id_min": 851369749,
-            "trade_id_max": 851370748,
+            "sha256": "ff0a6801bfd98db68c095e22b685160ef8fb3b5e994528e9a604a74e0e5c8408",
+            "oldest": "2026-11-01T06:44:23.396000+00:00",
+            "newest": "2026-11-01T07:06:35.478000+00:00",
+            "trade_id_min": 851408592,
+            "trade_id_max": 851409591,
             "count": 1000,
-            "next_cursor": "851369749"
+            "next_cursor": "851408592"
           },
           {
             "page": 37,
-            "sha256": "b710b7d840a4eb90762a552b80db0df93d32df2e904a2d5f83817d90d7af1a4f",
-            "oldest": "2026-10-31T21:09:06.650000+00:00",
-            "newest": "2026-10-31T21:25:27.567000+00:00",
-            "trade_id_min": 851368749,
-            "trade_id_max": 851369748,
+            "sha256": "c48d77999b6ad3abb694269574edeaab4e00b8816901b6511029dfbff9e2160b",
+            "oldest": "2026-11-01T06:25:48.325000+00:00",
+            "newest": "2026-11-01T06:44:23.396000+00:00",
+            "trade_id_min": 851407592,
+            "trade_id_max": 851408591,
             "count": 1000,
-            "next_cursor": "851368749"
+            "next_cursor": "851407592"
           },
           {
             "page": 38,
-            "sha256": "aad686fd7dcab22b2bf8dbe6b41118b095611e77ff58323db79b945dd6bfd34b",
-            "oldest": "2026-10-31T20:55:41.456000+00:00",
-            "newest": "2026-10-31T21:09:06.650000+00:00",
-            "trade_id_min": 851367749,
-            "trade_id_max": 851368748,
+            "sha256": "2e56b5236f4d67919a5ce52ff3bb79a12313ad3fd1294e240800d0c501442269",
+            "oldest": "2026-11-01T06:11:40.924000+00:00",
+            "newest": "2026-11-01T06:25:48.325000+00:00",
+            "trade_id_min": 851406592,
+            "trade_id_max": 851407591,
             "count": 1000,
-            "next_cursor": "851367749"
+            "next_cursor": "851406592"
           },
           {
             "page": 39,
-            "sha256": "1ce5b161bd0f47ae2063e0ce626e909466c04533685b26f84499967388caa2e8",
-            "oldest": "2026-10-31T20:33:37.534000+00:00",
-            "newest": "2026-10-31T20:55:41.456000+00:00",
-            "trade_id_min": 851366749,
-            "trade_id_max": 851367748,
+            "sha256": "f006edebd20993fe1d81faf5fcb39d5874452a131b9f70061e705867164dae75",
+            "oldest": "2026-11-01T05:58:35.495000+00:00",
+            "newest": "2026-11-01T06:11:40.238000+00:00",
+            "trade_id_min": 851405592,
+            "trade_id_max": 851406591,
             "count": 1000,
-            "next_cursor": "851366749"
+            "next_cursor": "851405592"
           },
           {
             "page": 40,
-            "sha256": "0ce04fc245d60e2294d39e7f83c98297fd9d3c4d6b510a9ce033fc38f4d2bf59",
-            "oldest": "2026-10-31T20:15:58.054000+00:00",
-            "newest": "2026-10-31T20:33:37.534000+00:00",
-            "trade_id_min": 851365749,
-            "trade_id_max": 851366748,
+            "sha256": "12bed56b1bdbe2fa188ea863f554ba61b90f0c6f5ed65dfd776f3af63fa584a8",
+            "oldest": "2026-11-01T05:40:25.026000+00:00",
+            "newest": "2026-11-01T05:58:33.938000+00:00",
+            "trade_id_min": 851404592,
+            "trade_id_max": 851405591,
             "count": 1000,
-            "next_cursor": "851365749"
+            "next_cursor": "851404592"
           },
           {
             "page": 41,
-            "sha256": "baa8a98e84ef88645407d65caea4d80f4f2e0d97f4d76b5e0a556d39a8c3e671",
-            "oldest": "2026-10-31T19:56:01.912000+00:00",
-            "newest": "2026-10-31T20:15:58.054000+00:00",
-            "trade_id_min": 851364749,
-            "trade_id_max": 851365748,
+            "sha256": "c569b73fba14f3e8388131f27317397d0e8e8c2c987ae8b61e1e18336f299e4e",
+            "oldest": "2026-11-01T05:22:50.818000+00:00",
+            "newest": "2026-11-01T05:40:25.024000+00:00",
+            "trade_id_min": 851403592,
+            "trade_id_max": 851404591,
             "count": 1000,
-            "next_cursor": "851364749"
+            "next_cursor": "851403592"
           },
           {
             "page": 42,
-            "sha256": "da1f6d80d8721f8407d93052b757c488447b196cfddde2f60cf21d9f1f53695c",
-            "oldest": "2026-10-31T19:39:07.968000+00:00",
-            "newest": "2026-10-31T19:56:00.422000+00:00",
-            "trade_id_min": 851363749,
-            "trade_id_max": 851364748,
+            "sha256": "ec7205056812b0a38203172e10e95e24e81f6b3243cb3455001ac5f72dbaf69f",
+            "oldest": "2026-11-01T05:05:49.406000+00:00",
+            "newest": "2026-11-01T05:22:47.666000+00:00",
+            "trade_id_min": 851402592,
+            "trade_id_max": 851403591,
             "count": 1000,
-            "next_cursor": "851363749"
+            "next_cursor": "851402592"
           },
           {
             "page": 43,
-            "sha256": "1d1b4a83c35ee9dd9cf7748b3ebe2ec125f2e6607b6e5b3ace27791d4b0c1705",
-            "oldest": "2026-10-31T19:22:03.872000+00:00",
-            "newest": "2026-10-31T19:39:07.968000+00:00",
-            "trade_id_min": 851362749,
-            "trade_id_max": 851363748,
+            "sha256": "4b819d96e505b4d21fdd7cdba82aafbe486dff8cb58c184c3194687fbddce3b6",
+            "oldest": "2026-11-01T04:50:59.614000+00:00",
+            "newest": "2026-11-01T05:05:49.406000+00:00",
+            "trade_id_min": 851401592,
+            "trade_id_max": 851402591,
             "count": 1000,
-            "next_cursor": "851362749"
+            "next_cursor": "851401592"
           },
           {
             "page": 44,
-            "sha256": "0725b611203a8cec7e57fce73d5eaad91d5831c0f06c553f44ab1ab5a9271443",
-            "oldest": "2026-10-31T19:02:53.752000+00:00",
-            "newest": "2026-10-31T19:22:03.649000+00:00",
-            "trade_id_min": 851361749,
-            "trade_id_max": 851362748,
+            "sha256": "96ecab2cbd854cc5b6845c82ee8eca3a5426079108bd460b58ba603a0c49643c",
+            "oldest": "2026-11-01T04:34:04.021000+00:00",
+            "newest": "2026-11-01T04:50:58.657000+00:00",
+            "trade_id_min": 851400592,
+            "trade_id_max": 851401591,
             "count": 1000,
-            "next_cursor": "851361749"
+            "next_cursor": "851400592"
           },
           {
             "page": 45,
-            "sha256": "8156191f5af4df96a9c3337070b9924068e5fe58c74b91eeb2547ef95a0ebe6a",
-            "oldest": "2026-10-31T18:43:57.887000+00:00",
-            "newest": "2026-10-31T19:02:52.456000+00:00",
-            "trade_id_min": 851360749,
-            "trade_id_max": 851361748,
+            "sha256": "6db13050fb26e975d3dea57e977a19ad36aa2ac30ab5ed5452215dee29825b2f",
+            "oldest": "2026-11-01T04:18:08.532000+00:00",
+            "newest": "2026-11-01T04:34:02.356000+00:00",
+            "trade_id_min": 851399592,
+            "trade_id_max": 851400591,
             "count": 1000,
-            "next_cursor": "851360749"
+            "next_cursor": "851399592"
           },
           {
             "page": 46,
-            "sha256": "0e4bcfe18faf296c7db56b8831264c12f31131e502e15a484cc576438e31c3f5",
-            "oldest": "2026-10-31T18:26:42.727000+00:00",
-            "newest": "2026-10-31T18:43:57.887000+00:00",
-            "trade_id_min": 851359749,
-            "trade_id_max": 851360748,
+            "sha256": "12fdd6093411ce298c402e926acb4a887efb8a792b340090773a6bd49f9a498e",
+            "oldest": "2026-11-01T04:03:13.944000+00:00",
+            "newest": "2026-11-01T04:18:08.438000+00:00",
+            "trade_id_min": 851398592,
+            "trade_id_max": 851399591,
             "count": 1000,
-            "next_cursor": "851359749"
+            "next_cursor": "851398592"
           },
           {
             "page": 47,
-            "sha256": "9610916a432eb94eafc3452f91a2a3a675e368a467e4c73709e0bf5740af5730",
-            "oldest": "2026-10-31T18:06:59.380000+00:00",
-            "newest": "2026-10-31T18:26:41.807000+00:00",
-            "trade_id_min": 851358749,
-            "trade_id_max": 851359748,
+            "sha256": "bd04f08e768e0df849494fd88c99d052b79e19b3ddf03985a0e28184098ddf21",
+            "oldest": "2026-11-01T03:49:40.646000+00:00",
+            "newest": "2026-11-01T04:03:13.199000+00:00",
+            "trade_id_min": 851397592,
+            "trade_id_max": 851398591,
             "count": 1000,
-            "next_cursor": "851358749"
+            "next_cursor": "851397592"
           },
           {
             "page": 48,
-            "sha256": "2f3cb215b59dc0f30bf07c56ab5dea78e80dd085854210fb1bd2192b6d5b1bc5",
-            "oldest": "2026-10-31T17:53:08.106000+00:00",
-            "newest": "2026-10-31T18:06:59.380000+00:00",
-            "trade_id_min": 851357749,
-            "trade_id_max": 851358748,
+            "sha256": "e8f9be6550095c077c5c52be67d0a3a6875e33cf7868a5fc69437b1fd3927676",
+            "oldest": "2026-11-01T03:37:54.960000+00:00",
+            "newest": "2026-11-01T03:49:40.643000+00:00",
+            "trade_id_min": 851396592,
+            "trade_id_max": 851397591,
             "count": 1000,
-            "next_cursor": "851357749"
+            "next_cursor": "851396592"
           },
           {
             "page": 49,
-            "sha256": "8d0f0271b1181f105eaa8141f7fedea663633a784ed4fbcc4049283eb22c2316",
-            "oldest": "2026-10-31T17:43:25.766000+00:00",
-            "newest": "2026-10-31T17:53:08.106000+00:00",
-            "trade_id_min": 851356749,
-            "trade_id_max": 851357748,
+            "sha256": "d1678b341cf46b9430ba2b81a64618fc9ef966a6145272fd385dc1a48c2a44cd",
+            "oldest": "2026-11-01T03:20:01.651000+00:00",
+            "newest": "2026-11-01T03:37:53.672000+00:00",
+            "trade_id_min": 851395592,
+            "trade_id_max": 851396591,
             "count": 1000,
-            "next_cursor": "851356749"
+            "next_cursor": "851395592"
           },
           {
             "page": 50,
-            "sha256": "0af2fc712553819710d84d4456ecea4c118edbe2d6eaa299a6714736d00e44db",
-            "oldest": "2026-10-31T17:25:02.590000+00:00",
-            "newest": "2026-10-31T17:43:25.757000+00:00",
-            "trade_id_min": 851355749,
-            "trade_id_max": 851356748,
+            "sha256": "9693ae4c1e562ffe2c02826f00075703aa19105f97423473b62be083bba17cd5",
+            "oldest": "2026-11-01T03:05:02.152000+00:00",
+            "newest": "2026-11-01T03:20:01.651000+00:00",
+            "trade_id_min": 851394592,
+            "trade_id_max": 851395591,
             "count": 1000,
-            "next_cursor": "851355749"
+            "next_cursor": "851394592"
           },
           {
             "page": 51,
-            "sha256": "cf2cd9b62b4c15807b88bc8ae0930f5516667fd39cb8957bf9b91014d75a6b38",
-            "oldest": "2026-10-31T17:08:42.018000+00:00",
-            "newest": "2026-10-31T17:25:02.215000+00:00",
-            "trade_id_min": 851354749,
-            "trade_id_max": 851355748,
+            "sha256": "d4775818bb22395ff9606a1cf936bf9d0358c72d9f3b49d723344fa7cd76b298",
+            "oldest": "2026-11-01T02:50:14.698000+00:00",
+            "newest": "2026-11-01T03:05:02.152000+00:00",
+            "trade_id_min": 851393592,
+            "trade_id_max": 851394591,
             "count": 1000,
-            "next_cursor": "851354749"
+            "next_cursor": "851393592"
           },
           {
             "page": 52,
-            "sha256": "fefb040f57672aeb15df50b9ec1271c2a5a329e36883aefb98f9e43f16fc731b",
-            "oldest": "2026-10-31T16:59:57.105000+00:00",
-            "newest": "2026-10-31T17:08:41.634000+00:00",
-            "trade_id_min": 851353749,
-            "trade_id_max": 851354748,
+            "sha256": "cc050a4f2aa966825b336ee98f8d5d3499ef4bbae9caa76dc6f2baede2f9b734",
+            "oldest": "2026-11-01T02:33:19.556000+00:00",
+            "newest": "2026-11-01T02:50:14.692000+00:00",
+            "trade_id_min": 851392592,
+            "trade_id_max": 851393591,
             "count": 1000,
-            "next_cursor": "851353749"
+            "next_cursor": "851392592"
           },
           {
             "page": 53,
-            "sha256": "29516bc8b3b605e80c3e76a710c9e388659db7e055dec8aa1c4c485ee5d5d944",
-            "oldest": "2026-10-31T16:39:57.773000+00:00",
-            "newest": "2026-10-31T16:59:57.105000+00:00",
-            "trade_id_min": 851352749,
-            "trade_id_max": 851353748,
+            "sha256": "bee3dc7432c671dbebd382b0ccc5435bbb4d358b8ddd9fb809e053d7f2129cba",
+            "oldest": "2026-11-01T02:19:11.139000+00:00",
+            "newest": "2026-11-01T02:33:19.556000+00:00",
+            "trade_id_min": 851391592,
+            "trade_id_max": 851392591,
             "count": 1000,
-            "next_cursor": "851352749"
+            "next_cursor": "851391592"
           },
           {
             "page": 54,
-            "sha256": "8c2623427141ca00a49480382a9f5c17fd79a9a77b1c73499de8ff88b6350e0c",
-            "oldest": "2026-10-31T16:21:37.876000+00:00",
-            "newest": "2026-10-31T16:39:57.745000+00:00",
-            "trade_id_min": 851351749,
-            "trade_id_max": 851352748,
+            "sha256": "d3a776d48c2e4448f5b2cb5618be023bdf593606fdbbd352db149d118385a289",
+            "oldest": "2026-11-01T02:08:42.375000+00:00",
+            "newest": "2026-11-01T02:19:11.139000+00:00",
+            "trade_id_min": 851390592,
+            "trade_id_max": 851391591,
             "count": 1000,
-            "next_cursor": "851351749"
+            "next_cursor": "851390592"
           },
           {
             "page": 55,
-            "sha256": "a2b6c4567068cf4120fb05979517412afd108e3f6afd2514a0009fe1e7615457",
-            "oldest": "2026-10-31T16:04:38.588000+00:00",
-            "newest": "2026-10-31T16:21:35.919000+00:00",
-            "trade_id_min": 851350749,
-            "trade_id_max": 851351748,
+            "sha256": "185085d42a3dfe67fe6381feae6041fb2c83a5e33f7f1870c27b5996acd010b7",
+            "oldest": "2026-11-01T02:03:53.170000+00:00",
+            "newest": "2026-11-01T02:08:42.375000+00:00",
+            "trade_id_min": 851389592,
+            "trade_id_max": 851390591,
             "count": 1000,
-            "next_cursor": "851350749"
+            "next_cursor": "851389592"
           },
           {
             "page": 56,
-            "sha256": "e5390d9cc9732aa70d29a99a22348f3568ddc51f2a28e0447c255e94efefcbaa",
-            "oldest": "2026-10-31T15:49:44.384000+00:00",
-            "newest": "2026-10-31T16:04:38.046000+00:00",
-            "trade_id_min": 851349749,
-            "trade_id_max": 851350748,
+            "sha256": "027e4d176832dc23bf291aba4ff1fcd9a812aa8b55f88585a9a59469852da71d",
+            "oldest": "2026-11-01T01:53:00.647000+00:00",
+            "newest": "2026-11-01T02:03:53.170000+00:00",
+            "trade_id_min": 851388592,
+            "trade_id_max": 851389591,
             "count": 1000,
-            "next_cursor": "851349749"
+            "next_cursor": "851388592"
           },
           {
             "page": 57,
-            "sha256": "8f21a9908272a6e73868534781ea650b2d7a2c1ae8ffdb1335ae30bf17bbe2c3",
-            "oldest": "2026-10-31T15:33:53.899000+00:00",
-            "newest": "2026-10-31T15:49:43.008000+00:00",
-            "trade_id_min": 851348749,
-            "trade_id_max": 851349748,
+            "sha256": "a7ac2fd365601ca029501a74e210072c6f6c9dc0f1ca66cacc92ebd19a607a64",
+            "oldest": "2026-11-01T01:40:28.819000+00:00",
+            "newest": "2026-11-01T01:53:00.647000+00:00",
+            "trade_id_min": 851387592,
+            "trade_id_max": 851388591,
             "count": 1000,
-            "next_cursor": "851348749"
+            "next_cursor": "851387592"
           },
           {
             "page": 58,
-            "sha256": "554f96f29e8daa37707bd79b81c1a85c8a3cabb8ece3026c3a753e530d1821e8",
-            "oldest": "2026-10-31T15:17:30.830000+00:00",
-            "newest": "2026-10-31T15:33:47.289000+00:00",
-            "trade_id_min": 851347749,
-            "trade_id_max": 851348748,
+            "sha256": "79b6bde0987c6a249613bfb33bf23a9f0c003cc39faa94b23053a99e3a283692",
+            "oldest": "2026-11-01T01:30:42.772000+00:00",
+            "newest": "2026-11-01T01:40:28.819000+00:00",
+            "trade_id_min": 851386592,
+            "trade_id_max": 851387591,
             "count": 1000,
-            "next_cursor": "851347749"
+            "next_cursor": "851386592"
           },
           {
             "page": 59,
-            "sha256": "ba377588758a608d593a48fb8d58b791e20e9e6d61355d80cb60fe77afa242f5",
-            "oldest": "2026-10-31T15:03:44.263000+00:00",
-            "newest": "2026-10-31T15:17:21.615000+00:00",
-            "trade_id_min": 851346749,
-            "trade_id_max": 851347748,
+            "sha256": "fafcc3459a4d3074ffbbc03f8b20061792fa2346f1e5963b16572cf36c36cdec",
+            "oldest": "2026-11-01T01:19:42.274000+00:00",
+            "newest": "2026-11-01T01:30:42.772000+00:00",
+            "trade_id_min": 851385592,
+            "trade_id_max": 851386591,
             "count": 1000,
-            "next_cursor": "851346749"
+            "next_cursor": "851385592"
           },
           {
             "page": 60,
-            "sha256": "ac1859de072ce4ffa7ec9d71950d32cd1ac4a5ddfb00a2e90127a0f1f2cdf160",
-            "oldest": "2026-10-31T14:54:40.531000+00:00",
-            "newest": "2026-10-31T15:03:44.263000+00:00",
-            "trade_id_min": 851345749,
-            "trade_id_max": 851346748,
+            "sha256": "c24952df36f15f38831cb618be49b0331673ef4951102ba97a2642b008f4fdd9",
+            "oldest": "2026-11-01T01:08:47.994000+00:00",
+            "newest": "2026-11-01T01:19:39.806000+00:00",
+            "trade_id_min": 851384592,
+            "trade_id_max": 851385591,
             "count": 1000,
-            "next_cursor": "851345749"
+            "next_cursor": "851384592"
           },
           {
             "page": 61,
-            "sha256": "049c95228f3121f5b5397f2ec98d8bb4b351032d1e8384d58bb3991a583ec854",
-            "oldest": "2026-10-31T14:44:07.071000+00:00",
-            "newest": "2026-10-31T14:54:40.531000+00:00",
-            "trade_id_min": 851344749,
-            "trade_id_max": 851345748,
+            "sha256": "0026198f61b39fa70a1945968ab46b83f57c6c2dfaaf4d90fe2aa64e9173d5b1",
+            "oldest": "2026-11-01T00:55:43.728000+00:00",
+            "newest": "2026-11-01T01:08:47.994000+00:00",
+            "trade_id_min": 851383592,
+            "trade_id_max": 851384591,
             "count": 1000,
-            "next_cursor": "851344749"
+            "next_cursor": "851383592"
           },
           {
             "page": 62,
-            "sha256": "5c8aa5082d59b15bad3c95d7369940f34c5d443df9240a9772ad4cc89bab4137",
-            "oldest": "2026-10-31T14:27:36.640000+00:00",
-            "newest": "2026-10-31T14:44:07.071000+00:00",
-            "trade_id_min": 851343749,
-            "trade_id_max": 851344748,
+            "sha256": "0c794054e2ab6f7ccd404060392bcd5acfd75cdc05b2460c975adec8c19ab548",
+            "oldest": "2026-11-01T00:44:39.804000+00:00",
+            "newest": "2026-11-01T00:55:41.512000+00:00",
+            "trade_id_min": 851382592,
+            "trade_id_max": 851383591,
             "count": 1000,
-            "next_cursor": "851343749"
+            "next_cursor": "851382592"
           },
           {
             "page": 63,
-            "sha256": "4ec2965e62a6d00dc0c6222e96210d3b5484a03f122b9808dda0476d09aa1827",
-            "oldest": "2026-10-31T14:14:00.023000+00:00",
-            "newest": "2026-10-31T14:27:36.640000+00:00",
-            "trade_id_min": 851342749,
-            "trade_id_max": 851343748,
+            "sha256": "5bc5fb15c12dc213fec1fa1825504b51fafcffe42e2263d6fc0afae21f79d8e9",
+            "oldest": "2026-11-01T00:30:54.496000+00:00",
+            "newest": "2026-11-01T00:44:39.803000+00:00",
+            "trade_id_min": 851381592,
+            "trade_id_max": 851382591,
             "count": 1000,
-            "next_cursor": "851342749"
+            "next_cursor": "851381592"
           },
           {
             "page": 64,
-            "sha256": "7bcc09cd60ba8ea02373b1621c3e29a36ba5b748d2850d010a2250eda077002a",
-            "oldest": "2026-10-31T13:59:07.080000+00:00",
-            "newest": "2026-10-31T14:13:59.967000+00:00",
-            "trade_id_min": 851341749,
-            "trade_id_max": 851342748,
+            "sha256": "32514ce271fc5dedf8d10d2f4ec0d4d427fb169927f9dec83869529489cfdab8",
+            "oldest": "2026-11-01T00:17:15.434000+00:00",
+            "newest": "2026-11-01T00:30:54.496000+00:00",
+            "trade_id_min": 851380592,
+            "trade_id_max": 851381591,
             "count": 1000,
-            "next_cursor": "851341749"
+            "next_cursor": "851380592"
           },
           {
             "page": 65,
-            "sha256": "e76e5ecadd18d5f688335ac96d017dab0929b0969bcfaa4e254d413d0079ef00",
-            "oldest": "2026-10-31T13:40:19.573000+00:00",
-            "newest": "2026-10-31T13:59:07.080000+00:00",
-            "trade_id_min": 851340749,
-            "trade_id_max": 851341748,
+            "sha256": "0c6279b1ff76187212609ffb1343b8193c5a7ea80dbf5ce630b783d311f356cc",
+            "oldest": "2026-11-01T00:02:50.209000+00:00",
+            "newest": "2026-11-01T00:17:15.434000+00:00",
+            "trade_id_min": 851379592,
+            "trade_id_max": 851380591,
             "count": 1000,
-            "next_cursor": "851340749"
+            "next_cursor": "851379592"
           },
           {
             "page": 66,
-            "sha256": "3dbbc3cfb1d95c4855053863bdce584fc7f1053322ccc1777b3b4551497da65d",
-            "oldest": "2026-10-31T13:20:09.658000+00:00",
-            "newest": "2026-10-31T13:40:19.573000+00:00",
-            "trade_id_min": 851339749,
-            "trade_id_max": 851340748,
+            "sha256": "c7f847eba2635727f610dd39916a7d33a64cc534510892f22ae542ab4d5b504d",
+            "oldest": "2026-10-31T23:44:59.971000+00:00",
+            "newest": "2026-11-01T00:02:49.550000+00:00",
+            "trade_id_min": 851378592,
+            "trade_id_max": 851379591,
             "count": 1000,
-            "next_cursor": "851339749"
+            "next_cursor": "851378592"
           },
           {
             "page": 67,
-            "sha256": "a14ff6f70439a0ac5518d998c33878ed1721cf6b9cc5e896279e699661ea8776",
-            "oldest": "2026-10-31T13:05:23.803000+00:00",
-            "newest": "2026-10-31T13:20:09.657000+00:00",
-            "trade_id_min": 851338749,
-            "trade_id_max": 851339748,
+            "sha256": "d9c4b31138c8ddd82322838c184ff3d8ff98cec77826fb572b691818b598cf37",
+            "oldest": "2026-10-31T23:26:25.346000+00:00",
+            "newest": "2026-10-31T23:44:59.478000+00:00",
+            "trade_id_min": 851377592,
+            "trade_id_max": 851378591,
             "count": 1000,
-            "next_cursor": "851338749"
+            "next_cursor": "851377592"
           },
           {
             "page": 68,
-            "sha256": "92296df6729a2fa7a7159c426cbb4a0c2e0f7839ab7de8c6a5340fd8d7da9efc",
-            "oldest": "2026-10-31T12:47:41.575000+00:00",
-            "newest": "2026-10-31T13:05:23.803000+00:00",
-            "trade_id_min": 851337749,
-            "trade_id_max": 851338748,
+            "sha256": "566fb5bbd3f5a8bd6fb1855c5140b97adb47fc889a75ce12f09efd1486f3e167",
+            "oldest": "2026-10-31T23:06:39.007000+00:00",
+            "newest": "2026-10-31T23:26:24.535000+00:00",
+            "trade_id_min": 851376592,
+            "trade_id_max": 851377591,
             "count": 1000,
-            "next_cursor": "851337749"
+            "next_cursor": "851376592"
           },
           {
             "page": 69,
-            "sha256": "36a688140d68baef63b4db63c03d9dc247dd0f5230650adce24d9e0e6c7c0e05",
-            "oldest": "2026-10-31T12:36:24.742000+00:00",
-            "newest": "2026-10-31T12:47:41.532000+00:00",
-            "trade_id_min": 851336749,
-            "trade_id_max": 851337748,
+            "sha256": "1bb0a83e3f43fdf9b3c1ee69ca77965e12220e2422050d07af2fb6d40dba063e",
+            "oldest": "2026-10-31T22:51:01.486000+00:00",
+            "newest": "2026-10-31T23:06:38.869000+00:00",
+            "trade_id_min": 851375592,
+            "trade_id_max": 851376591,
             "count": 1000,
-            "next_cursor": "851336749"
+            "next_cursor": "851375592"
           },
           {
             "page": 70,
-            "sha256": "5c40630dd8ce2e38d9272b9af5b93211ed7c73415af0ad972f8bdc266e930a34",
-            "oldest": "2026-10-31T12:19:15.111000+00:00",
-            "newest": "2026-10-31T12:36:24.742000+00:00",
-            "trade_id_min": 851335749,
-            "trade_id_max": 851336748,
+            "sha256": "74066136a4fa73b1636a68bd41aec9b00e5243881f7b53d5f0ac15ac311b85f3",
+            "oldest": "2026-10-31T22:33:08.684000+00:00",
+            "newest": "2026-10-31T22:51:01.486000+00:00",
+            "trade_id_min": 851374592,
+            "trade_id_max": 851375591,
             "count": 1000,
-            "next_cursor": "851335749"
+            "next_cursor": "851374592"
           },
           {
             "page": 71,
-            "sha256": "1206ec5ede067980b2af5146630bfeeccc941bc7e979d799cdd8c7ed896a4402",
-            "oldest": "2026-10-31T11:58:25.461000+00:00",
-            "newest": "2026-10-31T12:19:15.111000+00:00",
-            "trade_id_min": 851334749,
-            "trade_id_max": 851335748,
+            "sha256": "6412d8839e02f85c5782bfc9ef1fad4e07f67731fa6526a54e27d989edc694f1",
+            "oldest": "2026-10-31T22:16:12.020000+00:00",
+            "newest": "2026-10-31T22:33:05.126000+00:00",
+            "trade_id_min": 851373592,
+            "trade_id_max": 851374591,
             "count": 1000,
-            "next_cursor": "851334749"
+            "next_cursor": "851373592"
           },
           {
             "page": 72,
-            "sha256": "b0771ee900fffce4ffe645c675e4757c7081fb382fe8bfe9b8f8e1428713d0bb",
-            "oldest": "2026-10-31T11:42:25.405000+00:00",
-            "newest": "2026-10-31T11:58:24.253000+00:00",
-            "trade_id_min": 851333749,
-            "trade_id_max": 851334748,
+            "sha256": "ba03c7c713d2399fff4767ba3869b057fbbeafb1ae81c3857ae44bca9e0fe97d",
+            "oldest": "2026-10-31T22:03:29.846000+00:00",
+            "newest": "2026-10-31T22:16:11.787000+00:00",
+            "trade_id_min": 851372592,
+            "trade_id_max": 851373591,
             "count": 1000,
-            "next_cursor": "851333749"
+            "next_cursor": "851372592"
           },
           {
             "page": 73,
-            "sha256": "ef7b8fed5eb3d62a8ea8170db7b9971c7efee19216a329a35a982da0f76e25e5",
-            "oldest": "2026-10-31T11:22:24.397000+00:00",
-            "newest": "2026-10-31T11:42:25.405000+00:00",
-            "trade_id_min": 851332749,
-            "trade_id_max": 851333748,
+            "sha256": "9866682d4261ffd2ff8f899096d2bd31d9deb2f0f5ca451a05ad81aa0d9ada24",
+            "oldest": "2026-10-31T22:00:00.482000+00:00",
+            "newest": "2026-10-31T22:03:29.846000+00:00",
+            "trade_id_min": 851371592,
+            "trade_id_max": 851372591,
             "count": 1000,
-            "next_cursor": "851332749"
+            "next_cursor": "851371592"
           },
           {
             "page": 74,
-            "sha256": "b9b3a6cb84629f6d1117ce576d545e264502ec01a2e8c33ee5d620f8f21e0005",
-            "oldest": "2026-10-31T10:58:25.699000+00:00",
-            "newest": "2026-10-31T11:22:24.397000+00:00",
-            "trade_id_min": 851331749,
-            "trade_id_max": 851332748,
+            "sha256": "87929cf835538c6329b6d71a962fe300669efe766ff7e40a11286d0fca36d380",
+            "oldest": "2026-10-31T21:40:15.413000+00:00",
+            "newest": "2026-10-31T22:00:00.481000+00:00",
+            "trade_id_min": 851370592,
+            "trade_id_max": 851371591,
             "count": 1000,
-            "next_cursor": "851331749"
+            "next_cursor": "851370592"
           },
           {
             "page": 75,
-            "sha256": "15298f411249c96af335d48ee9a1992de7d400e48066345b4d10f1d20f4132c0",
-            "oldest": "2026-10-31T10:37:59.802000+00:00",
-            "newest": "2026-10-31T10:58:25.699000+00:00",
-            "trade_id_min": 851330749,
-            "trade_id_max": 851331748,
+            "sha256": "4858c0c770cc7f280da2492fedb5cfc24e7272939936a76b64e94a7810574d7f",
+            "oldest": "2026-10-31T21:23:21.389000+00:00",
+            "newest": "2026-10-31T21:40:14.432000+00:00",
+            "trade_id_min": 851369592,
+            "trade_id_max": 851370591,
             "count": 1000,
-            "next_cursor": "851330749"
+            "next_cursor": "851369592"
           },
           {
             "page": 76,
-            "sha256": "1b1adb11da176608b545d269be4d4b1fdbf90cfc4269380f09c575f483d9c065",
-            "oldest": "2026-10-31T10:18:10.629000+00:00",
-            "newest": "2026-10-31T10:37:58.873000+00:00",
-            "trade_id_min": 851329749,
-            "trade_id_max": 851330748,
+            "sha256": "713fe91f9bf9d7c627193c46abdb0b772a2c09416472e4ed38907b6c8b0d74c7",
+            "oldest": "2026-10-31T21:06:50.222000+00:00",
+            "newest": "2026-10-31T21:23:21.329000+00:00",
+            "trade_id_min": 851368592,
+            "trade_id_max": 851369591,
             "count": 1000,
-            "next_cursor": "851329749"
+            "next_cursor": "851368592"
           },
           {
             "page": 77,
-            "sha256": "5c179f07f8b0d9909777d21844f9d8f7c968802e87406131aa6196b2b04ea33b",
-            "oldest": "2026-10-31T10:00:50.631000+00:00",
-            "newest": "2026-10-31T10:18:10.050000+00:00",
-            "trade_id_min": 851328749,
-            "trade_id_max": 851329748,
+            "sha256": "16015fbb9e69ec2d541aa0a1d8e30c42f7e5d3d392bd11603762f4a6484451f1",
+            "oldest": "2026-10-31T20:52:06.669000+00:00",
+            "newest": "2026-10-31T21:06:50.222000+00:00",
+            "trade_id_min": 851367592,
+            "trade_id_max": 851368591,
             "count": 1000,
-            "next_cursor": "851328749"
+            "next_cursor": "851367592"
           },
           {
             "page": 78,
-            "sha256": "e593d4223186f8d1e1536e8e944d8c649bb3c2ee5b1cc1f634a5a21682174213",
-            "oldest": "2026-10-31T09:36:26.966000+00:00",
-            "newest": "2026-10-31T10:00:40.402000+00:00",
-            "trade_id_min": 851327749,
-            "trade_id_max": 851328748,
+            "sha256": "6cdff65cf8774cca610edfe15af8019090ea22719dfd296406e5f97d7574c3b6",
+            "oldest": "2026-10-31T20:31:18.267000+00:00",
+            "newest": "2026-10-31T20:52:06.669000+00:00",
+            "trade_id_min": 851366592,
+            "trade_id_max": 851367591,
             "count": 1000,
-            "next_cursor": "851327749"
+            "next_cursor": "851366592"
           },
           {
             "page": 79,
-            "sha256": "690883ca1a40e1a8ca7cd9f5f9db3f38d0512c8eaa423cb1136839e63b462243",
-            "oldest": "2026-10-31T09:12:24.992000+00:00",
-            "newest": "2026-10-31T09:36:26.966000+00:00",
-            "trade_id_min": 851326749,
-            "trade_id_max": 851327748,
+            "sha256": "8930380da4c8f8744af95a0b1558157fdcf9328add1b813a4de4dde0142d4ded",
+            "oldest": "2026-10-31T20:13:35.900000+00:00",
+            "newest": "2026-10-31T20:31:18.267000+00:00",
+            "trade_id_min": 851365592,
+            "trade_id_max": 851366591,
             "count": 1000,
-            "next_cursor": "851326749"
+            "next_cursor": "851365592"
           },
           {
             "page": 80,
-            "sha256": "02211cf93bc8b5a78b81e958c7f734635eaf10b8ca9069d1f67315b2fb374039",
-            "oldest": "2026-10-31T08:53:41.691000+00:00",
-            "newest": "2026-10-31T09:12:24.943000+00:00",
-            "trade_id_min": 851325749,
-            "trade_id_max": 851326748,
+            "sha256": "97f3e6ed837aed311c6644cdded3eee21b81239becde8e24d6475ab314df9c69",
+            "oldest": "2026-10-31T19:52:50.574000+00:00",
+            "newest": "2026-10-31T20:13:35.900000+00:00",
+            "trade_id_min": 851364592,
+            "trade_id_max": 851365591,
             "count": 1000,
-            "next_cursor": "851325749"
+            "next_cursor": "851364592"
           },
           {
             "page": 81,
-            "sha256": "85ccdd87340369213843c9c571dfb7631943e6e30217a673ef26144231e38cd2",
-            "oldest": "2026-10-31T08:33:31.766000+00:00",
-            "newest": "2026-10-31T08:53:36.857000+00:00",
-            "trade_id_min": 851324749,
-            "trade_id_max": 851325748,
+            "sha256": "f17bdd0dacb9d58fd9afa66e595524b08a6788df23726ba93e21b4225eaf1309",
+            "oldest": "2026-10-31T19:35:45.367000+00:00",
+            "newest": "2026-10-31T19:52:50.434000+00:00",
+            "trade_id_min": 851363592,
+            "trade_id_max": 851364591,
             "count": 1000,
-            "next_cursor": "851324749"
+            "next_cursor": "851363592"
           },
           {
             "page": 82,
-            "sha256": "2e1e63af14406e20e5963181bfc332f75b2139a9bd0b82662cc3eebd04f6ba4f",
-            "oldest": "2026-10-31T08:17:21.207000+00:00",
-            "newest": "2026-10-31T08:33:31.766000+00:00",
-            "trade_id_min": 851323749,
-            "trade_id_max": 851324748,
+            "sha256": "16412e7a96da0ab380454a526f91cee08942df963bcc348e36dda2431eb33a8f",
+            "oldest": "2026-10-31T19:19:14.670000+00:00",
+            "newest": "2026-10-31T19:35:45.184000+00:00",
+            "trade_id_min": 851362592,
+            "trade_id_max": 851363591,
             "count": 1000,
-            "next_cursor": "851323749"
+            "next_cursor": "851362592"
           },
           {
             "page": 83,
-            "sha256": "47bb0d00af9a50306834337c1bdf8f1afd00d78bb0aa181d9ba38270fb8d950a",
-            "oldest": "2026-10-31T08:03:08.074000+00:00",
-            "newest": "2026-10-31T08:17:17.797000+00:00",
-            "trade_id_min": 851322749,
-            "trade_id_max": 851323748,
+            "sha256": "046f9058bdf3def8cc40935d5d78beebb3c7b4f727b6427ef4885bea0dec6076",
+            "oldest": "2026-10-31T18:59:12.111000+00:00",
+            "newest": "2026-10-31T19:19:13.854000+00:00",
+            "trade_id_min": 851361592,
+            "trade_id_max": 851362591,
             "count": 1000,
-            "next_cursor": "851322749"
+            "next_cursor": "851361592"
           },
           {
             "page": 84,
-            "sha256": "81638465668b11a059d4ef04798d14c934b2579a376e317ea689b25597418fe9",
-            "oldest": "2026-10-31T07:40:01.477000+00:00",
-            "newest": "2026-10-31T08:03:08.074000+00:00",
-            "trade_id_min": 851321749,
-            "trade_id_max": 851322748,
+            "sha256": "4fa879adc709ef538f054adf40503b6c6bce08ead2a5d1ada628670060ae46a4",
+            "oldest": "2026-10-31T18:40:00.736000+00:00",
+            "newest": "2026-10-31T18:59:05.119000+00:00",
+            "trade_id_min": 851360592,
+            "trade_id_max": 851361591,
             "count": 1000,
-            "next_cursor": "851321749"
+            "next_cursor": "851360592"
           },
           {
             "page": 85,
-            "sha256": "8868f6b26e2eb926f6a24a42b131749b1d4c1fdfc355233db2f2e6a9814dd8dd",
-            "oldest": "2026-10-31T07:20:58.659000+00:00",
-            "newest": "2026-10-31T07:40:01.125000+00:00",
-            "trade_id_min": 851320749,
-            "trade_id_max": 851321748,
+            "sha256": "793e6fb7f5031c1232387b162a47c6c36992e9856dcdc6eb28f4a3a57be1ea1a",
+            "oldest": "2026-10-31T18:23:36.186000+00:00",
+            "newest": "2026-10-31T18:40:00.736000+00:00",
+            "trade_id_min": 851359592,
+            "trade_id_max": 851360591,
             "count": 1000,
-            "next_cursor": "851320749"
+            "next_cursor": "851359592"
           },
           {
             "page": 86,
-            "sha256": "d828bdbf1bc12fbdb24de4a3d9f9e9223c002821d940cbeb69e5cabc5180bc6b",
-            "oldest": "2026-10-31T07:05:17.238000+00:00",
-            "newest": "2026-10-31T07:20:58.659000+00:00",
-            "trade_id_min": 851319749,
-            "trade_id_max": 851320748,
+            "sha256": "0f9e57afdd9cd38f0271af2b75bdee4865a97dad266bbebdceea8edc552493bf",
+            "oldest": "2026-10-31T18:04:25.575000+00:00",
+            "newest": "2026-10-31T18:23:35.744000+00:00",
+            "trade_id_min": 851358592,
+            "trade_id_max": 851359591,
             "count": 1000,
-            "next_cursor": "851319749"
+            "next_cursor": "851358592"
           },
           {
             "page": 87,
-            "sha256": "f6ab4e855c0da1550fd42fdbec84814a73ded197bf76b983ba990b8f4ffdff5e",
-            "oldest": "2026-10-31T06:47:19.379000+00:00",
-            "newest": "2026-10-31T07:05:17.221000+00:00",
-            "trade_id_min": 851318749,
-            "trade_id_max": 851319748,
+            "sha256": "e20340c8200656422a458cc021b9a363c803d0d92a35e1576df1c2f7f585b2dc",
+            "oldest": "2026-10-31T17:51:40.895000+00:00",
+            "newest": "2026-10-31T18:04:25.429000+00:00",
+            "trade_id_min": 851357592,
+            "trade_id_max": 851358591,
             "count": 1000,
-            "next_cursor": "851318749"
+            "next_cursor": "851357592"
           },
           {
             "page": 88,
-            "sha256": "014811308db5b915b354dd607cbb161165ec91f062e2a672be2ac83ed29d224f",
-            "oldest": "2026-10-31T06:26:53.026000+00:00",
-            "newest": "2026-10-31T06:47:19.379000+00:00",
-            "trade_id_min": 851317749,
-            "trade_id_max": 851318748,
+            "sha256": "b71820636e04d8dd462b1688ab54c773e84bdb4a2bab91eb391fa9b706d95883",
+            "oldest": "2026-10-31T17:40:58.527000+00:00",
+            "newest": "2026-10-31T17:51:38.298000+00:00",
+            "trade_id_min": 851356592,
+            "trade_id_max": 851357591,
             "count": 1000,
-            "next_cursor": "851317749"
+            "next_cursor": "851356592"
           },
           {
             "page": 89,
-            "sha256": "bb63d5b5c430a53fc949e62276dc8b89c088f3c49abefd1324f179fee09a2027",
-            "oldest": "2026-10-31T06:08:19.243000+00:00",
-            "newest": "2026-10-31T06:26:53.026000+00:00",
-            "trade_id_min": 851316749,
-            "trade_id_max": 851317748,
+            "sha256": "27ee06b5f2f116bab6b1019b682fe1d22814f5d33738f115f7f4d5f8d4d0d791",
+            "oldest": "2026-10-31T17:21:57.967000+00:00",
+            "newest": "2026-10-31T17:40:58.527000+00:00",
+            "trade_id_min": 851355592,
+            "trade_id_max": 851356591,
             "count": 1000,
-            "next_cursor": "851316749"
+            "next_cursor": "851355592"
           },
           {
             "page": 90,
-            "sha256": "10ba074867e070b9bdb97f2928d577f52878b8c2167dbddd21b7b80e03a57e02",
-            "oldest": "2026-10-31T05:49:23.381000+00:00",
-            "newest": "2026-10-31T06:08:19.243000+00:00",
-            "trade_id_min": 851315749,
-            "trade_id_max": 851316748,
+            "sha256": "cb31c5dbbc802e5908b5d6ab009e878809642adc385f2289d7f68dbfcc9ba79d",
+            "oldest": "2026-10-31T17:07:30.109000+00:00",
+            "newest": "2026-10-31T17:21:54.250000+00:00",
+            "trade_id_min": 851354592,
+            "trade_id_max": 851355591,
             "count": 1000,
-            "next_cursor": "851315749"
+            "next_cursor": "851354592"
+          },
+          {
+            "page": 91,
+            "sha256": "d4d026abbd04e212a4308e5398c546fcca83501a249a9ab50564e254238ab794",
+            "oldest": "2026-10-31T16:57:04.403000+00:00",
+            "newest": "2026-10-31T17:07:30.109000+00:00",
+            "trade_id_min": 851353592,
+            "trade_id_max": 851354591,
+            "count": 1000,
+            "next_cursor": "851353592"
+          },
+          {
+            "page": 92,
+            "sha256": "be6dfbce104da1841cc21b5aa53476ae1f9d8f8ecbb9f8385e001acd7678b823",
+            "oldest": "2026-10-31T16:36:51.960000+00:00",
+            "newest": "2026-10-31T16:57:04.155000+00:00",
+            "trade_id_min": 851352592,
+            "trade_id_max": 851353591,
+            "count": 1000,
+            "next_cursor": "851352592"
+          },
+          {
+            "page": 93,
+            "sha256": "580832d4a0f47ce7f16d5c311b2b506919a1904d42379ca345761b02a1449c28",
+            "oldest": "2026-10-31T16:18:23.124000+00:00",
+            "newest": "2026-10-31T16:36:39.285000+00:00",
+            "trade_id_min": 851351592,
+            "trade_id_max": 851352591,
+            "count": 1000,
+            "next_cursor": "851351592"
+          },
+          {
+            "page": 94,
+            "sha256": "5fcaeae3ba89f32971f082c2bd6878314ccf63bcbaedeece00d3b54b575dee72",
+            "oldest": "2026-10-31T16:02:28.086000+00:00",
+            "newest": "2026-10-31T16:18:22.699000+00:00",
+            "trade_id_min": 851350592,
+            "trade_id_max": 851351591,
+            "count": 1000,
+            "next_cursor": "851350592"
+          },
+          {
+            "page": 95,
+            "sha256": "c01001b6c9c0fef38dac5deeefc360b48411291e9a1efddd5c9235cad71244b9",
+            "oldest": "2026-10-31T15:46:29.405000+00:00",
+            "newest": "2026-10-31T16:02:27.863000+00:00",
+            "trade_id_min": 851349592,
+            "trade_id_max": 851350591,
+            "count": 1000,
+            "next_cursor": "851349592"
+          },
+          {
+            "page": 96,
+            "sha256": "f8d41b123671877485b2edfa223963cb56ea928c906c2147415bd0a4ce07d74f",
+            "oldest": "2026-10-31T15:31:05.167000+00:00",
+            "newest": "2026-10-31T15:46:29.397000+00:00",
+            "trade_id_min": 851348592,
+            "trade_id_max": 851349591,
+            "count": 1000,
+            "next_cursor": "851348592"
+          },
+          {
+            "page": 97,
+            "sha256": "63beed2216bbc6603fbc19b8ca11a94b9370dceceab5ced81cf4de5bcc198e6f",
+            "oldest": "2026-10-31T15:14:39.559000+00:00",
+            "newest": "2026-10-31T15:31:05.167000+00:00",
+            "trade_id_min": 851347592,
+            "trade_id_max": 851348591,
+            "count": 1000,
+            "next_cursor": "851347592"
+          },
+          {
+            "page": 98,
+            "sha256": "d9e324b5b10d3d839c9ce5fa10b7d54fa60de984da624cb1f6aa4adb93477767",
+            "oldest": "2026-10-31T15:01:30.829000+00:00",
+            "newest": "2026-10-31T15:14:39.326000+00:00",
+            "trade_id_min": 851346592,
+            "trade_id_max": 851347591,
+            "count": 1000,
+            "next_cursor": "851346592"
+          },
+          {
+            "page": 99,
+            "sha256": "821042176000ab3ae5befd2bbb675cbe89866178e5812d54f910a0ae221bf74a",
+            "oldest": "2026-10-31T14:54:15.236000+00:00",
+            "newest": "2026-10-31T15:01:30.829000+00:00",
+            "trade_id_min": 851345592,
+            "trade_id_max": 851346591,
+            "count": 1000,
+            "next_cursor": "851345592"
           }
         ],
         "not_global_or_all_us_demand": true,
         "stored_payload": "AGGREGATED_HOURS_AND_SOURCE_PAGE_HASHES_NOT_FULL_TRADE_TAPE"
       },
-      "finished_at": "2026-11-01T06:02:28.818685+00:00"
+      "finished_at": "2026-11-01T15:10:27.645188+00:00"
     },
     {
       "key": "ETF_BTC",
       "url": "https://farside.co.uk/btc/",
-      "started_at": "2026-11-01T06:02:28.818715+00:00",
+      "started_at": "2026-11-01T15:10:27.645210+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETF_BTC.raw",
-      "sha256": "72d29ac61fe9d8ad0d56d51f5373ceb1fa15c7659016f110e23674329bf9f09e",
-      "retrieved_at": "2026-11-01T06:02:29.652569+00:00",
+      "sha256": "654704560133c3de6b895595cdb990a84fb7d290f3c9739a3e7d822746ce5dc5",
+      "retrieved_at": "2026-11-01T15:10:28.460039+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "net_flow_million_usd": -643.2,
@@ -2416,18 +2506,18 @@
         "revision_policy": "LATEST_REVISED_DESCRIPTIVE_NOT_PIT",
         "available_at": null
       },
-      "finished_at": "2026-11-01T06:02:29.663783+00:00"
+      "finished_at": "2026-11-01T15:10:28.470363+00:00"
     },
     {
       "key": "ETF_ETH",
       "url": "https://farside.co.uk/eth/",
-      "started_at": "2026-11-01T06:02:29.663808+00:00",
+      "started_at": "2026-11-01T15:10:28.470382+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETF_ETH.raw",
-      "sha256": "105530bea06cb6da456ebee3baf66e6e96fde224454aaeb883d0670c3bda5f1b",
-      "retrieved_at": "2026-11-01T06:02:29.957997+00:00",
+      "sha256": "345cfcc74362e756f36ffb1dcbe422ea11569944766271b259b38f5f2183c427",
+      "retrieved_at": "2026-11-01T15:10:29.224944+00:00",
       "value": {
         "observed_at_date": "2026-10-30",
         "net_flow_million_usd": -155.7,
@@ -2443,18 +2533,18 @@
         "revision_policy": "LATEST_REVISED_DESCRIPTIVE_NOT_PIT",
         "available_at": null
       },
-      "finished_at": "2026-11-01T06:02:29.968849+00:00"
+      "finished_at": "2026-11-01T15:10:29.233680+00:00"
     },
     {
       "key": "RWA",
       "url": "https://app.rwa.xyz/networks",
-      "started_at": "2026-11-01T06:02:29.968875+00:00",
+      "started_at": "2026-11-01T15:10:29.233695+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "RWA.raw.gz",
-      "sha256": "a9af17046033b3d7c53f1e60ce9f3f96b696d9ac4a141151b49067ff3a5896c8",
-      "retrieved_at": "2026-11-01T06:02:30.383448+00:00",
+      "sha256": "2963b623287bf263ca1666f38307c22167cf4847f03dc206a301499cb0dd7492",
+      "retrieved_at": "2026-11-01T15:10:29.876564+00:00",
       "value": {
         "observed_at_date": "2026-11-01",
         "aggregates": {
@@ -2475,7 +2565,7 @@
           "Stablecoin Value": {
             "value": 286240936992.36774,
             "change": {
-              "value": -0.02898779792721626,
+              "value": -0.028987797927216865,
               "interval": "30d"
             }
           },
@@ -2714,57 +2804,57 @@
         ],
         "snapshot_not_completed_day": true
       },
-      "finished_at": "2026-11-01T06:02:30.613870+00:00"
+      "finished_at": "2026-11-01T15:10:30.068208+00:00"
     },
     {
       "key": "ISM",
       "url": "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-report-on-business/",
-      "started_at": "2026-11-01T06:02:30.613911+00:00",
+      "started_at": "2026-11-01T15:10:30.068240+00:00",
       "status": "ACCESS_BLOCKED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ISM.raw",
       "sha256": "2b00e9ba5232405175ee282eb5bee399299c655c105edb7531500a5ffaa006dc",
-      "retrieved_at": "2026-11-01T06:02:31.301780+00:00",
+      "retrieved_at": "2026-11-01T15:10:31.088134+00:00",
       "reason": "ValueError: provider access block; no bypass attempted",
-      "finished_at": "2026-11-01T06:02:31.301830+00:00"
+      "finished_at": "2026-11-01T15:10:31.088169+00:00"
     },
     {
       "key": "APPARENT_DEMAND",
       "url": "https://cryptoquant.com/asset/btc/chart/network-indicator/apparent-demand",
-      "started_at": "2026-11-01T06:02:31.301850+00:00",
+      "started_at": "2026-11-01T15:10:31.088185+00:00",
       "status": "FAILED",
       "available_at": null,
       "reason": "HTTPError: HTTP Error 403: Forbidden",
-      "finished_at": "2026-11-01T06:02:31.366311+00:00"
+      "finished_at": "2026-11-01T15:10:31.204787+00:00"
     },
     {
       "key": "BRK_date",
       "url": "https://bitview.space/api/series/date/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:31.366338+00:00",
+      "started_at": "2026-11-01T15:10:31.204805+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_date.raw",
       "sha256": "07f6cc8222ffb65bfa217c361d4925e930605ee0e30570106d5068e082016f1b",
-      "retrieved_at": "2026-11-01T06:02:31.592988+00:00",
+      "retrieved_at": "2026-11-01T15:10:31.446618+00:00",
       "value": {
         "status": "DATE_ALIGNMENT_INDEX",
         "start": 6499,
         "end": 6513
       },
-      "finished_at": "2026-11-01T06:02:31.593827+00:00"
+      "finished_at": "2026-11-01T15:10:31.447819+00:00"
     },
     {
       "key": "BRK_lth_supply",
       "url": "https://bitview.space/api/series/lth_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:31.593852+00:00",
+      "started_at": "2026-11-01T15:10:31.447834+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_lth_supply.raw",
       "sha256": "90bc004858fe587da431643e22d0268da766d2804e96a501ed5b4976626d6505",
-      "retrieved_at": "2026-11-01T06:02:31.792306+00:00",
+      "retrieved_at": "2026-11-01T15:10:31.776869+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 16367149.70953138,
@@ -2791,18 +2881,18 @@
         },
         "computation_version": 1154016262
       },
-      "finished_at": "2026-11-01T06:02:31.792387+00:00"
+      "finished_at": "2026-11-01T15:10:31.776939+00:00"
     },
     {
       "key": "BRK_sth_supply",
       "url": "https://bitview.space/api/series/sth_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:31.792405+00:00",
+      "started_at": "2026-11-01T15:10:31.776951+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_sth_supply.raw",
       "sha256": "a7ec4c5854521cd9be6ebae1f57dbfec7072472decea0be5083112e15ef349e4",
-      "retrieved_at": "2026-11-01T06:02:31.990366+00:00",
+      "retrieved_at": "2026-11-01T15:10:31.977224+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 3739001.40598591,
@@ -2829,18 +2919,18 @@
         },
         "computation_version": 1154016262
       },
-      "finished_at": "2026-11-01T06:02:31.990442+00:00"
+      "finished_at": "2026-11-01T15:10:31.977274+00:00"
     },
     {
       "key": "BRK_circulating_supply",
       "url": "https://bitview.space/api/series/circulating_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:31.990464+00:00",
+      "started_at": "2026-11-01T15:10:31.977286+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_circulating_supply.raw",
       "sha256": "00c51d03b12196af845a7cbb2572154207982947910ffbaf26b422ca7c124cb4",
-      "retrieved_at": "2026-11-01T06:02:32.195016+00:00",
+      "retrieved_at": "2026-11-01T15:10:32.172046+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 20106151.11551729,
@@ -2867,18 +2957,18 @@
         },
         "computation_version": 3448840617
       },
-      "finished_at": "2026-11-01T06:02:32.195111+00:00"
+      "finished_at": "2026-11-01T15:10:32.172099+00:00"
     },
     {
       "key": "BRK_balance_1_to_10_btc_supply",
       "url": "https://bitview.space/api/series/balance_1_to_10_btc_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:32.195132+00:00",
+      "started_at": "2026-11-01T15:10:32.172112+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1_to_10_btc_supply.raw",
       "sha256": "0713d1b495bc30eae214587d5e3280906d2e201b1ef17ab9040a0ab9e4f924b4",
-      "retrieved_at": "2026-11-01T06:02:32.391389+00:00",
+      "retrieved_at": "2026-11-01T15:10:32.397970+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 2039644.33623353,
@@ -2905,18 +2995,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:32.391467+00:00"
+      "finished_at": "2026-11-01T15:10:32.398017+00:00"
     },
     {
       "key": "BRK_balance_1_to_10_sats_supply",
       "url": "https://bitview.space/api/series/balance_1_to_10_sats_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:32.391488+00:00",
+      "started_at": "2026-11-01T15:10:32.398029+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1_to_10_sats_supply.raw",
       "sha256": "245c00d1c8fc1bd647c4318b04beb17f6fe8f8893fe67f26f6f9be71e6a5f82c",
-      "retrieved_at": "2026-11-01T06:02:32.611127+00:00",
+      "retrieved_at": "2026-11-01T15:10:32.742393+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 0.00845015,
@@ -2943,18 +3033,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:32.611198+00:00"
+      "finished_at": "2026-11-01T15:10:32.742442+00:00"
     },
     {
       "key": "BRK_balance_100_to_1k_btc_supply",
       "url": "https://bitview.space/api/series/balance_100_to_1k_btc_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:32.611218+00:00",
+      "started_at": "2026-11-01T15:10:32.742456+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_100_to_1k_btc_supply.raw",
       "sha256": "235e63f60d471a7d71bcbdce310c058c6ba6d6dbdf9dbaf3f83799631321dc6d",
-      "retrieved_at": "2026-11-01T06:02:32.794010+00:00",
+      "retrieved_at": "2026-11-01T15:10:32.950875+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 5278216.99884115,
@@ -2981,18 +3071,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:32.794093+00:00"
+      "finished_at": "2026-11-01T15:10:32.950924+00:00"
     },
     {
       "key": "BRK_balance_10_to_100_btc_supply",
       "url": "https://bitview.space/api/series/balance_10_to_100_btc_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:32.794111+00:00",
+      "started_at": "2026-11-01T15:10:32.950937+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10_to_100_btc_supply.raw",
       "sha256": "6464bd02f4f6dce4444068e5ea9aec99aaa81479e47ece80d4cb605bb6acc700",
-      "retrieved_at": "2026-11-01T06:02:32.993067+00:00",
+      "retrieved_at": "2026-11-01T15:10:33.164059+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 4220995.72477283,
@@ -3019,18 +3109,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:32.993151+00:00"
+      "finished_at": "2026-11-01T15:10:33.164107+00:00"
     },
     {
       "key": "BRK_balance_1k_to_10k_btc_supply",
       "url": "https://bitview.space/api/series/balance_1k_to_10k_btc_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:32.993171+00:00",
+      "started_at": "2026-11-01T15:10:33.164121+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1k_to_10k_btc_supply.raw",
       "sha256": "da16a3bca734f024c6d69475f74887f3c25a5f9386b59bf1836b10c18eda5777",
-      "retrieved_at": "2026-11-01T06:02:33.200967+00:00",
+      "retrieved_at": "2026-11-01T15:10:33.424492+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 4196830.9520344,
@@ -3057,18 +3147,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:33.201060+00:00"
+      "finished_at": "2026-11-01T15:10:33.424540+00:00"
     },
     {
       "key": "BRK_balance_over_100k_btc_supply",
       "url": "https://bitview.space/api/series/balance_over_100k_btc_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:33.201080+00:00",
+      "started_at": "2026-11-01T15:10:33.424553+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_over_100k_btc_supply.raw",
       "sha256": "be5eb3f787e8b62ef32787ba816970a64f752cde9b721db9d1d1369e9fe07f01",
-      "retrieved_at": "2026-11-01T06:02:33.378905+00:00",
+      "retrieved_at": "2026-11-01T15:10:33.665026+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 693445.52528876,
@@ -3095,18 +3185,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:33.378983+00:00"
+      "finished_at": "2026-11-01T15:10:33.665097+00:00"
     },
     {
       "key": "BRK_balance_100_to_1k_sats_supply",
       "url": "https://bitview.space/api/series/balance_100_to_1k_sats_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:33.379002+00:00",
+      "started_at": "2026-11-01T15:10:33.665111+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_100_to_1k_sats_supply.raw",
       "sha256": "0cb0f0182c13b8030ead494db57812a42c5352922be68f2b1fc406db033888d6",
-      "retrieved_at": "2026-11-01T06:02:33.561002+00:00",
+      "retrieved_at": "2026-11-01T15:10:33.862358+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 30.1831032,
@@ -3133,18 +3223,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:33.561076+00:00"
+      "finished_at": "2026-11-01T15:10:33.862417+00:00"
     },
     {
       "key": "BRK_balance_10_to_100_sats_supply",
       "url": "https://bitview.space/api/series/balance_10_to_100_sats_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:33.561095+00:00",
+      "started_at": "2026-11-01T15:10:33.862435+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10_to_100_sats_supply.raw",
       "sha256": "62b25345d63a7fe717de0239ae2ba5dadb97e0678a1d4ba60078c5d877e9d420",
-      "retrieved_at": "2026-11-01T06:02:33.773872+00:00",
+      "retrieved_at": "2026-11-01T15:10:34.065045+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 0.06188236,
@@ -3171,18 +3261,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:33.773954+00:00"
+      "finished_at": "2026-11-01T15:10:34.065092+00:00"
     },
     {
       "key": "BRK_balance_1k_to_10k_sats_supply",
       "url": "https://bitview.space/api/series/balance_1k_to_10k_sats_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:33.773976+00:00",
+      "started_at": "2026-11-01T15:10:34.065107+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1k_to_10k_sats_supply.raw",
       "sha256": "ddfca054b5e31b46036815662758bbf5781682327926700ee030a26772cdca52",
-      "retrieved_at": "2026-11-01T06:02:33.996713+00:00",
+      "retrieved_at": "2026-11-01T15:10:34.271323+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 505.70212179,
@@ -3209,18 +3299,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:33.996796+00:00"
+      "finished_at": "2026-11-01T15:10:34.271375+00:00"
     },
     {
       "key": "BRK_balance_1m_to_10m_sats_supply",
       "url": "https://bitview.space/api/series/balance_1m_to_10m_sats_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:33.996814+00:00",
+      "started_at": "2026-11-01T15:10:34.271390+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1m_to_10m_sats_supply.raw",
       "sha256": "d8c2d7e076f823895a4d090af7b865098bbf0fa8b0b6bb80cc3f010140338677",
-      "retrieved_at": "2026-11-01T06:02:34.192018+00:00",
+      "retrieved_at": "2026-11-01T15:10:34.464751+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 277671.36981829,
@@ -3247,18 +3337,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:34.192099+00:00"
+      "finished_at": "2026-11-01T15:10:34.464800+00:00"
     },
     {
       "key": "BRK_balance_100k_to_1m_sats_supply",
       "url": "https://bitview.space/api/series/balance_100k_to_1m_sats_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:34.192120+00:00",
+      "started_at": "2026-11-01T15:10:34.464813+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_100k_to_1m_sats_supply.raw",
       "sha256": "a153dc01c22172669caefffdf626744f205471f796f7f8ab043f42bb868bd494",
-      "retrieved_at": "2026-11-01T06:02:34.411803+00:00",
+      "retrieved_at": "2026-11-01T15:10:34.668248+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 45028.29937539,
@@ -3285,18 +3375,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:34.411880+00:00"
+      "finished_at": "2026-11-01T15:10:34.668299+00:00"
     },
     {
       "key": "BRK_balance_10k_to_100k_btc_supply",
       "url": "https://bitview.space/api/series/balance_10k_to_100k_btc_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:34.411898+00:00",
+      "started_at": "2026-11-01T15:10:34.668313+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10k_to_100k_btc_supply.raw",
       "sha256": "29bb3463c6b200fb8602a13a498b04a96cfdb1f006d9312f2d85bebef0eea80b",
-      "retrieved_at": "2026-11-01T06:02:34.622224+00:00",
+      "retrieved_at": "2026-11-01T15:10:34.863987+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 2281055.65808218,
@@ -3323,18 +3413,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:34.622302+00:00"
+      "finished_at": "2026-11-01T15:10:34.864038+00:00"
     },
     {
       "key": "BRK_balance_10k_to_100k_sats_supply",
       "url": "https://bitview.space/api/series/balance_10k_to_100k_sats_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:34.622324+00:00",
+      "started_at": "2026-11-01T15:10:34.864125+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10k_to_100k_sats_supply.raw",
       "sha256": "13393da71116b4989070bbbb2fbdc8583e790138d4a51d364e22e23b938be4a6",
-      "retrieved_at": "2026-11-01T06:02:34.829081+00:00",
+      "retrieved_at": "2026-11-01T15:10:35.056435+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 5299.06828582,
@@ -3361,18 +3451,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:34.829153+00:00"
+      "finished_at": "2026-11-01T15:10:35.056479+00:00"
     },
     {
       "key": "BRK_balance_10m_to_100m_sats_supply",
       "url": "https://bitview.space/api/series/balance_10m_to_100m_sats_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:34.829173+00:00",
+      "started_at": "2026-11-01T15:10:35.056493+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10m_to_100m_sats_supply.raw",
       "sha256": "0d2f0662f241c1f96991149557840e54b8719efd513b707b9a049f4263e8b701",
-      "retrieved_at": "2026-11-01T06:02:35.056984+00:00",
+      "retrieved_at": "2026-11-01T15:10:35.255062+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 1064790.67581428,
@@ -3399,18 +3489,18 @@
         },
         "computation_version": 1709109501
       },
-      "finished_at": "2026-11-01T06:02:35.057071+00:00"
+      "finished_at": "2026-11-01T15:10:35.255114+00:00"
     },
     {
       "key": "BRK_age_1d_to_1w_supply",
       "url": "https://bitview.space/api/series/age_1d_to_1w_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:35.057093+00:00",
+      "started_at": "2026-11-01T15:10:35.255126+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1d_to_1w_supply.raw",
       "sha256": "f0ba34dade7001eefc531513fbe397b23891bf965ebb4ad1635b926c2d651787",
-      "retrieved_at": "2026-11-01T06:02:35.242062+00:00",
+      "retrieved_at": "2026-11-01T15:10:35.462291+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 556813.15955903,
@@ -3437,18 +3527,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:35.242145+00:00"
+      "finished_at": "2026-11-01T15:10:35.462341+00:00"
     },
     {
       "key": "BRK_age_1h_to_1d_supply",
       "url": "https://bitview.space/api/series/age_1h_to_1d_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:35.242166+00:00",
+      "started_at": "2026-11-01T15:10:35.462355+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1h_to_1d_supply.raw",
       "sha256": "81599d3dcbce1bd9bc057ea8d7da815a2e0170b1a2b2f370360e967e40de27cd",
-      "retrieved_at": "2026-11-01T06:02:35.438686+00:00",
+      "retrieved_at": "2026-11-01T15:10:35.693192+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 101920.05011488,
@@ -3475,18 +3565,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:35.438768+00:00"
+      "finished_at": "2026-11-01T15:10:35.693243+00:00"
     },
     {
       "key": "BRK_age_1m_to_2m_supply",
       "url": "https://bitview.space/api/series/age_1m_to_2m_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:35.438787+00:00",
+      "started_at": "2026-11-01T15:10:35.693258+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1m_to_2m_supply.raw",
       "sha256": "233d16856fa6d7d1696d0b381d2a70917f578b7cb7a558c442d1c2307654cd59",
-      "retrieved_at": "2026-11-01T06:02:35.673684+00:00",
+      "retrieved_at": "2026-11-01T15:10:36.005774+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 724038.93621194,
@@ -3513,18 +3603,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:35.673762+00:00"
+      "finished_at": "2026-11-01T15:10:36.005824+00:00"
     },
     {
       "key": "BRK_age_1w_to_1m_supply",
       "url": "https://bitview.space/api/series/age_1w_to_1m_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:35.673783+00:00",
+      "started_at": "2026-11-01T15:10:36.005835+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1w_to_1m_supply.raw",
       "sha256": "e63c9083bccfd092014fc295a36c2eb945583754ffee43f62fc4c890565b0693",
-      "retrieved_at": "2026-11-01T06:02:35.882914+00:00",
+      "retrieved_at": "2026-11-01T15:10:36.226096+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 962077.85309975,
@@ -3551,18 +3641,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:35.882992+00:00"
+      "finished_at": "2026-11-01T15:10:36.226150+00:00"
     },
     {
       "key": "BRK_age_2m_to_3m_supply",
       "url": "https://bitview.space/api/series/age_2m_to_3m_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:35.883012+00:00",
+      "started_at": "2026-11-01T15:10:36.226165+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_2m_to_3m_supply.raw",
       "sha256": "59589f7e38e287aac13fd76317c523f583151cb3e784df09d200c8fa567c0a6f",
-      "retrieved_at": "2026-11-01T06:02:36.073049+00:00",
+      "retrieved_at": "2026-11-01T15:10:36.433113+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 627292.18792985,
@@ -3589,18 +3679,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:36.073134+00:00"
+      "finished_at": "2026-11-01T15:10:36.433173+00:00"
     },
     {
       "key": "BRK_age_2y_to_3y_supply",
       "url": "https://bitview.space/api/series/age_2y_to_3y_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:36.073155+00:00",
+      "started_at": "2026-11-01T15:10:36.433185+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_2y_to_3y_supply.raw",
       "sha256": "a259c5b799752cd4b55cb7c9003e48495304097fece110bb2ebb69401536b9d0",
-      "retrieved_at": "2026-11-01T06:02:36.265750+00:00",
+      "retrieved_at": "2026-11-01T15:10:36.679809+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 1318008.77584203,
@@ -3627,18 +3717,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:36.265834+00:00"
+      "finished_at": "2026-11-01T15:10:36.679858+00:00"
     },
     {
       "key": "BRK_age_3m_to_4m_supply",
       "url": "https://bitview.space/api/series/age_3m_to_4m_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:36.265853+00:00",
+      "started_at": "2026-11-01T15:10:36.679868+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_3m_to_4m_supply.raw",
       "sha256": "a7e781969bea5ff609281dff8950e89acfc07e8702923b7d049c5c3c400938a9",
-      "retrieved_at": "2026-11-01T06:02:36.475203+00:00",
+      "retrieved_at": "2026-11-01T15:10:36.876435+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 431725.41958366,
@@ -3665,18 +3755,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:36.475289+00:00"
+      "finished_at": "2026-11-01T15:10:36.876480+00:00"
     },
     {
       "key": "BRK_age_3y_to_4y_supply",
       "url": "https://bitview.space/api/series/age_3y_to_4y_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:36.475311+00:00",
+      "started_at": "2026-11-01T15:10:36.876493+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_3y_to_4y_supply.raw",
       "sha256": "e462e6318ddef2cd2b1344576172599669b61c0c4e87e4ccb07aac309be5488b",
-      "retrieved_at": "2026-11-01T06:02:36.662443+00:00",
+      "retrieved_at": "2026-11-01T15:10:37.089491+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 990841.46400015,
@@ -3703,18 +3793,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:36.662567+00:00"
+      "finished_at": "2026-11-01T15:10:37.089539+00:00"
     },
     {
       "key": "BRK_age_4m_to_5m_supply",
       "url": "https://bitview.space/api/series/age_4m_to_5m_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:36.662585+00:00",
+      "started_at": "2026-11-01T15:10:37.089554+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_4m_to_5m_supply.raw",
       "sha256": "c986fa39c56663673608aaec75a09d80601e9cbf03d6257a34da754a7dee9328",
-      "retrieved_at": "2026-11-01T06:02:36.863885+00:00",
+      "retrieved_at": "2026-11-01T15:10:37.288091+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 326636.48648106,
@@ -3741,18 +3831,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:36.863969+00:00"
+      "finished_at": "2026-11-01T15:10:37.288141+00:00"
     },
     {
       "key": "BRK_age_4y_to_5y_supply",
       "url": "https://bitview.space/api/series/age_4y_to_5y_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:36.863989+00:00",
+      "started_at": "2026-11-01T15:10:37.288154+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_4y_to_5y_supply.raw",
       "sha256": "d3d03fe5c87e81a885b79cb057a37b82c4abb7f08f33304342a9e3de6d6a8459",
-      "retrieved_at": "2026-11-01T06:02:37.054090+00:00",
+      "retrieved_at": "2026-11-01T15:10:37.483616+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 695060.87913045,
@@ -3779,18 +3869,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:37.054173+00:00"
+      "finished_at": "2026-11-01T15:10:37.483663+00:00"
     },
     {
       "key": "BRK_age_5m_to_6m_supply",
       "url": "https://bitview.space/api/series/age_5m_to_6m_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:37.054194+00:00",
+      "started_at": "2026-11-01T15:10:37.483676+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_5m_to_6m_supply.raw",
       "sha256": "e4e083191f8b9ba05b4fa0b7cd29cc95b352c962a97380e4e84b8f13ed4d41d0",
-      "retrieved_at": "2026-11-01T06:02:37.234169+00:00",
+      "retrieved_at": "2026-11-01T15:10:37.674259+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 321249.63011961,
@@ -3817,18 +3907,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:37.234248+00:00"
+      "finished_at": "2026-11-01T15:10:37.674308+00:00"
     },
     {
       "key": "BRK_age_5y_to_6y_supply",
       "url": "https://bitview.space/api/series/age_5y_to_6y_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:37.234269+00:00",
+      "started_at": "2026-11-01T15:10:37.674319+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_5y_to_6y_supply.raw",
       "sha256": "a6bebd58acdb9880c56beb8935088318405da968440bfbb2b4295ea72d8efebb",
-      "retrieved_at": "2026-11-01T06:02:37.425989+00:00",
+      "retrieved_at": "2026-11-01T15:10:37.911221+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 1159662.36491426,
@@ -3855,18 +3945,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:37.426063+00:00"
+      "finished_at": "2026-11-01T15:10:37.911267+00:00"
     },
     {
       "key": "BRK_age_6m_to_9m_supply",
       "url": "https://bitview.space/api/series/age_6m_to_9m_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:37.426084+00:00",
+      "started_at": "2026-11-01T15:10:37.911280+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_6m_to_9m_supply.raw",
       "sha256": "b88f5b673c79578e7008f71acce584809bd72f4824d91c9667c1a75c244512aa",
-      "retrieved_at": "2026-11-01T06:02:37.651195+00:00",
+      "retrieved_at": "2026-11-01T15:10:38.097933+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 986774.3336141,
@@ -3893,18 +3983,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:37.651264+00:00"
+      "finished_at": "2026-11-01T15:10:38.097986+00:00"
     },
     {
       "key": "BRK_age_6y_to_7y_supply",
       "url": "https://bitview.space/api/series/age_6y_to_7y_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:37.651284+00:00",
+      "started_at": "2026-11-01T15:10:38.097999+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_6y_to_7y_supply.raw",
       "sha256": "e2ae1f9107534d206fd03b78635e6f2d944a1eb8506939d416937799860e74a5",
-      "retrieved_at": "2026-11-01T06:02:37.849246+00:00",
+      "retrieved_at": "2026-11-01T15:10:38.287774+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 406828.05911447,
@@ -3931,18 +4021,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:37.849307+00:00"
+      "finished_at": "2026-11-01T15:10:38.287822+00:00"
     },
     {
       "key": "BRK_age_7y_to_8y_supply",
       "url": "https://bitview.space/api/series/age_7y_to_8y_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:37.849325+00:00",
+      "started_at": "2026-11-01T15:10:38.287833+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_7y_to_8y_supply.raw",
       "sha256": "1dc3a2ee22385d8fa5b5133cba44cbe59f062e8aa08ecc233a9d31ca5f0bb9ed",
-      "retrieved_at": "2026-11-01T06:02:38.047986+00:00",
+      "retrieved_at": "2026-11-01T15:10:38.500173+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 467003.94138981,
@@ -3969,18 +4059,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:38.048062+00:00"
+      "finished_at": "2026-11-01T15:10:38.500218+00:00"
     },
     {
       "key": "BRK_age_9m_to_1y_supply",
       "url": "https://bitview.space/api/series/age_9m_to_1y_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:38.048080+00:00",
+      "started_at": "2026-11-01T15:10:38.500230+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_9m_to_1y_supply.raw",
       "sha256": "a9acb50087e55530df215df8fc6db362f9a1b4407082033633d6f0d6cbc5bab2",
-      "retrieved_at": "2026-11-01T06:02:38.243520+00:00",
+      "retrieved_at": "2026-11-01T15:10:38.703955+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 2188270.52269794,
@@ -4007,18 +4097,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:38.243597+00:00"
+      "finished_at": "2026-11-01T15:10:38.704004+00:00"
     },
     {
       "key": "BRK_age_over_15y_supply",
       "url": "https://bitview.space/api/series/age_over_15y_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:38.243613+00:00",
+      "started_at": "2026-11-01T15:10:38.704016+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_over_15y_supply.raw",
       "sha256": "2ccf6583998cbe19120d2a551fd075793b204fe9b0ddf3809a8c53bdfa1332a7",
-      "retrieved_at": "2026-11-01T06:02:38.458548+00:00",
+      "retrieved_at": "2026-11-01T15:10:38.906253+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 2208214.5269932,
@@ -4045,18 +4135,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:38.458629+00:00"
+      "finished_at": "2026-11-01T15:10:38.906301+00:00"
     },
     {
       "key": "BRK_age_under_1h_supply",
       "url": "https://bitview.space/api/series/age_under_1h_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:38.458646+00:00",
+      "started_at": "2026-11-01T15:10:38.906314+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_under_1h_supply.raw",
       "sha256": "354953a6d0b5135883889f4dbeeb03021486bd86db061facd46f6ebf3f4aad1b",
-      "retrieved_at": "2026-11-01T06:02:38.663353+00:00",
+      "retrieved_at": "2026-11-01T15:10:39.103491+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 8497.31300574,
@@ -4083,18 +4173,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:38.663433+00:00"
+      "finished_at": "2026-11-01T15:10:39.103536+00:00"
     },
     {
       "key": "BRK_age_18m_to_2y_supply",
       "url": "https://bitview.space/api/series/age_18m_to_2y_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:38.663451+00:00",
+      "started_at": "2026-11-01T15:10:39.103549+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_18m_to_2y_supply.raw",
       "sha256": "cea55ac3c6199b529f3dfc30ca872d06cb2f68a5d3457fd310dac4b7c37385fa",
-      "retrieved_at": "2026-11-01T06:02:38.850591+00:00",
+      "retrieved_at": "2026-11-01T15:10:39.317686+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 1077875.95535921,
@@ -4121,18 +4211,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:38.850677+00:00"
+      "finished_at": "2026-11-01T15:10:39.317756+00:00"
     },
     {
       "key": "BRK_age_1y_to_18m_supply",
       "url": "https://bitview.space/api/series/age_1y_to_18m_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:38.850698+00:00",
+      "started_at": "2026-11-01T15:10:39.317769+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1y_to_18m_supply.raw",
       "sha256": "67b03390d3a7f8c1281ddfd50f9ee64dab1bad85b56862d6b4ea5b3ad0b11a12",
-      "retrieved_at": "2026-11-01T06:02:39.032786+00:00",
+      "retrieved_at": "2026-11-01T15:10:39.522860+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 1962555.44096771,
@@ -4159,18 +4249,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:39.032881+00:00"
+      "finished_at": "2026-11-01T15:10:39.522909+00:00"
     },
     {
       "key": "BRK_age_8y_to_10y_supply",
       "url": "https://bitview.space/api/series/age_8y_to_10y_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:39.032905+00:00",
+      "started_at": "2026-11-01T15:10:39.522920+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_8y_to_10y_supply.raw",
       "sha256": "d4151718eb6455e1ec89e7e1e53a9a76cdc1a5279a6d2c52677064a946c8ab1e",
-      "retrieved_at": "2026-11-01T06:02:39.215839+00:00",
+      "retrieved_at": "2026-11-01T15:10:39.713814+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 1200041.71128076,
@@ -4197,18 +4287,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:39.215934+00:00"
+      "finished_at": "2026-11-01T15:10:39.713863+00:00"
     },
     {
       "key": "BRK_age_10y_to_12y_supply",
       "url": "https://bitview.space/api/series/age_10y_to_12y_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:39.215954+00:00",
+      "started_at": "2026-11-01T15:10:39.713874+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_10y_to_12y_supply.raw",
       "sha256": "3d9dbaf8810dc6e90289283e5bf26a3465d60bb18522d5fda394b7697cecc653",
-      "retrieved_at": "2026-11-01T06:02:39.432957+00:00",
+      "retrieved_at": "2026-11-01T15:10:39.910564+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 442496.37244941,
@@ -4235,18 +4325,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:39.433041+00:00"
+      "finished_at": "2026-11-01T15:10:39.910611+00:00"
     },
     {
       "key": "BRK_age_12y_to_15y_supply",
       "url": "https://bitview.space/api/series/age_12y_to_15y_supply/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:39.433062+00:00",
+      "started_at": "2026-11-01T15:10:39.910623+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_12y_to_15y_supply.raw",
       "sha256": "1b5467dde0070bf7a9562ad4b9aeb63dc75e39b32444f6b4bc8ea1a0012ce959",
-      "retrieved_at": "2026-11-01T06:02:39.611309+00:00",
+      "retrieved_at": "2026-11-01T15:10:40.107145+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 942265.73165827,
@@ -4273,18 +4363,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:39.611396+00:00"
+      "finished_at": "2026-11-01T15:10:40.107191+00:00"
     },
     {
       "key": "BRK_age_1d_to_1w_realized_cap",
       "url": "https://bitview.space/api/series/age_1d_to_1w_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:39.611425+00:00",
+      "started_at": "2026-11-01T15:10:40.107204+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1d_to_1w_realized_cap.raw",
       "sha256": "ded1e671f1c7bc9ef5c41cf04f13a423a7bb13fe92849c8f70b536c9638ab8b1",
-      "retrieved_at": "2026-11-01T06:02:39.792083+00:00",
+      "retrieved_at": "2026-11-01T15:10:40.322501+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 44024374883.75,
@@ -4311,18 +4401,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:39.792156+00:00"
+      "finished_at": "2026-11-01T15:10:40.322550+00:00"
     },
     {
       "key": "BRK_age_1h_to_1d_realized_cap",
       "url": "https://bitview.space/api/series/age_1h_to_1d_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:39.792174+00:00",
+      "started_at": "2026-11-01T15:10:40.322564+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1h_to_1d_realized_cap.raw",
       "sha256": "f0c7c85de0a1bbae88d040f979c03bb46745293088edc8bece92181d4efc27ff",
-      "retrieved_at": "2026-11-01T06:02:40.004463+00:00",
+      "retrieved_at": "2026-11-01T15:10:40.525856+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 7894070833.52,
@@ -4349,18 +4439,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:40.004590+00:00"
+      "finished_at": "2026-11-01T15:10:40.525903+00:00"
     },
     {
       "key": "BRK_age_1m_to_2m_realized_cap",
       "url": "https://bitview.space/api/series/age_1m_to_2m_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:40.004610+00:00",
+      "started_at": "2026-11-01T15:10:40.525915+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1m_to_2m_realized_cap.raw",
       "sha256": "d28b700722bf9d054fc615d13dae1adae413f298b9570c8f15c1ffd1aa77582e",
-      "retrieved_at": "2026-11-01T06:02:40.227472+00:00",
+      "retrieved_at": "2026-11-01T15:10:40.808997+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 59044757879.33,
@@ -4387,18 +4477,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:40.227594+00:00"
+      "finished_at": "2026-11-01T15:10:40.809043+00:00"
     },
     {
       "key": "BRK_age_1w_to_1m_realized_cap",
       "url": "https://bitview.space/api/series/age_1w_to_1m_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:40.227611+00:00",
+      "started_at": "2026-11-01T15:10:40.809057+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1w_to_1m_realized_cap.raw",
       "sha256": "334bc31060dafd13cc67b2229a08295552dace950b3c7239d345ae01a59bf4ec",
-      "retrieved_at": "2026-11-01T06:02:40.421626+00:00",
+      "retrieved_at": "2026-11-01T15:10:41.008935+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 79313821544.27,
@@ -4425,18 +4515,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:40.421703+00:00"
+      "finished_at": "2026-11-01T15:10:41.008981+00:00"
     },
     {
       "key": "BRK_age_2m_to_3m_realized_cap",
       "url": "https://bitview.space/api/series/age_2m_to_3m_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:40.421719+00:00",
+      "started_at": "2026-11-01T15:10:41.008996+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_2m_to_3m_realized_cap.raw",
       "sha256": "64425e772e2987e3f65981fc9f4b41c2bf801e82da7c571123f7a7b813a0c548",
-      "retrieved_at": "2026-11-01T06:02:40.597680+00:00",
+      "retrieved_at": "2026-11-01T15:10:41.200411+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 44582223045.97,
@@ -4463,18 +4553,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:40.597745+00:00"
+      "finished_at": "2026-11-01T15:10:41.200458+00:00"
     },
     {
       "key": "BRK_age_2y_to_3y_realized_cap",
       "url": "https://bitview.space/api/series/age_2y_to_3y_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:40.597757+00:00",
+      "started_at": "2026-11-01T15:10:41.200470+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_2y_to_3y_realized_cap.raw",
       "sha256": "813a6c7f02d3a39d18f8c285198f28b6abc59f63e1993722b402613cad030ddf",
-      "retrieved_at": "2026-11-01T06:02:40.780934+00:00",
+      "retrieved_at": "2026-11-01T15:10:41.431526+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 79235009565.75,
@@ -4501,18 +4591,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:40.781006+00:00"
+      "finished_at": "2026-11-01T15:10:41.431576+00:00"
     },
     {
       "key": "BRK_age_3m_to_4m_realized_cap",
       "url": "https://bitview.space/api/series/age_3m_to_4m_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:40.781024+00:00",
+      "started_at": "2026-11-01T15:10:41.431588+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_3m_to_4m_realized_cap.raw",
       "sha256": "3324617034c1b981053dde31f3f9126dcae86f0111b5a0a8b33b85bf7ed57394",
-      "retrieved_at": "2026-11-01T06:02:40.969002+00:00",
+      "retrieved_at": "2026-11-01T15:10:41.633031+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 27502913464.99,
@@ -4539,18 +4629,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:40.969078+00:00"
+      "finished_at": "2026-11-01T15:10:41.633077+00:00"
     },
     {
       "key": "BRK_age_3y_to_4y_realized_cap",
       "url": "https://bitview.space/api/series/age_3y_to_4y_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:40.969097+00:00",
+      "started_at": "2026-11-01T15:10:41.633089+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_3y_to_4y_realized_cap.raw",
       "sha256": "f7cb385d7e3a39b5febf0d2adca5a4e0a32905dd4abb428ae727733ef88a2e0f",
-      "retrieved_at": "2026-11-01T06:02:41.154438+00:00",
+      "retrieved_at": "2026-11-01T15:10:41.839468+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 22986748424.56,
@@ -4577,18 +4667,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:41.154531+00:00"
+      "finished_at": "2026-11-01T15:10:41.839511+00:00"
     },
     {
       "key": "BRK_age_4m_to_5m_realized_cap",
       "url": "https://bitview.space/api/series/age_4m_to_5m_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:41.154544+00:00",
+      "started_at": "2026-11-01T15:10:41.839527+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_4m_to_5m_realized_cap.raw",
       "sha256": "2ccf9a1d38800e41cc165ff8b747d884f5377a589f3ff49576697bd2d0545262",
-      "retrieved_at": "2026-11-01T06:02:41.350607+00:00",
+      "retrieved_at": "2026-11-01T15:10:42.036775+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 20247523622.45,
@@ -4615,18 +4705,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:41.350686+00:00"
+      "finished_at": "2026-11-01T15:10:42.036819+00:00"
     },
     {
       "key": "BRK_age_4y_to_5y_realized_cap",
       "url": "https://bitview.space/api/series/age_4y_to_5y_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:41.350704+00:00",
+      "started_at": "2026-11-01T15:10:42.036829+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_4y_to_5y_realized_cap.raw",
       "sha256": "861fb6c2b3d64b00096ceda752b915a414b76a7381bde15bb4961819f9e4e6fe",
-      "retrieved_at": "2026-11-01T06:02:41.544120+00:00",
+      "retrieved_at": "2026-11-01T15:10:42.252155+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 24551844134.47,
@@ -4653,18 +4743,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:41.544200+00:00"
+      "finished_at": "2026-11-01T15:10:42.252201+00:00"
     },
     {
       "key": "BRK_age_5m_to_6m_realized_cap",
       "url": "https://bitview.space/api/series/age_5m_to_6m_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:41.544223+00:00",
+      "started_at": "2026-11-01T15:10:42.252216+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_5m_to_6m_realized_cap.raw",
       "sha256": "43edfc3bf0b91239bb1e726fb83c28e9cb2fe4517749b919b81ec9daa376fb92",
-      "retrieved_at": "2026-11-01T06:02:41.752884+00:00",
+      "retrieved_at": "2026-11-01T15:10:42.627173+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 24548883314.1,
@@ -4691,18 +4781,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:41.752968+00:00"
+      "finished_at": "2026-11-01T15:10:42.627222+00:00"
     },
     {
       "key": "BRK_age_5y_to_6y_realized_cap",
       "url": "https://bitview.space/api/series/age_5y_to_6y_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:41.752987+00:00",
+      "started_at": "2026-11-01T15:10:42.627235+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_5y_to_6y_realized_cap.raw",
       "sha256": "4dc5f90b997b5f8943cbf7432b5a3ebc85df0436e9abf017651e6a6a41e7fa6a",
-      "retrieved_at": "2026-11-01T06:02:41.919176+00:00",
+      "retrieved_at": "2026-11-01T15:10:42.819415+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 49148233028.62,
@@ -4729,18 +4819,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:41.919256+00:00"
+      "finished_at": "2026-11-01T15:10:42.819460+00:00"
     },
     {
       "key": "BRK_age_6m_to_9m_realized_cap",
       "url": "https://bitview.space/api/series/age_6m_to_9m_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:41.919279+00:00",
+      "started_at": "2026-11-01T15:10:42.819474+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_6m_to_9m_realized_cap.raw",
       "sha256": "402fc31f68881c6ac160e1707783b8feb0dfc0d7ce83999903b19611df357c31",
-      "retrieved_at": "2026-11-01T06:02:42.103990+00:00",
+      "retrieved_at": "2026-11-01T15:10:43.023478+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 70659137612.33,
@@ -4767,18 +4857,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:42.104078+00:00"
+      "finished_at": "2026-11-01T15:10:43.023528+00:00"
     },
     {
       "key": "BRK_age_6y_to_7y_realized_cap",
       "url": "https://bitview.space/api/series/age_6y_to_7y_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:42.104100+00:00",
+      "started_at": "2026-11-01T15:10:43.023542+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_6y_to_7y_realized_cap.raw",
       "sha256": "66dbf39ee5d63bd47908693eea4df82c426054ecd1dcc6b2f439cfa817a2577c",
-      "retrieved_at": "2026-11-01T06:02:42.302453+00:00",
+      "retrieved_at": "2026-11-01T15:10:43.232798+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 3681177528.83,
@@ -4805,18 +4895,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:42.302572+00:00"
+      "finished_at": "2026-11-01T15:10:43.232850+00:00"
     },
     {
       "key": "BRK_age_7y_to_8y_realized_cap",
       "url": "https://bitview.space/api/series/age_7y_to_8y_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:42.302592+00:00",
+      "started_at": "2026-11-01T15:10:43.232861+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_7y_to_8y_realized_cap.raw",
       "sha256": "dc19fb00dce9df2eb853586a96ab7fc3110617e50213e915286779278ae78272",
-      "retrieved_at": "2026-11-01T06:02:42.492160+00:00",
+      "retrieved_at": "2026-11-01T15:10:43.435053+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 3081115204.5,
@@ -4843,18 +4933,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:42.492246+00:00"
+      "finished_at": "2026-11-01T15:10:43.435100+00:00"
     },
     {
       "key": "BRK_age_9m_to_1y_realized_cap",
       "url": "https://bitview.space/api/series/age_9m_to_1y_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:42.492267+00:00",
+      "started_at": "2026-11-01T15:10:43.435113+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_9m_to_1y_realized_cap.raw",
       "sha256": "d34e06a828b087f1117bd51171822f0b1d1f4529e768d5fb9c0edc39d71c5b7b",
-      "retrieved_at": "2026-11-01T06:02:42.685372+00:00",
+      "retrieved_at": "2026-11-01T15:10:43.649570+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 196324167040.13,
@@ -4881,18 +4971,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:42.685455+00:00"
+      "finished_at": "2026-11-01T15:10:43.649616+00:00"
     },
     {
       "key": "BRK_age_over_15y_realized_cap",
       "url": "https://bitview.space/api/series/age_over_15y_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:42.685476+00:00",
+      "started_at": "2026-11-01T15:10:43.649628+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_over_15y_realized_cap.raw",
       "sha256": "96da3b1d0aab9258827784298f1a717c5f903483ef07b4ad6359ead3a99c69a9",
-      "retrieved_at": "2026-11-01T06:02:42.858683+00:00",
+      "retrieved_at": "2026-11-01T15:10:43.859295+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 2375819.14,
@@ -4919,18 +5009,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:42.858761+00:00"
+      "finished_at": "2026-11-01T15:10:43.859342+00:00"
     },
     {
       "key": "BRK_age_under_1h_realized_cap",
       "url": "https://bitview.space/api/series/age_under_1h_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:42.858777+00:00",
+      "started_at": "2026-11-01T15:10:43.859356+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_under_1h_realized_cap.raw",
       "sha256": "27742936811e51becaf4f5a2b5cc055da4679a4af9bb09cdf40b0855c3e90afb",
-      "retrieved_at": "2026-11-01T06:02:43.046795+00:00",
+      "retrieved_at": "2026-11-01T15:10:44.049397+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 659101254.8,
@@ -4957,18 +5047,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:43.046872+00:00"
+      "finished_at": "2026-11-01T15:10:44.049442+00:00"
     },
     {
       "key": "BRK_age_18m_to_2y_realized_cap",
       "url": "https://bitview.space/api/series/age_18m_to_2y_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:43.046889+00:00",
+      "started_at": "2026-11-01T15:10:44.049454+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_18m_to_2y_realized_cap.raw",
       "sha256": "3814bc8409f77e9b687c3db43631ed835750aa79eedad6fe81ee375d87301f8a",
-      "retrieved_at": "2026-11-01T06:02:43.260708+00:00",
+      "retrieved_at": "2026-11-01T15:10:44.461050+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 100849621478.84,
@@ -4995,18 +5085,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:43.260791+00:00"
+      "finished_at": "2026-11-01T15:10:44.461101+00:00"
     },
     {
       "key": "BRK_age_1y_to_18m_realized_cap",
       "url": "https://bitview.space/api/series/age_1y_to_18m_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:43.260808+00:00",
+      "started_at": "2026-11-01T15:10:44.461114+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1y_to_18m_realized_cap.raw",
       "sha256": "3ff6d149579692f2e3fd9753d4df94d0a1dc8fdaa65d9537efd85e1d48e38a21",
-      "retrieved_at": "2026-11-01T06:02:43.443761+00:00",
+      "retrieved_at": "2026-11-01T15:10:44.667355+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 219366050033.97,
@@ -5033,18 +5123,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:43.443844+00:00"
+      "finished_at": "2026-11-01T15:10:44.667409+00:00"
     },
     {
       "key": "BRK_age_8y_to_10y_realized_cap",
       "url": "https://bitview.space/api/series/age_8y_to_10y_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:43.443864+00:00",
+      "started_at": "2026-11-01T15:10:44.667423+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_8y_to_10y_realized_cap.raw",
       "sha256": "be53370ba357d2b29b7d447eff6bfce7d557a7a95b140af7798921fa8ee43129",
-      "retrieved_at": "2026-11-01T06:02:43.646928+00:00",
+      "retrieved_at": "2026-11-01T15:10:44.862477+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 8094962062.62,
@@ -5071,18 +5161,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:43.647006+00:00"
+      "finished_at": "2026-11-01T15:10:44.862523+00:00"
     },
     {
       "key": "BRK_age_10y_to_12y_realized_cap",
       "url": "https://bitview.space/api/series/age_10y_to_12y_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:43.647025+00:00",
+      "started_at": "2026-11-01T15:10:44.862535+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_10y_to_12y_realized_cap.raw",
       "sha256": "032054bc5f6a156f4fac8918549993c79cf06dd50120c6d65bc5b7c775a84956",
-      "retrieved_at": "2026-11-01T06:02:43.850643+00:00",
+      "retrieved_at": "2026-11-01T15:10:45.050005+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 181482556.62,
@@ -5109,18 +5199,18 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:43.850732+00:00"
+      "finished_at": "2026-11-01T15:10:45.050049+00:00"
     },
     {
       "key": "BRK_age_12y_to_15y_realized_cap",
       "url": "https://bitview.space/api/series/age_12y_to_15y_realized_cap/day1?start=2026-10-18&end=2026-11-01",
-      "started_at": "2026-11-01T06:02:43.850751+00:00",
+      "started_at": "2026-11-01T15:10:45.050060+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_12y_to_15y_realized_cap.raw",
       "sha256": "e7872d162ea2bc71ad18b7e140ae9a9571430a41c79084494441914710606fb0",
-      "retrieved_at": "2026-11-01T06:02:44.046843+00:00",
+      "retrieved_at": "2026-11-01T15:10:45.231279+00:00",
       "value": {
         "observed_at_date": "2026-10-31",
         "value": 262018352.6,
@@ -5147,7 +5237,7 @@
         },
         "computation_version": 2121251614
       },
-      "finished_at": "2026-11-01T06:02:44.046933+00:00"
+      "finished_at": "2026-11-01T15:10:45.231335+00:00"
     },
     {
       "key": "TV_MFI",
