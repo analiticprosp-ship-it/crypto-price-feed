@@ -1,0 +1,12 @@
+{
+  "status": "RETROSPECTIVE_SENSITIVITY_NOT_OOS_NOT_TRADING_FILTER",
+  "parent_event_id": "FTX_NOV2022",
+  "date_only_phase": "withdrawal_halt_2022-11-08_hour_unverified",
+  "anchors": "every UTC whole hour 2022-11-08 00:00 through 23:00, all 24 retained",
+  "horizons_hours": [4,24,72],
+  "source": "existing Bitstamp USD hourly secondary mirror; no primary byte parity",
+  "calculation": "last completed candle close exactly at hour; 100*(P(t+h)/P(t)-1)",
+  "summary": "full min/max range and median, no best-anchor selection; not a confidence interval and not continuous-time bounds",
+  "independent_episodes_added": 0,
+  "confounders": "FTX rescue/bankruptcy and CPI Nov10 inside later windows; no causal isolation"
+}
