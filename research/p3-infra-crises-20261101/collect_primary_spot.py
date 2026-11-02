@@ -2,6 +2,7 @@
 """Isolated P3 public SPOT history collection. Never reads/writes BTC72H state."""
 import datetime as dt,hashlib,json,math,os,time,urllib.parse,urllib.request
 from pathlib import Path
+# Recollection registered 2026-11-02 after +72H maturity; retain original anchors.
 HOST='https://data-api.binance.vision';H=3600000;M=60000
 EVENTS=[('BINANCE_SECURITY_20261029','2026-10-29T20:05:00+00:00'),('BYBIT_20250221','2025-02-21T14:13:00+00:00'),('FTX_NOV2022','2022-11-02T14:44:00+00:00'),('TERRA_UST_202205','2022-05-07T21:44:00+00:00'),('USDC_SVB_202303','2023-03-10T16:15:00+00:00')]
 HORIZONS=[-72,-24,-4,0,4,24,72]
