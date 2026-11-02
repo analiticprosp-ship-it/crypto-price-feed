@@ -30,6 +30,16 @@ def main():
    normalized=name+'.normalized.json';(out/normalized).write_text(json.dumps(vals,indent=2));rec.update(status='COLLECTED_PUBLISHER_CHECKSUM_AND_CRC_VERIFIED',rows=len(vals),sha256=actual,normalized_file=normalized)
   except Exception as e:rec.update(status='UNAVAILABLE_NOT_ZERO',error_type=type(e).__name__,error=str(e)[:200])
   manifest['records'].append(rec);print(json.dumps(rec),flush=True)
+ # Short public API supplement for the unavailable November monthly funding archive.
+ supplement=[]
+ for symbol in ['BTCUSDT','ETHUSDT']:
+  url='https://fapi.binance.com/fapi/v1/fundingRate?symbol='+symbol+'&startTime=1793045100000&endTime=1793563500000&limit=1000'
+  rec={'symbol':symbol,'url':url,'retrieved_at':dt.datetime.now(dt.timezone.utc).isoformat(),'status':'ATTEMPTED','funding_interval_hours':None,'note':'API does not attest historical interval duration; no interval inferred automatically'}
+  try:
+   raw=fetch(url);data=json.loads(raw);assert isinstance(data,list) and data,'EMPTY_OR_ERROR';name=symbol+'_api_supplement.raw.json';(out/name).write_bytes(raw);rec.update(status='COLLECTED_RAW_NOT_INTERVAL_NORMALIZED',file=name,sha256=hashlib.sha256(raw).hexdigest(),rows=len(data))
+  except Exception as e:rec.update(status='UNAVAILABLE_NOT_ZERO',error_type=type(e).__name__,error=str(e)[:200])
+  supplement.append(rec)
+ manifest['api_supplement']=supplement
  (out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
  print(json.dumps({'run':run,'ok':sum(r['status'].startswith('COLLECTED') for r in manifest['records']),'attempted':len(manifest['records'])}))
 if __name__=='__main__':main()
