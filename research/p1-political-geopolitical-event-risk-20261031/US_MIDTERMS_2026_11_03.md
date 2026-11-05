@@ -1,5 +1,7 @@
 # US midterms 2026 · point-in-time audit and window protocol v1
 
+> The following is the preserved v1 audit. For the 5 November clock inventory, separate observation checkpoint, baseline locks and executable tests, see [US_MIDTERMS_REPRODUCE.md](US_MIDTERMS_REPRODUCE.md). The v1 ledger and horizon selection remain unchanged.
+
 Scope: issue #156, draft PR #157, `SHADOW_RESEARCH_ONLY_NO_TRADES`. The v1 ledger records the election-day check at **2026-11-03 18:21:45 UTC (19:21:45 Alicante, 13:21:45 EST)**. This is after polls opened in some states and before the first scheduled close. The selection below is fixed before any result windows have matured; the eventual prospective classification also requires a pre-result GitHub receipt and contemporaneous event evidence. No prices or outcome data were used to choose events or horizons.
 
 | Observation | Time in UTC | Status / treatment |
@@ -61,3 +63,4 @@ python3 us_midterms_windows.py --as-of 2026-11-03T18:21:45Z
 Expected: 88 rows (both assets), 72 `PENDING_ANCHOR` and 16 `WINDOW_NOT_MATURED`, all metrics null. Later, pass `--ledger <version.json> --news-dir <news-receipts> --market-manifest <market.json> --as-of <UTC-Z>`. A separate execution must acquire the public market responses; this tool does not call external services or change project state. The manifest is `{"receipts":[{"product_id":"BTC-USD","path":"btc-page.json","sha256":"<hex>","retrieved_at_utc":"<UTC-Z>","request_url":"https://api.exchange.coinbase.com/products/BTC-USD/candles?granularity=300&start=<UTC-Z>&end=<UTC-Z>"}]}`. Include ETH and repeat for contiguous requests, max 299 intervals per page; align to UTC grid and keep original Coinbase JSON array bytes. The loader filters vendor extra bars beyond the requested range, rejects conflicting duplicate candles, verifies hashes, and never uses a receipt newer than the cutoff. Keep receipts and their output hashes together. Preserve failed requests separately. The absence of a live quote in the current PR is intentional and is not a failed reaction test.
 
 No production files, P1 rules, LONG PAPER, BTC72H, schedules, NAV/P&L, signals or limits are modified.
+
