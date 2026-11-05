@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Run offline parser unit tests
+        run: python -m unittest discover -s tests -p test_free_news.py
       - name: Run isolated collector
         run: python scripts/collect_free_news.py --output /tmp/free-news-receipts
       - name: Upload receipts even on partial failure
