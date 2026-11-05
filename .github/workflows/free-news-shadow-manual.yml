@@ -1,5 +1,11 @@
 name: Free news SHADOW manual validation
 on:
+  pull_request:
+    paths:
+      - 'scripts/collect_free_news.py'
+      - 'research/free_news/**'
+      - 'tests/test_free_news.py'
+      - '.github/workflows/free-news-shadow-manual.yml'
   workflow_dispatch:
 permissions:
   contents: read
