@@ -31,9 +31,19 @@ python us_midterms_windows.py --ledger us_midterms_2026_11_05_v2.json --news-dir
 Replace the as-of placeholder with the actual `as_of_utc` in `results.json`.
 For later collection use a new output directory and pass the accepted prior lock
 via `collect_us_midterms_market.py --output NEW_RUN --baseline-lock PRIOR_LOCK`.
-The push workflow is the first collection only; it does not automatically restore
-previous artifacts or claim cross-run baseline continuity. Later scoring must
-carry the accepted first lock forward and reject revised/missing initial candles.
+Since the 6 November continuation, the push workflow explicitly passes the
+accepted first lock committed at `market_runs/20261105T170938Z/baselines_001.json`.
+It verifies the four pinned entries against newly retrieved candles and writes
+the parent lock hash into the new per-run lock. It does not restore artifacts or
+run on a schedule. Later scoring must carry the accepted first lock forward and
+reject revised/missing initial candles.
+
+The separate source-access step archives current AP/Kentucky/Indiana responses
+under `source_run/`, retaining raw bytes as gzip plus hashes and HTTP receipts.
+Its success means that the access inventory was saved; inspect each source's
+HTTP/capture status. A recorded HTTP 403 is a failed source capture and never a
+result anchor. Current-page metadata are not automatically promoted to original
+first-publication clocks.
 
 No success or actual return is claimed merely because this workflow exists.
 Confirm the Actions run, HTTP receipts, coverage, baseline lock and output before
