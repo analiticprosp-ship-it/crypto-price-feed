@@ -116,6 +116,28 @@ class CollectionTests(unittest.TestCase):
         self.assertTrue(all(r['metrics'] is None for r in rows))
         self.assertFalse((output / 'baselines_001.json').exists())
 
+    def test_later_run_rejects_changed_previously_locked_candle(self):
+        cutoff = m.utc('2026-11-06T11:55:00Z')
+        acquire = c.acquire_page
+        def opener(request, **kw):
+            q = parse_qs(urlsplit(request.full_url).query)
+            left, right = (int(m.utc(q[k][0])) for k in ('start', 'end'))
+            return Response(json.dumps([[t,90,120,100,110,2]
+                for t in range(left, right, 300)]).encode())
+        def fake_acquire(root, product, start, end):
+            return acquire(root, product, start, end, opener=opener,
+                           clock=lambda: cutoff, pause=lambda _: None)
+        # Construct an accepted synthetic lock and deliberately revise it.
+        prior = self.root / 'prior-lock.json'
+        with patch.object(c, 'now', return_value=cutoff), patch.object(c, 'acquire_page', side_effect=fake_acquire), redirect_stdout(io.StringIO()):
+            self.assertEqual(c.run(self.root / 'first', m.ROOT / 'us_midterms_2026_11_05_v2.json'), 0)
+            lock = json.loads((self.root / 'first' / 'baselines_001.json').read_bytes())
+            next(iter(lock['entries'].values()))['baseline']['price'] = 101
+            prior.write_text(json.dumps(lock))
+            with self.assertRaisesRegex(ValueError, 'baseline changed'):
+                c.run(self.root / 'later', m.ROOT / 'us_midterms_2026_11_05_v2.json', prior)
+        self.assertFalse((self.root / 'later' / 'results.json').exists())
+
 
 if __name__ == '__main__':
     unittest.main()
