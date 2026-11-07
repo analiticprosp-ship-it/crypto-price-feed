@@ -1,0 +1,711 @@
+{
+  "authority": "SHADOW_RESEARCH_ONLY_NO_TRADES",
+  "audit_as_of_utc": "2026-11-05T16:52:10Z",
+  "parent_head_sha": "ba33e723545c0b1e41e90e6d5ee3de289d5dd13f",
+  "runs": [
+    {
+      "name": "v1",
+      "as_of_utc": "2026-11-03T18:21:45Z",
+      "output_sha256": "9cbadbfd5f0fb4081db09d5607e1d1055b4b5faa67980bb0a38bb1655c70ce61",
+      "ledger_sha256": "db0e9661615b7d7af1f0994caadab0689df6cc54394cc14eeddda4a7c59712f3",
+      "calculator_sha256": "9ac0d7d3e8184101bf228860dd3bdddc32a28f3e483e11f7d631f9e68d1a8bc4",
+      "total_rows": 88,
+      "counts": {
+        "WINDOW_NOT_MATURED": 16,
+        "PENDING_ANCHOR": 72
+      },
+      "by_role": {
+        "calendar_control": {
+          "WINDOW_NOT_MATURED": 16
+        },
+        "diagnostic": {
+          "PENDING_ANCHOR": 40
+        },
+        "primary": {
+          "PENDING_ANCHOR": 32
+        }
+      },
+      "all_metrics_null": true,
+      "event_audit": [
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS",
+          "role": "calendar_metadata",
+          "timing_status": "DATE_CONFIRMED",
+          "result_anchor_required": false,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "timing_status": "SCHEDULE_CONFIRMED",
+          "result_anchor_required": false,
+          "usable_scoring_clock": true,
+          "anchor_lower_utc": "2026-11-03T23:00:00Z",
+          "anchor_upper_utc": "2026-11-03T23:00:00Z"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-NYC-CLOSE",
+          "role": "calendar_metadata",
+          "timing_status": "SCHEDULE_CONFIRMED",
+          "result_anchor_required": false,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-CA-REPORT-START",
+          "role": "calendar_metadata",
+          "timing_status": "SCHEDULE_CONFIRMED",
+          "result_anchor_required": false,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-IN05-FIRST-TALLY",
+          "role": "diagnostic",
+          "timing_status": "PENDING_ANCHOR",
+          "result_anchor_required": true,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-KY06-FIRST-TALLY",
+          "role": "diagnostic",
+          "timing_status": "PENDING_ANCHOR",
+          "result_anchor_required": true,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-IN05-AP-CALL",
+          "role": "diagnostic",
+          "timing_status": "PENDING_ANCHOR",
+          "result_anchor_required": true,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-KY06-AP-CALL",
+          "role": "diagnostic",
+          "timing_status": "PENDING_ANCHOR",
+          "result_anchor_required": true,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-AP-HOUSE-CONTROL",
+          "role": "primary",
+          "timing_status": "PENDING_ANCHOR",
+          "result_anchor_required": true,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-AP-SENATE-CONTROL",
+          "role": "primary",
+          "timing_status": "PENDING_ANCHOR",
+          "result_anchor_required": true,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-CA-CERTIFICATION",
+          "role": "calendar_metadata",
+          "timing_status": "PENDING_CERTIFICATION",
+          "result_anchor_required": false,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        }
+      ],
+      "clock_windows": [
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "pre_24h",
+          "start_utc": "2026-11-02T23:00:00Z",
+          "end_utc": "2026-11-03T23:00:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "pre_24h",
+          "start_utc": "2026-11-02T23:00:00Z",
+          "end_utc": "2026-11-03T23:00:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "15m",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-03T23:20:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "15m",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-03T23:20:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "1h",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-04T00:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "1h",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-04T00:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "4h",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-04T03:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "4h",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-04T03:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "1d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-04T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "1d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-04T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "7d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-10T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "7d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-10T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "30d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-12-03T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "30d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-12-03T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "90d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2027-02-01T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "90d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2027-02-01T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        }
+      ]
+    },
+    {
+      "name": "v2",
+      "as_of_utc": "2026-11-05T16:52:10Z",
+      "output_sha256": "b782b2d23631c747d846958a0fa4294fcbe0d5b982b7d32006f5786d0b1e5f6e",
+      "ledger_sha256": "d06e20436386e0f1bfae7118117f1837286a7ad577a904737ff8783887f64e9f",
+      "calculator_sha256": "9ac0d7d3e8184101bf228860dd3bdddc32a28f3e483e11f7d631f9e68d1a8bc4",
+      "total_rows": 102,
+      "counts": {
+        "PENDING_MARKET_DATA": 10,
+        "WINDOW_NOT_MATURED": 20,
+        "PENDING_ANCHOR": 72
+      },
+      "by_role": {
+        "calendar_control": {
+          "PENDING_MARKET_DATA": 10,
+          "WINDOW_NOT_MATURED": 6
+        },
+        "diagnostic": {
+          "PENDING_ANCHOR": 40
+        },
+        "observation_control": {
+          "WINDOW_NOT_MATURED": 14
+        },
+        "primary": {
+          "PENDING_ANCHOR": 32
+        }
+      },
+      "all_metrics_null": true,
+      "event_audit": [
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS",
+          "role": "calendar_metadata",
+          "timing_status": "DATE_CONFIRMED",
+          "result_anchor_required": false,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "timing_status": "SCHEDULE_CONFIRMED",
+          "result_anchor_required": false,
+          "usable_scoring_clock": true,
+          "anchor_lower_utc": "2026-11-03T23:00:00Z",
+          "anchor_upper_utc": "2026-11-03T23:00:00Z"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-NYC-CLOSE",
+          "role": "calendar_metadata",
+          "timing_status": "SCHEDULE_CONFIRMED",
+          "result_anchor_required": false,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-CA-REPORT-START",
+          "role": "calendar_metadata",
+          "timing_status": "SCHEDULE_CONFIRMED",
+          "result_anchor_required": false,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-IN05-FIRST-TALLY",
+          "role": "diagnostic",
+          "timing_status": "PENDING_ANCHOR",
+          "result_anchor_required": true,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-KY06-FIRST-TALLY",
+          "role": "diagnostic",
+          "timing_status": "PENDING_ANCHOR",
+          "result_anchor_required": true,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-IN05-AP-CALL",
+          "role": "diagnostic",
+          "timing_status": "PENDING_ANCHOR",
+          "result_anchor_required": true,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-KY06-AP-CALL",
+          "role": "diagnostic",
+          "timing_status": "PENDING_ANCHOR",
+          "result_anchor_required": true,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-AP-HOUSE-CONTROL",
+          "role": "primary",
+          "timing_status": "PENDING_ANCHOR",
+          "result_anchor_required": true,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-AP-SENATE-CONTROL",
+          "role": "primary",
+          "timing_status": "PENDING_ANCHOR",
+          "result_anchor_required": true,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-CA-CERTIFICATION",
+          "role": "calendar_metadata",
+          "timing_status": "PENDING_CERTIFICATION",
+          "result_anchor_required": false,
+          "usable_scoring_clock": false,
+          "anchor_lower_utc": null,
+          "anchor_upper_utc": null
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "timing_status": "OBSERVATION_CONFIRMED",
+          "result_anchor_required": false,
+          "usable_scoring_clock": true,
+          "anchor_lower_utc": "2026-11-05T16:52:10Z",
+          "anchor_upper_utc": "2026-11-05T16:52:10Z"
+        }
+      ],
+      "clock_windows": [
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "pre_24h",
+          "start_utc": "2026-11-02T23:00:00Z",
+          "end_utc": "2026-11-03T23:00:00Z",
+          "status": "PENDING_MARKET_DATA"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "pre_24h",
+          "start_utc": "2026-11-02T23:00:00Z",
+          "end_utc": "2026-11-03T23:00:00Z",
+          "status": "PENDING_MARKET_DATA"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "15m",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-03T23:20:00Z",
+          "status": "PENDING_MARKET_DATA"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "15m",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-03T23:20:00Z",
+          "status": "PENDING_MARKET_DATA"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "1h",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-04T00:05:00Z",
+          "status": "PENDING_MARKET_DATA"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "1h",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-04T00:05:00Z",
+          "status": "PENDING_MARKET_DATA"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "4h",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-04T03:05:00Z",
+          "status": "PENDING_MARKET_DATA"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "4h",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-04T03:05:00Z",
+          "status": "PENDING_MARKET_DATA"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "1d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-04T23:05:00Z",
+          "status": "PENDING_MARKET_DATA"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "1d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-04T23:05:00Z",
+          "status": "PENDING_MARKET_DATA"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "7d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-10T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "7d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-11-10T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "30d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-12-03T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "30d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2026-12-03T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "BTC-USD",
+          "window": "90d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2027-02-01T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+          "role": "calendar_control",
+          "product": "ETH-USD",
+          "window": "90d",
+          "start_utc": "2026-11-03T23:05:00Z",
+          "end_utc": "2027-02-01T23:05:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "BTC-USD",
+          "window": "15m",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2026-11-05T17:10:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "ETH-USD",
+          "window": "15m",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2026-11-05T17:10:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "BTC-USD",
+          "window": "1h",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2026-11-05T17:55:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "ETH-USD",
+          "window": "1h",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2026-11-05T17:55:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "BTC-USD",
+          "window": "4h",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2026-11-05T20:55:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "ETH-USD",
+          "window": "4h",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2026-11-05T20:55:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "BTC-USD",
+          "window": "1d",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2026-11-06T16:55:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "ETH-USD",
+          "window": "1d",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2026-11-06T16:55:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "BTC-USD",
+          "window": "7d",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2026-11-12T16:55:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "ETH-USD",
+          "window": "7d",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2026-11-12T16:55:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "BTC-USD",
+          "window": "30d",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2026-12-05T16:55:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "ETH-USD",
+          "window": "30d",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2026-12-05T16:55:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "BTC-USD",
+          "window": "90d",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2027-02-03T16:55:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        },
+        {
+          "event_id": "P1-POL-2026-11-03-US-MIDTERMS-OBSERVED-KY06-20261105",
+          "role": "observation_control",
+          "product": "ETH-USD",
+          "window": "90d",
+          "start_utc": "2026-11-05T16:55:00Z",
+          "end_utc": "2027-02-03T16:55:00Z",
+          "status": "WINDOW_NOT_MATURED"
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "command": "python3 -m unittest -v test_us_midterms_windows.py",
+    "tests": 29,
+    "passed": true,
+    "test_file_sha256": "8ca6e2a7bd6f620c3031cd73ac803dfe4b6a08c35413dd1fed1e55c94f4240d5"
+  },
+  "source_limitations": [
+    "KY-06 structured retrieval extract only; no original source HTTP bytes or source version.",
+    "AP outcome coverage found; no qualifying first-call receipts obtained.",
+    "Indiana rendered page is a template, not a verified current IN-05 tally.",
+    "Coinbase response unavailable through retriever; no market manifest or initial price lock created.",
+    "Calendar maturity is not proof of complete market data."
+  ],
+  "acquisition_attempts": [
+    {
+      "source_url": "https://api.exchange.coinbase.com/products/BTC-USD/candles?granularity=300&start=2026-11-03T23%3A05%3A00Z&end=2026-11-03T23%3A20%3A00Z",
+      "transport": "search_service_web_run",
+      "retrieval_ref": "turn2view0",
+      "status": "RETRIEVER_ACCESSIBILITY_ERROR",
+      "raw_market_response_saved": false
+    }
+  ]
+}
