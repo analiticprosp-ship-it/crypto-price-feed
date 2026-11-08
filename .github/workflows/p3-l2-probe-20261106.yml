@@ -2,7 +2,10 @@ name: P3 L2 sample probe (research only)
 on:
   push:
     branches: [research/p3-infra-crises-20261101]
-    paths: [.github/workflows/p3-l2-probe-20261106.yml]
+    paths:
+      - .github/workflows/p3-l2-probe-20261106.yml
+      - research/p3-infra-crises-20261101/continuation_20261106/verify_l2_samples.py
+      - research/p3-infra-crises-20261101/continuation_20261106/probe_l2_samples.py
   workflow_dispatch:
 permissions:
   contents: read
