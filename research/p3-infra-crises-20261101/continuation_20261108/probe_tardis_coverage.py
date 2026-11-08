@@ -2,7 +2,7 @@
 """Read-only historical L2 source metadata and one free-day accessibility probe."""
 import datetime as dt,json,os,pathlib,urllib.error,urllib.parse,urllib.request
 OUT=pathlib.Path(os.environ.get("P3_OUT","/tmp/p3-source-catalog"));OUT.mkdir(parents=True,exist_ok=True)
-venues=["coinbase","coinbase-pro","gate-io","cryptocom","mexc","kraken"]
+venues=["coinbase","coinbase-pro","gate-io","cryptocom","crypto-com","crypto.com","crypto-com-spot","mexc","kraken"]
 rows=[]
 for venue in venues:
  url="https://api.tardis.dev/v1/exchanges/"+urllib.parse.quote(venue,safe="")
