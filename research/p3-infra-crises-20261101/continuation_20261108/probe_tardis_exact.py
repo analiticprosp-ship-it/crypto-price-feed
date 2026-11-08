@@ -11,10 +11,14 @@ for venue in VENUES:
   ds=meta.get("datasets") or {};symbols=ds.get("symbols") or []
   eligible=[s for s in symbols if isinstance(s,dict) and "incremental_book_L2" in (s.get("dataTypes") or []) and any(x in s.get("id","").upper() for x in ("BTC","ETH"))]
   row["supportsDatasets"]=meta.get("supportsDatasets");row["exportedUntil"]=ds.get("exportedUntil");row["candidate_count"]=len(eligible)
-  selected=[]
+  preferred={"coinbase":{"BTC":["BTC-USD"],"ETH":["ETH-USD"]},"gate-io":{"BTC":["BTC_USDT"],"ETH":["ETH_USDT"]},"mexc":{"BTC":["BTCUSDT"],"ETH":["ETHUSDT"]},"crypto-com":{"BTC":["BTC_USDT","BTC_USD"],"ETH":["ETH_USDT","ETH_USD"]}}
+  eligible_ids={s["id"] for s in eligible}
+  selected=[];missing=[]
   for asset in ("BTC","ETH"):
-   opts=[s for s in eligible if asset in s.get("id","").upper() and ("USD" in s.get("id","").upper() or "USDT" in s.get("id","").upper())]
-   if opts:selected.append(opts[0]["id"])
+   match=next((sym for sym in preferred[venue][asset] if sym in eligible_ids),None)
+   if match:selected.append(match)
+   else:missing.append(asset)
+  row["missing_exact_spot_assets"]=missing
   row["selected_symbols"]=selected
   for symbol in selected:
    safe=symbol.upper().replace("/","-").replace(":","-")
