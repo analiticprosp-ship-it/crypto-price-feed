@@ -9,28 +9,43 @@ permissions:
 jobs:
   l2-probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     env:
       CRYPTOHFTDATA_API_KEY: ${{ secrets.CRYPTOHFTDATA_API_KEY }}
     steps:
       - uses: actions/checkout@v4
-      - name: Check key presence (no value disclosure)
+      - name: Check key presence without printing it
         shell: bash
         run: |
           if [ -z "$CRYPTOHFTDATA_API_KEY" ]; then
-            echo "::error::CRYPTOHFTDATA_API_KEY missing from Actions secrets"
+            echo "::error::CRYPTOHFTDATA_API_KEY missing"
             exit 1
           fi
-          echo "Secret configured (value not printed)"
-      - name: Download small sample, fail-closed
+          echo "Secret present"
+      - name: Download 30 sample slots
         shell: bash
         run: |
           python research/p3-infra-crises-20261101/continuation_20261106/probe_l2_samples.py --out /tmp/p3-l2-probe --hour 12
-      - name: Upload receipts only (not raw market data)
+      - name: Independently rehash and inspect downloaded files
+        shell: bash
+        run: |
+          python research/p3-infra-crises-20261101/continuation_20261106/verify_l2_samples.py --directory /tmp/p3-l2-probe
+      - name: Upload manifest and independent verification
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: p3-l2-probe-receipts
-          path: /tmp/p3-l2-probe/probe_manifest.json
+          name: p3-l2-probe-verified-receipts
+          path: |
+            /tmp/p3-l2-probe/probe_manifest.json
+            /tmp/p3-l2-probe/verification.json
           if-no-files-found: warn
           retention-days: 30
+      - name: Upload original raw L2 samples
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3-l2-probe-raw
+          path: /tmp/p3-l2-probe/*.parquet.zst
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 0
