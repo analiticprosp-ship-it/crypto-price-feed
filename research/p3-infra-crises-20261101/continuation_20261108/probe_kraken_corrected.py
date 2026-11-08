@@ -3,9 +3,9 @@
 import argparse,datetime as dt,hashlib,json,os,pathlib,time,urllib.error,urllib.parse,urllib.request
 SLOTS=[("kraken_spot","BTC_USD"),("kraken_spot","ETH_USD"),("kraken_spot","XBTUSD"),("kraken_spot","ETHUSD"),("binance_spot","BTCUSDT")]
 def main():
- p=argparse.ArgumentParser();p.add_argument("--out",required=True);p.add_argument("--day",default="2026-10-30");p.add_argument("--hour",type=int,default=12);p.add_argument("--max-bytes",type=int,default=100_000_000);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument("--out",required=True);p.add_argument("--day",default="2026-10-30");p.add_argument("--hour",type=int,default=12);p.add_argument("--max-bytes",type=int,default=100_000_000);p.add_argument("--confirmed-only",action="store_true");a=p.parse_args()
  out=pathlib.Path(a.out);out.mkdir(parents=True,exist_ok=True);key=os.getenv("CRYPTOHFTDATA_API_KEY");rows=[]
- for venue,symbol in SLOTS:
+ for venue,symbol in (SLOTS[:2] if a.confirmed_only else SLOTS):
   path=f"{venue}/{a.day}/{a.hour:02d}/{symbol}_orderbook.parquet"
   row={"venue":venue,"symbol":symbol,"path":path,"status":"NOT_CHECKED","http_status":None}
   query={"file":path}
