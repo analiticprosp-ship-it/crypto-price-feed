@@ -1,0 +1,37 @@
+name: P3 Kraken three-day backfill (research only)
+on:
+  push:
+    branches: [research/p3-infra-crises-20261101]
+    paths:
+      - .github/workflows/p3-kraken-three-day-20261108.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kraken-three-day:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        day: ['2026-10-28','2026-10-30','2026-11-04']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Kraken BTC/USD and ETH/USD at 12 UTC
+        env:
+          CRYPTOHFTDATA_API_KEY: ${{ secrets.CRYPTOHFTDATA_API_KEY }}
+        run: python research/p3-infra-crises-20261101/continuation_20261108/probe_kraken_corrected.py --confirmed-only --day ${{ matrix.day }} --hour 12 --out /tmp/p3-kraken
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p3-kraken-manifest-${{ matrix.day }}
+          path: /tmp/p3-kraken/discovery_manifest.json
+          retention-days: 60
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p3-kraken-raw-${{ matrix.day }}
+          path: /tmp/p3-kraken/*.parquet
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 14

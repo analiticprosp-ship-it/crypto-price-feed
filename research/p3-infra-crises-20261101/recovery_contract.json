@@ -1,0 +1,13 @@
+{
+  "id":"P3_RECOVERY_PATH_DIAGNOSTIC_V1_20261101",
+  "status":"FIXED_BEFORE_NEW_PATH_CALCULATIONS_RETROSPECTIVE_ONLY",
+  "parent":"P3_INFRA_CRISIS_COMPARISON_V1_20261031",
+  "baseline":"PriceUSD EOD UTC d-1, as in previous P3",
+  "events":"same five registered parent episodes; Binance excluded where source does not cover it",
+  "horizons_calendar_days":[7,30,90,180],
+  "metrics":["terminal return","minimum close vs baseline","maximum close vs baseline","peak-to-trough closing drawdown"],
+  "recovery":"existing frozen descriptive definition: 7 closes >= baseline, confirmed only on seventh close; compute subsequent 30-day outcomes from confirmation close",
+  "controls":"reuse exact previous daily_control_candidates.csv; no new matching, no outcome selection; candidate references not news-screened controls",
+  "no_inference":"price recovery is not liquidity normalization; does not validate H2 or establish causality, PIT, OOS, or a trading filter",
+  "no_trade_changes":true
+}
