@@ -1,0 +1,25 @@
+{
+  "kind": "LONG_CANDIDATE_FORWARD_PAPER_V1",
+  "status": "REGISTERED_SHADOW_ONLY",
+  "registered_at_utc": "2026-10-24T09:08:59.563564Z",
+  "first_eligible_signal_close_utc": "2026-10-24T12:00:00Z",
+  "test_end_signal_close_utc": "2026-11-07T12:00:00Z",
+  "initial_virtual_capital": 1000.0,
+  "bucket_initial_capital": 500.0,
+  "assets": [
+    "BTCUSDT",
+    "ETHUSDT"
+  ],
+  "venue": "Binance SPOT public data",
+  "timezone": "Europe/Madrid",
+  "strategy_sha256": "0f8fbdee5efae957b3bb4ada70199df5b9d991dc07a332ccbe51e0f6db82bcc2",
+  "runner_sha256": "a6721cd5cbe9b2316dde43ba4d9f3dcaf139b2e9a77e1a77b7c7c5e06695bc75",
+  "cost_per_side": 0.0015,
+  "max_entry_detection_delay_seconds": 900,
+  "execution_layer": "Prospective observed-mid paper fills, after actual detection. Never fill at historical next-open price. >15min entry delay means missed/no-fill. Late exits use actual observed quote. This is a prospective operational variant, distinct from historical ideal next-open execution.",
+  "frozen_rules": "1D UP/constructiveTRANSITION; closed4H BREAKOUT20 and above exact causal NW500 center; risk/caps .5%/25% bucket UP, half in TRANSITION; closed-candle invalidation, partial1.5R then3ATR trailing, no averaging; same fixed candidate",
+  "history_status": "Candidate failed final retrospective2025-2026 block; forward test is not live approval",
+  "no_real_orders": true,
+  "canonical_files_modified": false,
+  "close_window_note": "End is first14day observation window, not a statistical success gate; zero/few signals is possible; do not extend silently."
+}
