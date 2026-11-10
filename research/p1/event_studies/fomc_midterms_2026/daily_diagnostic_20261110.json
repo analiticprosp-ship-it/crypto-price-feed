@@ -1,0 +1,61 @@
+{
+  "schema": "P1_DAILY_DIAGNOSTIC_V2",
+  "date": "2026-11-10",
+  "research_only": true,
+  "indicator": {
+    "source": "research/indicator_sources_v1/latest.json",
+    "blob_sha": "57f200f8029c024038d318e4a220e190554e51c5",
+    "run_id": "20261110T024319939947Z",
+    "finished_at": "2026-11-10T02:51:49.594069+00:00",
+    "source_count": 121,
+    "collected_validated": 112,
+    "failed": 3,
+    "access_blocked": 1,
+    "not_connected": 5,
+    "btc": {
+      "cvd_24h_btc": 679.8554,
+      "oi_120h_contracts_pct": 4.5923697928,
+      "funding_pct": 0.00463168996,
+      "closed_daily_close": 75320
+    },
+    "eth": {
+      "cvd_24h_eth": 2583.3551,
+      "oi_120h_contracts_pct": 6.4546603009,
+      "funding_pct": -0.00017710099645,
+      "closed_daily_close": 2133.94
+    },
+    "tv_original_last": "20261102T163340Z_manual_closed_bars",
+    "tv_capture": "BROWSER_CAPTURE_REQUIRED",
+    "status": "PARTIAL_NOT_FULLY_CONNECTED"
+  },
+  "event_study": {
+    "fomc_statement": {
+      "source": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20261028.htm",
+      "release_scheduled_or_official": "2026-10-28T18:00:00Z",
+      "first_availability_receipt": false
+    },
+    "ap_chamber_control": {
+      "source": "https://www.ap.org/the-definitive-source/behind-the-news/calling-control-of-congress-in-the-2026-midterm-elections/",
+      "senate_call_et": "2026-11-03 23:36 ET",
+      "senate_call_utc": "2026-11-04T04:36:00Z",
+      "house_call_et": "2026-11-04 01:24 ET",
+      "house_call_utc": "2026-11-04T06:24:00Z",
+      "status": "RETROSPECTIVE_AP_CALL_CLOCK_CANDIDATE_NOT_FIRST_AVAILABILITY_RECEIPT",
+      "note": "AP retrospective chronology supports call clock, not independently archived first-publication byte timestamp; do not accept as PIT first availability without capture proof."
+    },
+    "horizons": "NO_NEW_MATURE_RETURNS_VERIFIED"
+  },
+  "p1_weekly": {
+    "tick_path": "research/p1_20261027/tick.json",
+    "branch": "research/p1-readiness-20261027",
+    "requested_at_utc": "2026-11-09T09:37:03Z",
+    "status": "REQUEST_MARKER_ONLY_NO_OUTPUT_RECEIPT_VERIFIED",
+    "v1_1_path": "NOT_FOUND_IN_CHECKED_BRANCH",
+    "no_new_tick": true
+  },
+  "safety": {
+    "main_unchanged": true,
+    "production_unchanged": true,
+    "trading_unchanged": true
+  }
+}
