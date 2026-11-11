@@ -119,13 +119,23 @@ def fred(text, series):
     # Latest revised descriptive series, not a point-in-time historical vintage.
     weekly = series in ('NFCI','ANFCI','WALCL','WTREGEN','WRESBAL')
     monthly = series in ('CPIAUCSL','CPILFESL','PCEPI','PCEPILFE','INDPRO','PAYEMS','UNRATE')
+    monthly_by_date = dict(rows)
+    latest_date = datetime.fromisoformat(rows[-1][0])
+    prior_month = latest_date.replace(day=1) - timedelta(days=1)
+    month_key = prior_month.replace(day=1).date().isoformat()
+    year_key = latest_date.replace(year=latest_date.year-1).date().isoformat()
+    mom_base = monthly_by_date.get(month_key)
+    yoy_base = monthly_by_date.get(year_key)
     return {'observed_at_date': rows[-1][0], 'value': rows[-1][1],
             'previous_observation': {'date': rows[-2][0], 'value': rows[-2][1]} if len(rows)>1 else None,
             'daily_five_observation_baseline': {'date': rows[-6][0], 'value': rows[-6][1]} if len(rows)>5 and not weekly and not monthly else None,
             'frequency': 'MONTHLY' if monthly else 'WEEKLY' if weekly else 'DAILY',
             'unit': 'INDEX_LEVEL_NOT_INFLATION_PERCENT' if series in ('CPIAUCSL','CPILFESL','PCEPI','PCEPILFE') else 'FRED_SERIES_NATIVE_UNIT',
-            'month_over_month_pct': 100*(rows[-1][1]/rows[-2][1]-1) if monthly and len(rows)>1 and series not in ('UNRATE',) else None,
-            'year_over_year_pct': 100*(rows[-1][1]/rows[-13][1]-1) if monthly and len(rows)>12 and series not in ('UNRATE',) else None,
+            'month_over_month_pct': 100*(rows[-1][1]/mom_base-1) if monthly and mom_base not in (None, 0) and series not in ('UNRATE',) else None,
+            'year_over_year_pct': 100*(rows[-1][1]/yoy_base-1) if monthly and yoy_base not in (None, 0) and series not in ('UNRATE',) else None,
+            'inflation_comparison_basis': 'EXACT_CALENDAR_MONTH_NO_ROW_SHIFT' if monthly else None,
+            'yoy_base_date': year_key if monthly else None,
+            'yoy_base_status': ('PRESENT' if yoy_base not in (None, 0) else 'MISSING_CALENDAR_MONTH') if monthly else None,
             'series': series, 'revision_policy': 'LATEST_REVISED_DESCRIPTIVE_NOT_PIT',
             'available_at': None, 'publication_time_verified': False,
             'freshness': 'LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT',
@@ -468,3 +478,4 @@ def main():
 
 if __name__=='__main__':
     main()
+
