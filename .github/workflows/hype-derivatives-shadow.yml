@@ -1,0 +1,42 @@
+name: HYPE derivatives shadow validation
+on:
+  pull_request:
+    paths:
+      - 'scripts/update_hype_derivatives_shadow.py'
+      - '.github/workflows/hype-derivatives-shadow.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect independent HYPE derivatives observations
+        run: python scripts/update_hype_derivatives_shadow.py
+      - name: Validate snapshot structure and at least one source
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("research/hype-derivatives/latest.json").read_text())
+          assert p["authority"]=="SHADOW_RESEARCH_ONLY_NO_TRADES"
+          assert len(p["observations"])==2
+          assert all(x["status"]=="OK" for x in p["observations"]), "Both independent venues must respond for parity testing"
+          for x in p["observations"]:
+              if x["status"]=="OK":
+                  assert all(k in x["metrics"] for k in ("openInterest","funding","volume24h","liquidations"))
+                  for k in ("openInterest","volume24h"):
+                      assert isinstance(x["metrics"][k]["value"], (int,float)) and x["metrics"][k]["value"] >= 0
+                  assert isinstance(x["metrics"]["funding"]["value"], (int,float))
+                  assert x["metrics"]["liquidations"]["status"]=="UNAVAILABLE"
+          PY
+      - name: Upload test snapshot artifact only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hype-derivatives-shadow-sample
+          path: research/hype-derivatives/latest.json
+          if-no-files-found: warn
+          retention-days: 7
