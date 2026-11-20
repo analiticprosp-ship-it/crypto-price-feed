@@ -1,0 +1,45 @@
+name: P1 midterms Coinbase market receipts
+on:
+  push:
+    branches:
+      - research/p1-political-geopolitical-event-risk-20261031
+    paths:
+      - '.github/workflows/us-midterms-market.yml'
+      - 'research/p1-political-geopolitical-event-risk-20261031/collect_us_midterms_market.py'
+      - 'research/p1-political-geopolitical-event-risk-20261031/test_collect_us_midterms_market.py'
+      - 'research/p1-political-geopolitical-event-risk-20261031/capture_us_midterms_sources.py'
+permissions:
+  contents: read
+concurrency:
+  group: p1-midterms-market-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: research/p1-political-geopolitical-event-risk-20261031
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test clocks, missing data and HTTP receipts
+        run: python -m unittest -v test_us_midterms_windows.py test_collect_us_midterms_market.py
+      - name: Acquire Coinbase original bytes and score closed windows
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: python collect_us_midterms_market.py --output market_run --baseline-lock market_runs/20261105T170938Z/baselines_001.json
+      - name: Archive current publisher responses for clock audit
+        run: python capture_us_midterms_sources.py --output source_run
+      - name: Retain source, receipts, baseline and replayable results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1-midterms-market-${{ github.run_id }}-${{ github.run_attempt }}
+          path: research/p1-political-geopolitical-event-risk-20261031/
+          retention-days: 90
+          if-no-files-found: error
