@@ -1,0 +1,19 @@
+name: P3 L2 replay synthetic test (research only)
+on:
+  push:
+    branches: [research/p3-infra-crises-20261101]
+    paths:
+      - .github/workflows/p3-l2-replay-test-20261108.yml
+      - research/p3-infra-crises-20261101/continuation_20261108/replay_tardis_l2.py
+      - research/p3-infra-crises-20261101/continuation_20261108/test_replay_tardis_synthetic.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synthetic-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify snapshot/delta/zero-size deletion and spread
+        run: python research/p3-infra-crises-20261101/continuation_20261108/test_replay_tardis_synthetic.py

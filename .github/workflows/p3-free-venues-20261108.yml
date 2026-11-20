@@ -1,0 +1,34 @@
+name: P3 free historical L2 venue discovery (research only)
+on:
+  push:
+    branches: [research/p3-infra-crises-20261101]
+    paths:
+      - .github/workflows/p3-free-venues-20261108.yml
+      - research/p3-infra-crises-20261101/continuation_20261108/probe_free_venues.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe four missing venues with existing provider
+        env:
+          CRYPTOHFTDATA_API_KEY: ${{ secrets.CRYPTOHFTDATA_API_KEY }}
+        run: python research/p3-infra-crises-20261101/continuation_20261108/probe_free_venues.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p3-free-venue-manifest
+          path: /tmp/p3-free-venue-probe/manifest.json
+          retention-days: 60
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p3-free-venue-raw
+          path: /tmp/p3-free-venue-probe/*.parquet
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 14

@@ -1,0 +1,102 @@
+{
+  "status": "READINESS_AUDIT_NOT_HYPOTHESIS_TEST",
+  "books": {
+    "valid_records": 60,
+    "by_venue_market": [
+      {
+        "venue": "bybit",
+        "market": "linear",
+        "records": 1
+      },
+      {
+        "venue": "bybit",
+        "market": "spot",
+        "records": 1
+      },
+      {
+        "venue": "okx",
+        "market": "spot",
+        "records": 29
+      },
+      {
+        "venue": "okx",
+        "market": "swap",
+        "records": 29
+      }
+    ],
+    "all_records_marked_not_depth_1pct": true,
+    "median_capture_gap_hours": 5.323663055555555,
+    "max_capture_gap_hours": 7.511074166666666,
+    "no_six_consecutive_hourly_test_in_source": "sparse, no fill, no 6 consecutive hourly normalization test",
+    "top25_native_not_comparable_across_spot_and_swap": true
+  },
+  "binance_post_funding": [
+    {
+      "symbol": "BTCUSDT",
+      "window_hours": 4,
+      "covered_interval_hours": 0.0,
+      "coverage_fraction": 0.0,
+      "observed_whole_interval_sum_percent": null,
+      "full_window_sum_percent": null
+    },
+    {
+      "symbol": "BTCUSDT",
+      "window_hours": 24,
+      "covered_interval_hours": 16.0,
+      "coverage_fraction": 0.6666666666666666,
+      "observed_whole_interval_sum_percent": 0.014306,
+      "full_window_sum_percent": null
+    },
+    {
+      "symbol": "BTCUSDT",
+      "window_hours": 72,
+      "covered_interval_hours": 40.0,
+      "coverage_fraction": 0.5555555555555556,
+      "observed_whole_interval_sum_percent": 0.044306,
+      "full_window_sum_percent": null
+    },
+    {
+      "symbol": "ETHUSDT",
+      "window_hours": 4,
+      "covered_interval_hours": 0.0,
+      "coverage_fraction": 0.0,
+      "observed_whole_interval_sum_percent": null,
+      "full_window_sum_percent": null
+    },
+    {
+      "symbol": "ETHUSDT",
+      "window_hours": 24,
+      "covered_interval_hours": 16.0,
+      "coverage_fraction": 0.6666666666666666,
+      "observed_whole_interval_sum_percent": -0.007444,
+      "full_window_sum_percent": null
+    },
+    {
+      "symbol": "ETHUSDT",
+      "window_hours": 72,
+      "covered_interval_hours": 40.0,
+      "coverage_fraction": 0.5555555555555556,
+      "observed_whole_interval_sum_percent": -0.035255,
+      "full_window_sum_percent": null
+    }
+  ],
+  "H1": {
+    "status": "NOT_TESTABLE_WITH_CURRENT_PANEL",
+    "result": null,
+    "reason": "Sparse spread observations exist; comparable +/-1% depth and liquidations are missing."
+  },
+  "H2": {
+    "status": "NOT_TESTABLE_WITH_CURRENT_PANEL",
+    "result": null,
+    "normalization_confirmed_at": null,
+    "reason": "No comparable +/-1% depth or six consecutive hourly normalization observations."
+  },
+  "H3": {
+    "status": "NOT_TESTABLE_WITH_CURRENT_PANEL",
+    "result": null,
+    "reason": "Synchronous flow identification and independently screened clean controls remain absent."
+  },
+  "P1_status": "SHADOW_RESEARCH_CANDIDATE_NOT_ACCEPTED",
+  "new_market_data_collected": false,
+  "PIT_promoted": false
+}

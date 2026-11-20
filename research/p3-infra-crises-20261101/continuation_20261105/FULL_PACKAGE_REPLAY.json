@@ -1,0 +1,41 @@
+{
+  "status": "PASS_EXISTING_ANALYSES_REPLAYED",
+  "run_date": "2026-11-05",
+  "market_data_retrieved_this_run": false,
+  "archive_manifest_entries_verified": 416,
+  "archive_manifest_mismatches": [],
+  "scripts": [
+    "analyze_primary_spot.py",
+    "analyze_primary_funding.py",
+    "phase_uncertainty.py"
+  ],
+  "byte_identical_data_outputs": 14,
+  "plot_byte_parity_claimed": false,
+  "environment": {
+    "python": "3.12.14",
+    "pandas": "2.2.3",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.8"
+  },
+  "tests_passed": 6,
+  "source_commit": "0683c030cb28b25e6d48df8ae843b9c43835f62e",
+  "acceptance": "SHADOW_RESEARCH_CANDIDATE_NOT_ACCEPTED",
+  "output_hashes": {
+    "primary_spot_response.csv": "0e4ea7fe597f69642e2e9d54932bcc7a585e259712c1eccfba3e55ca12255a4d",
+    "primary_spot_hourly_paths.csv": "b9669274bb90688a65640ad9a1b29ecba74d9bcd2d1312493004138732078455",
+    "primary_spot_coverage.csv": "a1db0e879f25fd9a16cb6753476735a3638c586f2e8ea1abc968680f3ad9d7ee",
+    "primary_raw_validation.json": "4c40261baae67e7c00a245ae319ea769d38c9bf4a3febc768af07cac35d7c135",
+    "ETH_BTC_relative_response.csv": "f4df68217b3f6079adcd295565ab2788cc753d27d0accea51bfabfc88a0dbdd4",
+    "primary_vs_previous_panel.csv": "204b25a4ac0896a4a7ae3e0fcde680dea9283930521f3b2a18b23a5b06b23c85",
+    "primary_summary.json": "0a1268cbbd37b8e642c30057dfbf377f4dd37e8fa069b538217b3139d3b824bf",
+    "primary_funding_windows.csv": "155e9cca6c419ec7cf297a19d4b745a98f927b208972f0ebcce69d35dad999d4",
+    "primary_funding_intervals.csv": "73fdaa27739c344dd243af6ac103be33a8ecf2aa8067f5eb56dc96d78a9da599",
+    "primary_funding_validation.json": "f811cc3581421d91710a160b3687e161f75a14a99b9d5a254841dbbabb99cd8d",
+    "ftx_date_only_all_anchors.csv": "3bddc3ad9672196102ed8472f91159dea013690e94cefdccc1b58b1f99ca5623",
+    "ftx_date_only_range.csv": "c6b41d734a5763ac7754034c99e068fd3995fdb286af89f1fa76151fb89705df",
+    "primary_vintage_overlap.csv": "805a6cce999adc1d8f5c56dc5fdb4d6484839727dbc28103e4f8bccad89fd3ec",
+    "primary_vintage_overlap_summary.json": "2f5f35ae63a98179f31b8a57a24a637f1586e1d0ade2c1ba11a03678d84be008"
+  },
+  "minimal_PR_layout_replay_passed": true,
+  "minimal_PR_layout_readiness_audit_passed": true
+}

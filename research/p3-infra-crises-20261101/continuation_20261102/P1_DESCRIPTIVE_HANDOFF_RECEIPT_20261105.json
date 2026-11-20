@@ -1,0 +1,151 @@
+{
+  "schema": "P3_P1_DESCRIPTIVE_RESEARCH_HANDOFF_RECEIPT_V1",
+  "recorded_on": "2026-11-05",
+  "owner": "P3",
+  "recipient": "P1",
+  "status": "SHADOW_RESEARCH_CANDIDATE_NOT_ACCEPTED",
+  "decision": {
+    "user_authorized_scope": "Передать описательные результаты, происхождение данных и ограничения для CYCLE / ONCHAIN_DEMAND / ALT_RS.",
+    "handoff": "RECORDED_FOR_P1_RESEARCH_REVIEW",
+    "scientific_acceptance": false,
+    "hypothesis_validation": false,
+    "production_installation": false,
+    "evidence_counts_reverified_in_this_receipt": false,
+    "note": "User agreement authorizes this descriptive handoff only; it does not accept H1-H3 or approve a trading rule."
+  },
+  "source": {
+    "repository": "analiticprosp-ship-it/crypto-price-feed",
+    "pr": 159,
+    "commit": "0683c030cb28b25e6d48df8ae843b9c43835f62e",
+    "handoff": "research/p3-infra-crises-20261101/continuation_20261102/P3_P1_HANDOFF_V4.json",
+    "handoff_git_blob_sha": "2ff51ea9d05201c44b30782f064dffc8160cc463",
+    "report": "research/p3-infra-crises-20261101/continuation_20261102/REPORT.md",
+    "report_git_blob_sha": "330bdf4353e9ec11f2b4628ac691b2e9fe6210fe",
+    "counts_and_findings": "Reported by the pinned V4 package; no new market collection or full raw-data replay in this receipt."
+  },
+  "module_routing": {
+    "CYCLE": {
+      "allowed": "Descriptive event phases, price paths, recovery and renewed-drawdown diagnostics, macro/policy overlap.",
+      "not_established": "Incident-specific causal effect, liquidity-led recovery, predictive cycle filter."
+    },
+    "ONCHAIN_DEMAND": {
+      "allowed": "Provenance and coverage of existing supply/flow proxies; explicit gaps and operator-claim labels.",
+      "not_established": "Synchronous capital demand, intraday redemptions, verified net inflows or solvency from price/funding alone."
+    },
+    "ALT_RS": {
+      "allowed": "Descriptive synchronized BTC/ETH relative price behavior with venue, quote, resolution and phase labels.",
+      "not_established": "Capital rotation inferred from ETH/BTC returns; independent confirmation by a second quote panel."
+    }
+  },
+  "evidence_status": {
+    "confirmed_as_reported_by_pinned_package": {
+      "spot": {
+        "raw_responses": 80,
+        "hourly_candles": 1440,
+        "minute_endpoints": 70,
+        "selected_phase_windows": 5
+      },
+      "funding": {
+        "verified_monthly_archives": 12,
+        "settlements": 1092
+      },
+      "overlap": {
+        "minute_prices_compared": 68,
+        "changed_prices": 0,
+        "proves_original_PIT": false
+      }
+    },
+    "limited": {
+      "spot": "BINANCE_SPOT_PRIMARY_API / USDT / REVISED_HISTORY; event-phase timing quality varies.",
+      "funding": "Monthly observations do not equal complete event-window coverage; wholly contained periods only.",
+      "FTX_sensitivity": "Secondary Bitstamp/USD hourly mirror; 24 dependent anchors of one parent episode; all grid +24H/+72H returns negative as reported, +4H sign depends on anchor; no causal inference.",
+      "controls": "101 candidate dates are not independently screened clean controls.",
+      "independence": "Five parent episodes remain five; alternative phases, assets, horizons and 24 FTX anchors do not add independent episodes."
+    },
+    "missing": {
+      "original_historical_PIT_vintages": true,
+      "original_first_available_at": null,
+      "november_funding_archives": 2,
+      "comparable_historical_spreads_depth_and_liquidations": true,
+      "liquidity_normalization_times": true,
+      "synchronous_flow_and_clean_controls": true,
+      "causal_identification": true
+    }
+  },
+  "hypotheses": {
+    "H1": "NOT_VALIDATED_MISSING_DEPTH_SPREADS",
+    "H2": "NOT_VALIDATED_NO_LIQUIDITY_NORMALIZATION_TIMES",
+    "H3": "NOT_VALIDATED_NO_SYNCHRONOUS_FLOW_IDENTIFICATION"
+  },
+  "minimum_next_checks": {
+    "H1": [
+      "Comparable synchronized affected/control venue spreads, depth +/-1%, cross-venue dislocations and liquidation coverage.",
+      "Intraday stablecoin parity and actual redemption evidence.",
+      "Predefine pre-event window, coverage criteria and control exclusions before testing."
+    ],
+    "H2": [
+      "Predefine liquidity normalization and sustained price recovery independently.",
+      "Measure separate confirmation timestamps and data availability; a seven-close criterion becomes known only on its seventh close.",
+      "Test temporal ordering with data latency; retain incomplete funding coverage as missing."
+    ],
+    "H3": [
+      "Align ETF, sector and defensive-asset flow data by trading session and publication availability.",
+      "Audit overlapping macro/policy events and independently screen controls.",
+      "Do not substitute relative returns for observed capital flows."
+    ]
+  },
+  "reproducibility": {
+    "primary_spot_funding": "Existing saved inputs and scripts remain the source; this receipt does not claim a new replay.",
+    "FTX_sensitivity": {
+      "status": "REQUIRES_FULL_PORTABLE_PACKAGE_INPUTS",
+      "script": "research/p3-infra-crises-20261101/continuation_20261102/phase_uncertainty.py",
+      "script_entry_point": "python P3/continuation_20261102/phase_uncertainty.py",
+      "missing_in_pinned_PR_tree": [
+        {
+          "path": "research/p3-infra-crises-20261101/raw/mirror_bitstamp_BTC.csv",
+          "present": false
+        },
+        {
+          "path": "research/p3-infra-crises-20261101/raw/mirror_bitstamp_ETH.csv",
+          "present": false
+        },
+        {
+          "path": "research/p3-infra-crises-20261101/continuation_20261101_spot/results/primary_spot_response.csv",
+          "present": false
+        }
+      ],
+      "original_input_hashes": "Not recovered or verified in this receipt.",
+      "revised_usdt_substitution_allowed": false,
+      "completion_gate": [
+        "Recover the original BTC/ETH USD mirror bytes and previous response CSV from the full package.",
+        "Record source URLs, retrieval metadata and hashes; retain original historical availability as unknown where unproven.",
+        "Run the existing script offline; compare all anchor rows, range summaries and vintage-overlap output.",
+        "If original inputs cannot be recovered, retain the gap; label any substitute recomputation separately."
+      ]
+    }
+  },
+  "data_rules": {
+    "retrieved_at_is_not_first_available_at": true,
+    "historical_first_availability": null,
+    "revised_history_is_not_PIT": true,
+    "USD_USDT_and_spot_perpetual_separate": true,
+    "missing_value": null,
+    "zero_fill_missing_forbidden": true,
+    "funding_periods": "FULLY_CONTAINED_ONLY_NO_PRORATION",
+    "funding_coverage_required": true,
+    "calendar_event_time_not_automatically_first_public_time": true
+  },
+  "acceptance": "NOT_ACCEPTED_NO_SCORE_GATE_OR_TRADING_CHANGE",
+  "unchanged": [
+    "main",
+    "production Spot/Futures",
+    "NAV/P&L",
+    "reserve",
+    "positions",
+    "limits",
+    "frozen BTC72H",
+    "PAPER LONG",
+    "scores/gates",
+    "workflow schedules"
+  ]
+}
