@@ -1,0 +1,32 @@
+name: Free news SHADOW manual validation
+on:
+  pull_request:
+    paths:
+      - 'scripts/collect_free_news.py'
+      - 'research/free_news/**'
+      - 'tests/test_free_news.py'
+      - '.github/workflows/free-news-shadow-manual.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run offline parser unit tests
+        run: python -m unittest discover -s tests -p test_free_news.py
+      - name: Run isolated collector
+        run: python scripts/collect_free_news.py --output /tmp/free-news-receipts
+      - name: Upload receipts even on partial failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: free-news-shadow-receipts
+          path: /tmp/free-news-receipts/
+          if-no-files-found: warn
+          retention-days: 14
