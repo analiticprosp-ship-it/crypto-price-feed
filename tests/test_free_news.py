@@ -17,5 +17,22 @@ class CollectorTest(unittest.TestCase):
         self.assertEqual(rows[0]["source_item_id"], "abc")
     def test_empty(self):
         self.assertEqual(module.parse_feed(b'<rss><channel/></rss>'), [])
+class MergeTest(unittest.TestCase):
+    def test_repeat_preserves_earliest(self):
+        import json
+        path = PATH.with_name("merge_free_news_receipts.py")
+        spec = importlib.util.spec_from_file_location("merge_news", path)
+        merge = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(merge)
+        with tempfile.TemporaryDirectory() as tmp:
+            a, b = Path(tmp)/"a.jsonl", Path(tmp)/"b.jsonl"
+            row = {"dedupe_key":"abc","source":"sec","first_seen_at_utc":"2026-11-24T09:00:00Z"}
+            a.write_text(json.dumps(row)+"\n")
+            b.write_text(json.dumps(dict(row, first_seen_at_utc="2026-11-05T09:00:00Z"))+"\n")
+            result = merge.merge([a,b])
+            self.assertEqual(result["unique_source_items"],1)
+            self.assertEqual(result["repeat_observations"],1)
+            self.assertEqual(result["items"][0]["first_seen_at_utc"],"2026-11-05T09:00:00Z")
+
 if __name__ == "__main__":
     unittest.main()
