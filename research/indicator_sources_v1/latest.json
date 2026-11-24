@@ -1,8 +1,8 @@
 {
   "schema": "indicator-sources-v1",
-  "run_id": "20261123T143123103276Z",
-  "started_at": "2026-11-23T14:31:23.103276+00:00",
-  "finished_at": "2026-11-23T14:39:51.490561+00:00",
+  "run_id": "20261124T025328829701Z",
+  "started_at": "2026-11-24T02:53:28.829701+00:00",
+  "finished_at": "2026-11-24T03:01:55.423741+00:00",
   "sequential": true,
   "research_only": true,
   "last_good_is_not_current": true,
@@ -11,131 +11,131 @@
     {
       "key": "BTC_funding",
       "url": "https://www.okx.com/api/v5/public/funding-rate-history?instId=BTC-USDT-SWAP&limit=100",
-      "started_at": "2026-11-23T14:31:23.103548+00:00",
+      "started_at": "2026-11-24T02:53:28.830073+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_funding.raw",
-      "sha256": "96b89e9372715f43ebd6c2d2d671a352fd392503eae177308bf42eff0a8b9354",
-      "retrieved_at": "2026-11-23T14:31:23.241763+00:00",
+      "sha256": "6a1553dcacc676ba25acc364c9e47dcfd884d1e05d5da60b72f19586c12dcc93",
+      "retrieved_at": "2026-11-24T02:53:29.100428+00:00",
       "value": {
-        "observed_at": "2026-11-23T08:00:00+00:00",
-        "realized_percent_per_period": -0.00049511041365,
+        "observed_at": "2026-11-24T00:00:00+00:00",
+        "realized_percent_per_period": 0.00538666241708,
         "venue": "OKX",
         "instId": "BTC-USDT-SWAP"
       },
-      "finished_at": "2026-11-23T14:31:23.242398+00:00"
+      "finished_at": "2026-11-24T02:53:29.101157+00:00"
     },
     {
       "key": "BTC_oi",
       "url": "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=BTC-USDT-SWAP&period=1H",
-      "started_at": "2026-11-23T14:31:23.242415+00:00",
+      "started_at": "2026-11-24T02:53:29.101180+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "pagination_urls": [
         "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=BTC-USDT-SWAP&period=1H",
-        "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=BTC-USDT-SWAP&period=1H&end=1795086000000"
+        "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=BTC-USDT-SWAP&period=1H&end=1795129200000"
       ],
       "stored_payload": "MERGED_PROVIDER_PAGES",
       "raw_file": "BTC_oi.raw",
-      "sha256": "4f868ef5c2315ba0300945dc5372769ab54bcb8a559fa2da181a50f48275a158",
-      "retrieved_at": "2026-11-23T14:31:23.512992+00:00",
+      "sha256": "a34cc7d93df4c053a6056d040ea0e3283ddc06c5e99475ef7a16baa0a4b60499",
+      "retrieved_at": "2026-11-24T02:53:29.527970+00:00",
       "value": {
-        "observed_at": "2026-11-23T13:00:00+00:00",
-        "bucket_end": "2026-11-23T14:00:00+00:00",
+        "observed_at": "2026-11-24T01:00:00+00:00",
+        "bucket_end": "2026-11-24T02:00:00+00:00",
         "closed_bucket": true,
         "timestamp_semantics": "HISTORICAL_HOURLY_BUCKET_NOT_EXACT_INSTANT_QUOTE",
         "venue": "OKX",
         "market": "PERPETUAL",
-        "contracts": 3038470.23000001,
-        "coins": 30384.702300000103,
-        "usd": 1924445504.8728063,
+        "contracts": 2977188.5500000077,
+        "coins": 29771.88550000008,
+        "usd": 1818091640.5827048,
         "baseline_120h": {
-          "observed_at": "2026-11-18T13:00:00+00:00",
-          "contracts": 3220872.660000014,
-          "delta_contracts_pct": -5.663136958665205,
-          "delta_usd_pct": -6.5117287100325605
+          "observed_at": "2026-11-19T01:00:00+00:00",
+          "contracts": 3319595.4900000137,
+          "delta_contracts_pct": -10.314718797259381,
+          "delta_usd_pct": -12.80322397763034
         },
         "baseline_status": "EXACT",
         "not_directional_long_short": true
       },
-      "finished_at": "2026-11-23T14:31:23.513688+00:00"
+      "finished_at": "2026-11-24T02:53:29.528722+00:00"
     },
     {
       "key": "BTC_spot_cvd",
       "url": "https://www.okx.com/api/v5/rubik/stat/taker-volume?ccy=BTC&instType=SPOT&period=1H",
-      "started_at": "2026-11-23T14:31:23.513705+00:00",
+      "started_at": "2026-11-24T02:53:29.528739+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_spot_cvd.raw",
-      "sha256": "98c1b635f1955c9d708891a424105dfd8f23341fd33625eb660f3b7f1aeed88a",
-      "retrieved_at": "2026-11-23T14:31:23.656563+00:00",
+      "sha256": "f678c8c6c0fa3481afe35c1b2606adc54705ae27eaabaf109ac16675ceabb2af",
+      "retrieved_at": "2026-11-24T02:53:29.720166+00:00",
       "value": {
-        "observed_at": "2026-11-23T14:00:00+00:00",
-        "window_start": "2026-11-22T14:00:00+00:00",
-        "window_end": "2026-11-23T14:00:00+00:00",
+        "observed_at": "2026-11-24T02:00:00+00:00",
+        "window_start": "2026-11-23T02:00:00+00:00",
+        "window_end": "2026-11-24T02:00:00+00:00",
         "market": "SPOT",
         "venue": "OKX",
         "unit": "base_asset",
-        "buy": 4496.1081,
-        "sell": 3571.1385,
-        "delta": 924.9696000000004,
+        "buy": 8523.0462,
+        "sell": 7378.494,
+        "delta": 1144.552200000001,
         "cvd_definition": "sum(buy-sell), reset at window_start",
         "closed_hours": 24,
         "not_global_flow": true
       },
-      "finished_at": "2026-11-23T14:31:23.657623+00:00"
+      "finished_at": "2026-11-24T02:53:29.721384+00:00"
     },
     {
       "key": "BTC_options",
       "url": "https://www.deribit.com/api/v2/public/get_book_summary_by_currency?currency=BTC&kind=option",
-      "started_at": "2026-11-23T14:31:23.657637+00:00",
+      "started_at": "2026-11-24T02:53:29.721403+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_options.raw",
-      "sha256": "6dac59241104ec8e3995cd02f55055e2764b0126440adfd02996b18f3356ecea",
-      "retrieved_at": "2026-11-23T14:31:23.881863+00:00",
+      "sha256": "3817b23cf8b265c1159a6e403c2739eae7c2d11b6f91a03019cfa81cde784314",
+      "retrieved_at": "2026-11-24T02:53:29.838387+00:00",
       "value": {
-        "observed_at": "2026-11-23T14:31:22.020000+00:00",
+        "observed_at": "2026-11-24T02:53:28.039000+00:00",
         "venue": "Deribit",
-        "instruments": 970,
-        "put_oi": 188658.10000000012,
-        "call_oi": 232921.90000000002,
-        "put_call_oi_ratio": 0.8099629103145737,
+        "instruments": 972,
+        "put_oi": 194224.10000000018,
+        "call_oi": 240907.49999999997,
+        "put_call_oi_ratio": 0.8062185693679118,
         "expiry_oi": {
-          "2027-03-26T08:00:00+00:00": 53982.8,
-          "2027-09-24T08:00:00+00:00": 13862.2,
-          "2027-06-25T08:00:00+00:00": 23112.500000000015,
-          "2027-01-29T08:00:00+00:00": 22852.4,
-          "2026-12-04T08:00:00+00:00": 23855.099999999995,
-          "2026-11-26T08:00:00+00:00": 318.6,
-          "2026-12-25T08:00:00+00:00": 158439.30000000008,
-          "2026-12-11T08:00:00+00:00": 7761.899999999999,
-          "2026-11-27T08:00:00+00:00": 111810.39999999997,
-          "2026-11-24T08:00:00+00:00": 3682.7999999999993,
-          "2026-11-25T08:00:00+00:00": 1901.9999999999998
+          "2027-03-26T08:00:00+00:00": 55670.6,
+          "2027-09-24T08:00:00+00:00": 15305.300000000001,
+          "2027-06-25T08:00:00+00:00": 23552.700000000004,
+          "2027-01-29T08:00:00+00:00": 24499.800000000007,
+          "2026-12-04T08:00:00+00:00": 24380.500000000007,
+          "2026-11-26T08:00:00+00:00": 1037.1000000000001,
+          "2026-12-25T08:00:00+00:00": 162314.6000000001,
+          "2026-12-11T08:00:00+00:00": 8181.399999999999,
+          "2026-11-27T08:00:00+00:00": 111332.09999999998,
+          "2026-11-24T08:00:00+00:00": 5524.3,
+          "2026-11-25T08:00:00+00:00": 3333.2000000000007
         },
         "mark_iv_chain_saved": true,
         "iv_skew": {
           "method": "MODEL_BLACK76_UNDISCOUNTED_FORWARD_DELTA_MARK_IV; delta-linear legs; maturity-total-variance interpolation; no extrapolation",
           "quality": "MODEL_ESTIMATE_NOT_PROVIDER_QUOTED_SKEW",
           "two_sided_positive_oi_filter": true,
-          "valid_expiries": 9,
+          "valid_expiries": 11,
           "tenors": {
             "7d": {
-              "atm_iv_percent": 50.64881073594836,
-              "put25_iv_percent": 54.36577965969753,
-              "call25_iv_percent": 49.56133331206513,
-              "put_minus_call_25d_pp": 4.8044463476324
+              "atm_iv_percent": 53.38595878891284,
+              "put25_iv_percent": 60.33983518992837,
+              "call25_iv_percent": 49.718303942054234,
+              "put_minus_call_25d_pp": 10.621531247874138
             },
             "30d": {
-              "atm_iv_percent": 46.36308124642515,
-              "put25_iv_percent": 50.40040051465352,
-              "call25_iv_percent": 44.54014720181488,
-              "put_minus_call_25d_pp": 5.860253312838637
+              "atm_iv_percent": 49.06877781023726,
+              "put25_iv_percent": 54.91049587979416,
+              "call25_iv_percent": 45.880629513976075,
+              "put_minus_call_25d_pp": 9.029866365818087
             }
           }
         },
@@ -143,188 +143,188 @@
         "gamma_status": "DEALER_POSITION_SIGN_UNOBSERVABLE",
         "not_dealer_gex": true
       },
-      "finished_at": "2026-11-23T14:31:23.911004+00:00"
+      "finished_at": "2026-11-24T02:53:29.867791+00:00"
     },
     {
       "key": "BTC_4H",
       "url": "https://www.okx.com/api/v5/market/candles?instId=BTC-USDT-SWAP&bar=4H&limit=100",
-      "started_at": "2026-11-23T14:31:23.911035+00:00",
+      "started_at": "2026-11-24T02:53:29.867817+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_4H.raw",
-      "sha256": "06641648d1be9f5edaa659101d87662b5919a4346572b52377d7286f4d5748db",
-      "retrieved_at": "2026-11-23T14:31:24.044294+00:00",
+      "sha256": "3f22ce6bf0dcbe4a4189870e87db6ede77b5ba4a6077a767f77f4889714b7e6b",
+      "retrieved_at": "2026-11-24T02:53:30.054876+00:00",
       "value": {
-        "observed_at": "2026-11-23T12:00:00+00:00",
-        "bar_open": "2026-11-23T08:00:00+00:00",
-        "bar_close": "2026-11-23T12:00:00+00:00",
+        "observed_at": "2026-11-24T00:00:00+00:00",
+        "bar_open": "2026-11-23T20:00:00+00:00",
+        "bar_close": "2026-11-24T00:00:00+00:00",
         "closed": true,
-        "open": 61429.6,
-        "high": 61940.8,
-        "low": 61100.0,
-        "close": 61395.3,
-        "volume_contracts": 1460964.3,
+        "open": 61233.0,
+        "high": 61580.5,
+        "low": 61026.2,
+        "close": 61246.1,
+        "volume_contracts": 1128908.05,
         "market": "PERPETUAL",
         "venue": "OKX",
         "not_indicator_signal": true
       },
-      "finished_at": "2026-11-23T14:31:24.045057+00:00"
+      "finished_at": "2026-11-24T02:53:30.056020+00:00"
     },
     {
       "key": "BTC_1Dutc",
       "url": "https://www.okx.com/api/v5/market/candles?instId=BTC-USDT-SWAP&bar=1Dutc&limit=100",
-      "started_at": "2026-11-23T14:31:24.045075+00:00",
+      "started_at": "2026-11-24T02:53:30.056037+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BTC_1Dutc.raw",
-      "sha256": "9032e7101e2b3b0d3fa49205e42eecbc6aadb06db97fbf89eef8b62dbcf8a78d",
-      "retrieved_at": "2026-11-23T14:31:24.184219+00:00",
+      "sha256": "e8bac287d2b428d7cb6543f86f180d7b3b6f4edbe837b49288a6a3731be9af14",
+      "retrieved_at": "2026-11-24T02:53:30.256299+00:00",
       "value": {
-        "observed_at": "2026-11-23T00:00:00+00:00",
-        "bar_open": "2026-11-22T00:00:00+00:00",
-        "bar_close": "2026-11-23T00:00:00+00:00",
+        "observed_at": "2026-11-24T00:00:00+00:00",
+        "bar_open": "2026-11-23T00:00:00+00:00",
+        "bar_close": "2026-11-24T00:00:00+00:00",
         "closed": true,
-        "open": 60183.2,
-        "high": 61644.9,
-        "low": 58731.0,
-        "close": 61240.0,
-        "volume_contracts": 11194408.02,
+        "open": 61240.0,
+        "high": 64570.0,
+        "low": 60339.6,
+        "close": 61246.1,
+        "volume_contracts": 18048768.86,
         "market": "PERPETUAL",
         "venue": "OKX",
         "not_indicator_signal": true
       },
-      "finished_at": "2026-11-23T14:31:24.184853+00:00"
+      "finished_at": "2026-11-24T02:53:30.256762+00:00"
     },
     {
       "key": "ETH_funding",
       "url": "https://www.okx.com/api/v5/public/funding-rate-history?instId=ETH-USDT-SWAP&limit=100",
-      "started_at": "2026-11-23T14:31:24.184876+00:00",
+      "started_at": "2026-11-24T02:53:30.256784+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_funding.raw",
-      "sha256": "b96d14abca98c1a1738516754a1863db12dc38bd3cc4bf7f4632f6de7fad6ba3",
-      "retrieved_at": "2026-11-23T14:31:24.316693+00:00",
+      "sha256": "ccc6f7f34159edc211249633e25d7e62dd931cfeeef192a1caafc3c6809b1b50",
+      "retrieved_at": "2026-11-24T02:53:30.438289+00:00",
       "value": {
-        "observed_at": "2026-11-23T08:00:00+00:00",
-        "realized_percent_per_period": -0.0038418844337900003,
+        "observed_at": "2026-11-24T00:00:00+00:00",
+        "realized_percent_per_period": -0.0069320541967,
         "venue": "OKX",
         "instId": "ETH-USDT-SWAP"
       },
-      "finished_at": "2026-11-23T14:31:24.317263+00:00"
+      "finished_at": "2026-11-24T02:53:30.438844+00:00"
     },
     {
       "key": "ETH_oi",
       "url": "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=ETH-USDT-SWAP&period=1H",
-      "started_at": "2026-11-23T14:31:24.317279+00:00",
+      "started_at": "2026-11-24T02:53:30.438865+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "pagination_urls": [
         "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=ETH-USDT-SWAP&period=1H",
-        "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=ETH-USDT-SWAP&period=1H&end=1795086000000"
+        "https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=ETH-USDT-SWAP&period=1H&end=1795129200000"
       ],
       "stored_payload": "MERGED_PROVIDER_PAGES",
       "raw_file": "ETH_oi.raw",
-      "sha256": "24ebfb6e29b49fe94505cd4ccbbe9bd44b90017de301568247ac757027742bb3",
-      "retrieved_at": "2026-11-23T14:31:24.589388+00:00",
+      "sha256": "331889e3bd17eab6afeee2f34892b186b54f749298aa4d2bf24814a9eb6c306f",
+      "retrieved_at": "2026-11-24T02:53:30.866692+00:00",
       "value": {
-        "observed_at": "2026-11-23T13:00:00+00:00",
-        "bucket_end": "2026-11-23T14:00:00+00:00",
+        "observed_at": "2026-11-24T01:00:00+00:00",
+        "bucket_end": "2026-11-24T02:00:00+00:00",
         "closed_bucket": true,
         "timestamp_semantics": "HISTORICAL_HOURLY_BUCKET_NOT_EXACT_INSTANT_QUOTE",
         "venue": "OKX",
         "market": "PERPETUAL",
-        "contracts": 6667553.260000013,
-        "coins": 666755.3260000013,
-        "usd": 1194445493.6561823,
+        "contracts": 6713226.570000015,
+        "coins": 671322.6570000015,
+        "usd": 1144678975.6772726,
         "baseline_120h": {
-          "observed_at": "2026-11-18T13:00:00+00:00",
-          "contracts": 6920871.570000012,
-          "delta_contracts_pct": -3.66020821854377,
-          "delta_usd_pct": -3.548758667314489
+          "observed_at": "2026-11-19T01:00:00+00:00",
+          "contracts": 6885087.070000012,
+          "delta_contracts_pct": -2.4961267483287863,
+          "delta_usd_pct": -6.526467382110335
         },
         "baseline_status": "EXACT",
         "not_directional_long_short": true
       },
-      "finished_at": "2026-11-23T14:31:24.590037+00:00"
+      "finished_at": "2026-11-24T02:53:30.867453+00:00"
     },
     {
       "key": "ETH_spot_cvd",
       "url": "https://www.okx.com/api/v5/rubik/stat/taker-volume?ccy=ETH&instType=SPOT&period=1H",
-      "started_at": "2026-11-23T14:31:24.590051+00:00",
+      "started_at": "2026-11-24T02:53:30.867472+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_spot_cvd.raw",
-      "sha256": "02aac905bdab63060b8311c5e443e04d21d5bde93ee7a18c80f49322b5828e77",
-      "retrieved_at": "2026-11-23T14:31:24.735858+00:00",
+      "sha256": "f83df9240fffe996e2dd517640ddc8f5edc39d2bdda5efb2f84a0fab2a824647",
+      "retrieved_at": "2026-11-24T02:53:31.072355+00:00",
       "value": {
-        "observed_at": "2026-11-23T14:00:00+00:00",
-        "window_start": "2026-11-22T14:00:00+00:00",
-        "window_end": "2026-11-23T14:00:00+00:00",
+        "observed_at": "2026-11-24T02:00:00+00:00",
+        "window_start": "2026-11-23T02:00:00+00:00",
+        "window_end": "2026-11-24T02:00:00+00:00",
         "market": "SPOT",
         "venue": "OKX",
         "unit": "base_asset",
-        "buy": 51792.6495,
-        "sell": 50870.0091,
-        "delta": 922.6403999999966,
+        "buy": 125248.951,
+        "sell": 124836.3761,
+        "delta": 412.5749000000069,
         "cvd_definition": "sum(buy-sell), reset at window_start",
         "closed_hours": 24,
         "not_global_flow": true
       },
-      "finished_at": "2026-11-23T14:31:24.736950+00:00"
+      "finished_at": "2026-11-24T02:53:31.073615+00:00"
     },
     {
       "key": "ETH_options",
       "url": "https://www.deribit.com/api/v2/public/get_book_summary_by_currency?currency=ETH&kind=option",
-      "started_at": "2026-11-23T14:31:24.736964+00:00",
+      "started_at": "2026-11-24T02:53:31.073633+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_options.raw",
-      "sha256": "a80b7e73df0ba6a145e4fb5a9a311751272cbdc0149f8cc7c9194894b6641d67",
-      "retrieved_at": "2026-11-23T14:31:24.951521+00:00",
+      "sha256": "64934a8bf2a5b07236a01fed81305655920c1c9d015c245f9e6fc71cddb49609",
+      "retrieved_at": "2026-11-24T02:53:31.177574+00:00",
       "value": {
-        "observed_at": "2026-11-23T14:31:22.422000+00:00",
+        "observed_at": "2026-11-24T02:53:29.162000+00:00",
         "venue": "Deribit",
-        "instruments": 800,
-        "put_oi": 603570.0,
-        "call_oi": 1152211.0,
-        "put_call_oi_ratio": 0.5238363459470531,
+        "instruments": 804,
+        "put_oi": 640004.0,
+        "call_oi": 1173465.0,
+        "put_call_oi_ratio": 0.545396752353074,
         "expiry_oi": {
-          "2027-06-25T08:00:00+00:00": 120155.0,
-          "2026-11-27T08:00:00+00:00": 327857.0,
-          "2026-12-11T08:00:00+00:00": 34295.0,
-          "2026-11-24T08:00:00+00:00": 31147.0,
-          "2026-11-25T08:00:00+00:00": 9442.0,
-          "2026-12-25T08:00:00+00:00": 702532.0,
-          "2027-01-29T08:00:00+00:00": 87477.0,
-          "2027-09-24T08:00:00+00:00": 61106.0,
-          "2027-03-26T08:00:00+00:00": 247009.0,
-          "2026-12-04T08:00:00+00:00": 133205.0,
-          "2026-11-26T08:00:00+00:00": 1556.0
+          "2026-11-27T08:00:00+00:00": 343962.0,
+          "2026-12-11T08:00:00+00:00": 41065.0,
+          "2026-11-24T08:00:00+00:00": 50017.0,
+          "2026-11-25T08:00:00+00:00": 16393.0,
+          "2026-12-25T08:00:00+00:00": 700653.0,
+          "2027-01-29T08:00:00+00:00": 87652.0,
+          "2027-09-24T08:00:00+00:00": 61782.0,
+          "2027-06-25T08:00:00+00:00": 121240.0,
+          "2027-03-26T08:00:00+00:00": 247437.0,
+          "2026-12-04T08:00:00+00:00": 136512.0,
+          "2026-11-26T08:00:00+00:00": 6756.0
         },
         "mark_iv_chain_saved": true,
         "iv_skew": {
           "method": "MODEL_BLACK76_UNDISCOUNTED_FORWARD_DELTA_MARK_IV; delta-linear legs; maturity-total-variance interpolation; no extrapolation",
           "quality": "MODEL_ESTIMATE_NOT_PROVIDER_QUOTED_SKEW",
           "two_sided_positive_oi_filter": true,
-          "valid_expiries": 8,
+          "valid_expiries": 11,
           "tenors": {
             "7d": {
-              "atm_iv_percent": 59.43549941893522,
-              "put25_iv_percent": 65.12377292776974,
-              "call25_iv_percent": 57.42316760460088,
-              "put_minus_call_25d_pp": 7.700605323168858
+              "atm_iv_percent": 64.78347752690743,
+              "put25_iv_percent": 71.76283631777271,
+              "call25_iv_percent": 62.45297869018794,
+              "put_minus_call_25d_pp": 9.309857627584769
             },
             "30d": {
-              "atm_iv_percent": 60.18829122610274,
-              "put25_iv_percent": 64.88055196019683,
-              "call25_iv_percent": 58.14591078676553,
-              "put_minus_call_25d_pp": 6.734641173431292
+              "atm_iv_percent": 62.528925424126726,
+              "put25_iv_percent": 67.87257932028616,
+              "call25_iv_percent": 60.25850463390422,
+              "put_minus_call_25d_pp": 7.614074686381947
             }
           }
         },
@@ -332,80 +332,80 @@
         "gamma_status": "DEALER_POSITION_SIGN_UNOBSERVABLE",
         "not_dealer_gex": true
       },
-      "finished_at": "2026-11-23T14:31:24.969838+00:00"
+      "finished_at": "2026-11-24T02:53:31.197817+00:00"
     },
     {
       "key": "ETH_4H",
       "url": "https://www.okx.com/api/v5/market/candles?instId=ETH-USDT-SWAP&bar=4H&limit=100",
-      "started_at": "2026-11-23T14:31:24.969858+00:00",
+      "started_at": "2026-11-24T02:53:31.197842+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_4H.raw",
-      "sha256": "3a95b82fc8235e602d83d3e5dcd085e3ab93c4eb13320b3d11ea4bc9ab163469",
-      "retrieved_at": "2026-11-23T14:31:25.099290+00:00",
+      "sha256": "b9a42f6f5dbf70ad16b1c3a42a0de0050fe02a11dcfb4111f631c68353647206",
+      "retrieved_at": "2026-11-24T02:53:31.379675+00:00",
       "value": {
-        "observed_at": "2026-11-23T12:00:00+00:00",
-        "bar_open": "2026-11-23T08:00:00+00:00",
-        "bar_close": "2026-11-23T12:00:00+00:00",
+        "observed_at": "2026-11-24T00:00:00+00:00",
+        "bar_open": "2026-11-23T20:00:00+00:00",
+        "bar_close": "2026-11-24T00:00:00+00:00",
         "closed": true,
-        "open": 1721.68,
-        "high": 1734.0,
-        "low": 1713.37,
-        "close": 1724.73,
-        "volume_contracts": 2658236.42,
+        "open": 1730.84,
+        "high": 1735.35,
+        "low": 1702.28,
+        "close": 1709.85,
+        "volume_contracts": 4184447.46,
         "market": "PERPETUAL",
         "venue": "OKX",
         "not_indicator_signal": true
       },
-      "finished_at": "2026-11-23T14:31:25.099981+00:00"
+      "finished_at": "2026-11-24T02:53:31.380652+00:00"
     },
     {
       "key": "ETH_1Dutc",
       "url": "https://www.okx.com/api/v5/market/candles?instId=ETH-USDT-SWAP&bar=1Dutc&limit=100",
-      "started_at": "2026-11-23T14:31:25.099997+00:00",
+      "started_at": "2026-11-24T02:53:31.380670+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETH_1Dutc.raw",
-      "sha256": "6013ab6f1cced0f13d8fb75d2cc98d3a030e78ae3b1c54c172f6105ca528ac44",
-      "retrieved_at": "2026-11-23T14:31:25.234807+00:00",
+      "sha256": "4008652311247f17f3a2c92608a43f2679725209f7547e524eaf0937f4a55c55",
+      "retrieved_at": "2026-11-24T02:53:31.566535+00:00",
       "value": {
-        "observed_at": "2026-11-23T00:00:00+00:00",
-        "bar_open": "2026-11-22T00:00:00+00:00",
-        "bar_close": "2026-11-23T00:00:00+00:00",
+        "observed_at": "2026-11-24T00:00:00+00:00",
+        "bar_open": "2026-11-23T00:00:00+00:00",
+        "bar_close": "2026-11-24T00:00:00+00:00",
         "closed": true,
-        "open": 1684.91,
-        "high": 1733.52,
-        "low": 1647.12,
-        "close": 1723.44,
-        "volume_contracts": 26103064.09,
+        "open": 1723.45,
+        "high": 1844.99,
+        "low": 1695.45,
+        "close": 1709.85,
+        "volume_contracts": 46016648.15,
         "market": "PERPETUAL",
         "venue": "OKX",
         "not_indicator_signal": true
       },
-      "finished_at": "2026-11-23T14:31:25.235261+00:00"
+      "finished_at": "2026-11-24T02:53:31.567020+00:00"
     },
     {
       "key": "FRED_DGS2",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:25.235275+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:31.567036+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DGS2.raw",
-      "sha256": "c18fb77997d61ebc4953f9bfcd3c77f501b139f526914744912c32c63b5f74b2",
-      "retrieved_at": "2026-11-23T14:31:25.585303+00:00",
+      "sha256": "c75631bf98801d3f28bb8e5c3bdfcbd8d025455b4555641c467e136d9f51b82b",
+      "retrieved_at": "2026-11-24T02:53:32.117003+00:00",
       "value": {
-        "observed_at_date": "2026-11-19",
-        "value": 4.76,
+        "observed_at_date": "2026-11-20",
+        "value": 4.63,
         "previous_observation": {
-          "date": "2026-11-18",
-          "value": 4.8
+          "date": "2026-11-19",
+          "value": 4.76
         },
         "daily_five_observation_baseline": {
-          "date": "2026-11-12",
-          "value": 4.86
+          "date": "2026-11-13",
+          "value": 4.88
         },
         "frequency": "DAILY",
         "unit": "FRED_SERIES_NATIVE_UNIT",
@@ -418,28 +418,28 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 4
       },
-      "finished_at": "2026-11-23T14:31:25.586746+00:00"
+      "finished_at": "2026-11-24T02:53:32.117696+00:00"
     },
     {
       "key": "FRED_DGS10",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:25.586762+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:32.117717+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DGS10.raw",
-      "sha256": "bfb0297e170f89b0e92231d4e3b55ca15e4262c7be70df3f29d9e56c39744675",
-      "retrieved_at": "2026-11-23T14:31:25.802825+00:00",
+      "sha256": "7c873ac738d28e1163b5204fafd58444570cced494ce9792cd87440ad5050dc7",
+      "retrieved_at": "2026-11-24T02:53:32.404817+00:00",
       "value": {
-        "observed_at_date": "2026-11-19",
-        "value": 5.04,
+        "observed_at_date": "2026-11-20",
+        "value": 4.92,
         "previous_observation": {
-          "date": "2026-11-18",
-          "value": 5.07
+          "date": "2026-11-19",
+          "value": 5.04
         },
         "daily_five_observation_baseline": {
-          "date": "2026-11-12",
-          "value": 5.1
+          "date": "2026-11-13",
+          "value": 5.15
         },
         "frequency": "DAILY",
         "unit": "FRED_SERIES_NATIVE_UNIT",
@@ -452,28 +452,28 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 4
       },
-      "finished_at": "2026-11-23T14:31:25.803398+00:00"
+      "finished_at": "2026-11-24T02:53:32.405526+00:00"
     },
     {
       "key": "FRED_DFII10",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFII10&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:25.803414+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFII10&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:32.405544+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DFII10.raw",
-      "sha256": "d909cc43d2c9356e32771249114db7acbcd0a5c237f5258ed1dd4eac9c91fbf0",
-      "retrieved_at": "2026-11-23T14:31:26.002597+00:00",
+      "sha256": "0eac0ac55fa607e4f322be05dbe1bb01fb1b595978a4cf0bc1f93b029cae3485",
+      "retrieved_at": "2026-11-24T02:53:32.717619+00:00",
       "value": {
-        "observed_at_date": "2026-11-19",
-        "value": 2.88,
+        "observed_at_date": "2026-11-20",
+        "value": 2.77,
         "previous_observation": {
-          "date": "2026-11-18",
+          "date": "2026-11-19",
           "value": 2.88
         },
         "daily_five_observation_baseline": {
-          "date": "2026-11-12",
-          "value": 2.86
+          "date": "2026-11-13",
+          "value": 2.91
         },
         "frequency": "DAILY",
         "unit": "FRED_SERIES_NATIVE_UNIT",
@@ -486,28 +486,28 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 4
       },
-      "finished_at": "2026-11-23T14:31:26.003152+00:00"
+      "finished_at": "2026-11-24T02:53:32.718293+00:00"
     },
     {
       "key": "FRED_DTWEXBGS",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:26.003167+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:32.718311+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DTWEXBGS.raw",
-      "sha256": "cc926409bad238bac3f0ccf5c7aed42f96a3e11d581f5a25080ae9a7ddad0f80",
-      "retrieved_at": "2026-11-23T14:31:26.269477+00:00",
+      "sha256": "92b4661d6e893f32d45d3071a20174fdbc7a6b7030d3363112abc78526665c2d",
+      "retrieved_at": "2026-11-24T02:53:32.968004+00:00",
       "value": {
-        "observed_at_date": "2026-11-13",
-        "value": 122.6503,
+        "observed_at_date": "2026-11-20",
+        "value": 123.5978,
         "previous_observation": {
-          "date": "2026-11-12",
-          "value": 122.5433
+          "date": "2026-11-19",
+          "value": 123.5253
         },
         "daily_five_observation_baseline": {
-          "date": "2026-11-05",
-          "value": 121.5061
+          "date": "2026-11-13",
+          "value": 122.6503
         },
         "frequency": "DAILY",
         "unit": "FRED_SERIES_NATIVE_UNIT",
@@ -518,30 +518,30 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 10
+        "age_calendar_days": 4
       },
-      "finished_at": "2026-11-23T14:31:26.270062+00:00"
+      "finished_at": "2026-11-24T02:53:32.968705+00:00"
     },
     {
       "key": "FRED_BAMLH0A0HYM2",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:26.270077+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:32.968722+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_BAMLH0A0HYM2.raw",
-      "sha256": "b8f1eca1db6fb26e8b667b20918dd08a05764b1c3d7b6245e42b169be5cff7d1",
-      "retrieved_at": "2026-11-23T14:31:26.450670+00:00",
+      "sha256": "10640bf7bf4c66e11533e55c080dcf5eefddb5c75646c2a070f65743e46be3d4",
+      "retrieved_at": "2026-11-24T02:53:33.594384+00:00",
       "value": {
-        "observed_at_date": "2026-11-19",
-        "value": 3.52,
+        "observed_at_date": "2026-11-20",
+        "value": 3.76,
         "previous_observation": {
-          "date": "2026-11-18",
-          "value": 3.47
+          "date": "2026-11-19",
+          "value": 3.52
         },
         "daily_five_observation_baseline": {
-          "date": "2026-11-12",
-          "value": 3.2
+          "date": "2026-11-13",
+          "value": 3.23
         },
         "frequency": "DAILY",
         "unit": "FRED_SERIES_NATIVE_UNIT",
@@ -554,18 +554,18 @@
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
         "age_calendar_days": 4
       },
-      "finished_at": "2026-11-23T14:31:26.451258+00:00"
+      "finished_at": "2026-11-24T02:53:33.595079+00:00"
     },
     {
       "key": "FRED_NFCI",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NFCI&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:26.451274+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NFCI&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:33.595100+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_NFCI.raw",
       "sha256": "6b9d991c639f26b9c56e8dacedbb0088bebfd562a67a3c01d359bbc280618379",
-      "retrieved_at": "2026-11-23T14:31:26.769613+00:00",
+      "retrieved_at": "2026-11-24T02:53:33.839640+00:00",
       "value": {
         "observed_at_date": "2026-11-13",
         "value": -0.478,
@@ -583,20 +583,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 10
+        "age_calendar_days": 11
       },
-      "finished_at": "2026-11-23T14:31:26.769798+00:00"
+      "finished_at": "2026-11-24T02:53:33.839847+00:00"
     },
     {
       "key": "FRED_ANFCI",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=ANFCI&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:26.769814+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=ANFCI&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:33.839868+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_ANFCI.raw",
       "sha256": "284ead31ec6086c2415ceb21bfae3aa90f62b4223527e6f933dbb5788510dfa7",
-      "retrieved_at": "2026-11-23T14:31:27.242952+00:00",
+      "retrieved_at": "2026-11-24T02:53:34.286779+00:00",
       "value": {
         "observed_at_date": "2026-11-13",
         "value": -0.502,
@@ -614,20 +614,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 10
+        "age_calendar_days": 11
       },
-      "finished_at": "2026-11-23T14:31:27.243190+00:00"
+      "finished_at": "2026-11-24T02:53:34.287069+00:00"
     },
     {
       "key": "FRED_WALCL",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WALCL&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:27.243205+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WALCL&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:34.287086+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_WALCL.raw",
       "sha256": "0e6b7d6d34db43e4f6670ad417d63a733d78146c486b4b088df17fe62cf27fc7",
-      "retrieved_at": "2026-11-23T14:31:27.552851+00:00",
+      "retrieved_at": "2026-11-24T02:53:34.644835+00:00",
       "value": {
         "observed_at_date": "2026-11-18",
         "value": 6741452.0,
@@ -645,20 +645,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 5
+        "age_calendar_days": 6
       },
-      "finished_at": "2026-11-23T14:31:27.553116+00:00"
+      "finished_at": "2026-11-24T02:53:34.645098+00:00"
     },
     {
       "key": "FRED_WTREGEN",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WTREGEN&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:27.553136+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WTREGEN&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:34.645160+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_WTREGEN.raw",
       "sha256": "9716d8202f92b3818379fcf502b1232ecc96654b35e2219f3e8a7d452b8791b9",
-      "retrieved_at": "2026-11-23T14:31:27.781731+00:00",
+      "retrieved_at": "2026-11-24T02:53:34.972799+00:00",
       "value": {
         "observed_at_date": "2026-11-18",
         "value": 916613.0,
@@ -676,30 +676,30 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 5
+        "age_calendar_days": 6
       },
-      "finished_at": "2026-11-23T14:31:27.781915+00:00"
+      "finished_at": "2026-11-24T02:53:34.973089+00:00"
     },
     {
       "key": "FRED_RRPONTSYD",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=RRPONTSYD&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:27.781930+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=RRPONTSYD&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:34.973110+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_RRPONTSYD.raw",
-      "sha256": "3bdbdb026d6f2570f8d9a71513e65661a6607964c05f587dcbcaffc38165f115",
-      "retrieved_at": "2026-11-23T14:31:28.036978+00:00",
+      "sha256": "a30c562309a28215a869fd0c450042931ac3f48e79b3ab000d7810a0de50a16c",
+      "retrieved_at": "2026-11-24T02:53:35.510930+00:00",
       "value": {
-        "observed_at_date": "2026-11-20",
-        "value": 0.401,
+        "observed_at_date": "2026-11-23",
+        "value": 0.35,
         "previous_observation": {
-          "date": "2026-11-19",
-          "value": 0.405
+          "date": "2026-11-20",
+          "value": 0.401
         },
         "daily_five_observation_baseline": {
-          "date": "2026-11-13",
-          "value": 0.325
+          "date": "2026-11-16",
+          "value": 0.182
         },
         "frequency": "DAILY",
         "unit": "FRED_SERIES_NATIVE_UNIT",
@@ -710,20 +710,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 3
+        "age_calendar_days": 1
       },
-      "finished_at": "2026-11-23T14:31:28.037555+00:00"
+      "finished_at": "2026-11-24T02:53:35.511611+00:00"
     },
     {
       "key": "FRED_WRESBAL",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:28.037572+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:35.511630+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_WRESBAL.raw",
       "sha256": "85955c5354366f675f84845f5f83508b71e5ee9aedbe89e88682260fa8e93609",
-      "retrieved_at": "2026-11-23T14:31:28.318961+00:00",
+      "retrieved_at": "2026-11-24T02:53:35.841078+00:00",
       "value": {
         "observed_at_date": "2026-11-18",
         "value": 2979656.0,
@@ -741,20 +741,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 5
+        "age_calendar_days": 6
       },
-      "finished_at": "2026-11-23T14:31:28.319198+00:00"
+      "finished_at": "2026-11-24T02:53:35.841281+00:00"
     },
     {
       "key": "FRED_CPIAUCSL",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:28.319214+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:35.841299+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_CPIAUCSL.raw",
       "sha256": "df5dc8875057a7ece3f81f08d91bc097892226021407079814cd17b8dd75f09a",
-      "retrieved_at": "2026-11-23T14:31:28.596558+00:00",
+      "retrieved_at": "2026-11-24T02:53:36.735733+00:00",
       "value": {
         "observed_at_date": "2026-10-01",
         "value": 337.476,
@@ -772,20 +772,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 53
+        "age_calendar_days": 54
       },
-      "finished_at": "2026-11-23T14:31:28.596671+00:00"
+      "finished_at": "2026-11-24T02:53:36.735849+00:00"
     },
     {
       "key": "FRED_CPILFESL",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPILFESL&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:28.596687+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPILFESL&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:36.735869+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_CPILFESL.raw",
       "sha256": "d90608122fbd903865aebc722783f921d599ca709bd20762dead65f61ca29c34",
-      "retrieved_at": "2026-11-23T14:31:28.832782+00:00",
+      "retrieved_at": "2026-11-24T02:53:37.010963+00:00",
       "value": {
         "observed_at_date": "2026-10-01",
         "value": 339.9,
@@ -803,20 +803,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 53
+        "age_calendar_days": 54
       },
-      "finished_at": "2026-11-23T14:31:28.832912+00:00"
+      "finished_at": "2026-11-24T02:53:37.011086+00:00"
     },
     {
       "key": "FRED_PCEPI",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PCEPI&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:28.832928+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PCEPI&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:37.011117+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_PCEPI.raw",
       "sha256": "9d616f93f4d3704e8d08ac502c729510105b5b7bfd3c99b9c315bb498095a43a",
-      "retrieved_at": "2026-11-23T14:31:29.108116+00:00",
+      "retrieved_at": "2026-11-24T02:53:37.051450+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 132.257,
@@ -834,20 +834,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 83
+        "age_calendar_days": 84
       },
-      "finished_at": "2026-11-23T14:31:29.108231+00:00"
+      "finished_at": "2026-11-24T02:53:37.051555+00:00"
     },
     {
       "key": "FRED_PCEPILFE",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PCEPILFE&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:29.108246+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PCEPILFE&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:37.051574+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_PCEPILFE.raw",
       "sha256": "4f55c2704a0c9cf81ca8125383a5232903297ea64dd3bce59c18ae7979a0883b",
-      "retrieved_at": "2026-11-23T14:31:29.353730+00:00",
+      "retrieved_at": "2026-11-24T02:53:37.271429+00:00",
       "value": {
         "observed_at_date": "2026-09-01",
         "value": 130.902,
@@ -865,20 +865,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 83
+        "age_calendar_days": 84
       },
-      "finished_at": "2026-11-23T14:31:29.353838+00:00"
+      "finished_at": "2026-11-24T02:53:37.271534+00:00"
     },
     {
       "key": "FRED_INDPRO",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=INDPRO&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:29.353853+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=INDPRO&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:37.271554+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_INDPRO.raw",
       "sha256": "f30a834890a3258fa962f5f3fefde4a53f0c6710e0107791611bc6ecebdf8f4e",
-      "retrieved_at": "2026-11-23T14:31:29.600627+00:00",
+      "retrieved_at": "2026-11-24T02:53:37.517073+00:00",
       "value": {
         "observed_at_date": "2026-10-01",
         "value": 103.3954,
@@ -896,20 +896,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 53
+        "age_calendar_days": 54
       },
-      "finished_at": "2026-11-23T14:31:29.600741+00:00"
+      "finished_at": "2026-11-24T02:53:37.517184+00:00"
     },
     {
       "key": "FRED_PAYEMS",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PAYEMS&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:29.600757+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PAYEMS&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:37.517202+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_PAYEMS.raw",
       "sha256": "798159b95db170cff404c09a9fceb5e99fc972884b375a321672e02524de44cd",
-      "retrieved_at": "2026-11-23T14:31:29.808279+00:00",
+      "retrieved_at": "2026-11-24T02:53:37.751512+00:00",
       "value": {
         "observed_at_date": "2026-10-01",
         "value": 159293.0,
@@ -927,20 +927,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 53
+        "age_calendar_days": 54
       },
-      "finished_at": "2026-11-23T14:31:29.808393+00:00"
+      "finished_at": "2026-11-24T02:53:37.751621+00:00"
     },
     {
       "key": "FRED_UNRATE",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UNRATE&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:29.808408+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UNRATE&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:37.751642+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_UNRATE.raw",
       "sha256": "4cc0c9ea37ada507c72ed82fb6f94c604352a667460b7dece423e663c5145183",
-      "retrieved_at": "2026-11-23T14:31:30.255015+00:00",
+      "retrieved_at": "2026-11-24T02:53:38.460919+00:00",
       "value": {
         "observed_at_date": "2026-10-01",
         "value": 4.1,
@@ -958,20 +958,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 53
+        "age_calendar_days": 54
       },
-      "finished_at": "2026-11-23T14:31:30.255150+00:00"
+      "finished_at": "2026-11-24T02:53:38.461028+00:00"
     },
     {
       "key": "FRED_DCOILWTICO",
-      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO&cosd=2025-05-22",
-      "started_at": "2026-11-23T14:31:30.255165+00:00",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO&cosd=2025-05-23",
+      "started_at": "2026-11-24T02:53:38.461044+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "FRED_DCOILWTICO.raw",
-      "sha256": "cad95a905cb8d2405c6c664110574bb3465b39091750410bbfd822adcbd31c68",
-      "retrieved_at": "2026-11-23T14:31:30.567187+00:00",
+      "sha256": "2fbc407e1d99fd986095fa9716c801dc3c558b6d997f0947c8f323ba72cdd542",
+      "retrieved_at": "2026-11-24T02:53:38.716246+00:00",
       "value": {
         "observed_at_date": "2026-11-17",
         "value": 89.53,
@@ -992,20 +992,20 @@
         "available_at": null,
         "publication_time_verified": false,
         "freshness": "LAST_PUBLISHED_OBSERVATION_AGE_EXPLICIT",
-        "age_calendar_days": 6
+        "age_calendar_days": 7
       },
-      "finished_at": "2026-11-23T14:31:30.567799+00:00"
+      "finished_at": "2026-11-24T02:53:38.716974+00:00"
     },
     {
       "key": "YAHOO_SPY",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:30.567816+00:00",
+      "started_at": "2026-11-24T02:53:38.716992+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_SPY.raw",
-      "sha256": "79dd4cb032922414d021e1ce8803930dd9dda37a0c0ce727305b73aa8dc52550",
-      "retrieved_at": "2026-11-23T14:31:30.672557+00:00",
+      "sha256": "80c026d20db0960701defd097873fdaffbb5df7f6083336110f1c913e7915c18",
+      "retrieved_at": "2026-11-24T02:53:38.799241+00:00",
       "value": {
         "observed_at": "2026-11-20T14:30:00+00:00",
         "session_date": "2026-11-20",
@@ -1018,18 +1018,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:30.673337+00:00"
+      "finished_at": "2026-11-24T02:53:38.799791+00:00"
     },
     {
       "key": "YAHOO_QQQ",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/QQQ?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:30.673352+00:00",
+      "started_at": "2026-11-24T02:53:38.799806+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_QQQ.raw",
-      "sha256": "0fb9a4f62adcda683309e4fe155e677dd4ec28ed36b6d5a5857d6b692968c026",
-      "retrieved_at": "2026-11-23T14:31:30.749709+00:00",
+      "sha256": "2bc4b32005343118f1bdd689b0cd65574bfe33d60144e42824e7e67fe55fdbd1",
+      "retrieved_at": "2026-11-24T02:53:38.873207+00:00",
       "value": {
         "observed_at": "2026-11-20T14:30:00+00:00",
         "session_date": "2026-11-20",
@@ -1042,18 +1042,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:30.749917+00:00"
+      "finished_at": "2026-11-24T02:53:38.873419+00:00"
     },
     {
       "key": "YAHOO_IWM",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/IWM?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:30.749932+00:00",
+      "started_at": "2026-11-24T02:53:38.873437+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_IWM.raw",
-      "sha256": "1fba1156c18adbdc3f7de4259c4cf83e820df45c0b02033be7d5bbf936b1b17d",
-      "retrieved_at": "2026-11-23T14:31:30.834928+00:00",
+      "sha256": "736b1d2b56ccfe56899e72edb2cc76a7c0ce29d0a68ffa333dd39d244ec74e83",
+      "retrieved_at": "2026-11-24T02:53:38.947414+00:00",
       "value": {
         "observed_at": "2026-11-20T14:30:00+00:00",
         "session_date": "2026-11-20",
@@ -1066,18 +1066,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:30.835169+00:00"
+      "finished_at": "2026-11-24T02:53:38.947620+00:00"
     },
     {
       "key": "YAHOO_SOXX",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/SOXX?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:30.835184+00:00",
+      "started_at": "2026-11-24T02:53:38.947638+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_SOXX.raw",
-      "sha256": "a3005aae4cf74bd9b483142f69fb52aec940bd3812c11e1fd04d8d47804d2436",
-      "retrieved_at": "2026-11-23T14:31:30.909131+00:00",
+      "sha256": "8f98b437626fb8a1cf8959da9aa63fa7ad206008a4fe19cf8d22b128d5cf71bf",
+      "retrieved_at": "2026-11-24T02:53:39.034640+00:00",
       "value": {
         "observed_at": "2026-11-20T14:30:00+00:00",
         "session_date": "2026-11-20",
@@ -1090,18 +1090,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:30.909337+00:00"
+      "finished_at": "2026-11-24T02:53:39.034846+00:00"
     },
     {
       "key": "YAHOO_RSP",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/RSP?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:30.909351+00:00",
+      "started_at": "2026-11-24T02:53:39.034863+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_RSP.raw",
-      "sha256": "a7d635e94fbc48006b8922fbe5b5cd82df5de18cb7c85bd07140ae911823fe78",
-      "retrieved_at": "2026-11-23T14:31:30.986611+00:00",
+      "sha256": "891d89793e7ebe6c3709608f85f10b6fa8cc49e5479c1507e0df44d653a1b6a8",
+      "retrieved_at": "2026-11-24T02:53:39.110135+00:00",
       "value": {
         "observed_at": "2026-11-20T14:30:00+00:00",
         "session_date": "2026-11-20",
@@ -1114,18 +1114,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:30.986818+00:00"
+      "finished_at": "2026-11-24T02:53:39.110346+00:00"
     },
     {
       "key": "YAHOO_HYG",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/HYG?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:30.986832+00:00",
+      "started_at": "2026-11-24T02:53:39.110363+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_HYG.raw",
-      "sha256": "a8d70d8facb5d8089e7a2d9ddbf683052bc76fc50211309508c4c1ad2d638bde",
-      "retrieved_at": "2026-11-23T14:31:31.084898+00:00",
+      "sha256": "75ab5eb485913d1069e1039d59a97932f190025fd061c6f3295e771c18e04981",
+      "retrieved_at": "2026-11-24T02:53:39.194841+00:00",
       "value": {
         "observed_at": "2026-11-20T14:30:00+00:00",
         "session_date": "2026-11-20",
@@ -1138,18 +1138,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:31.085128+00:00"
+      "finished_at": "2026-11-24T02:53:39.195083+00:00"
     },
     {
       "key": "YAHOO_LQD",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/LQD?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:31.085142+00:00",
+      "started_at": "2026-11-24T02:53:39.195098+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_LQD.raw",
-      "sha256": "63f7c246381695e23702b1dd4f7a60e4b8803eb8d9837206873543de187448ef",
-      "retrieved_at": "2026-11-23T14:31:31.159745+00:00",
+      "sha256": "770c449a9b1599c7513e582e0b033d3bb8fdcc32a01f4c77674f926aa8941698",
+      "retrieved_at": "2026-11-24T02:53:39.268542+00:00",
       "value": {
         "observed_at": "2026-11-20T14:30:00+00:00",
         "session_date": "2026-11-20",
@@ -1162,18 +1162,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:31.159956+00:00"
+      "finished_at": "2026-11-24T02:53:39.268743+00:00"
     },
     {
       "key": "YAHOO_COIN",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/COIN?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:31.159971+00:00",
+      "started_at": "2026-11-24T02:53:39.268759+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_COIN.raw",
-      "sha256": "2a6ef94926162302e74242809b3c0bdde2786f88e0740c554e095a0a5a64d613",
-      "retrieved_at": "2026-11-23T14:31:31.225675+00:00",
+      "sha256": "958da5b06ca70db26dd6874da8a24c36b35229531698556f42fe1c6bade5f420",
+      "retrieved_at": "2026-11-24T02:53:39.332749+00:00",
       "value": {
         "observed_at": "2026-11-20T14:30:00+00:00",
         "session_date": "2026-11-20",
@@ -1186,18 +1186,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:31.225869+00:00"
+      "finished_at": "2026-11-24T02:53:39.332992+00:00"
     },
     {
       "key": "YAHOO_MSTR",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/MSTR?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:31.225882+00:00",
+      "started_at": "2026-11-24T02:53:39.333006+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_MSTR.raw",
-      "sha256": "15bf598030fa96a7a5794435450c3b4e54849eed6a5c532d40971cc883272551",
-      "retrieved_at": "2026-11-23T14:31:31.283333+00:00",
+      "sha256": "7ce50b3a1ad69e10c5ba4f37a3933640e4d2518e3f9c63c23dc1e966f7834c41",
+      "retrieved_at": "2026-11-24T02:53:39.391721+00:00",
       "value": {
         "observed_at": "2026-11-20T14:30:00+00:00",
         "session_date": "2026-11-20",
@@ -1210,18 +1210,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:31.283528+00:00"
+      "finished_at": "2026-11-24T02:53:39.391984+00:00"
     },
     {
       "key": "YAHOO_HOOD",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/HOOD?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:31.283541+00:00",
+      "started_at": "2026-11-24T02:53:39.392000+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_HOOD.raw",
-      "sha256": "bdfa1518c980274e7672d8981c71b3c87b6a79f8747fdfb366c8e31a91bd3a94",
-      "retrieved_at": "2026-11-23T14:31:31.469619+00:00",
+      "sha256": "9abd733af3c535e1e0dff09a33f3e38cb7adabb712f9a24411a211b7abffbda1",
+      "retrieved_at": "2026-11-24T02:53:39.445849+00:00",
       "value": {
         "observed_at": "2026-11-20T14:30:00+00:00",
         "session_date": "2026-11-20",
@@ -1234,18 +1234,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:31.469827+00:00"
+      "finished_at": "2026-11-24T02:53:39.446091+00:00"
     },
     {
       "key": "YAHOO_DX-Y.NYB",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:31.469841+00:00",
+      "started_at": "2026-11-24T02:53:39.446107+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_DX-Y_NYB.raw",
-      "sha256": "ea44e9db3084f17a304c27d6f5d1e413511979047392ae6cb226b241df750ffb",
-      "retrieved_at": "2026-11-23T14:31:31.548885+00:00",
+      "sha256": "2bb7da45e613145a413b089e350227a18786ac740d535ce71ab2b445a1814965",
+      "retrieved_at": "2026-11-24T02:53:39.498724+00:00",
       "value": {
         "observed_at": "2026-11-20T05:00:00+00:00",
         "session_date": "2026-11-20",
@@ -1258,18 +1258,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:31.549134+00:00"
+      "finished_at": "2026-11-24T02:53:39.498999+00:00"
     },
     {
       "key": "YAHOO_^VIX",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:31.549149+00:00",
+      "started_at": "2026-11-24T02:53:39.499015+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO__VIX.raw",
-      "sha256": "54cae2992b366cc1e54c7b49079ef58ef38caf3a13bb42363c140f3a63bfd6c4",
-      "retrieved_at": "2026-11-23T14:31:31.613977+00:00",
+      "sha256": "1c2142c28ab786bf50017b6f333d361514dcc097f1ec8585e6eb521734b3f3b2",
+      "retrieved_at": "2026-11-24T02:53:39.591058+00:00",
       "value": {
         "observed_at": "2026-11-20T08:00:00+00:00",
         "session_date": "2026-11-20",
@@ -1282,18 +1282,18 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:31.614741+00:00"
+      "finished_at": "2026-11-24T02:53:39.597132+00:00"
     },
     {
       "key": "YAHOO_CL=F",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/CL%3DF?range=1mo&interval=1d",
-      "started_at": "2026-11-23T14:31:31.614755+00:00",
+      "started_at": "2026-11-24T02:53:39.597151+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "YAHOO_CL_F.raw",
-      "sha256": "6385579823cb3e6ba63ed3dfe08fa3f1c79d073dc8ee61b446b2fe7336e39b38",
-      "retrieved_at": "2026-11-23T14:31:31.673016+00:00",
+      "sha256": "03e48327540afe641ed968b7c0b86da7a87e3f1d9a38a840986e9381a3b5ab5b",
+      "retrieved_at": "2026-11-24T02:53:39.651190+00:00",
       "value": {
         "observed_at": "2026-11-20T05:00:00+00:00",
         "session_date": "2026-11-20",
@@ -1306,40 +1306,40 @@
         "freshness": "LAST_COMPLETED_SESSION",
         "breadth_not_proven": true
       },
-      "finished_at": "2026-11-23T14:31:31.673242+00:00"
+      "finished_at": "2026-11-24T02:53:39.651410+00:00"
     },
     {
       "key": "stablecoins",
       "url": "https://stablecoins.llama.fi/stablecoincharts/all",
-      "started_at": "2026-11-23T14:31:31.673255+00:00",
+      "started_at": "2026-11-24T02:53:39.651430+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "stablecoins.raw.gz",
-      "sha256": "34183144e06c706e0fffa19aa00b404e8a0cb832427b1567dac5c8f2468ab1b9",
-      "retrieved_at": "2026-11-23T14:31:31.852851+00:00",
+      "sha256": "9312ea81095c7ff385f9aa4ae099f171e181b988c704c2c054c8aab6b4db5e09",
+      "retrieved_at": "2026-11-24T02:53:39.787050+00:00",
       "value": {
-        "observed_at": "2026-11-22T00:00:00+00:00",
-        "value_usd": 282495001552.0,
+        "observed_at": "2026-11-23T00:00:00+00:00",
+        "value_usd": 282734538286.0,
         "definition": "DefiLlama totalCirculatingUSD.peggedUSD; do not mix with nominal circulating",
         "day_completed": true
       },
-      "finished_at": "2026-11-23T14:31:31.888038+00:00"
+      "finished_at": "2026-11-24T02:53:39.825700+00:00"
     },
     {
       "key": "COINBASE_BTC_spot_cvd",
       "url": "https://api.exchange.coinbase.com/products/BTC-USD/trades?limit=1000",
-      "started_at": "2026-11-23T14:31:31.888058+00:00",
+      "started_at": "2026-11-24T02:53:39.825729+00:00",
       "status": "FAILED",
       "available_at": null,
       "http_status": 200,
       "reason": "ValueError: Coinbase coverage budget exceeded; incomplete is not CVD",
-      "finished_at": "2026-11-23T14:35:32.835937+00:00"
+      "finished_at": "2026-11-24T02:57:40.117355+00:00"
     },
     {
       "key": "COINBASE_ETH_spot_cvd",
       "url": "https://api.exchange.coinbase.com/products/ETH-USD/trades?limit=1000",
-      "started_at": "2026-11-23T14:35:32.835974+00:00",
+      "started_at": "2026-11-24T02:57:40.117392+00:00",
       "status": "FAILED",
       "available_at": null,
       "http_status": 200,
@@ -3057,18 +3057,18 @@
         "retrieved_at": "2026-11-23T00:55:54.704787+00:00",
         "status": "HISTORICAL_RETAINED_NOT_CURRENT"
       },
-      "finished_at": "2026-11-23T14:39:33.904719+00:00"
+      "finished_at": "2026-11-24T03:01:40.164844+00:00"
     },
     {
       "key": "ETF_BTC",
       "url": "https://farside.co.uk/btc/",
-      "started_at": "2026-11-23T14:39:33.904760+00:00",
+      "started_at": "2026-11-24T03:01:40.164894+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETF_BTC.raw",
-      "sha256": "5d2990671fb0573de78822d79525ad5973acc3fcc2c850313958fd79a6a16561",
-      "retrieved_at": "2026-11-23T14:39:34.874304+00:00",
+      "sha256": "068e1d2a25e42150a72b5e1d92bcc778f6ff92a07ec4086556fc4a30ca74ba75",
+      "retrieved_at": "2026-11-24T03:01:41.031387+00:00",
       "value": {
         "observed_at_date": "2026-11-20",
         "net_flow_million_usd": -669.2,
@@ -3080,22 +3080,24 @@
           "2026-11-20": -669.2
         },
         "five_session_sum_million_usd": -1790.0,
-        "newer_partial_dates": [],
+        "newer_partial_dates": [
+          "2026-11-23"
+        ],
         "revision_policy": "LATEST_REVISED_DESCRIPTIVE_NOT_PIT",
         "available_at": null
       },
-      "finished_at": "2026-11-23T14:39:34.886149+00:00"
+      "finished_at": "2026-11-24T03:01:41.045976+00:00"
     },
     {
       "key": "ETF_ETH",
       "url": "https://farside.co.uk/eth/",
-      "started_at": "2026-11-23T14:39:34.886168+00:00",
+      "started_at": "2026-11-24T03:01:41.046007+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ETF_ETH.raw",
-      "sha256": "fd1323892f5af73b1130869e7e436a74c7c90b6114e8a3df3f9f8087cdcc3ddc",
-      "retrieved_at": "2026-11-23T14:39:35.809293+00:00",
+      "sha256": "ed1f45bb2594ebcb90851aa016accb6e9f2eb7b6628f389fbd18ceeea49175ed",
+      "retrieved_at": "2026-11-24T03:01:41.765181+00:00",
       "value": {
         "observed_at_date": "2026-11-20",
         "net_flow_million_usd": -97.3,
@@ -3107,57 +3109,59 @@
           "2026-11-20": -97.3
         },
         "five_session_sum_million_usd": -305.8,
-        "newer_partial_dates": [],
+        "newer_partial_dates": [
+          "2026-11-23"
+        ],
         "revision_policy": "LATEST_REVISED_DESCRIPTIVE_NOT_PIT",
         "available_at": null
       },
-      "finished_at": "2026-11-23T14:39:35.818325+00:00"
+      "finished_at": "2026-11-24T03:01:41.775693+00:00"
     },
     {
       "key": "RWA",
       "url": "https://app.rwa.xyz/networks",
-      "started_at": "2026-11-23T14:39:35.818343+00:00",
+      "started_at": "2026-11-24T03:01:41.775718+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "RWA.raw.gz",
-      "sha256": "bb23bdb9fcf6d0b374d43458636ea1020dd739576d01071916242c5c447933e9",
-      "retrieved_at": "2026-11-23T14:39:36.279149+00:00",
+      "sha256": "d748d76aa8ddaab797672bd9c733baa9453cba878d9da8d4a17ae754c27ab46b",
+      "retrieved_at": "2026-11-24T03:01:42.470492+00:00",
       "value": {
-        "observed_at_date": "2026-11-23",
+        "observed_at_date": "2026-11-24",
         "aggregates": {
           "Distributed Asset Value": {
-            "value": 40945803201.06001,
+            "value": 40945803201.06002,
             "change": {
-              "value": -0.03657833478077617,
+              "value": -0.03645686603370668,
               "interval": "30d"
             }
           },
           "Represented Asset Value": {
             "value": 451399192145.18427,
             "change": {
-              "value": 0.16528226789805234,
+              "value": 0.1649899645145314,
               "interval": "30d"
             }
           },
           "Stablecoin Value": {
             "value": 273232581591.53433,
             "change": {
-              "value": -0.06032953018432855,
+              "value": -0.05944385256842813,
               "interval": "30d"
             }
           },
           "Total RWA Holders": {
             "value": 5889263.0,
             "change": {
-              "value": 0.07188107729338909,
+              "value": 0.06956298434882796,
               "interval": "30d"
             }
           },
           "Total Stablecoin Holders": {
             "value": 308404393.0,
             "change": {
-              "value": 0.020761141879435185,
+              "value": 0.019726341619527864,
               "interval": "30d"
             }
           },
@@ -3170,32 +3174,11 @@
         "five_business_day_comparison": "ACCUMULATING_SAME_DEFINITION_SNAPSHOTS",
         "seven_day_netflows_ex_stablecoins": [
           {
-            "value": 524772969,
-            "date": "2026-11-16T00:00:00.000Z",
-            "item_count": 1,
-            "asset_count": 1,
-            "reporting_asset_count": 1,
-            "measure": {
-              "id": 0,
-              "slug": "adjusted_net_flows_dollar",
-              "name": "Adjusted Net Flows (Dollar)",
-              "unit": "dollar"
-            },
-            "group": {
-              "id": 82,
-              "type": "network",
-              "name": "Injective",
-              "slug": "injective",
-              "color": "rgb(16, 185, 129, 0.6)",
-              "icon_url": "https://rwa-partners-infra-prod-rwapartnersuploads740d2985-1c2klgo7i3ef.s3.us-east-1.amazonaws.com/uploads/images/Injective%20logo.png"
-            }
-          },
-          {
-            "value": -333815384.3842995,
+            "value": -295519909.27786434,
             "date": "2026-11-22T00:00:00.000Z",
-            "item_count": 388,
+            "item_count": 363,
             "asset_count": 3378,
-            "reporting_asset_count": 387,
+            "reporting_asset_count": 362,
             "measure": {
               "id": 0,
               "slug": "adjusted_net_flows_dollar",
@@ -3212,53 +3195,11 @@
             }
           },
           {
-            "value": 220447000.7257883,
+            "value": 99858885.9418697,
             "date": "2026-11-22T00:00:00.000Z",
-            "item_count": 27,
-            "asset_count": 84,
-            "reporting_asset_count": 26,
-            "measure": {
-              "id": 0,
-              "slug": "adjusted_net_flows_dollar",
-              "name": "Adjusted Net Flows (Dollar)",
-              "unit": "dollar"
-            },
-            "group": {
-              "id": 9,
-              "type": "network",
-              "name": "Stellar",
-              "slug": "stellar",
-              "color": "rgb(16, 185, 129, 0.6)",
-              "icon_url": "https://img.rwa.xyz/content/network-icons/128/color/xlm.png"
-            }
-          },
-          {
-            "value": 133847282.03615242,
-            "date": "2026-11-22T00:00:00.000Z",
-            "item_count": 750,
-            "asset_count": 3083,
-            "reporting_asset_count": 750,
-            "measure": {
-              "id": 0,
-              "slug": "adjusted_net_flows_dollar",
-              "name": "Adjusted Net Flows (Dollar)",
-              "unit": "dollar"
-            },
-            "group": {
-              "id": 8,
-              "type": "network",
-              "name": "BNB Chain",
-              "slug": "bnb-chain",
-              "color": "rgb(16, 185, 129, 0.6)",
-              "icon_url": "https://rwa-partners-infra-prod-rwapartnersuploads740d2985-1c2klgo7i3ef.s3.us-east-1.amazonaws.com/uploads/images/BNB_Glyth_Yellow.svg"
-            }
-          },
-          {
-            "value": 61038355.64048833,
-            "date": "2026-11-22T00:00:00.000Z",
-            "item_count": 875,
+            "item_count": 819,
             "asset_count": 3596,
-            "reporting_asset_count": 875,
+            "reporting_asset_count": 819,
             "measure": {
               "id": 0,
               "slug": "adjusted_net_flows_dollar",
@@ -3275,11 +3216,11 @@
             }
           },
           {
-            "value": -26561226.311162118,
+            "value": 83753209.41473651,
             "date": "2026-11-22T00:00:00.000Z",
-            "item_count": 14,
-            "asset_count": 1518,
-            "reporting_asset_count": 14,
+            "item_count": 742,
+            "asset_count": 3083,
+            "reporting_asset_count": 742,
             "measure": {
               "id": 0,
               "slug": "adjusted_net_flows_dollar",
@@ -3287,20 +3228,41 @@
               "unit": "dollar"
             },
             "group": {
-              "id": 33,
+              "id": 8,
               "type": "network",
-              "name": "Mantle",
-              "slug": "mantle",
-              "color": "rgb(239, 68, 68, 0.6)",
-              "icon_url": "https://img.rwa.xyz/content/entity-icons/128/color/mantle.png"
+              "name": "BNB Chain",
+              "slug": "bnb-chain",
+              "color": "rgb(16, 185, 129, 0.6)",
+              "icon_url": "https://rwa-partners-infra-prod-rwapartnersuploads740d2985-1c2klgo7i3ef.s3.us-east-1.amazonaws.com/uploads/images/BNB_Glyth_Yellow.svg"
             }
           },
           {
-            "value": 13308535.873003162,
+            "value": -64374105.66171825,
             "date": "2026-11-22T00:00:00.000Z",
-            "item_count": 252,
+            "item_count": 25,
+            "asset_count": 84,
+            "reporting_asset_count": 24,
+            "measure": {
+              "id": 0,
+              "slug": "adjusted_net_flows_dollar",
+              "name": "Adjusted Net Flows (Dollar)",
+              "unit": "dollar"
+            },
+            "group": {
+              "id": 9,
+              "type": "network",
+              "name": "Stellar",
+              "slug": "stellar",
+              "color": "rgb(239, 68, 68, 0.6)",
+              "icon_url": "https://img.rwa.xyz/content/network-icons/128/color/xlm.png"
+            }
+          },
+          {
+            "value": 11345890.543543072,
+            "date": "2026-11-22T00:00:00.000Z",
+            "item_count": 209,
             "asset_count": 1463,
-            "reporting_asset_count": 252,
+            "reporting_asset_count": 209,
             "measure": {
               "id": 0,
               "slug": "adjusted_net_flows_dollar",
@@ -3317,7 +3279,7 @@
             }
           },
           {
-            "value": -8947477.52107994,
+            "value": -9041597.97098309,
             "date": "2026-11-19T00:00:00.000Z",
             "item_count": 5,
             "asset_count": 456,
@@ -3338,11 +3300,53 @@
             }
           },
           {
-            "value": -8792099.096983412,
+            "value": 8823891.797925398,
             "date": "2026-11-22T00:00:00.000Z",
-            "item_count": 11,
+            "item_count": 972,
+            "asset_count": 5777,
+            "reporting_asset_count": 972,
+            "measure": {
+              "id": 0,
+              "slug": "adjusted_net_flows_dollar",
+              "name": "Adjusted Net Flows (Dollar)",
+              "unit": "dollar"
+            },
+            "group": {
+              "id": 11,
+              "type": "network",
+              "name": "Arbitrum",
+              "slug": "arbitrum",
+              "color": "rgb(16, 185, 129, 0.6)",
+              "icon_url": "https://img.rwa.xyz/content/network-icons/128/color/arbitrum.png"
+            }
+          },
+          {
+            "value": -8546295.671024535,
+            "date": "2026-11-22T00:00:00.000Z",
+            "item_count": 14,
+            "asset_count": 1518,
+            "reporting_asset_count": 14,
+            "measure": {
+              "id": 0,
+              "slug": "adjusted_net_flows_dollar",
+              "name": "Adjusted Net Flows (Dollar)",
+              "unit": "dollar"
+            },
+            "group": {
+              "id": 33,
+              "type": "network",
+              "name": "Mantle",
+              "slug": "mantle",
+              "color": "rgb(239, 68, 68, 0.6)",
+              "icon_url": "https://img.rwa.xyz/content/entity-icons/128/color/mantle.png"
+            }
+          },
+          {
+            "value": -8447081.91506096,
+            "date": "2026-11-22T00:00:00.000Z",
+            "item_count": 10,
             "asset_count": 410,
-            "reporting_asset_count": 11,
+            "reporting_asset_count": 10,
             "measure": {
               "id": 0,
               "slug": "adjusted_net_flows_dollar",
@@ -3359,11 +3363,11 @@
             }
           },
           {
-            "value": 7284488.410221525,
+            "value": 6820964.605881445,
             "date": "2026-11-21T00:00:00.000Z",
-            "item_count": 112,
+            "item_count": 108,
             "asset_count": 394,
-            "reporting_asset_count": 112,
+            "reporting_asset_count": 108,
             "measure": {
               "id": 0,
               "slug": "adjusted_net_flows_dollar",
@@ -3382,67 +3386,66 @@
         ],
         "snapshot_not_completed_day": true
       },
-      "finished_at": "2026-11-23T14:39:36.510532+00:00"
+      "finished_at": "2026-11-24T03:01:42.735308+00:00"
     },
     {
       "key": "ISM",
       "url": "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-report-on-business/",
-      "started_at": "2026-11-23T14:39:36.510563+00:00",
+      "started_at": "2026-11-24T03:01:42.735359+00:00",
       "status": "ACCESS_BLOCKED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "ISM.raw",
       "sha256": "2b00e9ba5232405175ee282eb5bee399299c655c105edb7531500a5ffaa006dc",
-      "retrieved_at": "2026-11-23T14:39:36.879622+00:00",
+      "retrieved_at": "2026-11-24T03:01:43.465858+00:00",
       "reason": "ValueError: provider access block; no bypass attempted",
-      "finished_at": "2026-11-23T14:39:36.879666+00:00"
+      "finished_at": "2026-11-24T03:01:43.465937+00:00"
     },
     {
       "key": "APPARENT_DEMAND",
       "url": "https://cryptoquant.com/asset/btc/chart/network-indicator/apparent-demand",
-      "started_at": "2026-11-23T14:39:36.879680+00:00",
+      "started_at": "2026-11-24T03:01:43.465955+00:00",
       "status": "FAILED",
       "available_at": null,
       "reason": "HTTPError: HTTP Error 403: Forbidden",
-      "finished_at": "2026-11-23T14:39:36.938345+00:00"
+      "finished_at": "2026-11-24T03:01:43.530876+00:00"
     },
     {
       "key": "BRK_date",
-      "url": "https://bitview.space/api/series/date/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:36.938365+00:00",
+      "url": "https://bitview.space/api/series/date/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:43.530939+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_date.raw",
-      "sha256": "d65df0443af221efabd587d9e2aed4390636cb602b650f229af767cd36227824",
-      "retrieved_at": "2026-11-23T14:39:37.205337+00:00",
+      "sha256": "ed63dae2119f8ff0deb8f0b69d6d5102d19fb8b07c477a558862e3cbe06aad80",
+      "retrieved_at": "2026-11-24T03:01:43.761770+00:00",
       "value": {
         "status": "DATE_ALIGNMENT_INDEX",
-        "start": 6521,
-        "end": 6535
+        "start": 6522,
+        "end": 6536
       },
-      "finished_at": "2026-11-23T14:39:37.206102+00:00"
+      "finished_at": "2026-11-24T03:01:43.762914+00:00"
     },
     {
       "key": "BRK_lth_supply",
-      "url": "https://bitview.space/api/series/lth_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:37.206119+00:00",
+      "url": "https://bitview.space/api/series/lth_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:43.762940+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_lth_supply.raw",
-      "sha256": "5f04e774af887b1a8a05e0908fd24c3955abe1270a4c27470bf7fe30f5082ba7",
-      "retrieved_at": "2026-11-23T14:39:37.441063+00:00",
+      "sha256": "71e2ea0eb3b784b23faf2781bdba101c19d165be2a7ec7b6b864fbc12a0464f4",
+      "retrieved_at": "2026-11-24T03:01:43.917041+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 16146284.32232304,
+        "observed_at_date": "2026-11-23",
+        "value": 16134928.55726271,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 16303004.23164471,
           "2026-11-10": 16280045.28355549,
           "2026-11-11": 16273091.78898549,
           "2026-11-12": 16272767.00605203,
@@ -3455,32 +3458,32 @@
           "2026-11-19": 16182655.15912611,
           "2026-11-20": 16159946.40349511,
           "2026-11-21": 16136663.40937074,
-          "2026-11-22": 16146284.32232304
+          "2026-11-22": 16146284.32232304,
+          "2026-11-23": 16134928.55726271
         },
         "computation_version": 3756535794
       },
-      "finished_at": "2026-11-23T14:39:37.441168+00:00"
+      "finished_at": "2026-11-24T03:01:43.917142+00:00"
     },
     {
       "key": "BRK_sth_supply",
-      "url": "https://bitview.space/api/series/sth_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:37.441179+00:00",
+      "url": "https://bitview.space/api/series/sth_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:43.917163+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_sth_supply.raw",
-      "sha256": "275d25b26f9b0a6c73c3dfbbfc25301339354cc704b8781074e803c9a6aa2af2",
-      "retrieved_at": "2026-11-23T14:39:37.664774+00:00",
+      "sha256": "8ced6185df8e7d40b9b1b2bd63b7d2dd160dc6e15606ab0d392e2609bd4d563d",
+      "retrieved_at": "2026-11-24T03:01:44.090502+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 3969504.27686793,
+        "observed_at_date": "2026-11-23",
+        "value": 3981385.04164314,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 3806843.75534671,
           "2026-11-10": 3830224.57793869,
           "2026-11-11": 3837596.82141153,
           "2026-11-12": 3838293.47879655,
@@ -3493,32 +3496,32 @@
           "2026-11-19": 3931667.81770216,
           "2026-11-20": 3954832.82275669,
           "2026-11-21": 3978628.31497703,
-          "2026-11-22": 3969504.27686793
+          "2026-11-22": 3969504.27686793,
+          "2026-11-23": 3981385.04164314
         },
         "computation_version": 3756535794
       },
-      "finished_at": "2026-11-23T14:39:37.664839+00:00"
+      "finished_at": "2026-11-24T03:01:44.090597+00:00"
     },
     {
       "key": "BRK_circulating_supply",
-      "url": "https://bitview.space/api/series/circulating_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:37.664849+00:00",
+      "url": "https://bitview.space/api/series/circulating_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:44.090619+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_circulating_supply.raw",
-      "sha256": "b8941c26405cb9faa5569b18ed244ff32f1b8c2fdb84d134aa9d56cacc628d0e",
-      "retrieved_at": "2026-11-23T14:39:37.898537+00:00",
+      "sha256": "081ed60ab74c4f52183eb7728ec3688f5431f8187642d6a4520d30f23072271b",
+      "retrieved_at": "2026-11-24T03:01:44.302915+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 20115788.59919097,
+        "observed_at_date": "2026-11-23",
+        "value": 20116313.59890585,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 20109847.98699142,
           "2026-11-10": 20110269.86149418,
           "2026-11-11": 20110688.61039702,
           "2026-11-12": 20111060.48484858,
@@ -3531,32 +3534,32 @@
           "2026-11-19": 20114322.97682827,
           "2026-11-20": 20114779.2262518,
           "2026-11-21": 20115291.72434777,
-          "2026-11-22": 20115788.59919097
+          "2026-11-22": 20115788.59919097,
+          "2026-11-23": 20116313.59890585
         },
         "computation_version": 1685327336
       },
-      "finished_at": "2026-11-23T14:39:37.898634+00:00"
+      "finished_at": "2026-11-24T03:01:44.303014+00:00"
     },
     {
       "key": "BRK_balance_1_to_10_btc_supply",
-      "url": "https://bitview.space/api/series/balance_1_to_10_btc_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:37.898648+00:00",
+      "url": "https://bitview.space/api/series/balance_1_to_10_btc_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:44.303031+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1_to_10_btc_supply.raw",
-      "sha256": "de43288561befa700efdafa41922fbdd25996847366495d4a43d9085c4eac073",
-      "retrieved_at": "2026-11-23T14:39:38.142760+00:00",
+      "sha256": "8fdf5b5cfad71524bb9744c46d1cc34e621c2b089e2e47375b61b2475690ce17",
+      "retrieved_at": "2026-11-24T03:01:44.482145+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 2052741.96286444,
+        "observed_at_date": "2026-11-23",
+        "value": 2053372.67914148,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 2046637.79565122,
           "2026-11-10": 2046585.47514093,
           "2026-11-11": 2046870.92098254,
           "2026-11-12": 2047457.55733495,
@@ -3569,32 +3572,32 @@
           "2026-11-19": 2050970.18043832,
           "2026-11-20": 2052134.25628324,
           "2026-11-21": 2052366.10233465,
-          "2026-11-22": 2052741.96286444
+          "2026-11-22": 2052741.96286444,
+          "2026-11-23": 2053372.67914148
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:38.142854+00:00"
+      "finished_at": "2026-11-24T03:01:44.482238+00:00"
     },
     {
       "key": "BRK_balance_1_to_10_sats_supply",
-      "url": "https://bitview.space/api/series/balance_1_to_10_sats_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:38.142869+00:00",
+      "url": "https://bitview.space/api/series/balance_1_to_10_sats_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:44.482261+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1_to_10_sats_supply.raw",
-      "sha256": "caca95136ecf6b3e8b7464281d8e8f054c10f33db4e5650c0b30838995782dd8",
-      "retrieved_at": "2026-11-23T14:39:38.372022+00:00",
+      "sha256": "9c2486546bcfdb7a3f06d484d39d386701352fa1204f7d84f1f2da05f3504d14",
+      "retrieved_at": "2026-11-24T03:01:44.621834+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 0.00844788,
+        "observed_at_date": "2026-11-23",
+        "value": 0.00844787,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 0.00845004,
           "2026-11-10": 0.00845004,
           "2026-11-11": 0.00845001,
           "2026-11-12": 0.00845001,
@@ -3607,32 +3610,32 @@
           "2026-11-19": 0.00844785,
           "2026-11-20": 0.00844785,
           "2026-11-21": 0.00844789,
-          "2026-11-22": 0.00844788
+          "2026-11-22": 0.00844788,
+          "2026-11-23": 0.00844787
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:38.372141+00:00"
+      "finished_at": "2026-11-24T03:01:44.621955+00:00"
     },
     {
       "key": "BRK_balance_100_to_1k_btc_supply",
-      "url": "https://bitview.space/api/series/balance_100_to_1k_btc_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:38.372154+00:00",
+      "url": "https://bitview.space/api/series/balance_100_to_1k_btc_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:44.621973+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_100_to_1k_btc_supply.raw",
-      "sha256": "010e44ae7e062a98b35eafda626a7d98f8d33a63cf3dd0a506ac8618b7064e90",
-      "retrieved_at": "2026-11-23T14:39:38.604525+00:00",
+      "sha256": "7848bb138477851ba08596b8de9fd33ed24772b59af80a4f2d9dfbfce314d0bc",
+      "retrieved_at": "2026-11-24T03:01:44.803525+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 5225383.46077215,
+        "observed_at_date": "2026-11-23",
+        "value": 5211143.51946754,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 5260175.88136722,
           "2026-11-10": 5253255.05143094,
           "2026-11-11": 5243992.51597083,
           "2026-11-12": 5241074.8773092,
@@ -3645,32 +3648,32 @@
           "2026-11-19": 5228636.64196783,
           "2026-11-20": 5224355.59600865,
           "2026-11-21": 5217766.91989325,
-          "2026-11-22": 5225383.46077215
+          "2026-11-22": 5225383.46077215,
+          "2026-11-23": 5211143.51946754
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:38.604607+00:00"
+      "finished_at": "2026-11-24T03:01:44.803615+00:00"
     },
     {
       "key": "BRK_balance_10_to_100_btc_supply",
-      "url": "https://bitview.space/api/series/balance_10_to_100_btc_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:38.604620+00:00",
+      "url": "https://bitview.space/api/series/balance_10_to_100_btc_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:44.803635+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10_to_100_btc_supply.raw",
-      "sha256": "177d0135a3176597d9e99b294c46fc535bb0cbe7e4f8d5a32b371b0279a1bdfd",
-      "retrieved_at": "2026-11-23T14:39:38.850215+00:00",
+      "sha256": "feaa631d3abd20aff5fd62c3eb0b386cf41981f989325b1d758c3c930d68e20f",
+      "retrieved_at": "2026-11-24T03:01:44.981939+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 4218857.16595931,
+        "observed_at_date": "2026-11-23",
+        "value": 4219612.55571794,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 4224169.17764685,
           "2026-11-10": 4225815.25511237,
           "2026-11-11": 4225184.45001391,
           "2026-11-12": 4225784.97852359,
@@ -3683,32 +3686,32 @@
           "2026-11-19": 4222841.86935573,
           "2026-11-20": 4219200.56392017,
           "2026-11-21": 4218992.81892291,
-          "2026-11-22": 4218857.16595931
+          "2026-11-22": 4218857.16595931,
+          "2026-11-23": 4219612.55571794
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:38.850298+00:00"
+      "finished_at": "2026-11-24T03:01:44.982032+00:00"
     },
     {
       "key": "BRK_balance_1k_to_10k_btc_supply",
-      "url": "https://bitview.space/api/series/balance_1k_to_10k_btc_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:38.850310+00:00",
+      "url": "https://bitview.space/api/series/balance_1k_to_10k_btc_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:44.982050+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1k_to_10k_btc_supply.raw",
-      "sha256": "6520d67fffddd1b874424b1dbcfbd5fadad5792cb9edd109e162d131e80624a7",
-      "retrieved_at": "2026-11-23T14:39:39.085038+00:00",
+      "sha256": "328a06433fa1698dfff9e8380f116effff1af61fff504d09c4004b03eb92492f",
+      "retrieved_at": "2026-11-24T03:01:45.130127+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 4160059.35172378,
+        "observed_at_date": "2026-11-23",
+        "value": 4155755.25378665,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 4220781.83961811,
           "2026-11-10": 4215358.90367091,
           "2026-11-11": 4223230.88555443,
           "2026-11-12": 4230268.03800451,
@@ -3721,32 +3724,32 @@
           "2026-11-19": 4196591.13012937,
           "2026-11-20": 4183227.57829446,
           "2026-11-21": 4170440.26826836,
-          "2026-11-22": 4160059.35172378
+          "2026-11-22": 4160059.35172378,
+          "2026-11-23": 4155755.25378665
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:39.085149+00:00"
+      "finished_at": "2026-11-24T03:01:45.130222+00:00"
     },
     {
       "key": "BRK_balance_over_100k_btc_supply",
-      "url": "https://bitview.space/api/series/balance_over_100k_btc_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:39.085162+00:00",
+      "url": "https://bitview.space/api/series/balance_over_100k_btc_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:45.130242+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_over_100k_btc_supply.raw",
-      "sha256": "a3df128d55ebd7b216a025b63b9452fa00977cb94c49e2d977f57cc9a65500da",
-      "retrieved_at": "2026-11-23T14:39:39.324918+00:00",
+      "sha256": "f23edb9ca9dd93f102a2e17b79de4c56041783a255b829eb6dd7953fcac28ee6",
+      "retrieved_at": "2026-11-24T03:01:45.332191+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 710612.88938644,
+        "observed_at_date": "2026-11-23",
+        "value": 702532.70938644,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 714992.96234058,
           "2026-11-10": 700904.05134058,
           "2026-11-11": 716090.89336342,
           "2026-11-12": 719402.03336342,
@@ -3759,32 +3762,32 @@
           "2026-11-19": 709189.86138644,
           "2026-11-20": 713184.63238644,
           "2026-11-21": 708680.78038644,
-          "2026-11-22": 710612.88938644
+          "2026-11-22": 710612.88938644,
+          "2026-11-23": 702532.70938644
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:39.325008+00:00"
+      "finished_at": "2026-11-24T03:01:45.332298+00:00"
     },
     {
       "key": "BRK_balance_100_to_1k_sats_supply",
-      "url": "https://bitview.space/api/series/balance_100_to_1k_sats_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:39.325022+00:00",
+      "url": "https://bitview.space/api/series/balance_100_to_1k_sats_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:45.332320+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_100_to_1k_sats_supply.raw",
-      "sha256": "f6e3be90910f149c38957ee1a22f5a76df31ccca9e1e08e937fae142b45ed990",
-      "retrieved_at": "2026-11-23T14:39:39.546394+00:00",
+      "sha256": "73a122cef3e180724d8f35e25b178b091e18446b6c89a9f5560f5a8a4bb1d039",
+      "retrieved_at": "2026-11-24T03:01:45.506119+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 30.26635623,
+        "observed_at_date": "2026-11-23",
+        "value": 30.25492214,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 30.23669526,
           "2026-11-10": 30.2434384,
           "2026-11-11": 30.253033,
           "2026-11-12": 30.20877896,
@@ -3797,24 +3800,25 @@
           "2026-11-19": 30.26565373,
           "2026-11-20": 30.27741498,
           "2026-11-21": 30.26066044,
-          "2026-11-22": 30.26635623
+          "2026-11-22": 30.26635623,
+          "2026-11-23": 30.25492214
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:39.546477+00:00"
+      "finished_at": "2026-11-24T03:01:45.506209+00:00"
     },
     {
       "key": "BRK_balance_10_to_100_sats_supply",
-      "url": "https://bitview.space/api/series/balance_10_to_100_sats_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:39.546491+00:00",
+      "url": "https://bitview.space/api/series/balance_10_to_100_sats_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:45.506227+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10_to_100_sats_supply.raw",
-      "sha256": "36a435a7b1bb4ed00514f6541349b9520e57672c6750e76385a6c3da22b0b092",
-      "retrieved_at": "2026-11-23T14:39:39.760363+00:00",
+      "sha256": "49308f7c16ed65fb327eb9f9ea28ab2f249ecf11f2f204f4b26ac8e7658ef909",
+      "retrieved_at": "2026-11-24T03:01:45.720193+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
+        "observed_at_date": "2026-11-23",
         "value": 0.06188374,
         "day_completed": true,
         "provider": "Bitview/BRK",
@@ -3822,7 +3826,6 @@
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 0.06188234,
           "2026-11-10": 0.06188234,
           "2026-11-11": 0.06188234,
           "2026-11-12": 0.06188234,
@@ -3835,32 +3838,32 @@
           "2026-11-19": 0.06188293,
           "2026-11-20": 0.06188293,
           "2026-11-21": 0.06188374,
-          "2026-11-22": 0.06188374
+          "2026-11-22": 0.06188374,
+          "2026-11-23": 0.06188374
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:39.760455+00:00"
+      "finished_at": "2026-11-24T03:01:45.720282+00:00"
     },
     {
       "key": "BRK_balance_1k_to_10k_sats_supply",
-      "url": "https://bitview.space/api/series/balance_1k_to_10k_sats_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:39.760469+00:00",
+      "url": "https://bitview.space/api/series/balance_1k_to_10k_sats_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:45.720300+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1k_to_10k_sats_supply.raw",
-      "sha256": "085d8cb7300c33318214345450387ca7caff8cc8be69b43c35bc51e2e0b40be9",
-      "retrieved_at": "2026-11-23T14:39:39.982050+00:00",
+      "sha256": "99363d890106286e8bddc304ea653d95f2e927bd94575313fd4470a3515ff0c4",
+      "retrieved_at": "2026-11-24T03:01:45.887963+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 507.34473478,
+        "observed_at_date": "2026-11-23",
+        "value": 507.31233725,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 506.69868218,
           "2026-11-10": 505.56547569,
           "2026-11-11": 505.74520641,
           "2026-11-12": 505.87695941,
@@ -3873,32 +3876,32 @@
           "2026-11-19": 507.21609362,
           "2026-11-20": 507.42970321,
           "2026-11-21": 507.24424793,
-          "2026-11-22": 507.34473478
+          "2026-11-22": 507.34473478,
+          "2026-11-23": 507.31233725
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:39.982177+00:00"
+      "finished_at": "2026-11-24T03:01:45.888056+00:00"
     },
     {
       "key": "BRK_balance_1m_to_10m_sats_supply",
-      "url": "https://bitview.space/api/series/balance_1m_to_10m_sats_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:39.982192+00:00",
+      "url": "https://bitview.space/api/series/balance_1m_to_10m_sats_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:45.888073+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_1m_to_10m_sats_supply.raw",
-      "sha256": "f5472bae4c886e6eb944128c2ac460b3665ee80dd9e4aac0cc5eac99342926d6",
-      "retrieved_at": "2026-11-23T14:39:40.201204+00:00",
+      "sha256": "97ff7795850f515550d81f9e12a06b0f0fc37e93e68c8cf3393cadeac828d9cf",
+      "retrieved_at": "2026-11-24T03:01:46.044726+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 279128.76974604,
+        "observed_at_date": "2026-11-23",
+        "value": 279265.37364834,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 278213.64980027,
           "2026-11-10": 278308.88549514,
           "2026-11-11": 278049.27906264,
           "2026-11-12": 278058.37941202,
@@ -3911,32 +3914,32 @@
           "2026-11-19": 278806.83265889,
           "2026-11-20": 278912.62957013,
           "2026-11-21": 279072.1082765,
-          "2026-11-22": 279128.76974604
+          "2026-11-22": 279128.76974604,
+          "2026-11-23": 279265.37364834
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:40.201300+00:00"
+      "finished_at": "2026-11-24T03:01:46.044818+00:00"
     },
     {
       "key": "BRK_balance_100k_to_1m_sats_supply",
-      "url": "https://bitview.space/api/series/balance_100k_to_1m_sats_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:40.201313+00:00",
+      "url": "https://bitview.space/api/series/balance_100k_to_1m_sats_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:46.044837+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_100k_to_1m_sats_supply.raw",
-      "sha256": "2bb34d1c9f946121d066e0d545064fa279ecdafca1b14d022c006d034270dd17",
-      "retrieved_at": "2026-11-23T14:39:40.426272+00:00",
+      "sha256": "1a545fe5162fa2144f9cc020231ab72762fa8ab8b70757469e97eb21aa37863e",
+      "retrieved_at": "2026-11-24T03:01:46.213043+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 44851.41336703,
+        "observed_at_date": "2026-11-23",
+        "value": 44845.49125959,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 44944.25937647,
           "2026-11-10": 44970.40215788,
           "2026-11-11": 44976.76667247,
           "2026-11-12": 44986.42020388,
@@ -3949,32 +3952,32 @@
           "2026-11-19": 44830.19211264,
           "2026-11-20": 44833.85334968,
           "2026-11-21": 44841.96946318,
-          "2026-11-22": 44851.41336703
+          "2026-11-22": 44851.41336703,
+          "2026-11-23": 44845.49125959
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:40.426348+00:00"
+      "finished_at": "2026-11-24T03:01:46.213136+00:00"
     },
     {
       "key": "BRK_balance_10k_to_100k_btc_supply",
-      "url": "https://bitview.space/api/series/balance_10k_to_100k_btc_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:40.426361+00:00",
+      "url": "https://bitview.space/api/series/balance_10k_to_100k_btc_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:46.213155+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10k_to_100k_btc_supply.raw",
-      "sha256": "2b619eee0deeb876ddcb1b027d09feccfb495837407689f1c9d8909ac43957e0",
-      "retrieved_at": "2026-11-23T14:39:40.643371+00:00",
+      "sha256": "a1a20d473a46000821f76f499571e3665ab7a5eb0417ad026f35183e01555648",
+      "retrieved_at": "2026-11-24T03:01:46.407333+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 2344369.28433703,
+        "observed_at_date": "2026-11-23",
+        "value": 2369439.33029645,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 2244656.24000756,
           "2026-11-10": 2269600.60214992,
           "2026-11-11": 2257157.41836949,
           "2026-11-12": 2248966.08571233,
@@ -3987,32 +3990,32 @@
           "2026-11-19": 2304441.67795265,
           "2026-11-20": 2320390.21898028,
           "2026-11-21": 2343906.39115947,
-          "2026-11-22": 2344369.28433703
+          "2026-11-22": 2344369.28433703,
+          "2026-11-23": 2369439.33029645
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:40.643457+00:00"
+      "finished_at": "2026-11-24T03:01:46.407422+00:00"
     },
     {
       "key": "BRK_balance_10k_to_100k_sats_supply",
-      "url": "https://bitview.space/api/series/balance_10k_to_100k_sats_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:40.643469+00:00",
+      "url": "https://bitview.space/api/series/balance_10k_to_100k_sats_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:46.407442+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10k_to_100k_sats_supply.raw",
-      "sha256": "ea04c39ee2788e0bd78175dee3e2d10dc26889309ba8d069a10a3c809b225780",
-      "retrieved_at": "2026-11-23T14:39:40.873277+00:00",
+      "sha256": "fec49341e6eb1081eb4eeec6c9dc619a50888c0fbcb520e3cd484a548284ab16",
+      "retrieved_at": "2026-11-24T03:01:46.594784+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 5279.47183709,
+        "observed_at_date": "2026-11-23",
+        "value": 5273.23816328,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 5283.45080863,
           "2026-11-10": 5280.80381518,
           "2026-11-11": 5276.84990383,
           "2026-11-12": 5273.42933467,
@@ -4025,32 +4028,32 @@
           "2026-11-19": 5281.51229445,
           "2026-11-20": 5281.6115691,
           "2026-11-21": 5274.9626091,
-          "2026-11-22": 5279.47183709
+          "2026-11-22": 5279.47183709,
+          "2026-11-23": 5273.23816328
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:40.873357+00:00"
+      "finished_at": "2026-11-24T03:01:46.594874+00:00"
     },
     {
       "key": "BRK_balance_10m_to_100m_sats_supply",
-      "url": "https://bitview.space/api/series/balance_10m_to_100m_sats_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:40.873369+00:00",
+      "url": "https://bitview.space/api/series/balance_10m_to_100m_sats_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:46.594925+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_balance_10m_to_100m_sats_supply.raw",
-      "sha256": "14128fa0e2aecdf5910a95e16f9c0dfcea74941e2fc544bd7581c0aaef7e4aad",
-      "retrieved_at": "2026-11-23T14:39:41.104448+00:00",
+      "sha256": "cc4c2677925361e2c654b15a20016bd065bcf7d05d7fec87cd6265b8db6c1776",
+      "retrieved_at": "2026-11-24T03:01:46.767628+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 1071331.31860695,
+        "observed_at_date": "2026-11-23",
+        "value": 1071899.98308484,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 1066819.21402125,
           "2026-11-10": 1067018.04142316,
           "2026-11-11": 1066686.05031452,
           "2026-11-12": 1066616.01658219,
@@ -4063,32 +4066,32 @@
           "2026-11-19": 1069559.66756714,
           "2026-11-20": 1070084.6747026,
           "2026-11-21": 1070775.99862583,
-          "2026-11-22": 1071331.31860695
+          "2026-11-22": 1071331.31860695,
+          "2026-11-23": 1071899.98308484
         },
         "computation_version": 4257751546
       },
-      "finished_at": "2026-11-23T14:39:41.104519+00:00"
+      "finished_at": "2026-11-24T03:01:46.767719+00:00"
     },
     {
       "key": "BRK_age_1d_to_1w_supply",
-      "url": "https://bitview.space/api/series/age_1d_to_1w_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:41.104530+00:00",
+      "url": "https://bitview.space/api/series/age_1d_to_1w_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:46.767741+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1d_to_1w_supply.raw",
-      "sha256": "cb289d3ede940338e26b3d48eba5d0151464882bdf362dc693ba3ac404cdd88d",
-      "retrieved_at": "2026-11-23T14:39:41.317224+00:00",
+      "sha256": "d0772d1effca25344375ee70d9886cf140a060d73d5188ef814436819b4d3fe2",
+      "retrieved_at": "2026-11-24T03:01:46.941164+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 613167.30800995,
+        "observed_at_date": "2026-11-23",
+        "value": 538567.30562261,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 446596.73531914,
           "2026-11-10": 395617.59439298,
           "2026-11-11": 381689.16234624,
           "2026-11-12": 397993.97156869,
@@ -4101,32 +4104,32 @@
           "2026-11-19": 472271.12785189,
           "2026-11-20": 467125.42232768,
           "2026-11-21": 534963.19650873,
-          "2026-11-22": 613167.30800995
+          "2026-11-22": 613167.30800995,
+          "2026-11-23": 538567.30562261
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:41.317298+00:00"
+      "finished_at": "2026-11-24T03:01:46.941256+00:00"
     },
     {
       "key": "BRK_age_1h_to_1d_supply",
-      "url": "https://bitview.space/api/series/age_1h_to_1d_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:41.317309+00:00",
+      "url": "https://bitview.space/api/series/age_1h_to_1d_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:46.941275+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1h_to_1d_supply.raw",
-      "sha256": "b12cd6c7240687669d1829d5a8b13db234c36f5b01776b6839dc55301d580259",
-      "retrieved_at": "2026-11-23T14:39:41.544168+00:00",
+      "sha256": "fae2f072525a62e9730c11e45c13f15e9830bf31b84420d17fdb0643c59ac32c",
+      "retrieved_at": "2026-11-24T03:01:47.123563+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 109297.52193077,
+        "observed_at_date": "2026-11-23",
+        "value": 179409.57039284,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 151711.41534825,
           "2026-11-10": 203072.37236214,
           "2026-11-11": 221581.14203767,
           "2026-11-12": 211320.49969568,
@@ -4139,32 +4142,32 @@
           "2026-11-19": 228517.89714877,
           "2026-11-20": 237364.96975933,
           "2026-11-21": 242966.14047235,
-          "2026-11-22": 109297.52193077
+          "2026-11-22": 109297.52193077,
+          "2026-11-23": 179409.57039284
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:41.544240+00:00"
+      "finished_at": "2026-11-24T03:01:47.123654+00:00"
     },
     {
       "key": "BRK_age_1m_to_2m_supply",
-      "url": "https://bitview.space/api/series/age_1m_to_2m_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:41.544251+00:00",
+      "url": "https://bitview.space/api/series/age_1m_to_2m_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:47.123673+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1m_to_2m_supply.raw",
-      "sha256": "d01225781d6f96d9bd151ad1ad5069fd6d5030f60b0f595396a6b33bd1788a6e",
-      "retrieved_at": "2026-11-23T14:39:41.761663+00:00",
+      "sha256": "bb44a02aee688342125a58caed16ef6e0cbdde63edaaed08a85bd871f10ee83e",
+      "retrieved_at": "2026-11-24T03:01:47.292260+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 935155.59474969,
+        "observed_at_date": "2026-11-23",
+        "value": 912805.80078884,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 722549.5825494,
           "2026-11-10": 713455.75412764,
           "2026-11-11": 721372.87799965,
           "2026-11-12": 722806.64330659,
@@ -4177,32 +4180,32 @@
           "2026-11-19": 702030.52711172,
           "2026-11-20": 696093.58196701,
           "2026-11-21": 920065.61511584,
-          "2026-11-22": 935155.59474969
+          "2026-11-22": 935155.59474969,
+          "2026-11-23": 912805.80078884
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:41.761745+00:00"
+      "finished_at": "2026-11-24T03:01:47.292353+00:00"
     },
     {
       "key": "BRK_age_1w_to_1m_supply",
-      "url": "https://bitview.space/api/series/age_1w_to_1m_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:41.761759+00:00",
+      "url": "https://bitview.space/api/series/age_1w_to_1m_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:47.292375+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1w_to_1m_supply.raw",
-      "sha256": "a024b5749cf9808fbb7b71c20c12b05b90eff91f4b6b6315132b81adff1d72d5",
-      "retrieved_at": "2026-11-23T14:39:41.996281+00:00",
+      "sha256": "f270547438549fd6d984d20cba994e4bf0c9a36c9882db72b5ae55be28ed71f2",
+      "retrieved_at": "2026-11-24T03:01:47.490217+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 930161.30832901,
+        "observed_at_date": "2026-11-23",
+        "value": 971324.90980229,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 1085696.53633688,
           "2026-11-10": 1125046.33539426,
           "2026-11-11": 1122632.58207801,
           "2026-11-12": 1125928.25798431,
@@ -4215,32 +4218,32 @@
           "2026-11-19": 1153255.64421904,
           "2026-11-20": 1152276.13570593,
           "2026-11-21": 911119.89029447,
-          "2026-11-22": 930161.30832901
+          "2026-11-22": 930161.30832901,
+          "2026-11-23": 971324.90980229
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:41.996374+00:00"
+      "finished_at": "2026-11-24T03:01:47.490308+00:00"
     },
     {
       "key": "BRK_age_2m_to_3m_supply",
-      "url": "https://bitview.space/api/series/age_2m_to_3m_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:41.996388+00:00",
+      "url": "https://bitview.space/api/series/age_2m_to_3m_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:47.490327+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_2m_to_3m_supply.raw",
-      "sha256": "46d4dc194764d3e5fdd471b62c6f56cdcd50d9172dfb8158e00d2a7b3d846b65",
-      "retrieved_at": "2026-11-23T14:39:42.242350+00:00",
+      "sha256": "023542aa4cd74a8434ec3bfebd78421936e20ab75a6d1a950b0152c6c29e9649",
+      "retrieved_at": "2026-11-24T03:01:47.664412+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 504650.84666911,
+        "observed_at_date": "2026-11-23",
+        "value": 501724.47088551,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 578169.79828389,
           "2026-11-10": 564539.92011692,
           "2026-11-11": 557629.74678892,
           "2026-11-12": 546081.4482715,
@@ -4253,32 +4256,32 @@
           "2026-11-19": 490379.8505617,
           "2026-11-20": 506933.76664213,
           "2026-11-21": 507080.33354193,
-          "2026-11-22": 504650.84666911
+          "2026-11-22": 504650.84666911,
+          "2026-11-23": 501724.47088551
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:42.242445+00:00"
+      "finished_at": "2026-11-24T03:01:47.664506+00:00"
     },
     {
       "key": "BRK_age_2y_to_3y_supply",
-      "url": "https://bitview.space/api/series/age_2y_to_3y_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:42.242460+00:00",
+      "url": "https://bitview.space/api/series/age_2y_to_3y_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:47.664524+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_2y_to_3y_supply.raw",
-      "sha256": "75403bd93e4bea2e41f8e1973285ce6cc646c948ca342dd0576da8e189d689db",
-      "retrieved_at": "2026-11-23T14:39:42.501766+00:00",
+      "sha256": "cd0a00b8fe1938ad22033bc6b45492073c693e74a8a57c1c16ab8dfc06d46407",
+      "retrieved_at": "2026-11-24T03:01:47.833403+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 1382890.807191,
+        "observed_at_date": "2026-11-23",
+        "value": 1402875.23812678,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 1330859.30093151,
           "2026-11-10": 1331552.60525931,
           "2026-11-11": 1336946.02822518,
           "2026-11-12": 1342096.09059808,
@@ -4291,32 +4294,32 @@
           "2026-11-19": 1361249.20645864,
           "2026-11-20": 1368774.67751445,
           "2026-11-21": 1376249.78425174,
-          "2026-11-22": 1382890.807191
+          "2026-11-22": 1382890.807191,
+          "2026-11-23": 1402875.23812678
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:42.501857+00:00"
+      "finished_at": "2026-11-24T03:01:47.833496+00:00"
     },
     {
       "key": "BRK_age_3m_to_4m_supply",
-      "url": "https://bitview.space/api/series/age_3m_to_4m_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:42.501871+00:00",
+      "url": "https://bitview.space/api/series/age_3m_to_4m_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:47.833517+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_3m_to_4m_supply.raw",
-      "sha256": "1b64db3b16560dfba3131121a54bb086eafd97d9ba9a92436a3f428cf768ac7c",
-      "retrieved_at": "2026-11-23T14:39:42.725573+00:00",
+      "sha256": "6ef76f17b35a8407aa754b2d20dffc0fc4160d69ca3ab749ca8b4a694d4ab8bd",
+      "retrieved_at": "2026-11-24T03:01:48.006368+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 550956.58800202,
+        "observed_at_date": "2026-11-23",
+        "value": 561244.47293868,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 514552.53047453,
           "2026-11-10": 510215.44413494,
           "2026-11-11": 509880.00964093,
           "2026-11-12": 510584.06750671,
@@ -4329,32 +4332,32 @@
           "2026-11-19": 545041.71296786,
           "2026-11-20": 539847.64201395,
           "2026-11-21": 545428.03998248,
-          "2026-11-22": 550956.58800202
+          "2026-11-22": 550956.58800202,
+          "2026-11-23": 561244.47293868
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:42.725666+00:00"
+      "finished_at": "2026-11-24T03:01:48.006463+00:00"
     },
     {
       "key": "BRK_age_3y_to_4y_supply",
-      "url": "https://bitview.space/api/series/age_3y_to_4y_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:42.725681+00:00",
+      "url": "https://bitview.space/api/series/age_3y_to_4y_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:48.006482+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_3y_to_4y_supply.raw",
-      "sha256": "14de49fd48ac8d0fe5ec91e8db8e48c26d98c0e895aa5e2246b3f3a41ecad4dc",
-      "retrieved_at": "2026-11-23T14:39:42.975840+00:00",
+      "sha256": "e412acc022c1af075ea45977c193998d1e39cefc5753d4045d72713b432eea3d",
+      "retrieved_at": "2026-11-24T03:01:48.168419+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 740919.25186785,
+        "observed_at_date": "2026-11-23",
+        "value": 740083.34712498,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 874148.19818169,
           "2026-11-10": 860326.6630005,
           "2026-11-11": 855977.38323892,
           "2026-11-12": 850750.94805201,
@@ -4367,32 +4370,32 @@
           "2026-11-19": 746320.00268775,
           "2026-11-20": 743860.9001851,
           "2026-11-21": 741013.37561842,
-          "2026-11-22": 740919.25186785
+          "2026-11-22": 740919.25186785,
+          "2026-11-23": 740083.34712498
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:42.975935+00:00"
+      "finished_at": "2026-11-24T03:01:48.168512+00:00"
     },
     {
       "key": "BRK_age_4m_to_5m_supply",
-      "url": "https://bitview.space/api/series/age_4m_to_5m_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:42.975950+00:00",
+      "url": "https://bitview.space/api/series/age_4m_to_5m_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:48.168530+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_4m_to_5m_supply.raw",
-      "sha256": "267971446f6320b64c4dbeea6dc7ea689c62c016d5cd902ab9ef28fa643ce2cb",
-      "retrieved_at": "2026-11-23T14:39:43.201632+00:00",
+      "sha256": "0ae4e3ff4837f67603e57dc2982d362ffe49d68093b88676ce1ecfda33e8c19a",
+      "retrieved_at": "2026-11-24T03:01:48.432128+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 310023.46560308,
+        "observed_at_date": "2026-11-23",
+        "value": 303813.7871913,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 290470.5630154,
           "2026-11-10": 304060.23443658,
           "2026-11-11": 310100.09897211,
           "2026-11-12": 303831.20624422,
@@ -4405,32 +4408,32 @@
           "2026-11-19": 324006.84565092,
           "2026-11-20": 321911.69769654,
           "2026-11-21": 306406.8981497,
-          "2026-11-22": 310023.46560308
+          "2026-11-22": 310023.46560308,
+          "2026-11-23": 303813.7871913
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:43.201729+00:00"
+      "finished_at": "2026-11-24T03:01:48.432226+00:00"
     },
     {
       "key": "BRK_age_4y_to_5y_supply",
-      "url": "https://bitview.space/api/series/age_4y_to_5y_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:43.201745+00:00",
+      "url": "https://bitview.space/api/series/age_4y_to_5y_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:48.432244+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_4y_to_5y_supply.raw",
-      "sha256": "325bf6dceade87717b025afb3b68aee434471c2d5f81bfbee0f0f1575d22e9ef",
-      "retrieved_at": "2026-11-23T14:39:43.420049+00:00",
+      "sha256": "70711739d7e9130bfad226415c4a1b87f9973417d18ab9def90be07501477efb",
+      "retrieved_at": "2026-11-24T03:01:48.725081+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 911499.98067543,
+        "observed_at_date": "2026-11-23",
+        "value": 911937.78263855,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 786635.25883511,
           "2026-11-10": 798029.8737046,
           "2026-11-11": 800661.34625082,
           "2026-11-12": 805539.38472101,
@@ -4443,32 +4446,32 @@
           "2026-11-19": 904589.28191346,
           "2026-11-20": 907260.88929627,
           "2026-11-21": 909758.58939087,
-          "2026-11-22": 911499.98067543
+          "2026-11-22": 911499.98067543,
+          "2026-11-23": 911937.78263855
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:43.420181+00:00"
+      "finished_at": "2026-11-24T03:01:48.725173+00:00"
     },
     {
       "key": "BRK_age_5m_to_6m_supply",
-      "url": "https://bitview.space/api/series/age_5m_to_6m_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:43.420196+00:00",
+      "url": "https://bitview.space/api/series/age_5m_to_6m_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:48.725192+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_5m_to_6m_supply.raw",
-      "sha256": "58171131d08fdb96872af1f5c502a51ebed0d640b768b46858fdc5f6a1dd95e0",
-      "retrieved_at": "2026-11-23T14:39:43.660014+00:00",
+      "sha256": "61248e03a82cc0ae7ddbae855a39101501335877ee7e5e4477f106414ff74926",
+      "retrieved_at": "2026-11-24T03:01:48.956539+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 292425.43277877,
+        "observed_at_date": "2026-11-23",
+        "value": 286543.35786506,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 311244.03721539,
           "2026-11-10": 306119.28794094,
           "2026-11-11": 276219.67936776,
           "2026-11-12": 288495.62596152,
@@ -4481,32 +4484,32 @@
           "2026-11-19": 278044.20291754,
           "2026-11-20": 284042.78520377,
           "2026-11-21": 283556.09042931,
-          "2026-11-22": 292425.43277877
+          "2026-11-22": 292425.43277877,
+          "2026-11-23": 286543.35786506
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:43.660131+00:00"
+      "finished_at": "2026-11-24T03:01:48.956632+00:00"
     },
     {
       "key": "BRK_age_5y_to_6y_supply",
-      "url": "https://bitview.space/api/series/age_5y_to_6y_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:43.660147+00:00",
+      "url": "https://bitview.space/api/series/age_5y_to_6y_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:48.956650+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_5y_to_6y_supply.raw",
-      "sha256": "1ed35df333950d5b6c3c4708c3d6874b54d987f46f885a28f099bec03921f811",
-      "retrieved_at": "2026-11-23T14:39:43.867601+00:00",
+      "sha256": "3dbbaa1d10b48530ac7e6635c68dc55385d03d17268c54ba22ef82359bdd8514",
+      "retrieved_at": "2026-11-24T03:01:49.155963+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 1097683.24544243,
+        "observed_at_date": "2026-11-23",
+        "value": 1097410.94977776,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 1105638.83131074,
           "2026-11-10": 1104569.28302819,
           "2026-11-11": 1103520.93089929,
           "2026-11-12": 1103590.94096167,
@@ -4519,32 +4522,32 @@
           "2026-11-19": 1099088.88946522,
           "2026-11-20": 1098531.16652159,
           "2026-11-21": 1097885.02371772,
-          "2026-11-22": 1097683.24544243
+          "2026-11-22": 1097683.24544243,
+          "2026-11-23": 1097410.94977776
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:43.867692+00:00"
+      "finished_at": "2026-11-24T03:01:49.156055+00:00"
     },
     {
       "key": "BRK_age_6m_to_9m_supply",
-      "url": "https://bitview.space/api/series/age_6m_to_9m_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:43.867706+00:00",
+      "url": "https://bitview.space/api/series/age_6m_to_9m_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:49.156072+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_6m_to_9m_supply.raw",
-      "sha256": "2ce589acf6c06ef29f452bec78ef4fba05b8c527b4b35d4849faadd2f96497c5",
-      "retrieved_at": "2026-11-23T14:39:44.112930+00:00",
+      "sha256": "0d56b758716568cf88111093e52a135968ffc3675d6abce2474308a7be388d02",
+      "retrieved_at": "2026-11-24T03:01:49.328167+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 854630.8883256,
+        "observed_at_date": "2026-11-23",
+        "value": 858691.2189313,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 916466.20763443,
           "2026-11-10": 912488.06017605,
           "2026-11-11": 929684.69939782,
           "2026-11-12": 925724.57211457,
@@ -4557,32 +4560,32 @@
           "2026-11-19": 883521.63686399,
           "2026-11-20": 876569.80614747,
           "2026-11-21": 857411.61621031,
-          "2026-11-22": 854630.8883256
+          "2026-11-22": 854630.8883256,
+          "2026-11-23": 858691.2189313
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:44.113020+00:00"
+      "finished_at": "2026-11-24T03:01:49.328256+00:00"
     },
     {
       "key": "BRK_age_6y_to_7y_supply",
-      "url": "https://bitview.space/api/series/age_6y_to_7y_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:44.113034+00:00",
+      "url": "https://bitview.space/api/series/age_6y_to_7y_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:49.328274+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_6y_to_7y_supply.raw",
-      "sha256": "9ddbbd28b390e5632ca8abf6b2c7798ad077f08cfa08fca1f2d55542e811c1ee",
-      "retrieved_at": "2026-11-23T14:39:44.362643+00:00",
+      "sha256": "74b0c93eb0ffd670b1fdbe52e4168166c03755816cb6939ff320928fbf170fc1",
+      "retrieved_at": "2026-11-24T03:01:49.507553+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 440518.35988965,
+        "observed_at_date": "2026-11-23",
+        "value": 441213.01351624,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 480047.18118366,
           "2026-11-10": 477987.35986879,
           "2026-11-11": 479078.18024431,
           "2026-11-12": 479044.3006808,
@@ -4595,32 +4598,32 @@
           "2026-11-19": 484042.38617237,
           "2026-11-20": 484076.54177767,
           "2026-11-21": 484937.0209174,
-          "2026-11-22": 440518.35988965
+          "2026-11-22": 440518.35988965,
+          "2026-11-23": 441213.01351624
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:44.362733+00:00"
+      "finished_at": "2026-11-24T03:01:49.507642+00:00"
     },
     {
       "key": "BRK_age_7y_to_8y_supply",
-      "url": "https://bitview.space/api/series/age_7y_to_8y_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:44.362747+00:00",
+      "url": "https://bitview.space/api/series/age_7y_to_8y_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:49.507660+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_7y_to_8y_supply.raw",
-      "sha256": "f811c91190a287d90c2fcafb1587a44edf169f8f1ed047c8f5ed095c966a4e6c",
-      "retrieved_at": "2026-11-23T14:39:44.570022+00:00",
+      "sha256": "ec08fbbbfa62b19c1b5639c7b6f8469919f3b2818094ec6a8540812c12c58592",
+      "retrieved_at": "2026-11-24T03:01:49.645969+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 501556.25054688,
+        "observed_at_date": "2026-11-23",
+        "value": 498689.48358615,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 464515.69075612,
           "2026-11-10": 464414.2521095,
           "2026-11-11": 464636.66132964,
           "2026-11-12": 461914.62228113,
@@ -4633,32 +4636,32 @@
           "2026-11-19": 457615.21408003,
           "2026-11-20": 458286.6704256,
           "2026-11-21": 458220.42555014,
-          "2026-11-22": 501556.25054688
+          "2026-11-22": 501556.25054688,
+          "2026-11-23": 498689.48358615
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:44.570144+00:00"
+      "finished_at": "2026-11-24T03:01:49.646067+00:00"
     },
     {
       "key": "BRK_age_9m_to_1y_supply",
-      "url": "https://bitview.space/api/series/age_9m_to_1y_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:44.570158+00:00",
+      "url": "https://bitview.space/api/series/age_9m_to_1y_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:49.646083+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_9m_to_1y_supply.raw",
-      "sha256": "b0d15fbfd3a5960747772d3a8bb329f7db9d02c197b9bbf3d4c60d97a414f280",
-      "retrieved_at": "2026-11-23T14:39:44.788953+00:00",
+      "sha256": "0fdce551b1123f3cc5d848007c4fbc5d1a8e05d462f3567443f07dd4f3948338",
+      "retrieved_at": "2026-11-24T03:01:49.798553+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 1309761.58194458,
+        "observed_at_date": "2026-11-23",
+        "value": 1208888.64199799,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 2109610.78166101,
           "2026-11-10": 2094410.33256832,
           "2026-11-11": 2081702.71015566,
           "2026-11-12": 2064092.64278734,
@@ -4671,32 +4674,32 @@
           "2026-11-19": 1953756.20803946,
           "2026-11-20": 1934522.1536029,
           "2026-11-21": 1889312.49063598,
-          "2026-11-22": 1309761.58194458
+          "2026-11-22": 1309761.58194458,
+          "2026-11-23": 1208888.64199799
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:44.789044+00:00"
+      "finished_at": "2026-11-24T03:01:49.798643+00:00"
     },
     {
       "key": "BRK_age_over_15y_supply",
-      "url": "https://bitview.space/api/series/age_over_15y_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:44.789059+00:00",
+      "url": "https://bitview.space/api/series/age_over_15y_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:49.798664+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_over_15y_supply.raw",
-      "sha256": "373f61da8dac51c239a326f2ca7a0d9357e0de2f8f7bc40d77fa86b32ceb780b",
-      "retrieved_at": "2026-11-23T14:39:45.002367+00:00",
+      "sha256": "52c5502ee06c9797426596bdc86adb79390b01882d030d885216ad4f5a6d7517",
+      "retrieved_at": "2026-11-24T03:01:49.963715+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 2217803.43257979,
+        "observed_at_date": "2026-11-23",
+        "value": 2218024.12476256,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 2210993.32073358,
           "2026-11-10": 2211144.49223255,
           "2026-11-11": 2212510.44917401,
           "2026-11-12": 2212947.29883686,
@@ -4709,32 +4712,32 @@
           "2026-11-19": 2216800.36206546,
           "2026-11-20": 2217067.19986736,
           "2026-11-21": 2217271.32909783,
-          "2026-11-22": 2217803.43257979
+          "2026-11-22": 2217803.43257979,
+          "2026-11-23": 2218024.12476256
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:45.002461+00:00"
+      "finished_at": "2026-11-24T03:01:49.963805+00:00"
     },
     {
       "key": "BRK_age_under_1h_supply",
-      "url": "https://bitview.space/api/series/age_under_1h_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:45.002475+00:00",
+      "url": "https://bitview.space/api/series/age_under_1h_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:49.963827+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_under_1h_supply.raw",
-      "sha256": "3893c2db31710d623fe61979231fb2a8badc8730409ab114c9b0df64aaeb34df",
-      "retrieved_at": "2026-11-23T14:39:45.230785+00:00",
+      "sha256": "2f05a68928c64ad3e21b1c7e21ef402b32d77fcef07ebee5f0958066e198598e",
+      "retrieved_at": "2026-11-24T03:01:50.128497+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 16091.6435743,
+        "observed_at_date": "2026-11-23",
+        "value": 12494.72402107,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 17096.59401922,
           "2026-11-10": 14216.92297323,
           "2026-11-11": 12711.201548,
           "2026-11-12": 19747.38421885,
@@ -4747,32 +4750,32 @@
           "2026-11-19": 16164.21219026,
           "2026-11-20": 33279.60664412,
           "2026-11-21": 10598.20091153,
-          "2026-11-22": 16091.6435743
+          "2026-11-22": 16091.6435743,
+          "2026-11-23": 12494.72402107
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:45.230875+00:00"
+      "finished_at": "2026-11-24T03:01:50.128589+00:00"
     },
     {
       "key": "BRK_age_18m_to_2y_supply",
-      "url": "https://bitview.space/api/series/age_18m_to_2y_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:45.230890+00:00",
+      "url": "https://bitview.space/api/series/age_18m_to_2y_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:50.128609+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_18m_to_2y_supply.raw",
-      "sha256": "2bd8f32822eec5c857503ba14a596787b6f1798c67baf749335f11a0d8de5168",
-      "retrieved_at": "2026-11-23T14:39:45.457679+00:00",
+      "sha256": "b5f0babf38356835e7df2b7c4dd9320dba9eaac0d2e0c0552155c5fc6e20df7f",
+      "retrieved_at": "2026-11-24T03:01:50.282353+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 1095712.51580915,
+        "observed_at_date": "2026-11-23",
+        "value": 1080807.81203509,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 1086150.57292045,
           "2026-11-10": 1085029.44116988,
           "2026-11-11": 1090412.52806643,
           "2026-11-12": 1086075.33480146,
@@ -4785,32 +4788,32 @@
           "2026-11-19": 1119720.88908582,
           "2026-11-20": 1109028.24447975,
           "2026-11-21": 1100440.89365573,
-          "2026-11-22": 1095712.51580915
+          "2026-11-22": 1095712.51580915,
+          "2026-11-23": 1080807.81203509
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:45.457767+00:00"
+      "finished_at": "2026-11-24T03:01:50.282445+00:00"
     },
     {
       "key": "BRK_age_1y_to_18m_supply",
-      "url": "https://bitview.space/api/series/age_1y_to_18m_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:45.457781+00:00",
+      "url": "https://bitview.space/api/series/age_1y_to_18m_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:50.282463+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1y_to_18m_supply.raw",
-      "sha256": "783c321591038555139c2401018878257808f76a22bdf48144b3797752d4b21d",
-      "retrieved_at": "2026-11-23T14:39:45.683532+00:00",
+      "sha256": "75d2e20459a7bae5a7927cb564f025668a90961ed6fd88b8f9312958af6b5ca2",
+      "retrieved_at": "2026-11-24T03:01:50.467930+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 2710704.7606045,
+        "observed_at_date": "2026-11-23",
+        "value": 2796641.75312915,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 2037665.36779327,
           "2026-11-10": 2045772.43419013,
           "2026-11-11": 2055516.30939861,
           "2026-11-12": 2064007.36324309,
@@ -4823,32 +4826,32 @@
           "2026-11-19": 2089226.25649575,
           "2026-11-20": 2089225.30187185,
           "2026-11-21": 2131997.42660712,
-          "2026-11-22": 2710704.7606045
+          "2026-11-22": 2710704.7606045,
+          "2026-11-23": 2796641.75312915
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:45.683635+00:00"
+      "finished_at": "2026-11-24T03:01:50.468026+00:00"
     },
     {
       "key": "BRK_age_8y_to_10y_supply",
-      "url": "https://bitview.space/api/series/age_8y_to_10y_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:45.683649+00:00",
+      "url": "https://bitview.space/api/series/age_8y_to_10y_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:50.468042+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_8y_to_10y_supply.raw",
-      "sha256": "0f895849e6e3b091ddac7b39ebb48f114ed5b8c24614ca5cf8803dd2ca021c96",
-      "retrieved_at": "2026-11-23T14:39:45.934763+00:00",
+      "sha256": "05d0f462c7eab2e9a51df23e09c181ec097434400176aa2714e567474431d847",
+      "retrieved_at": "2026-11-24T03:01:50.719436+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 1202087.72812567,
+        "observed_at_date": "2026-11-23",
+        "value": 1203760.83945106,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 1203022.36317557,
           "2026-11-10": 1201572.08170404,
           "2026-11-11": 1198899.55094038,
           "2026-11-12": 1200624.79846563,
@@ -4861,32 +4864,32 @@
           "2026-11-19": 1202630.97252041,
           "2026-11-20": 1201881.96024461,
           "2026-11-21": 1201144.45376918,
-          "2026-11-22": 1202087.72812567
+          "2026-11-22": 1202087.72812567,
+          "2026-11-23": 1203760.83945106
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:45.934856+00:00"
+      "finished_at": "2026-11-24T03:01:50.719530+00:00"
     },
     {
       "key": "BRK_age_10y_to_12y_supply",
-      "url": "https://bitview.space/api/series/age_10y_to_12y_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:45.934872+00:00",
+      "url": "https://bitview.space/api/series/age_10y_to_12y_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:50.719551+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_10y_to_12y_supply.raw",
-      "sha256": "6a2e2a4c24d19c8bc771151a1d3fc7188e7d2430e9bc572181d4234fa6597561",
-      "retrieved_at": "2026-11-23T14:39:46.142140+00:00",
+      "sha256": "65da7899a1baa3e7dc15e4070c2e4379dc7fcf86db17f5b2db3cfb306e5db656",
+      "retrieved_at": "2026-11-24T03:01:50.883120+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 445050.26109082,
+        "observed_at_date": "2026-11-23",
+        "value": 446413.2596445,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 443421.13587013,
           "2026-11-10": 443579.52456489,
           "2026-11-11": 444861.61669384,
           "2026-11-12": 445805.49732155,
@@ -4899,32 +4902,32 @@
           "2026-11-19": 444347.52654826,
           "2026-11-20": 445259.95509411,
           "2026-11-21": 445809.27374728,
-          "2026-11-22": 445050.26109082
+          "2026-11-22": 445050.26109082,
+          "2026-11-23": 446413.2596445
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:46.142240+00:00"
+      "finished_at": "2026-11-24T03:01:50.883208+00:00"
     },
     {
       "key": "BRK_age_12y_to_15y_supply",
-      "url": "https://bitview.space/api/series/age_12y_to_15y_supply/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:46.142254+00:00",
+      "url": "https://bitview.space/api/series/age_12y_to_15y_supply/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:50.883226+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_12y_to_15y_supply.raw",
-      "sha256": "b013702d51d3b6272f33a2a187748728de2e527a36eada2aafdc555a39346b64",
-      "retrieved_at": "2026-11-23T14:39:46.405952+00:00",
+      "sha256": "d3cff60f2cc5e78e20059fbd34f3100f152f28d7975be91195328eb2d0ac9773",
+      "retrieved_at": "2026-11-24T03:01:51.012186+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 943039.82545092,
+        "observed_at_date": "2026-11-23",
+        "value": 942947.73467554,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 942585.98344205,
           "2026-11-10": 943049.5920378,
           "2026-11-11": 942463.71560282,
           "2026-11-12": 942057.58522531,
@@ -4937,32 +4940,32 @@
           "2026-11-19": 941702.12381195,
           "2026-11-20": 941558.15126261,
           "2026-11-21": 941655.61577171,
-          "2026-11-22": 943039.82545092
+          "2026-11-22": 943039.82545092,
+          "2026-11-23": 942947.73467554
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:46.406046+00:00"
+      "finished_at": "2026-11-24T03:01:51.012281+00:00"
     },
     {
       "key": "BRK_age_1d_to_1w_realized_cap",
-      "url": "https://bitview.space/api/series/age_1d_to_1w_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:46.406062+00:00",
+      "url": "https://bitview.space/api/series/age_1d_to_1w_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:51.012300+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1d_to_1w_realized_cap.raw",
-      "sha256": "619b77386c8080451378947defa366614f9176dc2e581d9070e4fd4bac038573",
-      "retrieved_at": "2026-11-23T14:39:46.629724+00:00",
+      "sha256": "c1b3165fd4e8b0900ce8a60f5cad55b4d613aada598118478ae61e4f3ad8ff32",
+      "retrieved_at": "2026-11-24T03:01:51.189847+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 37643469118.92,
+        "observed_at_date": "2026-11-23",
+        "value": 32840755015.96,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 34389553977.03,
           "2026-11-10": 30315068853.92,
           "2026-11-11": 28825184383.3,
           "2026-11-12": 29667354381.0,
@@ -4975,32 +4978,32 @@
           "2026-11-19": 30811363182.53,
           "2026-11-20": 29926912689.51,
           "2026-11-21": 33591128436.75,
-          "2026-11-22": 37643469118.92
+          "2026-11-22": 37643469118.92,
+          "2026-11-23": 32840755015.96
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:46.629820+00:00"
+      "finished_at": "2026-11-24T03:01:51.189978+00:00"
     },
     {
       "key": "BRK_age_1h_to_1d_realized_cap",
-      "url": "https://bitview.space/api/series/age_1h_to_1d_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:46.629835+00:00",
+      "url": "https://bitview.space/api/series/age_1h_to_1d_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:51.189996+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1h_to_1d_realized_cap.raw",
-      "sha256": "0e377296998320a42d8cc33d8412736be8578f5d77f7bc2636d2b499488e1da8",
-      "retrieved_at": "2026-11-23T14:39:46.864787+00:00",
+      "sha256": "676ab3658e39df109c56b6152266c4615414638b177f3fe0915f86e8c96bf2b4",
+      "retrieved_at": "2026-11-24T03:01:51.370474+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 6611832637.75,
+        "observed_at_date": "2026-11-23",
+        "value": 11042023915.85,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 11337007394.45,
           "2026-11-10": 14985349221.92,
           "2026-11-11": 16369110503.37,
           "2026-11-12": 15245425443.68,
@@ -5013,32 +5016,32 @@
           "2026-11-19": 14397935368.15,
           "2026-11-20": 14230643901.71,
           "2026-11-21": 14265420710.94,
-          "2026-11-22": 6611832637.75
+          "2026-11-22": 6611832637.75,
+          "2026-11-23": 11042023915.85
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:46.864878+00:00"
+      "finished_at": "2026-11-24T03:01:51.370567+00:00"
     },
     {
       "key": "BRK_age_1m_to_2m_realized_cap",
-      "url": "https://bitview.space/api/series/age_1m_to_2m_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:46.864892+00:00",
+      "url": "https://bitview.space/api/series/age_1m_to_2m_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:51.370586+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1m_to_2m_realized_cap.raw",
-      "sha256": "152277e83e1545a45fb9f44232b39af96b07ae01069c4f13a364a0c1d8c817c3",
-      "retrieved_at": "2026-11-23T14:39:47.071381+00:00",
+      "sha256": "84ad005bc76733427bf3e9655574377492871002eaf9620bb8500ebf7fdd9ae4",
+      "retrieved_at": "2026-11-24T03:01:51.512581+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 77347724845.36,
+        "observed_at_date": "2026-11-23",
+        "value": 75454553176.28,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 59828152589.94,
           "2026-11-10": 59147506162.02,
           "2026-11-11": 59831818069.84,
           "2026-11-12": 59984107360.33,
@@ -5051,32 +5054,32 @@
           "2026-11-19": 58657238566.28,
           "2026-11-20": 58105002075.61,
           "2026-11-21": 76200234886.42,
-          "2026-11-22": 77347724845.36
+          "2026-11-22": 77347724845.36,
+          "2026-11-23": 75454553176.28
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:47.071476+00:00"
+      "finished_at": "2026-11-24T03:01:51.512675+00:00"
     },
     {
       "key": "BRK_age_1w_to_1m_realized_cap",
-      "url": "https://bitview.space/api/series/age_1w_to_1m_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:47.071491+00:00",
+      "url": "https://bitview.space/api/series/age_1w_to_1m_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:51.512695+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1w_to_1m_realized_cap.raw",
-      "sha256": "c97a113f5e5e8d28f12441445e1f27236d24b013c7a993419292a164bd9220bb",
-      "retrieved_at": "2026-11-23T14:39:47.285575+00:00",
+      "sha256": "aae88f31d4413b45e8e2726beadfd1437fdc48ef0d1503564d016d29b28fa685",
+      "retrieved_at": "2026-11-24T03:01:51.793178+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 69903587896.86,
+        "observed_at_date": "2026-11-23",
+        "value": 72300631029.25,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 87290309550.36,
           "2026-11-10": 90149452526.1,
           "2026-11-11": 89872346365.92,
           "2026-11-12": 89942485112.88,
@@ -5089,32 +5092,32 @@
           "2026-11-19": 90095589420.67,
           "2026-11-20": 89273147661.69,
           "2026-11-21": 69379472198.38,
-          "2026-11-22": 69903587896.86
+          "2026-11-22": 69903587896.86,
+          "2026-11-23": 72300631029.25
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:47.285669+00:00"
+      "finished_at": "2026-11-24T03:01:51.793272+00:00"
     },
     {
       "key": "BRK_age_2m_to_3m_realized_cap",
-      "url": "https://bitview.space/api/series/age_2m_to_3m_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:47.285685+00:00",
+      "url": "https://bitview.space/api/series/age_2m_to_3m_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:51.793291+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_2m_to_3m_realized_cap.raw",
-      "sha256": "39dcb74fa5ecbb66a043a28285ea1b22864ce6081a3a19b12f8cf04382d9b803",
-      "retrieved_at": "2026-11-23T14:39:47.503931+00:00",
+      "sha256": "1c986f4c4d7834895fc95be111844fada396492044423d87e69414d4838d82c8",
+      "retrieved_at": "2026-11-24T03:01:51.985351+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 40231821197.5,
+        "observed_at_date": "2026-11-23",
+        "value": 40105291902.72,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 43673741200.81,
           "2026-11-10": 42823769633.2,
           "2026-11-11": 42443322992.77,
           "2026-11-12": 41770673515.03,
@@ -5127,32 +5130,32 @@
           "2026-11-19": 38561283301.8,
           "2026-11-20": 40078231797.13,
           "2026-11-21": 40275004981.62,
-          "2026-11-22": 40231821197.5
+          "2026-11-22": 40231821197.5,
+          "2026-11-23": 40105291902.72
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:47.504027+00:00"
+      "finished_at": "2026-11-24T03:01:51.985440+00:00"
     },
     {
       "key": "BRK_age_2y_to_3y_realized_cap",
-      "url": "https://bitview.space/api/series/age_2y_to_3y_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:47.504043+00:00",
+      "url": "https://bitview.space/api/series/age_2y_to_3y_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:51.985460+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_2y_to_3y_realized_cap.raw",
-      "sha256": "f3ff5aa47f2e6cc0beff86db332d61680d6754a09a0dc70e942a0098d6bdbeb8",
-      "retrieved_at": "2026-11-23T14:39:47.740637+00:00",
+      "sha256": "aa25b0b399210f1f419efffa658c8eaa64677601e0b4a2d5cbc8137db5611684",
+      "retrieved_at": "2026-11-24T03:01:52.172041+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 87289424509.7,
+        "observed_at_date": "2026-11-23",
+        "value": 89461435092.1,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 80740299853.24,
           "2026-11-10": 80883509702.79,
           "2026-11-11": 81405952723.29,
           "2026-11-12": 82008950526.02,
@@ -5165,32 +5168,32 @@
           "2026-11-19": 84676894063.22,
           "2026-11-20": 85535153188.9,
           "2026-11-21": 86400182381.55,
-          "2026-11-22": 87289424509.7
+          "2026-11-22": 87289424509.7,
+          "2026-11-23": 89461435092.1
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:47.740733+00:00"
+      "finished_at": "2026-11-24T03:01:52.172132+00:00"
     },
     {
       "key": "BRK_age_3m_to_4m_realized_cap",
-      "url": "https://bitview.space/api/series/age_3m_to_4m_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:47.740746+00:00",
+      "url": "https://bitview.space/api/series/age_3m_to_4m_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:52.172150+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_3m_to_4m_realized_cap.raw",
-      "sha256": "53e4945e4c97c29ac9717a6ce1384816c7d658c0c1c07a5408f9f5150f2a46a3",
-      "retrieved_at": "2026-11-23T14:39:47.949706+00:00",
+      "sha256": "b3ce675d7dad18a5a61b6be18f044e31385779b1c39bb1fa449216e5ff129294",
+      "retrieved_at": "2026-11-24T03:01:52.413505+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 36526255355.95,
+        "observed_at_date": "2026-11-23",
+        "value": 37454424769.55,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 32884578172.54,
           "2026-11-10": 32628088236.35,
           "2026-11-11": 32606536222.59,
           "2026-11-12": 32624705102.21,
@@ -5203,32 +5206,32 @@
           "2026-11-19": 35521478297.76,
           "2026-11-20": 35294710976.8,
           "2026-11-21": 35823446645.49,
-          "2026-11-22": 36526255355.95
+          "2026-11-22": 36526255355.95,
+          "2026-11-23": 37454424769.55
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:47.949801+00:00"
+      "finished_at": "2026-11-24T03:01:52.413598+00:00"
     },
     {
       "key": "BRK_age_3y_to_4y_realized_cap",
-      "url": "https://bitview.space/api/series/age_3y_to_4y_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:47.949816+00:00",
+      "url": "https://bitview.space/api/series/age_3y_to_4y_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:52.413618+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_3y_to_4y_realized_cap.raw",
-      "sha256": "7c084897a2d90671304ed82f25f574d847f754ee2f7ef80f09f6aac3ba63234d",
-      "retrieved_at": "2026-11-23T14:39:48.176955+00:00",
+      "sha256": "b82fbdb00dc6c37fe18be0dbe152ee1dddc60b5309775e078dc12bd8de038350",
+      "retrieved_at": "2026-11-24T03:01:52.579561+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 19004029866.81,
+        "observed_at_date": "2026-11-23",
+        "value": 19019692615.5,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 20786509785.82,
           "2026-11-10": 20556292126.12,
           "2026-11-11": 20508125128.95,
           "2026-11-12": 20452256306.58,
@@ -5241,32 +5244,32 @@
           "2026-11-19": 18944729911.85,
           "2026-11-20": 18948790349.51,
           "2026-11-21": 18933995258.11,
-          "2026-11-22": 19004029866.81
+          "2026-11-22": 19004029866.81,
+          "2026-11-23": 19019692615.5
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:48.177051+00:00"
+      "finished_at": "2026-11-24T03:01:52.579654+00:00"
     },
     {
       "key": "BRK_age_4m_to_5m_realized_cap",
-      "url": "https://bitview.space/api/series/age_4m_to_5m_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:48.177066+00:00",
+      "url": "https://bitview.space/api/series/age_4m_to_5m_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:52.579674+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_4m_to_5m_realized_cap.raw",
-      "sha256": "0184d6143fa8b52d7449312e1f85f87cd3b98122708c4b67290a7a6721eafa0d",
-      "retrieved_at": "2026-11-23T14:39:48.404898+00:00",
+      "sha256": "084c24039c1fbbdb6f2165c7b1a2232f796564ca0b8eeff241cb41da2a27e628",
+      "retrieved_at": "2026-11-24T03:01:52.850344+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 19449105158.77,
+        "observed_at_date": "2026-11-23",
+        "value": 19090929839.71,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 18072116242.12,
           "2026-11-10": 18918402478.52,
           "2026-11-11": 19298385153.19,
           "2026-11-12": 18870143859.58,
@@ -5279,32 +5282,32 @@
           "2026-11-19": 20216471401.68,
           "2026-11-20": 20108905814.09,
           "2026-11-21": 19153566226.28,
-          "2026-11-22": 19449105158.77
+          "2026-11-22": 19449105158.77,
+          "2026-11-23": 19090929839.71
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:48.404994+00:00"
+      "finished_at": "2026-11-24T03:01:52.850433+00:00"
     },
     {
       "key": "BRK_age_4y_to_5y_realized_cap",
-      "url": "https://bitview.space/api/series/age_4y_to_5y_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:48.405010+00:00",
+      "url": "https://bitview.space/api/series/age_4y_to_5y_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:52.850453+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_4y_to_5y_realized_cap.raw",
-      "sha256": "3e838416f2ffcadafc3fcde7bdf3dce62e22526a6c8e38da79a1605b9366031d",
-      "retrieved_at": "2026-11-23T14:39:48.608280+00:00",
+      "sha256": "58465b015883e7998089fbc0de889a85330625dd9e930a091572bd434b2fdfe1",
+      "retrieved_at": "2026-11-24T03:01:53.010359+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 26156192975.93,
+        "observed_at_date": "2026-11-23",
+        "value": 26107383645.16,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 24997170650.02,
           "2026-11-10": 25101460667.83,
           "2026-11-11": 25042096478.72,
           "2026-11-12": 25051072267.11,
@@ -5317,32 +5320,32 @@
           "2026-11-19": 26213013908.34,
           "2026-11-20": 26201030540.18,
           "2026-11-21": 26185827748.61,
-          "2026-11-22": 26156192975.93
+          "2026-11-22": 26156192975.93,
+          "2026-11-23": 26107383645.16
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:48.608374+00:00"
+      "finished_at": "2026-11-24T03:01:53.010454+00:00"
     },
     {
       "key": "BRK_age_5m_to_6m_realized_cap",
-      "url": "https://bitview.space/api/series/age_5m_to_6m_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:48.608389+00:00",
+      "url": "https://bitview.space/api/series/age_5m_to_6m_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:53.010474+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_5m_to_6m_realized_cap.raw",
-      "sha256": "8d24078ede076fdb53d61741b0f194a4c8717b85394cb9022b4a2a4de0083e64",
-      "retrieved_at": "2026-11-23T14:39:48.819423+00:00",
+      "sha256": "e78f572e2105f7c24d91b807f90885da14de67229b0bc266fa18712e03616e0b",
+      "retrieved_at": "2026-11-24T03:01:53.186507+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 19336423368.99,
+        "observed_at_date": "2026-11-23",
+        "value": 18758066389.45,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 22164817509.56,
           "2026-11-10": 21718030549.15,
           "2026-11-11": 19296159766.97,
           "2026-11-12": 20079027501.68,
@@ -5355,32 +5358,32 @@
           "2026-11-19": 18693173305.81,
           "2026-11-20": 19017980159.29,
           "2026-11-21": 18895308785.32,
-          "2026-11-22": 19336423368.99
+          "2026-11-22": 19336423368.99,
+          "2026-11-23": 18758066389.45
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:48.819518+00:00"
+      "finished_at": "2026-11-24T03:01:53.186597+00:00"
     },
     {
       "key": "BRK_age_5y_to_6y_realized_cap",
-      "url": "https://bitview.space/api/series/age_5y_to_6y_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:48.819533+00:00",
+      "url": "https://bitview.space/api/series/age_5y_to_6y_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:53.186616+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_5y_to_6y_realized_cap.raw",
-      "sha256": "a2a482eaa0adfe6decef517cc398cef82542e91a50a75b7dee35c1547c895789",
-      "retrieved_at": "2026-11-23T14:39:49.065632+00:00",
+      "sha256": "5d2e301ab624f474b30e80d6c31e2399694bf0fb9cae54b30a5ff1926ee81647",
+      "retrieved_at": "2026-11-24T03:01:53.322410+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 50453542359.61,
+        "observed_at_date": "2026-11-23",
+        "value": 50494791333.77,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 49906473179.72,
           "2026-11-10": 49964031142.67,
           "2026-11-11": 50001087982.84,
           "2026-11-12": 50067769045.58,
@@ -5393,32 +5396,32 @@
           "2026-11-19": 50362161220.54,
           "2026-11-20": 50388476460.79,
           "2026-11-21": 50413171208.91,
-          "2026-11-22": 50453542359.61
+          "2026-11-22": 50453542359.61,
+          "2026-11-23": 50494791333.77
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:49.065730+00:00"
+      "finished_at": "2026-11-24T03:01:53.322506+00:00"
     },
     {
       "key": "BRK_age_6m_to_9m_realized_cap",
-      "url": "https://bitview.space/api/series/age_6m_to_9m_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:49.065744+00:00",
+      "url": "https://bitview.space/api/series/age_6m_to_9m_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:53.322524+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_6m_to_9m_realized_cap.raw",
-      "sha256": "46fc364e47a41d546823001766e2e8034602b420d11cae3c42b6832df21da3e1",
-      "retrieved_at": "2026-11-23T14:39:49.296234+00:00",
+      "sha256": "8972595584750279e8530f8c58110aced30fd9277dab68ce542d06bf6a44e89d",
+      "retrieved_at": "2026-11-24T03:01:53.524981+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 63416385756.02,
+        "observed_at_date": "2026-11-23",
+        "value": 63795636283.01,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 66792402789.1,
           "2026-11-10": 66611122751.83,
           "2026-11-11": 68133700942.84,
           "2026-11-12": 67867797644.2,
@@ -5431,32 +5434,32 @@
           "2026-11-19": 65335933423.31,
           "2026-11-20": 64899505281.17,
           "2026-11-21": 63554529659.82,
-          "2026-11-22": 63416385756.02
+          "2026-11-22": 63416385756.02,
+          "2026-11-23": 63795636283.01
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:49.296332+00:00"
+      "finished_at": "2026-11-24T03:01:53.525074+00:00"
     },
     {
       "key": "BRK_age_6y_to_7y_realized_cap",
-      "url": "https://bitview.space/api/series/age_6y_to_7y_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:49.296346+00:00",
+      "url": "https://bitview.space/api/series/age_6y_to_7y_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:53.525095+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_6y_to_7y_realized_cap.raw",
-      "sha256": "da7aee311de79b6e0ab540e40afb52552ed20b1df51a542f658da0405a4f8321",
-      "retrieved_at": "2026-11-23T14:39:49.507391+00:00",
+      "sha256": "54e5ebf204ef54a736a2b35f0ac929feac376e16a8ffe11b4785c56d4a2c9680",
+      "retrieved_at": "2026-11-24T03:01:53.703231+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 4652724808.76,
+        "observed_at_date": "2026-11-23",
+        "value": 4674482193.96,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 4749467716.7,
           "2026-11-10": 4735512343.12,
           "2026-11-11": 4760009880.37,
           "2026-11-12": 4767439676.63,
@@ -5469,32 +5472,32 @@
           "2026-11-19": 4918262661.98,
           "2026-11-20": 4933387924.39,
           "2026-11-21": 4956216003.99,
-          "2026-11-22": 4652724808.76
+          "2026-11-22": 4652724808.76,
+          "2026-11-23": 4674482193.96
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:49.507486+00:00"
+      "finished_at": "2026-11-24T03:01:53.703323+00:00"
     },
     {
       "key": "BRK_age_7y_to_8y_realized_cap",
-      "url": "https://bitview.space/api/series/age_7y_to_8y_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:49.507499+00:00",
+      "url": "https://bitview.space/api/series/age_7y_to_8y_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:53.703342+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_7y_to_8y_realized_cap.raw",
-      "sha256": "a0d8062364a7c0efd23dcb550d4cccd74f59c29f4fc9711eb81fca66365d910a",
-      "retrieved_at": "2026-11-23T14:39:49.728638+00:00",
+      "sha256": "df205d52bb09d593a9722d36ff96a5a3f31c4cd001e954c5b57b94217f8de5e9",
+      "retrieved_at": "2026-11-24T03:01:53.879983+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 3389368957.91,
+        "observed_at_date": "2026-11-23",
+        "value": 3380540941.63,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 3085263595.3,
           "2026-11-10": 3085168020.01,
           "2026-11-11": 3088264411.76,
           "2026-11-12": 3073443309.18,
@@ -5507,32 +5510,32 @@
           "2026-11-19": 3066577641.17,
           "2026-11-20": 3072575393.43,
           "2026-11-21": 3073454403.3,
-          "2026-11-22": 3389368957.91
+          "2026-11-22": 3389368957.91,
+          "2026-11-23": 3380540941.63
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:49.728733+00:00"
+      "finished_at": "2026-11-24T03:01:53.880075+00:00"
     },
     {
       "key": "BRK_age_9m_to_1y_realized_cap",
-      "url": "https://bitview.space/api/series/age_9m_to_1y_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:49.728747+00:00",
+      "url": "https://bitview.space/api/series/age_9m_to_1y_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:53.880092+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_9m_to_1y_realized_cap.raw",
-      "sha256": "e135d0ad95c4887ea9074f363e54e110bfd92e3b60b084fa184f909fad411497",
-      "retrieved_at": "2026-11-23T14:39:49.933495+00:00",
+      "sha256": "0fdf41531cf5b95559aaacfc0025cc71e67b29d5ce3889fad8b8b6d79176101c",
+      "retrieved_at": "2026-11-24T03:01:54.083238+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 111649207568.54,
+        "observed_at_date": "2026-11-23",
+        "value": 102910821011.49,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 184119853536.28,
           "2026-11-10": 182159704268.18,
           "2026-11-11": 180390453720.4,
           "2026-11-12": 178524810048.11,
@@ -5545,32 +5548,32 @@
           "2026-11-19": 166555974257.37,
           "2026-11-20": 164641303446.19,
           "2026-11-21": 160686331503.89,
-          "2026-11-22": 111649207568.54
+          "2026-11-22": 111649207568.54,
+          "2026-11-23": 102910821011.49
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:49.933587+00:00"
+      "finished_at": "2026-11-24T03:01:54.083332+00:00"
     },
     {
       "key": "BRK_age_over_15y_realized_cap",
-      "url": "https://bitview.space/api/series/age_over_15y_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:49.933603+00:00",
+      "url": "https://bitview.space/api/series/age_over_15y_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:54.083352+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_over_15y_realized_cap.raw",
-      "sha256": "5118cc0eebc8e4c17eec82858913dd6c2dbd88bd3c55c727967dc64e83c70ee6",
-      "retrieved_at": "2026-11-23T14:39:50.176253+00:00",
+      "sha256": "c8e5f393051cab524e6394f18661ed52c8929d9ad0791b60ed01d6a7d40fa065",
+      "retrieved_at": "2026-11-24T03:01:54.345703+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 2427820.2,
+        "observed_at_date": "2026-11-23",
+        "value": 2428359.14,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 2412454.7,
           "2026-11-10": 2412304.16,
           "2026-11-11": 2415448.66,
           "2026-11-12": 2416598.91,
@@ -5583,32 +5586,32 @@
           "2026-11-19": 2425393.1,
           "2026-11-20": 2425990.33,
           "2026-11-21": 2426487.79,
-          "2026-11-22": 2427820.2
+          "2026-11-22": 2427820.2,
+          "2026-11-23": 2428359.14
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:50.176349+00:00"
+      "finished_at": "2026-11-24T03:01:54.345795+00:00"
     },
     {
       "key": "BRK_age_under_1h_realized_cap",
-      "url": "https://bitview.space/api/series/age_under_1h_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:50.176362+00:00",
+      "url": "https://bitview.space/api/series/age_under_1h_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:54.345815+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_under_1h_realized_cap.raw",
-      "sha256": "6ee62f768cb2588672233149daaf61b94d72d02339258605d25ba36652496972",
-      "retrieved_at": "2026-11-23T14:39:50.399940+00:00",
+      "sha256": "d734b285521e6b26cf25336c1b0b0c1f691fda306312dd7891a8d13b2c3a0d54",
+      "retrieved_at": "2026-11-24T03:01:54.505968+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 981027495.15,
+        "observed_at_date": "2026-11-23",
+        "value": 763759027.02,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 1281627170.56,
           "2026-11-10": 1043888597.59,
           "2026-11-11": 937704039.52,
           "2026-11-12": 1412535383.73,
@@ -5621,32 +5624,32 @@
           "2026-11-19": 1001856171.72,
           "2026-11-20": 1960282428.68,
           "2026-11-21": 638353512.56,
-          "2026-11-22": 981027495.15
+          "2026-11-22": 981027495.15,
+          "2026-11-23": 763759027.02
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:50.400036+00:00"
+      "finished_at": "2026-11-24T03:01:54.506060+00:00"
     },
     {
       "key": "BRK_age_18m_to_2y_realized_cap",
-      "url": "https://bitview.space/api/series/age_18m_to_2y_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:50.400052+00:00",
+      "url": "https://bitview.space/api/series/age_18m_to_2y_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:54.506078+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_18m_to_2y_realized_cap.raw",
-      "sha256": "f382cfaacebdc94df48ffe6a57ae36df5af415665b9fa3d9f58985d891707cd6",
-      "retrieved_at": "2026-11-23T14:39:50.629152+00:00",
+      "sha256": "c0115d1baf6ef8095683b7a3c7c46bf5eb82f8cb561cd151be03726643392f39",
+      "retrieved_at": "2026-11-24T03:01:54.686865+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 105282146965.73,
+        "observed_at_date": "2026-11-23",
+        "value": 103972239337.96,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 102578365510.67,
           "2026-11-10": 102572974442.71,
           "2026-11-11": 103273358840.15,
           "2026-11-12": 102973203466.63,
@@ -5659,32 +5662,32 @@
           "2026-11-19": 107419027968.99,
           "2026-11-20": 106492940432.07,
           "2026-11-21": 105680916179.76,
-          "2026-11-22": 105282146965.73
+          "2026-11-22": 105282146965.73,
+          "2026-11-23": 103972239337.96
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:50.629247+00:00"
+      "finished_at": "2026-11-24T03:01:54.687011+00:00"
     },
     {
       "key": "BRK_age_1y_to_18m_realized_cap",
-      "url": "https://bitview.space/api/series/age_1y_to_18m_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:50.629261+00:00",
+      "url": "https://bitview.space/api/series/age_1y_to_18m_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:54.687028+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_1y_to_18m_realized_cap.raw",
-      "sha256": "50018495f1a1f1b0968c047a42e0c02fa360d77e2d6f6f4fb1317bfbd2d50002",
-      "retrieved_at": "2026-11-23T14:39:50.841983+00:00",
+      "sha256": "ab04265e41179d630b8dfda67578dde7f8125cd31f9c8e967ed23be4900f628a",
+      "retrieved_at": "2026-11-24T03:01:54.898994+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 282151475715.4,
+        "observed_at_date": "2026-11-23",
+        "value": 288869241804.45,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 227012194568.9,
           "2026-11-10": 227828069589.63,
           "2026-11-11": 228871014874.12,
           "2026-11-12": 229710401416.83,
@@ -5697,32 +5700,32 @@
           "2026-11-19": 230374395201.04,
           "2026-11-20": 229981070966.36,
           "2026-11-21": 233487008619.25,
-          "2026-11-22": 282151475715.4
+          "2026-11-22": 282151475715.4,
+          "2026-11-23": 288869241804.45
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:50.842078+00:00"
+      "finished_at": "2026-11-24T03:01:54.899086+00:00"
     },
     {
       "key": "BRK_age_8y_to_10y_realized_cap",
-      "url": "https://bitview.space/api/series/age_8y_to_10y_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:50.842127+00:00",
+      "url": "https://bitview.space/api/series/age_8y_to_10y_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:54.899105+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_8y_to_10y_realized_cap.raw",
-      "sha256": "2fc93c49840cc8fb625bec5e07fec15ea569b70af3e03914d156a7b297822deb",
-      "retrieved_at": "2026-11-23T14:39:51.066361+00:00",
+      "sha256": "fc3f66b3d32b2a3ba12b5f1afee988e9174e35e6fae1ea8e4fd9be36474565a9",
+      "retrieved_at": "2026-11-24T03:01:55.082648+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 8206591718.49,
+        "observed_at_date": "2026-11-23",
+        "value": 8217527872.72,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 8143551090.71,
           "2026-11-10": 8144179600.87,
           "2026-11-11": 8144044029.35,
           "2026-11-12": 8161502850.57,
@@ -5735,32 +5738,32 @@
           "2026-11-19": 8199146181.58,
           "2026-11-20": 8199703095.15,
           "2026-11-21": 8198313632.77,
-          "2026-11-22": 8206591718.49
+          "2026-11-22": 8206591718.49,
+          "2026-11-23": 8217527872.72
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:51.066455+00:00"
+      "finished_at": "2026-11-24T03:01:55.082741+00:00"
     },
     {
       "key": "BRK_age_10y_to_12y_realized_cap",
-      "url": "https://bitview.space/api/series/age_10y_to_12y_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:51.066470+00:00",
+      "url": "https://bitview.space/api/series/age_10y_to_12y_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:55.082765+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_10y_to_12y_realized_cap.raw",
-      "sha256": "394097be27c0ed20ceecd487020ea43370c35059cf3aec43e9e3f25a562d80a9",
-      "retrieved_at": "2026-11-23T14:39:51.281486+00:00",
+      "sha256": "6c0e90e83f10d72c942b6146dc82c5b72d808ef0c7a6da51761728b5baef95fe",
+      "retrieved_at": "2026-11-24T03:01:55.273047+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 187482575.01,
+        "observed_at_date": "2026-11-23",
+        "value": 188589793.91,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 183350133.0,
           "2026-11-10": 183699252.4,
           "2026-11-11": 184832423.7,
           "2026-11-12": 185533548.53,
@@ -5773,32 +5776,32 @@
           "2026-11-19": 186070124.22,
           "2026-11-20": 186807940.99,
           "2026-11-21": 187331757.79,
-          "2026-11-22": 187482575.01
+          "2026-11-22": 187482575.01,
+          "2026-11-23": 188589793.91
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:51.281580+00:00"
+      "finished_at": "2026-11-24T03:01:55.273139+00:00"
     },
     {
       "key": "BRK_age_12y_to_15y_realized_cap",
-      "url": "https://bitview.space/api/series/age_12y_to_15y_realized_cap/day1?start=2026-11-09&end=2026-11-23",
-      "started_at": "2026-11-23T14:39:51.281595+00:00",
+      "url": "https://bitview.space/api/series/age_12y_to_15y_realized_cap/day1?start=2026-11-10&end=2026-11-24",
+      "started_at": "2026-11-24T03:01:55.273157+00:00",
       "status": "COLLECTED_VALIDATED",
       "available_at": null,
       "http_status": 200,
       "raw_file": "BRK_age_12y_to_15y_realized_cap.raw",
-      "sha256": "539124116f6391cfb455a5939878d1e024221872eeb92db297446cfc0ad147fd",
-      "retrieved_at": "2026-11-23T14:39:51.490434+00:00",
+      "sha256": "4212fdc47c347e512f0767188ba091f0f59c625354f57eb8488313e064072928",
+      "retrieved_at": "2026-11-24T03:01:55.423609+00:00",
       "value": {
-        "observed_at_date": "2026-11-22",
-        "value": 265935041.49,
+        "observed_at_date": "2026-11-23",
+        "value": 266009695.73,
         "day_completed": true,
         "provider": "Bitview/BRK",
         "not_entity_adjusted": true,
         "lth_cutoff_days": 150,
         "provider_parity": "INDEPENDENT_NOT_GLASSNODE_OR_CRYPTOQUANT",
         "daily_history": {
-          "2026-11-09": 263084995.77,
           "2026-11-10": 263317318.33,
           "2026-11-11": 263625120.91,
           "2026-11-12": 263671305.65,
@@ -5811,11 +5814,12 @@
           "2026-11-19": 265051039.16,
           "2026-11-20": 265096910.54,
           "2026-11-21": 265210804.28,
-          "2026-11-22": 265935041.49
+          "2026-11-22": 265935041.49,
+          "2026-11-23": 266009695.73
         },
         "computation_version": 4005654773
       },
-      "finished_at": "2026-11-23T14:39:51.490533+00:00"
+      "finished_at": "2026-11-24T03:01:55.423701+00:00"
     },
     {
       "key": "TV_MFI",
