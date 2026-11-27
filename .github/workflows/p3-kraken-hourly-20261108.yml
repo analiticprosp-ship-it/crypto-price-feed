@@ -1,0 +1,38 @@
+name: P3 Kraken hourly backfill (research only)
+on:
+  push:
+    branches: [research/p3-infra-crises-20261101]
+    paths:
+      - .github/workflows/p3-kraken-hourly-20261108.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  hourly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        day: ['2026-10-28','2026-10-29','2026-10-30']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and hash all 24 hours for Kraken BTC and ETH
+        env:
+          CRYPTOHFTDATA_API_KEY: ${{ secrets.CRYPTOHFTDATA_API_KEY }}
+        run: python research/p3-infra-crises-20261101/continuation_20261108/backfill_kraken_hourly.py --day ${{ matrix.day }} --out /tmp/p3-kraken-hourly
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p3-kraken-hourly-manifest-${{ matrix.day }}
+          path: /tmp/p3-kraken-hourly/manifest.json
+          retention-days: 60
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p3-kraken-hourly-raw-${{ matrix.day }}
+          path: /tmp/p3-kraken-hourly/*.parquet
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 14

@@ -1,0 +1,33 @@
+name: P3 Tardis exact historical access (research only)
+on:
+  push:
+    branches: [research/p3-infra-crises-20261101]
+    paths:
+      - .github/workflows/p3-tardis-exact-20261108.yml
+      - research/p3-infra-crises-20261101/continuation_20261108/probe_tardis_exact.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-access:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact documented Tardis datasets and access
+        env:
+          TARDIS_API_KEY: ${{ secrets.TARDIS_API_KEY }}
+        run: python research/p3-infra-crises-20261101/continuation_20261108/probe_tardis_exact.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p3-tardis-exact-access-receipt
+          path: /tmp/p3-tardis-exact/manifest.json
+          retention-days: 60
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p3-tardis-exact-samples
+          path: /tmp/p3-tardis-exact/*.csv.gz
+          if-no-files-found: warn
+          retention-days: 14

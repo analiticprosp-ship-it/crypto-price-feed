@@ -1,0 +1,24 @@
+name: P3 official free source diagnostic (research only)
+on:
+  push:
+    branches: [research/p3-infra-crises-20261101]
+    paths:
+      - .github/workflows/p3-official-free-source-20261108.yml
+      - research/p3-infra-crises-20261101/continuation_20261108/probe_official_free_sources.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  official-endpoints:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check official free source endpoints and classify limitations
+        run: python research/p3-infra-crises-20261101/continuation_20261108/probe_official_free_sources.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p3-official-free-source-diagnostic
+          path: /tmp/p3-official-free-source/manifest.json
+          retention-days: 60

@@ -1,0 +1,46 @@
+name: P3 L2 Parquet schema audit (research only)
+on:
+  push:
+    branches: [research/p3-infra-crises-20261101]
+    paths:
+      - .github/workflows/p3-l2-parquet-audit-20261108.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  schema-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install reader
+        run: python -m pip install 'pyarrow==21.0.0'
+      - name: Retrieve raw samples from verified source run
+        uses: actions/download-artifact@v4
+        with:
+          name: p3-l2-probe-raw
+          run-id: 42455425848
+          github-token: ${{ github.token }}
+          path: /tmp/p3-l2-raw
+      - name: Retrieve original receipts
+        uses: actions/download-artifact@v4
+        with:
+          name: p3-l2-probe-verified-receipts
+          run-id: 42455425848
+          github-token: ${{ github.token }}
+          path: /tmp/p3-l2-receipts
+      - name: Verify hashes and inspect Parquet schema
+        run: |
+          python research/p3-infra-crises-20261101/continuation_20261106/audit_parquet_schema.py --raw-dir /tmp/p3-l2-raw --receipts-dir /tmp/p3-l2-receipts --out /tmp/p3-l2-schema-audit.json
+      - name: Save schema audit receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3-l2-parquet-schema-audit
+          path: /tmp/p3-l2-schema-audit.json
+          if-no-files-found: warn
+          retention-days: 60

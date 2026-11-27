@@ -1,0 +1,109 @@
+{
+  "owner": "P3",
+  "recipients": {
+    "P1": [
+      "CYCLE",
+      "ONCHAIN_DEMAND",
+      "ALT_RS"
+    ],
+    "P2": "RECOVERY_CONTEXT_ONLY_NO_LONG_CHANGE",
+    "P4": "QUALITY_DIAGNOSTICS"
+  },
+  "status": "SHADOW_RESEARCH_CANDIDATE_NOT_ACCEPTED",
+  "primary_spot": {
+    "run_id": "20261102T223602Z_41538623949",
+    "raw_pages_verified": 80,
+    "primary_minute_points": 70,
+    "pending": 0,
+    "hourly_rows": 1440,
+    "independent_parent_episodes": 5,
+    "source": "BINANCE_SPOT_PRIMARY_API",
+    "quote": "USDT_NOT_USD",
+    "original_historical_availability": null,
+    "status": "PRICE_COLLECTION_EXECUTED_NOT_FULL_H1_H2_H3_VALIDATION",
+    "trades_changed": false,
+    "frozen_models_changed": false
+  },
+  "funding": {
+    "verified_archives": 12,
+    "settlements": 1092,
+    "missing_archives": 2,
+    "periods": "FULLY_CONTAINED_ONLY_NO_PRORATION",
+    "original_availability": null,
+    "new_observations": 0,
+    "api_supplement": "UNAVAILABLE_HTTP451_BTC_ETH"
+  },
+  "hypotheses": {
+    "H1": "NOT_VALIDATED_MISSING_DEPTH_SPREADS",
+    "H2": "NOT_VALIDATED_NO_LIQUIDITY_NORMALIZATION_TIMES",
+    "H3": "NOT_VALIDATED_NO_SYNCHRONOUS_FLOW_IDENTIFICATION"
+  },
+  "constraints": {
+    "production_changes": false,
+    "frozen_btc72h_changes": false,
+    "trading_thresholds_optimized": false,
+    "clean_controls": false,
+    "causal_identification": false,
+    "PIT_original_vintages": false
+  },
+  "next_tests": [
+    "Adjudicate technical vs first_public phases without changing parent episode count",
+    "Acquire comparable historical spreads/depth and liquidation coverage",
+    "Screen control dates independently, pre-register exclusions",
+    "Reconcile session-timed macro/sector/ETF panel",
+    "Freeze prospective contract separately before next events"
+  ],
+  "github": {
+    "pr": 159,
+    "spot_data_commit": "3355f58286c3d30ec0c5791dff8a3e196956a133",
+    "funding_data_commit": "f8cd52dc967462beefafff7321bb11539514bf60"
+  },
+  "version": "V5_20261105_REPRODUCIBILITY_ONLY",
+  "FTX_date_only_sensitivity": {
+    "anchors": 24,
+    "new_independent_episodes": 0,
+    "source": "SECONDARY_BITSTAMP_USD",
+    "all_24H_72H_returns_negative_on_grid": true,
+    "causal": false,
+    "negative_anchor_counts": {
+      "BTC": {
+        "4H": 19,
+        "24H": 24,
+        "72H": 24
+      },
+      "ETH": {
+        "4H": 19,
+        "24H": 24,
+        "72H": 24
+      }
+    },
+    "positive_anchor_counts": {
+      "BTC": {
+        "4H": 5,
+        "24H": 0,
+        "72H": 0
+      },
+      "ETH": {
+        "4H": 5,
+        "24H": 0,
+        "72H": 0
+      }
+    }
+  },
+  "acceptance": "NOT_ACCEPTED_NO_SCORE_GATE_OR_TRADING_CHANGE",
+  "supersedes": "V4 only for replay readiness and descriptive sensitivity counts; original findings and limitations retained.",
+  "reproducibility": {
+    "FTX_status": "REPRODUCED_OFFLINE_FROM_RECOVERED_ORIGINAL_ROWS",
+    "repository_entrypoint": "python research/p3-infra-crises-20261101/continuation_20261105/reproduce_ftx.py --output-dir /tmp/p3-ftx-new-output",
+    "portable_entrypoint": "python P3/continuation_20261105/reproduce_ftx.py --output-dir /tmp/p3-ftx-new-output",
+    "requires_full_package_for_FTX_replay": false,
+    "recovered_usd_rows_per_asset": 96,
+    "input_manifest": "continuation_20261105/INPUT_MANIFEST.json",
+    "replay_validation": "continuation_20261105/results/REPLAY_VALIDATION.json",
+    "byte_identical_output_files": 4,
+    "full_original_USD_mirror_provenance": "Original full-file SHA256 and Git blob IDs verified; subset is an unmodified row selection, not a new price source. Secondary mirror remains non-PIT.",
+    "legacy_phase_uncertainty_direct_entrypoint_still_requires_full_layout": true
+  },
+  "readiness_audit": "continuation_20261105/results/READINESS_AUDIT.json",
+  "new_market_data_collected": false
+}
