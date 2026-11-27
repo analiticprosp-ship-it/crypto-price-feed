@@ -31,6 +31,20 @@ class SourceGuards(unittest.TestCase):
     def test_coinbase_maker_side_inversion(self):
         self.assertEqual(c.coinbase_trade_delta({'size':'2','price':'100','side':'sell'}),(2,200))
         self.assertEqual(c.coinbase_trade_delta({'size':'2','price':'100','side':'buy'}),(-2,-200))
+    def test_missing_year_month_is_not_previous_available_row(self):
+        csv = 'observation_date,CPIAUCSL\n2025-09-01,100\n2025-10-01,\n2025-11-01,101\n2026-09-01,104\n2026-10-01,105\n'
+        v=c.fred(csv,'CPIAUCSL')
+        self.assertIsNone(v['year_over_year_pct'])
+        self.assertEqual(v['yoy_base_status'],'MISSING_CALENDAR_MONTH')
+        self.assertAlmostEqual(v['month_over_month_pct'],100*(105/104-1))
+    def test_year_over_year_uses_calendar_month_even_with_short_sample(self):
+        csv = 'observation_date,PCEPI\n2025-10-01,100\n2026-10-01,104\n'
+        v=c.fred(csv,'PCEPI')
+        self.assertAlmostEqual(v['year_over_year_pct'],4)
+        self.assertIsNone(v['month_over_month_pct'])
+    def test_month_gap_does_not_create_two_month_mom(self):
+        csv = 'observation_date,PCEPI\n2026-08-01,100\n2026-09-01,.\n2026-10-01,104\n'
+        self.assertIsNone(c.fred(csv,'PCEPI')['month_over_month_pct'])
     def test_flat_iv_surface_has_zero_skew(self):
         from datetime import datetime,timezone
         now=datetime(2026,10,31,8,tzinfo=timezone.utc).timestamp()*1000
