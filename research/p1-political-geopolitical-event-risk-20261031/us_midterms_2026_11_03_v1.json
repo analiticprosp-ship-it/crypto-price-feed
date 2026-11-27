@@ -1,0 +1,292 @@
+{
+  "version": "1.0.0",
+  "authority": "SHADOW_RESEARCH_ONLY_NO_TRADES",
+  "audit_as_of_utc": "2026-11-03T18:21:45Z",
+  "parent_event_id": "P1-POL-2026-11-03-US-MIDTERMS",
+  "us_election_local_date": "2026-11-03",
+  "registration_class": "ELECTION_DAY_PRE_FIRST_SCHEDULED_CLOSE_NO_OUTCOME_DATA_INSPECTED",
+  "source_observation_note": "Source locators and contemporaneous paraphrases; audit cutoff is not a publication time or a raw HTTP receipt.",
+  "evidence": {
+    "FEC": {
+      "url": "https://www.fec.gov/introduction-campaign-finance/election-results-and-voting-information/",
+      "locator": "Election dates; Election results",
+      "observed": "Federal general election scheduled for November 3, 2026 (US local date); states certify results."
+    },
+    "AP_CLOSE": {
+      "url": "https://apnews.com/article/election-rundown-polls-close-results-timing-0e2078f16af285b22675445d78360e6d",
+      "locator": "6 p.m. EST",
+      "observed": "First scheduled poll closes in eastern parts of Indiana and Kentucky; AP identifies IN-05 and KY-06 before results."
+    },
+    "IN_CLOSE": {
+      "url": "https://www.hamiltoncounty.in.gov/222/Current-Election-Information",
+      "locator": "2026 General Election",
+      "observed": "November 3, 06:00–18:00 local in Hamilton County, Indiana."
+    },
+    "KY_CLOSE": {
+      "url": "https://elect.ky.gov/Frequently-Asked-Questions/Pages/Election-Day-Information.aspx",
+      "locator": "What time are the polls open on Election Day?",
+      "observed": "November 3, 06:00–18:00 local; voters already in line may still vote."
+    },
+    "NYC": {
+      "url": "https://vote.nyc/election/general-election-2026",
+      "locator": "Election Day",
+      "observed": "November 3, 06:00–21:00 New York time."
+    },
+    "CA": {
+      "url": "https://www.sos.ca.gov/elections/upcoming-elections/general-election-november-3-2026/key-dates-deadlines",
+      "locator": "Election Day and Statement of Vote rows",
+      "observed": "November 3, 20:00 Pacific: scheduled close and start of county reporting. December 11: state certification on the calendar, not an actual publication timestamp."
+    },
+    "IN_ENR": {
+      "url": "https://enr.indianavoters.in.gov/site/index.html",
+      "locator": "Indiana Election Results; Last Updated",
+      "observed": "Direct rendered page is a JavaScript shell. Search preview showed 100% with an October 20 update; rejected as stale/unverified, no timestamp inferred."
+    },
+    "KY_ENR": {
+      "url": "https://vrsws.sos.ky.gov/liveresults/?id=2026",
+      "locator": "2026 General Election; 6th Congressional District",
+      "observed": "Direct page version showed zero for displayed KY-06 candidates; page's Last Updated displayed 11/3/2026 1:02:46 PM without offset in the extract. Neither proves a vote release."
+    },
+    "AP_CONTEXT": {
+      "url": "https://apnews.com/article/when-ap-calls-congress-control-9dae62cdd7d776a20a26eab6fbd9b12c",
+      "locator": "Article lead and linked election coverage",
+      "observed": "Pre-election explainer, not a call. Indexed wire date 05:24:28Z is not a verified first-publication receipt."
+    },
+    "AP_API": {
+      "url": "https://developer.ap.org/ap-elections-api/docs/Elections_Response_Data_Elements.htm",
+      "locator": "winnerDateTime, lastUpdated, winner",
+      "observed": "Race winner declaration and feed update are distinct clocks; no authenticated AP payload was obtained."
+    },
+    "COINBASE": {
+      "url": "https://docs.cdp.coinbase.com/api-reference/exchange-api/rest-api/products/get-product-candles",
+      "locator": "Response Items; Max Candles",
+      "observed": "Bucket time is UTC start; response has time/low/high/open/close/volume. 300 candles maximum."
+    }
+  },
+  "events": [
+    {
+      "event_id": "P1-POL-2026-11-03-US-MIDTERMS",
+      "role": "calendar_metadata",
+      "kind": "election_date",
+      "scope": "US federal general election; local date only",
+      "source_ids": [
+        "FEC"
+      ],
+      "scheduled_at_utc": null,
+      "scheduled_local": null,
+      "timezone": null,
+      "event_occurred_at_utc": null,
+      "source_published_at_utc": null,
+      "first_market_available_timestamp_utc": null,
+      "availability_lower_utc": null,
+      "availability_upper_utc": null,
+      "timing_status": "DATE_CONFIRMED",
+      "availability_evidence": null
+    },
+    {
+      "event_id": "P1-POL-2026-11-03-US-MIDTERMS-FIRST-CLOSE",
+      "role": "calendar_control",
+      "kind": "poll_close_schedule",
+      "scope": "First scheduled close wave: eastern IN/KY; not a nationwide close",
+      "source_ids": [
+        "AP_CLOSE",
+        "IN_CLOSE",
+        "KY_CLOSE"
+      ],
+      "scheduled_at_utc": "2026-11-03T23:00:00Z",
+      "scheduled_local": "2026-11-03T18:00:00",
+      "timezone": "America/New_York",
+      "event_occurred_at_utc": null,
+      "source_published_at_utc": null,
+      "first_market_available_timestamp_utc": null,
+      "availability_lower_utc": null,
+      "availability_upper_utc": null,
+      "timing_status": "SCHEDULE_CONFIRMED",
+      "availability_evidence": null
+    },
+    {
+      "event_id": "P1-POL-2026-11-03-US-MIDTERMS-NYC-CLOSE",
+      "role": "calendar_metadata",
+      "kind": "poll_close_schedule",
+      "scope": "New York City",
+      "source_ids": [
+        "NYC"
+      ],
+      "scheduled_at_utc": "2026-11-04T02:00:00Z",
+      "scheduled_local": "2026-11-03T21:00:00",
+      "timezone": "America/New_York",
+      "event_occurred_at_utc": null,
+      "source_published_at_utc": null,
+      "first_market_available_timestamp_utc": null,
+      "availability_lower_utc": null,
+      "availability_upper_utc": null,
+      "timing_status": "SCHEDULE_CONFIRMED",
+      "availability_evidence": null
+    },
+    {
+      "event_id": "P1-POL-2026-11-03-US-MIDTERMS-CA-REPORT-START",
+      "role": "calendar_metadata",
+      "kind": "reporting_schedule",
+      "scope": "California scheduled close and reporting start",
+      "source_ids": [
+        "CA"
+      ],
+      "scheduled_at_utc": "2026-11-04T04:00:00Z",
+      "scheduled_local": "2026-11-03T20:00:00",
+      "timezone": "America/Los_Angeles",
+      "event_occurred_at_utc": null,
+      "source_published_at_utc": null,
+      "first_market_available_timestamp_utc": null,
+      "availability_lower_utc": null,
+      "availability_upper_utc": null,
+      "timing_status": "SCHEDULE_CONFIRMED",
+      "availability_evidence": null
+    },
+    {
+      "event_id": "P1-POL-2026-11-03-US-MIDTERMS-IN05-FIRST-TALLY",
+      "role": "diagnostic",
+      "kind": "official_preliminary_tally",
+      "scope": "First positive vote total for IN-05 House, Indiana election-night reporting",
+      "source_ids": [
+        "IN_ENR",
+        "AP_CLOSE"
+      ],
+      "scheduled_at_utc": null,
+      "scheduled_local": null,
+      "timezone": null,
+      "event_occurred_at_utc": null,
+      "source_published_at_utc": null,
+      "first_market_available_timestamp_utc": null,
+      "availability_lower_utc": null,
+      "availability_upper_utc": null,
+      "timing_status": "PENDING_ANCHOR",
+      "availability_evidence": null
+    },
+    {
+      "event_id": "P1-POL-2026-11-03-US-MIDTERMS-KY06-FIRST-TALLY",
+      "role": "diagnostic",
+      "kind": "official_preliminary_tally",
+      "scope": "First positive vote total for KY-06 House, Kentucky election-night reporting",
+      "source_ids": [
+        "KY_ENR",
+        "AP_CLOSE"
+      ],
+      "scheduled_at_utc": null,
+      "scheduled_local": null,
+      "timezone": null,
+      "event_occurred_at_utc": null,
+      "source_published_at_utc": null,
+      "first_market_available_timestamp_utc": null,
+      "availability_lower_utc": null,
+      "availability_upper_utc": null,
+      "timing_status": "PENDING_ANCHOR",
+      "availability_evidence": null
+    },
+    {
+      "event_id": "P1-POL-2026-11-03-US-MIDTERMS-IN05-AP-CALL",
+      "role": "diagnostic",
+      "kind": "race_call",
+      "scope": "First AP call of a winner in IN-05 House",
+      "source_ids": [
+        "AP_CLOSE",
+        "AP_API"
+      ],
+      "scheduled_at_utc": null,
+      "scheduled_local": null,
+      "timezone": null,
+      "event_occurred_at_utc": null,
+      "source_published_at_utc": null,
+      "first_market_available_timestamp_utc": null,
+      "availability_lower_utc": null,
+      "availability_upper_utc": null,
+      "timing_status": "PENDING_ANCHOR",
+      "availability_evidence": null
+    },
+    {
+      "event_id": "P1-POL-2026-11-03-US-MIDTERMS-KY06-AP-CALL",
+      "role": "diagnostic",
+      "kind": "race_call",
+      "scope": "First AP call of a winner in KY-06 House",
+      "source_ids": [
+        "AP_CLOSE",
+        "AP_API"
+      ],
+      "scheduled_at_utc": null,
+      "scheduled_local": null,
+      "timezone": null,
+      "event_occurred_at_utc": null,
+      "source_published_at_utc": null,
+      "first_market_available_timestamp_utc": null,
+      "availability_lower_utc": null,
+      "availability_upper_utc": null,
+      "timing_status": "PENDING_ANCHOR",
+      "availability_evidence": null
+    },
+    {
+      "event_id": "P1-POL-2026-11-03-US-MIDTERMS-AP-HOUSE-CONTROL",
+      "role": "primary",
+      "kind": "chamber_control_call",
+      "scope": "First explicit AP declaration of House control",
+      "source_ids": [
+        "AP_CONTEXT",
+        "AP_API"
+      ],
+      "scheduled_at_utc": null,
+      "scheduled_local": null,
+      "timezone": null,
+      "event_occurred_at_utc": null,
+      "source_published_at_utc": null,
+      "first_market_available_timestamp_utc": null,
+      "availability_lower_utc": null,
+      "availability_upper_utc": null,
+      "timing_status": "PENDING_ANCHOR",
+      "availability_evidence": null
+    },
+    {
+      "event_id": "P1-POL-2026-11-03-US-MIDTERMS-AP-SENATE-CONTROL",
+      "role": "primary",
+      "kind": "chamber_control_call",
+      "scope": "First explicit AP declaration of Senate control",
+      "source_ids": [
+        "AP_CONTEXT",
+        "AP_API"
+      ],
+      "scheduled_at_utc": null,
+      "scheduled_local": null,
+      "timezone": null,
+      "event_occurred_at_utc": null,
+      "source_published_at_utc": null,
+      "first_market_available_timestamp_utc": null,
+      "availability_lower_utc": null,
+      "availability_upper_utc": null,
+      "timing_status": "PENDING_ANCHOR",
+      "availability_evidence": null
+    },
+    {
+      "event_id": "P1-POL-2026-11-03-US-MIDTERMS-CA-CERTIFICATION",
+      "role": "calendar_metadata",
+      "kind": "official_certification",
+      "scope": "California Statement of Vote: scheduled date 2026-12-11; actual act and publication pending",
+      "source_ids": [
+        "CA",
+        "FEC"
+      ],
+      "scheduled_at_utc": null,
+      "scheduled_local": null,
+      "timezone": null,
+      "event_occurred_at_utc": null,
+      "source_published_at_utc": null,
+      "first_market_available_timestamp_utc": null,
+      "availability_lower_utc": null,
+      "availability_upper_utc": null,
+      "timing_status": "PENDING_CERTIFICATION",
+      "availability_evidence": null
+    }
+  ],
+  "source_routes": {
+    "ap_public_hub": "https://apnews.com/hub/elections",
+    "indiana_results": "https://enr.indianavoters.in.gov/site/index.html",
+    "kentucky_results": "https://vrsws.sos.ky.gov/liveresults/?id=2026",
+    "california_calendar": "https://www.sos.ca.gov/elections/upcoming-elections/general-election-november-3-2026/key-dates-deadlines"
+  }
+}
